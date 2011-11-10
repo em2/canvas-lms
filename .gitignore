@@ -51,3 +51,5 @@ doc/api/*
 doc/plugins/*
 public/doc/api/*
 .yardoc/*
+bin
+vendor
