@@ -39,6 +39,11 @@
   <% if @domain_root_account && @domain_root_account.settings[:global_stylesheet] && !@domain_root_account.settings[:global_stylesheet].try(:strip).empty?  %>
     <link href="<%= @domain_root_account.settings[:global_stylesheet] %>" media="all" rel="stylesheet" type="text/css" />
   <% end %>
+
+  <% if @no_chrome === true %>
+    <%= stylesheet_link_tag "compiled/no_chrome.css" %>
+  <% end %>
+  
   <script>
     // listen for any clicks on links that have href="#" and queue them to be fired on dom ready.
       _earlyClick = function(e){
