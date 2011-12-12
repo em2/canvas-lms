@@ -1,0 +1,384 @@
+--- 
+em2: 
+  account_settings: 
+    titles: 
+      what_are_quiz_ip_filters: "What are Assessment IP Filters?"      
+  accounts: 
+    settings: 
+      quiz_ip_filters_help_message: |-
+        Assessment IP filters are a way to limit access to assessments to computers in a specified IP range.
+        
+        Specify a set of IP address filters that teachers can use to protect access to assessments.  Filters can be a comma-separated list of addresses, or an address followed by a mask ("192.168.217.1/24" or "192.168.217.1/255.255.255.0")."
+      quiz_ip_filters_help_title: "What are Assessment IP Filters?"
+      quiz_ip_filters_help_tooltip: "What are Assessment IP Filters?"
+      quiz_ip_filters_title: "Assessment IP Address Filters"
+  assignments: 
+    submission_sidebar: 
+      links: 
+        submission: 
+          view_quiz: "View the Assessment Submission"
+    wizard_box: 
+      instructions: 
+        wizard: 
+          quizzes: "Assessments are special types of assignments.  You can create or import assessments by clicking the \"Assessments\" link on the left sidebar."
+      links: 
+        create_or_import_quiz: "Create/Import an Assessment"
+  content_imports: 
+    assignment_form: 
+      options: 
+        quiz: Assessment
+    copy_course: 
+      labels: 
+        quizzes: "Assessments for %{course}"
+    copy_course_content: 
+      labels: 
+        quizzes: "Assessments for %{course}"
+    intro: 
+      links: 
+        import_quizzes: "Import Assessments"
+    migrate_content: 
+      labels: 
+        quizzes: "Assessments"
+    quizzes: 
+      buttons: 
+        import: "Import Assessment"
+      defaults: 
+        unnamed_quiz: "Unnamed Assessment"
+      details: |-
+          Canvas can import assessments in the IMS QTI format.  Most systems allow you to export your assessments in this format. You can also use popular assessment tools like Respondus to create and export IMS QTI. Upload the file below and you'll receive an email when the importing is complete."
+      links: 
+        quiz_from_respondus: "How do I save an assessment using Respondus?"
+      page_title: "Import the Assessments"
+      titles: 
+        current_quizzes: "Current Assessments"
+    wizard_secondary_nav: 
+      wizard_steps: 
+        import_quizzes: "Import Assessments"
+  content_locks: 
+    messages: 
+      quiz_locked_at: "This assessment was locked %{at}."
+      quiz_locked_module: "This assessment is part of the module *%{module}* and hasn't been unlocked yet."
+      quiz_locked_no_reason: "This assessment is locked.  No other reason has been provided."
+      quiz_locked_until: "This assessment is locked until %{date}."
+#    content: 
+ #     help: 
+  #      create: |
+   #         Course modules let you organize your assignments, pages, files, etc. into smaller sections or units. Modules could be centered around a theme, focused on a specific topic, or even just grouped chronologically.
+
+    #        You can also sequence modules by defining criteria and prerequisites for each module. Students won't be able to access modules until they have unlocked all their prerequisites. That way you can prevent students from accessing certain content or files until they have, say, gotten at least 75% on a review assessment.
+
+     #       To start organizing your course into modules, click the "%{button}" button to the right.
+    optgroup: 
+      quizzes: Assessments
+  course_exports: 
+    errors: 
+      quiz: "The assessment \"%{title}\" failed to export"
+      quizzes: "Some assessments failed to export"
+  courses: 
+    course_wizard_box: 
+      details: 
+        navigation: "By default all links are enabled for a course.  Students won't see links to sections that don't have content.  For example, if you haven't created any assessments, they won't see the assessments link.  You can sort and explicitly disable these links if there are areas of the course you don't want your students accessing."
+    statistics: 
+      quiz: Assessment
+      quiz_questions: "Assessments Questions"
+      quiz_submissions: "Assessment Submissions"
+      quizzes: Assessments
+  getting_started: 
+    assignments: 
+      default_group_notice: "*Now we're getting somewhere!* Next you'll want to add your course assignments.  Assignments are organized into groups (assessments, papers, etc.), and each group can be weighted to count as a percentage of the final score.  We've added a default group above to get you started.  You can add assignments to it by clicking the plus icon, or use the links to the right to create your own groups."
+      grade_groups_notice: "Nicely done. Next you'll want to define the assignments for your course. Most classes base grades either on straight points, or points according to types (50% of your grade is from tests, 20% is from papers, etc.). In Canvas you add assignments, assessments, or whatever into groups and optionally weight those groups. Build your Canvas course to match the grading scheme of your actual course, and we'll take care of computing your final grade for you."
+  gradebook: 
+    confirms: 
+      unsaved_changes: |-
+          The following students have unsaved changes to their assessment submissions: 
+          %{users}
+          Continue anyway?
+    links: 
+      finish_scoring: "Finish Scoring this Assessment"
+      view_quiz: "View this Assessment"
+  gradebook_uploads: 
+    show: 
+      assignment_example: "Equity Indices Assessment"
+  gradebooks: 
+    gradebook: 
+      title: 
+        quiz: "Assessment Submission"
+      titles: 
+        quiz_review: "This assessment needs review"
+  labels: 
+    quizzes: Assessments
+  messages: 
+    content_locked: "This assessment is currently locked."
+    quiz_locked: "This assessment is currently locked."
+    quiz_locked_at: "This assessment was locked %{at}."
+    quiz_locked_module: "This assessment is part of the module *%{module}* and hasn't been unlocked yet."
+    quiz_locked_until: "This assessment is locked until %{date}."
+    rubric_assessment_invitation: 
+      email: 
+        subject: "Assessment Invitation: %{rubric}, %{context}"
+      summary: 
+        subject: "Assessment Invitation: %{rubric}, %{context}"
+    rubric_association_created: 
+      email: 
+        subject: "New Assessment: %{title}, %{context}"
+      facebook: 
+        body: "A new assessment has been created for %{context}."
+      sms: 
+        body: "A new assessment has been created for %{context}:"
+      summary: 
+        body: "A new assessment has been created for %{context}:"
+        subject: "New Assessment: %{title}, %{context}"
+      twitter: 
+        tweet: "Canvas Alert - New Assessment: %{title}, %{context}."
+  question_banks: 
+    show: 
+      edit_warning: "Remember, changes to question templates won't automatically update assessments that are already using those questions."
+  quiz: 
+    default_title: "New Assessment"
+    types: 
+      quiz: Assessment
+    warnings: 
+      import_from_migration_failed: "Could not import the assessment  \"%{quiz_title}\""
+  quiz_submissions: 
+    errors: 
+      late_quiz: "You submitted this assessment late, and your answers may not have been recorded."
+      protected_quiz: "This assessment is protected and is only available from certain locations.  The computer you are currently using does not appear to be at a valid location for taking this assessment."
+  quizzes: 
+    _quiz_preview: 
+      rescore_the_quiz: "Re-Score the Assessment"
+    access_code:
+      quiz_restricted: "This assessment is restricted by an access code. You'll need to ask your teacher or proctor to type in or tell you the access code in order to take the assessment."
+    confirms: 
+      scrap_and_restart: "Scrap this assessment and start from scratch?"
+    default_new_crumb: "New Assessment"
+    default_quiz_title: Assessment
+    default_title: "New Assessment"
+    display_question: 
+      unsupported_question_type: "This question was imported from an external source. It was a '%{question_type}' question, which is not supported in this quiz tool."
+    errors: 
+      no_more_attempts: "You have no assessment attempts left"
+      quiz_deleted: "That assessment has been deleted"
+      quiz_update_failed: "Assessment failed to update"
+    find_question_from_bank: 
+      already_added: "this question is already on the assessment"
+      labels: 
+        add_questions_to_group: "Add questions to the assessment group"
+      select_a_question_bank: "Select a question bank from the list below to link it to the this assessment as a question group."
+    form_question: 
+      explanation: 
+        generate_possible_solutions: "Finally, build as many variable-solution combinations as you need for your assessment."
+    history: 
+      default_quiz_name: "Assessment %{course_name}"
+      headers: 
+        quiz_submissions: "Assessment Submissions"
+      latest_quiz_results: "Here's the latest assessment results for %{user}. You can modify the points for any question and add more comments, then click \"Update Scores\" at the bottom of the page."
+      links: 
+        back_to_quiz: "Back to Assessment"
+      page_title_quiz: "%{user}'s Assessment History"
+      quiz_not_yet_taken: "Assessment hasn't been taken yet."
+      quiz_not_yet_taken_or_in_progress: "Assessment hasn't been taken yet or is currently in progress"
+      quiz_unlimited_attempts: "This assessment has unlimited attempts"
+      unnamed_quiz_results: "Assessment Results for %{user}"
+    index: 
+      buttons: 
+        publish_quizzes: "Publish Assessments"
+        publishing_quizzes: "Publishing Assessments..."
+      confirms: 
+        delete_quiz: "Are you sure you want to delete this assessment?"
+      default_title: "New Assessment"
+      headers: 
+        assignment_quizzes: "Assignment Assessments"
+        course_quizzes: "Course Assessments"
+        practice_quizzes: "Practice Assessments"
+        publish_multiple_quizzes: "Publish Multiple Assessments"
+        unpublished_quizzes: "Unpublished Assessments"
+      labels: 
+        publish_multiple_quizzes: "Select the assessments you would like to publish at this time"
+      links: 
+        create_new_quiz: "Create a New Assessment"
+        publish_multiple_quizzes: "Publish Multiple Assessments"
+      no_quizzes: "No assessments available"
+      page_titles: Assessments
+      titles: 
+        this_quiz_is_locked: "This assessment is currently locked.  Click for more details."  
+    invalid_ip: 
+      quiz_protected: "This assessment is protected and is only available from certain locations. The computer you are currently using does not appear to be at a valid location for taking this assessment."
+    lockdown_browser_required: 
+      requires_lockdown: "This assessment requires Respondus LockDown Browser.  Please launch Respondus LockDown Browser to take this assessment or view your assessment results."
+    moderate: 
+      end_quiz_when: "End the assessment %{n} minutes from %{reference_time}."
+      extended_quiz_time_explanation: "You can give this student extra time on their current assessment attempt. How much time would you like to give them?"
+      headers: 
+        extended_quiz_time: "Extend Assessment Time"
+      labels: 
+        manually_unlock: "Manually unlock the assessment for the next attempt"  
+      page_title: "Moderate Assessment"
+      titles: 
+        extend_quiz_time: "Extend Assessment Time"
+    new: 
+      buttons: 
+        publish_quiz: "Publish Assessments"
+        republish_quiz: "Re-Publish Assessment"
+        save_but_dont_publish: "Save Assessment *but don't Publish*"
+      confirms: 
+        delete_quiz: "Are you sure you want to delete this assessment?"  
+      default_page_title: "New Assessment"
+      graded_quiz: "Graded Assessment"
+      headers: 
+        create_new_quiz: "Create a New Assessment"
+        edit_quiz: "Edit Assessment"
+        ip_filters: "What are Assessment IP Filters?"
+        quiz_options: "Assessment Options"  
+      ip_filters: "Quiz IP filters are a way to limit access to quizzes to computers in a specified IP range.  Filters can be a comma-separated list of addresses, or an address followed by a mask (\"192.168.217.1\", \"192.168.217.1/24\" ó \"192.168.217.1/255.255.255.0\"). "
+      labels: 
+        never_hide_results: "Let Students See their Assessment Results"
+        quiz_instructions: "Assessment Instructions"
+        quiz_name: "Assessment Name"
+        require_lockdown_browser_for_results: "Required to view assessment results"
+        restrict_quiz: "Restrict this Assessment"
+        score_to_keep: "Assessment Score to Keep"
+      links: 
+        preview_quiz: "Preview the Assessment"
+        quiz_options: "Assessment Options"
+        return_to_quiz_page: "Return to Assessment Page"  
+      practice_quiz: "Practice Assessment"
+      warnings: 
+        has_student_submissions: "Students have either already taken or started taking this assessment, so be careful about editing it.  If you change any assessment questions in a significant way, you may want to consider re-grading students who took the old version of the assessment."
+        unpublished_changes: "You have made unpublished changes to this assessment.  These changes will not appear for students until you publish or re-publish the assessment."
+    notices: 
+      has_submissions_already: "Keep in mind, some students have already taken or started taking this assessment"
+      less_than_allotted_time: "You started this assessment near when it was due, so you won't have the full amount of time to take the assessment."
+      quiz_data_saved: "Assessment data saved"
+      quiz_updated: "Assessment successfully updated"
+      quizzes_published: 
+        one: "1 assessment successfully published!"
+        other: "%{count} assessments successfully published!"
+    quiz_preview: 
+      buttons: 
+        score_the_quiz: "Score the Assessment"
+      labels: 
+        quiz_score: "Assessment Score"
+    quiz_right_side: 
+      links: 
+        preview_quiz_again: "Preview the Assessment Again"
+        take_quiz_again: "Take the Assessment Again"
+    quiz_submission: 
+      labels: 
+        fudge_points_changed_points_quiz: "Since %{user} took this assessment, the points possible for the assessment has changed by %{difference}. You can adjust for this change and manually add positive or negative points using this box:"
+        quiz_score: "Assessment Score"
+        score_for_quiz: "Score for this assessment"
+      quiz_fudged_negative: "This assessment score has been manually adjusted by %{fudge} points."
+      quiz_fudged_positive: "This assessment score has been manually adjusted by +%{fudge} points."
+      quiz_not_yet_taken: "The assessment hasn't been taken yet."
+      quiz_results_protected: "Quiz results are protected for this assessment, and are not visible to students."
+      quiz_results_protected_until_last_attempt: "Assessment results are protected for this assessment, and are not visible to students until they have submitted their last attempt."
+      requires_lockdown: "Respondus LockDown Browser is required to view your assessment results."
+    quiz_summary: 
+      labels: 
+        quiz_details: "Assessment Details"
+      links: 
+        resume_quiz: "Resume Assessment"
+      titles: 
+        delete_quiz: "Borrar la Evaluación"
+        edit_quiz: "Edit Assessment"
+    read_only: 
+      default_page_title: "New Assessment"
+      headers: 
+        quiz_details: "Assessment Details"
+      labels: 
+        quiz_instructions: "Assessment Instructions"
+      links: 
+        back_to_quiz_page: "Back to Assessment Page"
+    show: 
+      buttons: 
+        lock_quiz: "Lock this Assessment Now"
+        unlock_quiz: "Let Students Take this Assessment Now"  
+      confirms: 
+        delete_quiz: "Are you sure you want to delete this assessment?"
+        delete_quiz_submissions_warning: 
+          one: "Warning: 1 student has already taken this assessment. If you delete it, any completed submissions will be deleted and no longer appear in the gradebook."
+          other: "Warning: %{count} students have already taken this assessment. If you delete it, any completed submissions will be deleted and no longer appear in the gradebook."
+      have_not_taken_the_quiz: "Have NOT taken the assessment"
+      have_taken_the_quiz: "Have taken the assessment"
+      headers: 
+        quiz_unsubmitted_students: "Students who haven't taken the assessment"
+        submitted_students_quiz: "Students who have taken the assessment"
+      links: 
+        delete_this_quiz: "Delete This Assessment"
+        edit_this_quiz: "Edit this Assessment"
+        keep_editing_this_quiz: "Keep Editing This Assessment"
+        moderate_this_quiz: "Moderate This Assessment"
+        quiz_statistics: "Assessment Statistics"
+        resume_quiz: "Resume Assessment"
+        see_full_quiz: "See Full Assessment"
+        show_student_quiz_results: "Show Student Assessment Results"
+        take_the_quiz: "Take the Assessment"
+        take_the_quiz_again: "Take the Assessment Again"
+      only_registered_users: "Only registered, enrolled users can take graded assessments"
+      publish_quiz_instructions: "To publish the assessment, click \"Edit This Assessment\" to the right and then click the \"Publish\" button."
+      quiz_all_students_submitted: "All Students have taken the assessment"
+      quiz_for_assignment: "This assessment is for the assignment **%{assignment}**"
+      quiz_in_progress: "You're in the middle of taking this assessment."
+      quiz_no_submissions: "No Students have taken the assessment yet"
+      quiz_not_published: "This assessment hasn't been published yet.  Students can't take the assessment until it's published."
+      titles: 
+        unlock_for_how_long: "How long would you like to unlock the assessment for?"
+      warnings: 
+        draft_version: "This is a preview of the draft version of the assessment"
+    statistics: 
+      headers: 
+        quiz_statistics: "Assessment Statistics"
+        users_have_taken_this_quiz: "%{count} users have taken this assessment"
+      quiz_all_version_disclaimer: "This report is showing assessment statistics based on all attempts for all users."
+      quiz_latest_version_disclaimer: "This report is showing assessment statistics based on the latest attempt for each user."
+    take_quiz: 
+      confirms: 
+        unfinished_quiz: "You're about to leave the assessment unfinished.  Continue anyway?"
+      headers: 
+        draft_preview: "This is a preview of the draft version of the assessment"
+      links: 
+        keep_editing_quiz: "Keep Editing This Assessment"
+    take_quiz_in_popup: 
+      headers: 
+        loading_in_lockdown: "Loading Assessment in Respondus LockDown Browser"
+      links: 
+        return_to_quiz_page: "[Click here](%{url}) to return to the assessment page."
+    titles: 
+      find_quiz_question: "Find Assessment Question"
+    top_level_crumb: Assessments
+    ? "true"
+    : True
+  role_override: 
+    permissions: 
+      manage_assignments: "Manage (add / edit / delete) assignments and assessments"
+  shared: 
+    full_assignment: 
+      descriptions: 
+        grades_from_quiz: "Grades for this assignment will be pulled from the assessment results"
+      labels: 
+        grades_from_quiz: "Grades for this assignment come from the assessment"
+        quiz_summary: "Assessment Summary/Introduction"
+      links: 
+        quiz: "Click here to go to the assessment"
+      options: 
+        quiz: Assessment
+    select_content_dialog: 
+      labels: 
+        quiz_name: "Assessment Name"
+      new_quiz_option: "[ New Assessment ]"
+      quiz_alt: Assessment
+      quiz_item: Assessment
+      quiz_notice: "Select the assessment you want to associate with this *module*, or add a new one by selecting \"New Assessment\"."
+    wiki_sidebar: 
+      insert: 
+        quizzes: "Click to insert a link to this assessment"
+      links: 
+        quizzes: "Assessment List"
+      links_to: 
+        quizzes: Assessments
+  submissions: 
+    show_preview: 
+      quiz_submission: "This submission was an assessment submission.  Redirecting to assessment page."
+  tabs:   
+    quizzes: Assessments  
+  unknown_quiz: "Unknown Assessment"
