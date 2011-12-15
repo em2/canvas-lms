@@ -60,14 +60,12 @@ em2:
       quiz_locked_module: "This assessment is part of the module *%{module}* and hasn't been unlocked yet."
       quiz_locked_no_reason: "This assessment is locked.  No other reason has been provided."
       quiz_locked_until: "This assessment is locked until %{date}."
-#    content: 
- #     help: 
-  #      create: |
-   #         Course modules let you organize your assignments, pages, files, etc. into smaller sections or units. Modules could be centered around a theme, focused on a specific topic, or even just grouped chronologically.
-
-    #        You can also sequence modules by defining criteria and prerequisites for each module. Students won't be able to access modules until they have unlocked all their prerequisites. That way you can prevent students from accessing certain content or files until they have, say, gotten at least 75% on a review assessment.
-
-     #       To start organizing your course into modules, click the "%{button}" button to the right.
+    content: 
+      help: 
+        create: |
+            Course modules let you organize your assignments, pages, files, etc. into smaller sections or units. Modules could be centered around a theme, focused on a specific topic, or even just grouped chronologically.
+            You can also sequence modules by defining criteria and prerequisites for each module. Students won't be able to access modules until they have unlocked all their prerequisites. That way you can prevent students from accessing certain content or files until they have, say, gotten at least 75% on a review assessment.
+            To start organizing your course into modules, click the "%{button}" button to the right."
     optgroup: 
       quizzes: Assessments
   course_exports: 
