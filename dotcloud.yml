@@ -1,0 +1,10 @@
+www:
+  type: ruby
+  approot: .
+  exclude_bundler_groups:
+    - development
+  config:
+    ruby-version: ree
+db:
+  type: mysql
+
