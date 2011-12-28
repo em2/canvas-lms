@@ -109,6 +109,11 @@ class QuizzesController < ApplicationController
       return
     end
     if authorized_action(@quiz, @current_user, :read)
+
+      if !is_authorized_action?(@quiz, @current_user, :create)
+        @no_chrome = true
+      end
+      
       add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
 
       @headers = !params[:headless]
