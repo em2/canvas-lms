@@ -160,7 +160,7 @@ class AccountAuthorizationConfig < ActiveRecord::Base
   end
   
   def self.default_login_handle_name
-    t(:default_login_handle_name, "Email")
+    t(:default_login_handle_name, "ID")
   end
   
   def self.default_delegated_login_handle_name

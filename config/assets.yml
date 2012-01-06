@@ -420,6 +420,10 @@ stylesheets:
     - public/stylesheets/compiled/grading_standards.css
   login:
     - public/stylesheets/compiled/login.css
+  login_student:
+    - public/stylesheets/compiled/login_student.css
+  no_chrome:
+    - public/stylesheets/compiled/no_chrome.css
   roster_user:
     - public/stylesheets/compiled/roster_user.css
   learning_outcomes:
