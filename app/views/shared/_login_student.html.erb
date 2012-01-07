@@ -43,12 +43,12 @@ $(document).ready(function() {
           unique_id: I18n.t("invalid_login", 'Invalid login')
         });
         success = false;
-      } else if(!data.password || data.password.length < 1) {
-        $(this).formErrors({
-          password: I18n.t("invalid_password", 'Invalid password')
-        });
-        success = false;
-      }
+      } //else if(!data.password || data.password.length < 1) {
+        //$(this).formErrors({
+        //password: I18n.t("invalid_password", 'Invalid password')
+        //});
+        //success = false;
+        //}
       return success;
     })
     .find(":text:first")
@@ -83,21 +83,22 @@ $(document).ready(function() {
           <%= login_inner_dialog if login_inner_dialog && !login_inner_dialog.strip.empty? %>
           <input type="hidden" name="redirect_to_ssl" value="1"/>
           <div>
-            <span class=" field-with-fancyplaceholder"><%= f.label :unique_id, login_handle_name %><%= f.text_field :unique_id, :class => "text", :value => params[:pseudonym_session].try(:[], :unique_id) %></span>
-  
-          </div>
-          <div>
+            <span class=" field-with-fancyplaceholder"><%= f.label :unique_id, login_handle_name %><%= f.text_field :unique_id, :class => "text", :value => params[:pseudonym_session_student].try(:[], :unique_id) %></span>
             
+          </div>
+          
+          <div>
+
             <button type="submit" class="button"><%= t('login', 'Login') %></button> 
           </div>
         <% end %>
     <% end %>
 
-    <% form_for :pseudonym_session, :url => forgot_password_path, :html => {:id => "forgot_password_form", :style => "display: none;"} do |f| %>
+    <% form_for :pseudonym_session_student, :url => forgot_password_path, :html => {:id => "forgot_password_form", :style => "display: none;"} do |f| %>
 
       <p><%= t('login_handle', "Enter your %{login_handle_name} and we'll send you a link to change your password.", :login_handle_name => login_handle_name) %></p>
       <div>
-        <span class=" field-with-fancyplaceholder"><label for="pseudonym_session_unique_id_forgot"><%= login_handle_name %></label><input class="email_address text" type="text" name="pseudonym_session[unique_id_forgot]" value="<%= @unauthorized_user.email rescue '' %>" id="pseudonym_session_unique_id_forgot" /></span>
+        <span class=" field-with-fancyplaceholder"><label for="pseudonym_session_student_unique_id_forgot"><%= login_handle_name %></label><input class="email_address text" type="text" name="pseudonym_session_student[unique_id_forgot]" value="<%= @unauthorized_user.email rescue '' %>" id="pseudonym_session_student_unique_id_forgot" /></span>
         <button type="submit" class="button"><%= t('buttons.request_password', 'Request Password') %></button>
       </div>
 

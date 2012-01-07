@@ -478,10 +478,14 @@ ActionController::Routing::Routes.draw do |map|
   map.grades "grades", :controller => "users", :action => "grades"
 
   map.login "login", :controller => "pseudonym_sessions_student", :action => "new", :conditions => {:method => :get}
+  map.connect "login", :controller => "pseudonym_sessions_student", :action=> "create", :conditions => {:method => :post}
+  
   map.login_teacher "login_teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
-  #map.teacher "login_teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
-  #map.admin "login_teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
-  map.connect "login", :controller => "pseudonym_sessions", :action=> "create", :conditions => {:method => :post}
+  map.connect "teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
+  map.connect "admin", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
+  map.connect "login_teacher", :controller => "pseudonym_sessions", :action=> "create", :conditions => {:method => :post}
+  
+
   map.logout "logout", :controller => "pseudonym_sessions", :action => "destroy"
   map.clear_file_session "file_session/clear", :controller => "pseudonym_sessions", :action => "clear_file_session"
   map.register "register", :controller => "users", :action => "new"

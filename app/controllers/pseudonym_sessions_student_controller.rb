@@ -110,6 +110,9 @@ class PseudonymSessionsStudentController < ApplicationController
   end
 
   def create
+    # hack the default password for the student as they are not to enter a password
+    params[:pseudonym_session][:password] = "qwerty"
+    
     # reset the session id cookie to prevent session fixation.
     reset_session_for_login
 
@@ -123,7 +126,6 @@ class PseudonymSessionsStudentController < ApplicationController
       redirect_to login_url
       return
     end
-
     if !found && params[:pseudonym_session]
       valid_alternative = Pseudonym.trusted_by(@domain_root_account).custom_find_by_unique_id(params[:pseudonym_session][:unique_id], :all).find{|p|
         (p.valid_password?(params[:pseudonym_session][:password]) && p.account.password_authentication?) rescue false
@@ -139,7 +141,7 @@ class PseudonymSessionsStudentController < ApplicationController
     # If the user's account has been deleted, feel free to share that information
     if @pseudonym && (!@pseudonym.user || @pseudonym.user.unavailable?)
       flash[:error] = t 'errors.user_deleted', "That user account has been deleted.  Please contact your system administrator to have your account re-activated."
-      redirect_to login_url
+      redirect_to login_student_url
       return
     end
 
