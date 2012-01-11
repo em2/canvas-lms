@@ -302,6 +302,20 @@ class PseudonymSessionsStudentController < ApplicationController
   def successful_login(user, pseudonym)
     respond_to do |format|
       flash[:notice] = t 'notices.login_success', "Login successful."
+      
+      
+      
+      
+      
+      
+      # TODO: REMOVE THIS REDIRECT! WAS JUST FOR A DEMO
+      redirect_to("/courses/1/quizzes/3/take") and return
+      
+      
+      
+      
+      
+      
       if session[:oauth2]
         # this is where we will verify client authorization and scopes, once implemented
         # .....
