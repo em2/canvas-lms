@@ -1,0 +1,6 @@
+ln -s ~/shared/config/database.yml ~/current/config
+ln -s ~/shared/config/domain.yml ~/current/config
+ln -s ~/shared/config/security.yml ~/current/config
+
+RAILS_ENV=production bundle exec rake assets:precompile
+
