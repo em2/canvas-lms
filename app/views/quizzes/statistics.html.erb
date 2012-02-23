@@ -216,38 +216,48 @@ tr.question td .number_answer.correct_answer {
 <% end %>
 
 <% content_for :mini_display do %>
-	<h2><%= t('headers.misconceptions_report_mini_display', "Misconceptions Mini-Display") %></h2>
-	  <div class="rs-margin-lr rs-margin-bottom">
-	    <table id="misconceptions_summary">
-	      <tr class="misconceptions_summary_row" onClick="location.href='#';">
-			<td class="red_button"> 5 </td>
-	        <td class="misconceptions_summary_row_standard misconception_heading"> 1-Comparing Fractions </td>
-	      </tr>
-	      <tr>
-		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
-	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; C-Joey, Richard, Sarah </td>
-	      </tr>
-		  <tr id="misconceptions_summary_end_row">
-		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
-	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; L-Phil, John </td>
-	      </tr>
-		<tr class="misconceptions_summary_row" id="misconceptions_summary_end_row" onClick="location.href='#';">
-			<td class="misconceptions_summary_row_standard"> <%= image_tag("thumbs_up_green.png", {:height => 30} )%> </td>
-	        <td class="misconceptions_summary_row_standard misconception_heading"> 2-Adding Fractions </td>
-	      </tr>
-		<tr class="misconceptions_summary_row" onClick="location.href='#';">
-			<td class="red_button"> 4 </td>
-	        <td class="misconceptions_summary_row_standard misconception_heading"> 3-Subtracting Fractions </td>
-	      </tr>
-	      <tr>
-		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
-	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; C-Joey, Richard </td>
-	      </tr>
-		  <tr id="misconceptions_summary_end_row">
-		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
-	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; L-Phil, John </td>
-	      </tr>
-	    </table>
+	<h2>Student Misconceptions <a href="#"><u>(details)</u></a></h2>
+	<div class="rs-margin-lr rs-margin-bottom">
+		    <table id="misconceptions_summary">
+		      <tbody><tr class="misconceptions_summary_row" onclick="location.href='#';">
+
+		        <td class="misconceptions_summary_row_standard misconception_heading">1. Viewing a fraction as two separate numbers / whole number thinking</td>
+		      </tr>
+		      <tr>
+		        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">Joey, Richard, Sarah </td>
+		      </tr>
+			  <tr id="misconceptions_summary_end_row">
+		        <td class="misconceptions_summary_row_standard" style="background-color:#FFFFCC">Phil, John </td>
+		      </tr>
+			<tr class="misconceptions_summary_row" id="misconceptions_summary_end_row" onclick="location.href='#';">
+
+		        <td style="padding-top:12px" class="misconceptions_summary_row_standard misconception_heading">2. Applying partial and / or flawed conceptions of relative size of fraction pieces</td>
+
+		      </tr>
+			<tr class="misconceptions_summary_row" onclick="location.href='#';">
+		        <td style="padding-top:12px" class="misconceptions_summary_row_standard misconception_heading">3. Viewing fraction as additive relationship</td>
+		      </tr>
+		      <tr>
+		        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">Sharone, Zeke, Ken, Julianne, Brennan, Seth</td>
+		      </tr>
+			  <tr id="misconceptions_summary_end_row">
+		        <td class="misconceptions_summary_row_standard" style="background-color:#FFFFCC">Michael, Liam</td>
+		      </tr>
+
+
+			<tr class="misconceptions_summary_row" onclick="location.href='#';">
+		        <td style="padding-top:12px" class="misconceptions_summary_row_standard misconception_heading">4. Misapplication of procedure</td>
+		      </tr>
+		      <tr>
+		        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">Judy, Enrique, Phillip, Kedward</td>
+		      </tr>
+			  <tr id="misconceptions_summary_end_row">
+		        <td class="misconceptions_summary_row_standard" style="background-color:#FFFFCC">Maria, Shaniqua, Freddie, Mark</td>
+		      </tr>
+	<tr><td style="padding-top:5px;padding-bottom:0">
+	<a href="/courses/1/quizzes/7/statistics.csv" class="button button-sidebar-wide">Show Detail</a>
+	</td></tr>
+    </tbody></table>
 	  </div>
 <% end -%>
 
