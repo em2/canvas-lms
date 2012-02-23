@@ -122,6 +122,35 @@ tr.question td .number_answer.correct_answer {
   cursor: inherit;
   overflow: auto;
 }
+
+#misconceptions_summary {
+  border-collapse: collapse;
+}
+#misconceptions_summary th {
+  text-align: left;
+  font-size: 1.2em;
+}
+#misconceptions_summary td.red_button {
+	padding: 10px 15px;
+	background: url('/images/red_button.png');
+	background-size:36px 36px;
+	background-repeat:no-repeat;
+	color:white;
+}
+#misconceptions_summary td.misconceptions_summary_row_standard {
+  padding: 2px 5px;
+}
+#misconceptions_summary_end_row {
+  border-bottom: 1px dotted #ccc;
+  padding: 2px 5px;
+}
+
+#misconceptions_summary td.misconception_heading {
+  font-weight:bold;
+}
+
+
+
 </style>
 <% end %>
 <% content_for :right_side do %>
@@ -185,6 +214,43 @@ tr.question td .number_answer.correct_answer {
     <% end %>
   </div>
 <% end %>
+
+<% content_for :mini_display do %>
+	<h2><%= t('headers.misconceptions_report_mini_display', "Misconceptions Mini-Display") %></h2>
+	  <div class="rs-margin-lr rs-margin-bottom">
+	    <table id="misconceptions_summary">
+	      <tr class="misconceptions_summary_row" onClick="location.href='#';">
+			<td class="red_button"> 5 </td>
+	        <td class="misconceptions_summary_row_standard misconception_heading"> 1-Comparing Fractions </td>
+	      </tr>
+	      <tr>
+		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
+	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; C-Joey, Richard, Sarah </td>
+	      </tr>
+		  <tr id="misconceptions_summary_end_row">
+		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
+	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; L-Phil, John </td>
+	      </tr>
+		<tr class="misconceptions_summary_row" id="misconceptions_summary_end_row" onClick="location.href='#';">
+			<td class="misconceptions_summary_row_standard"> <%= image_tag("thumbs_up_green.png", {:height => 30} )%> </td>
+	        <td class="misconceptions_summary_row_standard misconception_heading"> 2-Adding Fractions </td>
+	      </tr>
+		<tr class="misconceptions_summary_row" onClick="location.href='#';">
+			<td class="red_button"> 4 </td>
+	        <td class="misconceptions_summary_row_standard misconception_heading"> 3-Subtracting Fractions </td>
+	      </tr>
+	      <tr>
+		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
+	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; C-Joey, Richard </td>
+	      </tr>
+		  <tr id="misconceptions_summary_end_row">
+		    <td class="misconceptions_summary_row_standard"> &nbsp; </td>
+	        <td class="misconceptions_summary_row_standard"> &nbsp; &nbsp; L-Phil, John </td>
+	      </tr>
+	    </table>
+	  </div>
+<% end -%>
+
 <h2><%= @quiz.survey? ? t('headers.survey_statistics', "Survey Statistics") : t('headers.quiz_statistics', "Quiz Statistics") %></h2> 
 <table id="statistics">
 <% @statistics[:questions].each do |question_type, data| %>

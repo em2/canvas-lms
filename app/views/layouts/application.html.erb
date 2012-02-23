@@ -9,6 +9,7 @@
     @show_left_side ||= (section_tabs.length > 0 || left_side_custom.try(:length)) 
   end
   right_side = yield :right_side 
+	mini_display = yield :mini_display
   wizard = yield :wizard_box
   top_nav = yield :top_nav
   keyboard_navigation = yield :keyboard_navigation
@@ -188,6 +189,7 @@
       <div id="right-side-wrapper">
         <aside id="right-side" role="complementary">
           <%= right_side %>
+			<%= mini_display %>
         </aside>
       </div>
       <div id="not_right_side">
