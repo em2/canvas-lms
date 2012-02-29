@@ -10,6 +10,7 @@
   end
   right_side = yield :right_side 
 	mini_display = yield :mini_display
+	generate_id = yield :generate_id
   wizard = yield :wizard_box
   top_nav = yield :top_nav
   keyboard_navigation = yield :keyboard_navigation
@@ -190,6 +191,7 @@
         <aside id="right-side" role="complementary">
           <%= right_side %>
 			<%= mini_display %>
+			<%= generate_id %>
         </aside>
       </div>
       <div id="not_right_side">

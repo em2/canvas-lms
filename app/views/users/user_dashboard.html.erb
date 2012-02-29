@@ -29,6 +29,9 @@
   </div>
   <% end %>
 <% end %>
+<% content_for :generate_id do %>
+	<!-- TODO -->
+<% end -%>
 <div>
 <% if @current_user.cached_current_enrollments(:include_enrollment_uuid => session[:enrollment_uuid]).empty? %>
   <%= render :partial => 'ie7_upgrade' %>
