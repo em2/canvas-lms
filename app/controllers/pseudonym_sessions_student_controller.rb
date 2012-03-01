@@ -313,9 +313,10 @@ class PseudonymSessionsStudentController < ApplicationController
       end
       
       my_quiz = Quiz.find_by_title(specific_id)
+      course_id = user.courses.first.id
       
       # redirct to the users one and only assessment they will take
-      redirect_to("/courses/1/quizzes/#{my_quiz.id}/take") and return
+      redirect_to("/courses/#{course_id}/quizzes/#{my_quiz.id}/take") and return
       
       
       
