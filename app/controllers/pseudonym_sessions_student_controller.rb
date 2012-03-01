@@ -301,7 +301,7 @@ class PseudonymSessionsStudentController < ApplicationController
 
   def successful_login(user, pseudonym)
     respond_to do |format|
-      flash[:notice] = t 'notices.login_success', "Login successful."
+      #flash[:notice] = t 'notices.login_success', "Login successful."
       
       
       

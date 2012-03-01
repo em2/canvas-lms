@@ -30,7 +30,20 @@
   <% end %>
 <% end %>
 <% content_for :generate_id do %>
-	<!-- TODO -->
+	<h2>Generate Student Assessment ID's</h2>
+	<%#= form_for%>
+	<div class="rs-margin-lr rs-margin-bottom">
+		<p>Probe: <%= select( 'probes', 'id', { 'CFA09' => '1', 'CFA10' => '2' }) %> </p>
+		<p>Stage:
+		&nbsp <%= radio_button_tag('Stage', 'X')%> X 
+		&nbsp <%= radio_button_tag('Stage', 'P')%> P
+		&nbsp <%= radio_button_tag('Stage', 'L')%> L
+		</p>
+		<p>Class: <%= select('class', 'id', { 'D004S003T002C001' => '1', 'D004S003T002C010' => '2' }) %> </p>
+		<p>Instance: <%= text_field('instance', 'id') %> </p>
+		<p>Students: <%= select('number_of_students', 'id', { '10' => '1', '20' => '2', '30' => '3' })%> </p>
+		<p> <%= button_tag("Checkout") %> </p>
+	</div>
 <% end -%>
 <div>
 <% if @current_user.cached_current_enrollments(:include_enrollment_uuid => session[:enrollment_uuid]).empty? %>
