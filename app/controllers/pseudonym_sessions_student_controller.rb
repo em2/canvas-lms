@@ -111,7 +111,7 @@ class PseudonymSessionsStudentController < ApplicationController
 
   def create
     # hack the default password for the student as they are not to enter a password
-    params[:pseudonym_session][:password] = "qwerty"
+    params[:pseudonym_session][:password] = "asdfasdf"
     
     # reset the session id cookie to prevent session fixation.
     reset_session_for_login
@@ -306,11 +306,16 @@ class PseudonymSessionsStudentController < ApplicationController
       
       
       
+      # get the users id that will route them to their assessment
+      specific_id = user.sortable_name
+      4.times do 
+        specific_id = specific_id.chop
+      end
       
+      my_quiz = Quiz.find_by_title(specific_id)
       
-      # TODO: REMOVE THIS REDIRECT! WAS JUST FOR A DEMO
-      redirect_to("/courses/1/quizzes/3/take") and return
-      
+      # redirct to the users one and only assessment they will take
+      redirect_to("/courses/1/quizzes/#{my_quiz.id}/take") and return
       
       
       
