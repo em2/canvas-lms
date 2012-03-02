@@ -24,12 +24,12 @@ describe IdGatekeeper do
     no_user_name.should_not be_valid
   end
   
-  it "should require a user_name" do
+  it "should require a stage" do
     no_stage = IdGatekeeper.new(@valid_attributes.merge(:stage => ""))
     no_stage.should_not be_valid
   end
   
-  it "should require a user_name" do
+  it "should require an instance" do
     no_instance = IdGatekeeper.new(@valid_attributes.merge(:instance => ""))
     no_instance.should_not be_valid
   end
