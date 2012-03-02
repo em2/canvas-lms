@@ -6,4 +6,6 @@ class IdGatekeeper < ActiveRecord::Base
   validates_presence_of :stage
   validates_presence_of :instance
   
+  has_many :users
+  
 end
