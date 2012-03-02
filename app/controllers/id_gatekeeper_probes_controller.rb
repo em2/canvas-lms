@@ -1,0 +1,2 @@
+class IdGatekeeperProbesController < ApplicationController
+end

@@ -7,5 +7,7 @@ class IdGatekeeper < ActiveRecord::Base
   validates_presence_of :instance
   
   has_many :users
+  has_many :assessment_question_banks, :through => :id_gatekeeper_probes
+  has_many :courses, :through => :id_gatekeeper_courses
   
 end

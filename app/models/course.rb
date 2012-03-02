@@ -165,6 +165,8 @@ class Course < ActiveRecord::Base
   validates_length_of :syllabus_body, :maximum => maximum_long_text_length, :allow_nil => true, :allow_blank => true
   validates_locale :allow_nil => true
   
+  has_many :id_gatekeepers, :through => :id_gatekeeper_courses
+  
   sanitize_field :syllabus_body, Instructure::SanitizeField::SANITIZE
   
   include StickySisFields

@@ -1,0 +1,2 @@
+class IdGatekeeperCoursesController < ApplicationController
+end
