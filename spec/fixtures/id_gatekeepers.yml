@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  assessment_id: MyString
+  user_name: MyString
+  stage: MyString
+  instance: 1
+
+two:
+  assessment_id: MyString
+  user_name: MyString
+  stage: MyString
+  instance: 1
