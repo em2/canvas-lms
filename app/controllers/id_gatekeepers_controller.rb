@@ -3,6 +3,7 @@ class IdGatekeepersController < ApplicationController
   end
 
   def show
+    @id = IdGatekeeper.find(params[:id])
   end
 
 end

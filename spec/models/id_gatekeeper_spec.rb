@@ -30,7 +30,7 @@ describe IdGatekeeper do
   end
   
   it "should require an instance" do
-    no_instance = IdGatekeeper.new(@valid_attributes.merge(:instance => ""))
+    no_instance = IdGatekeeper.new(@valid_attributes.merge(:instance => nil))
     no_instance.should_not be_valid
   end
 end
