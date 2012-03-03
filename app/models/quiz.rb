@@ -39,6 +39,9 @@ class Quiz < ActiveRecord::Base
   belongs_to :context, :polymorphic => true
   belongs_to :assignment
   belongs_to :cloned_item
+  
+  belongs_to :id_gatekeeper
+  
   validates_length_of :description, :maximum => maximum_long_text_length, :allow_nil => true, :allow_blank => true
   validates_length_of :title, :maximum => maximum_string_length, :allow_nil => true
   validates_presence_of :context_id

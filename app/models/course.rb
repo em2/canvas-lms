@@ -155,6 +155,8 @@ class Course < ActiveRecord::Base
   has_many :alerts, :as => :context, :include => :criteria
   attr_accessor :import_source
   
+  has_many :id_gatekeepers, :through => :id_gatekeeper_courses
+  
   before_save :assign_uuid
   before_save :assert_defaults
   before_save :set_update_account_associations_if_changed
@@ -165,7 +167,6 @@ class Course < ActiveRecord::Base
   validates_length_of :syllabus_body, :maximum => maximum_long_text_length, :allow_nil => true, :allow_blank => true
   validates_locale :allow_nil => true
   
-  has_many :id_gatekeepers, :through => :id_gatekeeper_courses
   
   sanitize_field :syllabus_body, Instructure::SanitizeField::SANITIZE
   
