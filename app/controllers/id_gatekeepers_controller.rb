@@ -1,9 +1,11 @@
 class IdGatekeepersController < ApplicationController
-  def new
+  def generate
+    #@id_gatekeeper = IdGatekeeper.new
+    
   end
-
+  
   def show
-    @id = IdGatekeeper.find(params[:id])
+    
   end
 
 end

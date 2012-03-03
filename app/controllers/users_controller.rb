@@ -201,7 +201,7 @@ class UsersController < ApplicationController
   def user_dashboard
     get_context
 
-    # dont show crubms on dashboard because it does not make sense to have a breadcrumb
+    # dont show crumbs on dashboard because it does not make sense to have a breadcrumb
     # trail back to home if you are already home
     clear_crumbs
 

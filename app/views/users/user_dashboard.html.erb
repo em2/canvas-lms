@@ -29,22 +29,40 @@
   </div>
   <% end %>
 <% end %>
-<% content_for :generate_id do %>
+
+<% content_for :generate_id do -%>
 	<h2>Generate Student Assessment ID's</h2>
-	<%#= form_for%>
-	<div class="rs-margin-lr rs-margin-bottom">
-		<p>Probe: <%= select( 'probes', 'id', { 'CFA09' => '1', 'CFA10' => '2' }) %> </p>
-		<p>Stage:
-		&nbsp <%= radio_button_tag('Stage', 'X')%> X 
-		&nbsp <%= radio_button_tag('Stage', 'P')%> P
-		&nbsp <%= radio_button_tag('Stage', 'L')%> L
-		</p>
-		<p>Class: <%= select('class', 'id', { 'D004S003T002C001' => '1', 'D004S003T002C010' => '2' }) %> </p>
-		<p>Instance: <%= text_field('instance', 'id') %> </p>
-		<p>Students: <%= select('number_of_students', 'id', { '10' => '1', '20' => '2', '30' => '3' })%> </p>
-		<p> <%#= button_tag("Generate!") %> </p>
-	</div>
+	<% form_for :id_gatekeeper, :url => generate_path do |f| %>
+		<%= f.label :probe, 'Probe:' %>
+			<% @question_bank = AssessmentQuestionBank.all -%>
+			&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
+		<%= f.label :stage, 'Stage:' %>
+			&nbsp <%= f.radio_button :stage, 'X' %>
+				<%= f.label :stage, 'X' %>
+			&nbsp <%= f.radio_button :stage, 'P' %>
+				<%= f.label :stage, 'P' %>
+			&nbsp <%= f.radio_button :stage, 'L' %>
+				<%= f.label :stage, 'L' %> <br />
+		<%= f.label :class, 'Class:' %>
+			<% @classes = Course.all%>
+			&nbsp <%= f.select :class, options_for_select(@classes.collect { |class_list| [class_list.name, class_list.id] }) %> <br />
+		<%= f.label :instance, 'Instance:' %>
+			&nbsp <%= f.text_field :instance, :size => '4x1' %> <br />
+		<%= f.label :students, 'Students:' %>
+			&nbsp <%= f.select :students, options_for_select([['10', 10], ['20', 20]]) %> <br />
+		<%= f.submit 'Generate!' %>
+	<% end -%>
 <% end -%>
+
+<% content_for :show_previous_assessments do -%>
+	<h2>View Previously Generated ID's</h2>
+	<% form_for :id_gatekeeper, :url => showids_path do |f| %>
+		<% @assessments = IdGatekeeper.all -%>
+		<%= f.select :assessment, options_for_select(@assessments.collect { |assessment_list| [assessment_list.course.name, assessment_list.course.id] }) %>
+	<% end -%>
+<% end -%>
+
+
 <div>
 <% if @current_user.cached_current_enrollments(:include_enrollment_uuid => session[:enrollment_uuid]).empty? %>
   <%= render :partial => 'ie7_upgrade' %>
