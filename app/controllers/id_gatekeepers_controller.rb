@@ -7,7 +7,7 @@ class IdGatekeepersController < ApplicationController
 #      @id_gatekeeper = IdGatekeeper.new
       @quiz = Course.find(params[:id_gatekeeper][:course]).quizzes.create
       @quiz.title = AssessmentQuestionBank.find(params[:id_gatekeeper][:probe]).title + params[:id_gatekeeper][:stage] + params[:id_gatekeeper][:instance] + Course.find(params[:id_gatekeeper][:course]).name
-      @quiz.description = ""
+      @quiz.description = nil
       @quiz.hide_results = 'always'
       @quiz.show_correct_answers = false
       @quiz.content_being_saved_by(@current_user)
