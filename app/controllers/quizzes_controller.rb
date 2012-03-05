@@ -312,6 +312,7 @@ class QuizzesController < ApplicationController
   end
 
   def create
+    debugger
     if authorized_action(@context.quizzes.new, @current_user, :create)
       params[:quiz][:title] = nil if params[:quiz][:title] == "undefined"
       params[:quiz][:title] ||= t(:default_title, "New Quiz")

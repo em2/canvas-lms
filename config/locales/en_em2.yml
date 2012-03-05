@@ -215,7 +215,7 @@ em2:
         extend_quiz_time: "Extend Assessment Time"
     new: 
       buttons: 
-        publish_quiz: "Publish Assessments"
+        publish_quiz: "Publish Assessment"
         republish_quiz: "Re-Publish Assessment"
         save_but_dont_publish: "Save Assessment *but don't Publish*"
       confirms: 

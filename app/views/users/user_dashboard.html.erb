@@ -34,7 +34,7 @@
 	<h2>Generate Student Assessment ID's</h2>
 	<% form_for :id_gatekeeper, :url => generate_path do |f| %>
 		&nbsp <%= f.label :probe, 'Probe:' %>
-			<% @question_bank = AssessmentQuestionBank.all -%>
+			<% @question_bank = AssessmentQuestionBank.active -%>
 			&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
 		&nbsp <%= f.label :stage, 'Stage:' %>
 			&nbsp <%= f.radio_button :stage, 'X' %>
@@ -44,7 +44,7 @@
 			&nbsp <%= f.radio_button :stage, 'L' %>
 				<%= f.label :stage, 'L' %> <br />
 		&nbsp <%= f.label :class, 'Class:' %>
-			<% @courses = Course.all%>
+			<% @courses = Course.active%>
 			&nbsp <%= f.select :course, options_for_select(@courses.collect { |course_list| [course_list.name, course_list.id] }) %> <br />
 		&nbsp <%= f.label :instance, 'Instance:' %>
 			&nbsp <%= f.text_field :instance, :size => '4x1' %> <br />
