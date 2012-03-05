@@ -277,7 +277,7 @@ em2:
       links: 
         resume_quiz: "Resume Assessment"
       titles: 
-        delete_quiz: "Borrar la Evaluación"
+        delete_quiz: "Delete Assessment"
         edit_quiz: "Edit Assessment"
     read_only: 
       default_page_title: "New Assessment"
