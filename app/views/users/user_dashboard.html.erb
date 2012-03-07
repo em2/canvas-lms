@@ -61,7 +61,7 @@
 		<% form_for :id_gatekeeper, :url => showids_path do |f| %>
 			<% @assessments = IdGatekeeper.all -%>
 			&nbsp <%= f.label :assessment, 'Assessment #' %>
-				&nbsp <%= f.select :assessment, options_for_select(@assessments.collect { |assessment_list| [assessment_list.course.name, assessment_list.course.id] }) %> <br />
+				&nbsp <%= f.select :assessment, options_for_select(@assessments.collect { |assessment_list| [assessment_list.assessment_name, assessment_list.id] }) %> <br />
 			&nbsp <%= f.submit 'View' %>
 		<% end -%>
 	<% end -%>

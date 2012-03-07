@@ -13,8 +13,14 @@ class IdGatekeepersController < ApplicationController
       @id_gatekeeper = IdGatekeeper.new
       
       #
+      # Create the title
+      @probe = AssessmentQuestionBank.find(params[:id_gatekeeper][:probe])
+      @title = @probe.title + params[:id_gatekeeper][:stage] + params[:id_gatekeeper][:instance] + params[:id_gatekeeper][:course]
+      
+      #
       # Create the Course
-      @course = Course.create!(:name => params[:id_gatekeeper][:course], :course_code => params[:id_gatekeeper][:course])
+
+      @course = Course.create!(:name => @title, :course_code => @title)
       @course.offer!
       
       #
@@ -27,8 +33,8 @@ class IdGatekeepersController < ApplicationController
       #
       # Create the Assessment
       @quiz = @course.quizzes.create
-      @probe = AssessmentQuestionBank.find(params[:id_gatekeeper][:probe])
-      @title = @probe.title + params[:id_gatekeeper][:stage] + params[:id_gatekeeper][:instance] + @course.name
+      
+      
       @quiz.title = @title
       @quiz.description = nil
       @quiz.hide_results = 'always'
@@ -44,7 +50,16 @@ class IdGatekeepersController < ApplicationController
       @quiz.save!
       
       
-#      @quiz.id_gatekeeper_id = @id_gatekeeper.id
+      #@quiz.id_gatekeeper_id = @id_gatekeeper.id
+      
+      @id_gatekeeper.assessment_name = @title
+      @id_gatekeeper.stage = params[:id_gatekeeper][:stage]
+      @id_gatekeeper.instance = params[:id_gatekeeper][:instance]
+      @id_gatekeeper.save!
+      
+      @id_gatekeeper.quiz = (@quiz)
+      @id_gatekeeper.assessment_question_bank = (@probe)
+      @id_gatekeeper.course = (@course)
       
       #
       # Create the students
@@ -53,6 +68,9 @@ class IdGatekeepersController < ApplicationController
       i = 0
       while(i < @num_students)
         @student_id = rand(8999999999)+1000000000
+        while (Pseudonym.find_by_unique_id(@student_id) != nil)
+          @student_id = rand(8999999999)+1000000000
+        end
         @student = User.create!
         @student_number = (i + 1).to_s
         #
@@ -83,10 +101,12 @@ class IdGatekeepersController < ApplicationController
         @enroll.workflow_state = 'active'
         @enroll.save!
         
+        @id_gatekeeper.users << @student
         
         i += 1
       end
       
+      @id_gatekeeper.save!
       
     end
   end
