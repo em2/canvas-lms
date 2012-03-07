@@ -44,8 +44,9 @@
 			&nbsp <%= f.radio_button :stage, 'L' %>
 				<%= f.label :stage, 'L' %> <br />
 		&nbsp <%= f.label :class, 'Class:' %>
+			&nbsp <%= f.text_field :course, :size => '20x1' %> <br />
 			<% @courses = Course.active%>
-			&nbsp <%= f.select :course, options_for_select(@courses.collect { |course_list| [course_list.name, course_list.id] }) %> <br />
+			<% 7.times do %>&nbsp <% end -%> <%= f.select :course_selector, options_for_select(@courses.collect { |course_list| [course_list.name, course_list.id] }), :selected => "selected" %> <br />
 		&nbsp <%= f.label :instance, 'Instance:' %>
 			&nbsp <%= f.text_field :instance, :size => '4x1' %> <br />
 		&nbsp <%= f.label :students, 'Students:' %>
@@ -96,3 +97,10 @@
   <% end %>
 <% end %>
 </div>
+
+<script type="text/javascript">
+function show_alert()
+{
+alert("Hello! I am an alert box!");
+}
+</script>

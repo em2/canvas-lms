@@ -37,7 +37,14 @@ $(function initDashbardJs(){
   }
   measureForTopicList();
   setInterval(measureForTopicList, 2000);
-  
+
+	$("#id_gatekeeper_course_selector").change(function(){
+		$("#id_gatekeeper_course").value = this.childNodes[this.value].text;
+	});
+	$("#id_gatekeeper_course").change(function(){
+		$("#id_gatekeeper_course").value = 0;
+	});
+
   $(".group_reference_checkbox").change(function(event, expand) {
     var $box = $(this);
     if(expand !== false) {
