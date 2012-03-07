@@ -30,38 +30,40 @@
   <% end %>
 <% end %>
 
-<% content_for :generate_id do -%>
-	<h2>Generate Student Assessment ID's</h2>
-	<% form_for :id_gatekeeper, :url => generate_path do |f| %>
-		&nbsp <%= f.label :probe, 'Probe:' %>
-			<% @question_bank = AssessmentQuestionBank.active -%>
-			&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
-		&nbsp <%= f.label :stage, 'Stage:' %>
-			&nbsp <%= f.radio_button :stage, 'X' %>
-				<%= f.label :stage, 'X' %>
-			&nbsp <%= f.radio_button :stage, 'P' %>
-				<%= f.label :stage, 'P' %>
-			&nbsp <%= f.radio_button :stage, 'L' %>
-				<%= f.label :stage, 'L' %> <br />
-		&nbsp <%= f.label :class, 'Class:' %>
-			&nbsp <%= f.text_field :course, :size => '20x1' %> <br />
-			<% @courses = Course.active%>
-			<% 7.times do %>&nbsp <% end -%> <%= f.select :course_selector, options_for_select(@courses.collect { |course_list| [course_list.name, course_list.id] }), :selected => "selected" %> <br />
-		&nbsp <%= f.label :instance, 'Instance:' %>
-			&nbsp <%= f.text_field :instance, :size => '4x1' %> <br />
-		&nbsp <%= f.label :students, 'Students:' %>
-			&nbsp <%= f.select :students, options_for_select([['10', 10], ['20', 20]]) %> <br />
-		&nbsp <%= f.submit 'Generate!' %>
+<% if @can_generate_id === true %>
+	<% content_for :generate_id do -%>
+		<h2>Generate Student Assessment ID's</h2>
+		<% form_for :id_gatekeeper, :url => generate_path do |f| %>
+			&nbsp <%= f.label :probe, 'Probe:' %>
+				<% @question_bank = AssessmentQuestionBank.active -%>
+				&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
+			&nbsp <%= f.label :stage, 'Stage:' %>
+				&nbsp <%= f.radio_button :stage, 'X' %>
+					<%= f.label :stage, 'X' %>
+				&nbsp <%= f.radio_button :stage, 'P' %>
+					<%= f.label :stage, 'P' %>
+				&nbsp <%= f.radio_button :stage, 'L' %>
+					<%= f.label :stage, 'L' %> <br />
+			&nbsp <%= f.label :class, 'Class:' %>
+				&nbsp <%= f.text_field :course, :size => '20x1' %> <br />
+				<% @courses = Course.active%>
+				<% 7.times do %>&nbsp <% end -%> <%= f.select :course_selector, options_for_select(@courses.collect { |course_list| [course_list.name, course_list.id] }), :selected => "selected" %> <br />
+			&nbsp <%= f.label :instance, 'Instance:' %>
+				&nbsp <%= f.text_field :instance, :size => '4x1' %> <br />
+			&nbsp <%= f.label :students, 'Students:' %>
+				&nbsp <%= f.select :students, options_for_select([['10', 10], ['20', 20]]) %> <br />
+			&nbsp <%= f.submit 'Generate!' %>
+		<% end -%>
 	<% end -%>
-<% end -%>
 
-<% content_for :show_previous_assessments do -%>
-	<h2>View Previously Generated ID's</h2>
-	<% form_for :id_gatekeeper, :url => showids_path do |f| %>
-		<% @assessments = IdGatekeeper.all -%>
-		&nbsp <%= f.label :assessment, 'Assessment #' %>
-			&nbsp <%= f.select :assessment, options_for_select(@assessments.collect { |assessment_list| [assessment_list.course.name, assessment_list.course.id] }) %> <br />
-		&nbsp <%= f.submit 'View' %>
+	<% content_for :show_previous_assessments do -%>
+		<h2>View Previously Generated ID's</h2>
+		<% form_for :id_gatekeeper, :url => showids_path do |f| %>
+			<% @assessments = IdGatekeeper.all -%>
+			&nbsp <%= f.label :assessment, 'Assessment #' %>
+				&nbsp <%= f.select :assessment, options_for_select(@assessments.collect { |assessment_list| [assessment_list.course.name, assessment_list.course.id] }) %> <br />
+			&nbsp <%= f.submit 'View' %>
+		<% end -%>
 	<% end -%>
 <% end -%>
 
