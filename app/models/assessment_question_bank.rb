@@ -25,7 +25,7 @@ class AssessmentQuestionBank < ActiveRecord::Base
   has_many :learning_outcome_tags, :as => :content, :class_name => 'ContentTag', :conditions => ['content_tags.tag_type = ? AND content_tags.workflow_state != ?', 'learning_outcome', 'deleted'], :include => :learning_outcome
   has_many :quiz_groups
   
-  has_many :id_gatekeepers, :through => :id_gatekeeper_probes
+  has_many :id_gatekeepers
   
   before_save :infer_defaults
   validates_length_of :title, :maximum => maximum_string_length, :allow_nil => true

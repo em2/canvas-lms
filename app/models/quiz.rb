@@ -40,7 +40,7 @@ class Quiz < ActiveRecord::Base
   belongs_to :assignment
   belongs_to :cloned_item
   
-  belongs_to :id_gatekeeper
+  has_one :id_gatekeeper
   
   validates_length_of :description, :maximum => maximum_long_text_length, :allow_nil => true, :allow_blank => true
   validates_length_of :title, :maximum => maximum_string_length, :allow_nil => true

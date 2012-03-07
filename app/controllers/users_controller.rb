@@ -201,6 +201,8 @@ class UsersController < ApplicationController
   def user_dashboard
     get_context
     
+    #
+    # TODObfcoder: refactor how to get auth action. if no quizzes are present, this will barf
     @quiz = Quiz.first
     if is_authorized_action?(@quiz, @current_user, :create)
       @can_generate_id = true

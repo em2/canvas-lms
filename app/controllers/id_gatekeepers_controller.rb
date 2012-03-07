@@ -41,10 +41,10 @@ class IdGatekeepersController < ApplicationController
       @quiz.workflow_state = 'available'
       @quiz.last_assignment_id = @quiz.assignment_id
       @quiz.anonymous_submissions = false
-#      @quiz.id_gatekeeper_id = @id_gatekeeper.id
       @quiz.save!
       
       
+#      @quiz.id_gatekeeper_id = @id_gatekeeper.id
       
       #
       # Create the students

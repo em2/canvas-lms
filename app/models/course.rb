@@ -155,7 +155,7 @@ class Course < ActiveRecord::Base
   has_many :alerts, :as => :context, :include => :criteria
   attr_accessor :import_source
   
-  has_many :id_gatekeepers, :through => :id_gatekeeper_courses
+  has_one :id_gatekeeper
   
   before_save :assign_uuid
   before_save :assert_defaults
