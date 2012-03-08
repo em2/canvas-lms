@@ -1,6 +1,6 @@
 class IdGatekeepersController < ApplicationController
   def generate
-    if (params[:id_gatekeeper][:instance] == "" ||  params[:id_gatekeeper][:stage] == nil)
+    if (params[:id_gatekeeper][:stage] == nil)
       flash[:notice] = "Please complete the form."
       redirect_back_or_default(dashboard_url)
     else
@@ -12,13 +12,30 @@ class IdGatekeepersController < ApplicationController
       @context = @domain_root_account || Account.default unless @context.is_a?(Account)
       @context = @context.root_account || @context
       
+      
       #
       # Create the title
       @probe = AssessmentQuestionBank.find(params[:id_gatekeeper][:probe])
-      @title = @probe.title + params[:id_gatekeeper][:stage] + params[:id_gatekeeper][:instance] + params[:id_gatekeeper][:course]
+      @instance = '001'
+      @title = @probe.title + params[:id_gatekeeper][:stage] + @instance + params[:id_gatekeeper][:course]
+      
+      #
+      # Automatically increment the instance number until one is
+      # found that hasn't been used for that assessment title
+      while (IdGatekeeper.find_by_assessment_name(@title) != nil)
+        @instance = @instance.to_i
+        @instance += 1
+        @instance = @instance.to_s
+        while (@instance.length < 3)
+          @instance.insert(0, '0')
+        end
+        @title = @probe.title + params[:id_gatekeeper][:stage] + @instance + params[:id_gatekeeper][:course]
+      end
       
       #
       # Make sure another course by that same name doesn't exist
+      # This should never happen because of the auto increment code above,
+      # but just in case it does, this is a safe guard.
       if (Course.find_by_name(@title))
         flash[:notice] = "Duplicate Course, please choose different name."
         redirect_back_or_default(dashboard_url)
@@ -30,7 +47,7 @@ class IdGatekeepersController < ApplicationController
       @id_gatekeeper.assessment_name = @title
       @id_gatekeeper.course_name_short = params[:id_gatekeeper][:course]
       @id_gatekeeper.stage = params[:id_gatekeeper][:stage]
-      @id_gatekeeper.instance = params[:id_gatekeeper][:instance]
+      @id_gatekeeper.instance = @instance
       @id_gatekeeper.save!
       
       #

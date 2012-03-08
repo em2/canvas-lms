@@ -50,8 +50,6 @@
 				<%# @courses = Course.active -%>
 				<% @assessments = IdGatekeeper.all -%>
 				<div id="id_gatekeeper_course_selector_row"><% 3.times do %>&nbsp <% end -%> <%= f.select :course_selector, options_for_select(@assessments.collect { |assessment_list| [assessment_list.course_name_short, assessment_list.id] }), :selected => "selected" %> </div>
-			&nbsp <%= f.label :instance, 'Instance:' %>
-				&nbsp <%= f.text_field :instance, :size => '4x1' %> <br />
 			&nbsp <%= f.label :students, 'Students:' %>
 				&nbsp <%= f.select :students, options_for_select([['10', 10], ['20', 20]]) %> <br />
 			&nbsp <%= f.submit 'Generate!' %>

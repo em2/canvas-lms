@@ -4,7 +4,7 @@ class CreateIdGatekeepers < ActiveRecord::Migration
       t.string :assessment_name
       t.string :course_name_short
       t.string :stage
-      t.integer :instance
+      t.string :instance
       t.integer :quiz_id, :limit => 8
       t.integer :course_id, :limit => 8
       t.integer :assessment_question_bank_id, :limit => 8
