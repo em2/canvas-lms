@@ -1,4 +1,9 @@
 class IdGatekeepersController < ApplicationController
+  
+  def index
+    @ids = IdGatekeeper.all
+  end
+  
   def generate
     if (params[:id_gatekeeper][:stage] == nil)
       flash[:notice] = "Please complete the form."
@@ -137,11 +142,15 @@ class IdGatekeepersController < ApplicationController
       
       @id_gatekeeper.save!
       
+      redirect_to @id_gatekeeper
+      
     end
   end
   
   def show
-    
+    @current_assessment = IdGatekeeper.find(params[:id])
   end
+  
+  
 
 end

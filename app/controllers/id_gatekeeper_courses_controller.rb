@@ -1,2 +1,0 @@
-class IdGatekeeperCoursesController < ApplicationController
-end
