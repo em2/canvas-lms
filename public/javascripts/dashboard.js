@@ -50,7 +50,7 @@ $(function initDashbardJs(){
 		$("#id_gatekeeper_course_selector_row").hide();
 	});
 	$("#show_previous_classes").click(function(){
-		$("#id_gatekeeper_course_selector_row").show();
+		$("#id_gatekeeper_course_selector_row").toggle();
 	});
 
   $(".group_reference_checkbox").change(function(event, expand) {
