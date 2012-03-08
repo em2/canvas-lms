@@ -2,6 +2,7 @@ class CreateIdGatekeepers < ActiveRecord::Migration
   def self.up
     create_table :id_gatekeepers do |t|
       t.string :assessment_name
+      t.string :course_name_short
       t.string :stage
       t.integer :instance
       t.integer :quiz_id, :limit => 8

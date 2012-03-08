@@ -28,6 +28,7 @@ class IdGatekeepersController < ApplicationController
       # Create the IdGatekeeper
       @id_gatekeeper = IdGatekeeper.new
       @id_gatekeeper.assessment_name = @title
+      @id_gatekeeper.course_name_short = params[:id_gatekeeper][:course]
       @id_gatekeeper.stage = params[:id_gatekeeper][:stage]
       @id_gatekeeper.instance = params[:id_gatekeeper][:instance]
       @id_gatekeeper.save!

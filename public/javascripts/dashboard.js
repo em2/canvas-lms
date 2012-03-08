@@ -39,10 +39,18 @@ $(function initDashbardJs(){
   setInterval(measureForTopicList, 2000);
 
 	$("#id_gatekeeper_course_selector").change(function(){
-		$("#id_gatekeeper_course").value = this.childNodes[this.value].text;
+		$("#id_gatekeeper_course").val($("#id_gatekeeper_course_selector option:selected").text());
+		$("#id_gatekeeper_course_selector_row").hide();
+		//$("#id_gatekeeper_course_selector option[selected]").removeAttr("selected");
+		//$("#id_gatekeeper_course_selector option[value='1']").attr("selected", "selected");
 	});
 	$("#id_gatekeeper_course").change(function(){
-		$("#id_gatekeeper_course").value = 0;
+		//$("#id_gatekeeper_course_selector option[selected]").removeAttr("selected");
+		//$("#id_gatekeeper_course_selector option[value='1']").attr("selected", "selected");
+		$("#id_gatekeeper_course_selector_row").hide();
+	});
+	$("#show_previous_classes").click(function(){
+		$("#id_gatekeeper_course_selector_row").show();
 	});
 
   $(".group_reference_checkbox").change(function(event, expand) {
