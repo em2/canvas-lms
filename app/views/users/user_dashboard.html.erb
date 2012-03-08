@@ -30,10 +30,10 @@
   <% end %>
 <% end %>
 
-<% if @can_generate_id === true %>
-	<% content_for :generate_id do -%>
-		<h2>Generate Student Assessment ID's</h2>
-		<% form_for :id_gatekeeper, :url => generate_path do |f| %>
+<% if @can_generate_assessment === true %>
+	<% content_for :generate_assessment do -%>
+		<h2>Generate Assessments</h2>
+		<% form_for :assessment, :url => generate_path do |f| %>
 			&nbsp <%= f.label :probe, 'Probe:' %>
 				<% @question_bank = AssessmentQuestionBank.active -%>
 				&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
@@ -48,8 +48,8 @@
 				&nbsp <%= f.text_field :course, :size => '20x1' %> <br />
 				<div class="rs-margin-lr"> <a class="button button-sidebar-wide"> <%= f.label :show_classes, 'Click for previously created Classes', :id => 'show_previous_classes' %> </a> </div>
 				<%# @courses = Course.active -%>
-				<% @assessments = IdGatekeeper.all -%>
-				<div id="id_gatekeeper_course_selector_row"><% 3.times do %>&nbsp <% end -%> <%= f.select :course_selector, options_for_select(@assessments.collect { |assessment_list| [assessment_list.course_name_short, assessment_list.id] }), :selected => "selected" %> </div>
+				<% @assessments = Assessment.all -%>
+				<div id="assessment_course_selector_row"><% 3.times do %>&nbsp <% end -%> <%= f.select :course_selector, options_for_select(@assessments.collect { |assessment_list| [assessment_list.course_name_short, assessment_list.id] }), :selected => "selected" %> </div>
 			&nbsp <%= f.label :students, 'Students:' %>
 				&nbsp <%= f.select :students, options_for_select([['10', 10], ['20', 20]]) %> <br />
 			&nbsp <%= f.submit 'Generate!' %>
@@ -58,8 +58,8 @@
 
 	<% content_for :show_previous_assessments do -%>
 		<h2>View Previously Generated ID's</h2>
-		<% form_for :id_gatekeeper, :url => showids_path do |f| %>
-			<% @assessments = IdGatekeeper.all -%>
+		<% form_for :assessment, :url => show_assessments_path do |f| %>
+			<% @assessments = Assessment.all -%>
 			&nbsp <%= f.label :assessment, 'Assessment #' %>
 				&nbsp <%= f.select :assessment, options_for_select(@assessments.collect { |assessment_list| [assessment_list.assessment_name, assessment_list.id] }) %> <br />
 			&nbsp <%= f.submit 'View' %>

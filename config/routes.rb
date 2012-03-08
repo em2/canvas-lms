@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :id_gatekeepers
-  map.generate  '/generate', :controller => 'id_gatekeepers', :action => 'generate'
-  map.showids  '/show', :controller => 'id_gatekeepers', :action => 'show'
+  map.resources :assessments
+  map.generate  '/generate', :controller => 'assessments', :action => 'generate'
+  map.show_assessments  '/show', :controller => 'assessments', :action => 'show'
   
   map.resources :submission_comments, :only => :destroy
 

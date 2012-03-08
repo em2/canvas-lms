@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  id_gatekeeper_id: 1
-  probe_id: 1
-
-two:
-  id_gatekeeper_id: 1
-  probe_id: 1

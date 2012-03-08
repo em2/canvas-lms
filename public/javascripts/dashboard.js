@@ -38,19 +38,19 @@ $(function initDashbardJs(){
   measureForTopicList();
   setInterval(measureForTopicList, 2000);
 
-	$("#id_gatekeeper_course_selector").change(function(){
-		$("#id_gatekeeper_course").val($("#id_gatekeeper_course_selector option:selected").text());
-		$("#id_gatekeeper_course_selector_row").hide();
-		//$("#id_gatekeeper_course_selector option[selected]").removeAttr("selected");
-		//$("#id_gatekeeper_course_selector option[value='1']").attr("selected", "selected");
+	$("#assessment_course_selector").change(function(){
+		$("#assessment_course").val($("#assessment_course_selector option:selected").text());
+		$("#assessment_course_selector_row").hide();
+		//$("#assessment_course_selector option[selected]").removeAttr("selected");
+		//$("#assessment_course_selector option[value='1']").attr("selected", "selected");
 	});
-	$("#id_gatekeeper_course").change(function(){
-		//$("#id_gatekeeper_course_selector option[selected]").removeAttr("selected");
-		//$("#id_gatekeeper_course_selector option[value='1']").attr("selected", "selected");
-		$("#id_gatekeeper_course_selector_row").hide();
+	$("#assessment_course").change(function(){
+		//$("#assessment_course_selector option[selected]").removeAttr("selected");
+		//$("#assessment_course_selector option[value='1']").attr("selected", "selected");
+		$("#assessment_course_selector_row").hide();
 	});
 	$("#show_previous_classes").click(function(){
-		$("#id_gatekeeper_course_selector_row").toggle();
+		$("#assessment_course_selector_row").toggle();
 	});
 
   $(".group_reference_checkbox").change(function(event, expand) {

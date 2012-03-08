@@ -116,7 +116,7 @@ class User < ActiveRecord::Base
   has_many :favorites
   has_many :favorite_courses, :source => :course, :through => :current_and_invited_enrollments, :conditions => "EXISTS (SELECT 1 FROM favorites WHERE context_type = 'Course' AND context_id = enrollments.course_id AND user_id = enrollments.user_id)"
   
-  belongs_to :id_gatekeeper
+  belongs_to :assessment
   
   include StickySisFields
   are_sis_sticky :name, :sortable_name, :short_name

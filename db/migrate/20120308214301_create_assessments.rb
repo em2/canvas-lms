@@ -1,6 +1,6 @@
-class CreateIdGatekeepers < ActiveRecord::Migration
+class CreateAssessments < ActiveRecord::Migration
   def self.up
-    create_table :id_gatekeepers do |t|
+    create_table :assessments do |t|
       t.string :assessment_name
       t.string :course_name_short
       t.string :stage
@@ -8,13 +8,12 @@ class CreateIdGatekeepers < ActiveRecord::Migration
       t.integer :quiz_id, :limit => 8
       t.integer :course_id, :limit => 8
       t.integer :assessment_question_bank_id, :limit => 8
-      
 
       t.timestamps
     end
   end
 
   def self.down
-    drop_table :id_gatekeepers
+    drop_table :assessments
   end
 end

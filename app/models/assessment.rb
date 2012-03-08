@@ -1,4 +1,4 @@
-class IdGatekeeper < ActiveRecord::Base
+class Assessment < ActiveRecord::Base
   attr_accessible :assessment_name, :course_name_short, :stage, :instance
   
   validates_presence_of :assessment_name
@@ -10,5 +10,4 @@ class IdGatekeeper < ActiveRecord::Base
   belongs_to :assessment_question_bank
   belongs_to :course
   belongs_to :quiz
-  
 end

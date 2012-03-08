@@ -10,7 +10,7 @@
   end
   right_side = yield :right_side 
 	mini_display = yield :mini_display
-	generate_id = yield :generate_id
+	generate_assessment = yield :generate_assessment
 	show_previous_assessments = yield :show_previous_assessments
   wizard = yield :wizard_box
   top_nav = yield :top_nav
@@ -192,7 +192,7 @@
         <aside id="right-side" role="complementary">
           <%= right_side %>
 			<%= mini_display %>
-			<%= generate_id %>
+			<%= generate_assessment %>
 			<%= show_previous_assessments %>
         </aside>
       </div>

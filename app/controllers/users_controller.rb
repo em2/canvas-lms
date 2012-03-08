@@ -205,7 +205,7 @@ class UsersController < ApplicationController
     # TODObfcoder: refactor how to get auth action. if no quizzes are present, this will barf
     @quiz = Quiz.first
     if is_authorized_action?(@quiz, @current_user, :create)
-      @can_generate_id = true
+      @can_generate_assessment = true
     end
 
     # dont show crumbs on dashboard because it does not make sense to have a breadcrumb

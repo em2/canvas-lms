@@ -1,11 +1,10 @@
-class IdGatekeepersController < ApplicationController
-  
+class AssessmentsController < ApplicationController
   def index
-    @ids = IdGatekeeper.all
+    @assessments = Assessment.all
   end
   
   def generate
-    if (params[:id_gatekeeper][:stage] == nil)
+    if (params[:assessment][:stage] == nil)
       flash[:notice] = "Please complete the form."
       redirect_back_or_default(dashboard_url)
     else
@@ -20,21 +19,21 @@ class IdGatekeepersController < ApplicationController
       
       #
       # Create the title
-      @probe = AssessmentQuestionBank.find(params[:id_gatekeeper][:probe])
+      @probe = AssessmentQuestionBank.find(params[:assessment][:probe])
       @instance = '001'
-      @title = @probe.title + params[:id_gatekeeper][:stage] + @instance + params[:id_gatekeeper][:course]
+      @title = @probe.title + params[:assessment][:stage] + @instance + params[:assessment][:course]
       
       #
       # Automatically increment the instance number until one is
       # found that hasn't been used for that assessment title
-      while (IdGatekeeper.find_by_assessment_name(@title) != nil)
+      while (Assessment.find_by_assessment_name(@title) != nil)
         @instance = @instance.to_i
         @instance += 1
         @instance = @instance.to_s
         while (@instance.length < 3)
           @instance.insert(0, '0')
         end
-        @title = @probe.title + params[:id_gatekeeper][:stage] + @instance + params[:id_gatekeeper][:course]
+        @title = @probe.title + params[:assessment][:stage] + @instance + params[:assessment][:course]
       end
       
       #
@@ -47,13 +46,13 @@ class IdGatekeepersController < ApplicationController
       end
       
       #
-      # Create the IdGatekeeper
-      @id_gatekeeper = IdGatekeeper.new
-      @id_gatekeeper.assessment_name = @title
-      @id_gatekeeper.course_name_short = params[:id_gatekeeper][:course]
-      @id_gatekeeper.stage = params[:id_gatekeeper][:stage]
-      @id_gatekeeper.instance = @instance
-      @id_gatekeeper.save!
+      # Create the Assessment
+      @assessment = Assessment.new
+      @assessment.assessment_name = @title
+      @assessment.course_name_short = params[:assessment][:course]
+      @assessment.stage = params[:assessment][:stage]
+      @assessment.instance = @instance
+      @assessment.save!
       
       #
       # Create the Course
@@ -76,7 +75,7 @@ class IdGatekeepersController < ApplicationController
       @quiz.show_correct_answers = false
       @quiz.content_being_saved_by(@current_user)
       @quiz.infer_times()
-      @quiz.add_assessment_questions(AssessmentQuestionBank.find(params[:id_gatekeeper][:probe]).assessment_questions)
+      @quiz.add_assessment_questions(AssessmentQuestionBank.find(params[:assessment][:probe]).assessment_questions)
       @quiz.generate_quiz_data()
       @quiz.published_at = Time.now
       @quiz.workflow_state = 'available'
@@ -85,15 +84,15 @@ class IdGatekeepersController < ApplicationController
       @quiz.save!
       
       #
-      # add created items to the id_gatekeeper
-      @id_gatekeeper.quiz = (@quiz)
-      @id_gatekeeper.assessment_question_bank = (@probe)
-      @id_gatekeeper.course = (@course)
+      # add created items to the assessment
+      @assessment.quiz = (@quiz)
+      @assessment.assessment_question_bank = (@probe)
+      @assessment.course = (@course)
       
       #
       # Create the students
       srand
-      @num_students = params[:id_gatekeeper][:students].to_i
+      @num_students = params[:assessment][:students].to_i
       i = 0
       while(i < @num_students)
         @student_id = rand(8999999999)+1000000000
@@ -134,23 +133,21 @@ class IdGatekeepersController < ApplicationController
         @enroll.save!
         
         #
-        # add user to the id_gatekeeper
-        @id_gatekeeper.users << @student
+        # add user to the assessment
+        @assessment.users << @student
         
         i += 1
       end
       
-      @id_gatekeeper.save!
+      @assessment.save!
       
-      redirect_to @id_gatekeeper
+      redirect_to @assessment
       
     end
   end
   
   def show
-    @current_assessment = IdGatekeeper.find(params[:id])
+    @current_assessment = Assessment.find(params[:id])
   end
-  
-  
 
 end
