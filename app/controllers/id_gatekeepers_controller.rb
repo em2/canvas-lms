@@ -4,13 +4,13 @@ class IdGatekeepersController < ApplicationController
       flash[:notice] = "Please complete the form."
       redirect_back_or_default(dashboard_url)
     else
+      #
+      # get the current context
+      # in this case it should usually be the domain_root_account
+      # but I left the other stuff in as Canvas does it's own thing sometimes...
       get_context
       @context = @domain_root_account || Account.default unless @context.is_a?(Account)
       @context = @context.root_account || @context
-      
-      #
-      # Create the IdGatekeeper
-      @id_gatekeeper = IdGatekeeper.new
       
       #
       # Create the title
@@ -18,8 +18,22 @@ class IdGatekeepersController < ApplicationController
       @title = @probe.title + params[:id_gatekeeper][:stage] + params[:id_gatekeeper][:instance] + params[:id_gatekeeper][:course]
       
       #
+      # Make sure another course by that same name doesn't exist
+      if (Course.find_by_name(@title))
+        flash[:notice] = "Duplicate Course, please choose different name."
+        redirect_back_or_default(dashboard_url)
+      end
+      
+      #
+      # Create the IdGatekeeper
+      @id_gatekeeper = IdGatekeeper.new
+      @id_gatekeeper.assessment_name = @title
+      @id_gatekeeper.stage = params[:id_gatekeeper][:stage]
+      @id_gatekeeper.instance = params[:id_gatekeeper][:instance]
+      @id_gatekeeper.save!
+      
+      #
       # Create the Course
-
       @course = Course.create!(:name => @title, :course_code => @title)
       @course.offer!
       
@@ -33,8 +47,6 @@ class IdGatekeepersController < ApplicationController
       #
       # Create the Assessment
       @quiz = @course.quizzes.create
-      
-      
       @quiz.title = @title
       @quiz.description = nil
       @quiz.hide_results = 'always'
@@ -49,14 +61,8 @@ class IdGatekeepersController < ApplicationController
       @quiz.anonymous_submissions = false
       @quiz.save!
       
-      
-      #@quiz.id_gatekeeper_id = @id_gatekeeper.id
-      
-      @id_gatekeeper.assessment_name = @title
-      @id_gatekeeper.stage = params[:id_gatekeeper][:stage]
-      @id_gatekeeper.instance = params[:id_gatekeeper][:instance]
-      @id_gatekeeper.save!
-      
+      #
+      # add created items to the id_gatekeeper
       @id_gatekeeper.quiz = (@quiz)
       @id_gatekeeper.assessment_question_bank = (@probe)
       @id_gatekeeper.course = (@course)
@@ -68,6 +74,8 @@ class IdGatekeepersController < ApplicationController
       i = 0
       while(i < @num_students)
         @student_id = rand(8999999999)+1000000000
+        #
+        # Make sure student_id is unique
         while (Pseudonym.find_by_unique_id(@student_id) != nil)
           @student_id = rand(8999999999)+1000000000
         end
@@ -79,11 +87,12 @@ class IdGatekeepersController < ApplicationController
           @student_number.insert(0, '0')
         end
         
-        @student.name = @title + @student_number
+        @student.name = @student_id
         @student.sortable_name = @title + @student_number
         @student.browser_locale = 'en'
         
-        
+        #
+        # pseudonym is what stores the users login information, let's build it
         @pseudonym = @student.pseudonyms.build(:account => @context)
         @pseudonym.user = @student
         @pseudonym.unique_id = @student_id
@@ -101,6 +110,8 @@ class IdGatekeepersController < ApplicationController
         @enroll.workflow_state = 'active'
         @enroll.save!
         
+        #
+        # add user to the id_gatekeeper
         @id_gatekeeper.users << @student
         
         i += 1
