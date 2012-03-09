@@ -1,1 +1,29 @@
-<div> Assessment name: <%= @current_assessment.assessment_name %> </div>
+<% content_for :page_title do %><%= @current_assessment.assessment_name %><% end %>
+
+<% if @can_generate_assessment === true %>
+	<% content_for :generate_assessment do -%>
+		<%= render :partial => 'assessments/generate_assessment'%>
+	<% end -%>
+
+	<% content_for :show_previous_assessments do -%>
+		<%= render :partial => 'assessments/view_previous_assessments'%>
+	<% end -%>
+<% end -%>
+
+<table>
+  <tr>
+    <th>Student Name<br />(number)</th>
+    <th>10-digit ID</th>
+    <th>Specific ID</th>
+  </tr>
+ 
+<% @current_assessment.users.each do |user| %>	
+  <tr>
+    <td><%= user.short_name %> &nbsp </td>
+    <td><%= user.name %> &nbsp </td>
+    <td><%= user.sortable_name %> &nbsp </td>
+  </tr>
+<% end %>
+</table>
+ 
+<br />

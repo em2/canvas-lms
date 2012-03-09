@@ -2,7 +2,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :assessments
   map.generate  '/generate', :controller => 'assessments', :action => 'generate'
-  map.show_assessments  '/show', :controller => 'assessments', :action => 'show'
+  map.assessments  '/assessments', :controller => 'assessments', :action => 'show'
+  map.select_assessment  '/select_assessment_to_show', :controller => 'assessments', :action => 'select_assessment_to_show'
   
   map.resources :submission_comments, :only => :destroy
 

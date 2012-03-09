@@ -111,6 +111,7 @@ class AssessmentsController < ApplicationController
         
         @student.name = @student_id
         @student.sortable_name = @title + @student_number
+        @student.short_name = @student_number
         @student.browser_locale = 'en'
         
         #
@@ -146,8 +147,23 @@ class AssessmentsController < ApplicationController
     end
   end
   
+  def select_assessment_to_show
+    @assessment = Assessment.find(params[:assessment][:assessment])
+    redirect_to @assessment
+  end
+  
   def show
+    get_context
     @current_assessment = Assessment.find(params[:id])
+    add_crumb("Assessments")
+    add_crumb(@current_assessment.assessment_name)
+    
+    #
+    # TODObfcoder: refactor how to get auth action. if no quizzes are present, this will barf
+    @quiz = Quiz.first
+    if is_authorized_action?(@quiz, @current_user, :create)
+      @can_generate_assessment = true
+    end
   end
 
 end

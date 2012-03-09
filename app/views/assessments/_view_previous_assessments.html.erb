@@ -1,0 +1,7 @@
+<h2>View Previously Generated ID's</h2>
+<% form_for :assessment, :url => select_assessment_path do |f| %>
+	<% @assessments = Assessment.all -%>
+	&nbsp <%= f.label :assessment, 'Assessment #' %>
+		&nbsp <%= f.select :assessment, options_for_select(@assessments.collect { |assessment_list| [assessment_list.assessment_name, assessment_list.id] }) %> <br />
+	&nbsp <%= f.submit 'View' %>
+<% end -%>
