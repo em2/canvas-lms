@@ -201,11 +201,11 @@ class UsersController < ApplicationController
   def user_dashboard
     get_context
     
-    #
-    # TODObfcoder: refactor how to get auth action. if no quizzes are present, this will barf
-    @quiz = Quiz.first
-    if is_authorized_action?(@quiz, @current_user, :create)
-      @can_generate_assessment = true
+    if (!AssessmentQuestionBank.nil?)
+      @quiz = AssessmentQuestionBank.first
+      if is_authorized_action?(@quiz, @current_user, :create)
+        @can_generate_assessment = true
+      end
     end
 
     # dont show crumbs on dashboard because it does not make sense to have a breadcrumb

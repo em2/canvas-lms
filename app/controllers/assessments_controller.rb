@@ -158,11 +158,11 @@ class AssessmentsController < ApplicationController
     add_crumb("Assessments")
     add_crumb(@current_assessment.assessment_name)
     
-    #
-    # TODObfcoder: refactor how to get auth action. if no quizzes are present, this will barf
-    @quiz = Quiz.first
-    if is_authorized_action?(@quiz, @current_user, :create)
-      @can_generate_assessment = true
+    if (!AssessmentQuestionBank.nil?)
+      @quiz = AssessmentQuestionBank.first
+      if is_authorized_action?(@quiz, @current_user, :create)
+        @can_generate_assessment = true
+      end
     end
   end
 
