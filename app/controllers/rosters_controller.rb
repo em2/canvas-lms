@@ -16,9 +16,6 @@ class RostersController < ApplicationController
       @context = @domain_root_account || Account.default unless @context.is_a?(Account)
       @context = @context.root_account || @context
       
-      debugger
-      t=9
-      
       #
       # Create the title
       @probe = AssessmentQuestionBank.find(params[:rosters][:probe])
@@ -60,21 +57,51 @@ class RostersController < ApplicationController
       
       i = 0
       while (i < @course_titles.count)
-        @title = @probe.title + @stage + @instance + @course_titles[i]
-      
-      
+        @course_title = @course_titles[i]
+        
+        if (@course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || @course_title.size != 16)
+          i += 1
+          flash[:notice] = @course_title + " is not valid."
+          next
+        end
+        
+        #@title = @probe.title + @stage + @instance + @course_title
+        
+        
+        @district = @course_title[/[Dd][0-9]{3}/]
+        @school = @course_title[/[Ss][0-9]{3}/]
+        @class = @course_title[/[Cc][0-9]{3}/]
+        @teacher = @course_title[/[Tt][0-9]{3}/]
+        
+        debugger
+        t=9
+        
+        if (!@district_account = Account.find_by_name(@district))
+          @district_account = Account.create!(:name => @district, :parent_account => @context)
+        end
+        
+        if (!@school_account = Account.find_by_name(@school))
+          @school_account = Account.create!(:name => @school, :parent_account => @district_account)
+        end
+        
+        
         #
         # Create the Course
-        @course = Course.create!(:name => @title, :course_code => @title)
-        @course.offer!
-      
+        if (!@course = Course.find_by_name(@course_title))
+          @course = Course.create!(:name => @course_title, :course_code => @course_title, :root_account => @school_account)
+          @course.offer!
+        end
+        
+        
         #
         # Enroll the current user as the teacher
-        @enroll=@course.enroll_teacher(@current_user)
-        @enroll.workflow_state = 'active'
-        @enroll.save!
-      
-      
+        if (!@course.enrollments.find_by_user_id(@current_user.id))
+          @enroll=@course.enroll_teacher(@current_user)
+          @enroll.workflow_state = 'active'
+          @enroll.save!
+        end
+        
+        
         #
         # Create the Assessment
         @quiz = @course.quizzes.create
