@@ -10,8 +10,8 @@
   end
   right_side = yield :right_side 
 	mini_display = yield :mini_display
-	generate_assessment = yield :generate_assessment
-	show_previous_assessments = yield :show_previous_assessments
+	generate_rosters = yield :generate_rosters
+	show_previous_rosters = yield :show_previous_rosters
   wizard = yield :wizard_box
   top_nav = yield :top_nav
   keyboard_navigation = yield :keyboard_navigation
@@ -192,8 +192,8 @@
         <aside id="right-side" role="complementary">
           <%= right_side %>
 			<%= mini_display %>
-			<%= generate_assessment %>
-			<%= show_previous_assessments %>
+			<%= generate_rosters %>
+			<%#= show_previous_rosters %>
         </aside>
       </div>
       <div id="not_right_side">

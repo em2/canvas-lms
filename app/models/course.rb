@@ -155,8 +155,6 @@ class Course < ActiveRecord::Base
   has_many :alerts, :as => :context, :include => :criteria
   attr_accessor :import_source
   
-  has_one :assessment
-  
   before_save :assign_uuid
   before_save :assert_defaults
   before_save :set_update_account_associations_if_changed

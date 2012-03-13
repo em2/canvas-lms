@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe AssessmentsController do
+describe RostersController do
 
   #Delete these examples and add some real ones
-  it "should use AssessmentsController" do
-    controller.should be_an_instance_of(AssessmentsController)
+  it "should use RostersController" do
+    controller.should be_an_instance_of(RostersController)
   end
 
 
@@ -15,16 +15,16 @@ describe AssessmentsController do
     end
   end
 
-  describe "GET 'generate'" do
+  describe "GET 'show'" do
     it "should be successful" do
-      get 'generate'
+      get 'show'
       response.should be_success
     end
   end
 
-  describe "GET 'show'" do
+  describe "GET 'generate'" do
     it "should be successful" do
-      get 'show'
+      get 'generate'
       response.should be_success
     end
   end

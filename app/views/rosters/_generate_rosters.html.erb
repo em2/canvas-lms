@@ -1,0 +1,20 @@
+<h2>Assign Probe to Classes</h2>
+<% form_for :rosters, :url => generate_path do |f| %>
+	&nbsp <%= f.label :probe, 'Probe:' %>
+		<% @question_bank = AssessmentQuestionBank.active -%>
+		&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
+	&nbsp <%= f.label :stage, 'Stage:' %>
+		&nbsp <%= f.radio_button :stage, 'X' %>
+			<%= f.label :stage, 'X' %>
+		&nbsp <%= f.radio_button :stage, 'P' %>
+			<%= f.label :stage, 'P' %>
+		&nbsp <%= f.radio_button :stage, 'L' %>
+			<%= f.label :stage, 'L' %> <br />
+	&nbsp <%= f.label :instance, 'Instance:' %>
+		&nbsp <%= f.text_field :instance, :size => '3x1' %> <br />
+	&nbsp <%= f.label :students, 'Students:' %>
+		&nbsp <%= f.select :students, options_for_select([['10', 10], ['20', 20]]) %> <br />
+	&nbsp <%= f.label :courses, 'Class IDs:' %> <br />
+		&nbsp <%= f.text_area :courses, :size => '20x10' %> <br />
+	&nbsp <%= f.submit 'Assign Probe' %>
+<% end -%>

@@ -31,12 +31,12 @@
 <% end %>
 
 <% if @can_generate_assessment === true %>
-	<% content_for :generate_assessment do -%>
-		<%= render :partial => 'assessments/generate_assessment'%>
+	<% content_for :generate_rosters do -%>
+		<%= render :partial => 'rosters/generate_rosters'%>
 	<% end -%>
 
-	<% content_for :show_previous_assessments do -%>
-		<%= render :partial => 'assessments/view_previous_assessments'%>
+	<% content_for :show_previous_rosters do -%>
+		<%= render :partial => 'rosters/view_previous_rosters'%>
 	<% end -%>
 <% end -%>
 
