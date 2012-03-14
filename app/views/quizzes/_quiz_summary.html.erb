@@ -34,6 +34,7 @@
             <%= before_label(:quiz_details, "Quiz Details") %>
           <% end %>
         </div>
+		<%= q.probe_name %> <br/>
         <% if submission && submission.completed? %>
           <%= datetime_string(submission.finished_at) %><br/>
           <% if q.muted? %>

@@ -366,7 +366,7 @@ require(['i18n'], function(I18n) {
       $(".question_holder textarea.question_input").each(function() { $(this).change(); });
       unanswered = $("#question_list .list_question:not(.answered)").length;
       if(unanswered && !quizSubmission.submitting) {
-        var result = confirm(I18n.t('confirms.unanswered_questions', {'one': "You have 1 unanswered question (see the right sidebar for details).  Submit anyway?", 'other': "You have %{count} unanswered questions (see the right sidebar for details).  Submit anyway?"}, {'count': unanswered}));
+        var result = confirm(I18n.t('confirms.unanswered_questions', {'one': "You have 1 unanswered question. Submit anyway?", 'other': "You have %{count} unanswered questions. Submit anyway?"}, {'count': unanswered}));
         if(!result) {
           event.preventDefault();
           event.stopPropagation();

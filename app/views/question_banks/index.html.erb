@@ -60,8 +60,10 @@
   <%= render :partial => "question_bank" %>
 
   <% form_for :assessment_question_bank, :url => "", :html => {:id => "edit_bank_form", :style => "display: none;"} do |f| %>
-    <%= f.blabel :title, :en => "Bank Name" %>
-    <%= f.text_field :title, :class => "bank_name_box" %>
+    <%= f.blabel :title, :en => "Bank Short Name" %>
+    <%= f.text_field :title, :class => "bank_name_box" %></br>
+	<%= f.label :title, :en => "Bank Full Name" %>
+    <%= f.text_field :title, :class => "bank_full_name_box" %>
   <% end %>
   <div id="bank_urls">
     <a href="<%= context_url(@context, :context_question_banks_url) %>" class="add_bank_url" style="display: none;">&nbsp;</a>

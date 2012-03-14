@@ -7985,8 +7985,8 @@ en:
       confirms: 
         navigate_away: "You're about to navigate away from this page.  Continue anyway?"
         unanswered_questions: 
-          one: "You have 1 unanswered question (see the right sidebar for details).  Submit anyway?"
-          other: "You have %{count} unanswered questions (see the right sidebar for details).  Submit anyway?"
+          one: "You have 1 unanswered question. Submit anyway?"
+          other: "You have %{count} unanswered questions. Submit anyway?"
         unfinished_quiz: "You're about to leave the quiz unfinished.  Continue anyway?"
       days_count: 
         one: "1 Day"

@@ -13,7 +13,7 @@
 	&nbsp <%= f.label :instance, 'Instance:' %>
 		&nbsp <%= f.text_field :instance, :size => '3x1' %> <br />
 	&nbsp <%= f.label :students, 'Students:' %>
-		&nbsp <%= f.select :students, options_for_select([['10', 10], ['20', 20]]) %> <br />
+		&nbsp <%= f.select :students, options_for_select([['5', 5], ['10', 10], ['20', 20]]) %> <br />
 	&nbsp <%= f.label :courses, 'Class IDs:' %> <br />
 		&nbsp <%= f.text_area :courses, :size => '20x10' %> <br />
 	&nbsp <%= f.submit 'Assign Probe' %>

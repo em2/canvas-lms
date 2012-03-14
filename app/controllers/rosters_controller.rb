@@ -15,9 +15,10 @@ class RostersController < ApplicationController
       get_context
       @context = @domain_root_account || Account.default unless @context.is_a?(Account)
       @context = @context.root_account || @context
+      @term = @context.enrollment_terms.active[-1]
       
       #
-      # Create the title
+      # Create the names
       @probe = AssessmentQuestionBank.find(params[:rosters][:probe])
       @instance = params[:rosters][:instance]
       @stage = params[:rosters][:stage]
@@ -73,9 +74,6 @@ class RostersController < ApplicationController
         @class = @course_title[/[Cc][0-9]{3}/]
         @teacher = @course_title[/[Tt][0-9]{3}/]
         
-        debugger
-        t=9
-        
         if (!@district_account = Account.find_by_name(@district))
           @district_account = Account.create!(:name => @district, :parent_account => @context)
         end
@@ -88,10 +86,10 @@ class RostersController < ApplicationController
         #
         # Create the Course
         if (!@course = Course.find_by_name(@course_title))
-          @course = Course.create!(:name => @course_title, :course_code => @course_title, :root_account => @school_account)
+          @course = Course.create!(:name => @course_title, :course_code => @course_title, :account => @school_account)
           @course.offer!
+          @course.save!
         end
-        
         
         #
         # Enroll the current user as the teacher
@@ -105,7 +103,8 @@ class RostersController < ApplicationController
         #
         # Create the Assessment
         @quiz = @course.quizzes.create
-        @quiz.title = @title
+        @quiz.title = @probe.full_name
+        @quiz.probe_name = @probe.title + @stage + @instance
         @quiz.description = nil
         @quiz.hide_results = 'always'
         @quiz.show_correct_answers = false
@@ -118,19 +117,24 @@ class RostersController < ApplicationController
         @quiz.last_assignment_id = @quiz.assignment_id
         @quiz.anonymous_submissions = false
         @quiz.save!
-      
+        
         #
         # add created items to the assessment
         #@rosters.quiz = (@quiz)
         #@rosters.assessment_question_bank = (@probe)
         #@rosters.course = (@course)
-      
+        
         #
         # Create the students
         srand
         @num_students = params[:rosters][:students].to_i
+        # calculate the number of extra students needed
+        # course student enrollments count minus the total required students
+        @num_needed = @num_students - @course.enrollments.all_student.count
+        
         j = 0
-        while(j < @num_students)
+        while(j < @num_students && j < @num_needed)
+          
           @student_id = rand(8999999999)+1000000000
           #
           # Make sure student_id is unique
@@ -144,9 +148,9 @@ class RostersController < ApplicationController
           while (@student_number.length < 4)
             @student_number.insert(0, '0')
           end
-        
+          
           @student.name = @student_id
-          @student.sortable_name = @title + @student_number
+          @student.sortable_name = @course_title + @student_number
           @student.short_name = @student_number
           @student.browser_locale = 'en'
         
@@ -177,6 +181,9 @@ class RostersController < ApplicationController
         end
         i += 1
       end
+      
+      flash[:notice] = "#{@num_needed} students generated."
+      
       
 #      @rosters.save!
       
