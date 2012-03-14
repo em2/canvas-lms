@@ -1,12 +1,12 @@
-<% content_for :page_title do %><%= @current_assessment.assessment_name %><% end %>
+<% content_for :page_title do %><%= @current_roster.name %><% end %>
 
 <% if @can_generate_assessment === true %>
 	<% content_for :generate_assessment do -%>
-		<%= render :partial => 'assessments/generate_assessment'%>
+		<%= render :partial => 'rosters/generate_rosters'%>
 	<% end -%>
 
 	<% content_for :show_previous_assessments do -%>
-		<%= render :partial => 'assessments/view_previous_assessments'%>
+		<%= render :partial => 'rosters/view_previous_rosters'%>
 	<% end -%>
 <% end -%>
 
@@ -17,13 +17,13 @@
     <th>Specific ID</th>
   </tr>
  
-<% @current_assessment.users.each do |user| %>	
+<%# @current_roster.users.each do |user| %>	
   <tr>
-    <td><%= user.short_name %> &nbsp </td>
-    <td><%= user.name %> &nbsp </td>
-    <td><%= user.sortable_name %> &nbsp </td>
+    <td><%#= user.short_name %> &nbsp </td>
+    <td><%#= user.name %> &nbsp </td>
+    <td><%#= user.sortable_name %> &nbsp </td>
   </tr>
-<% end %>
+<%# end %>
 </table>
  
 <br />

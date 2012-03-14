@@ -1,20 +1,15 @@
-<h1>Listing Assessments Created</h1>
+<% content_for :page_title do %>School Rosters<% end %>
+
+<h1>School Rosters</h1>
  
 <table>
   <tr>
-    <th>Assessment Name</th>
-    <th>Students</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Roster Name</th>
   </tr>
  
-<% @assessments.each do |assessment| %>
+<% @rosters.each do |roster| %>
   <tr>
-    <td><%= assessment.assessment_name %> &nbsp </td>
-    <td><%= assessment.users.count %></td>
-    <td><%= link_to 'Show', id %> &nbsp </td>
-    <td><%= link_to 'Remove', id, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to roster.name, roster %> &nbsp </td>
   </tr>
 <% end %>
 </table>

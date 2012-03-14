@@ -1,7 +1,4 @@
-<h2>View Class Rosters for School</h2>
-<% form_for :rosters, :url => select_school_path do |f| %>
-	<% @rosters = Roster.all -%>
-	&nbsp <%= f.label :rosters, 'Assessment #' %>
-		&nbsp <%#= f.select :rosters, options_for_select(@rosters.collect { |rosters_list| [rosters_list.assessment_name, rosters_list.id] }) %> <br />
-	&nbsp <%= f.submit 'View' %>
-<% end -%>
+<h2>Class Rosters</h2>
+<div class="rs-margin-lr">
+  <a href="<%= rosters_path %>" class="button button-sidebar-wide"> View Class Rosters </a>
+</div>

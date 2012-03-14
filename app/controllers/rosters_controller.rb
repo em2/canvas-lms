@@ -1,6 +1,10 @@
 class RostersController < ApplicationController
   def index
+    get_context
+    add_crumb("School Rosters")
+    
     @rosters = Roster.all
+    
   end
   
   def generate
@@ -49,7 +53,7 @@ class RostersController < ApplicationController
       
       #
       # Create the Roster
-      # @rosters = Roster.new
+      @rosters = Roster.new
       # @rosters.assessment_name = @title
       # @rosters.course_name_short = params[:rosters][:courses]
       # @rosters.stage = params[:rosters][:stage]
@@ -80,6 +84,9 @@ class RostersController < ApplicationController
         
         if (!@school_account = Account.find_by_name(@school))
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
+          @rosters.name = @district + @school
+          @rosters.accounts << @school_account
+          @rosters.save!
         end
         
         
@@ -130,7 +137,9 @@ class RostersController < ApplicationController
         @num_students = params[:rosters][:students].to_i
         # calculate the number of extra students needed
         # course student enrollments count minus the total required students
-        @num_needed = @num_students - @course.enrollments.all_student.count
+        @course_enrollment_count = @course.enrollments.all_student.count
+        @num_needed = @num_students - @course_enrollment_count
+        
         
         j = 0
         while(j < @num_students && j < @num_needed)
@@ -142,7 +151,7 @@ class RostersController < ApplicationController
             @student_id = rand(8999999999)+1000000000
           end
           @student = User.create!
-          @student_number = (j + 1).to_s
+          @student_number = (j + @course_enrollment_count + 1).to_s
           #
           # the the user have a 4 digit number ie: 0001
           while (@student_number.length < 4)
@@ -187,25 +196,20 @@ class RostersController < ApplicationController
       
 #      @rosters.save!
       
-      #redirect_to @rosters
+      redirect_to @rosters
 #      render :action => "show", :id => @rosters.id
       
       
     end
   end
   
+  #TODObfcoder remove this def and its route if at all possible
   def select_assessment_to_show
     @rosters = Roster.find(params[:rosters][:rosters])
     redirect_to @rosters
   end
   
   def show
-    get_context
-    @current_assessment = Roster.find(params[:id])
-    #TODObfcoder: fix crumb
-    add_crumb("Rosters")
-    add_crumb(@current_assessment.assessment_name)
-    
     if (!AssessmentQuestionBank.nil?)
       @quiz = AssessmentQuestionBank.first
       if is_authorized_action?(@quiz, @current_user, :create)
@@ -216,6 +220,15 @@ class RostersController < ApplicationController
     if (@can_generate_assessment == false)
       redirect_back_or_default(dashboard_url)
     end
+    
+    
+    get_context
+    @current_roster = Roster.find(params[:id])
+    #TODObfcoder: fix crumb
+    add_crumb("Rosters", rosters_path)
+    add_crumb(@current_roster.name)
+    
+
   end
 
 end
