@@ -1,29 +1,15 @@
 <% content_for :page_title do %><%= @current_roster.name %><% end %>
 
-<% if @can_generate_assessment === true %>
-	<% content_for :generate_assessment do -%>
-		<%= render :partial => 'rosters/generate_rosters'%>
-	<% end -%>
-
-	<% content_for :show_previous_assessments do -%>
-		<%= render :partial => 'rosters/view_previous_rosters'%>
-	<% end -%>
-<% end -%>
-
 <table>
   <tr>
-    <th>Student Name<br />(number)</th>
-    <th>10-digit ID</th>
-    <th>Specific ID</th>
+    <th>Schools</th>
   </tr>
  
-<%# @current_roster.users.each do |user| %>	
+<% @current_roster.sub_accounts.each do |sub_account| %>	
   <tr>
-    <td><%#= user.short_name %> &nbsp </td>
-    <td><%#= user.name %> &nbsp </td>
-    <td><%#= user.sortable_name %> &nbsp </td>
+    <td><%= link_to sub_account.name, sub_account.classroom %> &nbsp </td>
   </tr>
-<%# end %>
+<% end %>
 </table>
  
 <br />

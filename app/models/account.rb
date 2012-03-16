@@ -87,7 +87,8 @@ class Account < ActiveRecord::Base
   has_many :associated_alerts, :through => :associated_courses, :source => :alerts, :include => :criteria
   has_many :user_account_associations
   
-  belongs_to :roster
+  has_one :roster
+  has_one :classroom
   
   before_validation :verify_unique_sis_source_id
   before_save :ensure_defaults

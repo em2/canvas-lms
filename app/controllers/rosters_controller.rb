@@ -2,7 +2,7 @@ class RostersController < ApplicationController
   def index
     get_context
     add_crumb("School Rosters")
-    
+
     @rosters = Roster.all
     
   end
@@ -52,13 +52,9 @@ class RostersController < ApplicationController
       # end
       
       #
-      # Create the Roster
-      @rosters = Roster.new
-      # @rosters.assessment_name = @title
-      # @rosters.course_name_short = params[:rosters][:courses]
-      # @rosters.stage = params[:rosters][:stage]
-      # @rosters.instance = @instance
-      # @rosters.save!
+      # Create the Roster and Classroom
+      @roster = Roster.new
+      @classroom = Classroom.new
       
       i = 0
       while (i < @course_titles.count)
@@ -80,14 +76,21 @@ class RostersController < ApplicationController
         
         if (!@district_account = Account.find_by_name(@district))
           @district_account = Account.create!(:name => @district, :parent_account => @context)
+          @roster.name = @district
+          @roster.account = @district_account
+          @roster.save!
         end
+        
+        @roster = Roster.find_by_name(@district)
         
         if (!@school_account = Account.find_by_name(@school))
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
-          @rosters.name = @district + @school
-          @rosters.accounts << @school_account
-          @rosters.save!
+          @classroom.name = @school
+          @classroom.account = @school_account
+          @classroom.save!
         end
+        
+#        @classroom = Classroom
         
         
         #
@@ -96,7 +99,12 @@ class RostersController < ApplicationController
           @course = Course.create!(:name => @course_title, :course_code => @course_title, :account => @school_account)
           @course.offer!
           @course.save!
+          # @classroom.name = @course.name
+          # @classroom.roster = @roster
+          # @classroom.course = @course
+          # @classroom.save!
         end
+        
         
         #
         # Enroll the current user as the teacher
@@ -127,9 +135,9 @@ class RostersController < ApplicationController
         
         #
         # add created items to the assessment
-        #@rosters.quiz = (@quiz)
-        #@rosters.assessment_question_bank = (@probe)
-        #@rosters.course = (@course)
+        #@roster.quiz = (@quiz)
+        #@roster.assessment_question_bank = (@probe)
+        #@roster.course = (@course)
         
         #
         # Create the students
@@ -184,7 +192,7 @@ class RostersController < ApplicationController
         
           #
           # add user to the assessment
-   #       @rosters.users << @student
+   #       @roster.users << @student
         
           j += 1
         end
@@ -194,19 +202,13 @@ class RostersController < ApplicationController
       flash[:notice] = "#{@num_needed} students generated."
       
       
-#      @rosters.save!
+#      @roster.save!
       
-      redirect_to @rosters
-#      render :action => "show", :id => @rosters.id
+      redirect_to @roster
+#      render :action => "show", :id => @roster.id
       
       
     end
-  end
-  
-  #TODObfcoder remove this def and its route if at all possible
-  def select_assessment_to_show
-    @rosters = Roster.find(params[:rosters][:rosters])
-    redirect_to @rosters
   end
   
   def show
@@ -223,8 +225,8 @@ class RostersController < ApplicationController
     
     
     get_context
-    @current_roster = Roster.find(params[:id])
-    #TODObfcoder: fix crumb
+    @current_roster = Roster.find(params[:id]).account
+    
     add_crumb("Rosters", rosters_path)
     add_crumb(@current_roster.name)
     

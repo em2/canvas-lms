@@ -1,3 +1,4 @@
 class Roster < ActiveRecord::Base
-  has_many :accounts
+  belongs_to :account
+  has_one :classroom
 end
