@@ -155,7 +155,7 @@ class Course < ActiveRecord::Base
   has_many :alerts, :as => :context, :include => :criteria
   attr_accessor :import_source
   
-  has_one :classroom
+  belongs_to :classroom
   
   before_save :assign_uuid
   before_save :assert_defaults

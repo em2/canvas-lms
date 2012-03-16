@@ -68,7 +68,6 @@ class RostersController < ApplicationController
         
         #@title = @probe.title + @stage + @instance + @course_title
         
-        
         @district = @course_title[/[Dd][0-9]{3}/]
         @school = @course_title[/[Ss][0-9]{3}/]
         @class = @course_title[/[Cc][0-9]{3}/]
@@ -77,7 +76,7 @@ class RostersController < ApplicationController
         if (!@district_account = Account.find_by_name(@district))
           @district_account = Account.create!(:name => @district, :parent_account => @context)
           @roster.name = @district
-          @roster.account = @district_account
+          @roster.accounts << @district_account
           @roster.save!
         end
         
@@ -85,9 +84,8 @@ class RostersController < ApplicationController
         
         if (!@school_account = Account.find_by_name(@school))
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
-          @classroom.name = @school
-          @classroom.account = @school_account
-          @classroom.save!
+          @school_account.roster = @roster
+          @school_account.save!
         end
         
 #        @classroom = Classroom
@@ -99,10 +97,10 @@ class RostersController < ApplicationController
           @course = Course.create!(:name => @course_title, :course_code => @course_title, :account => @school_account)
           @course.offer!
           @course.save!
-          # @classroom.name = @course.name
-          # @classroom.roster = @roster
-          # @classroom.course = @course
-          # @classroom.save!
+          @classroom.name = @course.name
+          @classroom.roster = @roster
+          @classroom.courses << @course
+          @classroom.save!
         end
         
         
@@ -225,7 +223,7 @@ class RostersController < ApplicationController
     
     
     get_context
-    @current_roster = Roster.find(params[:id]).account
+    @current_roster = Roster.find(params[:id])
     
     add_crumb("Rosters", rosters_path)
     add_crumb(@current_roster.name)

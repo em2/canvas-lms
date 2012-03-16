@@ -4,10 +4,10 @@
   <tr>
     <th>Schools</th>
   </tr>
- 
-<% @current_roster.sub_accounts.each do |sub_account| %>	
+
+<% @current_roster.accounts.each do |school| %>	
   <tr>
-    <td><%= link_to sub_account.name, sub_account.classroom %> &nbsp </td>
+    <td><%#= school.last.name %> &nbsp </td>
   </tr>
 <% end %>
 </table>

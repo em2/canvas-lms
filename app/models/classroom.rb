@@ -1,5 +1,4 @@
 class Classroom < ActiveRecord::Base
   belongs_to :roster
-  belongs_to :course
-  belongs_to :account
+  has_many :courses
 end
