@@ -8,10 +8,10 @@ class ClassroomsController < ApplicationController
 
   def show
     get_context
-    @current_classroom = Classroom.find(params[:id])
+    #@current_classroom = Classroom.find() rescue nil
     
     #add_crumb("Classrooms", classrooms_path)
-    add_crumb(@current_classroom.name)
+    #add_crumb(@current_classroom.name)
   end
 
 end

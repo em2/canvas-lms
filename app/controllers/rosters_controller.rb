@@ -21,6 +21,8 @@ class RostersController < ApplicationController
       @context = @context.root_account || @context
       @term = @context.enrollment_terms.active[-1]
       
+      debugger
+      
       #
       # Create the names
       @probe = AssessmentQuestionBank.find(params[:rosters][:probe])
@@ -76,20 +78,24 @@ class RostersController < ApplicationController
         if (!@district_account = Account.find_by_name(@district))
           @district_account = Account.create!(:name => @district, :parent_account => @context)
           @roster.name = @district
-          @roster.accounts << @district_account
+          @roster.account = @district_account
           @roster.save!
         end
         
         @roster = Roster.find_by_name(@district)
         
+        
+        debugger
+        
         if (!@school_account = Account.find_by_name(@school))
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
-          @school_account.roster = @roster
-          @school_account.save!
+          @classroom.name = @school
+          @classroom.roster = @roster
+          @classroom.accounts << @school_account
+          @classroom.save!
         end
         
 #        @classroom = Classroom
-        
         
         #
         # Create the Course
@@ -97,10 +103,10 @@ class RostersController < ApplicationController
           @course = Course.create!(:name => @course_title, :course_code => @course_title, :account => @school_account)
           @course.offer!
           @course.save!
-          @classroom.name = @course.name
-          @classroom.roster = @roster
-          @classroom.courses << @course
-          @classroom.save!
+          # @classroom.name = @course.name
+          # @classroom.roster = @roster
+          # @classroom.courses << @course
+          # @classroom.save!
         end
         
         
@@ -202,7 +208,7 @@ class RostersController < ApplicationController
       
 #      @roster.save!
       
-      redirect_to @roster
+      #redirect_to @roster
 #      render :action => "show", :id => @roster.id
       
       

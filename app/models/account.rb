@@ -88,6 +88,7 @@ class Account < ActiveRecord::Base
   has_many :user_account_associations
   
   belongs_to :roster
+  belongs_to :classroom
   
   before_validation :verify_unique_sis_source_id
   before_save :ensure_defaults
