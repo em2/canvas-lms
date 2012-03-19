@@ -7,7 +7,7 @@
 
 <% @current_roster.classrooms.each do |school| %>	
   <tr>
-    <td><%= link_to school.name, roster_classroom_path(:roster_id => @current_roster.id, :id => school.id)%> &nbsp </td>
+    <td><%= link_to school.name, roster_classrooms_path(@current_roster)%> &nbsp </td>
   </tr>
 <% end %>
 </table>

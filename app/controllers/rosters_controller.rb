@@ -21,8 +21,6 @@ class RostersController < ApplicationController
       @context = @context.root_account || @context
       @term = @context.enrollment_terms.active[-1]
       
-      debugger
-      
       #
       # Create the names
       @probe = AssessmentQuestionBank.find(params[:rosters][:probe])
@@ -45,18 +43,8 @@ class RostersController < ApplicationController
       # end
       
       #
-      # Make sure another course by that same name doesn't exist
-      # This should never happen because of the auto increment code above,
-      # but just in case it does, this is a safe guard.
-      # if (Course.find_by_name(@title))
-      #   flash[:notice] = "Duplicate Course, please choose different name."
-      #   redirect_back_or_default(dashboard_url)
-      # end
-      
-      #
-      # Create the Roster and Classroom
+      # Create the Roster
       @roster = Roster.new
-      @classroom = Classroom.new
       
       i = 0
       while (i < @course_titles.count)
@@ -89,13 +77,8 @@ class RostersController < ApplicationController
         
         if (!@school_account = Account.find_by_name(@school))
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
-          @classroom.name = @school
-          @classroom.roster = @roster
-          @classroom.accounts << @school_account
-          @classroom.save!
         end
         
-#        @classroom = Classroom
         
         #
         # Create the Course
@@ -103,10 +86,6 @@ class RostersController < ApplicationController
           @course = Course.create!(:name => @course_title, :course_code => @course_title, :account => @school_account)
           @course.offer!
           @course.save!
-          # @classroom.name = @course.name
-          # @classroom.roster = @roster
-          # @classroom.courses << @course
-          # @classroom.save!
         end
         
         
@@ -137,11 +116,6 @@ class RostersController < ApplicationController
         @quiz.anonymous_submissions = false
         @quiz.save!
         
-        #
-        # add created items to the assessment
-        #@roster.quiz = (@quiz)
-        #@roster.assessment_question_bank = (@probe)
-        #@roster.course = (@course)
         
         #
         # Create the students
@@ -194,9 +168,6 @@ class RostersController < ApplicationController
           @enroll.workflow_state = 'active'
           @enroll.save!
         
-          #
-          # add user to the assessment
-   #       @roster.users << @student
         
           j += 1
         end
@@ -204,9 +175,6 @@ class RostersController < ApplicationController
       end
       
       flash[:notice] = "#{@num_needed} students generated."
-      
-      
-#      @roster.save!
       
       #redirect_to @roster
 #      render :action => "show", :id => @roster.id

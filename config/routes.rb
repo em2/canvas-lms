@@ -1,9 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   
   map.generate  '/generate', :controller => 'rosters', :action => 'generate'
-  map.resources :rosters do |roster|
-    roster.resource :classroom
-  end
+  map.resources :rosters 
   
   map.resources :submission_comments, :only => :destroy
 

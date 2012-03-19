@@ -9,7 +9,7 @@
 
 <% @rosters.each do |roster| %>
   <tr>
-    <td><%= link_to roster.name, roster %> &nbsp </td>
+    <td><%= link_to roster.name, roster_classrooms_path(roster) %> &nbsp </td>
   </tr>
 <% end %>
 </table>
