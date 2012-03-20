@@ -65,18 +65,13 @@ class RostersController < ApplicationController
         
         if (!@district_account = Account.find_by_name(@district))
           @district_account = Account.create!(:name => @district, :parent_account => @context)
-          @roster.name = @district
-          @roster.account = @district_account
-          @roster.save!
         end
-        
-        @roster = Roster.find_by_name(@district)
-        
-        
-        debugger
         
         if (!@school_account = Account.find_by_name(@school))
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
+          @roster.name = @district + @school
+          @roster.account = @school_account
+          @roster.save!
         end
         
         
@@ -197,12 +192,11 @@ class RostersController < ApplicationController
     
     
     get_context
-    @current_roster = Roster.find(params[:id])
+    @current_school_roster = Roster.find(params[:id]).account
     
     add_crumb("Rosters", rosters_path)
-    add_crumb(@current_roster.name)
+    add_crumb(@current_school_roster.name)
     
-
   end
 
 end

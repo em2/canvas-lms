@@ -1,15 +1,37 @@
-<% content_for :page_title do %><%= @current_roster.name %><% end %>
+<style>
+.break { page-break-before: always; }
+</style>
 
-<table>
-  <tr>
-    <th>Schools</th>
-  </tr>
+<% content_for :page_title do -%><%= @current_school_roster.name %><% end -%>
 
-<% @current_roster.classrooms.each do |school| %>	
-  <tr>
-    <td><%= link_to school.name, roster_classrooms_path(@current_roster)%> &nbsp </td>
-  </tr>
-<% end %>
-</table>
+<% @current_school_roster.courses.each do |school| -%>
+	<% @district = school.name[/[Dd][0-9]{3}/] -%>
+	<% @school = school.name[/[Ss][0-9]{3}/] -%>
+	<% @class = school.name[/[Cc][0-9]{3}/] -%>
+	<% @teacher = school.name[/[Tt][0-9]{3}/] -%>
+	<h1 class="break" > Classroom Roster </h1>
+	<h2> District: <%= @district %> </h2>
+	<h2> School: <%= @school %> </h2>
+	<h2> Teacher: <%= @teacher %> </h2>
+	<h3> Class: <%= @class %></h2>
+	
+	<table border="1">
+		<tr>
+			<th>Count &nbsp</th>
+			<th>Login &nbsp</th>
+			<th>Student Name <% 8.times do %>&nbsp <% end -%></th>
+			<th>Notes <% 25.times do %> &nbsp <% end -%></th>
+		</tr>
+		<% school.students.each do |student| %>
+		<tr>
+			<td><%= student.short_name %> &nbsp </td>
+			<td><%= student.name %> &nbsp </td>
+			<td> </td>
+			<td> </td>
+		</tr>
+		<% end -%>
+	</table>
+<% end -%>
+
  
 <br />

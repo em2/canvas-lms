@@ -1,4 +1,7 @@
-<h2>Class Rosters</h2>
+<h2>View Class Rosters</h2>
 <div class="rs-margin-lr">
-  <a href="<%= rosters_path %>" class="button button-sidebar-wide"> View Class Rosters </a>
+	<% @school_rosters = Roster.all -%>
+	<% @school_rosters.each do |roster| -%>
+		<a href="<%= roster_path(roster) %>" class="button button-sidebar-wide"> <%= roster.name %> </a>
+	<% end -%>
 </div>

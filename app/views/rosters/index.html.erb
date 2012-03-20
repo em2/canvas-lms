@@ -1,17 +1,17 @@
-<% content_for :page_title do %>School Rosters<% end %>
+<% content_for :page_title do -%>School Rosters<% end -%>
 
-<h1>School Rosters</h1>
+<h1>View School Rosters</h1>
  
 <table>
   <tr>
-    <th>Roster Name</th>
+    <th>School Name</th>
   </tr>
 
-<% @rosters.each do |roster| %>
+<% @rosters.each do |roster| -%>
   <tr>
-    <td><%= link_to roster.name, roster_classrooms_path(roster) %> &nbsp </td>
+    <td><%= link_to roster.name, roster_path(roster) %> &nbsp </td>
   </tr>
-<% end %>
+<% end -%>
 </table>
  
 <br />
