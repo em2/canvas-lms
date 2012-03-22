@@ -2,7 +2,7 @@
 .break { page-break-before: always; }
 </style>
 
-<% content_for :page_title do -%><%= @current_school_roster.name %><% end -%>
+<% content_for :page_title do -%><%= @current_school_roster.parent_account.name + @current_school_roster.name %><% end -%>
 
 <% @current_school_roster.courses.each do |school| -%>
 	<% @district = school.name[/[Dd][0-9]{3}/] -%>

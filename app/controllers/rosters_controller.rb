@@ -152,8 +152,8 @@ class RostersController < ApplicationController
           @pseudonym.account = @context
           @pseudonym.workflow_state = 'active'
         
-          @pseudonym.password = 'asdfasdf'
-          @pseudonym.password_confirmation = 'asdfasdf'
+          @pseudonym.password = Canvas::Security.config["student_password"]
+          @pseudonym.password_confirmation = Canvas::Security.config["student_password"]
           @pseudonym.save_without_session_maintenance
         
           @student.register!
@@ -195,7 +195,7 @@ class RostersController < ApplicationController
     @current_school_roster = Roster.find(params[:id]).account
     
     add_crumb("Rosters", rosters_path)
-    add_crumb(@current_school_roster.name)
+    add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
     
   end
 

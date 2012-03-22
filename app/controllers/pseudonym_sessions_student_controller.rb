@@ -111,7 +111,7 @@ class PseudonymSessionsStudentController < ApplicationController
 
   def create
     # hack the default password for the student as they are not to enter a password
-    params[:pseudonym_session][:password] = "asdfasdf"
+    params[:pseudonym_session][:password] = Canvas::Security.config["student_password"]
     
     # reset the session id cookie to prevent session fixation.
     reset_session_for_login
