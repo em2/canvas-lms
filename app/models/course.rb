@@ -443,6 +443,8 @@ class Course < ActiveRecord::Base
   named_scope :with_enrollments, lambda {
     { :conditions => ["exists (#{Enrollment.active.send(:construct_finder_sql, {:select => "1", :conditions => ["enrollments.course_id = courses.id"]})})"] }
   }
+  
+  named_scope :by_name, :order => 'name ASC'
 
   set_broadcast_policy do |p|
     p.dispatch :grade_weight_changed

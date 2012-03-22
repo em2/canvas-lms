@@ -74,6 +74,8 @@ class RostersController < ApplicationController
           @roster.save!
         end
         
+        @roster = Roster.find_by_name(@district + @school)
+        
         
         #
         # Create the Course
@@ -171,8 +173,7 @@ class RostersController < ApplicationController
       
       flash[:notice] = "#{@num_needed} students generated."
       
-      #redirect_to @roster
-#      render :action => "show", :id => @roster.id
+      redirect_to roster_path(@roster)
       
       
     end
