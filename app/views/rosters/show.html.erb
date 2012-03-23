@@ -5,6 +5,7 @@
 <% content_for :page_title do -%><%= @current_school_roster.parent_account.name + @current_school_roster.name %><% end -%>
 
 <% @current_school_roster.courses.by_name.each do |school| -%>
+	<%= image_tag("logo.png") %>
 	<% @district = school.name[/[Dd][0-9]{3}/] -%>
 	<% @school = school.name[/[Ss][0-9]{3}/] -%>
 	<% @class = school.name[/[Cc][0-9]{3}/] -%>
