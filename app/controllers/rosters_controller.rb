@@ -5,6 +5,8 @@ class RostersController < ApplicationController
 
     @rosters = Roster.all
     
+    verify_auth()
+    
   end
   
   def generate
@@ -56,7 +58,6 @@ class RostersController < ApplicationController
           next
         end
         
-        #@title = @probe.title + @stage + @instance + @course_title
         
         @district = @course_title[/[Dd][0-9]{3}/]
         @school = @course_title[/[Ss][0-9]{3}/]
@@ -180,17 +181,8 @@ class RostersController < ApplicationController
   end
   
   def show
-    if (!AssessmentQuestionBank.nil?)
-      @quiz = AssessmentQuestionBank.first
-      if is_authorized_action?(@quiz, @current_user, :create)
-        @can_generate_assessment = true
-      end
-    end
     
-    if (@can_generate_assessment == false)
-      redirect_back_or_default(dashboard_url)
-    end
-    
+    verify_auth()
     
     get_context
     @current_school_roster = Roster.find(params[:id]).account
@@ -198,6 +190,21 @@ class RostersController < ApplicationController
     add_crumb("Rosters", rosters_path)
     add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
     
+  end
+  
+  def verify_auth
+    @can_generate_assessment = false
+    if (!Quiz.nil?)
+      @quiz = Quiz.first
+      if is_authorized_action?(@quiz, @current_user, :create)
+        @can_generate_assessment = true
+      end
+    end
+    
+    if (@can_generate_assessment == false)
+      flash[:notice] = "Not authorized."
+      redirect_back_or_default(dashboard_url)
+    end
   end
 
 end
