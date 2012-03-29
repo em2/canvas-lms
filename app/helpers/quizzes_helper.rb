@@ -34,6 +34,12 @@ module QuizzesHelper
         :display_answers => "multiple",
         :answer_type => "select_answer"
       }),
+      "compare_fractions_question" => OpenObject.new({
+        :question_type => "compare_fractions_question",
+        :entry_type => "radio",
+        :display_answers => "multiple",
+        :answer_type => "select_answer"
+      }),
       "true_false_question" => OpenObject.new({
         :question_type => "true_false_question",
         :entry_type => "radio",

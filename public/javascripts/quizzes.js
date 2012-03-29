@@ -110,7 +110,9 @@ I18n.scoped('quizzes', function(I18n) {
         templateData.short_answer_header = I18n.beforeLabel('answer_text', "Answer text");
       } else if(question_type == "multiple_choice_question") {
         templateData.answer_html = answer.answer_html;
-      } else if(question_type == "multiple_answers_question") {
+      } else if(question_type == "compare_fractions_question") {
+	    templateData.answer_html = answer.answer_html;
+	  } else if(question_type == "multiple_answers_question") {
         templateData.answer_html = answer.answer_html;
         templateData.short_answer_header = I18n.beforeLabel('answer_text', "Answer text");
       } else if(question_type == "fill_in_multiple_blanks_question") {
@@ -157,7 +159,10 @@ I18n.scoped('quizzes', function(I18n) {
       if(qt == 'multiple_choice_question') {
         answer_type = "select_answer";
         question_type = "multiple_choice_question";
-      } else if(qt == 'true_false_question') {
+      }	else if(qt == 'compare_fractions_question') {
+		answer_type = "select_answer";
+		question_type = "compare_fractions_question";
+	  } else if(qt == 'true_false_question') {
         answer_type = "select_answer";
         question_type = "true_false_question";
       } else if(qt == 'short_answer_question') {
@@ -204,7 +209,8 @@ I18n.scoped('quizzes', function(I18n) {
     answerSelectionType: function(question_type) {
       var result = "single_answer";
       if(question_type == 'multiple_choice_question') {
-      } else if(question_type == 'true_false_question') {
+      } else if(question_type == 'compare_fractions_question') {
+	  } else if(question_type == 'true_false_question') {
       } else if(question_type == 'short_answer_question') {
         result = "any_answer";
       } else if(question_type == 'essay_question') {
@@ -475,7 +481,8 @@ I18n.scoped('quizzes', function(I18n) {
         addable: true
       };
       if(question_type == 'multiple_choice_question') {
-      } else if(question_type == 'true_false_question') {
+      } else if(question_type == 'compare_fractions_question') {
+	  } else if(question_type == 'true_false_question') {
         options.addable = false;
         var $answers = $formQuestion.find(".form_answers .answer");
         if($answers.length < 2) {
@@ -634,7 +641,7 @@ I18n.scoped('quizzes', function(I18n) {
       }
     },
     defaultQuestionData: {
-      question_type: "multiple_choice_question",
+      question_type: "compare_fractions_question",
       question_text: "",
       question_points: 1,
       question_name: I18n.t('default_question_name', "Question"),
@@ -1703,6 +1710,12 @@ I18n.scoped('quizzes', function(I18n) {
         }];
         answer_type = "select_answer";
         question_type = "multiple_choice_question";
+      } else if($question.hasClass('compare_fractions_question')) {
+        var answers = [{
+          comments: I18n.t('default_answer_comments', "Response if the student chooses this answer")
+        }];
+        answer_type = "select_answer";
+        question_type = "compare_fractions_question";
       } else if($question.hasClass('true_false_question')) {
         return;
       } else if($question.hasClass('short_answer_question')) {
@@ -1805,7 +1818,7 @@ I18n.scoped('quizzes', function(I18n) {
       } else if($answers.length === 0 || $answers.filter(".correct_answer").length === 0) {
         if($answers.length === 0 && questionData.question_type != "essay_question" && questionData.question_type != "text_only_question") {
           error_text = I18n.t('errors.no_answer', "Please add at least one answer");
-        } else if($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
+        } else if($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "compare_fractions_question" || questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
           error_text = I18n.t('errors.no_correct_answer', "Please choose a correct answer");
         }
       }
