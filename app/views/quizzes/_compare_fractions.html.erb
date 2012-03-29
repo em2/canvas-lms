@@ -344,7 +344,7 @@ function prepareCanvas(canvas_element)
 	canvas = document.createElement('canvas');
 	canvas.setAttribute('width', canvasWidth);
 	canvas.setAttribute('height', canvasHeight);
-	canvas.setAttribute('id', 'canvas');
+	canvas.setAttribute('id', 'canvas_'+canvas_element);
 	canvasDiv.appendChild(canvas);
 	if(typeof G_vmlCanvasManager != 'undefined') {
 		canvas = G_vmlCanvasManager.initElement(canvas);
@@ -357,36 +357,36 @@ function prepareCanvas(canvas_element)
 	// -----------
 	crayonImage.onload = function() { resourceLoaded(); 
 	}
-	crayonImage.src = "../../../../images/crayon_drawing/crayon-outline.png";
+	crayonImage.src = "../../../../images/canvas_drawing/crayon-outline.png";
 	//context.drawImage(crayonImage, 0, 0, 100, 100);
 
 	markerImage.onload = function() { resourceLoaded(); 
 	}
-	markerImage.src = "../../../../images/crayon_drawing/marker-outline.png";
+	markerImage.src = "../../../../images/canvas_drawing/marker-outline.png";
 
 	eraserImage.onload = function() { resourceLoaded(); 
 	}
-	eraserImage.src = "../../../../images/crayon_drawing/eraser-outline.png";	
+	eraserImage.src = "../../../../images/canvas_drawing/eraser-outline.png";	
 
 	crayonBackgroundImage.onload = function() { resourceLoaded(); 
 	}
-	crayonBackgroundImage.src = "../../../../images/crayon_drawing/crayon-background.png";
+	crayonBackgroundImage.src = "../../../../images/canvas_drawing/crayon-background.png";
 
 	markerBackgroundImage.onload = function() { resourceLoaded(); 
 	}
-	markerBackgroundImage.src = "../../../../images/crayon_drawing/marker-background.png";
+	markerBackgroundImage.src = "../../../../images/canvas_drawing/marker-background.png";
 
 	eraserBackgroundImage.onload = function() { resourceLoaded(); 
 	}
-	eraserBackgroundImage.src = "../../../../images/crayon_drawing/eraser-background.png";
+	eraserBackgroundImage.src = "../../../../images/canvas_drawing/eraser-background.png";
 
 	crayonTextureImage.onload = function() { resourceLoaded(); 
 	}
-	crayonTextureImage.src = "../../../../images/crayon_drawing/crayon-texture.png";
+	crayonTextureImage.src = "../../../../images/canvas_drawing/crayon-texture.png";
 
 	// Add mouse events
 	// ----------------
-	$('#canvas').mousedown(function(e)
+	$('#canvas_'+canvas_element).mousedown(function(e)
 	{
 		// Mouse down location
 		var mouseX = e.pageX - this.offsetLeft;
@@ -448,19 +448,19 @@ function prepareCanvas(canvas_element)
 		redraw();
 	});
 
-	$('#canvas').mousemove(function(e){
+	$('#canvas_'+canvas_element).mousemove(function(e){
 		if(paint==true){
 			addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
 			redraw();
 		}
 	});
 
-	$('#canvas').mouseup(function(e){
+	$('#canvas_'+canvas_element).mouseup(function(e){
 		paint = false;
 	  	redraw();
 	});
 
-	$('#canvas').mouseleave(function(e){
+	$('#canvas_'+canvas_element).mouseleave(function(e){
 		paint = false;
 	});
 }
