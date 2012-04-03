@@ -129,7 +129,7 @@ function prepareCanvas(canvas_element)
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.offsetTop;
 
-		if(mouseX < drawingAreaX) // Left of the drawing area
+		if(mouseX < drawingAreaX + 16) // Left of the drawing area
 		{
 			if(mouseX > mediumStartX)
 			{
@@ -144,13 +144,13 @@ function prepareCanvas(canvas_element)
 				}
 			}
 		}
-		else if(mouseX > drawingAreaX + drawingAreaWidth) // Right of the drawing area
+		else if(mouseX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
 		{
 			if(mouseY > toolHotspotStartY)
 			{
 				if(mouseY > sizeHotspotStartY)
 				{
-					var sizeHotspotStartX = drawingAreaX + drawingAreaWidth + 15;
+					var sizeHotspotStartX = drawingAreaX + drawingAreaWidth;
 					if(mouseY < sizeHotspotStartY + sizeHotspotHeight && mouseX > sizeHotspotStartX)
 					{
 						if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.huge){
