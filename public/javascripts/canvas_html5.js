@@ -127,7 +127,7 @@ function prepareCanvas(canvas_element)
 	{
 		// Mouse down location
 		var mouseX = e.pageX - this.offsetLeft;
-		var mouseY = e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop + this.offsetTop;
+		var mouseY = e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop + this.offsetTop + 10;
 
 		if(mouseX < drawingAreaX + 16) // Left of the drawing area
 		{
@@ -187,7 +187,7 @@ function prepareCanvas(canvas_element)
 
 	$('#canvas_'+canvas_element).mousemove(function(e){
 		if(paint==true){
-			addClick(e.pageX - this.offsetLeft, e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop + this.offsetTop, true);
+			addClick(e.pageX - this.offsetLeft, e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop + this.offsetTop + 10, true);
 			redraw();
 		}
 	});
