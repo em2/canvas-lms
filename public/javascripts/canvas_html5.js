@@ -52,19 +52,19 @@ var toolHotspotHeight = 38;
 var sizeHotspotStartY = 230;
 var sizeHotspotHeight = 36;
 var sizeHotspotWidthObject = new Object();
-sizeHotspotWidthObject.huge = 39;
-sizeHotspotWidthObject.large = 25;
-sizeHotspotWidthObject.normal = 18;
-sizeHotspotWidthObject.small = 16;
+var sizeHotspotWidthObject.huge = 39;
+var sizeHotspotWidthObject.large = 25;
+var sizeHotspotWidthObject.normal = 18;
+var sizeHotspotWidthObject.small = 16;
 var totalLoadResources = 7
 var curLoadResNum = 0;
 /**
 * Calls the redraw function after all neccessary resources are loaded.
 */
-function resourceLoaded()
+function resourceLoaded(context, canvas)
 {
 	if(++curLoadResNum >= totalLoadResources){
-		redraw();
+		redraw(context, canvas);
 	}
 }
 
@@ -75,7 +75,7 @@ function prepareCanvas(canvas_element)
 {
 	// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
 	var canvasDiv = document.getElementById(canvas_element);
-	canvas = document.createElement('canvas');
+	var canvas = document.createElement('canvas');
 	canvas.setAttribute('width', canvasWidth);
 	canvas.setAttribute('height', canvasHeight);
 	canvas.setAttribute('id', 'canvas_'+canvas_element);
@@ -83,38 +83,38 @@ function prepareCanvas(canvas_element)
 	if(typeof G_vmlCanvasManager != 'undefined') {
 		canvas = G_vmlCanvasManager.initElement(canvas);
 	}
-	context = canvas.getContext("2d"); // Grab the 2d canvas context
+	var context = canvas.getContext("2d"); // Grab the 2d canvas context
 	// Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
 	//     context = document.getElementById('canvas').getContext("2d");
 
 	// Load images
 	// -----------
-	crayonImage.onload = function() { resourceLoaded(); 
+	crayonImage.onload = function() { resourceLoaded(context, canvas); 
 	}
 	crayonImage.src = "../../../../images/canvas_drawing/crayon-outline.png";
 	//context.drawImage(crayonImage, 0, 0, 100, 100);
 
-	markerImage.onload = function() { resourceLoaded(); 
+	markerImage.onload = function() { resourceLoaded(context, canvas); 
 	}
 	markerImage.src = "../../../../images/canvas_drawing/marker-outline.png";
 
-	eraserImage.onload = function() { resourceLoaded(); 
+	eraserImage.onload = function() { resourceLoaded(context, canvas); 
 	}
 	eraserImage.src = "../../../../images/canvas_drawing/eraser-outline.png";	
 
-	crayonBackgroundImage.onload = function() { resourceLoaded(); 
+	crayonBackgroundImage.onload = function() { resourceLoaded(context, canvas); 
 	}
 	crayonBackgroundImage.src = "../../../../images/canvas_drawing/crayon-background.png";
 
-	markerBackgroundImage.onload = function() { resourceLoaded(); 
+	markerBackgroundImage.onload = function() { resourceLoaded(context, canvas); 
 	}
 	markerBackgroundImage.src = "../../../../images/canvas_drawing/marker-background.png";
 
-	eraserBackgroundImage.onload = function() { resourceLoaded(); 
+	eraserBackgroundImage.onload = function() { resourceLoaded(context, canvas); 
 	}
 	eraserBackgroundImage.src = "../../../../images/canvas_drawing/eraser-background.png";
 
-	crayonTextureImage.onload = function() { resourceLoaded(); 
+	crayonTextureImage.onload = function() { resourceLoaded(context, canvas); 
 	}
 	crayonTextureImage.src = "../../../../images/canvas_drawing/crayon-texture.png";
 
@@ -179,19 +179,19 @@ function prepareCanvas(canvas_element)
 		}
 		paint = true;
 		addClick(mouseX, mouseY, false);
-		redraw();
+		redraw(context, canvas);
 	});
 
 	$('#canvas_'+canvas_element).mousemove(function(e){
 		if(paint==true){
 			addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-			redraw();
+			redraw(context, canvas);
 		}
 	});
 
 	$('#canvas_'+canvas_element).mouseup(function(e){
 		paint = false;
-	  	redraw();
+	  	redraw(context, canvas);
 	});
 
 	$('#canvas_'+canvas_element).mouseleave(function(e){
@@ -218,7 +218,7 @@ function addClick(x, y, dragging)
 /**
 * Clears the canvas.
 */
-function clearCanvas()
+function clearCanvas(context, canvas)
 {
 	context.fillStyle = '#ffffff'; // Work around for Chrome
 	context.fillRect(0, 0, canvasWidth, canvasHeight); // Fill in the canvas with white
@@ -228,12 +228,12 @@ function clearCanvas()
 /**
 * Redraws the canvas.
 */
-function redraw()
+function redraw(context, canvas)
 {
 	// Make sure required resources are loaded before redrawing
 	if(curLoadResNum < totalLoadResources){ return; }
 
-	clearCanvas();
+	clearCanvas(context, canvas);
 
 	var locX;
 	var locY;
