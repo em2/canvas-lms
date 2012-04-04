@@ -39,7 +39,7 @@ function prepareCanvas(canvas_element)
 	var curColor = colorGreen;
 	var curTool = "marker";
 	var curSize = "normal";
-	var drawingAreaX = 8;
+	var drawingAreaX = 7;
 	var drawingAreaY = 11;
 	var drawingAreaWidth = 267;
 	var drawingAreaHeight = 200;
