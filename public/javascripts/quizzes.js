@@ -112,6 +112,8 @@ I18n.scoped('quizzes', function(I18n) {
         templateData.answer_html = answer.answer_html;
       } else if(question_type == "compare_fractions_question") {
 	    templateData.answer_html = answer.answer_html;
+	  } else if(question_type == "locate_fractions_question") {
+	    templateData.answer_html = answer.answer_html;
 	  } else if(question_type == "multiple_answers_question") {
         templateData.answer_html = answer.answer_html;
         templateData.short_answer_header = I18n.beforeLabel('answer_text', "Answer text");
@@ -162,7 +164,10 @@ I18n.scoped('quizzes', function(I18n) {
       }	else if(qt == 'compare_fractions_question') {
 		answer_type = "select_answer";
 		question_type = "compare_fractions_question";
-	  } else if(qt == 'true_false_question') {
+	  } else if(qt == 'locate_fractions_question') {
+		answer_type = "select_answer";
+		question_type = "locate_fractions_question";
+      } else if(qt == 'true_false_question') {
         answer_type = "select_answer";
         question_type = "true_false_question";
       } else if(qt == 'short_answer_question') {
@@ -210,7 +215,8 @@ I18n.scoped('quizzes', function(I18n) {
       var result = "single_answer";
       if(question_type == 'multiple_choice_question') {
       } else if(question_type == 'compare_fractions_question') {
-	  } else if(question_type == 'true_false_question') {
+	  } else if(question_type == 'locate_fractions_question'){
+      } else if(question_type == 'true_false_question') {
       } else if(question_type == 'short_answer_question') {
         result = "any_answer";
       } else if(question_type == 'essay_question') {
@@ -482,6 +488,7 @@ I18n.scoped('quizzes', function(I18n) {
       };
       if(question_type == 'multiple_choice_question') {
       } else if(question_type == 'compare_fractions_question') {
+	  } else if(question_type == 'locate_fractions_question') {
 	  } else if(question_type == 'true_false_question') {
         options.addable = false;
         var $answers = $formQuestion.find(".form_answers .answer");
@@ -1818,7 +1825,7 @@ I18n.scoped('quizzes', function(I18n) {
       } else if($answers.length === 0 || $answers.filter(".correct_answer").length === 0) {
         if($answers.length === 0 && questionData.question_type != "essay_question" && questionData.question_type != "text_only_question") {
           error_text = I18n.t('errors.no_answer', "Please add at least one answer");
-        } else if($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "compare_fractions_question" || questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
+        } else if($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "compare_fractions_question" || questionData.question_type == "locate_fractions_question" || questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
           error_text = I18n.t('errors.no_correct_answer', "Please choose a correct answer");
         }
       }

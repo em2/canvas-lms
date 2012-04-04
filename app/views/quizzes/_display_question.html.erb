@@ -56,6 +56,9 @@
 	<% if (question_type.question_type == "compare_fractions_question") -%>
 		<%= render :partial => "quizzes/compare_fractions", :locals => 
                 {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
+	<% elsif (question_type.question_type == "locate_fractions_question") -%>
+		<%= render :partial => "quizzes/locate_fractions", :locals => 
+                {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
 	<% else -%>
       <div class="original_question_text" style="display: none;">
         <textarea style="display: none;" name="text_after_answers" class="textarea_text_after_answers"><%= h(hash_get(question, :text_after_answers)) %></textarea>

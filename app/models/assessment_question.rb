@@ -238,6 +238,14 @@ class AssessmentQuestion < ActiveRecord::Base
         a[:html] = sanitize(answer[:answer_html]) if answer[:answer_html].present?
         question[:answers] << a
       end
+    elsif question[:question_type] == "locate_fractions_question"
+      found_correct = false
+      answers.each do |key, answer|
+        found_correct = true if answer[:answer_weight].to_i == 100
+        a = {:text => check_length(answer[:answer_text], 'answer text', min_size), :comments => check_length(answer[:answer_comments], 'answer comments', min_size), :weight => answer[:answer_weight].to_f, :id => unique_local_id(answer[:id].to_i)}
+        a[:html] = sanitize(answer[:answer_html]) if answer[:answer_html].present?
+        question[:answers] << a
+      end
       question[:answers][0][:weight] = 100 unless found_correct
     elsif question[:question_type] == "true_false_question"
       correct_answer = true
