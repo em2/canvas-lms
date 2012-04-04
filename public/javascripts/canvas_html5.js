@@ -27,8 +27,6 @@ function prepareCanvas(canvas_element)
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
 	var colorGreen = "#659b41";
-	var markerImage = new Image();
-	var eraserImage = new Image();
 	var markerBackgroundImage = new Image();
 	var eraserBackgroundImage = new Image();
 	var clickX = new Array();
@@ -47,14 +45,7 @@ function prepareCanvas(canvas_element)
 	var drawingAreaHeight = 200;
 	var toolHotspotStartY = 95;
 	var toolHotspotHeight = 38;
-	var sizeHotspotStartY = 230;
-	var sizeHotspotHeight = 36;
-	var sizeHotspotWidthObject = new Object();
-	sizeHotspotWidthObject.huge = 39;
-	sizeHotspotWidthObject.large = 25;
-	sizeHotspotWidthObject.normal = 18;
-	sizeHotspotWidthObject.small = 16;
-	var totalLoadResources = 4;
+	var totalLoadResources = 2;
 	var curLoadResNum = 0;
 	/**
 	* Calls the redraw function after all neccessary resources are loaded.
@@ -83,14 +74,6 @@ function prepareCanvas(canvas_element)
 
 	// Load images
 	// -----------
-
-	markerImage.onload = function() { resourceLoaded(); 
-	}
-	markerImage.src = "../../../../images/canvas_drawing/marker-outline.png";
-
-	eraserImage.onload = function() { resourceLoaded(); 
-	}
-	eraserImage.src = "../../../../images/canvas_drawing/eraser-outline.png";	
 
 	markerBackgroundImage.onload = function() { resourceLoaded(); 
 	}
