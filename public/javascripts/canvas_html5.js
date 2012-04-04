@@ -21,7 +21,7 @@ function prepareCanvas(canvas_element)
 {
 	var canvas;
 	var context;
-	var canvasWidth = 490;
+	var canvasWidth = 386;
 	var canvasHeight = 220;
 	var padding = 25;
 	var lineWidth = 8;
@@ -38,14 +38,10 @@ function prepareCanvas(canvas_element)
 	var clickSize = new Array();
 	var clickDrag = new Array();
 	var paint = false;
-	var curColor = colorPurple;
+	var curColor = colorGreen;
 	var curTool = "marker";
 	var curSize = "normal";
-	var mediumStartX = 75;
-	var mediumStartY = 85;
-	var mediumImageWidth = 93;
-	var mediumImageHeight = 46;
-	var drawingAreaX = 111;
+	var drawingAreaX = 8;
 	var drawingAreaY = 11;
 	var drawingAreaWidth = 267;
 	var drawingAreaHeight = 200;
@@ -112,18 +108,7 @@ function prepareCanvas(canvas_element)
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop + this.offsetTop + 10;
 
-		if(mouseX < drawingAreaX + 16) // Left of the drawing area
-		{
-			if(mouseX > mediumStartX)
-			{
-				if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
-					curColor = colorPurple;
-				}else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
-					curColor = colorGreen;
-				}
-			}
-		}
-		else if(mouseX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
+		if(mouseX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
 		{
 			if(mouseY > toolHotspotStartY)
 			{
@@ -196,55 +181,15 @@ function prepareCanvas(canvas_element)
 
 		clearCanvas();
 
-		var locX;
-		var locY;
 		if(curTool == "marker")
 		{
 			// Draw the marker tool background
 			context.drawImage(markerBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-
-			// Purple
-			locX = (curColor == colorPurple) ? 18 : 52;
-			locY = 19;
-
-			context.beginPath();
-			context.moveTo(locX + 10, locY + 24);
-			context.lineTo(locX + 10, locY + 24);
-			context.lineTo(locX + 22, locY + 16);
-			context.lineTo(locX + 22, locY + 31);
-			context.closePath();
-			context.fillStyle = colorPurple;
-			context.fill();	
-
-			if(curColor == colorPurple){
-				context.drawImage(markerImage, locX, locY, mediumImageWidth, mediumImageHeight);
-			}else{
-				context.drawImage(markerImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
-			}
-
-			// Green
-			locX = (curColor == colorGreen) ? 18 : 52;
-			locY += 46;
-
-			context.beginPath();
-			context.moveTo(locX + 10, locY + 24);
-			context.lineTo(locX + 10, locY + 24);
-			context.lineTo(locX + 22, locY + 16);
-			context.lineTo(locX + 22, locY + 31);
-			context.closePath();
-			context.fillStyle = colorGreen;
-			context.fill();	
-
-			if(curColor == colorGreen){
-				context.drawImage(markerImage, locX, locY, mediumImageWidth, mediumImageHeight);
-			}else{
-				context.drawImage(markerImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
-			}
 		}
 		else if(curTool == "eraser")
 		{
+			// Draw the eraser tool background
 			context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-			context.drawImage(eraserImage, 18, 19, mediumImageWidth, mediumImageHeight);	
 		}else{
 			alert("Error: Current Tool is undefined");
 		}

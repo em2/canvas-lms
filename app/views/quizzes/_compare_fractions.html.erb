@@ -3,7 +3,7 @@
     <textarea style="display: none;" name="text_after_answers" class="textarea_text_after_answers"><%= h(hash_get(question, :text_after_answers)) %></textarea>
     <textarea style="display: none;" name="question_text" class="textarea_question_text"><%= h(hash_get(question, :question_text)) %></textarea>
   </div>
-  <div id="question_<%= hash_get(question, :id, "new") %>_question_text" class="question_text user_content" style="float:left;">
+  <div id="question_<%= hash_get(question, :id, "new") %>_question_text" class="question_text user_content">
     <% if question && hash_get(question, :question_type) == "missing_word_question" %>
       <span class="text_before_answers"><%= user_content(hash_get(question, :question_text)) %></span>
       <select class="answer_select question_input" name="question_<%= hash_get(question, :id, "blank") %>">
@@ -115,7 +115,7 @@
     <% }) %>
   </div>
   <% end %>
-  <div class="answers" style="float:left;">
+  <div class="answers">
     <% if assessing %>
       <% if question %>
         <% if question_type.display_answers == "multiple" && hash_get(question, :question_type) != "missing_word_question" %>
@@ -214,7 +214,7 @@
       <% end %>
     <% end %>
   </div>
-	<div class="question_part_two" style="float:left">
+	<div class="question_text question_right_side">
 		<% if (found_fractions) -%>
 			<%= user_content(fraction_b) %>
 		<% end -%>
@@ -250,6 +250,17 @@
 	}
 	#explain_area_<%= question[:id] %>{
 		float: left;
+	}
+	.answers{
+		float: left;
+		margin-top: 70px;
+	}
+	.question_text{
+		float: left;
+		margin-top: 95px;
+	}
+	.question_right_side{
+		padding-right: 13px;
 	}
 </style>
 
