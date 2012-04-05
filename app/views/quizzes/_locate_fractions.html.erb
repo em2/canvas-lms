@@ -17,17 +17,19 @@
       <%= fill_in_multiple_blanks_question :question => question, :answers => @stored_params %>
     <% else %>
 		<% fractions_raw = hash_get(question, :question_text) -%>
-		<% fractions = fractions_raw.split("[answer]") -%>
-		<% found_fractions = false -%>
-		<% if (fractions.count > 1) -%>
-			<% found_fractions = true -%>
+		<%# image = fractions_raw[/<p><img\b[^>]*>(.*?)\/p>/] -%>
+		<% question_data = fractions_raw.split("[numberline]") -%>
+		<% image_found = false -%>
+		<% if (question_data.count > 1) -%>
+			<% data_found = true -%>
 		<% end -%>
-		<% if (found_fractions) -%>
-			<% fraction_a = fractions[0] -%>
-			<% fraction_b = fractions[1] -%>
-			<% fraction_a << "</p>" -%>
-			<% fraction_b = "<p>" + fraction_b -%>
-			<%= user_content(fraction_a) %>
+		<% if (data_found) -%>
+		<% debugger %>
+			<% question_text = question_data[0] -%>
+			<% question_image = question_data[1] -%>
+			<% question_text << "</p>" -%>
+			<% question_image = "<p>" + question_image -%>
+			<%= user_content(question_text) %>
 		<% end -%>
     <% end %>
   </div>
@@ -115,6 +117,7 @@
     <% }) %>
   </div>
   <% end %>
+<br/>
   <div class="answers">
     <% if assessing %>
       <% if question %>
@@ -214,11 +217,11 @@
       <% end %>
     <% end %>
   </div>
-	<div class="question_text question_right_side">
-		<% if (found_fractions) -%>
-			<%= user_content(fraction_b) %>
-		<% end -%>
-	</div>
+</div>
+<div class="line_image">
+	<% if (data_found && assessing) -%>
+		<%= user_content(question_image) %>
+	<% end -%>
 </div>
 <div class="explain_answer">
 	<% if assessing %>
@@ -240,7 +243,7 @@
       <% end %>
     <% end %>
   </div>
-
+</div>
 <style>
 	#explain_canvas_<%= question[:id] %>{
 		float: left;
@@ -251,17 +254,7 @@
 	#explain_area_<%= question[:id] %>{
 		float: left;
 	}
-	.answers{
-		float: left;
-		margin-top: 70px;
-	}
-	.question_text{
-		float: left;
-		margin-top: 95px;
-	}
-	.question_right_side{
-		padding-right: 13px;
-	}
+
 </style>
 
 <% js_block do %>
