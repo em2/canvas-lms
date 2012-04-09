@@ -26,7 +26,7 @@
 			<% question_text = question_data[0] -%>
 			<% question_image = question_data[1] -%>
 			<% question_text = question_text.gsub("<p>","") -%>
-			<% question_image = question_image.gsub("\n","") -%>
+			<% question_text = question_text.gsub("</p>","") -%>
 			<% question_image = question_image.gsub("<p>","") -%>
 			<% question_image = question_image.gsub("</p>","") -%>
 			<%= user_content(question_text) %>
