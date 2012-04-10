@@ -225,7 +225,7 @@
 <div class="explain_answer">
 	<% if assessing %>
 		<div id="explain_text">Explain your choice using words and/or pictures.</div> <br/>
-		<div id="explain_area_<%= question[:id] %>"><textarea cols="40" rows="14"></textarea> </div>
+		<div id="explain_area_<%= question[:id] %>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="40" rows="14"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
 		<div id="explain_canvas_<%= question[:id] %>"></div>
 	<% end -%>
 </div>
