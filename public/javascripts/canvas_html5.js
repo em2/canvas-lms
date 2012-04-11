@@ -27,6 +27,7 @@ function prepareCanvas(canvas_element)
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
 	var colorGreen = "#659b41";
+	var colorBlue = "#4422d9";
 	var markerBackgroundImage = new Image();
 	var eraserBackgroundImage = new Image();
 	var clickX = new Array();
@@ -36,7 +37,7 @@ function prepareCanvas(canvas_element)
 	var clickSize = new Array();
 	var clickDrag = new Array();
 	var paint = false;
-	var curColor = colorGreen;
+	var curColor = colorBlue;
 	var curTool = "marker";
 	var curSize = "normal";
 	var drawingAreaX = 7;
