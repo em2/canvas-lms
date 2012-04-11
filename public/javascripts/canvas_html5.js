@@ -191,7 +191,7 @@ function prepareCanvas(canvas_element)
 			if(clickSize[i] == "small"){
 				radius = 2;
 			}else if(clickSize[i] == "normal"){
-				radius = 5;
+				radius = 3;
 			}else if(clickSize[i] == "large"){
 				radius = 10;
 			}else if(clickSize[i] == "huge"){
