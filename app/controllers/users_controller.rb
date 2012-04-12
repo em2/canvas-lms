@@ -209,16 +209,22 @@ class UsersController < ApplicationController
       end
     end
     
+    #
+    # Redirect the students to their latest assessment
     if (!@can_generate_assessment)
+      # get the context codes which is just the course number
       @context_codes = @context.courses.map(&:asset_string)
+
+      # get the assignments for that course
       @assignments = Assignment.active.for_context_codes(@context_codes)
 
+      # get the course and assignment id's
       course_id = @context.courses.first.id rescue nil
-      my_assignment_id = @assignments.last.id rescue nil
+      assignment_id = @assignments.last.id rescue nil
 
       if (course_id != nil || my_assignment_id != nil)
         # redirct to the users latest assessment
-        redirect_to("/courses/#{course_id}/assignments/#{my_assignment_id}") and return
+        redirect_to("/courses/#{course_id}/assignments/#{assignment_id}") and return
       end
     end
 
