@@ -201,10 +201,24 @@ class UsersController < ApplicationController
   def user_dashboard
     get_context
     
+    @can_generate_assessment = false
     if (!AssessmentQuestionBank.nil?)
       @quiz = AssessmentQuestionBank.first
       if is_authorized_action?(@quiz, @current_user, :create)
         @can_generate_assessment = true
+      end
+    end
+    
+    if (!@can_generate_assessment)
+      @context_codes = @context.courses.map(&:asset_string)
+      @assignments = Assignment.active.for_context_codes(@context_codes)
+
+      course_id = @context.courses.first.id rescue nil
+      my_assignment_id = @assignments.last.id rescue nil
+
+      if (course_id != nil || my_assignment_id != nil)
+        # redirct to the users latest assessment
+        redirect_to("/courses/#{course_id}/assignments/#{my_assignment_id}") and return
       end
     end
 
