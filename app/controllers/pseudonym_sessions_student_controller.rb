@@ -302,25 +302,7 @@ class PseudonymSessionsStudentController < ApplicationController
   def successful_login(user, pseudonym)
     respond_to do |format|
       #flash[:notice] = t 'notices.login_success', "Login successful."
-      
-      #TODObfcoder refactor this. the new model broke this
-      
-      # get the users id that will route them to their assessment
-      # specific_id = user.sortable_name
-      # 4.times do 
-      #   specific_id = specific_id.chop
-      # end
-      # 
-      # my_quiz = Quiz.find_by_title(specific_id)
-      # course_id = user.courses.first.id
-      # 
-      # # redirct to the users one and only assessment they will take
-      # redirect_to("/courses/#{course_id}/quizzes/#{my_quiz.id}/take") and return
-      
-      
-      
-      
-      
+            
       if session[:oauth2]
         # this is where we will verify client authorization and scopes, once implemented
         # .....
