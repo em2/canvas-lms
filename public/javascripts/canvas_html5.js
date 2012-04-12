@@ -19,6 +19,14 @@
 */
 function prepareCanvas(canvas_element)
 {
+	
+	
+	//
+	// TODObfcoder
+	// REMOVE this return, just disabling canvas for now
+	//
+	return;
+	
 	var canvas;
 	var context;
 	var canvasWidth = 386;
@@ -65,6 +73,7 @@ function prepareCanvas(canvas_element)
 	canvas.setAttribute('width', canvasWidth);
 	canvas.setAttribute('height', canvasHeight);
 	canvas.setAttribute('id', 'canvas_'+canvas_element);
+	canvas.setAttribute('name', 'canvas_'+canvas_element);
 	canvasDiv.appendChild(canvas);
 	if(typeof G_vmlCanvasManager != 'undefined') {
 		canvas = G_vmlCanvasManager.initElement(canvas);
