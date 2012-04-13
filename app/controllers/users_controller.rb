@@ -220,7 +220,7 @@ class UsersController < ApplicationController
 
       # get the course and assignment id's
       course_id = @context.courses.first.id rescue nil
-      assignment_id = @assignments.last.id rescue nil
+      assignment_id = @assignments.find_by_position(@assignments.count).id rescue nil
 
       if (course_id != nil || my_assignment_id != nil)
         # redirct to the users latest assessment
