@@ -5,12 +5,15 @@
 <% content_for :page_title do -%><%= @current_school_roster.parent_account.name + @current_school_roster.name %><% end -%>
 
 <% @current_school_roster.courses.by_name.each do |school| -%>
+	<div class="break">
+	<br/>
 	<%= image_tag("logo.png") %>
+
 	<% @district = school.name[/[Dd][0-9]{3}/] -%>
 	<% @school = school.name[/[Ss][0-9]{3}/] -%>
 	<% @class = school.name[/[Cc][0-9]{3}/] -%>
 	<% @teacher = school.name[/[Tt][0-9]{3}/] -%>
-	<h1 class="break" > Classroom Roster </h1>
+	<h1> Classroom Roster </h1>
 	<h2> District: <%= @district %> </h2>
 	<h2> School: <%= @school %> </h2>
 	<h2> Teacher: <%= @teacher %> </h2>
@@ -35,6 +38,5 @@
 	<div> Eliciting Math Meaning (EM2) <br />
 		<%= school.name %>
 	</div>
+	</div>
 <% end -%>
-
-<br/>
