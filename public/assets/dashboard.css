@@ -1,0 +1,10 @@
+.recent_messages_list .conversation{background-color:transparent}
+.recent_messages_list .conversation .show_message_body{display:none}
+.recent_messages_list .conversation .show_message_body .post_date,.recent_messages_list .conversation .show_message_body .sub_title,.recent_messages_list .conversation .show_message_body .sub_title a{color:#aaa}
+.recent_messages_list .conversation .show_message_body .header_icon,.recent_messages_list .conversation .show_message_body .header_title .title{cursor:pointer}
+.recent_messages_list .conversation .show_message_body .content{max-height:1.2em;overflow:hidden;cursor:pointer}
+.recent_messages_list .conversation .show_message_body .header .header_title .title{font-weight:normal}
+.recent_messages_list .conversation .show_message_body .mark_as_read_link{display:none}
+.recent_messages_list .conversation.read_open .content{max-height:500px;overflow:auto;cursor:auto}
+.recent_messages_list .conversation .participant_list{padding:0;margin:3px 15px;font-size:.8em;list-style-type:none}
+.recent_messages_list .conversation .participant .email,.recent_messages_list .conversation .participant .short_name{margin-left:10px;font-size:.7em}

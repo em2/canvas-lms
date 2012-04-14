@@ -1,0 +1,113 @@
+#message_students_dialog .student_list{max-height:100px;overflow:auto;font-size:.8em;padding:5px 0;margin:0;list-style-type:none}
+#message_students_dialog .student_list li{float:left;padding:2px 4px;margin:1px 2px;background-color:#cdf;border:1px solid #aaa;-moz-border-radius:3px}
+#message_students_dialog .student_list li .score{display:none;padding-left:5px;font-size:.9em;color:#444}
+#message_students_dialog .student_list.show_score li .score{display:inline}
+.submission_details_dialog .more-details-link{float:right;font-size:1.2em;line-height:42px}
+.submission_details_dialog h1{margin:20px 0 0;padding:0 12px;font-size:23px}
+.submission_details_dialog .submission-details{padding:10px}
+.submission_details_dialog .submission-details h1{margin:0 -10px 15px;border-bottom:1px solid #bbb}
+.submission_details_dialog .submission-details h2,.submission_details_dialog .submission-details h2 select{font-size:15px}
+.submission_details_dialog .submission_detail{font-size:1.1em;margin:3px 0 10px}
+.submission_details_dialog .rubric-link{font-weight:bold}
+.submission_details_dialog .submisison-attachment{padding:3px 0}
+.submission_details_dialog .submisison-attachment a{font-size:11px}
+.submission_details_dialog .submission_details_comments{overflow:auto;max-height:200px;border-top:1px solid #bbb;padding:0 12px;position:relative;background:#a3a3a3 url(/images/messages/messages-background.png?1326216007) 0 0 repeat}
+.submission_details_dialog .comment{background:#fff;clear:both;border-bottom:1px solid #ccc;padding:10px;margin:10px 0}
+.submission_details_dialog .comment:last-child{border-bottom:none}
+.submission_details_dialog .comment .middle{padding-left:69px}
+.submission_details_dialog .comment .photo{float:left;width:50px;height:50px}
+.submission_details_dialog .comment time{float:right;color:#777;font-size:11px}
+.submission_details_dialog .comment address{font-style:normal;font-weight:bold;margin:0}
+.submission_details_dialog .comment .comment_attachments a{padding-top:4px}
+.submission_details_add_comment_form{position:relative;border-top:1px solid #bbb;background-color:#f2f2f2;margin:0;padding:5px 10px}
+.submission_details_add_comment_form label{font-weight:bold;display:block}
+.submission_details_add_comment_form #add_a_comment{width:99%;display:block}
+.submission_details_add_comment_form .button{float:right}
+#assignment-details-dialog .distribution{margin:15px 0;height:30px;position:relative}
+#assignment-details-dialog .distribution div{position:absolute;top:0;border-style:solid;border-color:#aaa;overflow:hidden}
+#assignment-details-dialog .distribution .bar-left,#assignment-details-dialog .distribution .bar-right{height:10px;width:0;margin:5px 0}
+#assignment-details-dialog .distribution .bar-left{left:0;border-width:2px 0 2px 2px}
+#assignment-details-dialog .distribution .none-left,#assignment-details-dialog .distribution .none-right{height:11px;border-bottom-width:2px}
+#assignment-details-dialog .distribution .some-left{height:20px;border-width:2px 0 2px 2px;border-top-left-radius:3px;border-bottom-left-radius:3px;background:#fff;z-index:2}
+#assignment-details-dialog .distribution .some-right{height:20px;border-width:2px;overflow:hidden;border-top-right-radius:3px;border-bottom-right-radius:3px;background:#fff;z-index:2}
+#assignment-details-dialog .distribution .bar-right{width:0;height:10px;margin:5px 0;right:0;border-width:2px 2px 2px 0}
+#assignment-details-dialog-stats-table{font-size:1.2em}
+#assignment-details-dialog-stats-table th,#assignment-details-dialog-stats-table td{padding:2px 5px;white-space:nowrap}
+#assignment-details-dialog-stats-table td{font-size:1.1em;font-weight:bold}
+.slick-sort-indicator{position:absolute;bottom:4px;left:0}
+#gradebook_grid .slick-cell{border:0;padding:0;overflow:visible;position:relative}
+#gradebook_grid .slick-cell.editable{background:transparent;border:none}
+.gradebook2 #content{position:relative;padding:0}
+#gradebook-grid-wrapper{position:relative}
+#gradebook_students_grid{float:left;width:250px}
+#gradebook_students_grid .grid-canvas{padding-bottom:50px}
+#gradebook_students_grid .student-name{color:#1b7eda;text-shadow:#fbf8f8 0 0 1px}
+#gradebook_students_grid .student-section{font-size:10px;color:#aaa}
+#gradebook_students_grid .secondary_identifier_cell{color:#333;font-size:10px;text-align:center;line-height:35px}
+.slick-header.ui-state-default{border-top:0}
+.slick-header-column{background-color:#e7e8eb;background-image:-webkit-gradient(linear,left top,left bottom,from(#f3f4f8),to(#dbdcde));background-image:-webkit-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-moz-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-ms-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-o-linear-gradient(top,#f3f4f8,#dbdcde);background-image:linear-gradient(top,#f3f4f8,#dbdcde);filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f4f8', EndColorStr='#dbdcde')";padding:10px;font-size:12px;text-align:center;font-weight:normal}
+.slick-header-column.ui-state-default{height:30px}
+.slick-header-column.hovered-column{background-color:#cedfee;background-image:-webkit-gradient(linear,left top,left bottom,from(#e0ecf9),to(#bdd2e3));background-image:-webkit-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-moz-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-ms-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-o-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:linear-gradient(top,#e0ecf9,#bdd2e3);filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#e0ecf9', EndColorStr='#bdd2e3')"}
+.slick-header-column .slick-column-name{font-weight:bold;color:#2f2a34;text-shadow:#fff 0 0 1px}
+.slick-header-column a.assignment-name{font-weight:normal;color:#1b7ecf;text-shadow:#fff 0 0 1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slick-header-column .assignment-points-possible{font-weight:normal;text-shadow:#84848a 0 0 1px;font-size:10px;opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);color:#2f2a34;margin-left:10px;margin-right:14px}
+.slick-header-column .gradebook-header-drop{z-index:1;background:url(/images/jqueryui/gradebook-header-drop.png?1326216007) no-repeat top left;width:14px;height:14px;position:absolute;bottom:3px;right:3px;text-indent:999px;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(Opacity=0)}
+.slick-header-column .gradebook-header-drop:hover,.slick-header-column .gradebook-header-drop.ui-menu-trigger-menu-is-open{background-position:bottom left;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
+.slick-header-column:hover .gradebook-header-drop{opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
+#sort_rows_dialog .button{margin-bottom:5px}
+.odd .slick-cell{background-color:#f5f6f7}
+.even .slick-cell{background-color:#fcfcfc}
+.odd .meta-cell{background-color:#eff3f4}
+.even .meta-cell{background-color:#e6eaec}
+.odd .total-cell{background-color:#e0e6e8}
+.even .total-cell{background-color:#d7dee1}
+.slick-row.ui-state-active{color:inherit;background-image:none;font-weight:normal}
+.slick-row.ui-state-active .slick-cell{background-color:#dfe9f2}
+.slick-row.ui-state-active .slick-cell.selected{background-color:#cae4f7;background-image:-webkit-gradient(linear,left top,left bottom,from(#d7eaf9),to(#bedff6));background-image:-webkit-linear-gradient(top,#d7eaf9,#bedff6);background-image:-moz-linear-gradient(top,#d7eaf9,#bedff6);background-image:-ms-linear-gradient(top,#d7eaf9,#bedff6);background-image:-o-linear-gradient(top,#d7eaf9,#bedff6);background-image:linear-gradient(top,#d7eaf9,#bedff6);filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#d7eaf9', EndColorStr='#bedff6')";background-color:#cdf}
+.slick-cell div.cell-content{text-align:center;vertical-align:middle}
+.slick-cell.editable{border-color:#2fa1ff}
+.slick-cell.ungraded{background-image:url(/images/4_percent_opacity.png?1326216007);background-repeat:repeat}
+.gradebook-tooltip{display:none;background-color:#444;color:#fff;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;-khtml-border-radius:3px;border-radius:3px;padding:5px 10px;z-index:5;position:absolute;font-size:.8em;left:0;top:-30px}
+.gradebook-tooltip:after{border-color:#444 transparent;border-style:solid;border-width:5px 5px 0;position:absolute;bottom:-5px;width:0;left:15px;content:""}
+.slick-row[row="0"] .gradebook-tooltip{bottom:-30px;top:auto}
+.slick-row[row="0"] .gradebook-tooltip:after{border-width:0 5px 5px;bottom:auto;top:-5px}
+.slick-cell.hover .gradebook-tooltip,.gradebook-cell.focus .gradebook-tooltip,.slick-cell.selected .gradebook-tooltip{display:block}
+.slick-cell.completely-hidden{display:none}
+.gradebook-cell{padding-top:8px;height:25px;position:relative;text-align:center;border:1px solid transparent;border-right:1px dotted silver;border-bottom-color:silver;background-repeat:repeat}
+.gradebook-cell.late{background-image:url(/images/gradebook-late-indicator.png?1326216007)}
+.gradebook-cell.dropped{background-image:url(/images/gradebook-dropped-indicator.png?1326216007)}
+.gradebook-cell.resubmitted{background-image:url(/images/gradebook-resubmitted-indicator.png?1326216007)}
+.gradebook-cell-comment{position:absolute;top:-1px;right:-1px;background:url(/images/gradebook-comments-sprite2.png?1326216007) no-repeat 100% 0;height:12px;width:12px;visibility:hidden;z-index:1;overflow:hidden}
+.gradebook-cell-comment:hover,.gradebook-cell-comment:focus{visibility:visible;background-position:100% -88px!important;width:17px;height:17px}
+.slick-cell.with-comments .gradebook-cell-comment{visibility:visible}
+.slick-cell.focus .gradebook-cell-comment,.slick-cell.hover .gradebook-cell-comment{visibility:visible;background-position:100% -41px;width:25px;height:25px}
+.gradebook-cell-comment-label{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat}
+.gradebook-cell-editable{height:32px -8px;padding-top:8px;margin:0;border:0;border:1px solid #35a5e5;background-color:#fff;box-shadow:0 0 5px #51cbee;-webkit-box-shadow:0 0 5px #51cbee;-moz-box-shadow:0 0 5px #51cbee}
+.gradebook-cell .grade{border:none;text-align:center;outline:none;font-size:12px;width:100%;padding:0;margin:0;background:none}
+.gradebook-cell .grade::-webkit-outer-spin-button{display:none}
+.gradebook-cell-out-of-formatter{padding-top:0;height:32px}
+.gradebook-cell-out-of-formatter .overflow-wrapper{overflow:hidden;position:relative;width:100%;height:32px}
+.gradebook-cell-out-of-formatter .grade-and-outof-wrapper{position:absolute;top:50%;left:50%;width:400px;margin-left:-200px;margin-top:-10px}
+.gradebook-cell-out-of-formatter .grade-and-outof-wrapper .divider{padding:0 1px 0 2px}
+.gradebook-cell-out-of-formatter .grade-and-outof-wrapper .outof,.gradebook-cell-out-of-formatter .grade-and-outof-wrapper .grade{width:200px;display:inline-block;background:transparent}
+.gradebook-cell-out-of-formatter .grade-and-outof-wrapper .outof{-webkit-user-select:none;-moz-user-select:none;user-select:none;text-align:left;color:#888}
+.gradebook-cell-out-of-formatter .grade-and-outof-wrapper .grade{border:none;text-align:right;outline:none;font-size:12px}
+.gradebook-cell-out-of-formatter .grade-and-outof-wrapper .grade::-webkit-outer-spin-button{display:none}
+.gradebook-checkbox{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat;display:block;position:absolute;left:50%;top:50%;width:16px;height:16px;margin-top:-8px;margin-left:-8px;background:url(/images/checkbox_sprite3.png?1326216007) no-repeat 0 0}
+.gradebook-checkbox.gradebook-checkbox-pass{background-position:-48px 0}
+.gradebook-checkbox.gradebook-checkbox-fail{background-position:-64px 0}
+.gradebook-checkbox.editable.gradebook-checkbox-pass{background-position:-16px 0}
+.gradebook-checkbox.editable.gradebook-checkbox-fail{background-position:-32px 0}
+.minimized{background-image:url(/images/4_percent_opacity.png?1326216007)}
+.minimized .gradebook-cell{font-size:0}
+.minimized .gradebook-cell *{display:none}
+.minimized .slick-column-name{display:none}
+#gradebook-toolbar{background:url(/images/gradebook-header-bg.png?1329964910) repeat-x;height:28px;padding:8px 20px}
+#section-to-show-menu{width:200px}
+#section-to-show-menu.scrolling{overflow-x:hidden;overflow-y:auto;max-height:550px}
+#assignment_group_weights_dialog table{width:100%}
+#assignment_group_weights_dialog th,#assignment_group_weights_dialog td{padding:2px 10px}
+#assignment_group_weights_dialog td{width:1px;white-space:nowrap}
+#assignment_group_weights_dialog tbody tr{border:solid #ccc;border-width:1px 0}
+#assignment_group_weights_dialog tfoot th,#assignment_group_weights_dialog tfoot td{font-weight:bold}
+#assignment_group_weights_dialog .group_weight{width:50px}

@@ -1,0 +1,2 @@
+if($("#tool_form").hasClass("new_tab")){var $button=$("#tool_form button");$button.attr("disabled",false);setTimeout(function(){$button.attr("disabled",true).text($button.data("expired_message"))},15E4);$("#tool_form").submit(function(){$(this).find(".load_tab,.tab_loaded").toggle()})}else $("#content").addClass("padless");$("#tool_form:not(.new_tab)").submit().hide();
+$(document).ready(function(){$("#tool_content").length&&$(window).resize(function(){var a=$("#tool_content").offset().top,b=$(window).height();$("#tool_content").height(b-a)}).triggerHandler("resize")});
