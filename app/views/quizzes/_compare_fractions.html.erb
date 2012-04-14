@@ -243,6 +243,10 @@
     <% end %>
   </div>
 
+<% if assessing -%>
+	<div class="assessing"></div>
+<% end -%>
+
 <style>
 	#explain_canvas_<%= question[:id] %>{
 		float: left;
@@ -269,7 +273,9 @@
 <% js_block do %>
 
 <script type="text/javascript"> $(document).ready(function() {
-	prepareCanvas("explain_canvas_<%= question[:id] %>"); //prepareCanvas is in canvas_html5.js
+	if ($('.assessing').length > 0){
+		prepareCanvas("explain_canvas_<%= question[:id] %>"); //prepareCanvas is in canvas_html5.js
+	}
 });
 </script>
 
