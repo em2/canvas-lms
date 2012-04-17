@@ -1,5 +1,5 @@
 <h2>Assign Probe to Classes</h2>
-<% form_for :rosters, :url => generate_path do |f| %>
+<% form_for :rosters, :url => rosters_path do |f| %>
 	&nbsp <%= f.label :probe, 'Probe:' %>
 		<% @question_bank = AssessmentQuestionBank.active -%>
 		&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />

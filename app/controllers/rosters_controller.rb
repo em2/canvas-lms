@@ -9,7 +9,7 @@ class RostersController < ApplicationController
     
   end
   
-  def generate
+  def create
     if (params[:rosters][:stage] == nil)
       flash[:notice] = "Please complete the form."
       redirect_back_or_default(dashboard_url)
@@ -110,10 +110,12 @@ class RostersController < ApplicationController
         @quiz.generate_quiz_data()
         @quiz.published_at = Time.now
         @quiz.workflow_state = 'available'
-        @quiz.last_assignment_id = @quiz.assignment_id
         @quiz.anonymous_submissions = false
         @quiz.save!
         
+        @course_assignment = Assignment.find(@quiz.assignment_id)
+        @course_assignment.position = @course.assignments.count
+        @course_assignment.save!
         
         #
         # Create the students
