@@ -50,7 +50,7 @@ public/*/*/*/*/*/*/*.gz
 public/*/*/*/*/*/*/*/*.gz
 public/*/*/*/*/*/*/*/*/*.gz
 *.swp
-
+dotcloud_config.yml
 doc/api/*
 doc/plugins/*
 public/doc/api/*

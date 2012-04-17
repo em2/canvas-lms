@@ -1,3 +1,0 @@
-ln -s ~/shared/config/database.yml ~/current/config
-ln -s ~/shared/config/domain.yml ~/current/config
-ln -s ~/shared/config/security.yml ~/current/config

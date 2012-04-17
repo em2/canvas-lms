@@ -147,7 +147,7 @@ namespace :dotcloud do
   
   def update_db(env)
     puts "Updating database"
-    system "dotcloud run #{app_name(env)}.www 'cd ~/current;RAILS_ENV=#{app_env(env)} rake db:migrate'"
+    #system "dotcloud run #{app_name(env)}.www 'cd ~/current;RAILS_ENV=#{app_env(env)} rake db:migrate'"
     puts "Finished updating database"
   end
 
@@ -183,9 +183,9 @@ namespace :dotcloud do
     setup_sql = 'tmp_setup.sql'
     environment = get_environment(env)
     query = "CREATE DATABASE IF NOT EXISTS #{db_name(env)};"
-    query = "CREATE DATABASE IF NOT EXISTS #{db_name_queue(env)};"
-    query << "GRANT ALL PRIVILEGES ON #{db_name(env)}.* TO '#{app_name(env)}'@'%' WITH GRANT OPTION IDENTIFIED BY '#{db_password(env)}';" # This will create the user if it doesn't already exist
-    query << "GRANT ALL PRIVILEGES ON #{db_name_queue(env)}.* TO '#{app_name(env)}'@'%' WITH GRANT OPTION IDENTIFIED BY '#{db_password(env)}';" # This will create the user if it doesn't already exist
+    query << "CREATE DATABASE IF NOT EXISTS #{db_name_queue(env)};"
+    query << "GRANT ALL PRIVILEGES ON #{db_name(env)}.* TO '#{app_name(env)}'@'%' IDENTIFIED BY '#{db_password(env)}' WITH GRANT OPTION;" # This will create the user if it doesn't already exist
+    query << "GRANT ALL PRIVILEGES ON #{db_name_queue(env)}.* TO '#{app_name(env)}'@'%' IDENTIFIED BY '#{db_password(env)}' WITH GRANT OPTION;" # This will create the user if it doesn't already exist
     query << "FLUSH PRIVILEGES;"
     File.open(setup_sql, 'w') {|f| f.write(query) }
     # Upload file that can create db
@@ -245,17 +245,17 @@ namespace :dotcloud do
     # Make sure needed directories exist
     system "dotcloud run #{app_name(env)}.www 'mkdir -p ~/current/config'"
     
-    system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/public/assets ~/current/public/'"
+    system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/database.yml'"
+    system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/security.yml'"
+    system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/domain.yml'"
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/database.yml ~/current/config'"
-    system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/settings.yml ~/current/config'"
+    system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/security.yml ~/current/config'"
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/domain.yml ~/current/config'"
     puts "Finished adding symlinks"
   end
   
   def setup_dirs(env)
     puts "Setting up directories"
-    system "dotcloud run #{app_name(env)}.www 'mkdir -p ~/data/public'"
-    system "dotcloud run #{app_name(env)}.www 'mkdir -p ~/data/public/assets'"
     system "dotcloud run #{app_name(env)}.www 'mkdir -p ~/data/config'"
     puts "Finished setting up directories"
   end
