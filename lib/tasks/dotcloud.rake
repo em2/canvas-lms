@@ -147,7 +147,7 @@ namespace :dotcloud do
   
   def update_db(env)
     puts "Updating database"
-    #system "dotcloud run #{app_name(env)}.www 'cd ~/current;RAILS_ENV=#{app_env(env)} rake db:migrate'"
+    system "dotcloud run #{app_name(env)}.www 'cd ~/current;RAILS_ENV=#{app_env(env)} rake db:migrate'"
     puts "Finished updating database"
   end
 
