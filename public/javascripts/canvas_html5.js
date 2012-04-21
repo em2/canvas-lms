@@ -17,15 +17,9 @@
 /**
 * Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 */
-function prepareCanvas(canvas_element)
+function prepareCanvas(canvas_element, question_id)
 {
 	
-	
-	//
-	// TODObfcoder
-	// REMOVE this return, just disabling canvas for now
-	//
-	return;
 	
 	var canvas;
 	var context;
@@ -56,6 +50,35 @@ function prepareCanvas(canvas_element)
 	var toolHotspotHeight = 38;
 	var totalLoadResources = 2;
 	var curLoadResNum = 0;
+	
+	// Load the previous canvas data
+	if ($('#explain_canvas_'+question_id+'_click_x_data').text().length > 0){
+
+		clickX = $('#explain_canvas_'+question_id+'_click_x_data').text();
+		clickX = clickX.split(',');
+		
+		clickY = $('#explain_canvas_'+question_id+'_click_y_data').text();
+		clickY = clickY.split(',');
+		
+		clickColor = $('#explain_canvas_'+question_id+'_click_color_data').text();
+		clickColor = clickColor.split(',');
+		
+		clickTool = $('#explain_canvas_'+question_id+'_click_tool_data').text();
+		clickTool = clickTool.split(',');
+		
+		clickSize = $('#explain_canvas_'+question_id+'_click_size_data').text();
+		clickSize = clickSize.split(',');
+		
+		clickDrag = $('#explain_canvas_'+question_id+'_click_drag_data').text();
+		clickDrag = clickDrag.split(',');
+
+		for (var i=0; i<clickX.length; i++){
+			clickX[i] = parseInt(clickX[i])
+			clickY[i] = parseInt(clickY[i])
+		}
+	}
+	
+	
 	/**
 	* Calls the redraw function after all neccessary resources are loaded.
 	*/
@@ -116,6 +139,7 @@ function prepareCanvas(canvas_element)
 		}
 		else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
 		{
+
 			// Mouse click location on drawing area
 		}
 		paint = true;
@@ -154,6 +178,12 @@ function prepareCanvas(canvas_element)
 		clickColor.push(curColor);
 		clickSize.push(curSize);
 		clickDrag.push(dragging);
+		$('#explain_canvas_'+question_id+'_click_x_data').text(clickX.toString());
+		$('#explain_canvas_'+question_id+'_click_y_data').text(clickY.toString());
+		$('#explain_canvas_'+question_id+'_click_color_data').text(clickTool.toString());
+		$('#explain_canvas_'+question_id+'_click_tool_data').text(clickColor.toString());
+		$('#explain_canvas_'+question_id+'_click_size_data').text(clickSize.toString());
+		$('#explain_canvas_'+question_id+'_click_drag_data').text(clickDrag.toString());
 	}
 
 	/**
