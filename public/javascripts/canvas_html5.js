@@ -180,8 +180,8 @@ function prepareCanvas(canvas_element, question_id)
 		clickDrag.push(dragging);
 		$('#explain_canvas_'+question_id+'_click_x_data').text(clickX.toString());
 		$('#explain_canvas_'+question_id+'_click_y_data').text(clickY.toString());
-		$('#explain_canvas_'+question_id+'_click_color_data').text(clickTool.toString());
-		$('#explain_canvas_'+question_id+'_click_tool_data').text(clickColor.toString());
+		$('#explain_canvas_'+question_id+'_click_color_data').text(clickColor.toString());
+		$('#explain_canvas_'+question_id+'_click_tool_data').text(clickTool.toString());
 		$('#explain_canvas_'+question_id+'_click_size_data').text(clickSize.toString());
 		$('#explain_canvas_'+question_id+'_click_drag_data').text(clickDrag.toString());
 	}
@@ -227,6 +227,7 @@ function prepareCanvas(canvas_element, question_id)
 		var i = 0;
 		for(; i < clickX.length; i++)
 		{
+			debugger
 			if(clickSize[i] == "small"){
 				radius = 2;
 			}else if(clickSize[i] == "normal"){
