@@ -254,9 +254,9 @@ namespace :dotcloud do
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/security.yml ~/current/config'"
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/domain.yml ~/current/config'"
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/delayed_jobs.yml ~/current/config'"
-    if (env == "production"){
+    if (env == "production") do
       system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/newrelic.yml ~/current/config'"
-    }
+    end
     puts "Finished adding symlinks"
   end
   
@@ -273,9 +273,9 @@ namespace :dotcloud do
     system "dotcloud run #{app_name(env)}.www 'cat > data/config/security.yml' < config/security.yml"
     system "dotcloud run #{app_name(env)}.www 'cat > data/config/domain.yml' < config/domain.yml"
     system "dotcloud run #{app_name(env)}.www 'cat > data/config/delayed_jobs.yml' < config/delayed_jobs.yml"
-    if (env == "production"){
+    if (env == "production") do
       system "dotcloud run #{app_name(env)}.www 'cat > data/config/newrelic.yml' < config/newrelic.yml"
-    }
+    end
     system "dotcloud run #{app_name(env)}.www 'cat > data/config/database.yml' < #{database_config_file}"
     system "rm #{database_config_file}"
     puts "Finished uploading settings"
