@@ -92,6 +92,7 @@ group :redis do
   gem 'redis-store', '1.0.0.rc1'
 end
 
+gem 'newrelic_rpm'
 
 # The closure-compiler gem has an undocumented
 # gem dependency on windows with ruby < 1.9.  I'm
