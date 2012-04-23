@@ -75,13 +75,16 @@
   <span class="time_limit"><%= @quiz.time_limit || nbsp %></span>
 </div>
 <%= render :partial => "display_question", :collection => @submission.questions_as_object, :locals => {:assessing => true } %>
-<div class="button-container">
-  <button class="button finish_later_button"><%= t('buttons.finish_later', "Finish Later") %></button>
-</div>
+
 <div class="button-container">
   <button type="submit" class="button submit_button"><%= t('buttons.submit_answer', "Submit Answers") %></button>
 </div>
 <% end %>
+<% if @no_chrome -%>
+	<div class="button-container">
+		<button class="button"><%= link_to t('links.finish_later', "Finish Later"), logout_path, :method => :delete %></button>
+	</div>
+<% end -%>
 </div>
 <div style="font-size: 1.2em; display: none;" id="times_up_dialog">
   <%= before_label(:times_up, "Time's Up!  Submitting results in") %>
