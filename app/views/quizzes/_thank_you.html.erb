@@ -16,7 +16,7 @@
 <div class="thank_you"> <p> Thank you for participating! </p> </div>
 <div class="thank_you">Logging out in ... <b id="countdown">5</b> </div>
 <div class="button-container thank_you">
-	<button class="button" id="countdown_logout"><%= link_to t('links.logout', "Logout"), logout_path, :method => :delete %></button>
+	<button class="button"><%= link_to t('links.logout', "Logout"), logout_path, :method => :delete, :id => "countdown_logout" %></button>
 </div>
 
 
@@ -35,7 +35,7 @@
 		if (currentCount > 0){
 			$('#countdown').text(--currentCount);
 		}else{
-			$('#countdown_logout').trigger('click');
+			$('#countdown_logout').click();
 			return;
 		}
 		setTimeout("countDown()",1000);	
