@@ -29,7 +29,7 @@ function prepareCanvas(canvas_element, question_id)
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
 	var colorGreen = "#659b41";
-	var colorBlue = "#4422d9";
+	var colorBlue = "#0033ff";
 	var markerBackgroundImage = new Image();
 	var eraserBackgroundImage = new Image();
 	var clickX = new Array();
