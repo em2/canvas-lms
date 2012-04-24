@@ -100,6 +100,7 @@ namespace :dotcloud do
   
   def deploy(env)
     puts "Started deploy"
+    disable_newrelic_pinging(env)
     do_push(env)
     setup_symlinks(env)
     update_db(env)
@@ -140,6 +141,7 @@ namespace :dotcloud do
   
   def setup_all(env)
     puts "Started setup all"
+    disable_newrelic_pinging(env)
     do_push(env)
     setup_db(env)
     setup_dirs(env)
@@ -287,8 +289,12 @@ namespace :dotcloud do
     puts "Finished uploading settings"
   end
   
+  def disable_newrelic_pinging(env)
+    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\""
+  end
+  
   def enable_newrelic_pinging(env)
-    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/enable -X POST -H \"X-Api-Key: #{}\""
+    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\""
   end
   
 end
