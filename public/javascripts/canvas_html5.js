@@ -203,6 +203,8 @@ function prepareCanvas(canvas_element, question_id)
 		if(curLoadResNum < totalLoadResources){ return; }
 
 		clearCanvas();
+		
+
 
 		if(curTool == "marker")
 		{
@@ -216,6 +218,20 @@ function prepareCanvas(canvas_element, question_id)
 		}else{
 			alert("Error: Current Tool is undefined");
 		}
+		
+		var locX = 313;
+		var locY = 75;
+		
+		context.beginPath();
+		context.moveTo(locX, locY);
+		context.lineTo(locX + 10, locY + 6);
+		context.lineTo(locX, locY + 11);
+		context.lineTo(locX, locY);
+		context.closePath();
+		context.fillStyle = colorBlue;
+		context.fill();
+		
+		
 
 		// Keep the drawing in the drawing area
 		context.save();
