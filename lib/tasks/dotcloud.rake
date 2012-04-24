@@ -94,11 +94,16 @@ namespace :dotcloud do
     get_config[env.to_s]['db']['password']
   end
   
+  def newrelic_api(env)
+    get_config[env.to_s]['newrelic_api']
+  end
+  
   def deploy(env)
     puts "Started deploy"
     do_push(env)
     setup_symlinks(env)
     update_db(env)
+    enable_newrelic_pinging(env)
   end
   
   def initial_setup(env)
@@ -143,6 +148,7 @@ namespace :dotcloud do
     update_db(env)
     system "dotcloud alias add #{app_name(env)}.www #{app_domain(env)}" if app_domain(env)
     remove_environment(env)
+    enable_newrelic_pinging(env)
   end
   
   def update_db(env)
@@ -279,6 +285,10 @@ namespace :dotcloud do
     system "dotcloud run #{app_name(env)}.www 'cat > data/config/database.yml' < #{database_config_file}"
     system "rm #{database_config_file}"
     puts "Finished uploading settings"
+  end
+  
+  def enable_newrelic_pinging(env)
+    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/enable -X POST -H \"X-Api-Key: #{}\""
   end
   
 end
