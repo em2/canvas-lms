@@ -95,7 +95,15 @@ namespace :dotcloud do
   end
   
   def newrelic_api(env)
-    get_config[env.to_s]['newrelic_api']
+    get_config[env.to_s]['newrelic']['api']
+  end
+  
+  def newrelic_account(env)
+    get_config[env.to_s]['newrelic']['account_number']
+  end
+  
+  def newrelic_application(env)
+    get_config[env.to_s]['newrelic']['application_number']
   end
   
   def deploy(env)
@@ -292,7 +300,7 @@ namespace :dotcloud do
   def disable_newrelic_pinging(env)
     puts "Disabling New Relic pinging"
       if (env == "production")
-      system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
+      system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
       puts "Finished disabling New Relic pinging"
     end
   end
@@ -300,7 +308,7 @@ namespace :dotcloud do
   def enable_newrelic_pinging(env)
     if (env == "production")
       puts "Enabling New Relic pinging"
-      system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
+      system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
       puts "Finished enabling New Relic pinging"
     end
   end
