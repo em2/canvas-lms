@@ -227,7 +227,6 @@ function prepareCanvas(canvas_element, question_id)
 		var i = 0;
 		for(; i < clickX.length; i++)
 		{
-			debugger
 			if(clickSize[i] == "small"){
 				radius = 2;
 			}else if(clickSize[i] == "normal"){
