@@ -227,6 +227,12 @@
 		<div id="explain_text">Explain your choice using words and/or pictures.</div> <br/>
 		<div id="explain_area_<%= question[:id] %>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="40" rows="16"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
 		<div id="explain_canvas_<%= question[:id] %>"></div>
+		<textarea id="explain_canvas_<%= question[:id] %>_click_x_data" name="explain_canvas_<%= question[:id] %>_click_x_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_x_data"]%></textarea>
+		<textarea id="explain_canvas_<%= question[:id] %>_click_y_data" name="explain_canvas_<%= question[:id] %>_click_y_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_y_data"]%></textarea>
+		<textarea id="explain_canvas_<%= question[:id] %>_click_color_data" name="explain_canvas_<%= question[:id] %>_click_color_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_color_data"]%></textarea>
+		<textarea id="explain_canvas_<%= question[:id] %>_click_tool_data" name="explain_canvas_<%= question[:id] %>_click_tool_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_tool_data"]%></textarea>
+		<textarea id="explain_canvas_<%= question[:id] %>_click_size_data" name="explain_canvas_<%= question[:id] %>_click_size_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_size_data"]%></textarea>
+		<textarea id="explain_canvas_<%= question[:id] %>_click_drag_data" name="explain_canvas_<%= question[:id] %>_click_drag_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_drag_data"]%></textarea>
 	<% end -%>
 </div>
   <div class="after_answers">
