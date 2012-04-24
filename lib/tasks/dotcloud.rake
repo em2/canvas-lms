@@ -290,11 +290,15 @@ namespace :dotcloud do
   end
   
   def disable_newrelic_pinging(env)
-    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\""
+    puts "Disabling New Relic pinging"
+    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
+    puts "Finished disabling New Relic pinging"
   end
   
   def enable_newrelic_pinging(env)
-    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\""
+    puts "Enabling New Relic pinging"
+    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/102708/applications/438373/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
+    puts "Finished enabling New Relic pinging"
   end
   
 end
