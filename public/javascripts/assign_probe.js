@@ -1,7 +1,8 @@
 
 
 function assignProbeValidator(){
-	
+	validateInstance($('#rosters_instance').val());
+	validateCourses($('#rosters_courses').val());
 	$('#rosters_instance').change(function(){
 		validateInstance(this.value);
 	});
