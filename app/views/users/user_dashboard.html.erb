@@ -30,6 +30,10 @@
   <% end %>
 <% end %>
 
+<% js_block do %>
+	<%= javascript_include_tag "assign_probe.js" %>
+<% end %>
+
 <% if @can_generate_assessment === true %>
 	<% content_for :generate_rosters do -%>
 		<%= render :partial => 'rosters/generate_rosters'%>
