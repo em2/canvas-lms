@@ -221,7 +221,6 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		clearCanvas();
 		
 
-
 		if(curTool == "marker" && assessing == true)
 		{
 			// Draw the marker tool background
@@ -231,10 +230,14 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		{
 			// Draw the eraser tool background
 			context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-		}else if(!assessing){
+		}
+		else if(!assessing)
+		{
 			// Draw the plain background
 			context.drawImage(plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
-		}else if(assessing == true){
+		}
+		else
+		{
 			alert("Error: Current Tool is undefined");
 		}
 		
