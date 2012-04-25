@@ -17,9 +17,11 @@
 /**
 * Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 */
-function prepareCanvas(canvas_element, question_id)
+function prepareCanvas(canvas_element, question_id, assessing, editing)
 {
-	
+	if (editing == true){
+		return;
+	}
 	
 	var canvas;
 	var context;
@@ -120,47 +122,53 @@ function prepareCanvas(canvas_element, question_id)
 	// ----------------
 	$('#canvas_'+canvas_element).mousedown(function(e)
 	{
-		// Mouse down location
-		var mouseX = e.pageX - this.offsetLeft;
-		var mouseY = e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - this.offsetTop + 60;
+		if (assessing == true){
+			// Mouse down location
+			var mouseX = e.pageX - this.offsetLeft;
+			var mouseY = e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - this.offsetTop + 60;
 
-		if(mouseX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
-		{
-			if(mouseY > toolHotspotStartY)
+			if(mouseX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
 			{
-				if(mouseY < toolHotspotStartY + toolHotspotHeight * 2){
-					curTool = "marker";
-					curSize = "normal";
-				}else if(mouseY < toolHotspotStartY + toolHotspotHeight * 3){
-					curTool = "eraser";
-					curSize = "huge";
+				if(mouseY > toolHotspotStartY)
+				{
+					if(mouseY < toolHotspotStartY + toolHotspotHeight * 2){
+						curTool = "marker";
+						curSize = "normal";
+					}else if(mouseY < toolHotspotStartY + toolHotspotHeight * 3){
+						curTool = "eraser";
+						curSize = "huge";
+					}
 				}
 			}
-		}
-		else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
-		{
+			else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
+			{
 
-			// Mouse click location on drawing area
+				// Mouse click location on drawing area
+			}
+			paint = true;
+			addClick(mouseX, mouseY, false);
+			redraw();
 		}
-		paint = true;
-		addClick(mouseX, mouseY, false);
-		redraw();
 	});
 
 	$('#canvas_'+canvas_element).mousemove(function(e){
-		if(paint==true){
+		if(paint==true && assessing == true){
 			addClick(e.pageX - this.offsetLeft, e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - this.offsetTop + 60, true);
 			redraw();
 		}
 	});
 
 	$('#canvas_'+canvas_element).mouseup(function(e){
-		paint = false;
-	  	redraw();
+		if (assessing == true){
+			paint = false;
+			redraw();
+		}
 	});
 
 	$('#canvas_'+canvas_element).mouseleave(function(e){
-		paint = false;
+		if (assessing == true){
+			paint = false;
+		}
 	});
 	
 	
@@ -172,18 +180,20 @@ function prepareCanvas(canvas_element, question_id)
 	*/
 	function addClick(x, y, dragging)
 	{
-		clickX.push(x);
-		clickY.push(y);
-		clickTool.push(curTool);
-		clickColor.push(curColor);
-		clickSize.push(curSize);
-		clickDrag.push(dragging);
-		$('#explain_canvas_'+question_id+'_click_x_data').text(clickX.toString());
-		$('#explain_canvas_'+question_id+'_click_y_data').text(clickY.toString());
-		$('#explain_canvas_'+question_id+'_click_color_data').text(clickColor.toString());
-		$('#explain_canvas_'+question_id+'_click_tool_data').text(clickTool.toString());
-		$('#explain_canvas_'+question_id+'_click_size_data').text(clickSize.toString());
-		$('#explain_canvas_'+question_id+'_click_drag_data').text(clickDrag.toString());
+		if (assessing == true){
+			clickX.push(x);
+			clickY.push(y);
+			clickTool.push(curTool);
+			clickColor.push(curColor);
+			clickSize.push(curSize);
+			clickDrag.push(dragging);
+			$('#explain_canvas_'+question_id+'_click_x_data').text(clickX.toString());
+			$('#explain_canvas_'+question_id+'_click_y_data').text(clickY.toString());
+			$('#explain_canvas_'+question_id+'_click_color_data').text(clickColor.toString());
+			$('#explain_canvas_'+question_id+'_click_tool_data').text(clickTool.toString());
+			$('#explain_canvas_'+question_id+'_click_size_data').text(clickSize.toString());
+			$('#explain_canvas_'+question_id+'_click_drag_data').text(clickDrag.toString());
+		}
 	}
 
 	/**
@@ -206,33 +216,46 @@ function prepareCanvas(canvas_element, question_id)
 		
 
 
-		if(curTool == "marker")
+		if(curTool == "marker" && assessing == true)
 		{
 			// Draw the marker tool background
 			context.drawImage(markerBackgroundImage, 0, 0, canvasWidth, canvasHeight);
 		}
-		else if(curTool == "eraser")
+		else if(curTool == "eraser" && assessing == true)
 		{
 			// Draw the eraser tool background
 			context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-		}else{
+		}else if(assessing == true){
 			alert("Error: Current Tool is undefined");
 		}
 		
 		var locX = 313;
 		var locY = 75;
 		
-		context.beginPath();
-		context.moveTo(locX, locY);
-		context.lineTo(locX + 10, locY + 6);
-		context.lineTo(locX, locY + 11);
-		context.lineTo(locX, locY);
-		context.closePath();
-		context.fillStyle = colorBlue;
-		context.fill();
+		if (assessing == true){
+			//
+			// Draw the marker tip blue
+			context.beginPath();
+			context.moveTo(locX, locY);
+			context.lineTo(locX + 10, locY + 6);
+			context.lineTo(locX, locY + 11);
+			context.lineTo(locX, locY);
+			context.closePath();
+			context.fillStyle = colorBlue;
+			context.fill();
+		}
+		else{
+			context.beginPath();
+			context.moveTo(0,0);
+			context.lineTo(canvasWidth,0);
+			context.lineTo(canvasWidth,canvasHeight);
+			context.lineTo(0,canvasHeight);
+			context.lineTo(0,0);
+			context.closePath();
+			context.strokeStyle = colorBlue;
+			context.stroke();
+		}
 		
-		
-
 		// Keep the drawing in the drawing area
 		context.save();
 		context.beginPath();

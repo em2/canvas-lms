@@ -265,11 +265,6 @@
             <% end %>
           <% end %>
         <% end %>
-		<% if !question.nil? -%>
-			<!-- <div id="explain_text">Explain your choice using words and/or pictures.</div> -->
-			<!-- <div id="explain_area_<%= question[:id] %>"><textarea cols="40" rows="14"></textarea> </div> -->
-			<!-- <div id="explain_canvas_<%= question[:id] %>"></div> -->
-		<% end -%>
       </div>
       <div class="after_answers">
         <% if question && hash_get(question, :question_type) == 'matching_question' && !assessing && ((@quiz && @quiz.show_correct_answers) || (!user_answer && !assessment_results)) %>

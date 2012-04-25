@@ -115,6 +115,8 @@
   <div class="user_id"><%= @submission.user_id %></div>
 </div>
 <% js_block do %>
+  <%= javascript_include_tag "canvas_html5.js" %>
+
   <script>
   var data = $("#submission_details").getTemplateData({textValues: ['version_number', 'user_id']});
   var scoringSnapshot = {

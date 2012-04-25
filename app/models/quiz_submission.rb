@@ -457,6 +457,13 @@ class QuizSubmission < ActiveRecord::Base
           user_answer[:answer_id] = answer[:id]
           user_answer[:correct] = answer[:weight] == 100
           user_answer[:points] = q[:points_possible]
+          user_answer[:explain_area] = params["explain_area_#{q[:id]}"] rescue ""
+          user_answer[:explain_canvas_click_x_data] = params["explain_canvas_#{q[:id]}_click_x_data"]
+          user_answer[:explain_canvas_click_y_data] = params["explain_canvas_#{q[:id]}_click_y_data"]
+          user_answer[:explain_canvas_click_color_data] = params["explain_canvas_#{q[:id]}_click_color_data"]
+          user_answer[:explain_canvas_click_tool_data] = params["explain_canvas_#{q[:id]}_click_tool_data"]
+          user_answer[:explain_canvas_click_size_data] = params["explain_canvas_#{q[:id]}_click_size_data"]
+          user_answer[:explain_canvas_click_drag_data] = params["explain_canvas_#{q[:id]}_click_drag_data"]
         end
       end
       user_answer[:correct] = "undefined" if answer_text == nil && undefined_if_blank
