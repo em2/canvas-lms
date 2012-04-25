@@ -265,7 +265,9 @@ namespace :dotcloud do
     system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/security.yml'"
     system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/domain.yml'"
     system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/delayed_jobs.yml'"
-    system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/newrelic.yml'"
+    if (env == "production")
+      system "dotcloud run #{app_name(env)}.www 'rm ~/current/config/newrelic.yml'"
+    end
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/database.yml ~/current/config'"
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/security.yml ~/current/config'"
     system "dotcloud run #{app_name(env)}.www 'ln -s ~/data/config/domain.yml ~/current/config'"
@@ -298,8 +300,8 @@ namespace :dotcloud do
   end
   
   def disable_newrelic_pinging(env)
-    puts "Disabling New Relic pinging"
-      if (env == "production")
+    if (env == "production")
+      puts "Disabling New Relic pinging"
       system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
       puts "Finished disabling New Relic pinging"
     end
