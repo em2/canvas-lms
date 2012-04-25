@@ -35,6 +35,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var colorBlack = "#000000";
 	var markerBackgroundImage = new Image();
 	var eraserBackgroundImage = new Image();
+	var plainBackgroungImage = new Image();
 	var clickX = new Array();
 	var clickY = new Array();
 	var clickColor = new Array();
@@ -51,7 +52,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var drawingAreaHeight = 200;
 	var toolHotspotStartY = 95;
 	var toolHotspotHeight = 38;
-	var totalLoadResources = 2;
+	var totalLoadResources = 3;
 	var curLoadResNum = 0;
 	
 	// Load the previous canvas data
@@ -118,6 +119,10 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	eraserBackgroundImage.onload = function() { resourceLoaded(); 
 	}
 	eraserBackgroundImage.src = "../../../../images/canvas_drawing/eraser-background.png";
+	
+	plainBackgroungImage.onload = function() { resourceLoaded(); 
+	}
+	plainBackgroungImage.src = "../../../../images/canvas_drawing/plain-background.png";
 
 	// Add mouse events
 	// ----------------
@@ -226,6 +231,9 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		{
 			// Draw the eraser tool background
 			context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+		}else if(!assessing){
+			// Draw the plain background
+			context.drawImage(plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
 		}else if(assessing == true){
 			alert("Error: Current Tool is undefined");
 		}
@@ -244,18 +252,6 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			context.closePath();
 			context.fillStyle = colorBlue;
 			context.fill();
-		}else{
-			//
-			// Draw a border around the canvas
-			context.beginPath();
-			context.moveTo(0,0);
-			context.lineTo(canvasWidth,0);
-			context.lineTo(canvasWidth,canvasHeight);
-			context.lineTo(0,canvasHeight);
-			context.lineTo(0,0);
-			context.closePath();
-			context.strokeStyle = colorBlack;
-			context.stroke();
 		}
 		
 		// Keep the drawing in the drawing area
