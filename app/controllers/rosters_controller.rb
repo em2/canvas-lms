@@ -14,6 +14,7 @@ class RostersController < ApplicationController
       flash[:notice] = "Please complete the form."
       redirect_back_or_default(dashboard_url)
     else
+      @total_students_created = 0;
       #
       # get the current context
       # in this case it should usually be the domain_root_account
@@ -125,7 +126,7 @@ class RostersController < ApplicationController
         # course student enrollments count minus the total required students
         @course_enrollment_count = @course.enrollments.all_student.count
         @num_needed = @num_students - @course_enrollment_count
-        
+        @total_students_created += @num_needed
         
         j = 0
         while(j < @num_students && j < @num_needed)
@@ -174,9 +175,13 @@ class RostersController < ApplicationController
         i += 1
       end
       
-      flash[:notice] = "#{@num_needed} students generated."
       
-      redirect_to roster_path(@roster)
+      if (@roster.id)
+        flash[:notice] = "#{@total_students_created} students generated."
+        redirect_to roster_path(@roster)
+      else
+        redirect_back_or_default(dashboard_url)
+      end
       
       
     end
