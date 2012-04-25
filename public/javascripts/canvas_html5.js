@@ -32,6 +32,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var colorPurple = "#cb3594";
 	var colorGreen = "#659b41";
 	var colorBlue = "#0033ff";
+	var colorBlack = "#000000";
 	var markerBackgroundImage = new Image();
 	var eraserBackgroundImage = new Image();
 	var clickX = new Array();
@@ -243,8 +244,9 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			context.closePath();
 			context.fillStyle = colorBlue;
 			context.fill();
-		}
-		else{
+		}else{
+			//
+			// Draw a border around the canvas
 			context.beginPath();
 			context.moveTo(0,0);
 			context.lineTo(canvasWidth,0);
@@ -252,7 +254,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			context.lineTo(0,canvasHeight);
 			context.lineTo(0,0);
 			context.closePath();
-			context.strokeStyle = colorBlue;
+			context.strokeStyle = colorBlack;
 			context.stroke();
 		}
 		
