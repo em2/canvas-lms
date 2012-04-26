@@ -10,11 +10,12 @@ class RostersController < ApplicationController
   end
   
   def create
-    if (params[:rosters][:stage] == nil)
+    if (params[:rosters][:stage] == nil || params[:rosters][:instance].size != 3)
       flash[:notice] = "Please complete the form."
       redirect_back_or_default(dashboard_url)
     else
       @total_students_created = 0;
+      errors_found = false
       #
       # get the current context
       # in this case it should usually be the domain_root_account
@@ -44,7 +45,7 @@ class RostersController < ApplicationController
         # Make sure that the course title is valid
         if (@course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || @course_title.size != 16)
           i += 1
-          flash[:notice] = @course_title + " is not valid."
+          errors_found = true
           next
         end
         
@@ -92,9 +93,9 @@ class RostersController < ApplicationController
         @course.assignments.each do |assignment|
           temp_probe_name = @probe.title + @stage + @instance
           if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
-            debugger
             i += 1
             assignment_found = true
+            errors_found = true
           end
         end
         
@@ -181,9 +182,14 @@ class RostersController < ApplicationController
       
       
       if (@roster.id)
-        flash[:notice] = "#{@total_students_created} students generated."
+        if (errors_found)
+          flash[:notice] = "#{@total_students_created} students were generated. However, there were some errors in processing your request."
+        else
+          flash[:notice] = "#{@total_students_created} students were generated."
+        end
         redirect_to roster_path(@roster)
       else
+        flash[:notice] = "There were some errors in processing your request."
         redirect_back_or_default(dashboard_url)
       end
       
