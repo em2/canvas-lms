@@ -120,6 +120,11 @@ class Enrollment < ActiveRecord::Base
               :conditions => "enrollments.type IN ('TeacherEnrollment','TaEnrollment', 'DesignerEnrollment')
                               AND (courses.workflow_state = 'claimed' OR (enrollments.workflow_state = 'active' and  courses.workflow_state = 'available'))"
 
+  named_scope :all_admin,
+              :include => :course,
+              :conditions => "enrollments.type IN ('TeacherEnrollment','TaEnrollment', 'DesignerEnrollment')
+                              AND (courses.workflow_state = 'claimed' OR (enrollments.workflow_state = 'active' and  courses.workflow_state = 'available'))"
+
   named_scope :student,
               :select => 'course_id',
               :joins => :course,
