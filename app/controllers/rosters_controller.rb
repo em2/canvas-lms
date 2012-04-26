@@ -30,20 +30,7 @@ class RostersController < ApplicationController
       @instance = params[:rosters][:instance]
       @stage = params[:rosters][:stage]
       @course_titles = params[:rosters][:courses].split(/[\r\n\t\,\; ]+/)
-
       
-      #
-      # Automatically increment the instance number until one is
-      # found that hasn't been used for that assessment title
-      # while (Roster.find_by_assessment_name(@title) != nil)
-      #   @instance = @instance.to_i
-      #   @instance += 1
-      #   @instance = @instance.to_s
-      #   while (@instance.length < 3)
-      #     @instance.insert(0, '0')
-      #   end
-      #   @title = @probe.title + params[:rosters][:stage] + @instance + params[:rosters][:courses]
-      # end
       
       #
       # Create the Roster
@@ -53,6 +40,8 @@ class RostersController < ApplicationController
       while (i < @course_titles.count)
         @course_title = @course_titles[i]
         
+        #
+        # Make sure that the course title is valid
         if (@course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || @course_title.size != 16)
           i += 1
           flash[:notice] = @course_title + " is not valid."
@@ -98,25 +87,40 @@ class RostersController < ApplicationController
         
         
         #
-        # Create the Assessment
-        @quiz = @course.quizzes.create
-        @quiz.title = @probe.full_name
-        @quiz.probe_name = @probe.title + @stage + @instance
-        @quiz.description = nil
-        @quiz.hide_results = 'always'
-        @quiz.show_correct_answers = false
-        @quiz.content_being_saved_by(@current_user)
-        @quiz.infer_times()
-        @quiz.add_assessment_questions(AssessmentQuestionBank.find(params[:rosters][:probe]).assessment_questions)
-        @quiz.generate_quiz_data()
-        @quiz.published_at = Time.now
-        @quiz.workflow_state = 'available'
-        @quiz.anonymous_submissions = false
-        @quiz.save!
+        # Make sure that the stage instance has not been used with this probe
+        assignment_found = false
+        @course.assignments.each do |assignment|
+          temp_probe_name = @probe.title + @stage + @instance
+          if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
+            debugger
+            i += 1
+            assignment_found = true
+          end
+        end
         
-        @course_assignment = Assignment.find(@quiz.assignment_id)
-        @course_assignment.position = @course.assignments.count
-        @course_assignment.save!
+        
+        if (!assignment_found)
+          #
+          # Create the Assessment
+          @quiz = @course.quizzes.create
+          @quiz.title = @probe.full_name
+          @quiz.probe_name = @probe.title + @stage + @instance
+          @quiz.description = nil
+          @quiz.hide_results = 'always'
+          @quiz.show_correct_answers = false
+          @quiz.content_being_saved_by(@current_user)
+          @quiz.infer_times()
+          @quiz.add_assessment_questions(AssessmentQuestionBank.find(params[:rosters][:probe]).assessment_questions)
+          @quiz.generate_quiz_data()
+          @quiz.published_at = Time.now
+          @quiz.workflow_state = 'available'
+          @quiz.anonymous_submissions = false
+          @quiz.save!
+        
+          @course_assignment = Assignment.find(@quiz.assignment_id)
+          @course_assignment.position = @course.assignments.count
+          @course_assignment.save!
+        end
         
         #
         # Create the students
