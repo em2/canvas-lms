@@ -222,7 +222,7 @@ class UsersController < ApplicationController
       course_id = @context.courses.first.id rescue nil
       assignment_id = @assignments.find_by_position(@assignments.count).id rescue nil
 
-      if (course_id != nil || my_assignment_id != nil)
+      if (course_id != nil || assignment_id != nil)
         # redirct to the users latest assessment
         redirect_to("/courses/#{course_id}/assignments/#{assignment_id}") and return
       end
