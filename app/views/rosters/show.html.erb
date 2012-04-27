@@ -1,42 +1,38 @@
 <style>
-.break { page-break-before: always; }
+.break { page-break-before:always; }
+.roster_info { float:right; }
+th { padding:2px; }
+td { padding:2px; }
 </style>
 
 <% content_for :page_title do -%><%= @current_school_roster.parent_account.name + @current_school_roster.name %><% end -%>
 
 <% @current_school_roster.courses.by_name.each do |school| -%>
 	<div class="break">
-	<br/>
-	<%= image_tag("logo.png") %>
+		<br/>
 
-	<% @district = school.name[/[Dd][0-9]{3}/] -%>
-	<% @school = school.name[/[Ss][0-9]{3}/] -%>
-	<% @class = school.name[/[Cc][0-9]{3}/] -%>
-	<% @teacher = school.name[/[Tt][0-9]{3}/] -%>
-	<h1> Classroom Roster </h1>
-	<h2> District: <%= @district %> </h2>
-	<h2> School: <%= @school %> </h2>
-	<h2> Teacher: <%= @teacher %> </h2>
-	<h3> Class: <%= @class %></h2>
-	
-	<table border="1">
-		<tr>
-			<th>Count &nbsp</th>
-			<th>Login &nbsp</th>
-			<th>Student Name <% 8.times do %>&nbsp <% end -%></th>
-			<th>Notes <% 25.times do %> &nbsp <% end -%></th>
-		</tr>
-		<% school.students.each do |student| %>
-		<tr>
-			<td><%= student.short_name %> &nbsp </td>
-			<td><%= student.name %> &nbsp </td>
-			<td> </td>
-			<td> </td>
-		</tr>
-		<% end -%>
-	</table>
-	<div> Eliciting Math Meaning (EM2) <br />
-		<%= school.name %>
-	</div>
+		<% @district = school.name[/[Dd][0-9]{3}/] -%>
+		<% @school = school.name[/[Ss][0-9]{3}/] -%>
+		<% @class = school.name[/[Cc][0-9]{3}/] -%>
+		<% @teacher = school.name[/[Tt][0-9]{3}/] -%>
+		<div class="roster_info"> District: <%= @district %> School: <%= @school %> Teacher: <%= @teacher %> Class: <%= @class %></div> <br />
+		<%= image_tag("logo.png") %>
+		<table border="1">
+			<tr>
+				<th width="40px">Count</th>
+				<th width="100px">Login</th>
+				<th width="200px">Student Name</th>
+				<th width="600px">Notes</th>
+			</tr>
+			<% school.students.each do |student| %>
+			<tr>
+				<td><%= student.short_name %></td>
+				<td><%= student.name %></td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<% end -%>
+		</table>
+		<div><%= school.name %></div>
 	</div>
 <% end -%>

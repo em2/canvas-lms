@@ -14,7 +14,7 @@
 		&nbsp <%= f.text_field :instance, :size => '3x1' %>
 		&nbsp <%= f.label :instance_validator, 'Must Be 3 Numbers', {:style=>'color:#990000', :id=>'instance_validator'} %> <br />
 	&nbsp <%= f.label :students, 'Students:' %>
-		&nbsp <%= f.select :students, options_for_select([['5', 5], ['10', 10], ['20', 20]]) %> <br />
+		&nbsp <%= f.select :students, options_for_select([['10', 10], ['15', 15], ['20', 20], ['25', 25], ['30', 30]]) %> <br />
 	&nbsp <%= f.label :courses, 'Class IDs:' %> <br />
 		&nbsp <%= f.text_area :courses, :size => '20x10' %> <br />
 		&nbsp <%= f.label :courses_validator_text, 'Must Be In Form:', {:style=>'color:#990000', :id=>'courses_text_validator'} %> <br />
