@@ -165,8 +165,11 @@ class RostersController < ApplicationController
           @pseudonym.account = @context
           @pseudonym.workflow_state = 'active'
           
-          @pseudonym.password = Canvas::Security.config["student_password"]
-          @pseudonym.password_confirmation = Canvas::Security.config["student_password"]
+          alphas = [('A'..'Z'),('a'..'z')].map {|range| range.to_a}.flatten
+          temp_password = (0...6).map { alphas[rand(alphas.size)] }.join
+          
+          @pseudonym.password = temp_password
+          @pseudonym.password_confirmation = temp_password
           @pseudonym.save_without_session_maintenance
           
           @teacher_account.register!
