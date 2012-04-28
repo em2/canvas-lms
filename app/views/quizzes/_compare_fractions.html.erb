@@ -29,10 +29,14 @@
 			<% fraction_a = fraction_a.gsub("</p>","") -%>
 			<% fraction_b = fraction_b.gsub("<p>","") -%>
 			<% fraction_b = fraction_b.gsub("</p>","") -%>
-			<%= user_content(fraction_a) %>
 		<% end -%>
     <% end %>
   </div>
+	<div class="question_text question_left_side">
+		<% if (found_fractions) -%>
+			<%= user_content(fraction_a) %>
+		<% end -%>
+	</div>
   <% if question_type && question_type.unsupported %>
     <div class="unsupported_question_type_message" style="font-size: 0.8em; font-weight: bold;">
       <%= t(:unsupported_question_type, <<-TEXT, :question_type => hash_get(question, :question_type))

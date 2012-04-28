@@ -1,6 +1,7 @@
 <style>
 .break { page-break-before:always; }
 .roster_info { float:right; }
+.teacher_info { float:right; }
 th { padding:2px; }
 td { padding:2px; }
 </style>
@@ -15,14 +16,15 @@ td { padding:2px; }
 		<% @school = school.name[/[Ss][0-9]{3}/] -%>
 		<% @class = school.name[/[Cc][0-9]{3}/] -%>
 		<% @teacher = school.name[/[Tt][0-9]{3}/] -%>
-		<div class="roster_info"> District: <%= @district %> School: <%= @school %> Teacher: <%= @teacher %> Class: <%= @class %></div> <br />
-		<%= image_tag("logo.png") %>
-		<table border="1">
+		<div class="roster_info"> District: <%= @district %> School: <%= @school %> Teacher: <b><%= @teacher %></b> Class: <%= @class %></div><br/>
+		<div class="teacher_info"> Teacher Login: blah Password: blah </div>
+		<%= image_tag("logo.png", :class => "logo_image") %>
+		<table border="1" class="roster_table">
 			<tr>
-				<th width="40px">Count</th>
-				<th width="100px">Login</th>
+				<th width="30px">Count</th>
+				<th width="75px">Login</th>
 				<th width="200px">Student Name</th>
-				<th width="600px">Notes</th>
+				<th width="700px">Notes</th>
 			</tr>
 			<% school.students.each do |student| %>
 			<tr>
@@ -33,6 +35,6 @@ td { padding:2px; }
 			</tr>
 			<% end -%>
 		</table>
-		<div><%= school.name %></div>
+		<div class="school_name"><%= school.name %></div>
 	</div>
 <% end -%>
