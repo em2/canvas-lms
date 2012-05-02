@@ -147,9 +147,14 @@ class QuizzesController < ApplicationController
       @stored_params = (@submission.temporary_data rescue nil) if params[:take] && @submission && @submission.untaken?
       @stored_params ||= {}
       log_asset_access(@quiz, "quizzes", "quizzes")
+
+      if (@no_chrome)
+        params[:take] = true
+      end
+
       if params[:take] && can_take_quiz?
         # allow starting the quiz via a GET request, but only when using a lockdown browser
-        if request.post? || (@quiz.require_lockdown_browser? && !quiz_submission_active?)
+        if request.post? || (@no_chrome && @submission == nil) || (@quiz.require_lockdown_browser? && !quiz_submission_active?)
           start_quiz!
         else
           take_quiz
@@ -157,6 +162,8 @@ class QuizzesController < ApplicationController
       end
     end
   end
+
+
 
   def managed_quiz_data
     @submissions = @quiz.quiz_submissions.select{|s| !s.settings_only? }

@@ -153,7 +153,6 @@ class RostersController < ApplicationController
         # Try to find the teacher
         # Go through each school and look for a teacher with the same name
         # if unsuccessful, go ahead and create that teacher
-        debugger
         teacher_found = false
         @district_account.sub_accounts.each do |school|
           school.courses.each do |course|
