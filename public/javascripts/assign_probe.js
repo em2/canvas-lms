@@ -33,15 +33,18 @@ function assignProbeValidator(){
 			// now make sure they are all numbers
 			if (text.match(/[0-9]*/)[0].length == 3){
 				$('#instance_validator').hide("hide");
+				$('#rosters_instance').removeAttr("style", "border-color:red;");
 				return false;
 			}
 			else{
 				$('#instance_validator').show("hide");
+				$('#rosters_instance').attr("style", "border-color:red;");
 				return true;
 			}
 		}
 		else{
 			$('#instance_validator').show("fast");
+			$('#rosters_instance').attr("style", "border-color:red;");
 			return true;
 		}
 	}
@@ -93,16 +96,19 @@ function assignProbeValidator(){
 				$('#students_custom_count_validator').hide("slow");
 				$('#students_custom_count_zero_validator').hide("slow");
 				$('#students_custom_count_less_validator').hide("slow");
+				$('#rosters_students_custom').removeAttr("style", "border-color:red;");
 				return false;
 			}else if (text < 1){
 				$('#students_custom_count_validator').hide("slow");
 				$('#students_custom_count_less_validator').hide("slow");
 				$('#students_custom_count_zero_validator').show("fast");
+				$('#rosters_students_custom').attr("style", "border-color:red;");
 				return true;
 			}else{
 				$('#students_custom_count_validator').hide("slow");
 				$('#students_custom_count_zero_validator').hide("slow");
 				$('#students_custom_count_less_validator').show("fast");
+				$('#rosters_students_custom').attr("style", "border-color:red;");
 				return true;
 			}
 		}
@@ -110,6 +116,7 @@ function assignProbeValidator(){
 			$('#students_custom_count_validator').show("fast");
 			$('#students_custom_count_zero_validator').hide("slow");
 			$('#students_custom_count_less_validator').hide("slow");
+			$('#rosters_students_custom').attr("style", "border-color:red;");
 			return true;
 		}
 	}
@@ -132,6 +139,7 @@ function assignProbeValidator(){
 		for (var i=0; i<course_titles.length; i++){
 			if (course_titles[i].length != 16 || course_titles[i].match(/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/) == null){
 				$('#course_example_validator').show("fast");
+				$('#rosters_courses').attr("style", "border-color:red;");
 				return true;
 			}
 		}
@@ -139,6 +147,7 @@ function assignProbeValidator(){
 		//
 		// if we reach this code, then we are valid and good to go
 		$('#course_example_validator').hide("slow");
+		$('#rosters_courses').removeAttr("style", "border-color:red;");
 		return false;
 	}
 	
