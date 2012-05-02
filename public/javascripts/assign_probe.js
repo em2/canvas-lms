@@ -65,8 +65,8 @@ function assignProbeValidator(){
 		if (text == "Other"){
 			$('#rosters_students_custom').removeAttr("disabled");
 			$('#students_custom_count').show("fast");
-			$('rosters_students_custom').focus();
 			validateStudentsCustom($('#rosters_students_custom').val());
+			$('#rosters_students_custom').focus();
 			return true;
 		}
 		else{

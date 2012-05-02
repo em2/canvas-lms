@@ -16,7 +16,7 @@
 <div class="thank_you"> <p> Thank you for participating! </p> </div>
 <div class="thank_you">Logging out in ... <b id="countdown">5</b> </div>
 <div class="button-container thank_you">
-	<button class="button"><%= link_to t('links.logout', "Logout"), logout_path, :method => :delete, :id => "countdown_logout" %></button>
+	<%= link_to t('links.logout', "Logout"), logout_path, :method => :delete, :id => "countdown_logout", :class => "button" %>
 </div>
 
 
