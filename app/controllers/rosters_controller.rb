@@ -155,11 +155,13 @@ class RostersController < ApplicationController
         # if unsuccessful, go ahead and create that teacher
         debugger
         teacher_found = false
-        @school_account.courses.each do |course|
-          course.enrollments.all_admin.each do |admin|
-            if (User.find(admin.user_id).sortable_name == @teacher)
-              teacher_found = true
-              @teacher_account = User.find(admin.user_id)
+        @district_account.sub_accounts.each do |school|
+          school.courses.each do |course|
+            course.enrollments.all_admin.each do |admin|
+              if (User.find(admin.user_id).sortable_name == @teacher)
+                teacher_found = true
+                @teacher_account = User.find(admin.user_id)
+              end
             end
           end
         end
