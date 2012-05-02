@@ -309,7 +309,7 @@ em2:
         quiz_statistics: "Assessment Statistics"
         resume_quiz: "Resume Assessment"
         see_full_quiz: "See Full Assessment"
-        show_student_quiz_results: "Show Student Assessment Results"
+        show_student_quiz_results: "Show Student Results"
         take_the_quiz: "Take the Assessment"
         take_the_quiz_again: "Take the Assessment Again"
       only_registered_users: "Only registered, enrolled users can take graded assessments"

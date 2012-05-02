@@ -40,6 +40,28 @@ class RostersController < ApplicationController
     if (!instance_correct)
       errors_found = true
     end
+
+
+    #
+    # Make sure that the student count correct if the 'Other' option was selected
+    temp_students = params[:rosters][:students]
+
+    student_count_correct = false
+    if (temp_students == "Other")
+      temp_students_custom = params[:rosters][:students_custom]
+      if (temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0)
+        student_count_correct = true
+        @num_students = temp_students_custom.to_i
+      end
+    else
+      @num_students = temp_students.to_i
+      student_count_correct = true
+    end
+
+    if (!student_count_correct)
+      errors_found = true
+    end
+
     
     #
     # Make sure that the stage and instance were entered and entered correctly
@@ -164,12 +186,8 @@ class RostersController < ApplicationController
           @pseudonym.unique_id = @teacher_id
           @pseudonym.account = @context
           @pseudonym.workflow_state = 'active'
-          
-          alphas = [('A'..'Z'),('a'..'z')].map {|range| range.to_a}.flatten
-          temp_password = (0...6).map { alphas[rand(alphas.size)] }.join
-          
-          @pseudonym.password = temp_password
-          @pseudonym.password_confirmation = temp_password
+          @pseudonym.password = @teacher_id
+          @pseudonym.password_confirmation = @teacher_id
           @pseudonym.save_without_session_maintenance
           
           @teacher_account.register!
@@ -231,7 +249,6 @@ class RostersController < ApplicationController
         #
         # Create the students
         srand
-        @num_students = params[:rosters][:students].to_i
         # calculate the number of extra students needed
         # course student enrollments count minus the total required students
         @course_enrollment_count = @course.enrollments.all_student.count

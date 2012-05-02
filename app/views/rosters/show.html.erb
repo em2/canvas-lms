@@ -4,6 +4,8 @@
 .teacher_info { float:right; }
 th { padding:2px; }
 td { padding:2px; }
+.student_count { padding-left: 5px; }
+.student_id { padding-left: 4px; }
 </style>
 
 <% content_for :page_title do -%><%= @current_school_roster.parent_account.name + @current_school_roster.name %><% end -%>
@@ -19,7 +21,7 @@ td { padding:2px; }
 		<div class="roster_info"> District: <%= @district %> School: <%= @school %> Teacher: <b><%= @teacher %></b> Class: <%= @class %></div><br/>
 		<div class="teacher_info"> Teachers login at http://elicitingmathmeaning.edc.org/teacher <br/>
 			<% school.teachers.each do |teacher| -%>
-				<% if teacher.name.size == 10 && teacher.name[/[0-9]+/].size == 10 -%> Login: <%= teacher.name %> <br/> <% end -%>
+				<% if teacher.name.size == 10 && teacher.name[/[0-9]+/].size == 10 -%> Login/Password: <%= teacher.name %> <br/> <% end -%>
 			<% end -%>
 		</div>
 		<%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
@@ -27,13 +29,13 @@ td { padding:2px; }
 			<tr>
 				<th width="30px">Count</th>
 				<th width="75px">Login</th>
-				<th width="200px">Student Name</th>
-				<th width="700px">Notes</th>
+				<th width="400px">Student Name</th>
+				<th width="500px">Notes</th>
 			</tr>
 			<% school.students.each do |student| %>
 			<tr>
-				<td><%= student.short_name %></td>
-				<td><%= student.name %></td>
+				<td class="student_count"><%= student.short_name %></td>
+				<td class="student_id"><%= student.name %></td>
 				<td> </td>
 				<td> </td>
 			</tr>
