@@ -82,7 +82,7 @@
 <% end %>
 <% if @no_chrome -%>
 	<div class="button-container">
-		<a href="<%= logout_path %>" class="button"> <%= t('links.finish_later', "Finish Later") %> </a>
+    <%= link_to t('links.finish_later', "Finish Later"), logout_path, :method => :delete, :id => "finish_later_button", :class => "button" %>
 	</div>
 <% end -%>
 </div>

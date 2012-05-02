@@ -373,12 +373,18 @@ require(['i18n'], function(I18n) {
           return false;
         }
       }
+      quizSubmission.updateSubmission(true);
       quizSubmission.submitting = true;
     });
 
     $(".submit_quiz_button").click(function(event) {
+      quizSubmission.updateSubmission(true);
       event.preventDefault();
       $("#times_up_dialog").dialog('close');
+    });
+
+    $("#finish_later_button").click(function(){
+      quizSubmission.updateSubmission(true);
     });
 
     setTimeout(function() {
