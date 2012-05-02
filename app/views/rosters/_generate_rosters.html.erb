@@ -30,6 +30,9 @@
 			<div id="students_custom_count_zero_validator">
 				&nbsp <%= f.label :students_custom_validator, 'Must Be Greater Than Zero', {:style=>'color:#990000'} %>
 			</div>
+			<div id="students_custom_count_less_validator">
+				&nbsp <%= f.label :students_custom_validator, 'Must Be Less Than 251', {:style=>'color:#990000'} %>
+			</div>
 		</div>
 	&nbsp <%= f.label :courses, 'Class IDs:' %> <br />
 		&nbsp <%= f.text_area :courses, :size => '20x10' %> <br />

@@ -49,7 +49,7 @@ class RostersController < ApplicationController
     student_count_correct = false
     if (temp_students == "Other")
       temp_students_custom = params[:rosters][:students_custom]
-      if (temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0)
+      if (temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0 && temp_students_custom.to_i <= 250)
         student_count_correct = true
         @num_students = temp_students_custom.to_i
       end

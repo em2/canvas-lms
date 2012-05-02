@@ -82,26 +82,34 @@ function assignProbeValidator(){
 	// validateStudentsCustom(string) will validate that the
 	// rosters_students has "Other" selected and that the string
 	// actually contains something, and that something is all numbers
-	// It then checks that number to make sure it isn't zero
-	// and if it isn't zero it hides the warning texts and returns false.
-	// if it is zero or non-numerical it shows the warning texts and returns true.
+	// It then checks that number to make sure it isn't zero and is less than 251
+	// and if that is true it hides the warning texts and returns false.
+	// if it is zero, greater than 250 or non-numerical it shows the warning texts and returns true.-0i8=
 	function validateStudentsCustom(text){
 		//
 		// Check for numbers
 		if ($('#rosters_students').val() == "Other" && text.length > 0 && text.match(/[0-9]*/)[0].length == text.length){
-			if (text > 0){
+			if (text > 0 && text <= 250){
 				$('#students_custom_count_validator').hide("slow");
 				$('#students_custom_count_zero_validator').hide("slow");
+				$('#students_custom_count_less_validator').hide("slow");
 				return false;
+			}else if (text < 1){
+				$('#students_custom_count_validator').hide("slow");
+				$('#students_custom_count_less_validator').hide("slow");
+				$('#students_custom_count_zero_validator').show("fast");
+				return true;
 			}else{
 				$('#students_custom_count_validator').hide("slow");
-				$('#students_custom_count_zero_validator').show("fast");
+				$('#students_custom_count_zero_validator').hide("slow");
+				$('#students_custom_count_less_validator').show("fast");
 				return true;
 			}
 		}
 		else{
 			$('#students_custom_count_validator').show("fast");
 			$('#students_custom_count_zero_validator').hide("slow");
+			$('#students_custom_count_less_validator').hide("slow");
 			return true;
 		}
 	}
