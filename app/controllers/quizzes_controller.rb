@@ -148,7 +148,7 @@ class QuizzesController < ApplicationController
       @stored_params ||= {}
       log_asset_access(@quiz, "quizzes", "quizzes")
 
-      if (@no_chrome)
+      if (@no_chrome && @submission == nil)
         params[:take] = true
       end
 

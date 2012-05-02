@@ -160,7 +160,12 @@ function assignProbeValidator(){
 		var dirty = true;
 		if (validateInstance($('#rosters_instance').val()) == false){
 			if (validateCourses($('#rosters_courses').val()) == false){
-				if (validateStudentsCustom($('#rosters_students_custom').val()) == false){
+				if ($('#rosters_students').val() == "Other"){
+					if (validateStudentsCustom($('#rosters_students_custom').val()) == false){
+						dirty = false;
+					}
+				}
+				else{
 					dirty = false;
 				}
 			}

@@ -80,6 +80,15 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			clickX[i] = parseInt(clickX[i])
 			clickY[i] = parseInt(clickY[i])
 		}
+
+		for (var i=0; i<clickDrag.length; i++){
+			if (clickDrag[i] == "true"){
+				clickDrag[i] = true;
+			}
+			else{
+				clickDrag[i] = false;
+			}
+		}
 	}
 	
 	
@@ -193,6 +202,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			clickColor.push(curColor);
 			clickSize.push(curSize);
 			clickDrag.push(dragging);
+
 			$('#explain_canvas_'+question_id+'_click_x_data').text(clickX.toString());
 			$('#explain_canvas_'+question_id+'_click_y_data').text(clickY.toString());
 			$('#explain_canvas_'+question_id+'_click_color_data').text(clickColor.toString());
