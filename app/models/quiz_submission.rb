@@ -449,6 +449,17 @@ class QuizSubmission < ActiveRecord::Base
     user_answer[:question_id] = q[:id]
     user_answer[:points] = 0
     user_answer[:correct] = false
+
+    #
+    # Save off the explanation text and drawing canvas
+    user_answer[:explain_area] = params["explain_area_#{q[:id]}"] rescue ""
+    user_answer[:explain_canvas_click_x_data] = params["explain_canvas_#{q[:id]}_click_x_data"] rescue ""
+    user_answer[:explain_canvas_click_y_data] = params["explain_canvas_#{q[:id]}_click_y_data"] rescue ""
+    user_answer[:explain_canvas_click_color_data] = params["explain_canvas_#{q[:id]}_click_color_data"] rescue ""
+    user_answer[:explain_canvas_click_tool_data] = params["explain_canvas_#{q[:id]}_click_tool_data"] rescue ""
+    user_answer[:explain_canvas_click_size_data] = params["explain_canvas_#{q[:id]}_click_size_data"] rescue ""
+    user_answer[:explain_canvas_click_drag_data] = params["explain_canvas_#{q[:id]}_click_drag_data"] rescue ""
+
     question_type = q[:question_type]
     q[:points_possible] = q[:points_possible].to_f
     if question_type == "multiple_choice_question" || question_type == "true_false_question" || question_type == "missing_word_question" || question_type == "compare_fractions_question" || question_type == "represent_fractions_question" || question_type == "locate_fractions_question"
@@ -457,13 +468,6 @@ class QuizSubmission < ActiveRecord::Base
           user_answer[:answer_id] = answer[:id]
           user_answer[:correct] = answer[:weight] == 100
           user_answer[:points] = q[:points_possible]
-          user_answer[:explain_area] = params["explain_area_#{q[:id]}"] rescue ""
-          user_answer[:explain_canvas_click_x_data] = params["explain_canvas_#{q[:id]}_click_x_data"]
-          user_answer[:explain_canvas_click_y_data] = params["explain_canvas_#{q[:id]}_click_y_data"]
-          user_answer[:explain_canvas_click_color_data] = params["explain_canvas_#{q[:id]}_click_color_data"]
-          user_answer[:explain_canvas_click_tool_data] = params["explain_canvas_#{q[:id]}_click_tool_data"]
-          user_answer[:explain_canvas_click_size_data] = params["explain_canvas_#{q[:id]}_click_size_data"]
-          user_answer[:explain_canvas_click_drag_data] = params["explain_canvas_#{q[:id]}_click_drag_data"]
         end
       end
       user_answer[:correct] = "undefined" if answer_text == nil && undefined_if_blank
