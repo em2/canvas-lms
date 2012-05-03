@@ -209,6 +209,10 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			$('#explain_canvas_'+question_id+'_click_tool_data').text(clickTool.toString());
 			$('#explain_canvas_'+question_id+'_click_size_data').text(clickSize.toString());
 			$('#explain_canvas_'+question_id+'_click_drag_data').text(clickDrag.toString());
+
+			//
+			// Fire a change event so the data can be reliably saved to the database
+			$('#explain_canvas_'+question_id+'_click_x_data').change();
 		}
 	}
 
