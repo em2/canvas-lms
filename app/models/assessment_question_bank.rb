@@ -18,7 +18,7 @@
 
 class AssessmentQuestionBank < ActiveRecord::Base
   include Workflow
-  attr_accessible :context, :title, :user, :outcomes
+  attr_accessible :context, :title, :full_name, :user, :outcomes
   belongs_to :context, :polymorphic => true
   has_many :assessment_questions, :order => 'position, name, created_at'
   has_many :assessment_question_bank_users

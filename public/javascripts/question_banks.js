@@ -46,7 +46,7 @@ $(document).ready(function() {
   $(".question_bank .edit_bank_link").click(function(event) {
     event.preventDefault();
     var $bank = $(this).parents(".question_bank");
-    var data = $bank.getTemplateData({textValues: ['title']});
+    var data = $bank.getTemplateData({textValues: ['title','full_name']});
     $bank.find(".header_content").hide();
     var $form = $("#edit_bank_form");
     $bank.find(".header").prepend($form.show());
@@ -57,18 +57,26 @@ $(document).ready(function() {
       $form.attr('method', 'POST');
     }
     $form.fillFormData(data, {object_name: 'assessment_question_bank'});
-    $form.find(":text:visible:first").focus().select();
+    //$form.find(":text:visible:first").focus().select();
   });
   $("#edit_bank_form .bank_name_box").keycodes('return esc', function(event) {
     if(event.keyString == 'esc') {
       $(this).parents(".question_bank").addClass('dont_save')
-      $(this).blur();
+      blurIt(this);
     } else if(event.keyString == 'return') {
       $("#edit_bank_form").submit();
     }
   });
-  $("#edit_bank_form .bank_name_box").blur(function() {
-    var $bank = $(this).parents(".question_bank");
+  $("#edit_bank_form .bank_full_name_box").keycodes('return esc', function(event) {
+    if(event.keyString == 'esc') {
+      $(this).parents(".question_bank").addClass('dont_save')
+      blurIt(this);
+    } else if(event.keyString == 'return') {
+      $("#edit_bank_form").submit();
+    }
+  });
+  function blurIt(element_to_blur) {
+    var $bank = $(element_to_blur).parents(".question_bank");
     if(!$bank.hasClass('dont_save') && !$bank.hasClass('save_in_progress') && $bank.attr('id') != 'question_bank_new') {
       $("#edit_bank_form").submit();
       return;
@@ -79,7 +87,7 @@ $(document).ready(function() {
     if($bank.attr('id') == 'question_bank_new') {
       $bank.remove();
     }
-  });
+  }
   $("#edit_bank_form").formSubmit({
     object_name: 'assessment_question_bank',
     beforeSubmit: function(data) {
@@ -87,7 +95,7 @@ $(document).ready(function() {
       $bank.attr('id', 'question_bank_adding');
       try {
         $bank.addClass('save_in_progress')
-        $bank.find(".bank_name_box").blur();
+        blurIt($bank.find(".bank_name_box"));
       } catch(e) { }
       $bank.fillTemplateData({
         data: data

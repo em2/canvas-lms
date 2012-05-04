@@ -3,7 +3,12 @@
   jammit_css :quizzes
   content_for :page_title, @bank.title
 %>
-<% js_block do %><%= javascript_include_tag "tinymce/jscripts/tiny_mce/tiny_mce.js" %><% end %>
+
+<% js_block do %>
+  <%= javascript_include_tag "tinymce/jscripts/tiny_mce/tiny_mce.js" %>
+  <%= javascript_include_tag "canvas_html5.js" %>
+<% end %>
+
 <% content_for :right_side do %>
   <div class="rs-margin-all">
     <% if can_do(@bank, @current_user, :manage) %>
@@ -43,14 +48,14 @@
 
 <% form_for @bank, :url => context_url(@context, :context_question_bank_url), :html => {:id => "edit_bank_form", :method => :put} do |f| %>
   <div class="displaying">
-    <h2><%= @bank.title %></h2>
-	<h2><%= @bank.full_name %></h2>
+    <h2 class="quiz_title"><%= @bank.title %></h2>
+	<h2 class="quiz_full_name"><%= @bank.full_name %></h2>
   </div>
   <div class="editing" style="display: none;">
     <b><%= f.label :title, :en => "Bank Short Name" %></b>
     <%= f.text_field :title, :class => "bank_name_box" %>
-	<b><%= f.label :title, :en => "Bank Full Name" %></b>
-    <%= f.text_field :title, :class => "bank_full_name_box" %>
+	<b><%= f.label :full_name, :en => "Bank Full Name" %></b>
+    <%= f.text_field :full_name, :class => "bank_full_name_box" %>
   </div>
 <% end %>
 <p>
@@ -216,30 +221,38 @@ $(document).ready(function() {
     var val = $("#edit_bank_form h2").text();
     $("#edit_bank_form").find(".displaying").hide().end()
       .find(".editing").show();
-    $(".bank_name_box").val(val || I18n.t('question_bank', "Question Bank")).focus().select();
+    $(".bank_name_box").focus().select();
   });
   $("#edit_bank_form .bank_name_box").keycodes('return esc', function(event) {
     if(event.keyString == 'esc') {
-      $(this).blur();
+      $("#edit_bank_form").find(".displaying").show().end()
+        .find(".editing").hide();
     } else if(event.keyString == 'return') {
       $("#edit_bank_form").submit();
     }
   });
-  $("#edit_bank_form .bank_name_box").blur(function() {
-    $("#edit_bank_form").find(".displaying").show().end()
+  $("#edit_bank_form .bank_full_name_box").keycodes('return esc', function(event) {
+    if(event.keyString == 'esc') {
+      $("#edit_bank_form").find(".displaying").show().end()
       .find(".editing").hide();
+    } else if(event.keyString == 'return') {
+      $("#edit_bank_form").submit();
+    }
   });
   $("#edit_bank_form").formSubmit({
     object_name: 'assessment_question_bank',
     beforeSubmit: function(data) {
-      $("#edit_bank_form h2").text(data.title);
+      $("#edit_bank_form .quiz_title").text(data.title);
+      $("#edit_bank_form .quiz_full_name").text(data.full_name);
       $(this).loadingImage();
     },
     success: function(data) {
       $(this).loadingImage('remove');
       var bank = data.assessment_question_bank;
-      $("#edit_bank_form .bank_name_box").blur();
-      $("#edit_bank_form h2").text(bank.title);
+      $("#edit_bank_form").find(".displaying").show().end()
+        .find(".editing").hide();
+      $("#edit_bank_form .quiz_title").text(bank.title);
+      $("#edit_bank_form .quiz_full_name").text(bank.full_name);
     },
     error: function(data) {
       $(this).loadingImage('remove');
@@ -259,6 +272,7 @@ $(document).ready(function() {
     $bank.find("input").attr('id', "question_bank_" + bank.id).val(bank.id);
     $bank.find("label").attr('for', "question_bank_" + bank.id)
       .find(".bank_name").text(bank.title || I18n.t('default_name', "No Name")).end()
+      .find(".bank_full_name").text(bank.full_name || I18n.t('default_name', "No Name")).end()
       .find(".context_name").text(bank.cached_context_short_name);
     $bank.show().insertBefore($dialog.find("ul.banks .bank.blank:last"));
   };

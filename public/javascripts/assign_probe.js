@@ -66,7 +66,7 @@ function assignProbeValidator(){
 			$('#rosters_students_custom').removeAttr("disabled");
 			$('#students_custom_count').show("fast");
 			validateStudentsCustom($('#rosters_students_custom').val());
-			$('#rosters_students_custom').focus();
+			$('#rosters_students_custom').focus().select();
 			return true;
 		}
 		else{
