@@ -231,6 +231,9 @@ em2:
       labels: 
         never_hide_results: "Let Students See their Assessment Results"
         quiz_instructions: "Assessment Instructions"
+        quiz: "Assessment"
+        quiz_short_name: "Short Name"
+        quiz_full_name: "Full Name"
         quiz_name: "Assessment Name"
         require_lockdown_browser_for_results: "Required to view assessment results"
         restrict_quiz: "Restrict this Assessment"

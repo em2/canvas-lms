@@ -50,11 +50,23 @@
               </select>
               </td>
             </tr>
+            <tr>
+              <td class="nobr"><%= blabel :quiz, :title, :quiz, :en => "Assessment" %></td>
+              <td>
+            </tr>
             <tr id="quiz_title">
-              <td class="nobr"><%= blabel :quiz, :title, :quiz_name, :en => "Quiz Name" %></td>
+              <td class="nobr"><%= blabel :quiz, :title, :quiz_full_name, :en => "Full Name" %></td>
               <td>
                 <div style="margin-right: 1px;">
                   <%= text_field :quiz, :title, :style => "width: 100%;" %>
+                </div>
+              </td>
+            </tr>
+            <tr id="quiz_probe_name">
+              <td class="nobr"><%= blabel :quiz, :probe_name, :quiz_short_name, :en => "Short Name" %></td>
+              <td>
+                <div style="margin-right: 1px;">
+                  <%= text_field :quiz, :probe_name, :style => "width: 100%;" %>
                 </div>
               </td>
             </tr>
