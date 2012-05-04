@@ -236,7 +236,7 @@ class RostersController < ApplicationController
           @quiz.show_correct_answers = false
           @quiz.content_being_saved_by(@current_user)
           @quiz.infer_times()
-          @quiz.add_assessment_questions(AssessmentQuestionBank.find(params[:rosters][:probe]).assessment_questions.find(:all, :order => "position"))
+          @quiz.add_assessment_questions(AssessmentQuestionBank.find(params[:rosters][:probe]).assessment_questions)
           @quiz.generate_quiz_data()
           @quiz.published_at = Time.now
           @quiz.workflow_state = 'available'
