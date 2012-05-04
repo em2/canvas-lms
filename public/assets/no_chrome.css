@@ -9,5 +9,6 @@ body.with-right-side.with-left-side #breadcrumbs{display:none}
 body.with-right-side.with-left-side .flag_question{display:none}
 #questions.assessment_results .header{display:none}
 #questions.assessment_results .user_points{display:none}
-#questions.assessing .header{display:none}
-body.with-scrolling-right-side #content,body.with-scrolling-right-side body.with-sidebar-pinned-to-bottom{padding-right:0}
+#questions.assessing .header .question_points_holder{display:none}
+body.with-scrolling-right-side #content,body.with-scrolling-right-side body.with-sidebar-pinned-to-bottom{padding-right:13px}
+.summary{display:none}

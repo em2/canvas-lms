@@ -96,8 +96,8 @@ body.with-sidebar-pinned-to-bottom #right-side,body.with-sidebar-pinned-to-botto
 .gray{color:#999}
 #skip_navigation_link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;color:#fff;background-color:#dc3f3f;border:1px dashed #fff;font-size:12px;padding:1px}
 #skip_navigation_link:focus{left:0;width:auto;height:auto;z-index:1}
-#header-logo,#header.no-user #header-logo{background:url(/images/logo.png?1334353269) no-repeat;width:160px;height:59px;left:16px;bottom:4px;position:absolute;text-indent:-9999px;outline:none}
-#header-logo-secondary{display:none;background:url(/images/logo.png?1334353269) no-repeat;width:160px;height:59px;right:26px;bottom:6px;position:absolute}
+#header-logo,#header.no-user #header-logo{background:url(/images/logo.png?1335969973) no-repeat;width:160px;height:65px;left:16px;bottom:4px;position:absolute;text-indent:-9999px;outline:none}
+#header-logo-secondary{display:none;background:url(/images/logo.png?1335969973) no-repeat;width:160px;height:65px;right:26px;bottom:6px;position:absolute}
 #header{position:relative;z-index:11;padding-top:26px;background:url(/images/canvas/header_bg.png?1326216007) 0 0 repeat-x}
 #header.no-user{background-position:0 -25px;min-height:20px}
 #header.no-user #header-logo{top:11px;left:6px}
@@ -860,7 +860,7 @@ html>body .new_activity_message form textarea{width:97%}
 #help_dialog ul li a{display:block;padding:10px 25px;text-decoration:none}
 #help_dialog ul li a span.text{color:#1e7eca;font-size:1.1em}
 #help_dialog ul li a span.subtext{color:#a2a2a3;font-style:italic;display:block;font-size:.9em;line-height:1.1em}
-#help_dialog ul li:hover{border-top-color:#d7eefb;border-bottom-color:#297fd1;background:#2da5f0 url(/images/feedback/feedback-active.png?1329964910) repeat-x 0 0}
+#help_dialog ul li:hover{border-top-color:#d7eefb;border-bottom-color:#297fd1;background:#2da5f0 url(/images/feedback/feedback-active.png?1335969973) repeat-x 0 0}
 #help_dialog ul li:hover a{text-decoration:none}
 #help_dialog ul li:hover a span.text{color:#fff}
 #help_dialog ul li:hover a span.subtext{color:#015f99}

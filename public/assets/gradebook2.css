@@ -102,7 +102,7 @@
 .minimized .gradebook-cell{font-size:0}
 .minimized .gradebook-cell *{display:none}
 .minimized .slick-column-name{display:none}
-#gradebook-toolbar{background:url(/images/gradebook-header-bg.png?1329964910) repeat-x;height:28px;padding:8px 20px}
+#gradebook-toolbar{background:url(/images/gradebook-header-bg.png?1335969973) repeat-x;height:28px;padding:8px 20px}
 #section-to-show-menu{width:200px}
 #section-to-show-menu.scrolling{overflow-x:hidden;overflow-y:auto;max-height:550px}
 #assignment_group_weights_dialog table{width:100%}
