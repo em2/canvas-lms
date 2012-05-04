@@ -3,8 +3,8 @@
 .slick-header-column.ui-state-default{position:relative;display:inline-block;overflow:hidden;text-overflow:ellipsis;height:16px;line-height:16px;margin:0;padding:4px;border-right:1px solid silver;border-left:0;border-top:0;border-bottom:0;float:left}
 .slick-header-column-sorted{font-style:italic}
 .slick-sort-indicator{display:inline-block;width:8px;height:5px;margin-left:4px}
-.slick-sort-indicator-desc{background:url(../javascripts/vendor/slickgrid-1.4.3/images/sort-desc.gif?1329964910)}
-.slick-sort-indicator-asc{background:url(../javascripts/vendor/slickgrid-1.4.3/images/sort-asc.gif?1329964910)}
+.slick-sort-indicator-desc{background:url(../javascripts/vendor/slickgrid-1.4.3/images/sort-desc.gif?1335969973)}
+.slick-sort-indicator-asc{background:url(../javascripts/vendor/slickgrid-1.4.3/images/sort-asc.gif?1335969973)}
 .slick-resizable-handle{position:absolute;font-size:.1px;display:block;cursor:col-resize;width:4px;right:0;top:0;height:100%}
 .slick-sortable-placeholder{background:silver}
 .grid-canvas{position:relative;outline:0}
