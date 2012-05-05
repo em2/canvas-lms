@@ -91,12 +91,14 @@ class RostersController < ApplicationController
       @course_titles = params[:rosters][:courses].split(/[\r\n\t\,\; ]+/)
       
       
-      #
-      # Create the Roster
-      @roster = Roster.new
+     
       
       i = 0
       while (i < @course_titles.count)
+        #
+        # Create the Roster
+        @roster = Roster.new
+
         @course_title = @course_titles[i]
         
         #
@@ -346,6 +348,10 @@ class RostersController < ApplicationController
       flash[:notice] = "Not authorized."
       redirect_back_or_default(dashboard_url)
     end
+  end
+
+  def generate
+
   end
 
 end
