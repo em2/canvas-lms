@@ -159,7 +159,7 @@ class RostersController < ApplicationController
         @district_account.sub_accounts.each do |school|
           school.courses.each do |course|
             course.enrollments.all_admin.each do |admin|
-              if (User.find(admin.user_id).sortable_name == @teacher)
+              if (User.find(admin.user_id).sortable_name == @district + @teacher)
                 teacher_found = true
                 @teacher_account = User.find(admin.user_id)
               end
