@@ -3,7 +3,7 @@ class RostersController < ApplicationController
     get_context
     add_crumb("School Rosters")
     
-    @rosters = Roster.all
+    @rosters = Roster.by_name
     
     verify_auth()
     
