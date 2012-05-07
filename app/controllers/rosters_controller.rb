@@ -179,8 +179,8 @@ class RostersController < ApplicationController
           
           @teacher_account = User.create!
           @teacher_account.name = @teacher_id
-          @teacher_account.sortable_name = @teacher
-          @teacher_account.short_name = @teacher
+          @teacher_account.sortable_name = @district + @teacher
+          @teacher_account.short_name = @district + @teacher
           @teacher_account.browser_locale = 'en'
           
           #
@@ -220,7 +220,6 @@ class RostersController < ApplicationController
         @course.assignments.each do |assignment|
           temp_probe_name = @probe.title + @stage + @instance
           if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
-            i += 1
             assignment_found = true
             errors_found = true
           end
@@ -348,10 +347,6 @@ class RostersController < ApplicationController
       flash[:notice] = "Not authorized."
       redirect_back_or_default(dashboard_url)
     end
-  end
-
-  def generate
-
   end
 
 end
