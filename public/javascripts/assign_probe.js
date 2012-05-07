@@ -177,25 +177,6 @@ function assignProbeValidator(){
 			event.stopPropagation();
 			return false;
 		}
-		// else{
-		// 	event.preventDefault();
-		// 	event.stopPropagation();
-		// 	$('#rosters_submit').submit();
-		// 	return;
-		// }
 
 	});
-
-	$("#rosters_submit").formSubmit({
-    success: function() {
-    	alert("bfcoder success");
-    },
-    error: function() {
-    	alert("bfcoder fail");
-    }
-  });
-	
-	
-
-	
 }
