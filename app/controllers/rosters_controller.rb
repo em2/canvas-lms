@@ -138,6 +138,8 @@ class RostersController < ApplicationController
           @roster.save!
         end
 
+        #
+        # Send off the roster to generate everything to delayed_job
         Delayed::Job.enqueue(RosterGenerateJob.new(@context, @probe, @instance, @stage, @course_title, @current_user, @num_students))
 
         i += 1
