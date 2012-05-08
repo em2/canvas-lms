@@ -10,9 +10,6 @@ class Roster < ActiveRecord::Base
 	#########################################################################
 	def generate_probes(context, probe, instance, stage, course_title, current_user, num_students)
         
-
-
-
         #
         # Make sure that the course title is valid.
         if (course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || course_title.size != 16)
