@@ -319,7 +319,7 @@ namespace :dotcloud do
 
   def start_delayed_jobs_deamon(env)
     puts "Starting delayed job deamon"
-    system "dotcloud run #{app_name(env)}.www 'cd ~/current;bundle exec script/delayed_job start"
+    system "dotcloud run #{app_name(env)}.www 'cd ~/current;bundle exec script/delayed_job start'"
     puts "Finished starting delayed job deamon"
   end
   
