@@ -14,6 +14,7 @@ class Roster < ActiveRecord::Base
         #
         # Try to find the course. If unsuccessful, then create the Course.
         if (!@course = Course.find_by_name(course_title))
+          puts "in Course creation"
           @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account)
           @course.offer!
           @course.save!

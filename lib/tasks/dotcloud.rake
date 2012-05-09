@@ -296,15 +296,19 @@ namespace :dotcloud do
   end
   
   def disable_newrelic_pinging(env)
-    puts "Disabling New Relic pinging"
-    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
-    puts "Finished disabling New Relic pinging"
+    if (env == "production")
+      puts "Disabling New Relic pinging"
+      system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/disable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
+      puts "Finished disabling New Relic pinging"
+    end
   end
   
   def enable_newrelic_pinging(env)
-    puts "Enabling New Relic pinging"
-    system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
-    puts "Finished enabling New Relic pinging"
+    if (env == "production")
+      puts "Enabling New Relic pinging"
+      system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
+      puts "Finished enabling New Relic pinging"
+    end
   end
 
   def start_delayed_jobs_deamon(env)
