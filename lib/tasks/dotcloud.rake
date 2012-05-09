@@ -113,6 +113,7 @@ namespace :dotcloud do
     setup_symlinks(env)
     update_db(env)
     enable_newrelic_pinging(env)
+    start_delayed_jobs_deamon(env)
   end
   
   def initial_setup(env)
@@ -159,6 +160,7 @@ namespace :dotcloud do
     system "dotcloud alias add #{app_name(env)}.www #{app_domain(env)}" if app_domain(env)
     remove_environment(env)
     enable_newrelic_pinging(env)
+    start_delayed_jobs_deamon(env)
   end
   
   def update_db(env)
@@ -313,6 +315,12 @@ namespace :dotcloud do
       system "dotcloud run #{app_name(env)}.www 'curl https://rpm.newrelic.com/accounts/#{newrelic_account(env)}/applications/#{newrelic_application(env)}/ping_targets/enable -X POST -H \"X-Api-Key: #{newrelic_api(env)}\"'"
       puts "Finished enabling New Relic pinging"
     end
+  end
+
+  def start_delayed_jobs_deamon(env)
+    puts "Starting delayed job deamon"
+    system "dotcloud run #{app_name(env)}.www 'cd ~/current;bundle exec script/delayed_job start"
+    puts "Finished starting delayed job deamon"
   end
   
 end
