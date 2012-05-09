@@ -140,7 +140,7 @@ class RostersController < ApplicationController
 
         #
         # Send off the roster to generate everything to delayed_job
-        Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students))
+        Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher))
         #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students)
         #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @num_students)
 

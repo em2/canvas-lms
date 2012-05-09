@@ -3,57 +3,18 @@ class Roster < ActiveRecord::Base
 	named_scope :by_name, :order => 'name ASC'
 
 
-	  #########################################################################
+	#########################################################################
 	#
 	# generate_probes will generate all the districts, schools, teachers, and students
 	#
 	#########################################################################
-	def generate_probes(context, probe, instance, stage, course_title, current_user, num_students)
+	def generate_probes(context, probe, instance, stage, course_title, current_user, num_students, district, district_account, school_account, teacher)
         
-        #
-        # Make sure that the course title is valid.
-        if (course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || course_title.size != 16)
-          errors_found = true
-          return
-        end
-        
-        #
-        # Pull out all the names using regex.
-        @district = course_title[/[Dd][0-9]{3}/]
-        @school = course_title[/[Ss][0-9]{3}/]
-        @class = course_title[/[Cc][0-9]{3}/]
-        @teacher = course_title[/[Tt][0-9]{3}/]
-        
-        #
-        # Try to find the district. If unsuccessful, then create one.
-        if (!@district_account = Account.find_by_name(@district))
-          @district_account = Account.create!(:name => @district, :parent_account => context)
-        end
-        
-        #
-        # Try to find a school in that district with the same name.
-        found_school = false
-        @district_account.sub_accounts.each do |school|
-          if (school.name == @school)
-            found_school = true
-            @school_account = school
-            @roster = Roster.find_by_name(@district + @school)
-          end
-        end
-        
-        #
-        # If that was unsuccessful, go ahead and create a new school and roster for that school.
-        if (!found_school)
-          @school_account = Account.create!(:name => @school, :parent_account => @district_account)
-          @roster.name = @district + @school
-          @roster.account = @school_account
-          @roster.save!
-        end
-        
+
         #
         # Try to find the course. If unsuccessful, then create the Course.
         if (!@course = Course.find_by_name(course_title))
-          @course = Course.create!(:name => course_title, :course_code => course_title, :account => @school_account)
+          @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account)
           @course.offer!
           @course.save!
         end
@@ -64,10 +25,10 @@ class Roster < ActiveRecord::Base
         # Go through each school and look for a teacher with the same name
         # if unsuccessful, go ahead and create that teacher
         teacher_found = false
-        @district_account.sub_accounts.each do |school|
+        district_account.sub_accounts.each do |school|
           school.courses.each do |course|
             course.enrollments.all_admin.each do |admin|
-              if (User.find(admin.user_id).sortable_name == @district + @teacher)
+              if (User.find(admin.user_id).sortable_name == district + teacher)
                 teacher_found = true
                 @teacher_account = User.find(admin.user_id)
               end
@@ -87,8 +48,8 @@ class Roster < ActiveRecord::Base
           
           @teacher_account = User.create!
           @teacher_account.name = @teacher_id
-          @teacher_account.sortable_name = @district + @teacher
-          @teacher_account.short_name = @district + @teacher
+          @teacher_account.sortable_name = district + teacher
+          @teacher_account.short_name = district + teacher
           @teacher_account.browser_locale = 'en'
           
           #
