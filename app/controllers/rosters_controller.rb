@@ -77,7 +77,7 @@ class RostersController < ApplicationController
       get_context
       @context = @domain_root_account || Account.default unless @context.is_a?(Account)
       @context = @context.root_account || @context
-      @term = @context.enrollment_terms.active[-1]
+      #@term = @context.enrollment_terms.active[-1]
       
       #
       # Create the names
