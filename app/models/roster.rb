@@ -40,6 +40,7 @@ class Roster < ActiveRecord::Base
         #
         # If the teacher was not found, create that teacher
         if (!teacher_found)
+          puts "in Teacher creation"
           @teacher_id = rand(8999999999)+1000000000
           #
           # Make sure student_id is unique
@@ -129,6 +130,9 @@ class Roster < ActiveRecord::Base
         
         j = 0
         while(j < num_students && j < @num_needed)
+          puts "bfcoder RULES"
+          puts num_students
+          puts @num_needed
           
           @student_id = rand(8999999999)+1000000000
           #
