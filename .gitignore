@@ -17,6 +17,7 @@ db/demo
 config/GEM_HOME
 config/*.yml
 config/environments/*-local.rb
+config/staging/
 models.dot
 db/*sql
 db/development_structure.sql
