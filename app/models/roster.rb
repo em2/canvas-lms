@@ -10,6 +10,7 @@ class Roster < ActiveRecord::Base
 	#########################################################################
 	def generate_probes(context, probe, instance, stage, course_title, current_user, num_students, district, district_account, school_account, teacher)
         
+        puts "at start of generate_probes with num_students #{num_students}"
 
         #
         # Try to find the course. If unsuccessful, then create the Course.
