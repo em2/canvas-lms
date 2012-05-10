@@ -91,7 +91,7 @@ class RostersController < ApplicationController
       
       i = 0
       while (i < @course_titles.count)
-        puts "in course_titles #{@course_titles[i]} whith index being #{i} while loop"
+        
         #
         # Create the Roster
         @roster = Roster.new
@@ -116,9 +116,7 @@ class RostersController < ApplicationController
         #
         # Try to find the district. If unsuccessful, then create one.
         if (!@district_account = Account.find_by_name(@district))
-          puts "in district creation #{@course_titles[i]} whith index being #{i}"
           @district_account = Account.create!(:name => @district, :parent_account => @context)
-          puts "district created #{@course_titles[i]} whith index being #{i}"
         end
         
         #
@@ -126,38 +124,30 @@ class RostersController < ApplicationController
         found_school = false
         @district_account.sub_accounts.each do |school|
           if (school.name == @school)
-            puts "in school finder #{@course_titles[i]} whith index being #{i}"
             found_school = true
             @school_account = school
             @roster = Roster.find_by_name(@district + @school)
-            puts "school has been found #{@course_titles[i]} whith index being #{i}"
           end
         end
         
         #
         # If that was unsuccessful, go ahead and create a new school and roster for that school.
         if (!found_school)
-          puts "in school creation #{@course_titles[i]} whith index being #{i}"
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
           @roster.name = @district + @school
           @roster.account = @school_account
           @roster.save!
-          puts "school has been created and roster has been saved #{@course_titles[i]} whith index being #{i}"
         end
 
         #
         # Send off the roster to generate everything to delayed_job
-        puts "sending job to queue #{@course_titles[i]} whith index being #{i}"
         #Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher))
         @roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
         #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
-        puts "job has been enqueued #{@course_titles[i]} whith index being #{i}"
-
-
+        
         i += 1
       end
-
-      puts "sending user back to dashboard" 
+      
       flash[:notice] = "Your probes are being generated."
       redirect_back_or_default(dashboard_url)
 

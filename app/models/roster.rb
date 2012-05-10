@@ -9,13 +9,10 @@ class Roster < ActiveRecord::Base
 	#
 	#########################################################################
 	def generate_probes(context, probe, instance, stage, course_title, current_user, num_students, district, district_account, school_account, teacher)
-        
-        puts "at start of generate_probes with num_students #{num_students}"
 
         #
         # Try to find the course. If unsuccessful, then create the Course.
         if (!@course = Course.find_by_name(course_title))
-          puts "in Course creation"
           @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account)
           @course.offer!
           @course.save!
@@ -41,7 +38,6 @@ class Roster < ActiveRecord::Base
         #
         # If the teacher was not found, create that teacher
         if (!teacher_found)
-          puts "in Teacher creation"
           @teacher_id = rand(8999999999)+1000000000
           #
           # Make sure student_id is unique
@@ -131,9 +127,6 @@ class Roster < ActiveRecord::Base
         
         j = 0
         while(j < num_students && j < @num_needed)
-          puts "bfcoder RULES"
-          puts num_students
-          puts @num_needed
           
           @student_id = rand(8999999999)+1000000000
           #
