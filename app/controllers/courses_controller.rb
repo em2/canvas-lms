@@ -181,6 +181,13 @@ class CoursesController < ApplicationController
     get_context
     if authorized_action(@context, @current_user, :change_course_state)
       @context.unconclude
+
+      roster_name = @context.account.parent_account.name + @context.account.name
+      if (roster = Roster.find_by_name(roster_name))
+        roster.workflow_state = @context.workflow_state
+        roster.save!
+      end
+
       flash[:notice] = t('notices.unconcluded', "Course un-concluded")
       redirect_to(named_context_url(@context, :context_url))
     end
@@ -302,6 +309,13 @@ class CoursesController < ApplicationController
       @context.complete
       flash[:notice] = t('notices.concluded', "Course successfully concluded")
     end
+
+    roster_name = @context.account.parent_account.name + @context.account.name
+    if (roster = Roster.find_by_name(roster_name))
+      roster.workflow_state = @context.workflow_state
+      roster.save!
+    end
+
     @current_user.touch
     respond_to do |format|
       format.html {redirect_to dashboard_url}

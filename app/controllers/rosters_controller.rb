@@ -123,10 +123,14 @@ class RostersController < ApplicationController
         # Try to find a school in that district with the same name.
         found_school = false
         @district_account.sub_accounts.each do |school|
-          if (school.name == @school)
+          if (school.name == @school && school.workflow_state == "active")
             found_school = true
             @school_account = school
             @roster = Roster.find_by_name(@district + @school)
+            if (@roster.workflow_state != "available")
+              @roster.workflow_state = "available"
+              @roster.save!
+            end
           end
         end
         
@@ -136,14 +140,15 @@ class RostersController < ApplicationController
           @school_account = Account.create!(:name => @school, :parent_account => @district_account)
           @roster.name = @district + @school
           @roster.account = @school_account
+          @roster.workflow_state = "available"
           @roster.save!
         end
 
         #
         # Send off the roster to generate everything to delayed_job
         #Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher))
-        @roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
-        #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
+        #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
+        @roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
         
         i += 1
       end

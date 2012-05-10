@@ -138,6 +138,12 @@ class Enrollment < ActiveRecord::Base
                               AND enrollments.workflow_state IN ('invited', 'active', 'completed')
                               AND courses.workflow_state IN ('available', 'completed')"
 
+  named_scope :all_student_active,
+              :include => :course,
+              :conditions => "enrollments.type = 'StudentEnrollment'
+                              AND enrollments.workflow_state IN ('active')
+                              AND courses.workflow_state IN ('available', 'completed')"
+
   named_scope :ended,
               :joins => :course,
               :conditions => "courses.workflow_state = 'completed' or enrollments.workflow_state = 'rejected' or enrollments.workflow_state = 'completed'"
