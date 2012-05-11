@@ -51,10 +51,10 @@ class RostersController < ApplicationController
       temp_students_custom = params[:rosters][:students_custom]
       if (temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0 && temp_students_custom.to_i <= 250)
         student_count_correct = true
-        @num_students = temp_students_custom.to_i
+        @number_students = temp_students_custom.to_i
       end
     else
-      @num_students = temp_students.to_i
+      @number_students = temp_students.to_i
       student_count_correct = true
     end
 
@@ -86,9 +86,15 @@ class RostersController < ApplicationController
       @stage = params[:rosters][:stage]
       @course_titles = params[:rosters][:courses].split(/[\r\n\t\,\; ]+/)
       
-      
-     
-      
+      #
+      # probe_generated is so we know if a probe is generated during the while loop
+      # There may be a case where the user only entered one class id and there was a
+      # problem with that one id. We will exit the following loop prematurely and thus no
+      # probes have been generated.
+      probe_generated = false
+
+      #
+      # Loop until a probe has been generated for each class id
       i = 0
       while (i < @course_titles.count)
         
@@ -110,8 +116,15 @@ class RostersController < ApplicationController
         # Pull out all the names using regex.
         @district = @course_title[/[Dd][0-9]{3}/]
         @school = @course_title[/[Ss][0-9]{3}/]
-        @class = @course_title[/[Cc][0-9]{3}/]
         @teacher = @course_title[/[Tt][0-9]{3}/]
+        @class = @course_title[/[Cc][0-9]{3}/]
+
+        @district.capitalize!
+        @school.capitalize!
+        @teacher.capitalize!
+        @class.capitalize!
+
+        @course_title = @district + @school + @teacher + @class
         
         #
         # Try to find the district. If unsuccessful, then create one.
@@ -146,14 +159,22 @@ class RostersController < ApplicationController
 
         #
         # Send off the roster to generate everything to delayed_job
-        #Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher))
-        @roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
-        #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @num_students, @district, @district_account, @school_account, @teacher)
+        #Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
+        @roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+        #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
         
+        probe_generated = true
+
         i += 1
       end
-      
-      flash[:notice] = "Your probes are being generated."
+
+      if (errors_found && probe_generated)
+        flash[:notice] = "There were some errors. However, some of your probes are being generated."
+      elsif (errors_found && !probe_generated)
+        flash[:notice] = "There were some errors and no probes have been generated."
+      elsif (probe_generated)
+        flash[:notice] = "Your probes are being generated."
+      end
       redirect_back_or_default(dashboard_url)
 
     end

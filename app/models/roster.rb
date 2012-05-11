@@ -13,7 +13,7 @@ class Roster < ActiveRecord::Base
 	# generate_probes will generate all the districts, schools, teachers, and students
 	#
 	#########################################################################
-	def generate_probes(context, probe, instance, stage, course_title, current_user, num_students, district, district_account, school_account, teacher)
+	def generate_probes(context, probe, instance, stage, course_title, current_user, number_students, district, district_account, school_account, teacher)
 
     course_found = false
     all_courses = Course.all
@@ -105,7 +105,6 @@ class Roster < ActiveRecord::Base
       temp_probe_name = probe.title + stage + instance
       if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
         assignment_found = true
-        errors_found = true
       end
     end
         
@@ -139,11 +138,12 @@ class Roster < ActiveRecord::Base
     # calculate the number of extra students needed
     # course student enrollments count minus the total required students
     @course_enrollment_count = @course.enrollments.all_student_active.count
-    @num_needed = num_students - @course_enrollment_count
+    @students_needed = number_students - @course_enrollment_count
 
-
+    #
+    # Loop until a student has been created for all the @students_needed
     j = 0
-    while(j < num_students && j < @num_needed)
+    while(j < @students_needed)
       
       @student_id = rand(8999999999)+1000000000
       #
