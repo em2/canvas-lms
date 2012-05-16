@@ -446,6 +446,7 @@ class Course < ActiveRecord::Base
   
   named_scope :by_name, :order => 'name ASC'
   named_scope :by_name_available, :conditions => {:workflow_state => "available"}, :order => 'name ASC'
+  named_scope :are_available, :conditions => {:workflow_state => "available"}
 
   set_broadcast_policy do |p|
     p.dispatch :grade_weight_changed

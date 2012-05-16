@@ -9,7 +9,9 @@
 
 <% @rosters.each do |roster| -%>
   <tr>
-    <td><%= link_to roster.name, roster_path(roster) %> &nbsp </td>
+  	<% if roster.account.courses.are_available.count > 0 -%>
+    	<td><%= link_to roster.name, roster_path(roster) %> &nbsp </td>
+    <% end -%>
   </tr>
 <% end -%>
 </table>

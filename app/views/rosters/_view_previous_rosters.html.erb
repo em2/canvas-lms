@@ -2,6 +2,8 @@
 <div class="rs-margin-lr">
 	<% @school_rosters = Roster.by_name -%>
 	<% @school_rosters.each do |roster| -%>
-		<a href="<%= roster_path(roster) %>" class="button button-sidebar-wide"> <%= roster.name %> </a>
+		<% if roster.account.courses.are_available.count > 0 -%>
+			<a href="<%= roster_path(roster) %>" class="button button-sidebar-wide"> <%= roster.name %> </a>
+		<% end -%>
 	<% end -%>
 </div>
