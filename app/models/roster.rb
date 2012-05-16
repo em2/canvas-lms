@@ -18,9 +18,15 @@ class Roster < ActiveRecord::Base
     course_found = false
     all_courses = Course.all
     all_courses.each do |course|
-      if (course.name == course_title && course.workflow_state == "available")
-        course_found = true
-        @course = course
+      if (course.name == course_title)
+        if (course.workflow_state == "available" || course.workflow_state == "completed")
+          course_found = true
+          @course = course
+          if (course.workflow_state == "completed")
+            @course.unconclude
+            @course.save!
+          end
+        end 
       end
     end
 

@@ -160,8 +160,8 @@ class RostersController < ApplicationController
         #
         # Send off the roster to generate everything to delayed_job
         #Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
-        @roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
-        #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+        #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+        @roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
         
         probe_generated = true
 
@@ -169,11 +169,11 @@ class RostersController < ApplicationController
       end
 
       if (errors_found && probe_generated)
-        flash[:notice] = "There were some errors. However, some of your probes are being generated."
+        flash[:notice] = "There were some errors. However, I am attempting to generate the probes..."
       elsif (errors_found && !probe_generated)
         flash[:notice] = "There were some errors and no probes have been generated."
       elsif (probe_generated)
-        flash[:notice] = "Your probes are being generated."
+        flash[:error] = "Attempting to generate the probes..."
       end
       redirect_back_or_default(dashboard_url)
 
