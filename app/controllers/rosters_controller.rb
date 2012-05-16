@@ -169,11 +169,11 @@ class RostersController < ApplicationController
       end
 
       if (errors_found && probe_generated)
-        flash[:notice] = "There were some errors. However, I am attempting to generate the probes..."
+        flash[:error] = "There were some errors. However, I am attempting to generate the probes..."
       elsif (errors_found && !probe_generated)
-        flash[:notice] = "There were some errors and no probes have been generated."
+        flash[:error] = "There were some errors and no probes have been generated."
       elsif (probe_generated)
-        flash[:error] = "Attempting to generate the probes..."
+        flash[:notice] = "Attempting to generate the probes..."
       end
       redirect_back_or_default(dashboard_url)
 
