@@ -32,7 +32,7 @@
 		<% end -%>
     <% end %>
   </div>
-	<div class="question_text question_left_side">
+	<div class="question_text question_text_CF question_left_side">
 		<% if (found_fractions) -%>
 			<%= user_content(fraction_a) %>
 		<% end -%>
@@ -121,7 +121,7 @@
     <% }) %>
   </div>
   <% end %>
-  <div class="answers">
+  <div class="answers_CF">
     <% if assessing %>
       <% if question %>
         <% if question_type.display_answers == "multiple" && hash_get(question, :question_type) != "missing_word_question" %>
@@ -220,7 +220,7 @@
       <% end %>
     <% end %>
   </div>
-	<div class="question_text question_right_side">
+	<div class="question_text question_text_CF question_right_side_CF">
 		<% if (found_fractions) -%>
 			<%= user_content(fraction_b) %>
 		<% end -%>
@@ -233,7 +233,7 @@
 			<div id="explain_area_<%= question[:id] %>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="40" rows="12"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
 		<% end -%>
 		<% if !assessing && user_answer -%>
-			<div id="explain_area_<%= question[:id] %>" class="explain_area_text"><textarea cols="40" rows="12" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
+			<div id="explain_area_<%= question[:id] %>" class="explain_area_text_CF"><textarea cols="40" rows="12" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
 		<% end -%>
 		<% if assessing -%>
 			<% click_x_data = @stored_params["explain_canvas_#{question[:id]}_click_x_data"] -%>
@@ -296,18 +296,20 @@
 		margin-top: 10px;
 		font-size: 13px;
 	}
-	.answers{
+	.answers_CF{
 		float: left;
 		margin-top: 70px;
+    padding-left: 5px;
+    padding-right: 5px;
 	}
-	.question_text{
+	.question_text_CF{
 		float: left;
-		margin-top: 87px;
+		margin-top: 74px;
 	}
-	.question_right_side{
+	.question_right_side_CF{
 		padding-right: 13px;
 	}
-	.explain_area_text{
+	.explain_area_text_CF{
 		padding: 3px 6px;
 		margin-top: 6px;
 	}
