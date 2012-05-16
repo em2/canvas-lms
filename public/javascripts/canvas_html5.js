@@ -56,24 +56,24 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var curLoadResNum = 0;
 	
 	// Load the previous canvas data
-	if ($('#explain_canvas_'+question_id+'_click_x_data').text().length > 0){
+	if ($('#explain_canvas_'+question_id+'_click_x_data').val().length > 0){
 
-		clickX = $('#explain_canvas_'+question_id+'_click_x_data').text();
+		clickX = $('#explain_canvas_'+question_id+'_click_x_data').val();
 		clickX = clickX.split(',');
 		
-		clickY = $('#explain_canvas_'+question_id+'_click_y_data').text();
+		clickY = $('#explain_canvas_'+question_id+'_click_y_data').val();
 		clickY = clickY.split(',');
 		
-		clickColor = $('#explain_canvas_'+question_id+'_click_color_data').text();
+		clickColor = $('#explain_canvas_'+question_id+'_click_color_data').val();
 		clickColor = clickColor.split(',');
 		
-		clickTool = $('#explain_canvas_'+question_id+'_click_tool_data').text();
+		clickTool = $('#explain_canvas_'+question_id+'_click_tool_data').val();
 		clickTool = clickTool.split(',');
 		
-		clickSize = $('#explain_canvas_'+question_id+'_click_size_data').text();
+		clickSize = $('#explain_canvas_'+question_id+'_click_size_data').val();
 		clickSize = clickSize.split(',');
 		
-		clickDrag = $('#explain_canvas_'+question_id+'_click_drag_data').text();
+		clickDrag = $('#explain_canvas_'+question_id+'_click_drag_data').val();
 		clickDrag = clickDrag.split(',');
 
 		for (var i=0; i<clickX.length; i++){
@@ -203,12 +203,12 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			clickSize.push(curSize);
 			clickDrag.push(dragging);
 
-			$('#explain_canvas_'+question_id+'_click_x_data').text(clickX.toString());
-			$('#explain_canvas_'+question_id+'_click_y_data').text(clickY.toString());
-			$('#explain_canvas_'+question_id+'_click_color_data').text(clickColor.toString());
-			$('#explain_canvas_'+question_id+'_click_tool_data').text(clickTool.toString());
-			$('#explain_canvas_'+question_id+'_click_size_data').text(clickSize.toString());
-			$('#explain_canvas_'+question_id+'_click_drag_data').text(clickDrag.toString());
+			$('#explain_canvas_'+question_id+'_click_x_data').val(clickX.toString());
+			$('#explain_canvas_'+question_id+'_click_y_data').val(clickY.toString());
+			$('#explain_canvas_'+question_id+'_click_color_data').val(clickColor.toString());
+			$('#explain_canvas_'+question_id+'_click_tool_data').val(clickTool.toString());
+			$('#explain_canvas_'+question_id+'_click_size_data').val(clickSize.toString());
+			$('#explain_canvas_'+question_id+'_click_drag_data').val(clickDrag.toString());
 
 			//
 			// Fire a change event so the data can be reliably saved to the database
