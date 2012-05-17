@@ -222,14 +222,14 @@ define([
         answer_type = "select_answer";
         question_type = "multiple_choice_question";
       }	else if (qt == 'compare_fractions_question') {
-		answer_type = "select_answer";
-		question_type = "compare_fractions_question";
-	  } else if (qt == 'locate_fractions_question') {
-		answer_type = "select_answer";
-		question_type = "locate_fractions_question";
+		    answer_type = "select_answer";
+		    question_type = "compare_fractions_question";
+	    } else if (qt == 'locate_fractions_question') {
+		    answer_type = "select_answer";
+		    question_type = "locate_fractions_question";
       } else if (qt == 'represent_fractions_question') {
-		answer_type = "select_answer";
-		question_type = "represent_fractions_question";
+		    answer_type = "select_answer";
+		    question_type = "represent_fractions_question";
       } else if (qt == 'true_false_question') {
         answer_type = "select_answer";
         question_type = "true_false_question";
@@ -279,8 +279,8 @@ define([
       var result = "single_answer";
       if(question_type == 'multiple_choice_question') {
       } else if(question_type == 'compare_fractions_question') {
-	  } else if(question_type == 'locate_fractions_question'){
-	  } else if(question_type == 'represent_fractions_question'){
+	    } else if(question_type == 'locate_fractions_question'){
+	    } else if(question_type == 'represent_fractions_question'){
       } else if(question_type == 'true_false_question') {
       } else if(question_type == 'short_answer_question') {
         result = "any_answer";
@@ -556,9 +556,9 @@ define([
       };
       if(question_type == 'multiple_choice_question') {
       } else if(question_type == 'compare_fractions_question') {
-	  } else if(question_type == 'locate_fractions_question') {
-	  } else if(question_type == 'represent_fractions_question') {
-	  } else if(question_type == 'true_false_question') {
+	    } else if(question_type == 'locate_fractions_question') {
+	    } else if(question_type == 'represent_fractions_question') {
+	    } else if(question_type == 'true_false_question') {
         options.addable = false;
         var $answers = $formQuestion.find(".form_answers .answer");
         if ($answers.length < 2) {
@@ -725,7 +725,7 @@ define([
       question_text: "",
       question_points: 1,
       question_name: I18n.t('default_question_name', "Question"),
-      answer_count: 4
+      answer_count: 3
     },
 
     defaultAnswerData: {
