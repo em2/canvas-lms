@@ -33,6 +33,7 @@ ALL_MODELS = (ActiveRecord::Base.send(:subclasses) +
         next unless model < ActiveRecord::Base
         model
       }).compact.uniq.reject { |model| model.superclass != ActiveRecord::Base || model == Tableless }
+ALL_MODELS << Version
 
 # rspec aliases :describe to :context in a way that it's pretty much defined
 # globally on every object. :context is already heavily used in our application,
@@ -70,6 +71,18 @@ class ActiveRecord::ConnectionAdapters::MysqlAdapter < ActiveRecord::ConnectionA
   end
 end
 
+Spec::Matchers.define :encompass do |expected|
+  match do |actual|
+    if expected.is_a?(Array) && actual.is_a?(Array)
+      expected.size == actual.size && expected.zip(actual).all?{|e,a| a.slice(*e.keys) == e}
+    elsif expected.is_a?(Hash) && actual.is_a?(Hash)
+      actual.slice(*expected.keys) == expected
+    else
+      false
+    end
+  end
+end
+
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
@@ -81,12 +94,21 @@ Spec::Runner.configure do |config|
 
   config.include Webrat::Matchers, :type => :views
 
+  config.before :all do
+    # so before(:all)'s don't get confused
+    Account.clear_special_account_cache!
+    Notification.after_create { Notification.reset_cache! }
+  end
+
   config.before :each do
     Time.zone = 'UTC'
+    Account.clear_special_account_cache!
     Account.default.update_attribute(:default_time_zone, 'UTC')
     Setting.reset_cache!
     HostUrl.reset_cache!
+    Notification.reset_cache!
     ActiveRecord::Base.reset_any_instantiation!
+    Rails::logger.try(:info, "Running #{self.class.description} #{@method_name}")
   end
 
   # flush redis before the first spec, and before each spec that comes after
@@ -102,7 +124,7 @@ Spec::Runner.configure do |config|
   end
   config.before :each do
     if Canvas.redis_enabled? && Canvas.redis_used
-      Canvas.redis.flushdb
+      Canvas.redis.flushdb rescue nil
     end
     Canvas.redis_used = false
   end
@@ -140,6 +162,7 @@ Spec::Runner.configure do |config|
       e = @course.enroll_teacher(u)
       e.workflow_state = 'active'
       e.save!
+      @teacher = u
     end
     @course
   end
@@ -201,7 +224,9 @@ Spec::Runner.configure do |config|
   end
 
   def pseudonym(user, opts={})
-    username = opts[:username] || "nobody@example.com"
+    @spec_pseudonym_count ||= 0
+    username = opts[:username] || (@spec_pseudonym_count > 0 ? "nobody+#{@spec_pseudonym_count}@example.com" : "nobody@example.com")
+    @spec_pseudonym_count += 1 if username =~ /nobody(\+\d+)?@example.com/
     password = opts[:password] || "asdfasdf"
     password = nil if password == :autogenerate
     @pseudonym = user.pseudonyms.create!(:account => opts[:account] || Account.default, :unique_id => username, :password => password, :password_confirmation => password)
@@ -232,21 +257,11 @@ Spec::Runner.configure do |config|
     user
   end
 
-  def course_with_student(opts={})
-    course(opts)
-    student_in_course(opts)
-  end
-
-  def course_with_student_logged_in(opts={})
-    course_with_student(opts)
-    user_session(@user)
-  end
-
-  def student_in_course(opts={})
-    @course ||= opts[:course] || course(opts)
-    @student = @user = opts[:user] || user(opts)
-    @enrollment = @course.enroll_student(@user)
-    @enrollment.course = @course
+  def course_with_user(enrollment_type, opts={})
+    @course = opts[:course] || course(opts)
+    @user = opts[:user] || user(opts)
+    @enrollment = @course.enroll_user(@user, enrollment_type)
+    @enrollment.course = @course # set the reverse association
     if opts[:active_enrollment] || opts[:active_all]
       @enrollment.workflow_state = 'active'
       @enrollment.save!
@@ -255,14 +270,42 @@ Spec::Runner.configure do |config|
     @enrollment
   end
 
+  def course_with_student(opts={})
+    course_with_user('StudentEnrollment', opts)
+    @student = @user
+    @enrollment
+  end
+
+  def course_with_ta(opts={})
+    course_with_user("TaEnrollment", opts)
+    @ta = @user
+    @enrollment
+  end
+
+  def course_with_student_logged_in(opts={})
+    course_with_student(opts)
+    user_session(@user)
+  end
+
+  def student_in_course(opts={})
+    opts[:course] = @course if @course && !opts[:course]
+    course_with_student(opts)
+  end
+
+  def teacher_in_course(opts={})
+    opts[:course] = @course if @course && !opts[:course]
+    course_with_teacher(opts)
+  end
+
   def course_with_teacher(opts={})
-    @course = opts[:course] || course(opts)
-    @user = opts[:user] || user(opts)
+    course_with_user('TeacherEnrollment', opts)
     @teacher = @user
-    @enrollment = @course.enroll_teacher(@user)
-    # set the reverse association
-    @enrollment.course = @course
-    @enrollment.accept! if opts[:active_enrollment] || opts[:active_all]
+    @enrollment
+  end
+
+  def course_with_designer(opts={})
+    course_with_user('DesignerEnrollment', opts)
+    @designer = @user
     @enrollment
   end
 
@@ -271,9 +314,39 @@ Spec::Runner.configure do |config|
     user_session(@user)
   end
 
+  def course_with_observer(opts={})
+    course_with_user('ObserverEnrollment', opts)
+    @observer = @user
+    @enrollment
+  end
+
+  def course_with_observer_logged_in(opts={})
+    course_with_observer(opts)
+    user_session(@user)
+  end
+
+  def add_section(section_name)
+    @course_section = @course.course_sections.create!(:name => section_name)
+    @course.reload
+  end
+
+  def multiple_student_enrollment(user, section)
+    @enrollment = @course.enroll_student(user,
+                                         :enrollment_state => "active",
+                                         :section => section,
+                                         :allow_multiple_enrollments => true)
+  end
+
+  def enter_student_view(opts={})
+    course = opts[:course] || @course || course(opts)
+    @fake_student = course.student_view_student
+    post "/users/#{@fake_student.id}/masquerade"
+    session[:become_user_id].should == @fake_student.id.to_s
+  end
+
   def group(opts={})
     if opts[:group_context]
-      opts[:group_context].groups.create!
+      @group = opts[:group_context].groups.create!
     else
       @group = Group.create!
     end
@@ -314,33 +387,49 @@ Spec::Runner.configure do |config|
   # The block should return the submission_data. A block is used so
   # that we have access to the @questions variable that is created
   # in this method
-  def quiz_with_graded_submission(questions, &block)
-    course_with_student(:active_all => true)
-    @assignment = @course.assignments.create(:title => "Test Assignment")
+  def quiz_with_graded_submission(questions, opts={}, &block)
+    course = opts[:course] || course(:active_course => true)
+    user = opts[:user] || user(:active_user => true)
+    course.enroll_student(user) unless user.enrollments.any?{|e| e.course_id == course.id}
+    @assignment = course.assignments.create(:title => "Test Assignment")
     @assignment.workflow_state = "available"
     @assignment.submission_types = "online_quiz"
     @assignment.save
     @quiz = Quiz.find_by_assignment_id(@assignment.id)
     @questions = questions.map { |q| @quiz.quiz_questions.create!(q) }
     @quiz.generate_quiz_data
-    @quiz_submission = @quiz.generate_submission(@user)
+    @quiz.workflow_state = "available"
+    @quiz.save!
+    @quiz_submission = @quiz.generate_submission(user)
     @quiz_submission.mark_completed
     @quiz_submission.submission_data = yield if block_given?
     @quiz_submission.grade_submission
   end
 
-  def outcome_with_rubric(opts={})
-    @outcome_group ||= LearningOutcomeGroup.default_for(@course)
-    @outcome = @course.created_learning_outcomes.create!(:description => '<p>This is <b>awesome</b>.</p>', :short_description => 'new outcome')
-    @outcome_group.add_item(@outcome)
-    @outcome_group.save!
+  def survey_with_submission(questions, &block)
+    course_with_student(:active_all => true)
+    @assignment = @course.assignments.create(:title => "Test Assignment")
+    @assignment.workflow_state = "available"
+    @assignment.submission_types = "online_quiz"
+    @assignment.save
+    @quiz = Quiz.find_by_assignment_id(@assignment.id)
+    @quiz.anonymous_submissions = true
+    @quiz.quiz_type = "graded_survey"
+    @questions = questions.map { |q| @quiz.quiz_questions.create!(q) }
+    @quiz.generate_quiz_data
+    @quiz.save!
+    @quiz_submission = @quiz.generate_submission(@user)
+    @quiz_submission.mark_completed
+    @quiz_submission.submission_data = yield if block_given?
+  end
 
+  def rubric_for_course
     @rubric = Rubric.new(:title => 'My Rubric', :context => @course)
     @rubric.data = [
       {
         :points => 3,
-        :description => "Outcome row",
-        :long_description => @outcome.description,
+        :description => "First row",
+        :long_description => "The first row in the rubric",
         :id => 1,
         :ratings => [
           {
@@ -350,44 +439,83 @@ Spec::Runner.configure do |config|
             :id => 2
           },
           {
+            :points => 2,
+            :description => "Rockin'",
+            :criterion_id => 1,
+            :id => 3
+          },
+          {
             :points => 0,
             :description => "Lame",
             :criterion_id => 1,
-            :id => 3
-          }
-        ],
-        :learning_outcome_id => @outcome.id
-      },
-      {
-        :points => 5,
-        :description => "no outcome row",
-        :long_description => 'non outcome criterion',
-        :id => 2,
-        :ratings => [
-          {
-            :points => 5,
-            :description => "Amazing",
-            :criterion_id => 2,
             :id => 4
-          },
-          {
-            :points => 3,
-            :description => "not too bad",
-            :criterion_id => 2,
-            :id => 5
-          },
-          {
-            :points => 0,
-            :description => "no bueno",
-            :criterion_id => 2,
-            :id => 6
           }
         ]
       }
     ]
+    @rubric.save!
+  end
+
+  def outcome_with_rubric(opts={})
+    @outcome_group ||= LearningOutcomeGroup.default_for(@course)
+    @outcome = @course.created_learning_outcomes.create!(:description => '<p>This is <b>awesome</b>.</p>', :short_description => 'new outcome')
+    @outcome_group.add_item(@outcome)
+    @outcome_group.save!
+
+    @rubric = Rubric.generate(:context => @course,
+                              :data => {
+      :title => 'My Rubric',
+      :hide_score_total => false,
+      :criteria => {
+        "0" => {
+          :points => 3,
+          :mastery_points => 0,
+          :description => "Outcome row",
+          :long_description => @outcome.description,
+          :ratings => {
+            "0" => {
+              :points => 3,
+              :description => "Rockin'",
+            },
+            "1" => {
+              :points => 0,
+              :description => "Lame",
+            }
+          },
+          :learning_outcome_id => @outcome.id
+        },
+        "1" => {
+          :points => 5,
+          :description => "no outcome row",
+          :long_description => 'non outcome criterion',
+          :ratings => {
+            "0" => {
+              :points => 5,
+              :description => "Amazing",
+            },
+            "1" => {
+              :points => 3,
+              :description => "not too bad",
+            },
+            "2" => {
+              :points => 0,
+              :description => "no bueno",
+            }
+          }
+        }
+      }
+    })
     @rubric.instance_variable_set('@outcomes_changed', true)
     @rubric.save!
     @rubric.update_outcome_tags
+  end
+
+  def grading_standard_for(context)
+    @standard = context.grading_standards.create!(:title => "My Grading Standard", :standard_data => {
+      "scheme_0" => {:name => "A", :value => "0.9"},
+      "scheme_1" => {:name => "B", :value => "0.8"},
+      "scheme_2" => {:name => "C", :value => "0.7"}
+    })
   end
 
   def eportfolio(opts={})
@@ -405,7 +533,7 @@ Spec::Runner.configure do |config|
   def conversation(*users)
     options = users.last.is_a?(Hash) ? users.pop : {}
     @conversation = (options.delete(:sender) || @me || users.shift).initiate_conversation(users.map(&:id))
-    @conversation.add_message('test')
+    @message = @conversation.add_message('test')
     @conversation.update_attributes(options)
     @conversation.reload
   end
@@ -485,9 +613,8 @@ Spec::Runner.configure do |config|
     importer.warnings.should == []
   end
 
-  def enable_cache
+  def enable_cache(new_cache = ActiveSupport::Cache::MemoryStore.new)
     old_cache = RAILS_CACHE
-    new_cache = ActiveSupport::Cache::MemoryStore.new
     ActionController::Base.cache_store = new_cache
     silence_warnings { Object.const_set(:RAILS_CACHE, new_cache) }
     old_perform_caching = ActionController::Base.perform_caching
@@ -500,11 +627,17 @@ Spec::Runner.configure do |config|
   end
 
   # enforce forgery protection, so we can verify usage of the authenticity token
-  def enable_forgery_protection
-    ActionController::Base.class_eval { alias_method :_old_protect, :allow_forgery_protection; def allow_forgery_protection; true; end }
-    yield
+  def enable_forgery_protection(enable = nil)
+    if enable != false
+      ActionController::Base.class_eval { alias_method :_old_protect, :allow_forgery_protection; def allow_forgery_protection; true; end }
+    end
+
+    yield if block_given?
+
   ensure
-    ActionController::Base.class_eval { alias_method :allow_forgery_protection, :_old_protect }
+    if enable != true
+      ActionController::Base.class_eval { alias_method :allow_forgery_protection, :_old_protect }
+    end
   end
 
   def start_test_http_server(requests=1)
@@ -562,5 +695,42 @@ Spec::Runner.configure do |config|
 
   def json_parse(json_string = response.body)
     JSON.parse(json_string.sub(%r{^while\(1\);}, ''))
+  end
+
+  def s3_storage!
+    Attachment.stubs(:s3_storage?).returns(true)
+    Attachment.stubs(:local_storage?).returns(false)
+    conn = mock('AWS::S3::Connection')
+    AWS::S3::Base.stubs(:connection).returns(conn)
+    conn.stubs(:access_key_id).returns('stub_id')
+    conn.stubs(:secret_access_key).returns('stub_key')
+    Attachment.s3_storage?.should eql(true)
+    Attachment.local_storage?.should eql(false)
+  end
+
+  def local_storage!
+    Attachment.stubs(:s3_storage?).returns(false)
+    Attachment.stubs(:local_storage?).returns(true)
+    Attachment.local_storage?.should eql(true)
+    Attachment.s3_storage?.should eql(false)
+    Attachment.local_storage?.should eql(true)
+  end
+
+  def run_job(job)
+    Delayed::Worker.new.perform(job)
+  end
+
+  # send a multipart post request in an integration spec post_params is
+  # an array of [k,v] params so that the order of the params can be
+  # defined
+  def send_multipart(url, post_params = {}, http_headers = {}, method = :post)
+    mp = Multipart::MultipartPost.new
+    query, headers = mp.prepare_query(post_params)
+    send(method, url, query, headers.merge(http_headers))
+  end
+
+  def run_transaction_commit_callbacks(conn = ActiveRecord::Base.connection)
+    conn.after_transaction_commit_callbacks.each { |cb| cb.call }
+    conn.after_transaction_commit_callbacks.clear
   end
 end

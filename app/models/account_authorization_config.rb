@@ -25,10 +25,14 @@ class AccountAuthorizationConfig < ActiveRecord::Base
                   :auth_password, :auth_password_salt, :auth_type, :auth_over_tls,
                   :log_in_url, :log_out_url, :identifier_format,
                   :certificate_fingerprint, :entity_id, :change_password_url,
-                  :login_handle_name, :ldap_filter, :auth_filter
+                  :login_handle_name, :ldap_filter, :auth_filter, :requested_authn_context
 
+  before_validation :set_saml_defaults, :if => Proc.new { |aac| aac.saml_authentication? }
   validates_presence_of :account_id
-  after_save :disable_open_registration_if_delegated
+  validates_presence_of :entity_id, :if => Proc.new{|aac| aac.saml_authentication?}
+  after_create :disable_open_registration_if_delegated
+  # if the config changes, clear out last_timeout_failure so another attempt can be made immediately
+  before_save :clear_last_timeout_failure
 
   def ldap_connection
     raise "Not an LDAP config" unless self.auth_type == 'ldap'
@@ -39,6 +43,11 @@ class AccountAuthorizationConfig < ActiveRecord::Base
     ldap.base = self.auth_base
     ldap.auth self.auth_username, self.auth_decrypted_password
     ldap
+  end
+  
+  def set_saml_defaults
+    self.entity_id ||= saml_default_entity_id
+    self.requested_authn_context = nil if self.requested_authn_context.blank?
   end
   
   def sanitized_ldap_login(login)
@@ -79,56 +88,76 @@ class AccountAuthorizationConfig < ActiveRecord::Base
     return nil unless self.auth_password_salt && self.auth_crypted_password
     Canvas::Security.decrypt_password(self.auth_crypted_password, self.auth_password_salt, 'instructure_auth')
   end
+  
+  def self.saml_default_entity_id_for_account(account)
+    "http://#{HostUrl.context_host(account)}/saml2"
+  end
+  
+  def saml_default_entity_id
+    AccountAuthorizationConfig.saml_default_entity_id_for_account(self.account)
+  end
 
   def saml_settings(preferred_account_domain=nil)
     return nil unless self.auth_type == 'saml'
-    app_config = Setting.from_config('saml')
-    raise "This Canvas instance isn't configured for SAML" unless app_config
 
     unless @saml_settings
-      domain = HostUrl.context_host(self.account, preferred_account_domain)
-      @saml_settings = Onelogin::Saml::Settings.new
+      @saml_settings = AccountAuthorizationConfig.saml_settings_for_account(self.account, preferred_account_domain)
 
-      @saml_settings.issuer = self.entity_id || app_config[:entity_id]
       @saml_settings.idp_sso_target_url = self.log_in_url
       @saml_settings.idp_slo_target_url = self.log_out_url
       @saml_settings.idp_cert_fingerprint = self.certificate_fingerprint
       @saml_settings.name_identifier_format = self.identifier_format
-      if ENV['RAILS_ENV'] == 'development'
-        # if you set the domain to go to your local box in /etc/hosts you can test saml
-        @saml_settings.assertion_consumer_service_url = "http://#{domain}/saml_consume"
-        @saml_settings.sp_slo_url = "http://#{domain}/saml_logout"
-      else
-        @saml_settings.assertion_consumer_service_url = "https://#{domain}/saml_consume"
-        @saml_settings.sp_slo_url = "https://#{domain}/saml_logout"
-      end
-      @saml_settings.tech_contact_name = app_config[:tech_contact_name] || 'Webmaster'
-      @saml_settings.tech_contact_email = app_config[:tech_contact_email]
-
-      encryption = app_config[:encryption]
-      if encryption.is_a?(Hash) && File.exists?(encryption[:xmlsec_binary])
-        resolve_path = lambda {|path|
-          if path.nil?
-            nil
-          elsif path[0,1] == '/'
-            path
-          else
-            File.join(Rails.root, 'config', path)
-          end
-        }
-
-        private_key_path = resolve_path.call(encryption[:private_key])
-        certificate_path = resolve_path.call(encryption[:certificate])
-
-        if File.exists?(private_key_path) && File.exists?(certificate_path)
-          @saml_settings.xmlsec1_path = encryption[:xmlsec_binary]
-          @saml_settings.xmlsec_certificate = certificate_path
-          @saml_settings.xmlsec_privatekey = private_key_path
-        end
-      end
+      @saml_settings.requested_authn_context = self.requested_authn_context
     end
     
     @saml_settings
+  end
+  
+  def self.saml_settings_for_account(account, preferred_account_domain=nil)
+    app_config = Setting.from_config('saml') || {}
+    domain = HostUrl.context_host(account, preferred_account_domain)
+    
+    settings = Onelogin::Saml::Settings.new
+    if ENV['RAILS_ENV'] == 'development'
+      # if you set the domain to go to your local box in /etc/hosts you can test saml
+      settings.assertion_consumer_service_url = "http://#{domain}/saml_consume"
+      settings.sp_slo_url = "http://#{domain}/saml_logout"
+    else
+      settings.assertion_consumer_service_url = "https://#{domain}/saml_consume"
+      settings.sp_slo_url = "https://#{domain}/saml_logout"
+    end
+    settings.tech_contact_name = app_config[:tech_contact_name] || 'Webmaster'
+    settings.tech_contact_email = app_config[:tech_contact_email] || ''
+    
+    if account.saml_authentication?
+      settings.issuer = account.account_authorization_config.entity_id 
+    else
+      settings.issuer = saml_default_entity_id_for_account(account)
+    end
+    
+    encryption = app_config[:encryption]
+    if encryption.is_a?(Hash) && File.exists?(encryption[:xmlsec_binary])
+      resolve_path = lambda { |path|
+        if path.nil?
+          nil
+        elsif path[0, 1] == '/'
+          path
+        else
+          File.join(Rails.root, 'config', path)
+        end
+      }
+
+      private_key_path = resolve_path.call(encryption[:private_key])
+      certificate_path = resolve_path.call(encryption[:certificate])
+
+      if File.exists?(private_key_path) && File.exists?(certificate_path)
+        settings.xmlsec1_path = encryption[:xmlsec_binary]
+        settings.xmlsec_certificate = certificate_path
+        settings.xmlsec_privatekey = private_key_path
+      end
+    end
+    
+    settings
   end
   
   def email_identifier?
@@ -237,6 +266,83 @@ class AccountAuthorizationConfig < ActiveRecord::Base
     if self.delegated_authentication? && self.account.open_registration?
       @account.settings = { :open_registration => false }
       @account.save!
+    end
+  end
+  
+  def debugging?
+    !!Rails.cache.fetch(debug_key(:debugging))
+  end
+  
+  def debugging_keys
+    [:debugging, :request_id, :to_idp_url, :to_idp_xml, :idp_response_encoded, 
+     :idp_in_response_to, :fingerprint_from_idp, :idp_response_xml_encrypted,
+     :idp_response_xml_decrypted, :idp_login_destination, :is_valid_login_response,
+     :login_response_validation_error, :login_to_canvas_success, :canvas_login_fail_message, 
+     :logged_in_user_id, :logout_request_id, :logout_to_idp_url, :logout_to_idp_xml, 
+     :idp_logout_response_encoded, :idp_logout_in_response_to, 
+     :idp_logout_response_xml_encrypted, :idp_logout_destination]
+  end
+  
+  def finish_debugging
+    debugging_keys.each { |key| Rails.cache.delete(debug_key(key)) }
+  end
+  
+  def start_debugging
+    finish_debugging # clear old data
+    debug_set(:debugging, t('debug.wait_for_login', "Waiting for attempted login"))
+  end
+  
+  def debug_get(key)
+    Rails.cache.fetch(debug_key(key))
+  end
+  
+  def debug_set(key, value)
+    Rails.cache.write(debug_key(key), value, :expires_in => debug_expire)
+  end
+  
+  def debug_key(key)
+    ['aac_debugging', self.id, key.to_s].cache_key
+  end
+  
+  def debug_expire
+    Setting.get('aac_debug_expire_minutes', 30).minutes
+  end
+
+  def self.ldap_failure_wait_time
+    Setting.get('ldap_failure_wait_time', 1.minute.to_s).to_i
+  end
+
+  def ldap_bind_result(unique_id, password_plaintext)
+    if self.last_timeout_failure.present?
+      failure_timeout = self.class.ldap_failure_wait_time.ago
+      if self.last_timeout_failure >= failure_timeout
+        # we've failed too recently, don't try again
+        return nil
+      end
+    end
+
+    timelimit = Setting.get('ldap_timelimit', 5.seconds.to_s).to_f
+
+    begin
+      Timeout.timeout(timelimit) do
+        ldap = self.ldap_connection
+        filter = self.ldap_filter(unique_id)
+        res = ldap.bind_as(:base => ldap.base, :filter => filter, :password => password_plaintext)
+        return res if res
+      end
+    rescue Net::LDAP::LdapError
+      ErrorReport.log_exception(:ldap, $!)
+    rescue Timeout::Error
+      ErrorReport.log_exception(:ldap, $!)
+      self.update_attribute(:last_timeout_failure, Time.now)
+    end
+
+    return nil
+  end
+
+  def clear_last_timeout_failure
+    unless self.last_timeout_failure_changed?
+      self.last_timeout_failure = nil
     end
   end
 end

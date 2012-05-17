@@ -266,8 +266,25 @@
 
 <% js_block do %>
 
-<script type="text/javascript"> $(document).ready(function() {
-	prepareCanvas("explain_canvas_<%= question[:id] %>"); //prepareCanvas is in canvas_html5.js
+<script type="text/javascript"> 
+require([
+  'jquery' /* $ */,
+  'canvas_html5' 
+], function($) {
+   $(document).ready(function() {
+    var assessing = false;
+    var editing = false;
+    
+    if ($('.assessing').length > 0){
+      assessing = true;
+    }
+    
+    if ($('.editing').length > 0){
+      editing = true;
+    }
+
+    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in canvas_html5.js
+  });
 });
 </script>
 

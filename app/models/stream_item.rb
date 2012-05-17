@@ -145,14 +145,14 @@ class StreamItem < ActiveRecord::Base
       res = prepare_conversation(object)
     when Message
       res = object.attributes
-      res['notification_category'] = object.notification_category
+      res['notification_category'] = object.notification_display_category
       if object.asset_context_type
         self.context_code = "#{object.asset_context_type.underscore}_#{object.asset_context_id}"
       end
     when Submission
       res = object.attributes
       res.delete 'body' # this can be pretty large, and we don't display it
-      res['assignment'] = object.assignment.attributes.slice('id', 'title', 'due_at', 'points_possible', 'submission_types')
+      res['assignment'] = object.assignment.attributes.slice('id', 'title', 'due_at', 'points_possible', 'submission_types', 'group_category_id')
       res[:submission_comments] = object.submission_comments.map do |comment|
         hash = comment.attributes
         hash['formatted_body'] = comment.formatted_body(250)

@@ -24,7 +24,7 @@ class SisImportsApiController < ApplicationController
   before_filter :check_account
 
   def check_account
-    raise "SIS imports can only be executed on root accounts" if @account.root_account_id
+    raise "SIS imports can only be executed on root accounts" unless @account.root_account?
     raise "SIS imports can only be executed on enabled accounts" unless @account.allow_sis_import
   end
 
@@ -49,22 +49,29 @@ class SisImportsApiController < ApplicationController
   #   be SIS data from a file upload form field named 'attachment'.
   #
   #   Examples:
-  #     curl -F attachment=@<filename> -u '<username>:<password>' \ 
-  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?api_key=<key>&import_type=instructure_csv'
+  #     curl -F attachment=@<filename> -H "Authorization: Bearer <token>" \ 
+  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?import_type=instructure_csv'
   #
   #   If you decide to do a raw post, you can skip the 'attachment' argument,
   #   but you will then be required to provide a suitable Content-Type header.
   #   You are encouraged to also provide the 'extension' argument.
   #
   #   Examples:
-  #     curl -H 'Content-Type: application/octet-stream' --data-binary @<filename>.zip -u '<username>:<password>' \ 
-  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?api_key=<key>&import_type=instructure_csv&extension=zip'
-  #     curl -H 'Content-Type: application/zip' --data-binary @<filename>.zip -u '<username>:<password>' \ 
-  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?api_key=<key>&import_type=instructure_csv'
-  #     curl -H 'Content-Type: text/csv' --data-binary @<filename>.csv -u '<username>:<password>' \ 
-  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?api_key=<key>&import_type=instructure_csv'
-  #     curl -H 'Content-Type: text/csv' --data-binary @<filename>.csv -u '<username>:<password>' \ 
-  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?api_key=<key>&import_type=instructure_csv&batch_mode=1&batch_mode_term_id=15'
+  #     curl -H 'Content-Type: application/octet-stream' --data-binary @<filename>.zip \ 
+  #         -H "Authorization: Bearer <token>" \ 
+  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?import_type=instructure_csv&extension=zip'
+  #
+  #     curl -H 'Content-Type: application/zip' --data-binary @<filename>.zip \ 
+  #         -H "Authorization: Bearer <token>" \ 
+  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?import_type=instructure_csv'
+  #
+  #     curl -H 'Content-Type: text/csv' --data-binary @<filename>.csv \ 
+  #         -H "Authorization: Bearer <token>" \ 
+  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?import_type=instructure_csv'
+  #
+  #     curl -H 'Content-Type: text/csv' --data-binary @<filename>.csv \ 
+  #         -H "Authorization: Bearer <token>" \ 
+  #         'http://<canvas>/api/v1/accounts/<account_id>/sis_imports.json?import_type=instructure_csv&batch_mode=1&batch_mode_term_id=15'
   #
   # @argument extension Recommended for raw post request style imports. This
   #   field will be used to distinguish between zip, xml, csv, and other file
@@ -118,14 +125,22 @@ class SisImportsApiController < ApplicationController
                                 request2.media_type)
         end
       end
-      batch = SisBatch.create_with_attachment(@account, params[:import_type], file_obj)
 
+      batch_mode_term = nil
       if params[:batch_mode].to_i > 0
-        batch.batch_mode = true
         if params[:batch_mode_term_id].present?
-          batch.batch_mode_term = api_find(@account.enrollment_terms.active,
+          batch_mode_term = api_find(@account.enrollment_terms.active,
                                            params[:batch_mode_term_id])
         end
+        unless batch_mode_term
+          return render :json => { :message => "Batch mode specified, but the given batch_mode_term_id cannot be found." }, :status => :bad_request
+        end
+      end
+
+      batch = SisBatch.create_with_attachment(@account, params[:import_type], file_obj)
+      if batch_mode_term
+        batch.batch_mode = true
+        batch.batch_mode_term = batch_mode_term
       end
 
       batch.options ||= {}

@@ -8,10 +8,12 @@
     left_side_custom = yield :left_side_custom
     @show_left_side ||= (section_tabs.length > 0 || left_side_custom.try(:length)) 
   end
+
   right_side = yield :right_side 
 	mini_display = yield :mini_display
 	generate_rosters = yield :generate_rosters
 	show_previous_rosters = yield :show_previous_rosters
+
   wizard = yield :wizard_box
   top_nav = yield :top_nav
   keyboard_navigation = yield :keyboard_navigation
@@ -20,25 +22,39 @@
   @body_classes << "with-right-side" if right_side and not right_side.strip.empty? 
   @body_classes << "padless-content" if @padless
   @body_classes << "context-#{@context.asset_string}" if @context
+
 -%><!DOCTYPE html>
-<!--[if IE 7 ]>    <html class="ie ie7" lang=<%= @locale %>> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie ie8" lang=<%= @locale %>> <![endif]-->
-<!--[if gte IE 9 ]><html class="ie ie9" lang=<%= @locale %>> <![endif]-->
-<!--[if !(IE)]><!--> <html class="not-ie" lang=<%= @locale %>> <!--<![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 scripts-not-loaded" lang=<%= @locale %>> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 scripts-not-loaded" lang=<%= @locale %>> <![endif]-->
+<!--[if gte IE 9 ]><html class="ie ie9 scripts-not-loaded" lang=<%= @locale %>> <![endif]-->
+<!--[if !(IE)]><!--> <html class="not-ie scripts-not-loaded" lang=<%= @locale %>> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <title><%= yield :page_title || t('missing_page_title', "Add a page title here.") %></title>
-  <noscript> <meta http-equiv=refresh content="0; URL=/javascript-is-required.html" /> </noscript> 
+  <noscript> <meta http-equiv=refresh content="0; URL=/enable-javascript.html" /> </noscript>
   <!--[if lte IE 6]> <meta http-equiv=refresh content="0; URL=/ie-6-is-not-supported.html" /> <![endif]-->
-  
+
   <%= yield :auto_discovery %>
+  <% if @active_tab %>
+    <style>
+      #section-tabs .<%= @active_tab %> {
+        position: relative;
+        background-color: white;
+        margin-right: -1px;
+        z-index: 11;
+        padding: 7px 0 7px 23px;
+        font-size: 17px;
+      }
+    </style>
+  <% end %>
   <%= include_stylesheets :common, :media => "all" %>
   <% if @eportfolio_view === true %>
     <%= stylesheet_link_tag "compiled/instructure_eportfolio.css" %>
   <% end %>
-  <%= include_stylesheets(*jammit_css_bundles) unless jammit_css_bundles.empty?  %>
+  <%= include_css_bundles %>
   <!--[if lte IE 8]> <%= javascript_include_tag "vendor/html5.js" %> <![endif]-->
   <%= yield :stylesheets %>
+
   <% if @domain_root_account && @domain_root_account.settings[:global_stylesheet] && !@domain_root_account.settings[:global_stylesheet].try(:strip).empty?  %>
     <link href="<%= @domain_root_account.settings[:global_stylesheet] %>" media="all" rel="stylesheet" type="text/css" />
   <% end %>
@@ -47,6 +63,10 @@
     <%= stylesheet_link_tag "compiled/no_chrome.css" %>
   <% end %>
   
+
+  <%= stylesheet_link_tag(Account.site_admin.settings[:global_stylesheet], :media => 'all') if @domain_root_account != Account.site_admin && Account.site_admin.settings[:global_stylesheet].present? %>
+  <%= stylesheet_link_tag(@domain_root_account.settings[:global_stylesheet], :media => 'all') if @domain_root_account && @domain_root_account.settings[:global_stylesheet].present? %>
+
   <script>
     // listen for any clicks on links that have href="#" and queue them to be fired on dom ready.
       _earlyClick = function(e){
@@ -68,13 +88,6 @@
   </script>
 </head>
 <body class="<%= (@body_classes << @active_tab).uniq.join(" ") %>">
-  <% if @body_class_no_headers %>
-    <% if Setting.get_cached("show_feedback_link", "false") == "true" %>
-      <%- cache([@current_user || 'nobody', 'identity-type-15m'], :expires_in => 15.minutes) do -%>
-      <div id="identity_feedback" style="display: none" class="feedback <%= @current_user.try(:highest_role) %>"></div>
-      <%- end -%>
-    <% end %>
-  <% else %>
   <div id="header" class="no-print <%= 'no-user' unless @current_user %>">
     <a href="#content" id="skip_navigation_link"><%= t 'links.skip_to_content', "Skip To Content" %></a>
     <a id="header-logo" href="<%= root_url %>"><%= t 'links.dashboard', "My Dashboard" %></a> 
@@ -92,7 +105,7 @@
     <% if @current_user %>
     <ul role="navigation" id="menu">
       <%- cache([@current_user, 'home-menu-15m'], :expires_in => 15.minutes) do -%>
-      <li class="menu-item">
+      <li id="courses_menu_item" class="menu-item">
         <%- if show_home_menu? -%>
           <%= render(:partial => 'shared/home_menu') %>
         <%- else  -%>
@@ -100,7 +113,7 @@
         <%- end -%>
       </li>
       <%- end -%>
-      <li class="menu-item">
+      <li id="assignments_menu_item" class="menu-item">
       <% 
       # this will cache the assignments menu for 3 minutes.  the way it is right now it does 3 really expensive queries every page load.
       # to do this better we would either figure a better way to find needing_submitting, needing_grading, and recently_graded
@@ -146,17 +159,15 @@
         <%- end -%>
       <% end %>
       </li>
-      <li class="menu-item">
+      <li id="grades_menu_item" class="menu-item">
         <%= link_to(t('menu.grades', 'Grades'), :grades, :class=>"menu-item-no-drop") %>
       </li>
-      <li class="menu-item">
+      <li id="calendar_menu_item" class="menu-item">
         <a href="<%= calendar_path %>" class="menu-item-no-drop"><%= t('menu.calendar', 'Calendar') %></a>
       </li>      
     </ul>
     <% end %>
   </div>
-
-  <% end  #unless no-headers %>
   <div id="instructure_ajax_error_box">
     <div style="text-align: right; background-color: #fff;"><a href="#" class="close_instructure_ajax_error_box_link"><%= t('links.close', 'Close') %></a></div>
     <iframe id="instructure_ajax_error_result" src="about:blank" style="border: 0;"></iframe>
@@ -207,22 +218,14 @@
       <a href="http://www.instructure.com"><%= image_tag 'footer-logo.png', :alt => t('instructure_description', "Instructure, makers of the open source learning management system Canvas") %></a>
       <span id="footer-links">
         <% if Setting.get_cached("show_opensource_linkback", "false") == "true" %>
-          <a href="http://instructure.com"><%= t('open_source_learning_management_system', 'Open Source LMS') %></a>      
+          <a href="http://instructure.com"><%= t('open_source_learning_management_system', 'Open Source LMS') %></a>
         <% end %>
-        <% if url = ((@domain_root_account && @domain_root_account.settings[:support_url]) || (Account.default && Account.default.settings[:support_url])) %>
-          <%= link_to(t('links.support', "Support"), url) %>
-        <% end %>
-        <%  if @headers == false && Setting.get_cached("show_feedback_link", "false") == "true" %>
-          <a href="#" id="feedback_link"><%= t('links.help', 'Help') %></a> 
-        <% end %>
+        <%= help_link %>
         <%= render :partial => 'shared/footer_links' %>
       </span>
     </footer>
   </div>
 </div>
-
-<%= render :partial => 'shared/feedback' if Setting.get_cached('show_feedback_link', 'false') == 'true' %>
-
 
 <% if wizard %>
   <div id="wizard_spacer_box"></div>
@@ -268,18 +271,65 @@
   <%= render :partial => "shared/global_dialogs" %>
 <% end %>
 
-<script> window.JSON || document.write('<%= (include_javascripts :json2).gsub("</script>", "<\\/script>") %>'); </script>
-<script> var INST = <%= raw(inst_env.to_json) %>; </script>
-
-<%= include_javascripts :common %>
 <script>
-  I18n.locale = <%= @locale %>;
+  window.JSON || document.write('<%= (javascript_include_tag "#{js_base_url}/vendor/json2.js").gsub("</script>", "<\\/script>") %>');
+
+  INST = <%= raw(inst_env.to_json) %>;
+  ENV = <%= raw js_env.to_json %>;
+
+  // TODO: move this out when we have a single require call
+  require = {
+    translate: <%= use_optimized_js? %>,
+    baseUrl: '<%= js_base_url %>',
+    paths: {
+      common: 'compiled/bundles/common',
+      jquery: 'vendor/jquery-1.6.4',
+      jqueryui: 'vendor/jqueryui',
+      underscore: 'vendor/underscore',
+      backbone: 'vendor/backbone',
+      uploadify: '../flash/uploadify/jquery.uploadify.v2.1.4',
+      use: 'vendor/use'
+    },
+    use: {
+      backbone: {
+        deps: ['use!underscore', 'jquery'],
+        attach: 'Backbone'
+      },
+      underscore: {
+        attach: '_'
+      }
+    }
+  };
 </script>
 
-<%= include_javascripts(*jammit_js_bundles) unless jammit_js_bundles.empty?  %>
+<%= javascript_include_tag "#{js_base_url}/vendor/require.js" %>
+<%= javascript_include_tag "#{js_base_url}/compiled/bundles/common" %>
+<%= include_js_bundles %>
+<%= include_account_js %>
 <%= render_js_blocks %>
-<% if @domain_root_account && @domain_root_account.settings[:global_includes] && !@domain_root_account.settings[:global_javascript].try(:strip).blank? %>
-  <script src="<%= @domain_root_account.settings[:global_javascript] %>"></script>
-<% end %>
+<%= render_hidden_dialogs %>
+
+<script>
+// Determines if the scripts are loaded.
+// When we get everything out of the views, and have a single top-level
+// `require`, this becomes meaningless and will be abandoned.
+(function() {
+  var attempts = 0;
+  var timeout = 10;
+  var check = function() {
+    attempts++;
+    var done = require.resourcesDone === true
+    var giveup = attempts === 100; // 1 second
+    if (done || giveup) {
+      var className = document.documentElement.className;
+      document.documentElement.className = className.replace(/scripts-not-loaded/, '');
+      return;
+    }
+    setTimeout(check, timeout);
+  };
+
+  check();
+}).call(this);
+</script>
 </body>
 </html>
