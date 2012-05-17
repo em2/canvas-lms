@@ -15,9 +15,14 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+define([
+  'i18n!dashboard',
+  'jquery' /* $ */,
+  'jquery.instructure_jquery_patches' /* windowScrollTop */,
+  'jquery.instructure_misc_plugins' /* showIf */
+], function(I18n, $) {
 
-I18n.scoped('dashboard', function(I18n) {
-$(function initDashbardJs(){
+  $(function initDashbardJs(){
 
   var afterTopicListTop = null,
       lastElementRetrievalCount = null,
@@ -88,11 +93,13 @@ $(function initDashbardJs(){
   
   (function consolidateDuplicateDasboardNotifications() {
 
+    // TODO: i18n
     var notifications = {
       "New Assignments and Events": [],
       "Grading Notifications": [],
       "Group Membership Notifications": [],
-      "Date Changes": []
+      "Date Changes": [],
+      "Scheduling Notifications": []
     };
 
     $(".dashboard_notification").each(function() {
@@ -102,6 +109,7 @@ $(function initDashbardJs(){
         switch(notificationName) {
         case "New Event Created":
         case "Assignment Created":
+        case "Appointment Reserved For User":
           notifications["New Assignments and Events"].push(this);
           break;
         case "Assignment Grading Reminder":
@@ -122,6 +130,9 @@ $(function initDashbardJs(){
         case "Event Date Changed":
           notifications["Date Changes"].push(this);
           break;
+        case "Appointment Group Published":
+        case "Appointment Group Updated":
+          notifications["Scheduling Notifications"].push(this);
         }
       }
     });

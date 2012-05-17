@@ -42,7 +42,7 @@ class Alert < ActiveRecord::Base
       :criteria => criteria.map { |c| c.as_json(:include_root => false) },
       :recipients => recipients.try(:map) { |r| (r.is_a?(Symbol) ? ":#{r}" : r) },
       :repetition => repetition
-    }
+    }.with_indifferent_access
   end
 
   def recipients=(recipients)
@@ -124,7 +124,7 @@ class Alert < ActiveRecord::Base
       student_ids_to_section_ids[enrollment.user_id] << enrollment.course_section_id
     end
 
-    teacher_enrollments = course.admin_enrollments.active
+    teacher_enrollments = course.instructor_enrollments.active
     teacher_ids = teacher_enrollments.map(&:user_id)
     return if teacher_ids.empty?
     section_ids_to_teachers_list = {}
@@ -255,7 +255,7 @@ class Alert < ActiveRecord::Base
   end
 
   def self.send_alert(alert, user_ids, student_enrollment)
-    notification = Notification.find_by_name("Alert")
+    notification = Notification.by_name("Alert")
     notification.create_message(alert, user_ids, {:asset_context => student_enrollment})
   end
 end
