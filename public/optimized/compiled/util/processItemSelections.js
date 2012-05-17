@@ -1,0 +1,1 @@
+(function(){var a=Object.prototype.hasOwnProperty;define(function(){var b;return b=function(b){var c,d,e,f,g,h;f={items_to_copy:[]},g=/copy\[([^\]]*)\]$/;for(d in b){if(!a.call(b,d))continue;h=b[d],e=d.match(g),e?(c=e[1],h==="1"?f.items_to_copy.push(c):h!=="0"&&(f[d]=h)):f[d]=h}return f}})}).call(this)

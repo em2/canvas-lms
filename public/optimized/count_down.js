@@ -1,0 +1,1 @@
+function countDown(){var a=parseInt($("#countdown").text());if(a>0)$("#countdown").text(--a);else{$("#countdown_logout").click();return}setTimeout("countDown()",1e3)}

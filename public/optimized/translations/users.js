@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{users:{confirms:{unenroll_user:"¿Seguro que quiere anular la inscripción de este usuario?"}}}}})})

@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{context:{inbox:{buttons:{mark_all_as_read:"Marcar Todos los Mensajes como Leídos"},errors:{mark_as_read_failed:"No se pudo marcar como leído, intente de nuevo"},status:{marking_all_as_read:"Marcando Todo como Leído..."}}}}}})})

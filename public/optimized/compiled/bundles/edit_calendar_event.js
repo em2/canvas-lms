@@ -1,0 +1,1 @@
+(function(){require(["jquery","compiled/calendar/CalendarEvent","compiled/calendar/EditEventView"],function(a,b,c){return a(function(){var a;return a=new b(ENV.CALENDAR_EVENT),new c({model:a})})})}).call(this)

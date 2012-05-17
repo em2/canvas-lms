@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{accounts:{statistics:{heading_date:"Fecha",heading_value:"Valor",loading_error:"error",loading_text:"cargando...",over_time_link:"sobre el tiempo",title_data_point_over_time:"%{data_point} en el tiempo"}}}}})})

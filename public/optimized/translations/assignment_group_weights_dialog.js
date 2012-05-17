@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{assignment_group_weights_dialog:{buttons:{save:"Guardar"},titles:{assignment_group_weights:"Manejar la asignación de importancia a los grupos de trabajo",total:"Total"},weight_final:"Asignar peso a la calificación final basado en grupos"}}}})})

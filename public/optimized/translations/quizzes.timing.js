@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{quizzes:{timing:{labels:{time_elapsed:"Tiempo Transcurrido",time_remaining:"Tiempo Restante"}}}}}})})

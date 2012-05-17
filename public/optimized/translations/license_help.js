@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{license_help:{content_license_help:"Ayuda del Contenido para Concesión de Licencias"}}}})})

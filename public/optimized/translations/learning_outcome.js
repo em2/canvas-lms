@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{learning_outcome:{align_item:"Asignar Elemento",align_to_outcome:"Asignar Elemento a este Resultado",loading_more_results:"Cargando más resultados",remove_outcome_alignment:"¿Seguro que quiere remover esta tarea?",this_outcome:"este Resultado"}}}})})

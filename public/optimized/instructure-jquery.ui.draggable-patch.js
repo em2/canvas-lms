@@ -1,0 +1,1 @@
+define(["jquery","jqueryui/draggable"],function(a){var b=a.ui.draggable.prototype._mouseMove;a.ui.draggable.prototype._mouseMove=function(){var a=b.apply(this,arguments);return this.options.instructureHackToNotAutoSizeTop&&(this.helper[0].style.top=""),a}})

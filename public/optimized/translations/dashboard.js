@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{dashboard:{links:{show_notifications:"haga click para mostrar estas notificaciones en el stream"}}}}})})

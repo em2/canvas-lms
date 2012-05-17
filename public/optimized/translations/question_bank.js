@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{question_bank:{align_outcomes:"Asignar Resultados",remove_outcome_from_bank:"¿Seguro que quiere remover este resultado del grupo?",update_outcomes_fail:"Actualización de los Resultados Falló",updating_outcomes:"Actualizando Resultados..."}}}})})

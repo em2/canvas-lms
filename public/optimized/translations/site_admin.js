@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{site_admin:{columns:{date:"Fecha",value:"Valor"},links:{over_time:"en el tiempo"},status:{loading:"cargando..."},titles:{value_over_time:"%{value} en el tiempo"}}}}})})

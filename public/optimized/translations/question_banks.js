@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{question_banks:{delete_question_bank_prompt:"¿Seguro que quiere borrar este grupo de preguntas?"}}}})})
