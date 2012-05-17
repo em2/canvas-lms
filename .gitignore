@@ -3,7 +3,6 @@
 Gemfile.lock
 bin
 .redcar
-vendor
 log/*.log
 log/*.pid
 log/**/*
