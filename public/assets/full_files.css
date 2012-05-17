@@ -65,7 +65,7 @@ ul.instTree li.leaf{padding-top:3px;padding-bottom:3px;background-position:13px 
 .folder_item.file_drag.copy_drag,.folder_item.file_drag.copy_drag{background-color:#ff9!important}
 #files_structure .folder>.text.drop_target{border:1px solid #888;background-color:#bbb}
 #files_content .folder.drop_target{border:1px solid #888;background-color:#bbb}
-#swfupload_holder{position:absolute;display:block;left:-1000px;overflow:hidden}
+#swfupload_holder{cursor:pointer;position:absolute;display:block;left:-1000px;overflow:hidden}
 .swfupload{background-color:transparent;color:transparent;width:55px}
 #file_uploads{width:auto;margin:0 10px 10px}
 #file_uploads .file_upload{font-size:.8em;border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;padding:3px;margin-bottom:3px;background-color:#ddd}

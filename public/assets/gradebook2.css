@@ -22,6 +22,8 @@
 .submission_details_add_comment_form{position:relative;border-top:1px solid #bbb;background-color:#f2f2f2;margin:0;padding:5px 10px}
 .submission_details_add_comment_form label{font-weight:bold;display:block}
 .submission_details_add_comment_form #add_a_comment{width:99%;display:block}
+.submission_details_add_comment_form #group-comment-container{float:left}
+.submission_details_add_comment_form #group-comment-container label{display:inline;font-weight:normal}
 .submission_details_add_comment_form .button{float:right}
 #assignment-details-dialog .distribution{margin:15px 0;height:30px;position:relative}
 #assignment-details-dialog .distribution div{position:absolute;top:0;border-style:solid;border-color:#aaa;overflow:hidden}
@@ -35,21 +37,26 @@
 #assignment-details-dialog-stats-table th,#assignment-details-dialog-stats-table td{padding:2px 5px;white-space:nowrap}
 #assignment-details-dialog-stats-table td{font-size:1.1em;font-weight:bold}
 .slick-sort-indicator{position:absolute;bottom:4px;left:0}
-#gradebook_grid .slick-cell{border:0;padding:0;overflow:visible;position:relative}
+#gradebook_grid .slick-cell{border:0;padding:0;overflow:visible}
 #gradebook_grid .slick-cell.editable{background:transparent;border:none}
 .gradebook2 #content{position:relative;padding:0}
 #gradebook-grid-wrapper{position:relative}
 #gradebook_students_grid{float:left;width:250px}
 #gradebook_students_grid .grid-canvas{padding-bottom:50px}
 #gradebook_students_grid .student-name{color:#1b7eda;text-shadow:#fbf8f8 0 0 1px}
+#gradebook_students_grid .avatar{float:left;width:34px}
+#gradebook_students_grid .avatar img{max-width:30px;height:30px}
 #gradebook_students_grid .student-section{font-size:10px;color:#aaa}
 #gradebook_students_grid .secondary_identifier_cell{color:#333;font-size:10px;text-align:center;line-height:35px}
 .slick-header.ui-state-default{border-top:0}
-.slick-header-column{background-color:#e7e8eb;background-image:-webkit-gradient(linear,left top,left bottom,from(#f3f4f8),to(#dbdcde));background-image:-webkit-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-moz-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-ms-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-o-linear-gradient(top,#f3f4f8,#dbdcde);background-image:linear-gradient(top,#f3f4f8,#dbdcde);filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f4f8', EndColorStr='#dbdcde')";padding:10px;font-size:12px;text-align:center;font-weight:normal}
+.slick-header-column{background-color:#e7e8eb;background-image:-webkit-gradient(linear,left top,left bottom,from(#f3f4f8),to(#dbdcde));background-image:-webkit-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-moz-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-ms-linear-gradient(top,#f3f4f8,#dbdcde);background-image:-o-linear-gradient(top,#f3f4f8,#dbdcde);background-image:linear-gradient(top,#f3f4f8,#dbdcde);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f4f8',EndColorStr='#dbdcde')";zoom:1;padding:10px;font-size:12px;text-align:center;font-weight:normal}
+.ie9 .slick-header-column{border-radius:0!important}
 .slick-header-column.ui-state-default{height:30px}
-.slick-header-column.hovered-column{background-color:#cedfee;background-image:-webkit-gradient(linear,left top,left bottom,from(#e0ecf9),to(#bdd2e3));background-image:-webkit-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-moz-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-ms-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-o-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:linear-gradient(top,#e0ecf9,#bdd2e3);filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#e0ecf9', EndColorStr='#bdd2e3')"}
+.slick-header-column.hovered-column{background-color:#cedfee;background-image:-webkit-gradient(linear,left top,left bottom,from(#e0ecf9),to(#bdd2e3));background-image:-webkit-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-moz-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-ms-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-o-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:linear-gradient(top,#e0ecf9,#bdd2e3);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#e0ecf9',EndColorStr='#bdd2e3')";zoom:1}
+.ie9 .slick-header-column.hovered-column{border-radius:0!important}
 .slick-header-column .slick-column-name{font-weight:bold;color:#2f2a34;text-shadow:#fff 0 0 1px}
 .slick-header-column a.assignment-name{font-weight:normal;color:#1b7ecf;text-shadow:#fff 0 0 1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slick-header-column .muted{background:url(/images/sound_mute.png?1326216007) no-repeat center right;padding-right:16px}
 .slick-header-column .assignment-points-possible{font-weight:normal;text-shadow:#84848a 0 0 1px;font-size:10px;opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);color:#2f2a34;margin-left:10px;margin-right:14px}
 .slick-header-column .gradebook-header-drop{z-index:1;background:url(/images/jqueryui/gradebook-header-drop.png?1326216007) no-repeat top left;width:14px;height:14px;position:absolute;bottom:3px;right:3px;text-indent:999px;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(Opacity=0)}
 .slick-header-column .gradebook-header-drop:hover,.slick-header-column .gradebook-header-drop.ui-menu-trigger-menu-is-open{background-position:bottom left;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
@@ -63,7 +70,8 @@
 .even .total-cell{background-color:#d7dee1}
 .slick-row.ui-state-active{color:inherit;background-image:none;font-weight:normal}
 .slick-row.ui-state-active .slick-cell{background-color:#dfe9f2}
-.slick-row.ui-state-active .slick-cell.selected{background-color:#cae4f7;background-image:-webkit-gradient(linear,left top,left bottom,from(#d7eaf9),to(#bedff6));background-image:-webkit-linear-gradient(top,#d7eaf9,#bedff6);background-image:-moz-linear-gradient(top,#d7eaf9,#bedff6);background-image:-ms-linear-gradient(top,#d7eaf9,#bedff6);background-image:-o-linear-gradient(top,#d7eaf9,#bedff6);background-image:linear-gradient(top,#d7eaf9,#bedff6);filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#d7eaf9', EndColorStr='#bedff6')";background-color:#cdf}
+.slick-row.ui-state-active .slick-cell.selected{background-color:#cae4f7;background-image:-webkit-gradient(linear,left top,left bottom,from(#d7eaf9),to(#bedff6));background-image:-webkit-linear-gradient(top,#d7eaf9,#bedff6);background-image:-moz-linear-gradient(top,#d7eaf9,#bedff6);background-image:-ms-linear-gradient(top,#d7eaf9,#bedff6);background-image:-o-linear-gradient(top,#d7eaf9,#bedff6);background-image:linear-gradient(top,#d7eaf9,#bedff6);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#d7eaf9',EndColorStr='#bedff6')";zoom:1;background-color:#cdf}
+.ie9 .slick-row.ui-state-active .slick-cell.selected{border-radius:0!important}
 .slick-cell div.cell-content{text-align:center;vertical-align:middle}
 .slick-cell.editable{border-color:#2fa1ff}
 .slick-cell.ungraded{background-image:url(/images/4_percent_opacity.png?1326216007);background-repeat:repeat}
@@ -102,9 +110,17 @@
 .minimized .gradebook-cell{font-size:0}
 .minimized .gradebook-cell *{display:none}
 .minimized .slick-column-name{display:none}
-#gradebook-toolbar{background:url(/images/gradebook-header-bg.png?1335969973) repeat-x;height:28px;padding:8px 20px}
+#gradebook-toolbar{background:url(/images/black-header-bg.png?1337280902) repeat-x;height:28px;padding:8px 20px}
 #section-to-show-menu{width:200px}
 #section-to-show-menu.scrolling{overflow-x:hidden;overflow-y:auto;max-height:550px}
+.submission_type_icon{display:block;width:100%;height:22px;background-position:center center;background-repeat:no-repeat}
+.online_text_entry .submission_type_icon{background-image:url(/images/text_entry.png?1326216007)}
+.discussion_topic .submission_type_icon{background-image:url(/images/word_bubble.png?1326216007)}
+.online_upload .submission_type_icon{background-image:url(/images/file.png?1326216007)}
+.pending_review .submission_type_icon{background-image:url(/images/pending_review.png?1326216007)}
+.media_comment .submission_type_icon{background-image:url(/images/media_comment.gif?1326216007)}
+.quiz .submission_type_icon{background-image:url(/images/quiz.png?1326216007)}
+.letter-grade-points{opacity:.4;-ms-filter:alpha(Opacity=40);filter:alpha(Opacity=40);position:absolute;font-size:11px;padding-left:8px;line-height:19px}
 #assignment_group_weights_dialog table{width:100%}
 #assignment_group_weights_dialog th,#assignment_group_weights_dialog td{padding:2px 10px}
 #assignment_group_weights_dialog td{width:1px;white-space:nowrap}
