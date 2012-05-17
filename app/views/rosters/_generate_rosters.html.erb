@@ -45,9 +45,13 @@
 <% end -%>
 
 <% js_block do %>
-
-<script type="text/javascript"> $(document).ready(function() {
-	assignProbeValidator();
+<script type="text/javascript"> 
+require([
+  'jquery' /* $ */
+], function($) {
+	$(document).ready(function() {
+		assignProbeValidator();
+	});
 });
 </script>
 

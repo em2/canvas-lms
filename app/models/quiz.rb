@@ -28,7 +28,7 @@ class Quiz < ActiveRecord::Base
     :show_correct_answers, :time_limit, :allowed_attempts, :scoring_policy, :quiz_type,
     :lock_at, :unlock_at, :due_at, :access_code, :anonymous_submissions, :assignment_group_id,
     :hide_results, :locked, :ip_filter, :require_lockdown_browser,
-    :require_lockdown_browser_for_results, :context, :notify_of_update
+    :require_lockdown_browser_for_results, :context, :notify_of_update, :probe_name
 
   attr_readonly :context_id, :context_type
   attr_accessor :notify_of_update
