@@ -190,7 +190,7 @@ define([
       // won't exist if they've never clicked the edit button
       var htmlToggle = $answer.find('.edit_html').data('editorToggle')
 
-      var supportsHTMLAnswers = question_type === 'multiple_choice_question' || question_type === 'multiple_answers_question'
+      var supportsHTMLAnswers = question_type === 'multiple_choice_question' || question_type === 'multiple_answers_question' || question_type === 'compare_fractions_question' || question_type === 'locate_fractions_question' || question_type === 'represent_fractions_question'
       if (htmlToggle && supportsHTMLAnswers) {
         // some answer types share the same text fields, so we show it
         htmlToggle.showAnswerText();

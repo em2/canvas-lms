@@ -424,7 +424,7 @@ div.question
         +opacity(0.5)
         :display inline
 
-.question.multiple_choice_question, .question.multiple_answers_question, .question.matching_question
+.question.multiple_choice_question, .question.multiple_answers_question, .question.matching_question, .question.compare_fractions_question, .question.locate_fractions_question, .question.represent_fractions_question
   .answer
     :border-bottom 1px solid #ddd
     &:last-child
@@ -887,6 +887,9 @@ ul#quiz_versions
   display: none
 
 .multiple_choice_question .question_actions .atr-edit,
-.multiple_answers_question .question_actions .atr-edit
+.multiple_answers_question .question_actions .atr-edit,
+.compare_fractions_question .question_actions .atr-edit,
+.locate_fractions_question .question_actions .atr-edit,
+.represent_fractions_question .question_actions .atr-edit
   display: inline-block
 
