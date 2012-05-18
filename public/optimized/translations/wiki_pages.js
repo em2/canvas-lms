@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{wiki_pages:{buttons:{add_comment:"Agregar Comentario"},delete_comment_confirmation:"¿Seguro que quiere borrar este comentario?",notices:{add_comment_failed:"No se pudo agregar el comentario, intente de nuevo",adding_comment:"Agregando Comentario..."}}}}})})

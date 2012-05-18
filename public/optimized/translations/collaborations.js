@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{collaborations:{errors:{no_name:"Por favor ingrese un nombre para este documento"}}}}})})

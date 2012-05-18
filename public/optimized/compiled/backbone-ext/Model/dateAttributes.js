@@ -1,0 +1,1 @@
+(function(){define(["use!backbone","use!underscore"],function(a,b){var c;return c=a.Model.prototype.parse,a.Model.prototype.parse=function(){var a;return a=c.apply(this,arguments),b.each(this.dateAttributes,function(b){if(a[b])return a[b]=Date.parse(a[b])}),a},a.Model})}).call(this)

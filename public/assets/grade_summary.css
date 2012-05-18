@@ -34,3 +34,4 @@
 #grades_summary .tooltip .tooltip_text{background-color:#444;background-position:left bottom;color:#fff;left:0;max-width:250px;padding:2px 7px 2px;white-space:nowrap}
 #grades_summary .tooltip .tooltip_text table tr td{background-color:transparent;font-size:1em;padding:0 2px;border-width:0}
 #grades_summary .tooltip .right{right:0;background-position:right bottom}
+#observer_user_url{font-size:.8em;border:1px solid #aaa}

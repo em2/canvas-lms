@@ -3,7 +3,6 @@
 Gemfile.lock
 bin
 .redcar
-vendor
 log/*.log
 log/*.pid
 log/**/*
@@ -64,7 +63,6 @@ spec/javascripts/*/*/*Spec.js
 spec/javascripts/helpers/
 spec/javascripts/plugins/
 spec/javascripts/runner.html
-public/optimized
 !node_modules
 chromedriver.log
 public/plugins/

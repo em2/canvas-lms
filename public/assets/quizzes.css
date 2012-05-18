@@ -1,4 +1,4 @@
-fieldset.question,fieldset.display_question{padding:0}
+div.question{border-radius:3px}
 #sort_questions{max-height:250px;overflow:auto;margin:0 0 20px;padding-left:30px;line-height:1.5em}
 #sort_questions li{cursor:pointer}
 #questions.assessment_results{clear:both}
@@ -27,6 +27,8 @@ fieldset.question,fieldset.display_question{padding:0}
 #questions.assessing .question_holder .question.related,#questions.assessment_results .question_holder .question.related{border-width:2px}
 #questions.assessing .question_holder .question .header,#questions.assessment_results .question_holder .question .header{float:right;margin-right:10px;font-size:.9em}
 #questions.assessing .question_holder .question .move,#questions.assessment_results .question_holder .question .move{display:none}
+#questions.assessing .answer{padding:5px 5px;margin:0 25px}
+#questions.assessing .answer:last-child{border-bottom:0}
 #questions.brief .question_holder .display_question{font-size:.9em}
 #questions.brief .question_holder .display_question .answer,#questions.brief .question_holder .display_question .question_comment{display:none}
 #questions.brief .question_holder .display_question .calculated_question_answers{display:none}
@@ -79,6 +81,7 @@ fieldset.question,fieldset.display_question{padding:0}
 .question .text .calculated_question_answers_content td{border-top:1px solid #ccc;text-align:left}
 .question .text .equation_combinations_holder{max-height:100px;overflow:auto}
 .question .text .equation_combinations{width:100%}
+.question .text .answers .quiz_response_text{word-wrap:break-word}
 .question .text .answers .answer{padding:5px 30px}
 .question .text .answers .answer .answer_list{margin:5px;padding-left:0;font-weight:bold}
 .question .text .answers .answer .answer_percent{padding-left:20px;font-size:.8em}
@@ -88,6 +91,8 @@ fieldset.question,fieldset.display_question{padding:0}
 .question .text .answers .answer .answer_input{vertical-align:top}
 .question .text .answers .answer .answer_label{padding-left:.5em}
 .question .text .answers .answer .answer_label>label>*:first-child,.question .text .answers .answer .answer_label>label+*{margin-top:0}
+.question .text .answers .answer .answer_label>label>p:last-child{margin-bottom:0}
+.question .text .answers .answer .answer_html>p:last-child{margin-bottom:0}
 .question .text .answers .answer.unspecified_answer .answer_comment_holder{border-color:#abd}
 .question .text .answers .answer.unspecified_answer .answer_comment_holder .comment_top{background-image:url(/images/comment_top_neutral.png?1326216007)}
 .question .text .answers .answer.correct_answer{background:url(/images/correct_answer.png?1326216007) no-repeat 3px 5px}
@@ -113,11 +118,13 @@ fieldset.question,fieldset.display_question{padding:0}
 .question .flag_question .flag_icon{display:none}
 .question.marked .flag_question,.question.marked:hover .flag_question{background-color:#fff}
 .question.marked .flag_question .flag_icon,.question.marked:hover .flag_question .flag_icon{display:inline;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
-.question.hover .move{background-color:#fff}
-.question.hover .move .move_icon{display:inline}
-.question.hover .links{visibility:visible}
-.question.hover .flag_question{background-color:#fff}
-.question.hover .flag_question .flag_icon{opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);display:inline}
+.no-touch .question.hover .move{background-color:#fff}
+.no-touch .question.hover .move .move_icon{display:inline}
+.no-touch .question.hover .links{visibility:visible}
+.no-touch .question.hover .flag_question{background-color:#fff}
+.no-touch .question.hover .flag_question .flag_icon{opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);display:inline}
+.question.multiple_choice_question .answer,.question.multiple_answers_question .answer,.question.matching_question .answer,.question.compare_fractions_question .answer,.question.locate_fractions_question .answer,.question.represent_fractions_question .answer{border-bottom:1px solid #ddd}
+.question.multiple_choice_question .answer:last-child,.question.multiple_answers_question .answer:last-child,.question.matching_question .answer:last-child,.question.compare_fractions_question .answer:last-child,.question.locate_fractions_question .answer:last-child,.question.represent_fractions_question .answer:last-child{border-bottom:0}
 .answer .answer_select{vertical-align:top;padding-top:.5em}
 .answer .answer_select .answer_weight{display:none}
 .answer .answer_match{padding:0 0 10px 0}
@@ -157,9 +164,8 @@ form.question_form .fill_in_multiple_blanks_question .multi_answer_sets_subheade
 form.question_form .explanation{font-size:.8em;margin-bottom:5px}
 form.question_form .form_answers .answer{border:1px solid #fff;-moz-border-radius:5px}
 form.question_form .form_answers .answer.hover{border:1px solid #ddd}
-form.question_form .form_answers .answer .delete_answer_link{display:block}
-form.question_form .form_answers .answer.hover .delete_answer_link{background:url(/images/delete_circle.png?1326216007) no-repeat center center}
-form.question_form .form_answers .answer .delete_answer_link:focus{background:url(/images/delete_circle.png?1326216007) no-repeat center center}
+form.question_form .form_answers .answer .question_actions{display:none}
+form.question_form .form_answers .answer.hover .question_actions{display:block}
 form.question_form .form_answers .answer_comments{-moz-border-radius:5px;border:2px solid #faa;font-size:.8em;margin-left:30px;padding:10px 5px;margin-top:5px;position:relative}
 form.question_form .form_answers .answer_comments .comment_focus{display:none}
 form.question_form .form_answers .answer_comments .comment_top{position:absolute;top:-8px;left:10px;width:19px;height:8px;background-repeat:no-repeat;background-image:url(/images/comment_top.png?1326216007)}
@@ -252,8 +258,36 @@ ul#quiz_versions .quiz_version.selected{font-weight:bold}
 #find_bank_dialog .bank:hover{background-color:#eee}
 #find_bank_dialog .bank.selected{background-color:#ccc;font-weight:bold}
 #last_saved_indicator{margin-bottom:10px}
-.muted-notice{background:#f1f1f1;background-color:#f2f2f2;background-image:-webkit-gradient(linear,left top,left bottom,from(#eee),to(#f7f7f7));background-image:-webkit-linear-gradient(top,#eee,#f7f7f7);background-image:-moz-linear-gradient(top,#eee,#f7f7f7);background-image:-ms-linear-gradient(top,#eee,#f7f7f7);background-image:-o-linear-gradient(top,#eee,#f7f7f7);background-image:linear-gradient(top,#eee,#f7f7f7);filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#eee', EndColorStr='#f7f7f7')";border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;padding:16px;text-shadow:1px 1px 1px rgba(255,255,255,0.75)}
+.muted-notice{background:#f1f1f1;background-color:#f2f2f2;background-image:-webkit-gradient(linear,left top,left bottom,from(#eee),to(#f7f7f7));background-image:-webkit-linear-gradient(top,#eee,#f7f7f7);background-image:-moz-linear-gradient(top,#eee,#f7f7f7);background-image:-ms-linear-gradient(top,#eee,#f7f7f7);background-image:-o-linear-gradient(top,#eee,#f7f7f7);background-image:linear-gradient(top,#eee,#f7f7f7);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#eee',EndColorStr='#f7f7f7')";zoom:1;border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;padding:16px;text-shadow:1px 1px 1px rgba(255,255,255,0.75)}
+.ie9 .muted-notice{border-radius:0!important}
+.ui-selectmenu-menu a,.ui-selectmenu{color:#222!important;font-weight:normal;text-decoration:none!important}
+.ui-selectmenu{max-width:100%!important}
+.question select{max-width:100%}
+.edit-html-done{float:right}
+.question_actions .atr-edit{display:none}
+.multiple_choice_question .question_actions .atr-edit,.multiple_answers_question .question_actions .atr-edit,.compare_fractions_question .question_actions .atr-edit,.locate_fractions_question .question_actions .atr-edit,.represent_fractions_question .question_actions .atr-edit{display:inline-block}
 #message_students_dialog .student_list{max-height:100px;overflow:auto;font-size:.8em;padding:5px 0;margin:0;list-style-type:none}
 #message_students_dialog .student_list li{float:left;padding:2px 4px;margin:1px 2px;background-color:#cdf;border:1px solid #aaa;-moz-border-radius:3px}
 #message_students_dialog .student_list li .score{display:none;padding-left:5px;font-size:.9em;color:#444}
 #message_students_dialog .student_list.show_score li .score{display:inline}
+.ui-selectmenu{display:block;display:inline-block;position:relative;height:2.2em;vertical-align:middle;text-decoration:none;overflow:hidden;zoom:1}
+.ui-selectmenu-icon{position:absolute;right:6px;margin-top:-8px;top:50%}
+.ui-selectmenu-menu{padding:0;margin:0;position:absolute;top:0;display:none;z-index:1005;background:#fff}
+.ui-selectmenu-menu ul{padding:0;margin:0;list-style:none;position:relative;overflow:auto;overflow-y:auto;overflow-x:hidden}
+.ui-selectmenu-open{display:block}
+.ui-selectmenu-menu-popup{margin-top:-1px}
+.ui-selectmenu-menu li{padding:0;margin:0;display:block;border-top:1px dotted transparent;border-bottom:1px dotted transparent;border-right-width:0!important;border-left-width:0!important;font-weight:normal!important}
+.ui-selectmenu-menu li a,.ui-selectmenu-status{line-height:1.4em;display:block;padding:.405em 2.1em .405em 1em;outline:none;text-decoration:none}
+.ui-selectmenu-menu li.ui-state-disabled a,.ui-state-disabled{cursor:default}
+.ui-selectmenu-menu li.ui-selectmenu-hasIcon a,.ui-selectmenu-hasIcon .ui-selectmenu-status{padding-left:20px;position:relative;margin-left:5px}
+.ui-selectmenu-menu li .ui-icon,.ui-selectmenu-status .ui-icon{position:absolute;top:1em;margin-top:-8px;left:0}
+.ui-selectmenu-status{line-height:1.4em}
+.ui-selectmenu-menu li span,.ui-selectmenu-status span{display:block;margin-bottom:.2em}
+.ui-selectmenu-menu li .ui-selectmenu-item-header{font-weight:bold}
+.ui-selectmenu-menu li .ui-selectmenu-item-footer{opacity:.8}
+.ui-selectmenu-menu .ui-selectmenu-group{font-size:1em}
+.ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label{line-height:1.4em;display:block;padding:.6em .5em 0;font-weight:bold}
+.ui-selectmenu-menu .ui-selectmenu-group ul{margin:0;padding:0}
+* html .ui-selectmenu-menu li{border-color:pink;filter:chroma(color=pink);width:100%}
+* html .ui-selectmenu-menu li a{position:relative}
+*+html .ui-state-disabled,*+html .ui-state-disabled a{color:silver}

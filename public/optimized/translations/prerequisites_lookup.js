@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{prerequisites_lookup:{headers:{completion_prerequisites:"Prerequisitos de Compleción"},labels:{requirements_must_be_completed:"Los siguientes requerimientos necesitan estar completados antes de que esta página sea desbloqueada"}}}}})})

@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{select_content_dialog:{buttons:{add_item:"Agregar Elemento"},errors:{failed_to_create_item:"No se pudo crear un elemento nuevo",loading_failed:"No se pudo cargar"},titles:{add_item_to_module:"Agregar Elemento al Módulo",find_links_using_service:"Encontrar enlaces usando %{service}"}}}}})})

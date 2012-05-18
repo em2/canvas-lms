@@ -1,0 +1,1 @@
+define(["INST","jquery"],function(a,b){var c=b("<div/>"),d=function(a){return a&&a.htmlSafe?a.toString():c.text(a).html()},e=function(a){if(typeof a=="string")return d(a);var b,c;for(b in a)c=a[b],typeof c=="string"&&(a[b]=d(c));return a};return a.htmlEscape=e,e})

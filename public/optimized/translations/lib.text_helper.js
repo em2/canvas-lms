@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{lib:{text_helper:{quoted_text_toggle:"mostrar texto citado"}}}}})})

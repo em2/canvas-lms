@@ -31,7 +31,7 @@ class RostersController < ApplicationController
     #
     # Make sure that the instance is 3 numbers and only 3 numbers
     instance_correct = false
-    if (params[:rosters][:instance].size == 3)
+    if (params[:rosters][:instance] != nil && params[:rosters][:instance].size == 3)
       if (params[:rosters][:instance][/[0-9]*/].size == 3)
         instance_correct = true
       end
@@ -66,7 +66,7 @@ class RostersController < ApplicationController
     #
     # Make sure that the stage and instance were entered and entered correctly
     if (errors_found)
-      flash[:notice] = "Please complete the form."
+      flash[:error] = "Please complete the form."
       redirect_back_or_default(dashboard_url)
     else
       

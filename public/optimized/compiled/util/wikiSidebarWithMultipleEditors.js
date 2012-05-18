@@ -1,0 +1,1 @@
+(function(){define(["wikiSidebar","tinymce.editor_box","compiled/tinymce"],function(a){return $.subscribe("editorBox/focus",function(b){return a.inited||a.init(),a.show(),a.attachToEditor(b)}),$.subscribe("editorBox/removeAll",function(){return a.hide()})})}).call(this)

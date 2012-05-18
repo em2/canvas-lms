@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{content_tags:{defaults:{comments:"Comentarios",page_title:"Título de la Página"},prompts:{delete_tag:"¿Seguro que quiere borrar esta etiqueta?"},titles:{tag_external_web_page:"Etiquetar una Página Web Externa"}}}}})})

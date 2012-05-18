@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{gradebooks:{grades:{complete:"Completo",incomplete:"Incompleto"}},grading_box:{out_of_points_possible:"de %{assignment.points_possible}"}}}})})

@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{rubric_assessment:{options:{select:"[ Seleccionar ]"},titles:{additional_comments:"Comentarios Adicionales",criterion_long_description:"Descripción Detallada de los Criterios"}}}}})})

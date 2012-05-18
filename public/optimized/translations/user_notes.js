@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{user_notes:{confirms:{delete_journal_entry:"¿Seguro que quiere borrar esta contribución a la revista?"}}}}})})

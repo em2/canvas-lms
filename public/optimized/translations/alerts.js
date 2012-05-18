@@ -1,0 +1,1 @@
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{alerts:{errors:{criteria_required:"Al menos un activador de alarma es necesario",recipients_required:"Al menos un recipiente es necesario",threshold_should_be_numeric:"Este debería ser un número positivo"}}}}})})
