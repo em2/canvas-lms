@@ -32,47 +32,42 @@ class RostersController < ApplicationController
     # Otherwise at the end if any were found while creating districts/schools, we can send a message to the user
     errors_found = false
 
-
-    
     #
     # Make sure that the stage was selected
-    if (params[:rosters][:stage] == nil)
+    if check_stage(params[:rosters][:stage])
       errors_found = true
     end
     
     #
     # Make sure that the instance is 3 numbers and only 3 numbers
-    instance_correct = false
-    if (params[:rosters][:instance] != nil && params[:rosters][:instance].size == 3)
-      if (params[:rosters][:instance][/[0-9]*/].size == 3)
-        instance_correct = true
-      end
-    end
-    
-    if (!instance_correct)
+    if !check_instance(params[:rosters][:instance])
       errors_found = true
     end
 
 
     #
     # Make sure that the student count correct if the 'Other' option was selected
-    temp_students = params[:rosters][:students]
-
-    student_count_correct = false
-    if (temp_students == "Other")
-      temp_students_custom = params[:rosters][:students_custom]
-      if (temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0 && temp_students_custom.to_i <= 250)
-        student_count_correct = true
-        @number_students = temp_students_custom.to_i
-      end
-    else
-      @number_students = temp_students.to_i
-      student_count_correct = true
-    end
-
-    if (!student_count_correct)
+    if !check_student_count(params[:rosters][:students], params[:rosters][:students_custom])
       errors_found = true
     end
+
+    # temp_students = params[:rosters][:students]
+
+    # student_count_correct = false
+    # if (temp_students == "Other")
+    #   temp_students_custom = params[:rosters][:students_custom]
+    #   if (temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0 && temp_students_custom.to_i <= 250)
+    #     student_count_correct = true
+    #     @number_students = temp_students_custom.to_i
+    #   end
+    # else
+    #   @number_students = temp_students.to_i
+    #   student_count_correct = true
+    # end
+
+    # if (!student_count_correct)
+    #   errors_found = true
+    # end
 
     if authorized_action(Course.create.quizzes.new, @current_user, :delete) # Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
@@ -194,18 +189,37 @@ class RostersController < ApplicationController
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
     end    
   end
+
+  def check_stage(stage)
+    if (stage == nil)
+      return true
+    end
+    return false
+  end
+
+  def check_instance(instance)
+    instance_correct = false
+    if (instance != nil && instance.size == 3)
+      if (instance[/[0-9]*/].size == 3)
+        instance_correct = true
+      end
+    end
+    return instance_correct
+  end
+
+  def check_student_count(temp_students, temp_students_custom)
+    student_count_correct = false
+    if (temp_students == "Other")
+      if (temp_students_custom != nil && temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0 && temp_students_custom.to_i <= 250)
+        student_count_correct = true
+        @number_students = temp_students_custom.to_i
+      end
+    else
+      @number_students = temp_students.to_i
+      student_count_correct = true
+    end
+    return student_count_correct
+  end
   
-  # def verify_auth
-  #   @can_generate_assessment = false
-  #   @quiz = Quiz.new
-
-
-  #   #if is_authorized_action?(@quiz, @current_user, :create)
-  #   if is_authorized_action?(Course.create.quizzes.new, @current_user, :destroy)
-  #     @can_generate_assessment = true
-  #   end
-    
-  #   return @can_generate_assessment
-  # end
 
 end
