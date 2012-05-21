@@ -5,9 +5,9 @@
 <h2>Assign Probe to Classes</h2>
 <% @student_options = [['10', 10], ['15', 15], ['20', 20], ['25', 25], ['30', 30], ['Other', 'Other']] %>
 <% form_for :rosters, :url => rosters_path do |f| %>
-	&nbsp <%= f.label :probe, 'Probe:' %>
+	&nbsp <%= f.label :probe_id, 'Probe:' %>
 		<% @question_bank = AssessmentQuestionBank.active -%>
-		&nbsp <%= f.select :probe, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
+		&nbsp <%= f.select :probe_id, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
 	&nbsp <%= f.label :stage, 'Stage:' %>
 		&nbsp <%= f.radio_button :stage, 'X', {:checked=>true} %>
 			<%= f.label :stage, 'X' %>
