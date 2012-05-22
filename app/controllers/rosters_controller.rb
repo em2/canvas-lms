@@ -24,7 +24,6 @@ class RostersController < ApplicationController
     get_context
     @context = @domain_root_account || Account.default unless @context.is_a?(Account)
     @context = @context.root_account || @context
-
     
     #
     # While creating everything, this bool flag will be set if any errors are encountered
@@ -44,30 +43,11 @@ class RostersController < ApplicationController
       errors_found = true
     end
 
-
     #
     # Make sure that the student count correct if the 'Other' option was selected
     if !check_student_count(params[:rosters][:students], params[:rosters][:students_custom])
       errors_found = true
     end
-
-    # temp_students = params[:rosters][:students]
-
-    # student_count_correct = false
-    # if (temp_students == "Other")
-    #   temp_students_custom = params[:rosters][:students_custom]
-    #   if (temp_students_custom.size > 0 && temp_students_custom[/[0-9]*/].size == temp_students_custom.size && temp_students_custom.to_i > 0 && temp_students_custom.to_i <= 250)
-    #     student_count_correct = true
-    #     @number_students = temp_students_custom.to_i
-    #   end
-    # else
-    #   @number_students = temp_students.to_i
-    #   student_count_correct = true
-    # end
-
-    # if (!student_count_correct)
-    #   errors_found = true
-    # end
 
     if authorized_action(Course.create.quizzes.new, @current_user, :delete) # Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
@@ -81,7 +61,7 @@ class RostersController < ApplicationController
         @instance = params[:rosters][:instance]
         @stage = params[:rosters][:stage]
         @course_titles = params[:rosters][:courses].split(/[\r\n\t\,\; ]+/)
-        
+
         #
         # probe_generated is so we know if a probe is generated during the while loop
         # There may be a case where the user only entered one class id and there was a
@@ -102,7 +82,7 @@ class RostersController < ApplicationController
           
           #
           # Make sure that the course title is valid.
-          if (@course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || @course_title.size != 16)
+          if check_course_id(@course_title)
             i += 1
             errors_found = true
             next
@@ -110,17 +90,7 @@ class RostersController < ApplicationController
           
           #
           # Pull out all the names using regex.
-          @district = @course_title[/[Dd][0-9]{3}/]
-          @school = @course_title[/[Ss][0-9]{3}/]
-          @teacher = @course_title[/[Tt][0-9]{3}/]
-          @class = @course_title[/[Cc][0-9]{3}/]
-
-          @district.capitalize!
-          @school.capitalize!
-          @teacher.capitalize!
-          @class.capitalize!
-
-          @course_title = @district + @school + @teacher + @class
+          extract_names(@course_title)
           
           #
           # Try to find the district. If unsuccessful, then create one.
@@ -130,35 +100,17 @@ class RostersController < ApplicationController
           
           #
           # Try to find a school in that district with the same name.
-          found_school = false
-          @district_account.sub_accounts.each do |school|
-            if (school.name == @school && school.workflow_state == "active")
-              found_school = true
-              @school_account = school
-              @roster = Roster.find_by_name(@district + @school)
-              if (@roster.workflow_state != "available")
-                @roster.workflow_state = "available"
-                @roster.save!
-              end
-            end
-          end
-          
-          #
           # If that was unsuccessful, go ahead and create a new school and roster for that school.
-          if (!found_school)
-            @school_account = Account.create!(:name => @school, :parent_account => @district_account)
-            @roster.name = @district + @school
-            @roster.account = @school_account
-            @roster.workflow_state = "available"
-            @roster.save!
+          if !find_school()
+            create_school()
           end
 
 
           #
           # Send off the roster to generate everything to delayed_job
-          Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
+          #Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
           #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
-          #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+          @roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
           
           probe_generated = true
 
@@ -221,5 +173,49 @@ class RostersController < ApplicationController
     return student_count_correct
   end
   
+  def check_course_id(course_title)
+    if (course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || course_title.size != 16)
+      return true
+    end
+    return false
+  end
+
+  def extract_names(course_title)
+    @district = course_title[/[Dd][0-9]{3}/]
+    @school = course_title[/[Ss][0-9]{3}/]
+    @teacher = course_title[/[Tt][0-9]{3}/]
+    @class = course_title[/[Cc][0-9]{3}/]
+
+    @district.capitalize!
+    @school.capitalize!
+    @teacher.capitalize!
+    @class.capitalize!
+
+    @course_title = @district + @school + @teacher + @class
+  end
+
+  def find_school
+    found_school = false
+    @district_account.sub_accounts.each do |school|
+      if (school.name == @school && school.workflow_state == "active")
+        found_school = true
+        @school_account = school
+        @roster = Roster.find_by_name(@district + @school)
+        if (@roster.workflow_state != "available")
+          @roster.workflow_state = "available"
+          @roster.save!
+        end
+      end
+    end
+    return found_school
+  end
+
+  def create_school
+    @school_account = Account.create!(:name => @school, :parent_account => @district_account)
+    @roster.name = @district + @school
+    @roster.account = @school_account
+    @roster.workflow_state = "available"
+    @roster.save!
+  end
 
 end
