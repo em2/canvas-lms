@@ -214,11 +214,4 @@ class Roster < ActiveRecord::Base
     @course_assignment.position = @course.assignments.count
     @course_assignment.save!
   end
-
-
-
-
-
-
-
 end
