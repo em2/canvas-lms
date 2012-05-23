@@ -18,40 +18,24 @@ class Roster < ActiveRecord::Base
     #
     # Try to find the course. If unsuccessful, then create the Course.
     if (!find_course(course_title))
-      @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account)
-      @course.offer!
-      @course.save!
+      create_course(course_title, school_account)
     end
-        
 
     #
     # Try to find the teacher
-    # Go through each school and look for a teacher with the same name
+    # Go through each district and look for a teacher with the same name
     # if unsuccessful, go ahead and create that teacher
-
-        
-    #
-    # If the teacher was not found, create that teacher
     if (!find_teacher(district_account, district, teacher))
       create_teacher(context, district, teacher)
     end
         
     #
     # Enroll the teacher in this course as a teacher
-    if (!@enroll = @course.enrollments.find_by_user_id(@teacher_account.id))
-      @enroll=@course.enroll_teacher(@teacher_account)
-    end
-    @enroll.workflow_state = 'active'
-    @enroll.save!
+    enroll_as_teacher(@teacher_account)
     
     #
     # Enroll the current user as the teacher
-    if (!@enroll = @course.enrollments.find_by_user_id(current_user.id))
-      @enroll=@course.enroll_teacher(current_user)
-    end
-    @enroll.workflow_state = 'active'
-    @enroll.save!
-    
+    enroll_as_teacher(current_user)
     
     #
     # Make sure that the stage instance has not been used with this probe
@@ -160,6 +144,12 @@ class Roster < ActiveRecord::Base
     return course_found
   end
 
+  def create_course(course_title, school_account)
+    @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account)
+    @course.offer!
+    @course.save!
+  end
+
   def find_teacher(district_account, district, teacher)
     teacher_found = false
     district_account.sub_accounts.each do |school|
@@ -202,6 +192,14 @@ class Roster < ActiveRecord::Base
 
     @teacher_account.register!
     @teacher_account.save!
+  end
+
+  def enroll_as_teacher(user)
+    if (!@enroll = @course.enrollments.find_by_user_id(user.id))
+      @enroll=@course.enroll_teacher(user)
+    end
+    @enroll.workflow_state = 'active'
+    @enroll.save!
   end
 
 

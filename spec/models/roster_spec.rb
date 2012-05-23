@@ -99,7 +99,23 @@ describe Roster do
 			number_users_after = User.all.count
 			(number_users_after - number_users_before).should == 3 #two classes, one teacher for both and one student per class = 3
 		end
+	end
 
+	describe "enroll as teachers" do
+		it "should enroll the created teacher in the class" do
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			teacher = User.find_by_sortable_name(@district + @teacher)
+			course = Course.find_by_name(@course_title)
 
+			teacher.enrollments.first.course_id.should == course.id
+		end
+
+		it "should enroll the current_user as a teacher in the class" do
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+
+			@user.enrollments.first.course_id.should == course.id
+
+		end
 	end
 end
