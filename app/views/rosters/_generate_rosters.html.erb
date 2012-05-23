@@ -1,5 +1,10 @@
 <style>
-#students_custom_count {display:none;}
+#students_custom_count {display: none;}
+.validator {color: #990000; font-size: 10px;}
+#course_example_validator {float: right;}
+#students_custom_count_validator {display: none;}
+#students_custom_count_zero_validator {display: none;}
+#students_custom_count_less_validator {display: none;}
 </style>
 
 <h2>Assign Probe to Classes</h2>
@@ -16,31 +21,24 @@
 		&nbsp <%= f.radio_button :stage, 'L' %>
 			<%= f.label :stage, 'L' %> <br />
 	&nbsp <%= f.label :instance, 'Instance:' %>
-		&nbsp <%= f.text_field :instance, :size => '3x1' %> <br />
-		<div id="instance_validator">
-			&nbsp <%= f.label :instance_validator, 'Must Be 3 Numbers', {:style=>'color:#990000'} %>
-		</div>
+		&nbsp <%= f.text_field :instance, :size => '3x1' %>
+		
+			<span id='instance_validator' class='validator'>&nbsp Must Be 3 Numbers </span> <br />
+		
 	&nbsp <%= f.label :students, 'Students:' %>
 		&nbsp <%= f.select :students, options_for_select(@student_options, 25) %> <br />
 		<div id="students_custom_count">
 			<% 9.times do %>&nbsp <% end -%> <%= f.text_field :students_custom, :size => '3x1' %>
-			<div id="students_custom_count_validator">
-				&nbsp <%= f.label :students_custom_validator, 'Must Be A Number', {:style=>'color:#990000'} %>
-			</div>
-			<div id="students_custom_count_zero_validator">
-				&nbsp <%= f.label :students_custom_validator, 'Must Be Greater Than Zero', {:style=>'color:#990000'} %>
-			</div>
-			<div id="students_custom_count_less_validator">
-				&nbsp <%= f.label :students_custom_validator, 'Must Be Less Than 251', {:style=>'color:#990000'} %>
-			</div>
+			<span id='students_custom_count_validator' class='validator'>&nbsp Must Be A Number <br /> </span>
+			<span id='students_custom_count_zero_validator' class='validator'>&nbsp  Must Be Greater Than Zero <br /> </span>
+			<span id='students_custom_count_less_validator' class='validator'>&nbsp  Must Be Less Than 251 <br /> </span>
 		</div>
-	&nbsp <%= f.label :courses, 'Class IDs:' %> <br />
-		&nbsp <%= f.text_area :courses, :size => '20x10' %> <br />
-		<div id="course_example_validator">
-			&nbsp <%= f.label :courses_validator_text, 'Must Be In Form:', {:style=>'color:#990000'} %> <br />
-			&nbsp <%= f.label :courses_validator_example_A, 'D***S***T***C***', {:style=>'color:#990000'} %> <br />
-			&nbsp <%= f.label :courses_validator_example_B, 'e.g., D123S123T123C123', {:style=>'color:#990000'} %> <br /> 
-		</div>
+	&nbsp <%= f.label :courses, 'Class IDs:' %>
+	<div>
+		&nbsp <%= f.text_area :courses, :size => '20x10' %>
+		
+			<span id='course_example_validator' class='validator'>Must Be In Form: <br />D***S***T***C*** <br />e.g., D123S123T123C123 &nbsp</span> <br />
+	</div>
 	&nbsp <%= f.submit 'Assign Probe' %>
 <% end -%>
 
