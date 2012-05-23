@@ -54,49 +54,10 @@ class Roster < ActiveRecord::Base
 
     #
     # Loop until a student has been created for all the @students_needed
-    j = 0
-    while(j < @students_needed)
-      
-      @student_id = rand(8999999999)+1000000000
-      #
-      # Make sure student_id is unique
-      while (Pseudonym.find_by_unique_id(@student_id) != nil)
-        @student_id = rand(8999999999)+1000000000
-      end
-      @student = User.create!
-      @student_number = (j + @course_enrollment_count + 1).to_s
-      #
-      # the the user have a 4 digit number ie: 0001
-      while (@student_number.length < 4)
-        @student_number.insert(0, '0')
-      end
-      
-      @student.name = @student_id
-      @student.sortable_name = course_title + @student_number
-      @student.short_name = @student_number
-      @student.browser_locale = 'en'
-      
-      #
-      # pseudonym is what stores the users login information, let's build it
-      @pseudonym = @student.pseudonyms.build(:account => context)
-      @pseudonym.user = @student
-      @pseudonym.unique_id = @student_id
-      @pseudonym.account = context
-      @pseudonym.workflow_state = 'active'
-      
-      @pseudonym.password = Canvas::Security.config["student_password"]
-      @pseudonym.password_confirmation = Canvas::Security.config["student_password"]
-      @pseudonym.save_without_session_maintenance
-      
-      @student.register!
-      @student.save!
-      
-      @enroll = @course.enroll_student(@student)
-      @enroll.workflow_state = 'active'
-      @enroll.save!
-      
-      
-      j += 1
+    i = 0
+    while(i < @students_needed)
+      create_student(context, course_title, i)
+      i += 1
     end
 	end
 
@@ -205,6 +166,52 @@ class Roster < ActiveRecord::Base
     @course_assignment = Assignment.find(@quiz.assignment_id)
     @course_assignment.position = @course.assignments.count
     @course_assignment.save!
+  end
+
+  def create_student(context, course_title, i)
+    @student_id = rand(8999999999)+1000000000
+    
+    #
+    # Make sure student_id is unique
+    while (Pseudonym.find_by_unique_id(@student_id) != nil)
+      @student_id = rand(8999999999)+1000000000
+    end
+
+    @student = User.create!
+    @student_number = (i + @course_enrollment_count + 1).to_s
+
+    #
+    # the user should have a 4 digit number ie: 0001
+    while (@student_number.length < 4)
+      @student_number.insert(0, '0')
+    end
+
+    @student.name = @student_id
+    @student.sortable_name = course_title + @student_number
+    @student.short_name = @student_number
+    @student.browser_locale = 'en'
+
+    #
+    # pseudonym is what stores the users login information, let's build it
+    @pseudonym = @student.pseudonyms.build(:account => context)
+    @pseudonym.user = @student
+    @pseudonym.unique_id = @student_id
+    @pseudonym.account = context
+    @pseudonym.workflow_state = 'active'
+
+    @pseudonym.password = Canvas::Security.config["student_password"]
+    @pseudonym.password_confirmation = Canvas::Security.config["student_password"]
+    @pseudonym.save_without_session_maintenance
+
+    @student.register!
+    @student.save!
+
+    @enroll = @course.enroll_student(@student)
+    @enroll.workflow_state = 'active'
+    @enroll.save!
+
+    return @student
+    
   end
 
 

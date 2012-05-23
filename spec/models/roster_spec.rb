@@ -64,7 +64,7 @@ describe Roster do
 			@school_account = @backup_school_account
 			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 			number_courses_after = Course.all.count
-			(number_courses_after - number_courses_before).should == 2
+			(number_courses_after - number_courses_before).should be == 2
 		end
 	end
 
@@ -82,7 +82,7 @@ describe Roster do
 			@school_account = Account.create!(:name => @school, :parent_account => @district_account)
 			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 			number_users_after = User.all.count
-			(number_users_after - number_users_before).should == 4 #two classes, one teacher and one student per class = 4
+			(number_users_after - number_users_before).should be == 4 #two classes, one teacher and one student per class = 4
 		end
 
 		it "should not duplicate the same teacher name in the same district" do
@@ -97,7 +97,7 @@ describe Roster do
 			@school_account = Account.create!(:name => @school, :parent_account => @district_account)
 			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 			number_users_after = User.all.count
-			(number_users_after - number_users_before).should == 3 #two classes, one teacher for both and one student per class = 3
+			(number_users_after - number_users_before).should be == 3 #two classes, one teacher for both and one student per class = 3
 		end
 	end
 
@@ -107,14 +107,14 @@ describe Roster do
 			teacher = User.find_by_sortable_name(@district + @teacher)
 			course = Course.find_by_name(@course_title)
 
-			teacher.enrollments.first.course_id.should == course.id
+			teacher.enrollments.first.course_id.should be == course.id
 		end
 
 		it "should enroll the current_user as a teacher in the class" do
 			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 			course = Course.find_by_name(@course_title)
 
-			@user.enrollments.first.course_id.should == course.id
+			@user.enrollments.first.course_id.should be == course.id
 
 		end
 	end
@@ -124,7 +124,41 @@ describe Roster do
 			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 			course = Course.find_by_name(@course_title)
 
-			course.assignments.first.context_id.should == course.id
+			course.assignments.first.context_id.should be == course.id
 		end
+
+		it "should not create duplicate assignments for the class" do 
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+			course.assignments.count.should be == 1
+		end
+	end
+
+	describe "create students" do
+		it "should create students" do
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+			course.students.count.should be > 0
+		end
+
+		it "should not create less students than specified" do
+			pending
+		end
+
+		it "should not create more students than specified" do
+			pending
+		end
+
+		it "should create extra students when then total specified is more than the amount enrolled in the class" do
+			pending
+		end
+
+		it "should give the students a short name of incrementing values" do
+			pending
+		end
+
+
+
 	end
 end
