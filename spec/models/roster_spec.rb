@@ -118,4 +118,13 @@ describe Roster do
 
 		end
 	end
+
+	describe "create assignment" do
+		it "should create an assignment for the class" do
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+
+			course.assignments.first.context_id.should == course.id
+		end
+	end
 end

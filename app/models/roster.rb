@@ -39,36 +39,9 @@ class Roster < ActiveRecord::Base
     
     #
     # Make sure that the stage instance has not been used with this probe
-    assignment_found = false
-    @course.assignments.each do |assignment|
-      temp_probe_name = probe.title + stage + instance
-      if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
-        assignment_found = true
-      end
-    end
-        
-        
-    if (!assignment_found)
-      #
-      # Create the Assessment
-      @quiz = @course.quizzes.create
-      @quiz.title = probe.full_name
-      @quiz.probe_name = probe.title + stage + instance
-      @quiz.description = nil
-      @quiz.hide_results = 'always'
-      @quiz.show_correct_answers = false
-      @quiz.content_being_saved_by(current_user)
-      @quiz.infer_times()
-      @quiz.add_assessment_questions(probe.assessment_questions)
-      @quiz.generate_quiz_data()
-      @quiz.published_at = Time.now
-      @quiz.workflow_state = 'available'
-      @quiz.anonymous_submissions = false
-      @quiz.save!
-      
-      @course_assignment = Assignment.find(@quiz.assignment_id)
-      @course_assignment.position = @course.assignments.count
-      @course_assignment.save!
+    # if not, create the assessment
+    if (!find_assignment(probe, stage, instance))
+      create_assignment(probe, stage, instance, current_user)
     end
         
     #
@@ -200,6 +173,38 @@ class Roster < ActiveRecord::Base
     end
     @enroll.workflow_state = 'active'
     @enroll.save!
+  end
+
+  def find_assignment(probe, stage, instance)
+    assignment_found = false
+    @course.assignments.each do |assignment|
+      temp_probe_name = probe.title + stage + instance
+      if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
+        assignment_found = true
+      end
+    end
+    return assignment_found
+  end
+
+  def create_assignment(probe, stage, instance, current_user)
+    @quiz = @course.quizzes.create
+    @quiz.title = probe.full_name
+    @quiz.probe_name = probe.title + stage + instance
+    @quiz.description = nil
+    @quiz.hide_results = 'always'
+    @quiz.show_correct_answers = false
+    @quiz.content_being_saved_by(current_user)
+    @quiz.infer_times()
+    @quiz.add_assessment_questions(probe.assessment_questions)
+    @quiz.generate_quiz_data()
+    @quiz.published_at = Time.now
+    @quiz.workflow_state = 'available'
+    @quiz.anonymous_submissions = false
+    @quiz.save!
+    
+    @course_assignment = Assignment.find(@quiz.assignment_id)
+    @course_assignment.position = @course.assignments.count
+    @course_assignment.save!
   end
 
 
