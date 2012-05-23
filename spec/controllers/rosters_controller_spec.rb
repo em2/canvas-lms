@@ -114,8 +114,8 @@ describe RostersController do
       it "should capitalize all letters in the course_title" do
         @params[:rosters][:courses] = "d002s002t002c002"
         post 'create', @params
-        course = Course.last
-        course.name.should == "D002S002T002C002"
+        roster = Roster.last
+        roster.name.should == "D002S002"
       end
 
       it "should alert that no probes were created if there was only one probe to be created and the course title is too long" do
@@ -234,9 +234,5 @@ describe RostersController do
         same_account_found.should == false
       end
     end
-
-
-
   end
-
 end

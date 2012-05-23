@@ -15,24 +15,9 @@ class Roster < ActiveRecord::Base
 	#########################################################################
 	def generate_probes(context, probe, instance, stage, course_title, current_user, number_students, district, district_account, school_account, teacher)
 
-    course_found = false
-    all_courses = Course.all
-    all_courses.each do |course|
-      if (course.name == course_title)
-        if (course.workflow_state == "available" || course.workflow_state == "completed")
-          course_found = true
-          @course = course
-          if (course.workflow_state == "completed")
-            @course.unconclude
-            @course.save!
-          end
-        end 
-      end
-    end
-
     #
     # Try to find the course. If unsuccessful, then create the Course.
-    if (!course_found)
+    if (!find_course(course_title))
       @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account)
       @course.offer!
       @course.save!
@@ -193,4 +178,21 @@ class Roster < ActiveRecord::Base
       j += 1
     end
 	end
+
+  def find_course(course_title)
+    course_found = false
+    Course.all.each do |course|
+      if (course.name == course_title)
+        if (course.workflow_state == "available" || course.workflow_state == "completed")
+          course_found = true
+          @course = course
+          if (course.workflow_state == "completed")
+            @course.unconclude
+            @course.save!
+          end
+        end 
+      end
+    end
+    return course_found
+  end
 end

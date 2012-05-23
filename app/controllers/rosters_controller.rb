@@ -1,9 +1,9 @@
 class RostersController < ApplicationController
   
-
   def index
-    if authorized_action(Course.create.quizzes.new, @current_user, :delete) # Make sure the user is authorized to do this
-      get_context
+
+    if is_authorized? # Make sure the user is authorized to do this
+
       add_crumb("School Rosters")
       
       @rosters = Roster.by_name
@@ -17,14 +17,6 @@ class RostersController < ApplicationController
   #########################################################################
   def create
 
-    #
-    # get the current context
-    # in this case it should usually be the domain_root_account
-    # but I left the other stuff in as Canvas does it's own thing sometimes...
-    get_context
-    @context = @domain_root_account || Account.default unless @context.is_a?(Account)
-    @context = @context.root_account || @context
-    
     #
     # While creating everything, this bool flag will be set if any errors are encountered
     # If any are found at the beginning, send the user back to their dashboard
@@ -49,7 +41,7 @@ class RostersController < ApplicationController
       errors_found = true
     end
 
-    if authorized_action(Course.create.quizzes.new, @current_user, :delete) # Make sure the user is authorized to do this
+    if (is_authorized?) # Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
         flash[:error] = "Please complete the form."
         redirect_back_or_default(dashboard_url)
@@ -108,9 +100,9 @@ class RostersController < ApplicationController
 
           #
           # Send off the roster to generate everything to delayed_job
-          #Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
+          Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
           #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
-          @roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+          #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
           
           probe_generated = true
 
@@ -132,14 +124,22 @@ class RostersController < ApplicationController
   end
   
   def show
-    
-    if authorized_action(Course.create.quizzes.new, @current_user, :delete) # Make sure the user is authorized to do this
-      get_context
+    if (is_authorized?) # Make sure the user is authorized to do this
       @current_school_roster = Roster.find(params[:id]).account
       
       add_crumb("Rosters", rosters_path)
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
-    end    
+    end
+  end
+
+  def is_authorized?
+    #
+    # get the current context
+    get_context
+    @context = @domain_root_account || Account.default unless @context.is_a?(Account)
+    @context = @context.root_account || @context
+
+    return authorized_action(@context, @current_user, :update) # Make sure the user is authorized to do this
   end
 
   def check_stage(stage)
