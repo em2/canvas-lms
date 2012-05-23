@@ -136,7 +136,7 @@ describe Roster do
 	end
 
 	describe "create students" do
-		it "should create students" do
+		it "should create students and enroll them in the course" do
 			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 			course = Course.find_by_name(@course_title)
 			course.students.count.should be > 0
@@ -159,10 +159,23 @@ describe Roster do
 		end
 
 		it "should give the students a short name of incrementing values" do
-			pending
+			@number_students = 2
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+			course.students.all.each_with_index do |student, index|
+				student.short_name.to_i.should be == index + 1
+			end
 		end
 
-
-
+		it "should continue incrementing students short names instead of starting over at 0001 if more students are added to the class" do
+			@number_students = 2
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			@number_students = 4
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+			course.students.all.each_with_index do |student, index|
+				student.short_name.to_i.should be == index + 1
+			end
+		end
 	end
 end

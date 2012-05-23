@@ -57,6 +57,7 @@ class Roster < ActiveRecord::Base
     i = 0
     while(i < @students_needed)
       create_student(context, course_title, i)
+      enroll_as_student(@student)
       i += 1
     end
 	end
@@ -128,46 +129,6 @@ class Roster < ActiveRecord::Base
     @teacher_account.save!
   end
 
-  def enroll_as_teacher(user)
-    if (!@enroll = @course.enrollments.find_by_user_id(user.id))
-      @enroll=@course.enroll_teacher(user)
-    end
-    @enroll.workflow_state = 'active'
-    @enroll.save!
-  end
-
-  def find_assignment(probe, stage, instance)
-    assignment_found = false
-    @course.assignments.each do |assignment|
-      temp_probe_name = probe.title + stage + instance
-      if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
-        assignment_found = true
-      end
-    end
-    return assignment_found
-  end
-
-  def create_assignment(probe, stage, instance, current_user)
-    @quiz = @course.quizzes.create
-    @quiz.title = probe.full_name
-    @quiz.probe_name = probe.title + stage + instance
-    @quiz.description = nil
-    @quiz.hide_results = 'always'
-    @quiz.show_correct_answers = false
-    @quiz.content_being_saved_by(current_user)
-    @quiz.infer_times()
-    @quiz.add_assessment_questions(probe.assessment_questions)
-    @quiz.generate_quiz_data()
-    @quiz.published_at = Time.now
-    @quiz.workflow_state = 'available'
-    @quiz.anonymous_submissions = false
-    @quiz.save!
-    
-    @course_assignment = Assignment.find(@quiz.assignment_id)
-    @course_assignment.position = @course.assignments.count
-    @course_assignment.save!
-  end
-
   def create_student(context, course_title, i)
     @student_id = rand(8999999999)+1000000000
     
@@ -205,14 +166,58 @@ class Roster < ActiveRecord::Base
 
     @student.register!
     @student.save!
-
-    @enroll = @course.enroll_student(@student)
-    @enroll.workflow_state = 'active'
-    @enroll.save!
-
-    return @student
     
   end
+
+  def enroll_as_teacher(user)
+    if (!@enroll = @course.enrollments.find_by_user_id(user.id))
+      @enroll=@course.enroll_teacher(user)
+    end
+    @enroll.workflow_state = 'active'
+    @enroll.save!
+  end
+
+  def enroll_as_student(user)
+    @enroll = @course.enroll_student(user)
+    @enroll.workflow_state = 'active'
+    @enroll.save!
+  end
+
+  def find_assignment(probe, stage, instance)
+    assignment_found = false
+    @course.assignments.each do |assignment|
+      temp_probe_name = probe.title + stage + instance
+      if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
+        assignment_found = true
+      end
+    end
+    return assignment_found
+  end
+
+  def create_assignment(probe, stage, instance, current_user)
+    @quiz = @course.quizzes.create
+    @quiz.title = probe.full_name
+    @quiz.probe_name = probe.title + stage + instance
+    @quiz.description = nil
+    @quiz.hide_results = 'always'
+    @quiz.show_correct_answers = false
+    @quiz.content_being_saved_by(current_user)
+    @quiz.infer_times()
+    @quiz.add_assessment_questions(probe.assessment_questions)
+    @quiz.generate_quiz_data()
+    @quiz.published_at = Time.now
+    @quiz.workflow_state = 'available'
+    @quiz.anonymous_submissions = false
+    @quiz.save!
+    
+    @course_assignment = Assignment.find(@quiz.assignment_id)
+    @course_assignment.position = @course.assignments.count
+    @course_assignment.save!
+  end
+
+
+
+
 
 
 
