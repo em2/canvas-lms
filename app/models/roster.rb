@@ -28,48 +28,12 @@ class Roster < ActiveRecord::Base
     # Try to find the teacher
     # Go through each school and look for a teacher with the same name
     # if unsuccessful, go ahead and create that teacher
-    teacher_found = false
-    district_account.sub_accounts.each do |school|
-      school.courses.each do |course|
-        course.enrollments.all_admin.each do |admin|
-          if (User.find(admin.user_id).sortable_name == district + teacher)
-            teacher_found = true
-            @teacher_account = User.find(admin.user_id)
-          end
-        end
-      end
-    end
+
         
     #
     # If the teacher was not found, create that teacher
-    if (!teacher_found)
-      @teacher_id = rand(8999999999)+1000000000
-      #
-      # Make sure student_id is unique
-      while (Pseudonym.find_by_unique_id(@teacher_id) != nil)
-        @teacher_id = rand(8999999999)+1000000000
-      end
-      
-      @teacher_account = User.create!
-      @teacher_account.name = @teacher_id
-      @teacher_account.sortable_name = district + teacher
-      @teacher_account.short_name = district + teacher
-      @teacher_account.browser_locale = 'en'
-      
-      #
-      # pseudonym is what stores the users login information, let's build it
-      @pseudonym = @teacher_account.pseudonyms.build(:account => context)
-      @pseudonym.user = @teacher_account
-      @pseudonym.unique_id = @teacher_id
-      @pseudonym.account = context
-      @pseudonym.workflow_state = 'active'
-      @pseudonym.password = @teacher_id
-      @pseudonym.password_confirmation = @teacher_id
-      @pseudonym.save_without_session_maintenance
-      
-      @teacher_account.register!
-      @teacher_account.save!
-      
+    if (!find_teacher(district_account, district, teacher))
+      create_teacher(context, district, teacher)
     end
         
     #
@@ -195,4 +159,51 @@ class Roster < ActiveRecord::Base
     end
     return course_found
   end
+
+  def find_teacher(district_account, district, teacher)
+    teacher_found = false
+    district_account.sub_accounts.each do |school|
+      school.courses.each do |course|
+        course.enrollments.all_admin.each do |admin|
+          if (User.find(admin.user_id).sortable_name == district + teacher)
+            teacher_found = true
+            @teacher_account = User.find(admin.user_id)
+          end
+        end
+      end
+    end
+    return teacher_found
+  end
+
+  def create_teacher(context, district, teacher)
+    @teacher_id = rand(8999999999)+1000000000
+    #
+    # Make sure student_id is unique
+    while (Pseudonym.find_by_unique_id(@teacher_id) != nil)
+    @teacher_id = rand(8999999999)+1000000000
+    end
+
+    @teacher_account = User.create!
+    @teacher_account.name = @teacher_id
+    @teacher_account.sortable_name = district + teacher
+    @teacher_account.short_name = district + teacher
+    @teacher_account.browser_locale = 'en'
+
+    #
+    # pseudonym is what stores the users login information, let's build it
+    @pseudonym = @teacher_account.pseudonyms.build(:account => context)
+    @pseudonym.user = @teacher_account
+    @pseudonym.unique_id = @teacher_id
+    @pseudonym.account = context
+    @pseudonym.workflow_state = 'active'
+    @pseudonym.password = @teacher_id
+    @pseudonym.password_confirmation = @teacher_id
+    @pseudonym.save_without_session_maintenance
+
+    @teacher_account.register!
+    @teacher_account.save!
+  end
+
+
+
 end

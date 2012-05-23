@@ -31,27 +31,75 @@ describe Roster do
 			:school_account => @school_account,
 			:teacher => @teacher
 		}
+		@roster = Roster.new
 	end
 
 
 
 	it "should create a new instance given valid attributes" do
-		roster = Roster.new
-		roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+		@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 	end
 
 	describe "create courses" do
 		it "should not create duplicate course names for the same teacher in the same school" do
 			number_courses_before = Course.all.count
-			roster = Roster.new
 			@course_title = "D001S001T001C001"
-			roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			@district = "D001"
+			@school = "S001"
+			@teacher = "T001"
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			
 			@course_title = "D001S002T001C001"
-			roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			@district = "D001"
+			@school = "S002"
+			@teacher = "T001"
+			@backup_school_account = @school_account
+			@school_account = Account.create!(:name => @school, :parent_account => @district_account)
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			
 			@course_title = "D001S001T001C001"
-			roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			@district = "D001"
+			@school = "S001"
+			@teacher = "T001"
+			@school_account = @backup_school_account
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
 			number_courses_after = Course.all.count
 			(number_courses_after - number_courses_before).should == 2
 		end
+	end
+
+	describe "create teacher" do
+		it "should duplicate the same teacher name in different districts" do
+			number_users_before = User.all.count
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			
+			@course_title = "D001S002T001C001"
+			@district = "D002"
+			@school = "S001"
+			@teacher = "T001"
+			@backup_district_account = @district_account
+			@district_account = Account.create!(:name => @district, :parent_account => @context)
+			@school_account = Account.create!(:name => @school, :parent_account => @district_account)
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			number_users_after = User.all.count
+			(number_users_after - number_users_before).should == 4 #two classes, one teacher and one student per class = 4
+		end
+
+		it "should not duplicate the same teacher name in the same district" do
+			number_users_before = User.all.count
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			
+			@course_title = "D001S002T001C001"
+			@district = "D001"
+			@school = "S002"
+			@teacher = "T001"
+			@backup_school_account = @school_account
+			@school_account = Account.create!(:name => @school, :parent_account => @district_account)
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			number_users_after = User.all.count
+			(number_users_after - number_users_before).should == 3 #two classes, one teacher for both and one student per class = 3
+		end
+
+
 	end
 end
