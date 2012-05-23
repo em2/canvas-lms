@@ -142,16 +142,20 @@ describe Roster do
 			course.students.count.should be > 0
 		end
 
-		it "should not create less students than specified" do
-			pending
-		end
-
-		it "should not create more students than specified" do
-			pending
+		it "should not create less or more students than specified" do
+			@number_students = 2
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+			course.students.count.should_not be < 2
+			course.students.count.should_not be > 2
 		end
 
 		it "should create extra students when then total specified is more than the amount enrolled in the class" do
-			pending
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			@number_students = 2
+			@roster.generate_probes(@context, @question_bank, @instance, @stage, @course_title, @user, @number_students, @district, @district_account, @school_account, @teacher)
+			course = Course.find_by_name(@course_title)
+			course.students.count.should be == 2
 		end
 
 		it "should give the students a short name of incrementing values" do
