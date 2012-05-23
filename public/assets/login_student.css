@@ -1,10 +1,10 @@
 body.modal #footer{display:block!important;width:667px;margin:20px auto}
 body.modal #main{background-color:transparent;border:0 none;margin:0;padding:0}
-body.modal #modal-box-top{background:url(/images/login-bg.png?1337219907) no-repeat;width:647px;height:10px;overflow:hidden;margin:75px auto 0;padding:10px 20px 0 20px;position:relative}
-body.modal #modal-box-bottom{background:url(/images/login-bg.png?1337219907) no-repeat bottom center;width:647px;height:9px;overflow:hidden;margin:0 auto 0;padding:0 20px 10px 20px;position:relative}
+body.modal #modal-box-top{background:url(/images/login-bg.png?1337366392) no-repeat;width:647px;height:10px;overflow:hidden;margin:75px auto 0;padding:10px 20px 0 20px;position:relative}
+body.modal #modal-box-bottom{background:url(/images/login-bg.png?1337366392) no-repeat bottom center;width:647px;height:9px;overflow:hidden;margin:0 auto 0;padding:0 20px 10px 20px;position:relative}
 body.modal #modal-box-arbitrary-size{margin-top:-30px!important;height:auto!important;background-image:url(/images/login-bg-middle-tall.jpg?1326216007)!important}
 body.modal #modal-box-arbitrary-size #register_form{margin-top:40px}
-body.modal #modal-box,body.modal #modal-box-arbitrary-size{background:url(/images/login-bg.jpg?1337219907) no-repeat;width:647px;height:358px;padding:20px;color:#5c5c5c;margin:75px auto 0;position:relative;color:#4b4b4b}
+body.modal #modal-box,body.modal #modal-box-arbitrary-size{background:url(/images/login-bg.jpg?1337366392) no-repeat;width:647px;height:358px;padding:20px;color:#5c5c5c;margin:75px auto 0;position:relative;color:#4b4b4b}
 body.modal #modal-box.modal-box-tall,body.modal #modal-box-arbitrary-size.modal-box-tall{margin-top:50px}
 body.modal #modal-box a,body.modal #modal-box-arbitrary-size a{color:inherit!important;text-decoration:underline}
 body.modal #modal-box ul,body.modal #modal-box-arbitrary-size ul{list-style-type:none}

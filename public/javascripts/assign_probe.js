@@ -100,14 +100,14 @@ function assignProbeValidator(){
 				$('#rosters_students_custom').removeAttr("style", "border-color:red;");
 				return false;
 			}else if (text < 1){
-				$('#students_custom_count_validator').hide("slow");
-				$('#students_custom_count_less_validator').hide("slow");
+				$('#students_custom_count_validator').hide("fast");
+				$('#students_custom_count_less_validator').hide("fast");
 				$('#students_custom_count_zero_validator').show("fast");
 				$('#rosters_students_custom').attr("style", "border-color:red;");
 				return true;
 			}else{
-				$('#students_custom_count_validator').hide("slow");
-				$('#students_custom_count_zero_validator').hide("slow");
+				$('#students_custom_count_validator').hide("fast");
+				$('#students_custom_count_zero_validator').hide("fast");
 				$('#students_custom_count_less_validator').show("fast");
 				$('#rosters_students_custom').attr("style", "border-color:red;");
 				return true;
@@ -115,8 +115,8 @@ function assignProbeValidator(){
 		}
 		else{
 			$('#students_custom_count_validator').show("fast");
-			$('#students_custom_count_zero_validator').hide("slow");
-			$('#students_custom_count_less_validator').hide("slow");
+			$('#students_custom_count_zero_validator').hide("fast");
+			$('#students_custom_count_less_validator').hide("fast");
 			$('#rosters_students_custom').attr("style", "border-color:red;");
 			return true;
 		}

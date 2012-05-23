@@ -23,15 +23,15 @@
 	&nbsp <%= f.label :instance, 'Instance:' %>
 		&nbsp <%= f.text_field :instance, :size => '3x1' %>
 		
-			<span id='instance_validator' class='validator'>&nbsp Must Be 3 Numbers </span> <br />
+			<span id='instance_validator' class='validator'>Must Be 3 Numbers </span> <br />
 		
 	&nbsp <%= f.label :students, 'Students:' %>
 		&nbsp <%= f.select :students, options_for_select(@student_options, 25) %> <br />
 		<div id="students_custom_count">
 			<% 9.times do %>&nbsp <% end -%> <%= f.text_field :students_custom, :size => '3x1' %>
-			<span id='students_custom_count_validator' class='validator'>&nbsp Must Be A Number <br /> </span>
-			<span id='students_custom_count_zero_validator' class='validator'>&nbsp  Must Be Greater Than Zero <br /> </span>
-			<span id='students_custom_count_less_validator' class='validator'>&nbsp  Must Be Less Than 251 <br /> </span>
+			<span id='students_custom_count_validator' class='validator'>Must Be A Number</span>
+			<span id='students_custom_count_zero_validator' class='validator'>Must Be Greater Than Zero</span>
+			<span id='students_custom_count_less_validator' class='validator'>Must Be Less Than 251</span>
 		</div>
 	&nbsp <%= f.label :courses, 'Class IDs:' %>
 	<div>
