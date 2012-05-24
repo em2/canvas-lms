@@ -1,24 +1,26 @@
 (function() {
-  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
-    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
-    function ctor() { this.constructor = child; }
-    ctor.prototype = parent.prototype;
-    child.prototype = new ctor;
-    child.__super__ = parent.prototype;
-    return child;
-  };
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
+
   require(['compiled/backbone-ext/Model'], function(Model) {
     module('dateAttributes');
     return test('converts date strings to date objects', function() {
       var TestModel, expected, parsedDate, res, stringDate;
-      TestModel = (function() {
-        __extends(TestModel, Model);
+      TestModel = (function(_super) {
+
+        __extends(TestModel, _super);
+
+        TestModel.name = 'TestModel';
+
         function TestModel() {
-          TestModel.__super__.constructor.apply(this, arguments);
+          return TestModel.__super__.constructor.apply(this, arguments);
         }
+
         TestModel.prototype.dateAttributes = ['foo', 'bar'];
+
         return TestModel;
-      })();
+
+      })(Model);
       stringDate = "2012-04-10T17:21:09-06:00";
       parsedDate = Date.parse(stringDate);
       res = TestModel.prototype.parse({
@@ -34,4 +36,5 @@
       return deepEqual(res, expected);
     });
   });
+
 }).call(this);
