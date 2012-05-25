@@ -177,20 +177,6 @@ Spec::Runner.configure do |config|
     account_admin_user(opts)
   end
 
-  def student_user(opts={})
-    @user = opts[:user] || user(opts)
-    @student = @user
-    @user.account_users.create(:account => opts[:account] || Account.default, :membership_type => opts[:membership_type] || 'StudentEnrollment')
-    @user
-  end
-
-  def teacher_user(opts={})
-    @user = opts[:user] || user(opts)
-    @teacher = @user
-    @user.account_users.create(:account => opts[:account] || Account.default, :membership_type => opts[:membership_type] || 'TeacherEnrollment')
-    @user
-  end
-
   def account_admin_user(opts={})
     @user = opts[:user] || user(opts)
     @admin = @user

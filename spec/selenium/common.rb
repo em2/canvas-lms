@@ -360,18 +360,6 @@ shared_examples_for "all selenium tests" do
     course_with_teacher({:user => @user, :active_course => true, :active_enrollment => true}.merge(opts))
   end
 
-  def student_logged_in(opts={})
-    #user_logged_in(opts)
-    #user_session(@user)
-    student_user({:active_user => true}.merge(opts))
-    user_logged_in({:user => @user}.merge(opts))
-  end
-
-  def teacher_logged_in(opts={})
-    teacher_user({:active_user => true}.merge(opts))
-    user_logged_in({:user => @user}.merge(opts))
-  end
-
   def admin_logged_in(opts={})
     account_admin_user({:active_user => true}.merge(opts))
     user_logged_in({:user => @user}.merge(opts))
