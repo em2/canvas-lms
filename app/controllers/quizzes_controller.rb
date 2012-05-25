@@ -102,6 +102,10 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def no_chrome?(user)
+    @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
+  end
+
   def show
     if @quiz.deleted?
       flash[:error] = t('errors.quiz_deleted', "That quiz has been deleted")
@@ -110,7 +114,7 @@ class QuizzesController < ApplicationController
     end
     if authorized_action(@quiz, @current_user, :read)
 
-      if !is_authorized_action?(@quiz, @current_user, :create)
+      if !no_chrome?(@current_user)
         @no_chrome = true
       end
       

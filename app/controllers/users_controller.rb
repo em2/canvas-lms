@@ -216,15 +216,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def can_generate?(user)
+    @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
+  end
+
   def user_dashboard
     get_context
     
     @can_generate_assessment = false
-    if (!AssessmentQuestionBank.nil?)
-      @quiz = AssessmentQuestionBank.first
-      if is_authorized_action?(@quiz, @current_user, :create)
-        @can_generate_assessment = true
-      end
+
+    if can_generate?(@current_user)
+      @can_generate_assessment = true
     end
     
     #

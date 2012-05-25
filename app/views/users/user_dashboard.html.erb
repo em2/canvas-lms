@@ -34,7 +34,7 @@
 	<%= javascript_include_tag "assign_probe.js" %>
 <% end %>
 
-<% if @can_generate_assessment === true %>
+<% if @can_generate_assessment %>
 	<% content_for :generate_rosters do -%>
 		<%= render :partial => 'rosters/generate_rosters'%>
 	<% end -%>
@@ -43,7 +43,6 @@
 		<%= render :partial => 'rosters/view_previous_rosters'%>
 	<% end -%>
 <% end -%>
-
 
 <div>
 <% if @current_user.cached_current_enrollments(:include_enrollment_uuid => session[:enrollment_uuid]).empty? %>

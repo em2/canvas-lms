@@ -2,12 +2,14 @@ class RostersController < ApplicationController
   
   def index
 
-    if is_authorized? # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) # Make sure the user is authorized to do this
 
       add_crumb("School Rosters")
       
       @rosters = Roster.by_name
-    end    
+    else
+      redirect_back_or_default(dashboard_url)
+    end
   end
   
   #########################################################################
@@ -41,7 +43,7 @@ class RostersController < ApplicationController
       errors_found = true
     end
 
-    if (is_authorized?) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) # Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
         flash[:error] = "Please complete the form."
         redirect_back_or_default(dashboard_url)
@@ -120,26 +122,32 @@ class RostersController < ApplicationController
         return true
 
       end
+    else
+      redirect_back_or_default(dashboard_url)
     end
   end
   
   def show
-    if (is_authorized?) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) # Make sure the user is authorized to do this
       @current_school_roster = Roster.find(params[:id]).account
       
       add_crumb("Rosters", rosters_path)
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
+    else
+      redirect_back_or_default(dashboard_url)
     end
   end
 
-  def is_authorized?
+  def is_authorized?(user)
     #
     # get the current context
     get_context
     @context = @domain_root_account || Account.default unless @context.is_a?(Account)
     @context = @context.root_account || @context
 
-    return authorized_action(@context, @current_user, :update) # Make sure the user is authorized to do this
+    #
+    # Make sure the user is authorized to do this
+    @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
   end
 
   def check_stage(stage)
