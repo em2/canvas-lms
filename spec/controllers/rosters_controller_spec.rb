@@ -4,12 +4,44 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe RostersController do
   integrate_views
 
+  def create_quiz_template
+    @question_bank = AssessmentQuestionBank.new
+    @question_bank.title = "CF_A_01"
+    @question_bank.full_name = "Comparing Fractions"
+    @question_bank.workflow_state = "active"
+    @question_bank.save!
+  end
+
+  def create_assignment(current_user)
+    create_quiz_template()
+      @quiz = @course.quizzes.create
+      @quiz.title = @question_bank.full_name
+      @quiz.probe_name = @question_bank.title
+      @quiz.description = nil
+      @quiz.hide_results = 'always'
+      @quiz.show_correct_answers = false
+      @quiz.content_being_saved_by(current_user)
+      @quiz.infer_times()
+      @quiz.add_assessment_questions(@question_bank.assessment_questions)
+      @quiz.generate_quiz_data()
+      @quiz.published_at = Time.now
+      @quiz.workflow_state = 'available'
+      @quiz.anonymous_submissions = false
+      @quiz.save!
+      
+      @course_assignment = Assignment.find(@quiz.assignment_id)
+      @course_assignment.position = @course.assignments.count
+      @course_assignment.save!
+  end
+
   describe "GET 'index'" do
     it "should not allow students to view the rosters" do
       user()
       user_session(@user)
+      create_assignment(@user)
       get 'index'
-      response.status.should == '401 Unauthorized'
+      response.should have_tag("title", "Assessment: Comparing Fractions")
+      #response.status.should == '401 Unauthorized'
     end
 
     it "should have the right title" do
@@ -25,19 +57,18 @@ describe RostersController do
       account_admin_user(:username => "admin")
       user_session(@admin)
 
-      question_bank = AssessmentQuestionBank.new
-      question_bank.title = "CF_A_01"
-      question_bank.full_name = "Comparing Fractions"
-      question_bank.workflow_state = "active"
-      question_bank.save!
+      create_assignment(@admin)
+
       @params = {:rosters => {:probe_id => question_bank.id, :stage => "X", :instance => "001", :students => "1", :courses => "D001S001T001C001"}}
     end
     describe "allow only certain users to create rosters" do
       it "should not allow students to create rosters" do
         user()
         user_session(@user)
+        create_assignment(@user)
         post 'create', @params
-        response.status.should == '401 Unauthorized'
+        response.should have_tag("title", "Assessment: Comparing Fractions")
+        #response.status.should == '401 Unauthorized'
       end
 
       it "should allow admins to create rosters" do

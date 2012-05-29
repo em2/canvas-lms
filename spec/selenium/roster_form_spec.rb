@@ -13,16 +13,26 @@ describe "dashboard roster form" do
       		@enrollment = course_with_student_logged_in(:active_all => true)
       		@course = @enrollment.course
       		create_assignment(@user)
-      		#command = "GRANT ALL PRIVILEGES on canvas_test.* TO 'root'@'%';GRANT ALL PRIVILEGES on canvas_queue_test.* TO 'root'@'%';Flush Privileges;"
-      		#system("mysql -u root -e \"#{command}\"")
+      		@wait = Selenium::WebDriver::Wait.new(:timeout => 15)
     	end
 
     	it "should not allow a student to even see the form" do
+    		pending
     		get "/"
-    		driver.find_elements(:css, 'h2').count.should be == 3
+    		
+    		#driver.find_elements(:css, 'h2').count.should be == 3
+    		#driver.find_element(:css, '#finish_later_button').click()
+    		puts "title: #{driver.title}"
+    		driver.waitforpopup("Confirm Navigation")
+    		
+    		
+    		#a = driver.switch_to.alert
+    		#a.accept
+
     	end
 
     	it "should redirect the student to the active assignment" do
+    		pending
     	end
 	end
 

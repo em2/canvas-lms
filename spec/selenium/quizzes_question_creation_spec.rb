@@ -17,19 +17,16 @@ describe "quizzes question creation" do
     question_data = quiz.quiz_questions[0].question_data
     driver.find_element(:id, "question_#{quiz.quiz_questions[0].id}").should be_displayed
 
-    question_data[:answers].length.should == 4
+    question_data[:answers].length.should == 3
     question_data[:answers][0][:text].should == "Correct Answer"
     question_data[:answers][0][:weight].should == 100
     question_data[:answers][1][:text].should == "Wrong Answer #1"
     question_data[:answers][1][:weight].should == 0
     question_data[:answers][2][:text].should == "Second Wrong Answer"
     question_data[:answers][2][:weight].should == 0
-    question_data[:answers][3][:text].should == "Wrongest Answer"
-    question_data[:answers][3][:weight].should == 0
     question_data[:points_possible].should == 1
     question_data[:question_type].should == "multiple_choice_question"
     question_data[:correct_comments].should == "Good job on the question!"
-    question_data[:incorrect_comments].should == "You know what they say - study long study wrong."
     question_data[:neutral_comments].should == "Pass or fail, you're a winner!"
   end
 

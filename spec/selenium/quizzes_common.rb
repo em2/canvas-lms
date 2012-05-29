@@ -8,16 +8,35 @@ shared_examples_for "quizzes selenium tests" do
     type_in_tiny ".question_form:visible textarea.question_content", 'Hi, this is a multiple choice question.'
 
     answers = question.find_elements(:css, ".form_answers > .answer")
-    answers.length.should eql(4)
+    answers.length.should eql(3)
     replace_content(answers[0].find_element(:css, ".select_answer input"), "Correct Answer")
     set_feedback_content(answers[0].find_element(:css, ".answer_comments"), "Good job!")
     replace_content(answers[1].find_element(:css, ".select_answer input"), "Wrong Answer #1")
     set_feedback_content(answers[1].find_element(:css, ".answer_comments"), "Bad job :(")
     replace_content(answers[2].find_element(:css, ".select_answer input"), "Second Wrong Answer")
-    replace_content(answers[3].find_element(:css, ".select_answer input"), "Wrongest Answer")
 
     set_feedback_content(question.find_element(:css, "div.text .question_correct_comment"), "Good job on the question!")
-    set_feedback_content(question.find_element(:css, "div.text .question_incorrect_comment"), "You know what they say - study long study wrong.")
+    set_feedback_content(question.find_element(:css, "div.text .question_neutral_comment"), "Pass or fail, you're a winner!")
+
+    question.submit
+    wait_for_ajaximations
+  end
+
+  def create_compare_fractions_question
+    question = find_with_jquery(".question_form:visible")
+    click_option('.question_form:visible .question_type', 'Multiple Choice')
+
+    type_in_tiny ".question_form:visible textarea.question_content", 'Hi, this is a multiple choice question.'
+
+    answers = question.find_elements(:css, ".form_answers > .answer")
+    answers.length.should eql(3)
+    replace_content(answers[0].find_element(:css, ".select_answer input"), "Correct Answer")
+    set_feedback_content(answers[0].find_element(:css, ".answer_comments"), "Good job!")
+    replace_content(answers[1].find_element(:css, ".select_answer input"), "Wrong Answer #1")
+    set_feedback_content(answers[1].find_element(:css, ".answer_comments"), "Bad job :(")
+    replace_content(answers[2].find_element(:css, ".select_answer input"), "Second Wrong Answer")
+
+    set_feedback_content(question.find_element(:css, "div.text .question_correct_comment"), "Good job on the question!")
     set_feedback_content(question.find_element(:css, "div.text .question_neutral_comment"), "Pass or fail, you're a winner!")
 
     question.submit
