@@ -18,7 +18,7 @@
     <% else %>
 		<% fractions_raw = hash_get(question, :question_text) -%>
 		<%# image = fractions_raw[/<p><img\b[^>]*>(.*?)\/p>/] -%>
-		<% question_data = fractions_raw.split("[numberline]") -%>
+		<% question_data = fractions_raw.split("[split]") -%>
 		<% image_found = false -%>
 		<% if (question_data.count > 1) -%>
 			<% data_found = true -%>
@@ -219,7 +219,7 @@
     <% end %>
   </div>
 </div>
-<div class="line_image">
+<div class="line_image_holder_<%=question[:id]%>" hidden=true >
 	<% if (data_found && assessing) -%>
 		<%= user_content(question_image) %>
 	<% end -%>
@@ -285,7 +285,11 @@ require([
       editing = true;
     }
 
-    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in canvas_html5.js
+    var question_id = <%=question[:id]%>;
+
+    var question_image = $('.line_image_holder_'+question_id+' img').attr("src");
+
+    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing, question_image); //prepareCanvas is in canvas_html5.js
   });
 });
 </script>

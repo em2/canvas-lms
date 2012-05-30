@@ -17,12 +17,14 @@
 /**
 * Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 */
-function prepareCanvas(canvas_element, question_id, assessing, editing)
+function prepareCanvas(canvas_element, question_id, assessing, editing, drawing_image)
 {
 	if (editing == true){
 		return;
 	}
 	
+	var outlineImage = new Image();
+	outlineImage.src = drawing_image;
 	var canvas;
 	var context;
 	var canvasWidth = 386;
@@ -277,6 +279,8 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		context.rect(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 		context.clip();
 
+
+
 		var radius;
 		var i = 0;
 		for(; i < clickX.length; i++)
@@ -319,6 +323,10 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		context.restore();
 
 		context.globalAlpha = 1; // No IE support
+
+		//
+		// Draw the outline if there is one
+		context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
 
 	}
 }
