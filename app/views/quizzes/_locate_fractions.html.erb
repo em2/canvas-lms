@@ -216,37 +216,42 @@
       <% end %>
     <% end %>
   </div>
-  <div class="question_text question_text_CF question_right_side_CF">
-    <% if (found_fractions) -%>
-      <%= user_content(fraction_b) %>
+  <div class="line_image_holder_<%=question[:id]%>" hidden=true >
+    <% if (data_found) -%>
+      <%= user_content(question_image) %>
     <% end -%>
   </div>
 </div>
 <div class="explain_answer">
   <% if assessing || user_answer -%>
-    <div id="explain_text">Explain your choice using words and/or pictures.</div> <br/>
-    <% if assessing -%>
-      <div id="explain_area_<%= question[:id] %>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="40" rows="12"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
-    <% end -%>
-    <% if !assessing && user_answer -%>
-      <div id="explain_area_<%= question[:id] %>" class="explain_area_text_CF"><textarea cols="40" rows="12" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
-    <% end -%>
-    <% if assessing -%>
-      <% click_x_data = @stored_params["explain_canvas_#{question[:id]}_click_x_data"] -%>
-      <% click_y_data = @stored_params["explain_canvas_#{question[:id]}_click_y_data"] -%>
-      <% click_color_data = @stored_params["explain_canvas_#{question[:id]}_click_color_data"] -%>
-      <% click_tool_data = @stored_params["explain_canvas_#{question[:id]}_click_tool_data"] -%>
-      <% click_size_data = @stored_params["explain_canvas_#{question[:id]}_click_size_data"] -%>
-      <% click_drag_data = @stored_params["explain_canvas_#{question[:id]}_click_drag_data"] -%>
-    <% else -%>
-      <% click_x_data = user_answer[:explain_canvas_click_x_data] -%>
-      <% click_y_data = user_answer[:explain_canvas_click_y_data] -%>
-      <% click_color_data = user_answer[:explain_canvas_click_color_data] -%>
-      <% click_tool_data = user_answer[:explain_canvas_click_tool_data] -%>
-      <% click_size_data = user_answer[:explain_canvas_click_size_data] -%>
-      <% click_drag_data = user_answer[:explain_canvas_click_drag_data] -%>
-    <% end -%>
-    
+    <div>
+      
+      <% if assessing -%>
+        <% click_x_data = @stored_params["explain_canvas_#{question[:id]}_click_x_data"] -%>
+        <% click_y_data = @stored_params["explain_canvas_#{question[:id]}_click_y_data"] -%>
+        <% click_color_data = @stored_params["explain_canvas_#{question[:id]}_click_color_data"] -%>
+        <% click_tool_data = @stored_params["explain_canvas_#{question[:id]}_click_tool_data"] -%>
+        <% click_size_data = @stored_params["explain_canvas_#{question[:id]}_click_size_data"] -%>
+        <% click_drag_data = @stored_params["explain_canvas_#{question[:id]}_click_drag_data"] -%>
+      <% else -%>
+        <% click_x_data = user_answer[:explain_canvas_click_x_data] -%>
+        <% click_y_data = user_answer[:explain_canvas_click_y_data] -%>
+        <% click_color_data = user_answer[:explain_canvas_click_color_data] -%>
+        <% click_tool_data = user_answer[:explain_canvas_click_tool_data] -%>
+        <% click_size_data = user_answer[:explain_canvas_click_size_data] -%>
+        <% click_drag_data = user_answer[:explain_canvas_click_drag_data] -%>
+      <% end -%>
+
+      <div id="explain_text">Explain your choice using words and/or pictures.</div> <br/>
+      <% if assessing -%>
+        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="97" rows="6"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
+      <% end -%>
+      <% if !assessing && user_answer -%>
+        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea cols="97" rows="6" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
+      <% end -%>
+    </div>
+    <br /> <br /> <br /> <br /> <br /> <br /> <br />
+
     <div id="explain_canvas_<%= question[:id] %>"></div>
     <input type="hidden" class="explain_canvas_data", id="explain_canvas_<%= question[:id] %>_click_x_data" name="explain_canvas_<%= question[:id] %>_click_x_data" value="<%=click_x_data%>" % />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_y_data" name="explain_canvas_<%= question[:id] %>_click_y_data" value="<%= click_y_data %>" />
@@ -254,6 +259,7 @@
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_tool_data" name="explain_canvas_<%= question[:id] %>_click_tool_data" value="<%= click_tool_data %>" />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_size_data" name="explain_canvas_<%= question[:id] %>_click_size_data" value="<%= click_size_data %>" />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_drag_data" name="explain_canvas_<%= question[:id] %>_click_drag_data" value="<%= click_drag_data %>" />
+
   <% end -%>
 </div>
   <div class="after_answers">
@@ -279,11 +285,20 @@
 <% end -%>
 
 <style>
+  #question_<%= question[:id] %>_question_text{
+    max-width: 150px;
+  }
   #explain_canvas_<%= question[:id] %>{
     float: left;
   }
   #explain_text{
     float: left;
+    margin-left: 10px;
+  }
+  .explain_area_text_LF{
+    padding: 3px 6px;
+    margin-top: 6px;
+    margin-left: 3px;
   }
   #explain_area_<%= question[:id] %>{
     float: left;
@@ -297,17 +312,6 @@
     margin-top: 70px;
     padding-left: 5px;
     padding-right: 5px;
-  }
-  .question_text_CF{
-    float: left;
-    margin-top: 90px;
-  }
-  .question_right_side_CF{
-    padding-right: 13px;
-  }
-  .explain_area_text_CF{
-    padding: 3px 6px;
-    margin-top: 6px;
   }
 </style>
 
@@ -330,7 +334,11 @@ require([
       editing = true;
     }
 
-    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in drawing_pad_LF.js
+    var question_id = <%=question[:id]%>;
+
+    var question_image = $('.line_image_holder_'+question_id+' img').attr("src");
+
+    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing, question_image); //prepareCanvas is in drawing_pad_LF.js
   });
  });
 </script>

@@ -27,8 +27,11 @@ function prepareCanvas(canvas_element, question_id, assessing, editing, drawing_
 	outlineImage.src = drawing_image;
 	var canvas;
 	var context;
-	var canvasWidth = 386;
-	var canvasHeight = 220;
+	var canvasWidth = 924;
+	var canvasHeight = 170;
+	if (!assessing){
+		canvasWidth = 820;
+	}
 	var padding = 25;
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
@@ -48,11 +51,11 @@ function prepareCanvas(canvas_element, question_id, assessing, editing, drawing_
 	var curColor = colorBlue;
 	var curTool = "marker";
 	var curSize = "normal";
-	var drawingAreaX = 7;
-	var drawingAreaY = 11;
-	var drawingAreaWidth = 267;
-	var drawingAreaHeight = 200;
-	var toolHotspotStartY = 95;
+	var drawingAreaX = 11;
+	var drawingAreaY = 10;
+	var drawingAreaWidth = 801;
+	var drawingAreaHeight = 150;
+	var toolHotspotStartY = 55;
 	var toolHotspotHeight = 38;
 	var totalLoadResources = 3;
 	var curLoadResNum = 0;
@@ -125,15 +128,15 @@ function prepareCanvas(canvas_element, question_id, assessing, editing, drawing_
 
 	markerBackgroundImage.onload = function() { resourceLoaded(); 
 	}
-	markerBackgroundImage.src = "../../../../images/canvas_drawing/marker-background.png";
+	markerBackgroundImage.src = "../../../../images/canvas_drawing/marker-background_LF.png";
 
 	eraserBackgroundImage.onload = function() { resourceLoaded(); 
 	}
-	eraserBackgroundImage.src = "../../../../images/canvas_drawing/eraser-background.png";
+	eraserBackgroundImage.src = "../../../../images/canvas_drawing/eraser-background_LF.png";
 	
 	plainBackgroungImage.onload = function() { resourceLoaded(); 
 	}
-	plainBackgroungImage.src = "../../../../images/canvas_drawing/plain-background.png";
+	plainBackgroungImage.src = "../../../../images/canvas_drawing/plain-background_LF.png";
 
 	// Add mouse events
 	// ----------------
@@ -257,8 +260,8 @@ function prepareCanvas(canvas_element, question_id, assessing, editing, drawing_
 			alert("Error: Current Tool is undefined");
 		}
 		
-		var locX = 313;
-		var locY = 75;
+		var locX = 851;
+		var locY = 37;
 		
 		if (assessing == true){
 			//
