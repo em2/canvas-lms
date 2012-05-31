@@ -16,22 +16,21 @@
     <% elsif question && hash_get(question, :question_type) == "fill_in_multiple_blanks_question" && @stored_params %>
       <%= fill_in_multiple_blanks_question :question => question, :answers => @stored_params %>
     <% else %>
-		<% fractions_raw = hash_get(question, :question_text) -%>
-		<%# image = fractions_raw[/<p><img\b[^>]*>(.*?)\/p>/] -%>
-		<% question_data = fractions_raw.split("[split]") -%>
-		<% image_found = false -%>
-		<% if (question_data.count > 1) -%>
-			<% data_found = true -%>
-		<% end -%>
-		<% if (data_found) -%>
-			<% question_text = question_data[0] -%>
-			<% question_image = question_data[1] -%>
-			<% question_text = question_text.gsub("<p>","") -%>
-			<% question_text = question_text.gsub("</p>","") -%>
-			<% question_image = question_image.gsub("<p>","") -%>
-			<% question_image = question_image.gsub("</p>","") -%>
-			<%= user_content(question_text) %>
-		<% end -%>
+      <% fractions_raw = hash_get(question, :question_text) -%>
+      <% question_data = fractions_raw.split("[split]") -%>
+      <% image_found = false -%>
+      <% if (question_data.count > 1) -%>
+        <% data_found = true -%>
+      <% end -%>
+      <% if (data_found) -%>
+        <% question_text = question_data[0] -%>
+        <% question_image = question_data[1] -%>
+        <% question_text = question_text.gsub("<p>","") -%>
+        <% question_text = question_text.gsub("</p>","") -%>
+        <% question_image = question_image.gsub("<p>","") -%>
+        <% question_image = question_image.gsub("</p>","") -%>
+        <%= user_content(question_text) %>
+      <% end -%>
     <% end %>
   </div>
   <% if question_type && question_type.unsupported %>
@@ -118,8 +117,7 @@
     <% }) %>
   </div>
   <% end %>
-<br/>
-  <div class="answers">
+  <div class="answers answers_LF">
     <% if assessing %>
       <% if question %>
         <% if question_type.display_answers == "multiple" && hash_get(question, :question_type) != "missing_word_question" %>
@@ -218,24 +216,45 @@
       <% end %>
     <% end %>
   </div>
-</div>
-<div class="line_image_holder_<%=question[:id]%>" hidden=true >
-	<% if (data_found && assessing) -%>
-		<%= user_content(question_image) %>
-	<% end -%>
+  <div class="question_text question_text_CF question_right_side_CF">
+    <% if (found_fractions) -%>
+      <%= user_content(fraction_b) %>
+    <% end -%>
+  </div>
 </div>
 <div class="explain_answer">
-	<% if assessing %>
-		<div id="explain_text">Explain your choice using words and/or pictures.</div> <br/>
-		<div id="explain_area_<%= question[:id] %>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="40" rows="16"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
-		<div id="explain_canvas_<%= question[:id] %>"></div>
-		<textarea id="explain_canvas_<%= question[:id] %>_click_x_data" name="explain_canvas_<%= question[:id] %>_click_x_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_x_data"]%></textarea>
-		<textarea id="explain_canvas_<%= question[:id] %>_click_y_data" name="explain_canvas_<%= question[:id] %>_click_y_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_y_data"]%></textarea>
-		<textarea id="explain_canvas_<%= question[:id] %>_click_color_data" name="explain_canvas_<%= question[:id] %>_click_color_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_color_data"]%></textarea>
-		<textarea id="explain_canvas_<%= question[:id] %>_click_tool_data" name="explain_canvas_<%= question[:id] %>_click_tool_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_tool_data"]%></textarea>
-		<textarea id="explain_canvas_<%= question[:id] %>_click_size_data" name="explain_canvas_<%= question[:id] %>_click_size_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_size_data"]%></textarea>
-		<textarea id="explain_canvas_<%= question[:id] %>_click_drag_data" name="explain_canvas_<%= question[:id] %>_click_drag_data" disabled=true hidden=true><%= @stored_params["explain_canvas_#{question[:id]}_click_drag_data"]%></textarea>
-	<% end -%>
+  <% if assessing || user_answer -%>
+    <div id="explain_text">Explain your choice using words and/or pictures.</div> <br/>
+    <% if assessing -%>
+      <div id="explain_area_<%= question[:id] %>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="40" rows="12"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
+    <% end -%>
+    <% if !assessing && user_answer -%>
+      <div id="explain_area_<%= question[:id] %>" class="explain_area_text_CF"><textarea cols="40" rows="12" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
+    <% end -%>
+    <% if assessing -%>
+      <% click_x_data = @stored_params["explain_canvas_#{question[:id]}_click_x_data"] -%>
+      <% click_y_data = @stored_params["explain_canvas_#{question[:id]}_click_y_data"] -%>
+      <% click_color_data = @stored_params["explain_canvas_#{question[:id]}_click_color_data"] -%>
+      <% click_tool_data = @stored_params["explain_canvas_#{question[:id]}_click_tool_data"] -%>
+      <% click_size_data = @stored_params["explain_canvas_#{question[:id]}_click_size_data"] -%>
+      <% click_drag_data = @stored_params["explain_canvas_#{question[:id]}_click_drag_data"] -%>
+    <% else -%>
+      <% click_x_data = user_answer[:explain_canvas_click_x_data] -%>
+      <% click_y_data = user_answer[:explain_canvas_click_y_data] -%>
+      <% click_color_data = user_answer[:explain_canvas_click_color_data] -%>
+      <% click_tool_data = user_answer[:explain_canvas_click_tool_data] -%>
+      <% click_size_data = user_answer[:explain_canvas_click_size_data] -%>
+      <% click_drag_data = user_answer[:explain_canvas_click_drag_data] -%>
+    <% end -%>
+    
+    <div id="explain_canvas_<%= question[:id] %>"></div>
+    <input type="hidden" class="explain_canvas_data", id="explain_canvas_<%= question[:id] %>_click_x_data" name="explain_canvas_<%= question[:id] %>_click_x_data" value="<%=click_x_data%>" % />
+    <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_y_data" name="explain_canvas_<%= question[:id] %>_click_y_data" value="<%= click_y_data %>" />
+    <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_color_data" name="explain_canvas_<%= question[:id] %>_click_color_data" value="<%= click_color_data %>" />
+    <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_tool_data" name="explain_canvas_<%= question[:id] %>_click_tool_data" value="<%= click_tool_data %>" />
+    <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_size_data" name="explain_canvas_<%= question[:id] %>_click_size_data" value="<%= click_size_data %>" />
+    <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_drag_data" name="explain_canvas_<%= question[:id] %>_click_drag_data" value="<%= click_drag_data %>" />
+  <% end -%>
 </div>
   <div class="after_answers">
     <% if question && hash_get(question, :question_type) == 'matching_question' && !assessing && ((@quiz && @quiz.show_correct_answers) || (!user_answer && !assessment_results)) %>
@@ -250,28 +269,54 @@
       <% end %>
     <% end %>
   </div>
-</div>
+
+<% if assessing -%>
+  <div class="assessing"></div>
+<% end -%>
+
+<% if editing -%>
+  <div class="editing"></div>
+<% end -%>
+
 <style>
-	#explain_canvas_<%= question[:id] %>{
-		float: left;
-	}
-	#explain_text{
-		float: left;
-	}
-	#explain_area_<%= question[:id] %>{
-		float: left;
-	}
-	.question_text{
-		padding-right: 13px;
-	}
+  #explain_canvas_<%= question[:id] %>{
+    float: left;
+  }
+  #explain_text{
+    float: left;
+  }
+  #explain_area_<%= question[:id] %>{
+    float: left;
+  }
+  #explain_area_<%= question[:id] %>_text{
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .answers_LF{
+    float: left;
+    margin-top: 70px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .question_text_CF{
+    float: left;
+    margin-top: 90px;
+  }
+  .question_right_side_CF{
+    padding-right: 13px;
+  }
+  .explain_area_text_CF{
+    padding: 3px 6px;
+    margin-top: 6px;
+  }
 </style>
 
 <% js_block do %>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 require([
   'jquery' /* $ */,
-  'canvas_html5' 
+  'drawing_pad_LF' 
 ], function($) {
    $(document).ready(function() {
     var assessing = false;
@@ -285,13 +330,9 @@ require([
       editing = true;
     }
 
-    var question_id = <%=question[:id]%>;
-
-    var question_image = $('.line_image_holder_'+question_id+' img').attr("src");
-
-    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing, question_image); //prepareCanvas is in canvas_html5.js
+    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in drawing_pad_LF.js
   });
-});
+ });
 </script>
 
 <% end -%>

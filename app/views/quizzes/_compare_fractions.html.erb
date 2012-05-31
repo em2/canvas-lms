@@ -16,20 +16,20 @@
     <% elsif question && hash_get(question, :question_type) == "fill_in_multiple_blanks_question" && @stored_params %>
       <%= fill_in_multiple_blanks_question :question => question, :answers => @stored_params %>
     <% else %>
-		<% fractions_raw = hash_get(question, :question_text) -%>
-		<% fractions = fractions_raw.split("[split]") -%>
-		<% found_fractions = false -%>
-		<% if (fractions.count > 1) -%>
-			<% found_fractions = true -%>
-		<% end -%>
-		<% if (found_fractions) -%>
-			<% fraction_a = fractions[0] -%>
-			<% fraction_b = fractions[1] -%>
-			<% fraction_a = fraction_a.gsub("<p>","") -%>
-			<% fraction_a = fraction_a.gsub("</p>","") -%>
-			<% fraction_b = fraction_b.gsub("<p>","") -%>
-			<% fraction_b = fraction_b.gsub("</p>","") -%>
-		<% end -%>
+  		<% fractions_raw = hash_get(question, :question_text) -%>
+  		<% fractions = fractions_raw.split("[split]") -%>
+  		<% found_fractions = false -%>
+  		<% if (fractions.count > 1) -%>
+  			<% found_fractions = true -%>
+  		<% end -%>
+  		<% if (found_fractions) -%>
+  			<% fraction_a = fractions[0] -%>
+  			<% fraction_b = fractions[1] -%>
+  			<% fraction_a = fraction_a.gsub("<p>","") -%>
+  			<% fraction_a = fraction_a.gsub("</p>","") -%>
+  			<% fraction_b = fraction_b.gsub("<p>","") -%>
+  			<% fraction_b = fraction_b.gsub("</p>","") -%>
+  		<% end -%>
     <% end %>
   </div>
 	<div class="question_text question_text_CF question_left_side">
@@ -320,7 +320,7 @@
 <script type="text/javascript">
 require([
   'jquery' /* $ */,
-  'canvas_html5' 
+  'drawing_pad' 
 ], function($) {
    $(document).ready(function() {
   	var assessing = false;
@@ -334,7 +334,7 @@ require([
   		editing = true;
   	}
 
-  	prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in canvas_html5.js
+  	prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in drawing_pad.js
   });
  });
 </script>

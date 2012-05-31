@@ -269,7 +269,7 @@
 <script type="text/javascript"> 
 require([
   'jquery' /* $ */,
-  'canvas_html5' 
+  'drawing_pad' 
 ], function($) {
    $(document).ready(function() {
     var assessing = false;
@@ -283,7 +283,7 @@ require([
       editing = true;
     }
 
-    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in canvas_html5.js
+    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing); //prepareCanvas is in drawing_pad.js
   });
 });
 </script>
