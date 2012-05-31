@@ -338,7 +338,7 @@ require([
 
     var question_image = $('.line_image_holder_'+question_id+' img').attr("src");
 
-    prepareCanvas("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing, question_image); //prepareCanvas is in drawing_pad_LF.js
+    prepareCanvasLF("explain_canvas_<%= question[:id] %>", "<%= question[:id] %>", assessing, editing, question_image); //prepareCanvas is in drawing_pad_LF.js
   });
  });
 </script>

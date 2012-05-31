@@ -17,7 +17,7 @@
 /**
 * Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 */
-function prepareCanvas(canvas_element, question_id, assessing, editing, drawing_image)
+function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawing_image)
 {
 	if (editing == true){
 		return;
@@ -29,9 +29,6 @@ function prepareCanvas(canvas_element, question_id, assessing, editing, drawing_
 	var context;
 	var canvasWidth = 924;
 	var canvasHeight = 170;
-	if (!assessing){
-		canvasWidth = 820;
-	}
 	var padding = 25;
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
