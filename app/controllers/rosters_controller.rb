@@ -7,6 +7,8 @@ class RostersController < ApplicationController
       add_crumb("School Rosters")
       
       @rosters = Roster.by_name
+
+      @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
     else
       redirect_back_or_default(dashboard_url)
     end

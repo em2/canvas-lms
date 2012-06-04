@@ -248,6 +248,11 @@ class UsersController < ApplicationController
       end
     end
 
+    @school_rosters = Roster.by_name
+
+    @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
+
+
     # dont show crumbs on dashboard because it does not make sense to have a breadcrumb
     # trail back to home if you are already home
     clear_crumbs
