@@ -112,6 +112,7 @@ class Roster < ActiveRecord::Base
     @teacher_account.name = @teacher_id
     @teacher_account.sortable_name = district + teacher
     @teacher_account.short_name = district + teacher
+    @teacher_account.permanent_name_identifier = district + teacher
     @teacher_account.browser_locale = 'en'
 
     #
@@ -149,6 +150,7 @@ class Roster < ActiveRecord::Base
 
     @student.name = @student_id
     @student.sortable_name = course_title + @student_number
+    @student.permanent_name_identifier = course_title + @student_number
     @student.short_name = @student_number
     @student.browser_locale = 'en'
 

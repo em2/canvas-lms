@@ -92,7 +92,7 @@ class RostersController < ApplicationController
 
           is_admin?
 
-          if (@current_user.sortable_name == @district + @teacher || @is_admin)
+          if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
           
             #
             # Try to find the district. If unsuccessful, then create one.
