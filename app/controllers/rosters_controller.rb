@@ -8,7 +8,7 @@ class RostersController < ApplicationController
       
       @rosters = Roster.by_name
 
-      @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
+      is_admin?
     else
       redirect_back_or_default(dashboard_url)
     end
@@ -70,6 +70,8 @@ class RostersController < ApplicationController
         i = 0
         while (i < @course_titles.count)
           
+
+
           #
           # Create the Roster
           @roster = Roster.new
@@ -87,28 +89,35 @@ class RostersController < ApplicationController
           #
           # Pull out all the names using regex.
           extract_names(@course_title)
-          
-          #
-          # Try to find the district. If unsuccessful, then create one.
-          if (!@district_account = Account.find_by_name(@district))
-            @district_account = Account.create!(:name => @district, :parent_account => @context)
-          end
-          
-          #
-          # Try to find a school in that district with the same name.
-          # If that was unsuccessful, go ahead and create a new school and roster for that school.
-          if !find_school()
-            create_school()
-          end
 
+          is_admin?
 
-          #
-          # Send off the roster to generate everything to delayed_job
-          Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
-          #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
-          #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+          if (@current_user.sortable_name == @district + @teacher || @is_admin)
           
-          probe_generated = true
+            #
+            # Try to find the district. If unsuccessful, then create one.
+            if (!@district_account = Account.find_by_name(@district))
+              @district_account = Account.create!(:name => @district, :parent_account => @context)
+            end
+            
+            #
+            # Try to find a school in that district with the same name.
+            # If that was unsuccessful, go ahead and create a new school and roster for that school.
+            if !find_school()
+              create_school()
+            end
+
+          
+            #
+            # Send off the roster to generate everything to delayed_job
+            Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
+            #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+            #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+
+            probe_generated = true
+          else
+            errors_found = true
+          end
 
           i += 1
         end
@@ -136,10 +145,14 @@ class RostersController < ApplicationController
       add_crumb("Rosters", rosters_path)
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
 
-      @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
+      is_admin?
     else
       redirect_back_or_default(dashboard_url)
     end
+  end
+
+  def is_admin?
+    @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
   end
 
   def is_authorized?(user)
