@@ -135,6 +135,8 @@ class RostersController < ApplicationController
       
       add_crumb("Rosters", rosters_path)
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
+
+      @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
     else
       redirect_back_or_default(dashboard_url)
     end
