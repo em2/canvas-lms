@@ -311,6 +311,8 @@ div.question
 
         .answer_input
           :vertical-align top
+        .answer_input_custom
+          :padding-top 11px
         .answer_label
           :padding-left 0.5em
         .answer_label > label > *:first-child, .answer_label > label + *
@@ -429,6 +431,8 @@ div.question
     :border-bottom 1px solid #ddd
     &:last-child
       :border-bottom 0
+  .answer_custom
+    :border-bottom 0
 
 .answer
   .answer_select
@@ -469,6 +473,10 @@ div.question
   .answer
     .answer_select .select_answer_link
       :display none
+.text_only_question
+  .text
+    .question_text
+      :padding-top 1.5em
 .question.selectable
   .answer
     .answer_select .select_answer

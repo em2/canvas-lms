@@ -1,9 +1,17 @@
 <% answer = multi_answer %>
-<div class="answer">
+<% if question_type.question_type == "locate_fractions_question" -%>
+  <div class="answer answer_custom">
+<% else -%>
+  <div class="answer">
+<% end -%>
   <% if question_type.entry_type == "radio" || question_type.entry_type == "select" || question_type.entry_type == "checkbox" %>
     <table>
       <tr>
+      <% if question_type.question_type == "locate_fractions_question" -%>
+        <td class="answer_input answer_input_custom">
+      <% else -%>
         <td class="answer_input">
+      <% end -%>
           <% if user_answer %>
             <%= "*" if hash_get(user_answer, :answer_id) == hash_get(answer, :id) %>
             <%= "+" if hash_get(answer, :weight) == 100 %>
