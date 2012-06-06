@@ -228,7 +228,7 @@
 </div>
 <div class="explain_answer">
 	<% if assessing || user_answer -%>
-		<div id="explain_text">Explain your choice using words and/or pictures.</div> <br/>
+		<div id="explain_text"><b>Explain your choice using words and/or pictures.</b></div> <br/>
 		<% if assessing -%>
 			<div id="explain_area_<%= question[:id] %>" class="explain_area_text_CF"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="30" rows="12"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
 		<% end -%>
@@ -288,6 +288,9 @@
 	}
 	#explain_text{
 		float: left;
+    margin-left: 7px;
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
 	}
 	#explain_area_<%= question[:id] %>{
 		float: left;
@@ -296,6 +299,10 @@
 		margin-top: 10px;
 		font-size: 13px;
 	}
+  .explain_area_text_CF{
+    padding: 3px 6px;
+    margin-top: 6px;
+  }
 	.answers_CF{
 		float: left;
 		margin-top: 70px;
@@ -308,10 +315,6 @@
 	}
 	.question_right_side_CF{
 		padding-right: 13px;
-	}
-	.explain_area_text_CF{
-		padding: 3px 6px;
-		margin-top: 6px;
 	}
 </style>
 
