@@ -24,6 +24,9 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	}
 	
 	var canvas;
+	var canvasX;
+	var canvasY;
+	var mouseIsDragging = false;
 	var context;
 	var canvasWidth = 386;
 	var canvasHeight = 220;
@@ -118,6 +121,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	// Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
 	//     context = document.getElementById('canvas').getContext("2d");
 
+
 	// Load images
 	// -----------
 
@@ -133,75 +137,137 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	}
 	plainBackgroungImage.src = "../../../../images/canvas_drawing/plain-background.png";
 
+	//
+	// add the event listens for touch pads and the mouse
+    // canvas.addEventListener("mousedown", mouseDown, false);
+    // canvas.addEventListener("mousemove", mouseXY, false);
+    // canvas.addEventListener("touchstart", touchDown, false);
+    // canvas.addEventListener("touchmove", touchXY, true);
+    // canvas.addEventListener("touchend", touchUp, false);
+ 
+    // document.body.addEventListener("mouseup", mouseUp, false);
+    // document.body.addEventListener("touchcancel", touchUp, false);
+
+
 	// Add mouse events
 	// ----------------
-	$('#canvas_'+canvas_element).mousedown(function(e)
-	{
-		if (assessing == true){
-			// Mouse down location
-			var mouseX = e.pageX - this.offsetLeft;
-			var mouseY = e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - this.offsetTop + 60;
 
-			if(mouseX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
+	$('#canvas_'+canvas_element).bind("mousedown", function(e){
+		mouseDown();
+	});
+
+	$('#canvas_'+canvas_element).bind("mousemove", function(e){
+		mouseXY(e.originalEvent);
+	});
+
+	$(document.body).bind("mouseup", function(e){
+		mouseUp();
+	});
+
+	$('#canvas_'+canvas_element).bind("touchstart", function(e){
+		touchDown();
+	});
+
+	$('#canvas_'+canvas_element).bind("touchmove", function(e){
+		touchXY(e.originalEvent);
+	});
+
+	$('#canvas_'+canvas_element).bind("touchend", function(e){
+		touchUp();
+	});
+
+	$(document.body).bind("touchcancel", function(e){
+		touchUp();
+	});
+
+
+
+
+	
+	function mouseDown() {
+		if (assessing){
+		    mouseIsDragging = true;
+		    mouseXY();
+		}
+	}
+
+	function touchDown() {
+		if (assessing){
+		    mouseIsDragging = false;
+		    touchXY();
+		}
+	}
+
+	function mouseXY(e) {
+		if (!e) var e = event;
+		if(assessing){
+			canvasX = e.pageX - canvas.offsetLeft;
+			canvasY = e.pageY - canvas.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - canvas.offsetTop + 60;
+			checkPos();
+			redraw();
+		}
+	}
+	 
+	function touchXY(e) {
+		if (!e) var e = event;
+		if(assessing){
+		    e.preventDefault();
+		    canvasX = e.targetTouches[0].pageX - canvas.offsetLeft;
+		    canvasY = e.targetTouches[0].pageY - canvas.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - canvas.offsetTop + 60;
+		    checkPos();
+		    redraw();
+		    if (!mouseIsDragging){
+		    	mouseIsDragging = true;
+		    }
+		}
+	}
+
+	function mouseUp() {
+		if (assessing){
+		    mouseIsDragging = false;
+		    paint = false;
+		}
+	}
+
+	function touchUp() {
+		if (assessing){
+		    mouseIsDragging = false;
+		    paint = false;
+		}
+	}
+
+	function checkPos() {
+		if(canvasX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
+		{
+			if(canvasY > toolHotspotStartY && mouseIsDragging)
 			{
-				if(mouseY > toolHotspotStartY)
-				{
-					if(mouseY < toolHotspotStartY + toolHotspotHeight * 2){
-						curTool = "marker";
-						curSize = "normal";
-					}else if(mouseY < toolHotspotStartY + toolHotspotHeight * 3){
-						curTool = "eraser";
-						curSize = "huge";
-					}
+				if(canvasY < toolHotspotStartY + toolHotspotHeight * 2){
+					curTool = "marker";
+					curSize = "normal";
+				}else if(canvasY < toolHotspotStartY + toolHotspotHeight * 3){
+					curTool = "eraser";
+					curSize = "huge";
 				}
 			}
-			else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
-			{
-
-				// Mouse click location on drawing area
-			}
-			paint = true;
-			addClick(mouseX, mouseY, false);
-			redraw();
 		}
-	});
 
-	$('#canvas_'+canvas_element).mousemove(function(e){
-		if(paint==true && assessing == true){
-			addClick(e.pageX - this.offsetLeft, e.pageY - this.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - this.offsetTop + 60, true);
-			redraw();
-		}
-	});
-
-	$('#canvas_'+canvas_element).mouseup(function(e){
-		if (assessing == true){
-			paint = false;
-			redraw();
-		}
-	});
-
-	$('#canvas_'+canvas_element).mouseleave(function(e){
-		if (assessing == true){
-			paint = false;
-		}
-	});
-	
+		paint = true;
+		addClick();
+		
+	}
 	
 	/**
 	* Adds a point to the drawing array.
-	* @param x
-	* @param y
-	* @param dragging
 	*/
-	function addClick(x, y, dragging)
+	function addClick()
 	{
-		if (assessing == true){
-			clickX.push(x);
-			clickY.push(y);
+		if (assessing && paint){
+			clickX.push(canvasX);
+			clickY.push(canvasY);
 			clickTool.push(curTool);
 			clickColor.push(curColor);
 			clickSize.push(curSize);
-			clickDrag.push(dragging);
+			clickDrag.push(mouseIsDragging);
 
 			$('#explain_canvas_'+question_id+'_click_x_data').val(clickX.toString());
 			$('#explain_canvas_'+question_id+'_click_y_data').val(clickY.toString());
