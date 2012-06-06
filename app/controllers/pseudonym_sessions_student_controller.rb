@@ -103,7 +103,7 @@ class PseudonymSessionsStudentController < ApplicationController
         :RESET_SENT =>  t("password_confirmation_sent", "Password confirmation sent. Make sure you check your spam box."),
         :RESET_ERROR =>  t("password_confirmation_error", "Error sending request.")
       }
-      render :template => 'pseudonym_sessions/mobile_login', :layout => false, :status => status
+      render :template => 'pseudonym_sessions_student/mobile_login', :layout => false, :status => status
     else
       @request = request
       render :action => 'new', :status => status

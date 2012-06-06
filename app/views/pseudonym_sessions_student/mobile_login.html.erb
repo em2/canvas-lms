@@ -113,15 +113,7 @@
     <div id="f1_card">
       <% form_for :pseudonym_session, :url => login_path, :html => {:id => "login_form", :class => "front face"} do |f| %>
         <input <%= 'type=email' if @login_handle_is_email %> name="pseudonym_session[unique_id]" value="<%= params[:pseudonym_session].try(:[], :unique_id) %>" placeholder="<%= @login_handle_name %>">
-        <input type="password" name="pseudonym_session[password]" placeholder="<%= t :password, "Password" %>">
         <button type="submit"><%= t('login', 'Login') %></button>
-        <button class="flip-to-back"><%= t('dont_know_password', "I don't know my password") %></button>
-      <% end %>
-      <% form_for :pseudonym_session, :url => forgot_password_path, :html => {:id => "forgot_password_form", :class => 'back face'} do |f| %>
-        <label for="pseudonym_session_unique_id_forgot"><%= t('login_handle', "Enter your %{login_handle_name} and we'll send you a link to change your password.", :login_handle_name => @login_handle_name) %></label>
-        <input <%= 'type=email' if @login_handle_is_email %> name="pseudonym_session[unique_id_forgot]" value="<%= @unauthorized_user.try :email %>" placeholder="<%= @login_handle_name %>" id="pseudonym_session_unique_id_forgot" />
-        <button type="submit" data-text-while-loading="<%= t :sending, "Sending..." %>" class="request-password-button"><%= t('buttons.request_password', 'Request Password') %></button>
-        <button class="flip-to-front"><%= t('back_to_login', "Back to Login") %></button>
       <% end %>
     </div>
   </div>
@@ -141,34 +133,6 @@
     document.querySelector('.flip-to-front').addEventListener(eventToBindTo, function(event){
       event.preventDefault();
       removeClass($front_back_container, 'flipped');
-    });
-
-    var $forgot_password_form = document.querySelector('#forgot_password_form');
-    $forgot_password_form.addEventListener('submit', function(event){
-      var $button      = $forgot_password_form.querySelector('.request-password-button'),
-          originalText = $button.textContent,
-          uniqueId     = $forgot_password_form.querySelector('input[name="pseudonym_session[unique_id_forgot]"]').value.trim();
-      if (!uniqueId) return false;
-      $button.disabled = true;
-      $button.textContent = $button.getAttribute('data-text-while-loading')
-      event.preventDefault();
-      ajax({
-        type: "POST",
-        url: "/forgot_password",
-        data: 'authenticity_token=' +
-              encodeURIComponent($forgot_password_form.querySelector('input[name=authenticity_token]').value) +
-              '&pseudonym_session%5Bunique_id_forgot%5D=' +
-              encodeURIComponent(uniqueId),
-        success: function(response){
-          alert(SHARED_JS_VARS.RESET_SENT);
-        },
-        error: function(){
-          alert(SHARED_JS_VARS.RESET_ERROR);
-        },
-        complete: function(){
-          $button.textContent = originalText;
-        }
-      });
     });
   });
 
