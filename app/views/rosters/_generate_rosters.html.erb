@@ -29,7 +29,7 @@
 		&nbsp <%= f.select :students, options_for_select(@student_options, 25) %> <br />
 		<div id="students_custom_count">
 			<% 9.times do %>&nbsp <% end -%> <%= f.text_field :students_custom, :size => '3x1' %>
-			<span id='students_custom_count_validator' class='validator'>Must Be A Number</span>
+			<span id='students_custom_count_validator' class='validator'><%= t(:must_be_a_number, "Must Be A Number") %></span>
 			<span id='students_custom_count_zero_validator' class='validator'>Must Be Greater Than Zero</span>
 			<span id='students_custom_count_less_validator' class='validator'>Must Be Less Than 251</span>
 		</div>

@@ -382,6 +382,11 @@ em2:
   role_override: 
     permissions: 
       manage_assignments: "Manage (add / edit / delete) assignments and assessments"
+  rosters:
+    generate_rosters:
+      must_be_a_number: "Must Be A Number"
+    view_previous_rosters:
+      view_class_rosters: "View Class Rosters"
   shared: 
     full_assignment: 
       descriptions: 
