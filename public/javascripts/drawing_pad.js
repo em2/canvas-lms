@@ -239,7 +239,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	function checkPos() {
 		if(canvasX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
 		{
-			if(canvasY > toolHotspotStartY && mouseIsDragging)
+			if(canvasY > toolHotspotStartY && !mouseIsDragging)
 			{
 				if(canvasY < toolHotspotStartY + toolHotspotHeight * 2){
 					curTool = "marker";

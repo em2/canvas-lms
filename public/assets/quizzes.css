@@ -89,6 +89,7 @@ div.question{border-radius:3px}
 .question .text .answers .answer .answer_comment_holder .answer_comment{background-image:none}
 .question .text .answers .answer .answer_comment_holder .comment_top{position:absolute;display:block;top:-8px;left:10px;width:19px;height:8px;background-repeat:no-repeat;background-image:url(/images/comment_top.png?1326216007)}
 .question .text .answers .answer .answer_input{vertical-align:top}
+.question .text .answers .answer .answer_input_custom{padding-top:11px}
 .question .text .answers .answer .answer_label{padding-left:.5em}
 .question .text .answers .answer .answer_label>label>*:first-child,.question .text .answers .answer .answer_label>label+*{margin-top:0}
 .question .text .answers .answer .answer_label>label>p:last-child{margin-bottom:0}
@@ -125,6 +126,7 @@ div.question{border-radius:3px}
 .no-touch .question.hover .flag_question .flag_icon{opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);display:inline}
 .question.multiple_choice_question .answer,.question.multiple_answers_question .answer,.question.matching_question .answer,.question.compare_fractions_question .answer,.question.locate_fractions_question .answer,.question.represent_fractions_question .answer{border-bottom:1px solid #ddd}
 .question.multiple_choice_question .answer:last-child,.question.multiple_answers_question .answer:last-child,.question.matching_question .answer:last-child,.question.compare_fractions_question .answer:last-child,.question.locate_fractions_question .answer:last-child,.question.represent_fractions_question .answer:last-child{border-bottom:0}
+.question.multiple_choice_question .answer_custom,.question.multiple_answers_question .answer_custom,.question.matching_question .answer_custom,.question.compare_fractions_question .answer_custom,.question.locate_fractions_question .answer_custom,.question.represent_fractions_question .answer_custom{border-bottom:0}
 .answer .answer_select{vertical-align:top;padding-top:.5em}
 .answer .answer_select .answer_weight{display:none}
 .answer .answer_match{padding:0 0 10px 0}
@@ -134,6 +136,7 @@ div.question{border-radius:3px}
 .form_answers .answer .answer_match{padding-bottom:0;padding-top:10px}
 .question_form .question .answer .answer_select .select_answer{display:none}
 .question .answer .answer_select .select_answer_link{display:none}
+.text_only_question .text .question_text{padding-top:1.5em}
 .question.selectable .answer .answer_select .select_answer{display:block}
 .question.selectable .answer .answer_select .select_answer:focus .answer_box{background-image:url(/images/partial_answer.png?1326216007)}
 .question.selectable .answer .select_answer_link{display:inline}
