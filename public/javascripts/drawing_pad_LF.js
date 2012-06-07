@@ -241,7 +241,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 	function checkPos() {
 		if(canvasX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
 		{
-			if(canvasY > toolHotspotStartY && mouseIsDragging)
+			if(canvasY > toolHotspotStartY && !mouseIsDragging)
 			{
 				if(canvasY < toolHotspotStartY + toolHotspotHeight * 2){
 					curTool = "marker";
@@ -323,7 +323,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 			alert("Error: Current Tool is undefined");
 		}
 		
-		var locX = 851;
+		var locX = 649;
 		var locY = 37;
 		
 		if (assessing == true){
