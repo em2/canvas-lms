@@ -30,7 +30,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 	var canvasY;
 	var mouseIsDragging = false;
 	var context;
-	var canvasWidth = 924;
+	var canvasWidth = 722;
 	var canvasHeight = 170;
 	var padding = 25;
 	var lineWidth = 8;
@@ -51,9 +51,9 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 	var curColor = colorBlue;
 	var curTool = "marker";
 	var curSize = "normal";
-	var drawingAreaX = 11;
+	var drawingAreaX = 10;
 	var drawingAreaY = 10;
-	var drawingAreaWidth = 801;
+	var drawingAreaWidth = 600;
 	var drawingAreaHeight = 150;
 	var toolHotspotStartY = 55;
 	var toolHotspotHeight = 38;
