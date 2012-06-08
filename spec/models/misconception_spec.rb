@@ -27,6 +27,44 @@ describe Misconception do
     @misconception.quiz_id.should == @quiz.id
   end
 
+  describe "name field" do
+    it "should update the name" do
+      @misconception.name = "Unethical Hacker"
+
+      @misconception.name.should == "Unethical Hacker"
+    end
+  end
+
+  describe "description field" do
+    it "should allow description modification" do
+      @misconception.description = "bfcoder was here"
+
+      @misconception.description.should == "bfcoder was here"
+    end
+  end
+
+  describe "explanation_url field" do
+    it "should update the explanation_url when we call the setter" do
+      @misconception.explanation = "http://smashthestack.org/index.php"
+
+      @misconception.explanation.should == "http://smashthestack.org/index.php"
+    end
+
+    it "should update the explanation when the explanation is updated" do
+      @misconception.explanation = "http://smashthestack.org/index.php"
+
+      @misconception.explanation.should == "http://smashthestack.org/index.php"
+
+      @misconception.explanation = "http://smashthestack.org/faq.php"
+
+      @misconception.explanation.should == "http://smashthestack.org/faq.php"
+    end
+
+    it "should validate the url" do
+      @misconception.explanation = 
+    end
+  end
+
   describe 'pattern field' do
     it 'should update the json string when we call the setter' do
       pattern_hash = {"30"=>["1"=>2, "3"=>4], "100"=>["52"=>27,"77"=>93]}
@@ -63,33 +101,9 @@ describe Misconception do
     end
   end
 
-  describe "description field" do
-    it "should allow description modification" do
-      @misconception.description = "bfcoder was here"
 
-      @misconception.description.should == "bfcoder was here"
-    end
-  end
 
-  describe "explanation_url field" do
-    it "should update the explanation_url when we call the setter" do
-      @misconception.explanation = "http://smashthestack.org/index.php"
 
-      @misconception.explanation.should == "http://smashthestack.org/index.php"
-    end
-
-    it "should update the explanation when the explanation is updated" do
-      @misconception.explanation = "http://smashthestack.org/index.php"
-
-      @misconception.explanation.should == "http://smashthestack.org/index.php"
-
-      @misconception.explanation = "http://smashthestack.org/faq.php"
-
-      @misconception.explanation.should == "http://smashthestack.org/faq.php"
-    end
-
-    
-  end
 
 
 
