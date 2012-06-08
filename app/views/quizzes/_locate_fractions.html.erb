@@ -244,10 +244,10 @@
 
       <div id="explain_text"><b>Explain your choice using words and/or pictures.</b></div> <br/>
       <% if assessing -%>
-        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="70" rows="6"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
+        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
       <% end -%>
       <% if !assessing && user_answer -%>
-        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea cols="70" rows="6" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
+        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
       <% end -%>
     </div>
 
@@ -308,6 +308,9 @@
   #explain_area_<%= question[:id] %>_text{
     margin-top: 10px;
     font-size: 13px;
+    width: 600px;
+    height: 100px;
+    resize: vertical;
   }
   .answers_LF{
     float: left;

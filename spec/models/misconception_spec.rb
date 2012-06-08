@@ -61,7 +61,7 @@ describe Misconception do
     end
 
     it "should validate the url" do
-      @misconception.explanation = 
+      pending
     end
   end
 
@@ -100,7 +100,6 @@ describe Misconception do
       @misconception.position.should == 2
     end
   end
-
 
 
 
