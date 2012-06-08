@@ -1,7 +1,7 @@
 class Misconception < ActiveRecord::Base
 	belongs_to :quiz
 
-	#attr_accessor :pattern_json
+	attr_accessor :position
 
 	def pattern=(hash)
 		self.pattern_json = hash.to_json
@@ -11,4 +11,15 @@ class Misconception < ActiveRecord::Base
 	def pattern
 		@pattern_hash ||= JSON.parse(self.pattern_json)
 	end
+
+	def explanation=(url)
+		self.explanation_url = url
+		@explanation = url
+	end
+
+	def explanation
+		@explanation ||= self.explanation_url
+	end
+
+
 end

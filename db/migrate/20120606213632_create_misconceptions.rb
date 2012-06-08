@@ -8,7 +8,7 @@ class CreateMisconceptions < ActiveRecord::Migration
       t.string :description, :limit => 512
       t.string :explanation_url, :limit => 2048
       t.string :pattern_json, :limit => 2048
-      t.integer :sort
+      t.integer :position
 
       t.timestamps
     end
