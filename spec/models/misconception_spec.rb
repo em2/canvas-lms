@@ -62,6 +62,8 @@ describe Misconception do
 
     it "should validate the url" do
       pending
+      @misconception.explanation = "http://.google.com"
+      @misconception.explanation.should_not == "http://.google.com"
     end
   end
 
