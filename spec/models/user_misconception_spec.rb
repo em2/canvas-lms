@@ -4,7 +4,7 @@ describe UserMisconception do
   before(:each) do
     @valid_attributes = {
       :user_id => 1,
-      :misconception_id => 1,
+      :quiz_misconception_id => 1,
       :confidence_level => 1
     }
   end

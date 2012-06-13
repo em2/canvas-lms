@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.resources :misconceptions
+
   map.resources :rosters
   
   map.resources :submission_comments, :only => :destroy

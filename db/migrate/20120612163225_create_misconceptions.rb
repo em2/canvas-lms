@@ -1,9 +1,9 @@
 class CreateMisconceptions < ActiveRecord::Migration
   tag :predeploy
-  
+
   def self.up
     create_table :misconceptions do |t|
-      t.integer :quiz_id, :limit => 8
+      t.integer :misconception_bank_id, :limit => 8
       t.string :name
       t.string :description, :limit => 512
       t.string :explanation_url, :limit => 2048
@@ -13,12 +13,11 @@ class CreateMisconceptions < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :misconceptions, :quiz_id
+    add_index :misconceptions, :misconception_bank_id
   end
 
   def self.down
-    remove_index :misconceptions, :quiz_id
+    remove_index :misconceptions, :misconception_bank_id
     drop_table :misconceptions
-
   end
 end
