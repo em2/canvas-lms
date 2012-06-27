@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  assessment_question_bank_id: 1
+  name: MyString
+  description: MyString
+  explanation_url: MyString
+  pattern: MyString
+  position: 1
+  context_id: 1
+  context_type: MyString
+  workflow_state: MyString
+
+two:
+  assessment_question_bank_id: 1
+  name: MyString
+  description: MyString
+  explanation_url: MyString
+  pattern: MyString
+  position: 1
+  context_id: 1
+  context_type: MyString
+  workflow_state: MyString
