@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :misconceptions
 
   map.resources :rosters
   
