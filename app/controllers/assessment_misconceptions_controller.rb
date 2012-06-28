@@ -2,24 +2,21 @@ class AssessmentMisconceptionsController < ApplicationController
 	before_filter :require_context
 
   def new
-  	debugger
 		bank = AssessmentQuestionBank.find(params[:question_bank_id])
-		bank.assessment_misconceptions.create!(:assessment_question_bank_id => bank.id, :name => "Untitled", :pattern => {}, :workflow_state => "available")
+		bank.assessment_misconceptions.create!(:assessment_question_bank_id => bank.id, :name => "Untitled", :explanation_url => "", :description => "", :pattern => {}, :workflow_state => "available")
   	
     redirect_to :back
   end
 
-  def show
-  end
-
   def update
-    # @misconception = Misconception.find(params[:id])
-    # if @misconception.update_attributes(params[:quiz_misconception])
-    #   @misconception.reload
-    #   render :json => @misconception.to_json
-    # else
-    #   render :json => @misconception.errors.to_json, :status => :bad_request
-    # end
+  	debugger
+    @misconception = AssessmentMisconception.find(params[:id])
+    if @misconception.update_attributes(params[:quiz_misconception])
+      @misconception.reload
+      render :json => @misconception.to_json
+    else
+      render :json => @misconception.errors.to_json, :status => :bad_request
+    end
   end
 
   def index
