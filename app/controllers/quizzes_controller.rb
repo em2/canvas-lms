@@ -78,6 +78,7 @@ class QuizzesController < ApplicationController
   def edit
     @assignment = @quiz.assignment
     if authorized_action(@quiz, @current_user, :update)
+      #@misconceptions = @quiz.misconceptions.active
       add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
       student_ids = @context.students.map{|s| s.id }
       @banks_hash = {}
