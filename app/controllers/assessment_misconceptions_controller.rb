@@ -29,9 +29,10 @@ class AssessmentMisconceptionsController < ApplicationController
   end
 
   def destroy
-    #@misconception = Misconception.find(params[:id])
-    #@misconception.destroy
-    #render :json => @misconception.to_json
+    @misconception = AssessmentMisconception.find(params[:id])
+    @misconception.workflow_state = "deleted"
+    @misconception.save!
+    render :json => @misconception.to_json
   end
 
 end

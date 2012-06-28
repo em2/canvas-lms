@@ -71,7 +71,7 @@ require([
     event.preventDefault();
     $(this).parents(".misconception").confirmDelete({
       url: $(this).attr('href'),
-      message: I18n.t("delete_misconception_prompt", "Are you sure you want to delete this misconception?"),
+      message: "Are you sure you want to delete this misconception?",
       success: function() {
         $(this).slideUp(function() {
           $(this).remove();
