@@ -2,7 +2,7 @@ class AssessmentMisconception < ActiveRecord::Base
 	belongs_to :assessment_question_bank, :touch => true
 
 	named_scope :active, lambda {
-		{:conditions => ['misconceptions.workflow_state != ?', 'deleted'] }
+		{:conditions => ['assessment_misconceptions.workflow_state != ?', 'deleted'] }
 	}
 		
 	def pattern=(hash)

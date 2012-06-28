@@ -1,0 +1,153 @@
+<style type="text/css">
+.table-row{
+	border-top-style:solid;
+	border-width:2px;
+}
+th{
+	border-right-style: solid;
+	border-left-style: solid;
+	border-width: 2px;
+}
+</style>
+
+<% context = @context %>
+<h1>Misconceptions</h1>
+<% content_for :right_side do %>
+  <div style="position: relative;">
+    <% if can_do(@bank, @current_user, :update) -%>
+      <a href="<%= context_url(@context, :context_question_bank_url, @bank.id) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_this_quiz', "Edit This Quiz") %></a>
+    <% end -%>
+  </div>
+<% end -%>
+<% if @misconceptions.count > 0 -%>
+	<table>
+		<tr>
+			<th width="130px"> Code </th>
+			<th width="200px"> Responses </th>
+		</tr>
+		<% @misconceptions.each do |misconception| -%>
+			<% if misconception.workflow_state == "available" -%>
+			<tr class="table-row misconception">
+				<th class="header"> <span class="header_content name"><%= misconception.name %></span><span>
+          <a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+          <a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+        </span></th>
+				<th>
+					<% if !misconception.pattern.empty? -%>
+						<% misconception.pattern.each do |question_id, answer_ids| -%>
+              <% answer_ids.each do |answer_id| -%> 
+  							<% if quiz_question = QuizQuestion.find(question_id) rescue nil -%>
+                  <% quiz_question.question_data[:answers].each_with_index do |question, index| -%>
+                    <% if question[:id] == answer_id.to_i -%>
+                      <%= quiz_question.position %>:<%= @abc[index] %>
+                    <% end -%>
+                  <% end -%> 
+                <% end -%>
+              <% end -%>
+						<% end -%>
+					<% end -%></th>
+
+			<% end -%>
+		<% end -%>
+	</table>
+<% end -%>
+<a href="<%= new_account_question_bank_assessment_misconception_path %>" class="button">Add Misconception</a>
+
+<% form_for :quiz_misconception, :url => "", :html => {:id => "edit_misconception_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :name, :en => "Misconception Name" %>
+  <%= f.text_field :name, :class => "misconception_name_box" %>
+<% end %>
+
+<% js_block do %>
+
+<script type="text/javascript">
+require([
+  'jquery' /* $ */,
+  'misconceptions'
+], function($) {
+   $(document).ready(function() {
+   	
+
+   	$(".delete_misconception_link").click(function(event) {
+    event.preventDefault();
+    $(this).parents(".misconception").confirmDelete({
+      url: $(this).attr('href'),
+      message: I18n.t("delete_misconception_prompt", "Are you sure you want to delete this misconception?"),
+      success: function() {
+        $(this).slideUp(function() {
+          $(this).remove();
+        });
+      }
+    });
+  });
+
+  $(".edit_misconception_name_link").click(function(event) {
+    event.preventDefault();
+    var $misconception = $(this).parents(".misconception");
+    var data = $misconception.getTemplateData({textValues: ['name']});
+    $misconception.find(".header_content").hide();
+    var $form = $("#edit_misconception_form");
+    $misconception.find(".header").prepend($form.show());
+    $form.attr('action', $(this).attr('href'));
+    $form.attr('method', 'PUT');
+
+    $form.fillFormData(data, {object_name: 'quiz_misconception'});
+    $form.find(":text:visible:first").focus().select();
+  });
+  $("#edit_misconception_form .misconception_name_box").keycodes('return esc', function(event) {
+    if(event.keyString == 'esc') {
+      $(this).parents(".misconception").addClass('dont_save')
+      $(this).blur();
+    } else if(event.keyString == 'return') {
+      $("#edit_misconception_form").submit();
+    }
+  });
+  $("#edit_misconception_form .misconception_name_box").blur(function() {
+    var $misconception = $(this).parents(".misconception");
+    if(!$misconception.hasClass('dont_save') && !$misconception.hasClass('save_in_progress')) {
+      $("#edit_misconception_form").submit();
+      return;
+    }
+    $misconception.removeClass('dont_save');
+    $misconception.find(".header_content").show();
+    $("body").append($("#edit_misconception_form").hide());
+  });
+  $("#edit_misconception_form").formSubmit({
+    object_name: 'quiz_misconception',
+    beforeSubmit: function(data) {
+      var $misconception = $(this).parents(".misconception");
+      $misconception.attr('id', 'misconception_adding');
+      try {
+        $misconception.addClass('save_in_progress')
+        $misconception.find(".misconception_name_box").blur();
+      } catch(e) { }
+      $misconception.fillTemplateData({
+        data: data
+      });
+      $misconception.loadingImage();
+      return $misconception;
+    },
+    success: function(data, $misconception) {
+      $misconception.loadingImage('remove');
+      $misconception.removeClass('save_in_progress')
+      var misconception = data.quiz_misconception;
+      misconception.last_updated_at = $.parseFromISO(misconception.updated_at).datetime_formatted;
+      $misconception.fillTemplateData({
+        data: misconception,
+        hrefValues: ['id']
+      })
+    },
+    error: function(data, $misconception) {
+      $misconception.loadingImage('remove');
+      $misconception.removeClass('save_in_progress')
+      $misconception.find(".edit_misconception_name_link").click();
+      $("#edit_misconception_form").formErrors(data);
+    }
+  });
+
+
+  });
+ });
+</script>
+
+<% end -%>
