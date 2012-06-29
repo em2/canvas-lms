@@ -7,7 +7,7 @@
 				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
 			</span>
 		</div>
-		<div class="responses">
+		<div class="misconception_piece responses">
 			<% if !misconception_item.pattern.empty? -%>
 				<% misconception_item.pattern.each do |question_id, answer_ids| -%>
 	        <% answer_ids.each do |answer_id| -%> 
@@ -24,7 +24,7 @@
 		</div>
 		<div class="misconception_piece">
 			<span class="header">Explanation URL: &nbsp </span>
-			<span class="header_content">
+			<span class="header_content explanation_url">
 				<%= misconception_item.explanation_url %>
 			</span>
 			<span class="modify_buttons">
@@ -33,7 +33,7 @@
 		</div>
 		<div class="misconception_piece">
 			<span class="header">Description: &nbsp </span>
-			<span class="header_content">
+			<span class="header_content description">
 				<%= misconception_item.description %>
 			</span>
 			<span class="modify_buttons">

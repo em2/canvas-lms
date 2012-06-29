@@ -3,6 +3,9 @@
 	border:2px solid #888;
 	border-radius: 3px;
 }
+.misconception_piece{
+  padding-left: 5px;
+}
 .name{
   font-size: 25px;
 }
@@ -48,7 +51,7 @@
 
 <% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_description_form", :style => "display: none;"} do |f| %>
   <%= f.blabel :description, :en => "Description" %>
-  <%= f.text_field :description, :class => "misconception_description_box" %>
+  <%= f.text_area :description, :class => "misconception_description_box" %>
 <% end %>
 
 <% js_block do %>
