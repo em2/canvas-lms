@@ -42,10 +42,12 @@
 <% end %>
 
 <% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_url_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :explanation_url, :en => "Explanation URL" %>
   <%= f.text_field :explanation_url, :class => "misconception_url_box" %>
 <% end %>
 
 <% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_description_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :description, :en => "Description" %>
   <%= f.text_field :description, :class => "misconception_description_box" %>
 <% end %>
 
@@ -83,7 +85,9 @@ require([
     event.preventDefault();
     var $misconception_piece = $(this).parents(".misconception_piece");
     var data = $misconception_piece.getTemplateData({textValues: ['name']});
+    $misconception_piece.find(".header").hide();
     $misconception_piece.find(".header_content").hide();
+    $misconception_piece.find(".modify_buttons").hide();
     var $form = $("#edit_misconception_name_form");
     $misconception_piece.prepend($form.show());
     $form.attr('action', $(this).attr('href'));
@@ -109,7 +113,9 @@ require([
       return;
     }
     $misconception_piece.removeClass('dont_save');
+    $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
+    $misconception_piece.find(".modify_buttons").show();
     $("body").append($("#edit_misconception_name_form").hide());
   });
   $("#edit_misconception_name_form").formSubmit({
@@ -176,7 +182,9 @@ require([
     event.preventDefault();
     var $misconception_piece = $(this).parents(".misconception_piece");
     var data = $misconception_piece.getTemplateData({textValues: ['name']});
+    $misconception_piece.find(".header").hide();
     $misconception_piece.find(".header_content").hide();
+    $misconception_piece.find(".modify_buttons").hide();
     var $form = $("#edit_misconception_url_form");
     $misconception_piece.prepend($form.show());
     $form.attr('action', $(this).attr('href'));
@@ -202,7 +210,9 @@ require([
       return;
     }
     $misconception_piece.removeClass('dont_save');
+    $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
+    $misconception_piece.find(".modify_buttons").show();
     $("body").append($("#edit_misconception_url_form").hide());
   });
   $("#edit_misconception_url_form").formSubmit({
@@ -267,7 +277,9 @@ require([
     event.preventDefault();
     var $misconception_piece = $(this).parents(".misconception_piece");
     var data = $misconception_piece.getTemplateData({textValues: ['name']});
+    $misconception_piece.find(".header").hide();
     $misconception_piece.find(".header_content").hide();
+    $misconception_piece.find(".modify_buttons").hide();
     var $form = $("#edit_misconception_description_form");
     $misconception_piece.prepend($form.show());
     $form.attr('action', $(this).attr('href'));
@@ -293,7 +305,9 @@ require([
       return;
     }
     $misconception_piece.removeClass('dont_save');
+    $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
+    $misconception_piece.find(".modify_buttons").show();
     $("body").append($("#edit_misconception_description_form").hide());
   });
   $("#edit_misconception_description_form").formSubmit({

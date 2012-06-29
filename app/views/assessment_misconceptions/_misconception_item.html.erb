@@ -2,8 +2,10 @@
 	<div class="misconception">
 		<div class="misconception_piece">
 			<span class="header_content name"><%=misconception_item.name%></span>
-			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
-			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+			<span class="modify_buttons">
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+			</span>
 		</div>
 		<div class="responses">
 			<% if !misconception_item.pattern.empty? -%>
@@ -21,20 +23,22 @@
 			<% end -%>
 		</div>
 		<div class="misconception_piece">
-			<span class="explanation_url">Explanation URL:
-				<span class="header_content">
-					<%= misconception_item.explanation_url %>
-				</span>
+			<span class="header">Explanation URL: &nbsp </span>
+			<span class="header_content">
+				<%= misconception_item.explanation_url %>
 			</span>
-			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
+			<span class="modify_buttons">
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
+			</span>
 		</div>
 		<div class="misconception_piece">
-			<span class="description">Description:
-				<span class="header_content">
-					<%= misconception_item.description %>
-				</span>
+			<span class="header">Description: &nbsp </span>
+			<span class="header_content">
+				<%= misconception_item.description %>
 			</span>
-			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
+			<span class="modify_buttons">
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
+			</span>
 		</div>
 	</div>
 	<br />
