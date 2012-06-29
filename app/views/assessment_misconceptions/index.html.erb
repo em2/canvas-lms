@@ -1,13 +1,21 @@
 <style type="text/css">
-.table-row{
-	border-top-style:solid;
-	border-width:2px;
+.misconception{
+	border:2px solid #888;
+	border-radius: 3px;
 }
-th{
-	border-right-style: solid;
-	border-left-style: solid;
-	border-width: 2px;
+.name{
+  font-size: 25px;
 }
+.responses{
+  font-size: 15px;
+}
+.explanation_url{
+  font-size: 15px;
+}
+.description{
+  font-size: 15px;
+}
+
 </style>
 
 <% context = @context %>
@@ -20,37 +28,12 @@ th{
   </div>
 <% end -%>
 <% if @misconceptions.count > 0 -%>
-	<table>
-		<tr>
-			<th width="130px"> Code </th>
-			<th width="200px"> Responses </th>
-		</tr>
 		<% @misconceptions.each do |misconception| -%>
-			<% if misconception.workflow_state == "available" -%>
-			<tr class="table-row misconception">
-				<th class="header"> <span class="header_content name"><%= misconception.name %></span><span>
-          <a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
-          <a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
-        </span></th>
-				<th>
-					<% if !misconception.pattern.empty? -%>
-						<% misconception.pattern.each do |question_id, answer_ids| -%>
-              <% answer_ids.each do |answer_id| -%> 
-  							<% if quiz_question = AssessmentQuestion.find(question_id) rescue nil -%>
-                  <% quiz_question.question_data[:answers].each_with_index do |question, index| -%>
-                    <% if question[:id] == answer_id.to_i -%>
-                      <%= quiz_question.position %>:<%= @abc[index] %>
-                    <% end -%>
-                  <% end -%> 
-                <% end -%>
-              <% end -%>
-						<% end -%>
-					<% end -%></th>
-
-			<% end -%>
+			<%= render :partial => "misconception_item", :object => misconception, :locals => {:question_bank_id => params[:question_bank_id]}, :id => params[:id] %>
 		<% end -%>
-	</table>
 <% end -%>
+
+
 <a href="<%= new_account_question_bank_assessment_misconception_path %>" class="button">Add Misconception</a>
 
 <% form_for :quiz_misconception, :url => "", :html => {:id => "edit_misconception_form", :style => "display: none;"} do |f| %>

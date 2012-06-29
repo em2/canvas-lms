@@ -1,0 +1,37 @@
+<% if misconception_item.workflow_state == "available" -%>
+	<div class="misconception">
+		<div class="header">
+			<span class="header_content name"><%=misconception_item.name%></span>
+			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+		</div>
+		<div class="responses">
+			<% if !misconception_item.pattern.empty? -%>
+				<% misconception_item.pattern.each do |question_id, answer_ids| -%>
+	        <% answer_ids.each do |answer_id| -%> 
+						<% if quiz_question = AssessmentQuestion.find(question_id) rescue nil -%>
+	            <% quiz_question.question_data[:answers].each_with_index do |question, index| -%>
+	              <% if question[:id] == answer_id.to_i -%>
+	                <%= quiz_question.position %>:<%= @abc[index] %>
+	              <% end -%>
+	            <% end -%> 
+	          <% end -%>
+	        <% end -%>
+				<% end -%>
+			<% end -%>
+		</div>
+		<div class="header">
+			<span class="header_content explanation_url">Explanation URL: 
+			<%= misconception_item.explanation_url %>
+			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a></span>
+			</div>
+		<div class="header">
+			<span class="header_content description">Description: <%= misconception_item.description %>
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+			<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a></span>
+		</div>
+
+	</div>
+	<br />
+<% end -%>
