@@ -44,8 +44,34 @@ class AssessmentQuestionsController < ApplicationController
       @question.edited_independent_of_quiz_question
       if @question.with_versioning { @question.update_attributes(params[:assessment_question]) }
         @question.ensure_in_list
+        
+
+        # remove the old references 
+        @bank.assessment_misconceptions.active.each do |misconception|
+          miscon = misconception.pattern
+          miscon.delete("#{@question.id}")
+          misconception.pattern = miscon
+          misconception.save!
+        end
+
+        @question.question_data[:answers].each_with_index do |answer, index|
+
+          misconception = AssessmentMisconception.find(answer[:misconception_id])
+          miscon = misconception.pattern
+
+          if miscon.empty?
+            misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
+          else
+            miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+            misconception.pattern = miscon
+          end
+          misconception.save!
+        end
+
+
         render :json => @question.to_json
       else
+        debugger
         render :json => @question.errors.to_json, :status => :bad_request
       end
     end

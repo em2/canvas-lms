@@ -187,6 +187,15 @@ define([
         $answer.removeClass('correct_answer');
       }
 
+      if (answer.answer_misconception_id == "") {
+        $answer.find(".answer_misconception_id option[value='1']").attr('selected','selected');
+      } else {
+        $answer.find(".answer_misconception_id option[value=" + answer.answer_misconception_id + "]").attr('selected','selected');
+      }
+
+      data.answer_misconception_id = $answer.find(".answer_misconception_id option:selected").val();
+
+
       // won't exist if they've never clicked the edit button
       var htmlToggle = $answer.find('.edit_html').data('editorToggle')
 
@@ -528,7 +537,7 @@ define([
       var result = {};
       result.answer_type = "select_answer";
       result.answer_selection_type = quiz.answerSelectionType(question_type);
-      result.textValues = ['answer_weight', 'answer_text', 'answer_comment', 'blank_id', 'id', 'match_id'];
+      result.textValues = ['answer_weight', 'answer_misconception_id', 'answer_text', 'answer_comment', 'blank_id', 'id', 'match_id'];
       result.htmlValues = ['answer_html', 'answer_match_left_html', 'answer_comment_html'];
       result.question_type = question_type;
       $formQuestion.find(".explanation").hide().filter("." + question_type + "_explanation").show();
@@ -732,6 +741,7 @@ define([
       answer_type: "select_answer",
       answer_comment: "",
       answer_weight: 0,
+      answer_misconception_id: "",
       numerical_answer_type: "exact_answer",
       answer_exact: "",
       answer_error_margin: "",
@@ -767,6 +777,7 @@ define([
 
   function makeDisplayAnswer(data, escaped) {
     data.answer_weight = data.weight || data.answer_weight;
+    data.answer_misconception_id = data.misconception_id || data.answer_misconception_id
     data.answer_comment = data.comments || data.answer_comment;
     data.answer_text = data.text || data.answer_text;
     data.answer_html = data.html || data.answer_html;
@@ -859,8 +870,11 @@ define([
       if (question.question_type != 'calculated_question') {
         $question.find(".answer").each(function() {
           var $answer = $(this);
+
+          $answer.find(".answer_misconception_id").text($answer.find(".answer_misconception_id").val())
+
           var answerData = $answer.getTemplateData({
-            textValues: ['answer_exact', 'answer_error_margin', 'answer_range_start', 'answer_range_end', 'answer_weight', 'numerical_answer_type', 'blank_id', 'id', 'match_id', 'answer_text', 'answer_match_left', 'answer_match_right', 'answer_comment'],
+            textValues: ['answer_exact', 'answer_error_margin', 'answer_range_start', 'answer_range_end', 'answer_weight', 'answer_misconception_id', 'numerical_answer_type', 'blank_id', 'id', 'match_id', 'answer_text', 'answer_match_left', 'answer_match_right', 'answer_comment'],
             htmlValues: ['answer_html', 'answer_match_left_html', 'answer_comment_html']
           });
           var answer = $.extend({}, quiz.defaultAnswerData, answerData);
@@ -959,6 +973,7 @@ define([
           data[jd + '[answer_comments]'] = answer.answer_comment;
           data[jd + '[answer_comments_html]'] = answer.answer_comment_html;
           data[jd + '[answer_weight]'] = answer.answer_weight;
+          data[jd + '[answer_misconception_id]'] = answer.answer_misconception_id;
           data[jd + '[answer_match_left]'] = answer.answer_match_left;
           data[jd + '[answer_match_left_html]'] = answer.answer_match_left_html;
           data[jd + '[answer_match_right]'] = answer.answer_match_right;
@@ -2040,6 +2055,7 @@ define([
         data.blank_id = $answer.find(".blank_id").text();
         data.answer_text = $answer.find("input[name='answer_text']:visible").val();
         data.answer_html = $answer.find(".answer_html").html();
+        data.answer_misconception_id = $answer.find("select option:selected").val()
         if (questionData.question_type == "true_false_question") {
           data.answer_text = (i == 0) ? I18n.t('true', "True") : I18n.t('false', "False");
         }
@@ -2094,6 +2110,12 @@ define([
         });
       }
 
+      // Go through and inject the values as text
+      $displayQuestion.find(".answers").each(function() {
+        $(this).find(".answer").each(function(index){
+          $(this).find(".answer_misconception_id").text(question.answers[index].answer_misconception_id);
+        });
+      });
 
       quiz.updateDisplayQuestion($displayQuestion, question);
 

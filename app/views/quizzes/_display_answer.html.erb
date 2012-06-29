@@ -81,6 +81,7 @@
     </div>
     <% if show_correct_answers %>
       <div class="answer_percent"><%= t(:percent_of_points, "%{percent}% of points", :percent => raw("<span class=\"answer_weight\">#{hash_get(answer, :weight, 0)}</span>")) %></div>
+      <input type="hidden" name="answer_misconception_id" class="answer_misconception_id" />
     <% end %>
     <% end %>
     <% if show_comment %>

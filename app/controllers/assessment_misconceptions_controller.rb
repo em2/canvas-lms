@@ -9,7 +9,6 @@ class AssessmentMisconceptionsController < ApplicationController
   end
 
   def update
-  	debugger
     @misconception = AssessmentMisconception.find(params[:id])
     if @misconception.update_attributes(params[:quiz_misconception])
       @misconception.reload

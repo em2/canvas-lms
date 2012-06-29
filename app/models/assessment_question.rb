@@ -415,6 +415,11 @@ class AssessmentQuestion < ActiveRecord::Base
       question[:answers][idx][:id] ||= unique_local_id
     end
     question[:assessment_question_id] = assessment_question.id rescue nil
+
+    answers.each_with_index do |answer, index|
+      question[:answers][index][:misconception_id] = answer[1][:answer_misconception_id]
+    end
+    
     return question
   end
   
