@@ -26,7 +26,7 @@
 <% content_for :right_side do %>
   <div style="position: relative;">
     <% if can_do(@bank, @current_user, :update) -%>
-      <a href="<%= context_url(@context, :context_question_bank_url, @bank.id) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_this_quiz', "Edit This Assessment") %></a>
+      <a href="<%= context_url(@context, :context_question_bank_url, @bank.id) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_this_quiz', "Edit This Bank") %></a>
     <% end -%>
   </div>
 <% end -%>
