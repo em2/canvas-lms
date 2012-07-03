@@ -126,6 +126,10 @@ class QuestionBanksController < ApplicationController
   def destroy
     @bank = @context.assessment_question_banks.find(params[:id])
     if authorized_action(@bank, @current_user, :delete)
+      @bank.assessment_misconceptions.active.each do |misconception|
+        misconception.workflow_state = "deleted"
+        misconception.save!
+      end
       @bank.destroy
       render :json => @bank.to_json
     end
