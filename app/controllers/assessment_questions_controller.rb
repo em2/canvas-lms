@@ -71,7 +71,6 @@ class AssessmentQuestionsController < ApplicationController
 
         render :json => @question.to_json
       else
-        debugger
         render :json => @question.errors.to_json, :status => :bad_request
       end
     end
@@ -80,6 +79,15 @@ class AssessmentQuestionsController < ApplicationController
   def destroy
     @question = @bank.assessment_questions.find(params[:id])
     if authorized_action(@question, @current_user, :delete)
+
+      # remove the old references 
+      @bank.assessment_misconceptions.active.each do |misconception|
+        miscon = misconception.pattern
+        miscon.delete("#{@question.id}")
+        misconception.pattern = miscon
+        misconception.save!
+      end
+      
       @question.destroy
       render :json => @question.to_json
     end
