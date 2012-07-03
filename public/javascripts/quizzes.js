@@ -187,15 +187,7 @@ define([
         $answer.removeClass('correct_answer');
       }
 
-      if (answer.answer_misconception_id == "") {
-        $answer.find(".answer_misconception_id option[value='1']").attr('selected','selected');
-      } else {
-        $answer.find(".answer_misconception_id option[value=" + answer.answer_misconception_id + "]").attr('selected','selected');
-      }
-
-      data.answer_misconception_id = $answer.find(".answer_misconception_id option:selected").val();
-
-
+      
       // won't exist if they've never clicked the edit button
       var htmlToggle = $answer.find('.edit_html').data('editorToggle')
 
@@ -871,8 +863,6 @@ define([
         $question.find(".answer").each(function() {
           var $answer = $(this);
 
-          $answer.find(".answer_misconception_id").text($answer.find(".answer_misconception_id").val())
-
           var answerData = $answer.getTemplateData({
             textValues: ['answer_exact', 'answer_error_margin', 'answer_range_start', 'answer_range_end', 'answer_weight', 'answer_misconception_id', 'numerical_answer_type', 'blank_id', 'id', 'match_id', 'answer_text', 'answer_match_left', 'answer_match_right', 'answer_comment'],
             htmlValues: ['answer_html', 'answer_match_left_html', 'answer_comment_html']
@@ -1419,7 +1409,12 @@ define([
           answer.answer_type = data.answer_type;
           answer.question_type = data.question_type;
           var $answer = makeFormAnswer(answer);
+          $answer.find(".answer_misconception option:selected").removeAttr('selected', 'selected')
+          $answer.find(".answer_misconception").val(answer.answer_misconception_id)
+          $answer.find(".answer_misconception option[value=" + answer.answer_misconception_id + "]").attr('selected','selected');
+
           $form.find(".form_answers").append($answer);
+
         });
       }
       if ($question.hasClass('essay_question')) {

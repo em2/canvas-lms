@@ -25,6 +25,7 @@
     <div class="select_answer answer_type" <%= hidden(true) unless answer_type == "select_answer" %>>
       <div class="answer_text" <%= hidden(true) if hash_get(answer, :html).present? %>><%= hash_get(answer, :text) %></div>
       <div class="answer_html"><%= hash_get(answer, :html).to_s.html_safe %></div>
+      <div class="answer_misconception_id" <%= hidden(true) if hash_get(answer, :html).present? %>><%= display_answer ? display_answer[:misconception_id] : nbsp %></div>
     </div>
     <div class="answer_type short_answer" <%= hidden(true) unless answer_type == "short_answer" %>>
       <input name="answer_text" type="text" style="width: 200px; margin-bottom: 5px; color: #000;" disabled="true" value="<%= hash_get(answer, :text) %>"/>
@@ -81,7 +82,6 @@
     </div>
     <% if show_correct_answers %>
       <div class="answer_percent"><%= t(:percent_of_points, "%{percent}% of points", :percent => raw("<span class=\"answer_weight\">#{hash_get(answer, :weight, 0)}</span>")) %></div>
-      <input type="hidden" name="answer_misconception_id" class="answer_misconception_id" />
     <% end %>
     <% end %>
     <% if show_comment %>
