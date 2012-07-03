@@ -1,5 +1,6 @@
 class AssessmentMisconceptionsController < ApplicationController
 	before_filter :require_context
+  add_crumb("Question Banks") { |c| c.send :named_context_url, c.instance_variable_get("@context"), :context_question_banks_url }
 
   def new
 		bank = AssessmentQuestionBank.find(params[:question_bank_id])
@@ -21,8 +22,10 @@ class AssessmentMisconceptionsController < ApplicationController
   def index
     @abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     
-  	add_crumb("Misconceptions")
   	@bank = AssessmentQuestionBank.find(params[:question_bank_id])
+    add_crumb(@bank.title)
+    #add_crumb(@bank.id, url_for(@bank))
+    add_crumb("Misconceptions")
   	@misconceptions = @bank.assessment_misconceptions
 
   end
