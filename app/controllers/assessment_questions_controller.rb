@@ -26,6 +26,19 @@ class AssessmentQuestionsController < ApplicationController
       params[:assessment_question][:form_question_data] ||= params[:question]
       @question = @bank.assessment_questions.build(params[:assessment_question])
       if @question.with_versioning(&:save)
+        
+        @question.question_data[:answers].each_with_index do |answer, index|
+          misconception = AssessmentMisconception.find(answer[:misconception_id])
+          miscon = misconception.pattern
+          if miscon.empty?
+            misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
+          else
+            miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+            misconception.pattern = miscon
+          end
+          misconception.save!
+        end
+
         @question.insert_at_bottom
         render :json => @question.to_json
       else
@@ -87,7 +100,7 @@ class AssessmentQuestionsController < ApplicationController
         misconception.pattern = miscon
         misconception.save!
       end
-      
+
       @question.destroy
       render :json => @question.to_json
     end
