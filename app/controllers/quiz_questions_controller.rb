@@ -91,7 +91,7 @@ class QuizQuestionsController < ApplicationController
       end
 
       @question.question_data[:answers].each_with_index do |answer, index|
-
+debugger
         misconception = QuizMisconception.find(answer[:misconception_id])
         miscon = misconception.pattern
 

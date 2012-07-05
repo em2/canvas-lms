@@ -419,6 +419,11 @@ class QuizzesController < ApplicationController
   def destroy
     if authorized_action(@quiz, @current_user, :delete)
       respond_to do |format|
+        @quiz.quiz_misconceptions.active.each do |misconception|
+          misconception.workflow_state = "deleted"
+          misconception.save!
+        end
+
         if @quiz.destroy
           format.html { redirect_to course_quizzes_url(@context) }
           format.json { render :json => @quiz.to_json }
