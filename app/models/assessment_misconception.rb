@@ -1,5 +1,6 @@
 class AssessmentMisconception < ActiveRecord::Base
 	belongs_to :assessment_question_bank, :touch => true
+	has_many :quiz_misconceptions
 
 	named_scope :active, lambda {
 		{:conditions => ['assessment_misconceptions.workflow_state != ?', 'deleted'] }

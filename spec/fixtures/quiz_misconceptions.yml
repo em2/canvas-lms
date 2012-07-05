@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  quiz_id: 1
+  name: MyString
+  description: MyString
+  explanation_url: MyString
+  pattern: MyString
+  position: 1
+  workflow_state: MyString
+  assessment_misconception_id: 1
+  assessment_misconception_version: 1
+  quiz_group_id: 1
+
+two:
+  quiz_id: 1
+  name: MyString
+  description: MyString
+  explanation_url: MyString
+  pattern: MyString
+  position: 1
+  workflow_state: MyString
+  assessment_misconception_id: 1
+  assessment_misconception_version: 1
+  quiz_group_id: 1

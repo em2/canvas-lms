@@ -1,42 +1,47 @@
 require 'spec_helper'
 
-describe AssessmentMisconception do
+describe QuizMisconception do
   before(:each) do
-    @context = course
+    course
     @bank = @course.assessment_question_banks.create!(:title=>'Test Bank')
     @bank.assessment_questions.create!(:question_data => {'name' => 'test question', 'answers' => [{'id' => 1}, {'id' => 2}]})
     @bank.assessment_questions.create!(:question_data => {'name' => 'test question 2', 'answers' => [{'id' => 3}, {'id' => 4}]})
     @bank.assessment_questions.create!(:question_data => {'name' => 'test question 3', 'answers' => [{'id' => 3}, {'id' => 4}]})
     @bank.assessment_questions.create!(:question_data => {'name' => 'test question 4', 'answers' => [{'id' => 3}, {'id' => 4}]})
+    @quiz = @course.quizzes.create!(:title => "some quiz")
+    @group = @quiz.quiz_groups.create!(:name => "question group", :pick_count => 3, :question_points => 5.0)
+    @group.assessment_question_bank = @bank
+    @group.save
 
     @valid_attributes = {
-      :assessment_question_bank_id => @bank.id,
-      :name => "Untitled",
+      :quiz_id => @quiz.id,
+      :name => "value for name",
       :description => "value for description",
-      :explanation_url => "value for explanation_url",
+      :explanation_url => "www.bfcoder.com",
       :pattern => "",
       :position => 1,
-      :context_id => 1,
-      :context_type => "value for context_type",
-      :workflow_state => "available"
+      :workflow_state => "available",
+      :assessment_misconception_id => 1,
+      :assessment_misconception_version => 1,
+      :quiz_group_id => 1
     }
-    @misconception = AssessmentMisconception.new
+    @misconception = QuizMisconception.new
   end
 
   it "should create a new instance given valid attributes" do
-    AssessmentMisconception.create!(@valid_attributes)
+    QuizMisconception.create!(@valid_attributes)
   end
 
-  describe "assessment_question_bank_id field" do
-    it "should store the id of the assessment question bank" do
-      @misconception.assessment_question_bank_id.should be_nil
-      @misconception.assessment_question_bank_id = @bank.id
-      @misconception.assessment_question_bank_id.should == @bank.id
+  describe "quiz_id field" do
+    it "should store the id of the quiz" do
+      @misconception.quiz_id.should be_nil
+      @misconception.quiz_id = @quiz.id
+      @misconception.quiz_id.should == @quiz.id
     end
 
-    it "should save the assessment question bank" do
-      @misconception.assessment_question_bank = @bank
-      @misconception.assessment_question_bank_id.should == @bank.id
+    it "should save the quiz" do
+      @misconception.quiz = @quiz
+      @misconception.quiz_id.should == @quiz.id
     end
   end
 
@@ -77,4 +82,19 @@ describe AssessmentMisconception do
 
   end
 
+  describe "assessment misconception id field" do
+    before(:each) do
+      @assessment_misconception = AssessmentMisconception.new
+    end
+    it "should store the id of the assessment misconception" do
+      @misconception.assessment_misconception_id.should be_nil
+      @misconception.assessment_misconception_id = @assessment_misconception.id
+      @misconception.assessment_misconception_id.should == @assessment_misconception.id
+    end
+
+    it "should save the assessment misconception" do
+      @misconception.assessment_misconception = @assessment_misconception
+      @misconception.assessment_misconception_id.should == @assessment_misconception.id
+    end
+  end
 end
