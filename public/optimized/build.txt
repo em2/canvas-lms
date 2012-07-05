@@ -633,6 +633,11 @@ i18n!question_banks
 question_banks.js
 compiled/bundles/question_banks.js
 
+compiled/bundles/misconceptions.js
+----------------
+misconceptions.js
+compiled/bundles/misconceptions.js
+
 compiled/bundles/quiz_show.js
 ----------------
 translations/quizzes.show.js
