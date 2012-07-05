@@ -108,13 +108,13 @@
     <% end %>
     
     <% if can_do(@quiz, @current_user, :update) %>
-      <a href="/" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
+      <a href="<%= course_quiz_quiz_misconceptions_path(@context, @quiz) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
     <% end -%>
 
-    <h2><a href='/'>Misconceptions</a> <a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions#Mathematics/' target="_blank">(explain this)<a></h2>
+<!--     <h2><a href='/'>Misconceptions</a> <a href='http://en.wikipedia.org/wiki/List_of_common_misconceptions#Mathematics/' target="_blank">(explain this)<a></h2>
     <div class="rs-margin-lr rs-margin-top rs-margin-bottom">
       Show me the problem.
-    </div>
+    </div> -->
 
   <% end %>
 <% end %>

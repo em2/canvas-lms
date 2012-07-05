@@ -257,6 +257,8 @@
     <% end %>
     <a href="#" class="add_question_link add"><%= t('links.add_new_question', "Add a New Question") %></a><br/>
   </div>
+<h2 id="edit_misconceptions"><%= t 'headings.edit_misconceptions', "Misconceptions" %></h2>
+    <a href="<%= course_quiz_quiz_misconceptions_path(@context, @quiz) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
 <% end %>
 <% js_block do %>
 <script>

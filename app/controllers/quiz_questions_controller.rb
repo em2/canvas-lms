@@ -38,6 +38,18 @@ class QuizQuestionsController < ApplicationController
       end
       @question = @quiz.quiz_questions.create(:quiz_group => @group, :question_data => question_data)
       @quiz.did_edit if @quiz.created?
+
+      @question.question_data[:answers].each_with_index do |answer, index|
+        misconception = QuizMisconception.find(answer[:misconception_id])
+        miscon = misconception.pattern
+        if miscon.empty?
+          misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
+        else
+          miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+          misconception.pattern = miscon
+        end
+        misconception.save!
+      end
       
       render :json => @question.to_json(:include => :assessment_question)
     end
@@ -68,6 +80,31 @@ class QuizQuestionsController < ApplicationController
       @question.question_data = question_data
       @question.save
       @quiz.did_edit if @quiz.created?
+
+
+      # remove the old references 
+      @quiz.quiz_misconceptions.active.each do |misconception|
+        miscon = misconception.pattern
+        miscon.delete("#{@question.id}")
+        misconception.pattern = miscon
+        misconception.save!
+      end
+
+      @question.question_data[:answers].each_with_index do |answer, index|
+
+        misconception = QuizMisconception.find(answer[:misconception_id])
+        miscon = misconception.pattern
+
+        if miscon.empty?
+          misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
+        else
+          miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+          misconception.pattern = miscon
+        end
+        misconception.save!
+      end
+
+
       
       render :json => @question.to_json(:include => :assessment_question)
     end
@@ -76,6 +113,15 @@ class QuizQuestionsController < ApplicationController
   def destroy
     if authorized_action(@quiz, @current_user, :update)
       @question = @quiz.quiz_questions.find(params[:id])
+
+      # remove the old references 
+      @quiz.quiz_misconceptions.active.each do |misconception|
+        miscon = misconception.pattern
+        miscon.delete("#{@question.id}")
+        misconception.pattern = miscon
+        misconception.save!
+      end
+
       @question.destroy
       render :json => @question.to_json
     end

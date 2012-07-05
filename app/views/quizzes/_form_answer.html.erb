@@ -13,7 +13,9 @@
           <input type="text" style="width: 200px;" name="answer_text" placeholder="<%= t('anser_text', 'Answer Text') %>" />
           <input type="hidden" name="answer_html"/>
 
-          <b><%= before_label(:answer_text_misconception, "Answer Misconception") %></b>
+          <span class="answer_html" style="display:inline-block;"></span>
+
+          &nbsp <b><%= before_label(:answer_text_misconception, "Answer Misconception") %></b>
           <select class="answer_misconception">
             <% if @misconceptions -%>
               <% @misconceptions.each do |misconception| -%>
@@ -21,8 +23,6 @@
               <% end -%> 
             <% end -%>
           </select>
-
-          <span class="answer_html" style="display:inline-block;"></span>
         </div>
         <div class="fixed_answer answer_type">
           <b class="answer_text"></b>

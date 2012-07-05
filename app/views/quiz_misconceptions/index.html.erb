@@ -1,0 +1,57 @@
+<% js_bundle :misconceptions %>
+
+<style type="text/css">
+.misconception{
+	border:2px solid #888;
+	border-radius: 3px;
+}
+.misconception_piece{
+  padding-left: 5px;
+}
+.name{
+  font-size: 25px;
+}
+.responses{
+  font-size: 15px;
+}
+.explanation_url{
+  font-size: 15px;
+}
+.description{
+  font-size: 15px;
+}
+
+</style>
+
+<% context = @context %>
+<h1>Misconceptions</h1>
+<% content_for :right_side do %>
+  <div style="position: relative;">
+    <% if can_do(@quiz, @current_user, :update) -%>
+      <a href="<%= context_url(@context, :edit_context_quiz_url, @quiz.id) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_this_quiz', "Edit This Assessment") %></a>
+    <% end -%>
+  </div>
+<% end -%>
+<% if @misconceptions.count > 0 -%>
+		<% @misconceptions.each do |misconception| -%>
+			<%= render :partial => "misconception_item", :object => misconception, :locals => {:question_bank_id => params[:question_bank_id]}, :id => params[:id] %>
+		<% end -%>
+<% end -%>
+
+
+<a href="<%= new_course_quiz_quiz_misconception_path %>" class="button">Add Misconception</a>
+
+<% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_name_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :name, :en => "Misconception Name" %>
+  <%= f.text_field :name, :class => "misconception_name_box" %>
+<% end %>
+
+<% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_url_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :explanation_url, :en => "Explanation URL" %>
+  <%= f.text_field :explanation_url, :class => "misconception_url_box" %>
+<% end %>
+
+<% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_description_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :description, :en => "Description" %>
+  <%= f.text_area :description, :class => "misconception_description_box" %>
+<% end %>
