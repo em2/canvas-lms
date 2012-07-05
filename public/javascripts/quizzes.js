@@ -2050,7 +2050,8 @@ define([
         data.blank_id = $answer.find(".blank_id").text();
         data.answer_text = $answer.find("input[name='answer_text']:visible").val();
         data.answer_html = $answer.find(".answer_html").html();
-        data.answer_misconception_id = $answer.find("select option:selected").val()
+        data.answer_misconception_id = $answer.find(".answer_misconception").val()
+        //data.answer_misconception_id = $answer.find("select option:selected").val()
         if (questionData.question_type == "true_false_question") {
           data.answer_text = (i == 0) ? I18n.t('true', "True") : I18n.t('false', "False");
         }

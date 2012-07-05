@@ -40,15 +40,17 @@ class QuizQuestionsController < ApplicationController
       @quiz.did_edit if @quiz.created?
 
       @question.question_data[:answers].each_with_index do |answer, index|
-        misconception = QuizMisconception.find(answer[:misconception_id])
-        miscon = misconception.pattern
-        if miscon.empty?
-          misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
-        else
-          miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
-          misconception.pattern = miscon
+        if !answer[:misconception_id].empty?
+          misconception = QuizMisconception.find(answer[:misconception_id])
+          miscon = misconception.pattern
+          if miscon.empty?
+            misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
+          else
+            miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+            misconception.pattern = miscon
+          end
+          misconception.save!
         end
-        misconception.save!
       end
       
       render :json => @question.to_json(:include => :assessment_question)
@@ -90,18 +92,20 @@ class QuizQuestionsController < ApplicationController
         misconception.save!
       end
 
+      
       @question.question_data[:answers].each_with_index do |answer, index|
-debugger
-        misconception = QuizMisconception.find(answer[:misconception_id])
-        miscon = misconception.pattern
+        if !answer[:misconception_id].empty?
+          misconception = QuizMisconception.find(answer[:misconception_id])
+          miscon = misconception.pattern
 
-        if miscon.empty?
-          misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
-        else
-          miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
-          misconception.pattern = miscon
+          if miscon.empty?
+            misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
+          else
+            miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+            misconception.pattern = miscon
+          end
+          misconception.save!
         end
-        misconception.save!
       end
 
 
