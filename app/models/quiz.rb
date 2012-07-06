@@ -541,6 +541,46 @@ class Quiz < ActiveRecord::Base
       question.write_attribute(:question_data, assessment_question.question_data)
       question.assessment_question = assessment_question
       question.assessment_question_version = assessment_question.version_number
+      
+      quiz = Quiz.find(question.quiz_id)
+      found_misconception = false
+      AssessmentQuestion.find(question.assessment_question_id).assessment_question_bank.assessment_misconceptions.active.each do |am|
+        quiz.quiz_misconceptions.active.each do |misconception|
+          if misconception.assessment_misconception_id == am.id
+            found_misconception = true
+          end
+        end
+        if !found_misconception
+          qm = am.quiz_misconceptions.create!(:quiz_id => quiz.id, :name => am.name, :description => am.description, :explanation_url => am.explanation_url, :pattern => {}, :workflow_state => "available")
+          qm.quiz_group_id = group.id if group && group.quiz_id == self.id
+          qm.save!
+          found_misconception = false
+        end
+        question.question_data[:answers].each do |answer|
+          quiz.quiz_misconceptions.active.each do |misconception|
+            if answer[:misconception_id].to_i == misconception.assessment_misconception_id
+              answer[:misconception_id] = misconception.id
+              question.save
+              miscon = misconception.pattern
+              quiz.quiz_questions.each do |question|
+                question.question_data[:answers].each do |question_answer|
+                  if question_answer[:id] == answer[:id]
+                    if miscon.empty?
+                      misconception.pattern = {"#{question.id}"=>[answer[:id]]}
+                    else
+                      miscon.merge!({"#{question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+                      misconception.pattern = miscon
+                    end
+                  end
+                end
+              end
+              misconception.save!
+            end
+          end
+        end
+      end
+
+
       question.save
       question
     end
