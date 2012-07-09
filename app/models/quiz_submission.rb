@@ -401,7 +401,7 @@ class QuizSubmission < ActiveRecord::Base
       @error_hash.each do |key, value|
         if (key != '0' && key == misconception.name && value > 0)
           confidence = 100
-          misconception.user_misconceptions.create!(:user_id => self.user.id, :confidence_level => confidence, :workflow_state => 'available')
+          misconception.user_misconceptions.create!(:user_id => self.user.id, :confidence_level => confidence, :error_tally => value, :workflow_state => 'available')
         end
       end
     end
