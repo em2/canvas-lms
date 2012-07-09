@@ -340,11 +340,75 @@ class QuizSubmission < ActiveRecord::Base
     @tally = 0
     @user_answers = []
     data = self.submission_data || {}
+
+    
+    quiz = Quiz.find(data[:quiz_id])
+    @misconceptions = quiz.quiz_misconceptions
+    @error_hash = {"total_error_tally"=>0}
+    @misconceptions.active.each do |misconception|
+      temp_hash = @error_hash
+      temp_hash.merge!("#{misconception.name}"=>0)
+      @error_hash = temp_hash
+    end
+
+
     self.questions_as_object.each do |q|
       user_answer = self.class.score_question(q, data)
       @user_answers << user_answer
+
+      #
+      # go through all the misconceptions user answers and tally up
+      # all the misconceptions the student may have
+      @misconceptions.active.each do |misconception|
+        if (misconception.pattern["#{user_answer[:question_id]}"] != nil)
+          misconception.pattern["#{user_answer[:question_id]}"].each do |value|
+            if (value == user_answer[:answer_id])
+              num = @error_hash["#{misconception.name}"]
+              num += 1
+              miscon = {"#{misconception.name}"=>num}
+              @error_hash.merge!(miscon)
+              if (!user_answer[:correct])
+                num = @error_hash["total_error_tally"]
+                num += 1
+                miscon = {"total_error_tally"=>num}
+                @error_hash.merge!(miscon)
+              end
+            end
+          end
+        end
+      end
+
       @tally += (user_answer[:points] || 0) if user_answer[:correct]
     end
+
+    #
+    # Find the largest misconception and keep track of the 2nd and 3rd
+    # @max_error_code = ""
+    # @max_so_far = 0
+    # @second_largest_error_code = ""
+    # @third_largest_error_code = ""
+    # @error_hash.each do |key, value|
+    #   if (key != 'total_error_tally' && key != '0' && value > @max_so_far)
+    #     @third_largest_error_code = @second_largest_error_code
+    #     @second_largest_error_code = @max_error_code
+    #     @max_so_far = value
+    #     @max_error_code = key
+    #   end
+    # end
+
+
+    @misconceptions.active.each do |misconception|
+      @error_hash.each do |key, value|
+        if (key != '0' && key == misconception.name && value > 0)
+          confidence = 100
+          misconception.user_misconceptions.create!(:user_id => self.user.id, :confidence_level => confidence, :workflow_state => 'available')
+        end
+      end
+    end
+
+
+
+
     self.score = @tally
     self.score = self.quiz.points_possible if self.quiz && self.quiz.quiz_type == 'graded_survey'
     self.submission_data = @user_answers

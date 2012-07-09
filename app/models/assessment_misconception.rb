@@ -13,4 +13,17 @@ class AssessmentMisconception < ActiveRecord::Base
 	def pattern
 		JSON.parse(read_attribute(:pattern))
 	end
+
+	def explanation_url=(url)
+		if (url.empty? || (url[0] == 104 && (url['http://'] || url['https://'])))
+			write_attribute(:explanation_url, url)
+		else
+			url.insert(0,'http://')
+			write_attribute(:explanation_url, url)
+		end
+	end
+
+	def explanation_url
+		read_attribute(:explanation_url)
+	end
 end

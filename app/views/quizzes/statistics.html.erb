@@ -218,47 +218,26 @@ tr.question td .number_answer.correct_answer {
 <% content_for :mini_display do %>
 	<h2>Student Misconceptions <a href="#"><u>(details)</u></a></h2>
 	<div class="rs-margin-lr rs-margin-bottom">
-		    <table id="misconceptions_summary">
-		      <tbody><tr class="misconceptions_summary_row" onclick="location.href='#';">
-
-		        <td class="misconceptions_summary_row_standard misconception_heading">1. Viewing a fraction as two separate numbers / whole number thinking</td>
+    <table id="misconceptions_summary">
+      <% @misconceptions = @quiz.quiz_misconceptions -%>
+      <% @misconceptions.active.each_with_index do |misconception, index| -%>
+	      <tbody>
+          <tr class="misconceptions_summary_row">
+		        <td class="misconceptions_summary_row_standard misconception_heading"><%= index+1 %>. <%= misconception.name %> <%= "- #{misconception.description}" if !misconception.description.empty? %> <%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url)) if (!misconception.explanation_url.empty?) %>
+            </td>
 		      </tr>
 		      <tr>
-		        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">Joey, Richard, Sarah </td>
+  	        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;"> <% misconception.user_misconceptions.active.each_with_index do |user, index| -%><%= User.find(user.user_id).name %><%= ',' if index < misconception.user_misconceptions.active.count-1 %> <% end -%></td>
 		      </tr>
-			  <tr id="misconceptions_summary_end_row">
-		        <td class="misconceptions_summary_row_standard" style="background-color:#FFFFCC">Phil, John </td>
-		      </tr>
-			<tr class="misconceptions_summary_row" id="misconceptions_summary_end_row" onclick="location.href='#';">
-
-		        <td style="padding-top:12px" class="misconceptions_summary_row_standard misconception_heading">2. Applying partial and / or flawed conceptions of relative size of fraction pieces</td>
-
-		      </tr>
-			<tr class="misconceptions_summary_row" onclick="location.href='#';">
-		        <td style="padding-top:12px" class="misconceptions_summary_row_standard misconception_heading">3. Viewing fraction as additive relationship</td>
-		      </tr>
-		      <tr>
-		        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">Sharone, Zeke, Ken, Julianne, Brennan, Seth</td>
-		      </tr>
-			  <tr id="misconceptions_summary_end_row">
-		        <td class="misconceptions_summary_row_standard" style="background-color:#FFFFCC">Michael, Liam</td>
-		      </tr>
-
-
-			<tr class="misconceptions_summary_row" onclick="location.href='#';">
-		        <td style="padding-top:12px" class="misconceptions_summary_row_standard misconception_heading">4. Misapplication of procedure</td>
-		      </tr>
-		      <tr>
-		        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">Judy, Enrique, Phillip, Kedward</td>
-		      </tr>
-			  <tr id="misconceptions_summary_end_row">
-		        <td class="misconceptions_summary_row_standard" style="background-color:#FFFFCC">Maria, Shaniqua, Freddie, Mark</td>
-		      </tr>
-	<tr><td style="padding-top:5px;padding-bottom:0">
-	<a href="/courses/1/quizzes/7/statistics.csv" class="button button-sidebar-wide">Show Detail</a>
-	</td></tr>
-    </tbody></table>
-	  </div>
+        </tbody>
+      <% end -%>
+      <tr>
+        <td style="padding-top:5px;padding-bottom:0">
+          <a href="/courses/1/quizzes/7/statistics.csv" class="button button-sidebar-wide">Show Detail</a>
+        </td>
+      </tr>
+    </table>
+  </div>
 <% end -%>
 
 <h2><%= @quiz.survey? ? t('headers.survey_statistics', "Survey Statistics") : t('headers.quiz_statistics', "Quiz Statistics") %></h2> 

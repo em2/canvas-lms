@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   serialize :preferences
   include Workflow
 
-#  has_many :user_misconceptions
+  has_many :user_misconceptions
 
   has_many :communication_channels, :order => 'position', :dependent => :destroy
   has_one :communication_channel, :order => 'position'
