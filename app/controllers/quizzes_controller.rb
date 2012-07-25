@@ -64,12 +64,21 @@ class QuizzesController < ApplicationController
         }
         format.csv {
           cancel_cache_buster
-          send_data(
-            @quiz.statistics_csv(:include_all_versions => params[:all_versions] == '1', :anonymous => @quiz.anonymous_submissions),
-            :type => "text/csv",
-            :filename => t(:statistics_filename, "%{title} %{type} Report", :title => @quiz.title, :type => @quiz.readable_type) + ".csv",
-            :disposition => "attachment"
-          )
+          if params[:raw] == "true"
+            send_data(
+              @quiz.statistics_raw_csv(:include_all_versions => params[:all_versions] == '1', :anonymous => @quiz.anonymous_submissions),
+              :type => "text/csv",
+              :filename => t(:statistics_filename, "%{title} %{type} Report", :title => @quiz.title, :type => @quiz.readable_type) + ".csv",
+              :disposition => "attachment"
+            )
+          else
+            send_data(
+              @quiz.statistics_csv(:include_all_versions => params[:all_versions] == '1', :anonymous => @quiz.anonymous_submissions),
+              :type => "text/csv",
+              :filename => t(:statistics_filename, "%{title} %{type} Report", :title => @quiz.title, :type => @quiz.readable_type) + ".csv",
+              :disposition => "attachment"
+            )
+          end
         }
       end
     end

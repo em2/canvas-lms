@@ -210,6 +210,7 @@ tr.question td .number_answer.correct_answer {
           <a href="<%= context_url(@context, :context_quiz_statistics_url, @quiz.id, :all_versions => '1') %>" class="button button-sidebar-wide"><%= mt('links.count_all_attempts', "Count **All** Attempts") %></a>
         <% end %>
         <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :format => :csv) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.download_csv', "Download csv") %></a>
+        <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :csv) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.download_raw_csv', "Download raw csv") %></a>
       </div>
     <% end %>
   </div>
