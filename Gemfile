@@ -86,6 +86,7 @@ group :development do
   gem 'ruby_parser', '2.0.6'
   gem 'sexp_processor', '3.0.5'
   gem 'ya2yaml', '0.30'
+  gem 'capistrano', '~> 2.12.0'
   gem 'guard'
 end
 
