@@ -93,6 +93,8 @@ group :redis do
   gem 'redis-store', '1.0.0.rc1'
 end
 
+#deploy
+gem 'unicorn', '~> 4.3.1'
 gem 'newrelic_rpm'
 
 ONE_NINE = RUBY_VERSION >= "1.9"
