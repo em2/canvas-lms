@@ -10,6 +10,8 @@ ssh_options[:forward_agent] = true
 
 set :use_sudo, false
 
+set :branch, "em2-stable"
+
 namespace :deploy do
   namespace :assets do
     desc 'Run the precompile task locally and rsync with shared'
