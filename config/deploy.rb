@@ -19,7 +19,6 @@ namespace :deploy do
       %x{bundle exec rake canvas:compile_assets RAILS_ENV=production }
       servers = find_servers :roles => :web, :except => { :no_release => true }
       servers.each { |server| %x{rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/assets #{user}@#{server}:#{shared_path}} }
-      %x{bundle exec rake assets:clean}
     end
   end
 
