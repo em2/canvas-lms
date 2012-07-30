@@ -44,7 +44,7 @@ namespace :deploy do
   desc "Symlinks the config files"
   task :symlink_configs, :roles => :app do
     %w{security.yml delayed_jobs.yml domain.yml database.yml settings.yml}.each do |config|
-      run "ln -nfs #{shared_path}/#{config} #{release_path}/config/#{config}"
+      run "ln -fs #{shared_path}/config/#{config} #{release_path}/config/#{config}"
     end
   end
 end
