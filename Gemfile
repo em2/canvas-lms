@@ -55,10 +55,6 @@ group :mysql do
   gem 'mysql',        '2.8.1'
 end
 
-group :sqlite do
-  gem 'sqlite3-ruby', '1.3.2'
-end
-
 group :test do
   gem 'coffee-script'
   gem 'coffee-script-source',  '1.1.2' #pinned so everyone's compiled output matches
