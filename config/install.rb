@@ -7,11 +7,11 @@
 
 $:<< File.join(File.dirname(__FILE__), 'sprinkle-packages')
 
-%w( update base git ruby nginx unicorn app newrelic cleanup).each do |lib|
+%w( update base git ruby nginx unicorn app cleanup).each do |lib|
   require lib
 end
 
-policy :opentapestry, :roles => :app do
+policy :canvas, :roles => :app do
   requires :system_update
   requires :base
   requires :database_client
@@ -20,7 +20,6 @@ policy :opentapestry, :roles => :app do
   requires :webserver
   requires :appserver
   requires :app
-  requires :newrelic
   requires :cleanup
 end
 

@@ -1,6 +1,5 @@
 .rdebug_hist
 .DS_Store
-Gemfile.lock
 bin
 .redcar
 log/*.log
