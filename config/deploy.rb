@@ -43,7 +43,7 @@ after 'deploy:update_code', 'deploy:symlink_configs'
 namespace :deploy do
   desc "Symlinks the config files"
   task :symlink_configs, :roles => :app do
-    %w{security.yml delayed_jobs.yml domain.yml database.yml settings.yml}.each do |config|
+    %w{security.yml delayed_jobs.yml domain.yml database.yml newrelic.yml}.each do |config|
       run "ln -fs #{shared_path}/config/#{config} #{release_path}/config/#{config}"
     end
   end
