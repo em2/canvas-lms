@@ -17,6 +17,9 @@ config/GEM_HOME
 config/*.yml
 config/environments/*-local.rb
 config/staging/
+config/deploy/
+config/sprinkle-assets/
+config/sprinkle-packages/
 models.dot
 db/*sql
 db/development_structure.sql
