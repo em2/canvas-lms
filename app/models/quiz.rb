@@ -879,6 +879,7 @@ class Quiz < ActiveRecord::Base
   def statistics_raw_csv(options={})
     options ||= {}
     columns = []
+    columns << @context.name
     columns << t('statistics.csv_columns.name', 'name') unless options[:anonymous]
     columns << t('statistics.csv_columns.id', 'id')
     columns << t('statistics.csv_columns.submitted', 'submitted')
@@ -910,6 +911,7 @@ class Quiz < ActiveRecord::Base
     rows = []
     submissions.each do |submission|
       row = []
+      row << ""
       row << submission.user.name unless options[:anonymous]
       row << submission.user_id
       row << submission.finished_at
