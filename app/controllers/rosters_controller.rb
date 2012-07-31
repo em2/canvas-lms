@@ -9,6 +9,7 @@ class RostersController < ApplicationController
       @rosters = Roster.by_name
 
       is_admin?
+      is_teacher?
     else
       redirect_back_or_default(dashboard_url)
     end
@@ -91,6 +92,7 @@ class RostersController < ApplicationController
           extract_names(@course_title)
 
           is_admin?
+          is_teacher?
 
           if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
           
@@ -146,6 +148,7 @@ class RostersController < ApplicationController
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
 
       is_admin?
+      is_teacher?
     else
       redirect_back_or_default(dashboard_url)
     end
@@ -153,6 +156,27 @@ class RostersController < ApplicationController
 
   def is_admin?
     @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
+  end
+
+  def is_teacher?
+    @found_teacher = false
+    if @context.account.courses.are_available.count > 0
+      @context.account.courses.by_name_available.each do |course|
+        course.teachers.each do |teacher|
+          if (teacher.id == @current_user.id)
+            @found_teacher = true
+            break
+          end
+          if @found_teacher
+            break
+          end
+        end
+        if @found_teacher
+          break
+        end
+      end
+    end
+    @is_teacher = @found_teacher
   end
 
   def is_authorized?(user)
