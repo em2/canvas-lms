@@ -1,6 +1,6 @@
 <h2><a href="<%= rosters_path %>"><%= t(:view_class_rosters, "View Class Rosters") %></a></h2>
 <div class="rs-margin-lr">
-	<% if @found_teacher || @is_admin -%>
+	<% if @is_teacher || @is_admin -%>
 		<% @school_rosters.each do |roster| -%>
 			<a href="<%= roster_path(roster) %>" class="button button-sidebar-wide"> <%= roster.name %> </a>
 		<% end -%>
