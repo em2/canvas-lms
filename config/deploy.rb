@@ -38,7 +38,7 @@ namespace :deploy do
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_configs'
+after 'deploy:update_code', 'deploy:symlink_configs', 'deploy:start_delayed_jobs'
 
 namespace :deploy do
   desc "Symlinks the config files"
@@ -46,6 +46,13 @@ namespace :deploy do
     %w{security.yml delayed_jobs.yml domain.yml database.yml newrelic.yml}.each do |config|
       run "ln -fs #{shared_path}/config/#{config} #{release_path}/config/#{config}"
     end
+  end
+end
+
+namespace :deploy do
+  desc "Start delayed_jobs"
+  task :start_delayed_jobs, :roles => :app do
+    run "cd #{current_path} && RAILS_ENV=production bundle exec script/delayed_job start"
   end
 end
 
