@@ -204,6 +204,8 @@ stylesheets:
     - public/stylesheets/compiled/misconceptions.css
   roster_user:
     - public/stylesheets/compiled/roster_user.css
+  rosters:
+    - public/stylesheets/compiled/rosters.css
   learning_outcomes:
     - public/stylesheets/compiled/learning_outcomes.css
   grade_summary:
