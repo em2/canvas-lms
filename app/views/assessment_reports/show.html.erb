@@ -17,7 +17,7 @@
 					<% next -%>
 				<% end -%>
 				<th>sr<%=@count%></th>
-				<% @count = @count + 1 -%>
+				<% @count += 1 -%>
 			<% end -%>
 			<% @count = 1 -%>
 			<% @quiz.quiz_data.each do |question| -%>
@@ -25,13 +25,13 @@
 					<% next -%>
 				<% end -%>
 				<th>cor<%=@count%></th>
-				<% @count = @count + 1 -%>
+				<% @count += 1 -%>
 			<% end -%>
 			<% @count = 1 -%>
 			<% @quiz.quiz_data.each do |question| -%>
 				<% next if question[:question_type] == "text_only_question" -%>
 				<th>expl<%=@count%></th>
-				<% @count = @count + 1 -%>
+				<% @count += 1 -%>
 			<% end -%>
 		</tr>
 
@@ -45,15 +45,26 @@
 				<th><%= user.id %></th>
 				<% @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id) -%>
 				<th><%= Submission.find(@submission.submission_id).submitted_at %></th>
+				
+				<% @count = @quiz_question_count -%>
+				<% @counter = 0 -%>
+				<% while @counter < @count do -%>
+					<th><%= @sr["#{user.id}"]["#{@counter+1}"] == nil || @sr["#{user.id}"]["#{@counter+1}"] == '' ? '' : @sr["#{user.id}"]["#{@counter+1}"] %></th>
+					<% @counter += 1 -%>
+				<% end -%>
 
-				<!-- 
-				@submission = @quiz.quiz_submissions.scoped(:include => ([])).select { |s| @quiz.context.students.map(&:id).include?(s.user_id) }
-				@submissions = @submissions.select{|s| s.completed? && s.submission_data.is_a?(Array) }
+				<% @counter = 0 -%>
+				<% while @counter < @count do -%>
+					<th><%= @cor["#{@counter+1}"] == nil || @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"] %></th>
+					<% @counter += 1 -%>
+				<% end -%>
 
-				answer = submission.submission_data.detect{|a| a[:question_id] == id }
-answer_item = question && question[:answers].detect{|a| a[:id].to_s == answer[:text] }
-        answer_item ||= answer
-        row << ((answer_item && answer_item[:text]) || '') -->
+				<% @counter = 0 -%>
+				<% while @counter < @count do -%>
+					<th><%= @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %></th>
+					<% @counter += 1 -%>
+				<% end -%>
+
 			</tr>
 		<% end -%>
 

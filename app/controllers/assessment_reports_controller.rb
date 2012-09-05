@@ -23,6 +23,11 @@ class AssessmentReportsController < ApplicationController
             end
           end
 
+          @quiz_question_count = 0
+          @quiz.quiz_data.each do |quiz_data|
+            next if quiz_data[:question_type] == "text_only_question"
+            @quiz_question_count += 1
+          end
           #
           # Gather all the correct responses, student responses, and explaination text
           @sr = {}
@@ -34,21 +39,23 @@ class AssessmentReportsController < ApplicationController
             @submission.quiz_data.each do |quiz_data|
               next if quiz_data[:question_type] == "text_only_question"
               @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
+              if @sr["#{user.id}"] == nil
+                @sr["#{user.id}"] = {"#{@cor_question_count}" => ''}
+                @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
+              else
+                @sr["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
+                @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+              end
               quiz_data[:answers].each_with_index do |answer, index|
                 if answer[:weight] > 0
                   @cor["#{@cor_question_count}"] = index+1
                 end
                 if @sub_data[:answer_id] == answer[:id]
-                  if @sr["#{user.id}"] == nil
-                    @sr["#{user.id}"] = {"#{@cor_question_count}" => index+1}
-                    @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
-                  else
-                    @sr["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
-                    @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
-                  end
+                  @sr["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
+                  # @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
                 end
               end
-              @cor_question_count = @cor_question_count + 1
+              @cor_question_count += 1
             end
           end
         }
