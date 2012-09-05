@@ -1,0 +1,16 @@
+<% content_for :page_title do -%>Course Assessment Reports<% end -%>
+
+<h1>View Course Assessment Reports</h1>
+ 
+<table>
+  <tr>
+    <th>Course Assessment Name</th>
+  </tr>
+  <% @assessments.each do |assessment| -%>
+	  <tr>
+	  	<td><%= link_to assessment.probe_name, reports_path() %> &nbsp </td>
+	  </tr>
+	<% end -%>
+</table>
+ 
+<br />

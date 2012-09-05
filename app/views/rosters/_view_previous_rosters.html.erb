@@ -5,7 +5,7 @@
 	<% if @is_teacher || @is_admin -%>
 		<% @school_rosters.each do |roster| -%>
 			<div class="school_roster">
-				<b><a href="<%= account_path(roster.account) %>"><%= roster.name %></a></b> <a href="<%= roster_path(roster) %>" class="button"> Rosters </a> <a href="<%= roster_path(roster) %>" class="button"> Reports </a>
+				<b><a href="<%= account_path(roster.account) %>"><%= roster.name %></a></b> <a href="<%= roster_path(roster) %>" class="button"> Rosters </a> <a href="<%= reports_path() %>" class="button"> Reports </a>
 			</div>
 		<% end -%>
 	<% end -%>

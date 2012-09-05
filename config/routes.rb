@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
 
   map.resources :rosters
+  map.resources :reports
   
   map.resources :submission_comments, :only => :destroy
 

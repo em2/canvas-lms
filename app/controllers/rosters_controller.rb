@@ -10,6 +10,31 @@ class RostersController < ApplicationController
 
       is_admin?
       is_teacher?
+      @courses = []
+
+      @rosters.each do |roster|
+      
+        if roster.account.courses.are_available.count > 0
+          @found_teacher = false
+          roster.account.courses.by_name_available.each do |course|
+            course.teachers.each do |teacher|
+              if (teacher.id == @current_user.id)
+                @found_teacher = true
+                break
+              end
+              if @found_teacher
+                break
+              end
+            end
+            if @found_teacher
+              break
+            end
+          end
+          if (@found_teacher || @is_admin)
+            @courses << roster
+          end
+        end
+      end
     else
       redirect_back_or_default(dashboard_url)
     end
