@@ -24,19 +24,16 @@
 				<% if question[:question_type] == "text_only_question" -%>
 					<% next -%>
 				<% end -%>
-				<th>cr<%=@count%></th>
+				<th>cor<%=@count%></th>
 				<% @count = @count + 1 -%>
 			<% end -%>
 			<% @count = 1 -%>
 			<% @quiz.quiz_data.each do |question| -%>
-				<% if question[:question_type] == "text_only_question" -%>
-					<% next -%>
-				<% end -%>
+				<% next if question[:question_type] == "text_only_question" -%>
 				<th>expl<%=@count%></th>
 				<% @count = @count + 1 -%>
 			<% end -%>
 		</tr>
-
 
 		<% @submitted_users.each do |user| -%>
 			<tr>
@@ -46,10 +43,19 @@
 				<th><%= user.sortable_name[/[Cc][0-9]{3}/] %></th>
 				<th><%= user.name %></th>
 				<th><%= user.id %></th>
-				<th><%= Submission.find(@quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id).submission_id).submitted_at %></th>
+				<% @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id) -%>
+				<th><%= Submission.find(@submission.submission_id).submitted_at %></th>
+
+				<!-- 
+				@submission = @quiz.quiz_submissions.scoped(:include => ([])).select { |s| @quiz.context.students.map(&:id).include?(s.user_id) }
+				@submissions = @submissions.select{|s| s.completed? && s.submission_data.is_a?(Array) }
+
+				answer = submission.submission_data.detect{|a| a[:question_id] == id }
+answer_item = question && question[:answers].detect{|a| a[:id].to_s == answer[:text] }
+        answer_item ||= answer
+        row << ((answer_item && answer_item[:text]) || '') -->
 			</tr>
 		<% end -%>
-
 
 	</table>
 
