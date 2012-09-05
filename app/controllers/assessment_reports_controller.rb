@@ -38,24 +38,28 @@ class AssessmentReportsController < ApplicationController
             @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id)
             @submission.quiz_data.each do |quiz_data|
               next if quiz_data[:question_type] == "text_only_question"
-              @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
-              if @sr["#{user.id}"] == nil
-                @sr["#{user.id}"] = {"#{@cor_question_count}" => ''}
-                @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
-              else
-                @sr["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
-                @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
-              end
-              quiz_data[:answers].each_with_index do |answer, index|
-                if answer[:weight] > 0
-                  @cor["#{@cor_question_count}"] = index+1
+              begin
+                @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
+                if @sr["#{user.id}"] == nil
+                  @sr["#{user.id}"] = {"#{@cor_question_count}" => ''}
+                  @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
+                else
+                  @sr["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
+                  @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
                 end
-                if @sub_data[:answer_id] == answer[:id]
-                  @sr["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
-                  # @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+                quiz_data[:answers].each_with_index do |answer, index|
+                  if answer[:weight] > 0
+                    @cor["#{@cor_question_count}"] = index+1
+                  end
+                  if @sub_data[:answer_id] == answer[:id]
+                    @sr["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
+                    # @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+                  end
                 end
+                @cor_question_count += 1
+              rescue
+                r2d=2
               end
-              @cor_question_count += 1
             end
           end
         }

@@ -49,7 +49,7 @@
 				<% @count = @quiz_question_count -%>
 				<% @counter = 0 -%>
 				<% while @counter < @count do -%>
-					<th><%= @sr["#{user.id}"]["#{@counter+1}"] == nil || @sr["#{user.id}"]["#{@counter+1}"] == '' ? '' : @sr["#{user.id}"]["#{@counter+1}"] %></th>
+					<th><%=@sr["#{user.id}"] == nil || @sr["#{user.id}"] == '' ? '' : @sr["#{user.id}"]["#{@counter+1}"] == nil || @sr["#{user.id}"]["#{@counter+1}"] == '' ? '' : @sr["#{user.id}"]["#{@counter+1}"] %></th>
 					<% @counter += 1 -%>
 				<% end -%>
 
@@ -61,7 +61,7 @@
 
 				<% @counter = 0 -%>
 				<% while @counter < @count do -%>
-					<th><%= @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %></th>
+					<th><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %></th>
 					<% @counter += 1 -%>
 				<% end -%>
 
