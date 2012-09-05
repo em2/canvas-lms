@@ -2,7 +2,9 @@ ActionController::Routing::Routes.draw do |map|
   
 
   map.resources :rosters
-  map.resources :reports
+  map.resources :reports, :only => [:index, :show] do |report|
+    report.resources :assessment_reports, :only => [:show]
+  end
   
   map.resources :submission_comments, :only => :destroy
 

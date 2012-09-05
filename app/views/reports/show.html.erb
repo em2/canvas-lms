@@ -8,7 +8,7 @@
   </tr>
   <% @assessments.each do |assessment| -%>
 	  <tr>
-	  	<td><%= link_to assessment.probe_name, reports_path() %> &nbsp </td>
+	  	<td><%= link_to assessment.probe_name, report_assessment_report_path(@current_course, assessment) %> &nbsp </td>
 	  </tr>
 	<% end -%>
 </table>

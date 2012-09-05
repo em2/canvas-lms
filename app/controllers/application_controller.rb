@@ -286,10 +286,10 @@ class ApplicationController < ActionController::Base
   # if @current_user is a member of the context.
   def get_context
     unless @context
-      if params[:course_id]
+      if params[:course_id] || params[:report_id]
         @context = api_request? ?
-          api_find(Course, params[:course_id]) : Course.find(params[:course_id])
-        params[:context_id] = params[:course_id]
+          api_find(Course, params[:course_id] || params[:report_id]) : Course.find(params[:course_id] || params[:report_id])
+        params[:context_id] = params[:course_id] || params[:report_id]
         params[:context_type] = "Course"
         if @context && session[:enrollment_uuid_course_id] == @context.id
           session[:enrollment_uuid_count] ||= 0

@@ -1,0 +1,2 @@
+module AssessmentReportsHelper
+end

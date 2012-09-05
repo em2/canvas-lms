@@ -1,0 +1,56 @@
+<% content_for :page_title do -%><%= @quiz.title %><% end -%>
+
+<% if (@found_teacher || @is_admin) -%>
+
+	<table border="1" class="assessment_report_table">
+		<tr>
+			<th>idDistr</th>
+			<th>idSchl</th>
+			<th>idTchr</th>
+			<th>idClass</th>
+			<th>name</th>
+			<th>id</th>
+			<th>submitted</th>
+			<% @count = 1 -%>
+			<% @quiz.quiz_data.each do |question| -%>
+				<% if question[:question_type] == "text_only_question" -%>
+					<% next -%>
+				<% end -%>
+				<th>sr<%=@count%></th>
+				<% @count = @count + 1 -%>
+			<% end -%>
+			<% @count = 1 -%>
+			<% @quiz.quiz_data.each do |question| -%>
+				<% if question[:question_type] == "text_only_question" -%>
+					<% next -%>
+				<% end -%>
+				<th>cr<%=@count%></th>
+				<% @count = @count + 1 -%>
+			<% end -%>
+			<% @count = 1 -%>
+			<% @quiz.quiz_data.each do |question| -%>
+				<% if question[:question_type] == "text_only_question" -%>
+					<% next -%>
+				<% end -%>
+				<th>expl<%=@count%></th>
+				<% @count = @count + 1 -%>
+			<% end -%>
+		</tr>
+
+
+		<% @submitted_users.each do |user| -%>
+			<tr>
+				<th><%= user.sortable_name[/[Dd][0-9]{3}/] %></th>
+				<th><%= user.sortable_name[/[Ss][0-9]{3}/] %></th>
+				<th><%= user.sortable_name[/[Tt][0-9]{3}/] %></th>
+				<th><%= user.sortable_name[/[Cc][0-9]{3}/] %></th>
+				<th><%= user.name %></th>
+				<th><%= user.id %></th>
+				<th><%= Submission.find(@quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id).submission_id).submitted_at %></th>
+			</tr>
+		<% end -%>
+
+
+	</table>
+
+<% end -%>
