@@ -241,45 +241,49 @@ tr.question td .number_answer.correct_answer {
   </div>
 <% end -%>
 
-<h2><%= @quiz.survey? ? t('headers.survey_statistics', "Survey Statistics") : t('headers.quiz_statistics', "Quiz Statistics") %></h2> 
-<table id="statistics">
-<% @statistics[:questions].each do |question_type, data| %>
-  <% if question_type == 'group' %>
-    <tr class="group group_row">
-      <td colspan="3" class="group_name"><%= data[:name] %></td>
-    </tr>
-    <% data[:questions].each do |question_type, question| %>
-      <%= render :partial => 'question_statistic', :object => question, :locals => {:in_group => true, :ignore_correct_answers => @quiz.quiz_type == 'survey' || @quiz.quiz_type == 'graded_survey'} %>
-    <% end %>
-    <tr class="group_bottom">
-      <td colspan="3">&nbsp;</td>
-    </tr>
-  <% else %>
-    <%= render :partial => 'question_statistic', :object => data, :locals => {:ignore_correct_answers => @quiz.quiz_type == 'survey' || @quiz.quiz_type == 'graded_survey'} %>
-  <% end %>
-<% end %>
-</table>
-<div id="submitted_users" style="display: none;">
-  <% @submitted_users.each_with_index do |user, idx| %>
-    <div class="user user_<%= user.id %>">
-      <% if @quiz.survey? && @quiz.anonymous_submissions %>
-        <%= t(:student_n, "Student %{n}", :n => idx + 1) %>
-      <% else %>
-        <%= context_user_name(@context, user) %>
+<% if params[:raw] == "true" -%>
+  <%= render :partial => 'raw_statistics' %>
+<% else -%>
+  <h2><%= @quiz.survey? ? t('headers.survey_statistics', "Survey Statistics") : t('headers.quiz_statistics', "Quiz Statistics") %></h2> 
+  <table id="statistics">
+  <% @statistics[:questions].each do |question_type, data| %>
+    <% if question_type == 'group' %>
+      <tr class="group group_row">
+        <td colspan="3" class="group_name"><%= data[:name] %></td>
+      </tr>
+      <% data[:questions].each do |question_type, question| %>
+        <%= render :partial => 'question_statistic', :object => question, :locals => {:in_group => true, :ignore_correct_answers => @quiz.quiz_type == 'survey' || @quiz.quiz_type == 'graded_survey'} %>
       <% end %>
-    </div>
+      <tr class="group_bottom">
+        <td colspan="3">&nbsp;</td>
+      </tr>
+    <% else %>
+      <%= render :partial => 'question_statistic', :object => data, :locals => {:ignore_correct_answers => @quiz.quiz_type == 'survey' || @quiz.quiz_type == 'graded_survey'} %>
+    <% end %>
   <% end %>
-</div>
-<div id="submitted_users_dialog" style="display: none;">
-  <h2><%= t('headers.for_question', "For %{question_name}", :question_name => raw('<span class="question_name" style="font-style: italic;">&nbsp;</span>')) %></h2>
-  <div><%= before_label(:users_selected_the_answer, "The following users selected the answer, %{answer_text}", :answer_text => raw('<span class="answer_text" style="font-style: italic;">&nbsp;</span>')) %></div>
-  <ul class="users">
-    <li class="user blank" style="display: none;">
-      <a href="#" class="name user">&nbsp;</a>
-      <span class="name uncounted">&nbsp;</span>
-    </li>
-  </ul>
-</div>
+  </table>
+  <div id="submitted_users" style="display: none;">
+    <% @submitted_users.each_with_index do |user, idx| %>
+      <div class="user user_<%= user.id %>">
+        <% if @quiz.survey? && @quiz.anonymous_submissions %>
+          <%= t(:student_n, "Student %{n}", :n => idx + 1) %>
+        <% else %>
+          <%= context_user_name(@context, user) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div id="submitted_users_dialog" style="display: none;">
+    <h2><%= t('headers.for_question', "For %{question_name}", :question_name => raw('<span class="question_name" style="font-style: italic;">&nbsp;</span>')) %></h2>
+    <div><%= before_label(:users_selected_the_answer, "The following users selected the answer, %{answer_text}", :answer_text => raw('<span class="answer_text" style="font-style: italic;">&nbsp;</span>')) %></div>
+    <ul class="users">
+      <li class="user blank" style="display: none;">
+        <a href="#" class="name user">&nbsp;</a>
+        <span class="name uncounted">&nbsp;</span>
+      </li>
+    </ul>
+  </div>
+<% end -%>
 
 <% js_block do %>
 <script>

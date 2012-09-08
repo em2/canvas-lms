@@ -61,6 +61,57 @@ class QuizzesController < ApplicationController
           @statistics = @quiz.statistics(params[:all_versions] == '1')
           user_ids = @quiz.quiz_submissions.select{|s| !s.settings_only? }.map(&:user_id)
           @submitted_users = user_ids.empty? ? [] : User.find_all_by_id(user_ids).compact.uniq.sort_by(&:last_name_first)
+          if params[:raw] == "true"
+            is_admin?
+
+            @found_teacher = false
+            Course.find(params[:course_id]).teachers.each do |teacher|
+              if (teacher.id == @current_user.id)
+                @found_teacher = true
+                break
+              end
+            end
+
+            @quiz_question_count = 0
+            @quiz.quiz_data.each do |quiz_data|
+              next if quiz_data[:question_type] == "text_only_question"
+              @quiz_question_count += 1
+            end
+            #
+            # Gather all the correct responses, student responses, and explaination text
+            @q = {}
+            @cor = {}
+            @expl = {}
+            @submitted_users.each do |user|
+              @cor_question_count = 1
+              @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id)
+              @submission.quiz_data.each do |quiz_data|
+                next if quiz_data[:question_type] == "text_only_question"
+                begin
+                  @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
+                  if @q["#{user.id}"] == nil
+                    @q["#{user.id}"] = {"#{@cor_question_count}" => ''}
+                    @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
+                  else
+                    @q["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
+                    @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+                  end
+                  quiz_data[:answers].each_with_index do |answer, index|
+                    if answer[:weight] > 0
+                      @cor["#{@cor_question_count}"] = index+1
+                    end
+                    if @sub_data[:answer_id] == answer[:id]
+                      @q["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
+                      # @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+                    end
+                  end
+                  @cor_question_count += 1
+                rescue
+                  r2d=2
+                end
+              end
+            end
+          end
         }
         format.csv {
           cancel_cache_buster
