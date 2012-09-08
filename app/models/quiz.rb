@@ -780,197 +780,243 @@ class Quiz < ActiveRecord::Base
     dup
   end
   
-  def statistics_csv(options={})
-    options ||= {}
-    columns = []
-    columns << t('statistics.csv_columns.name', 'name') unless options[:anonymous]
-    columns << t('statistics.csv_columns.id', 'id')
-    columns << t('statistics.csv_columns.submitted', 'submitted')
-    columns << t('statistics.csv_columns.attempt', 'attempt') if options[:include_all_versions]
-    first_question_index = columns.length
-    submissions = self.quiz_submissions.scoped(:include => (options[:include_all_versions] ? [:versions] : [])).select { |s| self.context.students.map(&:id).include?(s.user_id) }
-    if options[:include_all_versions]
-      submissions = submissions.map(&:submitted_versions).flatten
-    end
-    submissions = submissions.select{|s| s.completed? && s.submission_data.is_a?(Array) }
-    submissions = submissions.sort_by(&:updated_at).reverse
-    found_question_ids = {}
-    quiz_datas = [quiz_data] + submissions.map(&:quiz_data)
-    quiz_datas.each do |quiz_data|
-      quiz_data.each do |question|
-        next if question['entry_type'] == 'quiz_group'
-        if !found_question_ids[question[:id]]
-          columns << "#{question[:id]}: #{strip_tags(question[:question_text])}"
-          columns << question[:points_possible]
-          found_question_ids[question[:id]] = true
-        end
-      end
-    end
-    last_question_index = columns.length - 1
-    columns << t('statistics.csv_columns.n_correct', 'n correct')
-    columns << t('statistics.csv_columns.n_incorrect', 'n incorrect')
-    columns << t('statistics.csv_columns.score', 'score')
-    rows = []
-    submissions.each do |submission|
-      row = []
-      row << submission.user.name unless options[:anonymous]
-      row << submission.user_id
-      row << submission.finished_at
-      row << submission.attempt if options[:include_all_versions]
-      columns[first_question_index..last_question_index].each do |id|
-        next unless id.is_a?(String)
-        id = id.to_i
-        answer = submission.submission_data.detect{|a| a[:question_id] == id }
-        question = submission.quiz_data.detect{|q| q[:id] == id}
-        unless question
-          # if this submission didn't answer this question, fill in with blanks
-          row << ''
-          row << ''
-          next
-        end
-        answer_item = question && question[:answers].detect{|a| a[:id].to_s == answer[:text] }
-        answer_item ||= answer
-        if question[:question_type] == 'fill_in_multiple_blanks_question'
-          blank_ids = question[:answers].map{|a| a[:blank_id] }.uniq
-          row << blank_ids.map{|blank_id| answer["answer_for_#{blank_id}".to_sym].gsub(/,/, '\,') }.join(',')
-        elsif question[:question_type] == 'multiple_answers_question'
-          row << question[:answers].map{|a| answer["answer_#{a[:id]}".to_sym] == '1' ? a[:text].gsub(/,/, '\,') : nil }.compact.join(',')
-        elsif question[:question_type] == 'multiple_dropdowns_question'
-          blank_ids = question[:answers].map{|a| a[:blank_id] }.uniq
-          answer_ids = blank_ids.map{|blank_id| answer["answer_for_#{blank_id}".to_sym] }
-          row << answer_ids.map{|id| (question[:answers].detect{|a| a[:id] == id } || {})[:text].try(:gsub, /,/, '\,' ) }.compact.join(',')
-        elsif question[:question_type] == 'calculated_question'
-          list = question[:answers][0][:variables].map{|a| [a[:name],a[:value].to_s].map{|str| str.gsub(/=>/, '\=>') }.join('=>') }
-          list << answer[:text]
-          row << list.map{|str| (str || '').gsub(/,/, '\,') }.join(',')
-        elsif question[:question_type] == 'matching_question'
-          answer_ids = question[:answers].map{|a| a[:id] }
-          answer_and_matches = answer_ids.map{|id| [id, answer["answer_#{id}".to_sym].to_i] }
-          row << answer_and_matches.map{|id, match_id| 
-            res = []
-            res << (question[:answers].detect{|a| a[:id] == id } || {})[:text]
-            match = question[:matches].detect{|m| m[:match_id] == match_id } || question[:answers].detect{|m| m[:match_id] == match_id} || {}
-            res << (match[:right] || match[:text])
-            res.map{|s| (s || '').gsub(/=>/, '\=>')}.join('=>').gsub(/,/, '\,') 
-          }.join(',')
-        else
-          row << ((answer_item && answer_item[:text]) || '')
-        end
-        row << (answer ? answer[:points] : "")
-      end
-      row << submission.submission_data.select{|a| a[:correct] }.length
-      row << submission.submission_data.reject{|a| a[:correct] }.length
-      row << submission.score
-      rows << row
-    end
-    FasterCSV.generate do |csv|
-      columns.each_with_index do |val, idx|
-        r = []
-        r << val
-        r << ''
-        rows.each do |row|
-          r << row[idx]
-        end
-        csv << r
-      end
-    end
-  end
+  # def statistics_csv(options={})
+  #   options ||= {}
+  #   columns = []
+  #   columns << t('statistics.csv_columns.name', 'name') unless options[:anonymous]
+  #   columns << t('statistics.csv_columns.id', 'id')
+  #   columns << t('statistics.csv_columns.submitted', 'submitted')
+  #   columns << t('statistics.csv_columns.attempt', 'attempt') if options[:include_all_versions]
+  #   first_question_index = columns.length
+  #   submissions = self.quiz_submissions.scoped(:include => (options[:include_all_versions] ? [:versions] : [])).select { |s| self.context.students.map(&:id).include?(s.user_id) }
+  #   if options[:include_all_versions]
+  #     submissions = submissions.map(&:submitted_versions).flatten
+  #   end
+  #   submissions = submissions.select{|s| s.completed? && s.submission_data.is_a?(Array) }
+  #   submissions = submissions.sort_by(&:updated_at).reverse
+  #   found_question_ids = {}
+  #   quiz_datas = [quiz_data] + submissions.map(&:quiz_data)
+  #   quiz_datas.each do |quiz_data|
+  #     quiz_data.each do |question|
+  #       next if question['entry_type'] == 'quiz_group'
+  #       if !found_question_ids[question[:id]]
+  #         columns << "#{question[:id]}: #{strip_tags(question[:question_text])}"
+  #         columns << question[:points_possible]
+  #         found_question_ids[question[:id]] = true
+  #       end
+  #     end
+  #   end
+  #   last_question_index = columns.length - 1
+  #   columns << t('statistics.csv_columns.n_correct', 'n correct')
+  #   columns << t('statistics.csv_columns.n_incorrect', 'n incorrect')
+  #   columns << t('statistics.csv_columns.score', 'score')
+  #   rows = []
+  #   submissions.each do |submission|
+  #     row = []
+  #     row << submission.user.name unless options[:anonymous]
+  #     row << submission.user_id
+  #     row << submission.finished_at
+  #     row << submission.attempt if options[:include_all_versions]
+  #     columns[first_question_index..last_question_index].each do |id|
+  #       next unless id.is_a?(String)
+  #       id = id.to_i
+  #       answer = submission.submission_data.detect{|a| a[:question_id] == id }
+  #       question = submission.quiz_data.detect{|q| q[:id] == id}
+  #       unless question
+  #         # if this submission didn't answer this question, fill in with blanks
+  #         row << ''
+  #         row << ''
+  #         next
+  #       end
+  #       answer_item = question && question[:answers].detect{|a| a[:id].to_s == answer[:text] }
+  #       answer_item ||= answer
+  #       if question[:question_type] == 'fill_in_multiple_blanks_question'
+  #         blank_ids = question[:answers].map{|a| a[:blank_id] }.uniq
+  #         row << blank_ids.map{|blank_id| answer["answer_for_#{blank_id}".to_sym].gsub(/,/, '\,') }.join(',')
+  #       elsif question[:question_type] == 'multiple_answers_question'
+  #         row << question[:answers].map{|a| answer["answer_#{a[:id]}".to_sym] == '1' ? a[:text].gsub(/,/, '\,') : nil }.compact.join(',')
+  #       elsif question[:question_type] == 'multiple_dropdowns_question'
+  #         blank_ids = question[:answers].map{|a| a[:blank_id] }.uniq
+  #         answer_ids = blank_ids.map{|blank_id| answer["answer_for_#{blank_id}".to_sym] }
+  #         row << answer_ids.map{|id| (question[:answers].detect{|a| a[:id] == id } || {})[:text].try(:gsub, /,/, '\,' ) }.compact.join(',')
+  #       elsif question[:question_type] == 'calculated_question'
+  #         list = question[:answers][0][:variables].map{|a| [a[:name],a[:value].to_s].map{|str| str.gsub(/=>/, '\=>') }.join('=>') }
+  #         list << answer[:text]
+  #         row << list.map{|str| (str || '').gsub(/,/, '\,') }.join(',')
+  #       elsif question[:question_type] == 'matching_question'
+  #         answer_ids = question[:answers].map{|a| a[:id] }
+  #         answer_and_matches = answer_ids.map{|id| [id, answer["answer_#{id}".to_sym].to_i] }
+  #         row << answer_and_matches.map{|id, match_id| 
+  #           res = []
+  #           res << (question[:answers].detect{|a| a[:id] == id } || {})[:text]
+  #           match = question[:matches].detect{|m| m[:match_id] == match_id } || question[:answers].detect{|m| m[:match_id] == match_id} || {}
+  #           res << (match[:right] || match[:text])
+  #           res.map{|s| (s || '').gsub(/=>/, '\=>')}.join('=>').gsub(/,/, '\,') 
+  #         }.join(',')
+  #       else
+  #         row << ((answer_item && answer_item[:text]) || '')
+  #       end
+  #       row << (answer ? answer[:points] : "")
+  #     end
+  #     row << submission.submission_data.select{|a| a[:correct] }.length
+  #     row << submission.submission_data.reject{|a| a[:correct] }.length
+  #     row << submission.score
+  #     rows << row
+  #   end
+  #   FasterCSV.generate do |csv|
+  #     columns.each_with_index do |val, idx|
+  #       r = []
+  #       r << val
+  #       r << ''
+  #       rows.each do |row|
+  #         r << row[idx]
+  #       end
+  #       csv << r
+  #     end
+  #   end
+  # end
 
   def statistics_raw_csv(options={})
-    options ||= {}
-    columns = []
-    columns << @context.name
-    columns << t('statistics.csv_columns.name', 'name') unless options[:anonymous]
-    columns << t('statistics.csv_columns.id', 'id')
-    columns << t('statistics.csv_columns.submitted', 'submitted')
-    columns << t('statistics.csv_columns.attempt', 'attempt') if options[:include_all_versions]
-    first_question_index = columns.length
-    submissions = self.quiz_submissions.scoped(:include => (options[:include_all_versions] ? [:versions] : [])).select { |s| self.context.students.map(&:id).include?(s.user_id) }
-    if options[:include_all_versions]
-      submissions = submissions.map(&:submitted_versions).flatten
-    end
-    submissions = submissions.select{|s| s.completed? && s.submission_data.is_a?(Array) }
-    submissions = submissions.sort_by(&:updated_at).reverse
-    found_question_ids = {}
-    quiz_datas = [quiz_data] + submissions.map(&:quiz_data)
-    quiz_datas.each do |quiz_data|
-      quiz_data.each do |question|
-        next if question['entry_type'] == 'quiz_group'
-        if !found_question_ids[question[:id]]
-          columns << "#{question[:id]}: #{strip_tags(question[:question_text])}"
-          columns << 'Explanation Text'
-          columns << question[:points_possible]
-          found_question_ids[question[:id]] = true
-        end
-      end
-    end
-    last_question_index = columns.length - 1
-    columns << t('statistics.csv_columns.n_correct', 'n correct')
-    columns << t('statistics.csv_columns.n_incorrect', 'n incorrect')
-    columns << t('statistics.csv_columns.score', 'score')
-    rows = []
-    submissions.each do |submission|
-      row = []
-      row << ""
-      row << submission.user.name unless options[:anonymous]
-      row << submission.user_id
-      row << submission.finished_at
-      row << submission.attempt if options[:include_all_versions]
-      columns[first_question_index..last_question_index].each do |id|
+    @statistics = self.statistics()
+    user_ids = self.quiz_submissions.select{|s| !s.settings_only? }.map(&:user_id)
+    @submitted_users = user_ids.empty? ? [] : User.find_all_by_id(user_ids).compact.uniq.sort_by(&:last_name_first)
 
-        next unless id.is_a?(String)
-        id = id.to_i
-        answer = submission.submission_data.detect{|a| a[:question_id] == id }
-        question = submission.quiz_data.detect{|q| q[:id] == id}
-        unless question
-          # if this submission didn't answer this question, fill in with blanks
-          next
+    @quiz_question_count = 0
+    self.quiz_data.each do |quiz_data|
+      next if quiz_data[:question_type] == "text_only_question"
+      @quiz_question_count += 1
+    end
+    #
+    # Gather all the correct responses, student responses, and explaination text
+    @q = {}
+    @cor = {}
+    @expl = {}
+    @submitted_users.each do |user|
+      @cor_question_count = 1
+      @submission = self.quiz_submissions.find_by_quiz_id_and_user_id(self.id,user.id)
+      @submission.quiz_data.each do |quiz_data|
+        next if quiz_data[:question_type] == "text_only_question"
+        begin
+          @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
+          if @q["#{user.id}"] == nil
+            @q["#{user.id}"] = {"#{@cor_question_count}" => ''}
+            @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
+          else
+            @q["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
+            @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+          end
+          quiz_data[:answers].each_with_index do |answer, index|
+            if answer[:weight] > 0
+              @cor["#{@cor_question_count}"] = index+1
+            end
+            if @sub_data[:answer_id] == answer[:id]
+              @q["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
+              # @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+            end
+          end
+          @cor_question_count += 1
+        rescue
+          r2d=2
         end
-        answer_item = question && question[:answers].detect{|a| a[:id].to_s == answer[:text] }
-        answer_item ||= answer
-        if question[:question_type] == 'fill_in_multiple_blanks_question'
-          blank_ids = question[:answers].map{|a| a[:blank_id] }.uniq
-          row << blank_ids.map{|blank_id| answer["answer_for_#{blank_id}".to_sym].gsub(/,/, '\,') }.join(',')
-        elsif question[:question_type] == 'multiple_answers_question'
-          row << question[:answers].map{|a| answer["answer_#{a[:id]}".to_sym] == '1' ? a[:text].gsub(/,/, '\,') : nil }.compact.join(',')
-        elsif question[:question_type] == 'multiple_dropdowns_question'
-          blank_ids = question[:answers].map{|a| a[:blank_id] }.uniq
-          answer_ids = blank_ids.map{|blank_id| answer["answer_for_#{blank_id}".to_sym] }
-          row << answer_ids.map{|id| (question[:answers].detect{|a| a[:id] == id } || {})[:text].try(:gsub, /,/, '\,' ) }.compact.join(',')
-        elsif question[:question_type] == 'calculated_question'
-          list = question[:answers][0][:variables].map{|a| [a[:name],a[:value].to_s].map{|str| str.gsub(/=>/, '\=>') }.join('=>') }
-          list << answer[:text]
-          row << list.map{|str| (str || '').gsub(/,/, '\,') }.join(',')
-        elsif question[:question_type] == 'matching_question'
-          answer_ids = question[:answers].map{|a| a[:id] }
-          answer_and_matches = answer_ids.map{|id| [id, answer["answer_#{id}".to_sym].to_i] }
-          row << answer_and_matches.map{|id, match_id| 
-            res = []
-            res << (question[:answers].detect{|a| a[:id] == id } || {})[:text]
-            match = question[:matches].detect{|m| m[:match_id] == match_id } || question[:answers].detect{|m| m[:match_id] == match_id} || {}
-            res << (match[:right] || match[:text])
-            res.map{|s| (s || '').gsub(/=>/, '\=>')}.join('=>').gsub(/,/, '\,') 
-          }.join(',')
-        else
-          row << ((answer_item && answer_item[:text]) || '')
-        end
-        row << (answer ? answer[:explain_area] : "")
-        row << (answer ? answer[:points] : "")
       end
-      row << submission.submission_data.select{|a| a[:correct] }.length
-      row << submission.submission_data.reject{|a| a[:correct] }.length
-      row << submission.score
+    end
+
+
+
+    rows = []
+    row = []
+    row << "idDistr"
+    row << "idSchl"
+    row << "idTchr"
+    row << "idClass"
+    row << "name"
+    row << "id"
+    row << "submitted"
+    @count = 1
+    self.quiz_data.each do |question|
+      if question[:question_type] == "text_only_question"
+        next
+      end
+      row << "q#{@count}"
+      @count += 1
+    end
+    @count = 1
+    self.quiz_data.each do |question|
+      if question[:question_type] == "text_only_question"
+        next
+      end
+      row << "cor#{@count}"
+      @count += 1
+    end
+    @count = 1
+    self.quiz_data.each do |question|
+      next if question[:question_type] == "text_only_question"
+      row << "expl#{@count}"
+      @count += 1
+    end
+    rows << row
+
+    @submitted_users.each do |user|
+      row = []
+      row << user.sortable_name[/[Dd][0-9]{3}/]
+      row << user.sortable_name[/[Ss][0-9]{3}/]
+      row << user.sortable_name[/[Tt][0-9]{3}/]
+      row << user.sortable_name[/[Cc][0-9]{3}/]
+      row << user.name
+      row << user.id
+      @submission = self.quiz_submissions.find_by_quiz_id_and_user_id(self.id,user.id)
+      row << Submission.find(@submission.submission_id).submitted_at
+      
+      @count = @quiz_question_count
+      @counter = 0
+      while @counter < @count do
+        if @q["#{user.id}"] != nil || @q["#{user.id}"] != ''
+          if @q["#{user.id}"]["#{@counter+1}"] != nil || @q["#{user.id}"]["#{@counter+1}"] != ''
+            row << @q["#{user.id}"]["#{@counter+1}"]
+          else
+            row << ''
+          end
+        else
+          row << ''
+        end
+        # row << @q["#{user.id}"] == nil || @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil || @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"]
+        @counter += 1
+      end
+
+      @counter = 0
+      while @counter < @count do
+        if @cor["#{@counter+1}"] != nil || @cor["#{@counter+1}"] != ''
+            row << @cor["#{@counter+1}"]
+        else
+          row << ''
+        end
+        # row << @cor["#{@counter+1}"] == nil || @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"]
+        @counter += 1
+      end
+
+      @counter = 0
+      while @counter < @count do
+        if @expl["#{user.id}"] != nil || @expl["#{user.id}"] != ''
+          if @expl["#{user.id}"]["#{@counter+1}"] != nil || @expl["#{user.id}"]["#{@counter+1}"] != ''
+            row << @expl["#{user.id}"]["#{@counter+1}"]
+          else
+            row << ''
+          end
+        else
+          row << ''
+        end
+        # row << @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"]
+        @counter += 1
+      end
+
       rows << row
     end
+debugger
+r2d = 2
+
     FasterCSV.generate do |csv|
-      columns.each_with_index do |val, idx|
-        r = []
-        r << val
-        r << ''
-        rows.each do |row|
-          r << row[idx]
-        end
-        csv << r
+      rows.each do |val|
+        csv << val
       end
     end
   end
