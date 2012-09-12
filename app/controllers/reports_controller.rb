@@ -2,47 +2,49 @@ class ReportsController < ApplicationController
 	def index
 		if is_authorized?(@current_user) # Make sure the user is authorized to do this
 
-      add_crumb("School Reports")
+      add_crumb("Reports")
+
+      @question_bank = AssessmentQuestionBank.active
       
-      @rosters = Roster.by_name
+   #    @rosters = Roster.by_name
 
-      is_admin?
-      is_teacher?
+   #    is_admin?
+   #    is_teacher?
 
-      @courses = []
+   #    @courses = []
 
-      @rosters.each do |roster|
+   #    @rosters.each do |roster|
 		  
-			  if roster.account.courses.are_available.count > 0
-				  @found_teacher = false
-			  	roster.account.courses.by_name_available.each do |course|
-						course.teachers.each do |teacher|
-							if (teacher.id == @current_user.id || @is_admin)
-								@courses << course
-								break
-							end
-						end
-					end
-		    end
-			end
+			#   if roster.account.courses.are_available.count > 0
+			# 	  @found_teacher = false
+			#   	roster.account.courses.by_name_available.each do |course|
+			# 			course.teachers.each do |teacher|
+			# 				if (teacher.id == @current_user.id || @is_admin)
+			# 					@courses << course
+			# 					break
+			# 				end
+			# 			end
+			# 		end
+		 #    end
+			# end
     else
       redirect_back_or_default(dashboard_url)
     end
 	end
 	def show
     if is_authorized?(@current_user) # Make sure the user is authorized to do this
-      @current_course = Course.find(params[:id])
+      @current_course = AssessmentQuestionBank.find(params[:id])
       
       add_crumb("Reports", reports_path)
-      add_crumb(@current_course.name)
+      add_crumb(@current_course.title)
 
       is_admin?
       is_teacher?
 
-      @assessments = []
-      @current_course.quizzes.each do |assessment|
-      	@assessments << assessment
-      end
+      # @assessments = []
+      # @current_course.quizzes.each do |assessment|
+      # 	@assessments << assessment
+      # end
     else
       redirect_back_or_default(dashboard_url)
     end
@@ -54,8 +56,8 @@ class ReportsController < ApplicationController
 
   def is_teacher?
     @found_teacher = false
-    if @context.courses.are_available.count > 0
-      @context.courses.by_name_available.each do |course|
+    if Course.are_available.count > 0
+      Course.by_name_available.each do |course|
         course.teachers.each do |teacher|
           if (teacher.id == @current_user.id)
             @found_teacher = true

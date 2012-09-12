@@ -1,14 +1,21 @@
-<% content_for :page_title do -%>Course Assessment Reports<% end -%>
+<% content_for :page_title do -%>Area Selection<% end -%>
 
-<h1>View Course Assessment Reports</h1>
+<h1>View Reports for:</h1>
  
 <table>
-  <tr>
-    <th>Course Assessment Name</th>
-  </tr>
-  <% @assessments.each do |assessment| -%>
+  <% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to assessment.probe_name, report_assessment_report_path(@current_course, assessment) %> &nbsp </td>
+	  	<td><%= link_to "Districts", reports_path %> </td>
+	  </tr>
+	<% end -%>
+	<% if @is_admin -%>
+	  <tr>
+	  	<td><%= link_to "Schools", reports_path %> </td>
+	  </tr>
+	<% end -%>
+	<% if @is_admin || @is_teacher -%>
+	  <tr>
+	  	<td><%= link_to "Classes", reports_path %> </td>
 	  </tr>
 	<% end -%>
 </table>

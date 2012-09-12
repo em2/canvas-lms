@@ -1,15 +1,17 @@
 <% content_for :page_title do -%>Course Reports<% end -%>
 
-<h1>View Course Reports</h1>
+<h1>Available Probes</h1>
  
 <table>
   <tr>
-    <th>Course Name</th>
+    <th>Choose a probe</th>
   </tr>
-  <% @courses.each do |course| -%>
-	  <tr>
-	  	<td><%= link_to course.name, report_path(course) %> &nbsp </td>
-	  </tr>
+  <% @question_bank.each do |probe| -%>
+  	<tr>
+	  	<th>
+		  	<%= link_to "#{probe.title}", report_path(probe.id) %>
+		  </th>
+		</tr>
 	<% end -%>
 </table>
  

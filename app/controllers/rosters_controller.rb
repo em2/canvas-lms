@@ -185,8 +185,8 @@ class RostersController < ApplicationController
 
   def is_teacher?
     @found_teacher = false
-    if @context.courses.are_available.count > 0
-      @context.courses.by_name_available.each do |course|
+    if Course.are_available.count > 0
+      Course.by_name_available.each do |course|
         course.teachers.each do |teacher|
           if (teacher.id == @current_user.id)
             @found_teacher = true
