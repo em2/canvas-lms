@@ -11,7 +11,7 @@ class ClassReportsController < ApplicationController
       add_crumb(@current_probe.title, report_path(@current_probe.id))
       add_crumb("Classes")
 
-	    if !@is_admin || !@is_teacher
+	    if !@is_admin && !@is_teacher
 				redirect_back_or_default(dashboard_url)
 			end
 
@@ -21,6 +21,10 @@ class ClassReportsController < ApplicationController
         sub_account.sub_accounts.active.each do |sub_sub_account|
           find_courses(sub_sub_account, sub_sub_account, @current_probe, @classes)
         end
+      end
+
+      if @is_teacher && !@is_admin
+        @classes = find_courses_for_teacher(@classes)
       end
 
 		else
@@ -33,7 +37,7 @@ class ClassReportsController < ApplicationController
 
 	    is_admin?
 	    is_teacher?
-	    if !@is_admin || !@is_teacher
+	    if !@is_admin && !@is_teacher
 				redirect_back_or_default(dashboard_url)
 			end
 
@@ -76,6 +80,28 @@ class ClassReportsController < ApplicationController
     # Make sure the user is authorized to do this
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
   end
+
+  def find_courses_for_teacher(courses)
+    @found_teacher = false
+    new_courses = []
+    courses.each do |course|
+      course.teachers.each do |teacher|
+        if (teacher.id == @current_user.id)
+          @found_teacher = true
+          new_courses << course
+          break
+        end
+        if @found_teacher
+          break
+        end
+      end
+      if @found_teacher
+        break
+      end
+    end
+    return new_courses
+  end
+
 
   def managed_quiz_data
     @submissions = @quiz.quiz_submissions.select{|s| !s.settings_only? }
