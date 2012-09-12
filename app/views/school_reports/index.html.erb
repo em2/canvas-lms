@@ -2,6 +2,10 @@
 
 <h1>View Reports for:</h1>
 
+<% if @schools.count == 0 -%>
+	<div> No schools found with this probe </div>
+<% end -%>
+
 <table>
 	<% @schools.each do |account| -%>
 	  <tr>

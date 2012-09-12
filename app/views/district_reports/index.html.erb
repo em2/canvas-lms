@@ -2,6 +2,10 @@
 
 <h1>View Reports for:</h1>
 
+<% if @districts.count == 0 -%>
+	<div> No districts found with this probe </div>
+<% end -%>
+
 <table>
 	<% @districts.each do |account| -%>
 	  <tr>
