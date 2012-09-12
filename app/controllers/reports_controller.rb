@@ -33,10 +33,10 @@ class ReportsController < ApplicationController
 	end
 	def show
     if is_authorized?(@current_user) # Make sure the user is authorized to do this
-      @current_course = AssessmentQuestionBank.find(params[:id])
+      @current_probe = AssessmentQuestionBank.find(params[:id])
       
       add_crumb("Reports", reports_path)
-      add_crumb(@current_course.title)
+      add_crumb(@current_probe.title)
 
       is_admin?
       is_teacher?
@@ -49,31 +49,6 @@ class ReportsController < ApplicationController
       redirect_back_or_default(dashboard_url)
     end
 	end
-
-	def is_admin?
-    @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
-  end
-
-  def is_teacher?
-    @found_teacher = false
-    if Course.are_available.count > 0
-      Course.by_name_available.each do |course|
-        course.teachers.each do |teacher|
-          if (teacher.id == @current_user.id)
-            @found_teacher = true
-            break
-          end
-          if @found_teacher
-            break
-          end
-        end
-        if @found_teacher
-          break
-        end
-      end
-    end
-    @is_teacher = @found_teacher
-  end
 
   def is_authorized?(user)
     #

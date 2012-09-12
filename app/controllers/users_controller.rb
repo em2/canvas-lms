@@ -270,31 +270,6 @@ class UsersController < ApplicationController
     @announcements = AccountNotification.for_user_and_account(@current_user, @domain_root_account)
   end
 
-  def is_admin?
-    @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
-  end
-
-  def is_teacher?
-    @found_teacher = false
-    if Course.are_available.count > 0
-      Course.by_name_available.each do |course|
-        course.teachers.each do |teacher|
-          if (teacher.id == @current_user.id)
-            @found_teacher = true
-            break
-          end
-          if @found_teacher
-            break
-          end
-        end
-        if @found_teacher
-          break
-        end
-      end
-    end
-    @is_teacher = @found_teacher
-  end
-
   include Api::V1::StreamItem
 
   # @API

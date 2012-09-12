@@ -1,0 +1,15 @@
+<% content_for :page_title do -%>District Selection<% end -%>
+
+
+<br/>
+
+
+<h1>View Report for: <%= @current_probe.title %> for: <%= @account.name %></h1>
+
+<table>
+	<% @account.sub_accounts.active.each do |account| -%>
+	  <tr>
+	  	<td><%= link_to account.name, report_district_report_path(params[:report_id], account.id) %> </td>
+	  </tr>
+	<% end -%>
+</table>
