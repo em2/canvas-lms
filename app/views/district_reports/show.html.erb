@@ -1,4 +1,4 @@
-<% content_for :page_title do -%>District Selection<% end -%>
+<% content_for :page_title do -%>District Report<% end -%>
 
 
 <br/>
@@ -9,7 +9,7 @@
 <table>
 	<% @account.sub_accounts.active.each do |account| -%>
 	  <tr>
-	  	<td><%= link_to account.name, report_district_report_path(params[:report_id], account.id) %> </td>
+	  	<td><%= link_to account.name, report_school_report_path(params[:report_id], account.id) %> </td>
 	  </tr>
 	<% end -%>
 </table>

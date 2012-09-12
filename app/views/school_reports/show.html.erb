@@ -1,2 +1,15 @@
-<h1>SchoolReports#show</h1>
-<p>Find me in app/views/school_reports/show.html.erb</p>
+<% content_for :page_title do -%>School Report<% end -%>
+
+
+<br/>
+
+
+<h1>View Report for: <%= @current_probe.title %> for: <%= @account.parent_account.name + @account.name %></h1>
+
+<table>
+	<% @account.courses.active.each do |course| -%>
+	  <tr>
+	  	<td><%= link_to course.name, report_school_report_path(params[:report_id], course.id) %> </td>
+	  </tr>
+	<% end -%>
+</table>

@@ -10,7 +10,7 @@
 	<% end -%>
 	<% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to "Schools", reports_path %> </td>
+	  	<td><%= link_to "Schools", report_school_reports_path(params[:id]) %> </td>
 	  </tr>
 	<% end -%>
 	<% if @is_admin || @is_teacher -%>

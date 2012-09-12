@@ -1,2 +1,13 @@
-<h1>SchoolReports#index</h1>
-<p>Find me in app/views/school_reports/index.html.erb</p>
+<% content_for :page_title do -%>School Selection<% end -%>
+
+<h1>View Reports for:</h1>
+
+<table>
+	<% @context.sub_accounts.active.each do |sub_account| -%>
+		<% sub_account.sub_accounts.active.each do |account| -%>
+		  <tr>
+		  	<td><%= link_to sub_account.name + account.name, report_school_report_path(params[:report_id], account.id) %> </td>
+		  </tr>
+	  <% end -%>
+	<% end -%>
+</table>
