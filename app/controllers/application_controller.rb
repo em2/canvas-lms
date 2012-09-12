@@ -71,6 +71,31 @@ class ApplicationController < ActionController::Base
     @is_teacher = @found_teacher
   end
 
+  def find_courses(account, top_account, current_probe, collection)
+    if !account.courses.are_available.empty? && !@found_match
+      account.courses.are_available.each do |course|
+        course.quizzes.active.each do |quiz|
+          if quiz.probe_name && quiz.probe_name[current_probe.title]
+            @found_match = true
+            collection << top_account
+          end
+          if @found_match
+            break
+          end
+        end
+        if @found_match
+          break
+        end
+      end
+    end
+
+    if !account.sub_accounts.active.empty? && !@found_match
+      account.sub_accounts.active.each do |sub_account|
+        find_courses(sub_account, top_account, current_probe, collection)
+      end
+    end
+  end
+
   ##
   # Sends data from rails to JavaScript
   #

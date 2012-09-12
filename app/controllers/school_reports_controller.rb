@@ -13,6 +13,16 @@ class SchoolReportsController < ApplicationController
 	    if !@is_admin
 				redirect_back_or_default(dashboard_url)
 			end
+
+      @schools = []
+
+      @context.sub_accounts.active.each do |sub_account|
+        sub_account.sub_accounts.active.each do |sub_sub_account|
+          @found_match = false
+          find_courses(sub_sub_account, sub_sub_account, @current_probe, @schools)
+        end
+      end
+
 		else
 			redirect_back_or_default(dashboard_url)
 		end
