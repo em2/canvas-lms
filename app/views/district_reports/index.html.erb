@@ -3,7 +3,7 @@
 <h1>View Reports for:</h1>
 
 <table>
-	<% @context.sub_accounts.active.each do |account| -%>
+	<% @districts.each do |account| -%>
 	  <tr>
 	  	<td><%= link_to account.name, report_district_report_path(params[:report_id], account.id) %> </td>
 	  </tr>

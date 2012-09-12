@@ -1,0 +1,59 @@
+<% content_for :page_title do -%>Class Report<% end -%>
+
+
+<br/>
+
+
+<h1>Viewing Report for: <%= @current_probe.title %> for: <%= @course.name %></h1>
+
+<table id="quiz_details">
+  <tr>
+    <td style="vertical-align: top;">
+      <h3><%= @quiz.survey? ? t('headers.submitted_students_survey', "Students who have taken the survey") : t('headers.submitted_students_quiz', "Students who have taken the quiz") %></h3>
+      <ul class="student_list submitted">
+        <% if @submitted_students.empty? %>
+          <li><%= @quiz.survey? ? t(:survey_no_submissions, "No Students have taken the survey yet") : t(:quiz_no_submissions, "No Students have taken the quiz yet") %></li>
+        <% end %>
+        <% @submitted_students.each_with_index do |s, idx| %>
+          <% submission = @submissions.find{|qs| qs.user_id == s.id} %>
+          <li class="student" data-id="<%= s.id %>">
+            <% if submission.pending_review? %>
+              <%= image_tag "pending_review.png", :title => t('titles.submission_needs_review', "This submission needs review") %>
+            <% end %>
+            <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name">
+              <% if @quiz.survey? && @quiz.anonymous_submissions %>
+                <%= t(:anonymous_student, "Student %{n}", :n => idx + 1) %>
+              <% else %>
+                <%= s.name %>
+              <% end %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </td><td style="vertical-align: top; padding-left: 20px;">
+      <% if @quiz.survey? && @quiz.anonymous_submissions %>
+        <h3><%= t('headers.unsubmitted_students_count', {:one => "1 student hasn't taken the survey", :other => "%{count} students haven't taken the survey"}, :count => @unsubmitted_students.length) %></h3>
+      <% else %>
+        <h3><%= @quiz.survey? ? t('headers.survey_unsubmitted_students', "Students who haven't taken the survey") : t('headers.quiz_unsubmitted_students', "Students who haven't taken the quiz") %></h3>
+        <ul class="student_list">
+          <% if @unsubmitted_students.empty? && !@submitted_students.empty? %>
+            <li><%= @quiz.survey? ? t(:survey_all_students_submitted, "All Students have taken the survey") : t(:quiz_all_students_submitted, "All Students have taken the quiz") %></li>
+          <% end %>
+          <% @unsubmitted_students.each do |s| %>
+            <li class="student" data-id="<%= s.id %>">
+              <span class="name"><%= s.name %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<table>
+	<% @course.students.active.each do |student| -%>
+	  <tr>
+	  	<td><%= link_to student.short_name, report_class_report_path(params[:report_id], student.id) %> </td>
+	  </tr>
+	<% end -%>
+</table>

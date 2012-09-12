@@ -28,7 +28,7 @@ class SchoolReportsController < ApplicationController
 
 	    add_crumb("Reports", reports_path)
       add_crumb(@current_probe.title, report_path(@current_probe.id))
-      add_crumb("Schools", report_district_reports_path)
+      add_crumb("Schools", report_school_reports_path)
       add_crumb(@account.parent_account.name + @account.name)
 
 

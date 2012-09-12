@@ -15,7 +15,7 @@
 	<% end -%>
 	<% if @is_admin || @is_teacher -%>
 	  <tr>
-	  	<td><%= link_to "Classes", reports_path %> </td>
+	  	<td><%= link_to "Classes", report_class_reports_path(params[:id]) %> </td>
 	  </tr>
 	<% end -%>
 </table>

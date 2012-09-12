@@ -3,9 +3,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :rosters
   map.resources :reports, :only => [:index, :show] do |report|
-    report.resources :assessment_reports, :only => [:show]
     report.resources :district_reports, :only => [:index, :show]
     report.resources :school_reports, :only => [:index, :show]
+    report.resources :class_reports, :only => [:index, :show]
   end
   
   map.resources :submission_comments, :only => :destroy

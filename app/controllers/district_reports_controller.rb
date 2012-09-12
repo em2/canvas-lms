@@ -13,6 +13,15 @@ class DistrictReportsController < ApplicationController
 	    if !@is_admin
 				redirect_back_or_default(dashboard_url)
 			end
+
+      @districts = []
+
+      @context.sub_accounts.active.each do |sub_account|
+        @account = sub_account
+        @found_match = false
+        find_courses(sub_account)
+      end
+
 		else
 			redirect_back_or_default(dashboard_url)
 		end
@@ -50,6 +59,34 @@ class DistrictReportsController < ApplicationController
     #
     # Make sure the user is authorized to do this
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
+  end
+
+  def find_courses(account)
+    if !account.courses.are_available.empty? && !@found_match
+      account.courses.are_available.each do |course|
+        course.quizzes.active.each do |quiz|
+          if quiz.probe_name && quiz.probe_name[@current_probe.title]
+            @found_match = true
+            @districts << @account
+          end
+          if @found_match
+            return true
+          end
+        end
+        if @found_match
+          return true
+        end
+      end
+      if @found_match
+        return true
+      end
+    end
+
+    if !account.sub_accounts.active.empty? && !@found_match
+      account.sub_accounts.active.each do |sub_account|
+        find_courses(sub_account)
+      end
+    end
   end
 
 end
