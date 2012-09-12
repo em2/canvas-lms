@@ -18,7 +18,7 @@ class DistrictReportsController < ApplicationController
 
       @context.sub_accounts.active.each do |sub_account|
         @found_match = false
-        find_courses(sub_account, sub_account, @current_probe, @districts)
+        find_courses_in_account(sub_account, sub_account, @current_probe, @districts)
       end
 
 		else

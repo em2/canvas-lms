@@ -2,14 +2,15 @@
 
 <h1>View Reports for:</h1>
 
-<table>
-	<% @context.sub_accounts.active.each do |sub_account| -%>
-		<% sub_account.sub_accounts.active.each do |sub_sub_account| -%>
-			<% sub_sub_account.courses.active.each do |course| -%>
-			  <tr>
-			  	<td><%= link_to course.name, report_class_report_path(params[:report_id], course.id) %> </td>
-			  </tr>
-		  <% end -%>
-	  <% end -%>
-	<% end -%>
-</table>
+<% if @classes.count == 0 -%>
+	<div> No classes found with this probe </div>
+<% else -%>
+
+	<table>
+		<% @classes.each do |course| -%>
+		  <tr>
+		  	<td><%= link_to course.name, report_class_report_path(params[:report_id], course.id) %> </td>
+		  </tr>
+		<% end -%>
+	</table>
+<% end -%>

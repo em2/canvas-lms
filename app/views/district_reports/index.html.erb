@@ -4,12 +4,13 @@
 
 <% if @districts.count == 0 -%>
 	<div> No districts found with this probe </div>
-<% end -%>
+<% else -%>
 
-<table>
-	<% @districts.each do |account| -%>
-	  <tr>
-	  	<td><%= link_to account.name, report_district_report_path(params[:report_id], account.id) %> </td>
-	  </tr>
-	<% end -%>
-</table>
+	<table>
+		<% @districts.each do |account| -%>
+		  <tr>
+		  	<td><%= link_to account.name, report_district_report_path(params[:report_id], account.id) %> </td>
+		  </tr>
+		<% end -%>
+	</table>
+<% end -%>

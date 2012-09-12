@@ -14,6 +14,15 @@ class ClassReportsController < ApplicationController
 	    if !@is_admin || !@is_teacher
 				redirect_back_or_default(dashboard_url)
 			end
+
+      @classes = []
+
+      @context.sub_accounts.active.each do |sub_account|
+        sub_account.sub_accounts.active.each do |sub_sub_account|
+          find_courses(sub_sub_account, sub_sub_account, @current_probe, @classes)
+        end
+      end
+
 		else
 			redirect_back_or_default(dashboard_url)
 		end
