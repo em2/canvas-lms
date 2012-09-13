@@ -9,7 +9,7 @@
 <table>
 	<% @account.courses.active.each do |course| -%>
 	  <tr>
-	  	<td><%= link_to course.name, report_school_report_path(params[:report_id], course.id) %> </td>
+	  	<td><%= link_to course.name, report_class_report_path(params[:report_id], course.id) %> </td>
 	  </tr>
 	<% end -%>
 </table>

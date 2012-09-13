@@ -21,6 +21,18 @@ module ApplicationHelper
   include TextHelper
   include LocaleSelection
 
+
+  def semester?(date)
+    case date.to_date.month
+    when 8..12
+      return "Fall"
+    when 1..4
+      return "Spring"
+    when 5..7
+      return "Summer"
+    end      
+  end
+
   # Admins of the given context can see the User.name attribute,
   # but everyone else sees the User.short_name attribute.
   def context_user_name(context, user, last_name_first=false)

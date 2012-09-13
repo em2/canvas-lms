@@ -81,28 +81,6 @@ class ClassReportsController < ApplicationController
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
   end
 
-  def find_courses_for_teacher(courses)
-    @found_teacher = false
-    new_courses = []
-    courses.each do |course|
-      course.teachers.each do |teacher|
-        if (teacher.id == @current_user.id)
-          @found_teacher = true
-          new_courses << course
-          break
-        end
-        if @found_teacher
-          break
-        end
-      end
-      if @found_teacher
-        break
-      end
-    end
-    return new_courses
-  end
-
-
   def managed_quiz_data
     @submissions = @quiz.quiz_submissions.select{|s| !s.settings_only? }
     submission_ids = {}

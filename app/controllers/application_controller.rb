@@ -109,6 +109,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_courses_for_teacher(courses)
+    new_courses = []
+    courses.each do |course|
+      course.teachers.each do |teacher|
+        if (teacher.id == @current_user.id)
+          new_courses << course
+          break
+        end
+      end
+    end
+    return new_courses
+  end
+
   ##
   # Sends data from rails to JavaScript
   #
