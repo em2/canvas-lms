@@ -222,7 +222,7 @@
       <td class="s20"></td>
       <td class="s21"></td>
       <td class="s22"></td>
-      <td colspan="7" dir="ltr" class="s23">% Correct per item</td>
+      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s23">% Correct per item</td>
       <% (@quiz_question_count-1).times do %>
         <td style="display:none;"></td>
       <% end -%>
@@ -237,7 +237,7 @@
       <td class="s20"></td>
       <td class="s21"></td>
       <td class="s22"></td>
-      <td colspan="7" dir="ltr" class="s25">(rounded to nearest whole number)</td>
+      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s25">(rounded to nearest whole number)</td>
       <% (@quiz_question_count-1).times do %>
         <td style="display:none;"></td>
       <% end -%>
