@@ -59,6 +59,7 @@
   .tblGenFixed tr.rShim td,.tblGenFixed td.rShim{padding:0;border-bottom:0}
   .divFrozRowHead .tblGenFixed td.hd,.divRowHead .tblGenFixed td.hd{background-color:#e8eef7;width:35px;text-align:center;vertical-align:middle;font-size:8pt;color:#333;border-style:solid;border-color:#c8c8c8;border-width:0 1px 1px 0}
   #tblMain td.hd p,.colHeadTable td.hd p{margin:0;width:0;overflow:hidden;font-size:0}
+  #tblMainOLD td.hd p,.colHeadTable td.hd p{margin:0;width:0;overflow:hidden;font-size:0}
   td.rShim{width:35px;height:0;border-right:1px #c8c8c8 solid}
   .divColHead .tblGenFixed tr.hd td,.tblGenFixed .sortBar{background-color:#e8eef7;text-align:center;vertical-align:middle;font-size:8pt;color:#333;border-style:solid;border-color:#c8c8c8;border-width:0 1px 1px 0}
   .divColHead .tblGenFixed tr.hd td{height:20px}
@@ -81,7 +82,7 @@
 
   html {overflow:visible};
 
-  
+
 </style>
 <% content_for :page_title do -%>Class Report<% end -%>
 
@@ -94,7 +95,7 @@
 <body style="border:0px;margin:0px" class=" hasGoogleVoiceExt">
   <style>
   .tblGenFixed td {padding:0 3px;overflow:hidden;white-space:normal;letter-spacing:0;word-spacing:0;background-color:#fff;z-index:1;border-top:0px none;border-left:0px none;border-bottom:1px solid rgb(255,255,255);border-bottom:1px solid rgba(204, 204, 204, 0);border-right:1px solid rgb(255,255,255);border-right:1px solid rgba(204, 204, 204, 0);} .dn {display:none} 
-  .tblGenFixed td.s9 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;border-left:1px solid #CCC;} 
+  .tblGenFixed td.s9 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s25 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s26 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:;border-bottom:;} 
   .tblGenFixed td.s7 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;} 
@@ -106,458 +107,549 @@
   .tblGenFixed td.s22 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;} 
   .tblGenFixed td.s6 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;} 
   /*.tblGenFixed td.s3 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-top:1px solid #CCC;border-right:;border-bottom:;} */
-  .tblGenFixed td.s20 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:;border-bottom:;border-left:1px solid #CCC;} 
-  .tblGenFixed td.s4 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;border-left:1px solid #CCC;} 
-  /*.tblGenFixed td.s0 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-top:1px solid #CCC;border-right:1px solid #000000;border-bottom:;border-left:1px solid #CCC;}*/ 
+  .tblGenFixed td.s20 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:;border-bottom:;border-left:;} 
+  .tblGenFixed td.s4 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;} 
+  .tblGenFixed td.s0 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-top:;border-right:1px solid #000000;border-bottom:;border-left:;} 
   .tblGenFixed td.s2 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:1px solid #000000;border-right:1px solid #000000;border-bottom:;} 
   .tblGenFixed td.s1 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:1px solid #000000;border-right:1px solid #000000;border-bottom:;} 
   .tblGenFixed td.s16 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s17 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
-  .tblGenFixed td.s18 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:;border-bottom:;border-left:1px solid #CCC;} 
+  .tblGenFixed td.s18 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:;border-bottom:;border-left:;} 
   .tblGenFixed td.s19 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:right;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;} 
-  .tblGenFixed td.s12 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:;border-bottom:1px solid #000000;} 
+  .tblGenFixed td.s12 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s13 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s14 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:right;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;border-left:1px solid #000000;} 
   .tblGenFixed td.s15 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
-  .tblGenFixed td.s10 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:;border-bottom:1px solid #000000;} 
+  .tblGenFixed td.s10 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s11 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   </style>
-<table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
-  <tbody>
-    <tr class="rShim">
-      <td class="rShim" style="width:0;"></td>
-      <td class="rShim" style="width:130px;"></td>
-      <td class="rShim" style="width:81px;"></td>
-      <td class="rShim" style="width:81px;"></td>
-      <td class="rShim" style="width:29px;"></td>
-      <td class="rShim" style="width:25px;"></td>
-      <td class="rShim" style="width:23px;"></td>
-      <td class="rShim" style="width:23px;"></td>
-      <td class="rShim" style="width:23px;"></td>
-      <td class="rShim" style="width:23px;"></td>
-      <td class="rShim" style="width:23px;"></td>
-      <td class="rShim" style="width:49px;"></td>
-      <td class="rShim" style="width:25px;"></td>
-      <td class="rShim" style="width:25px;"></td>
-      <td class="rShim" style="width:120px;"></td>
-      <td class="rShim" style="width:120px;"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s0"></td>
-      <td colspan="2" dir="ltr" class="s1">Summary</td>
-      <td style="display:none;"></td>
-      <td colspan="7" dir="ltr" class="s1">Student Response</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td colspan="3" dir="ltr" class="s1">Misconception</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td dir="ltr" class="s2">Difficulty</td>
-      <td class="s3"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s4"></td>
-      <td colspan="2" class="s5"></td>
-      <td style="display:none;"></td>
-      <td colspan="7" dir="ltr" class="s6">Asterisk indicates corr</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td colspan="3" dir="ltr" class="s6">See Key Below</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td dir="ltr" class="s7">Check Mark</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td dir="ltr" class="s9">Student ID</td>
-      <td dir="ltr" class="s10"># Corr</td>
-      <td dir="ltr" class="s11"># Attempt</td>
-      <td dir="ltr" class="s10">Q1</td>
-      <td dir="ltr" class="s12">Q2</td>
-      <td dir="ltr" class="s12">Q3</td>
-      <td dir="ltr" class="s12">Q4</td>
-      <td dir="ltr" class="s12">Q5</td>
-      <td dir="ltr" class="s12">Q6</td>
-      <td dir="ltr" class="s11">Q7</td>
-      <td dir="ltr" class="s10">M1</td>
-      <td dir="ltr" class="s12">M2</td>
-      <td dir="ltr" class="s11">M3</td>
-      <td dir="ltr" class="s13">Indicates Difficulty</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">1</td>
-      <td class="s15">1</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">E</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">C</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">2</td>
-      <td class="s15">3</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr><tr dir="ltr"><td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">3</td>
-      <td class="s15">4</td>
-      <td class="s15">7</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">C</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr><tr dir="ltr"><td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">4</td>
-      <td class="s15">3</td>
-      <td class="s15">7</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">E</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">5</td>
-      <td class="s15">2</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">6</td>
-      <td class="s15">3</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">E</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">E</td>
-      <td dir="ltr" class="s16">E</td>
-      <td class="s15">*</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">7</td>
-      <td class="s15">6</td>
-      <td class="s15">7</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">8</td>
-      <td class="s15">4</td>
-      <td class="s15">7</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">9</td>
-      <td class="s15">0</td>
-      <td class="s15">7</td>
-      <td dir="ltr" class="s16">E</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">E</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">10</td>
-      <td class="s15">3</td>
-      <td class="s15">7</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">11</td>
-      <td class="s15">1</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">C</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">12</td>
-      <td class="s15">2</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">13</td>
-      <td class="s15">6</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">E</td>
-      <td class="s15">*</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">14</td>
-      <td class="s15">4</td>
-      <td class="s15">7</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">C</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">15</td>
-      <td class="s15">4</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s14">16</td>
-      <td class="s15">2</td>
-      <td class="s15">7</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">*</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td dir="ltr" class="s16">L</td>
-      <td dir="ltr" class="s16">G</td>
-      <td class="s15">-</td>
-      <td dir="ltr" class="s16">P</td>
-      <td class="s15">-</td>
-      <td class="s17"></td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td dir="ltr" class="s18">Total # Students: 16</td>
-      <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
-      <td style="display:none;"></td>
-      <td class="s15">56</td>
-      <td class="s15">50</td>
-      <td class="s15">44</td>
-      <td class="s15">44</td>
-      <td class="s15">44</td>
-      <td class="s15">44</td>
-      <td class="s15">19</td>
-      <td class="s15">5</td>
-      <td class="s15">7</td>
-      <td class="s15">1</td>
-      <td class="s15">0</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s20"></td>
-      <td class="s21"></td>
-      <td class="s22"></td>
-      <td colspan="7" dir="ltr" class="s23">% Correct per item</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td colspan="3" dir="ltr" class="s23"># per</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td class="s24">#</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s20"></td>
-      <td class="s21"></td>
-      <td class="s22"></td>
-      <td colspan="7" dir="ltr" class="s25">(rounded to nearest whole number)</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td colspan="3" dir="ltr" class="s25">misconception</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td dir="ltr" class="s25">difficulty</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s20"></td>
-      <td class="s21"></td>
-      <td class="s21"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s21"></td>
-    </tr>
-  </tbody>
-</table>
+  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
+    <tbody>
+      <tr class="rShim">
+        <td class="rShim" style="width:0;"></td>
+        <td class="rShim" style="width:130px;"></td>
+        <td class="rShim" style="width:81px;"></td>
+        <td class="rShim" style="width:81px;"></td>
+        <% @quiz_question_count.times do %>
+        <td class="rShim" style="width:35px;"></td>
+        <% end -%>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:120px;"></td>
+        <td class="rShim" style="width:0;"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s0"></td>
+        <td colspan="2" dir="ltr" class="s1">Summary</td>
+        <td style="display:none;"></td>
+        <td colspan="7" dir="ltr" class="s1">Student Response</td>
+        <% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+        <% end -%>
+        <td colspan="3" dir="ltr" class="s1">Misconception</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s2">Difficulty</td>
+        <td class="s3"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s4"></td>
+        <td colspan="2" class="s5"></td>
+        <td style="display:none;"></td>
+        <td colspan="7" dir="ltr" class="s6">Asterisk indicates corr</td>
+        <% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+        <% end -%>
+        <td colspan="3" dir="ltr" class="s6">See Key Below</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s7">Check Mark</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s9">Student ID</td>
+        <td dir="ltr" class="s10"># Corr</td>
+        <td dir="ltr" class="s11"># Attempt</td>
+        <% @quiz_question_count.times do |count| %>
+        <td dir="ltr" class="s12">Q<%= count + 1 %></td>
+        <% end -%>
+        <td dir="ltr" class="s10">M1</td>
+        <td dir="ltr" class="s12">M2</td>
+        <td dir="ltr" class="s11">M3</td>
+        <td dir="ltr" class="s13">Indicates Difficulty</td>
+        <td class="s8"></td>
+      </tr>
+      <% @submitted_students.each_with_index do |s, idx| %>
+        <% submission = @submissions.find{|qs| qs.user_id == s.id} %>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td class="s14 student_number"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name"><%= s.short_name %></a></td>
+          <td class="s15"><%= @number_correct["#{s.id}"] %></td>
+          <td class="s15"><%= @number_attempted["#{s.id}"] %></td>
+          
+          <% @quiz_question_count.times do |count| %>
+          <td dir="ltr" class="s16"><%= @q["#{s.id}"]["#{count + 1}"] %></td>
+          <% end -%>
+
+          <td dir="ltr" class="s16">-</td>
+          <td dir="ltr" class="s16">C</td>
+          <td dir="ltr" class="s16">-</td>
+          <td class="s17"></td>
+          <td class="s8"></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+
+<br/>
+
+
+
+
+
+
+
+
+  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMainOLD">
+    <tbody>
+      <tr class="rShim">
+        <td class="rShim" style="width:0;"></td>
+        <td class="rShim" style="width:130px;"></td>
+        <td class="rShim" style="width:81px;"></td>
+        <td class="rShim" style="width:81px;"></td>
+        <td class="rShim" style="width:35px;"></td>
+        <td class="rShim" style="width:35px;"></td>
+        <td class="rShim" style="width:35px;"></td>
+        <td class="rShim" style="width:35px;"></td>
+        <td class="rShim" style="width:35px;"></td>
+        <td class="rShim" style="width:35px;"></td>
+        <td class="rShim" style="width:35px;"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:120px;"></td>
+        <td class="rShim" style="width:0;"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s0"></td>
+        <td colspan="2" dir="ltr" class="s1">Summary</td>
+        <td style="display:none;"></td>
+        <td colspan="7" dir="ltr" class="s1">Student Response</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td colspan="3" dir="ltr" class="s1">Misconception</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s2">Difficulty</td>
+        <td class="s3"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s4"></td>
+        <td colspan="2" class="s5"></td>
+        <td style="display:none;"></td>
+        <td colspan="7" dir="ltr" class="s6">Asterisk indicates corr</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td colspan="3" dir="ltr" class="s6">See Key Below</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s7">Check Mark</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s9">Student ID</td>
+        <td dir="ltr" class="s10"># Corr</td>
+        <td dir="ltr" class="s11"># Attempt</td>
+        <td dir="ltr" class="s10">Q1</td>
+        <td dir="ltr" class="s12">Q2</td>
+        <td dir="ltr" class="s12">Q3</td>
+        <td dir="ltr" class="s12">Q4</td>
+        <td dir="ltr" class="s12">Q5</td>
+        <td dir="ltr" class="s12">Q6</td>
+        <td dir="ltr" class="s11">Q7</td>
+        <td dir="ltr" class="s10">M1</td>
+        <td dir="ltr" class="s12">M2</td>
+        <td dir="ltr" class="s11">M3</td>
+        <td dir="ltr" class="s13">Indicates Difficulty</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">1</td>
+        <td class="s15">1</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">E</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">C</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">2</td>
+        <td class="s15">3</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr><tr dir="ltr"><td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">3</td>
+        <td class="s15">4</td>
+        <td class="s15">7</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">C</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr><tr dir="ltr"><td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">4</td>
+        <td class="s15">3</td>
+        <td class="s15">7</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">E</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">5</td>
+        <td class="s15">2</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">6</td>
+        <td class="s15">3</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">E</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">E</td>
+        <td dir="ltr" class="s16">E</td>
+        <td class="s15">*</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">7</td>
+        <td class="s15">6</td>
+        <td class="s15">7</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">8</td>
+        <td class="s15">4</td>
+        <td class="s15">7</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">9</td>
+        <td class="s15">0</td>
+        <td class="s15">7</td>
+        <td dir="ltr" class="s16">E</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">E</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">10</td>
+        <td class="s15">3</td>
+        <td class="s15">7</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">11</td>
+        <td class="s15">1</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">C</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">12</td>
+        <td class="s15">2</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">13</td>
+        <td class="s15">6</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">E</td>
+        <td class="s15">*</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">14</td>
+        <td class="s15">4</td>
+        <td class="s15">7</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">C</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">15</td>
+        <td class="s15">4</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14">16</td>
+        <td class="s15">2</td>
+        <td class="s15">7</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">*</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td dir="ltr" class="s16">L</td>
+        <td dir="ltr" class="s16">G</td>
+        <td class="s15">-</td>
+        <td dir="ltr" class="s16">P</td>
+        <td class="s15">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s18">Total # Students: 16</td>
+        <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
+        <td style="display:none;"></td>
+        <td class="s15">56</td>
+        <td class="s15">50</td>
+        <td class="s15">44</td>
+        <td class="s15">44</td>
+        <td class="s15">44</td>
+        <td class="s15">44</td>
+        <td class="s15">19</td>
+        <td class="s15">5</td>
+        <td class="s15">7</td>
+        <td class="s15">1</td>
+        <td class="s15">0</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s20"></td>
+        <td class="s21"></td>
+        <td class="s22"></td>
+        <td colspan="7" dir="ltr" class="s23">% Correct per item</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td colspan="3" dir="ltr" class="s23"># per</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td class="s24">#</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s20"></td>
+        <td class="s21"></td>
+        <td class="s22"></td>
+        <td colspan="7" dir="ltr" class="s25">(rounded to nearest whole number)</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td colspan="3" dir="ltr" class="s25">misconception</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s25">difficulty</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s20"></td>
+        <td class="s21"></td>
+        <td class="s21"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s21"></td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 
 
-<table>
+<!-- <table>
   <tr>
     <td>
       <table border="1">
@@ -583,10 +675,10 @@
       <td><%= link_to student.short_name, report_class_report_path(params[:report_id], student.id) %> </td>
     </tr>
   <% end -%>
-</table>
+</table> -->
 
 
-<table id="quiz_details">
+<!-- <table id="quiz_details">
   <tr>
     <td style="vertical-align: top;">
       <h3><%= @quiz.survey? ? t('headers.submitted_students_survey', "Students who have taken the survey") : t('headers.submitted_students_quiz', "Students who have taken the quiz") %></h3>
@@ -628,4 +720,4 @@
       <% end %>
     </td>
   </tr>
-</table>
+</table> -->

@@ -45,21 +45,20 @@
 				<% @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id) -%>
 				<th><%= Submission.find(@submission.submission_id).submitted_at %></th>
 				
-				<% @count = @quiz_question_count -%>
 				<% @counter = 0 -%>
-				<% while @counter < @count do -%>
+				<% while @counter < @quiz_question_count do -%>
 					<th><%=@q["#{user.id}"] == nil || @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil || @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] %></th>
 					<% @counter += 1 -%>
 				<% end -%>
 
 				<% @counter = 0 -%>
-				<% while @counter < @count do -%>
+				<% while @counter < @quiz_question_count do -%>
 					<th><%= @cor["#{@counter+1}"] == nil || @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"] %></th>
 					<% @counter += 1 -%>
 				<% end -%>
 
 				<% @counter = 0 -%>
-				<% while @counter < @count do -%>
+				<% while @counter < @quiz_question_count do -%>
 					<th><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %></th>
 					<% @counter += 1 -%>
 				<% end -%>
