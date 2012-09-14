@@ -51,7 +51,7 @@ class ClassReportsController < ApplicationController
 
 
       @course.quizzes.active.each do |quiz|
-      	if quiz.probe_name[@current_probe.title]
+      	if quiz.probe_name && quiz.probe_name[@current_probe.title]
       		@quiz = quiz
       	end
       end
