@@ -58,56 +58,7 @@ class ClassReportsController < ApplicationController
 
       managed_quiz_data if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
 	    
-      @quiz_question_count = 0
-      @quiz.quiz_data.each do |quiz_data|
-        next if quiz_data[:question_type] == "text_only_question"
-        @quiz_question_count += 1
-      end
-      #
-      # Gather all the correct responses, student responses, and explaination text
-      @q = {}
-      @number_correct = {}
-      @number_attempted = {}
-      @submitted_students.each do |user|
-        number_correct = 0
-        number_attempted = 0
-        @question_count = 1
-        @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id)
-        @submission.quiz_data.each do |quiz_data|
-          next if quiz_data[:question_type] == "text_only_question"
-          begin
-            @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
-            if @q["#{user.id}"] == nil
-              @q["#{user.id}"] = {"#{@question_count}" => 'Inc'}
-            else
-              @q["#{user.id}"].merge!({"#{@question_count}" => 'Inc'})
-            end
-            quiz_data[:answers].each_with_index do |answer, index|
-              if @sub_data[:answer_id] == answer[:id]
-                number_attempted += 1
-                if answer[:weight] > 0
-                  number_correct += 1
-                  @q["#{user.id}"].merge!({"#{@question_count}" => '*'})
-                else
-                  case index+1
-                  when 1
-                    @q["#{user.id}"].merge!({"#{@question_count}" => 'G'})
-                  when 2
-                    @q["#{user.id}"].merge!({"#{@question_count}" => 'L'})
-                  when 3
-                    @q["#{user.id}"].merge!({"#{@question_count}" => 'E'})
-                  end
-                end
-              end
-            end
-            @question_count += 1
-          rescue
-            r2d=2
-          end
-        end
-        @number_correct["#{user.id}"] = number_correct
-        @number_attempted["#{user.id}"] = number_attempted
-      end
+      gather_responses
 
      #  if @quiz
 	    #   @statistics = @quiz.statistics(params[:all_versions] == '1')
@@ -130,6 +81,67 @@ class ClassReportsController < ApplicationController
     #
     # Make sure the user is authorized to do this
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
+  end
+
+  def gather_responses
+    @quiz_question_count = 0
+    @quiz.quiz_data.each do |quiz_data|
+      next if quiz_data[:question_type] == "text_only_question"
+      @quiz_question_count += 1
+    end
+    #
+    # Gather all the correct responses, student responses, and explaination text
+    @q = {}
+    @number_correct = {}
+    @number_attempted = {}
+    @percent_correct = {}
+    @submitted_students.each do |user|
+      number_correct = 0
+      number_attempted = 0
+      @question_count = 1
+      @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id)
+      @submission.quiz_data.each_with_index do |quiz_data, quiz_index|
+        next if quiz_data[:question_type] == "text_only_question"
+        begin
+          @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
+          if @percent_correct["#{quiz_index}"] == nil
+            @percent_correct["#{quiz_index}"] = 0
+          end
+          if @q["#{user.id}"] == nil
+            @q["#{user.id}"] = {"#{@question_count}" => 'Inc'}
+          else
+            @q["#{user.id}"].merge!({"#{@question_count}" => 'Inc'})
+          end
+          quiz_data[:answers].each_with_index do |answer, index|
+
+            if @sub_data[:answer_id] == answer[:id]
+              number_attempted += 1
+              if answer[:weight] > 0
+                number_correct += 1
+                @q["#{user.id}"].merge!({"#{@question_count}" => '*'})
+                num = @percent_correct["#{quiz_index}"].to_i
+                num += 1
+                @percent_correct["#{quiz_index}"] = num
+              else
+                case index+1
+                when 1
+                  @q["#{user.id}"].merge!({"#{@question_count}" => 'G'})
+                when 2
+                  @q["#{user.id}"].merge!({"#{@question_count}" => 'L'})
+                when 3
+                  @q["#{user.id}"].merge!({"#{@question_count}" => 'E'})
+                end
+              end
+            end
+          end
+          @question_count += 1
+        rescue
+          r2d=2
+        end
+      end
+      @number_correct["#{user.id}"] = number_correct
+      @number_attempted["#{user.id}"] = number_attempted
+    end
   end
 
   def managed_quiz_data

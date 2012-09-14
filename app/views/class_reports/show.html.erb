@@ -80,20 +80,8 @@
   .waffle-image-div{position:relative}
   .waffle-image-cell{display:block;position:absolute;left:-3px}
 
-  html {overflow:visible};
+  html {overflow:scroll;}
 
-
-</style>
-<% content_for :page_title do -%>Class Report<% end -%>
-
-<%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
-
-<h1 id="report_heading"><b>Classroom Report: <%= @current_probe.full_name %></b></h1>
-<h3 id="course_name"><%= @course.name %></h3>
-<h3 id="semester"><%= semester?(@quiz.created_at) %> <%= @quiz.created_at.to_date.year %></h3>
-
-<body style="border:0px;margin:0px" class=" hasGoogleVoiceExt">
-  <style>
   .tblGenFixed td {padding:0 3px;overflow:hidden;white-space:normal;letter-spacing:0;word-spacing:0;background-color:#fff;z-index:1;border-top:0px none;border-left:0px none;border-bottom:1px solid rgb(255,255,255);border-bottom:1px solid rgba(204, 204, 204, 0);border-right:1px solid rgb(255,255,255);border-right:1px solid rgba(204, 204, 204, 0);} .dn {display:none} 
   .tblGenFixed td.s9 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:left;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s25 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
@@ -122,602 +110,156 @@
   .tblGenFixed td.s15 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s10 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s11 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
-  </style>
-  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
-    <tbody>
-      <tr class="rShim">
-        <td class="rShim" style="width:0;"></td>
-        <td class="rShim" style="width:130px;"></td>
-        <td class="rShim" style="width:81px;"></td>
-        <td class="rShim" style="width:81px;"></td>
-        <% @quiz_question_count.times do %>
-        <td class="rShim" style="width:35px;"></td>
-        <% end -%>
-        <td class="rShim" style="width:30px;"></td>
-        <td class="rShim" style="width:30px;"></td>
-        <td class="rShim" style="width:30px;"></td>
-        <td class="rShim" style="width:120px;"></td>
-        <td class="rShim" style="width:0;"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s0"></td>
-        <td colspan="2" dir="ltr" class="s1">Summary</td>
-        <td style="display:none;"></td>
-        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Response</td>
-        <% (@quiz_question_count-1).times do %>
-        <td style="display:none;"></td>
-        <% end -%>
-        <td colspan="3" dir="ltr" class="s1">Misconception</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td dir="ltr" class="s2">Difficulty</td>
-        <td class="s3"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s4"></td>
-        <td colspan="2" class="s5"></td>
-        <td style="display:none;"></td>
-        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s6">Asterisk indicates corr</td>
-        <% (@quiz_question_count-1).times do %>
-        <td style="display:none;"></td>
-        <% end -%>
-        <td colspan="3" dir="ltr" class="s6">See Key Below</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td dir="ltr" class="s7">Check Mark</td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td dir="ltr" class="s9">Student ID</td>
-        <td dir="ltr" class="s10"># Corr</td>
-        <td dir="ltr" class="s11"># Attempt</td>
-        <% @quiz_question_count.times do |count| %>
-        <td dir="ltr" class="s12">Q<%= count + 1 %></td>
-        <% end -%>
-        <td dir="ltr" class="s10">M1</td>
-        <td dir="ltr" class="s12">M2</td>
-        <td dir="ltr" class="s11">M3</td>
-        <td dir="ltr" class="s13">Indicates Difficulty</td>
-        <td class="s8"></td>
-      </tr>
-      <% @submitted_students.each_with_index do |s, idx| %>
-        <% submission = @submissions.find{|qs| qs.user_id == s.id} %>
-        <tr dir="ltr">
-          <td class="hd"><p style="height:16px;">.</p></td>
-          <td class="s14 student_number"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name"><%= s.short_name %></a></td>
-          <td class="s15"><%= @number_correct["#{s.id}"] %></td>
-          <td class="s15"><%= @number_attempted["#{s.id}"] %></td>
-          
-          <% @quiz_question_count.times do |count| %>
-          <td dir="ltr" class="s16"><%= @q["#{s.id}"]["#{count + 1}"] %></td>
-          <% end -%>
 
-          <td dir="ltr" class="s16">-</td>
-          <td dir="ltr" class="s16">C</td>
-          <td dir="ltr" class="s16">-</td>
-          <td class="s17"></td>
-          <td class="s8"></td>
-        </tr>
+
+</style>
+<% content_for :page_title do -%>Class Report<% end -%>
+
+<%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
+
+<h1 id="report_heading"><b>Classroom Report: <%= @current_probe.full_name %></b></h1>
+<h3 id="course_name"><%= @course.name %></h3>
+<h3 id="semester"><%= semester?(@quiz.created_at) %> <%= @quiz.created_at.to_date.year %></h3>
+
+<br />
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
+  <tbody>
+    <tr class="rShim">
+      <td class="rShim" style="width:0;"></td>
+      <td class="rShim" style="width:130px;"></td>
+      <td class="rShim" style="width:81px;"></td>
+      <td class="rShim" style="width:81px;"></td>
+      <% @quiz_question_count.times do %>
+        <td class="rShim" style="width:35px;"></td>
       <% end -%>
-    </tbody>
-  </table>
-
-<br/>
-
-
-
-
-
-
-
-
-  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMainOLD">
-    <tbody>
-      <tr class="rShim">
-        <td class="rShim" style="width:0;"></td>
-        <td class="rShim" style="width:130px;"></td>
-        <td class="rShim" style="width:81px;"></td>
-        <td class="rShim" style="width:81px;"></td>
-        <td class="rShim" style="width:35px;"></td>
-        <td class="rShim" style="width:35px;"></td>
-        <td class="rShim" style="width:35px;"></td>
-        <td class="rShim" style="width:35px;"></td>
-        <td class="rShim" style="width:35px;"></td>
-        <td class="rShim" style="width:35px;"></td>
-        <td class="rShim" style="width:35px;"></td>
-        <td class="rShim" style="width:30px;"></td>
-        <td class="rShim" style="width:30px;"></td>
-        <td class="rShim" style="width:30px;"></td>
-        <td class="rShim" style="width:120px;"></td>
-        <td class="rShim" style="width:0;"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s0"></td>
-        <td colspan="2" dir="ltr" class="s1">Summary</td>
-        <td style="display:none;"></td>
-        <td colspan="7" dir="ltr" class="s1">Student Response</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td colspan="3" dir="ltr" class="s1">Misconception</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td dir="ltr" class="s2">Difficulty</td>
-        <td class="s3"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s4"></td>
-        <td colspan="2" class="s5"></td>
-        <td style="display:none;"></td>
-        <td colspan="7" dir="ltr" class="s6">Asterisk indicates corr</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td colspan="3" dir="ltr" class="s6">See Key Below</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td dir="ltr" class="s7">Check Mark</td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td dir="ltr" class="s9">Student ID</td>
-        <td dir="ltr" class="s10"># Corr</td>
-        <td dir="ltr" class="s11"># Attempt</td>
-        <td dir="ltr" class="s10">Q1</td>
-        <td dir="ltr" class="s12">Q2</td>
-        <td dir="ltr" class="s12">Q3</td>
-        <td dir="ltr" class="s12">Q4</td>
-        <td dir="ltr" class="s12">Q5</td>
-        <td dir="ltr" class="s12">Q6</td>
-        <td dir="ltr" class="s11">Q7</td>
-        <td dir="ltr" class="s10">M1</td>
-        <td dir="ltr" class="s12">M2</td>
-        <td dir="ltr" class="s11">M3</td>
-        <td dir="ltr" class="s13">Indicates Difficulty</td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">1</td>
-        <td class="s15">1</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">E</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">C</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">2</td>
-        <td class="s15">3</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr><tr dir="ltr"><td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">3</td>
-        <td class="s15">4</td>
-        <td class="s15">7</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">C</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr><tr dir="ltr"><td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">4</td>
-        <td class="s15">3</td>
-        <td class="s15">7</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">E</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">5</td>
-        <td class="s15">2</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">6</td>
-        <td class="s15">3</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">E</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">E</td>
-        <td dir="ltr" class="s16">E</td>
-        <td class="s15">*</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">7</td>
-        <td class="s15">6</td>
-        <td class="s15">7</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">8</td>
-        <td class="s15">4</td>
-        <td class="s15">7</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">9</td>
-        <td class="s15">0</td>
-        <td class="s15">7</td>
-        <td dir="ltr" class="s16">E</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">E</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">10</td>
-        <td class="s15">3</td>
-        <td class="s15">7</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">11</td>
-        <td class="s15">1</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">C</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">12</td>
-        <td class="s15">2</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">13</td>
-        <td class="s15">6</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">E</td>
-        <td class="s15">*</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">14</td>
-        <td class="s15">4</td>
-        <td class="s15">7</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">C</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">15</td>
-        <td class="s15">4</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14">16</td>
-        <td class="s15">2</td>
-        <td class="s15">7</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">*</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td dir="ltr" class="s16">L</td>
-        <td dir="ltr" class="s16">G</td>
-        <td class="s15">-</td>
-        <td dir="ltr" class="s16">P</td>
-        <td class="s15">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td dir="ltr" class="s18">Total # Students: 16</td>
-        <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
-        <td style="display:none;"></td>
-        <td class="s15">56</td>
-        <td class="s15">50</td>
-        <td class="s15">44</td>
-        <td class="s15">44</td>
-        <td class="s15">44</td>
-        <td class="s15">44</td>
-        <td class="s15">19</td>
-        <td class="s15">5</td>
-        <td class="s15">7</td>
-        <td class="s15">1</td>
-        <td class="s15">0</td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s20"></td>
-        <td class="s21"></td>
-        <td class="s22"></td>
-        <td colspan="7" dir="ltr" class="s23">% Correct per item</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td colspan="3" dir="ltr" class="s23"># per</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td class="s24">#</td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s20"></td>
-        <td class="s21"></td>
-        <td class="s22"></td>
-        <td colspan="7" dir="ltr" class="s25">(rounded to nearest whole number)</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td colspan="3" dir="ltr" class="s25">misconception</td>
-        <td style="display:none;"></td>
-        <td style="display:none;"></td>
-        <td dir="ltr" class="s25">difficulty</td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s20"></td>
-        <td class="s21"></td>
-        <td class="s21"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s26"></td>
-        <td class="s21"></td>
-      </tr>
-    </tbody>
-  </table>
-</body>
-
-
-<!-- <table>
-  <tr>
-    <td>
-      <table border="1">
-        <tr><td/> </tr>
-        <tr><td/> </tr>
-        <tr>
-          <td>
-            Student ID
-          </td>
-        </tr>
-      </table>
-    </td>
-    <td>
-      <table border="1">
-        <tr><td>Summary</td></tr>
-        <tr><td> </td></tr>
-        <tr><td># Corr</td><td># Attempt</td></tr>
-      </table>
-    </td>
-  </tr>
-  <% @course.students.active.each do |student| -%>
-    <tr>
-      <td><%= link_to student.short_name, report_class_report_path(params[:report_id], student.id) %> </td>
+      <td class="rShim" style="width:30px;"></td>
+      <td class="rShim" style="width:30px;"></td>
+      <td class="rShim" style="width:30px;"></td>
+      <td class="rShim" style="width:120px;"></td>
+      <td class="rShim" style="width:0;"></td>
     </tr>
-  <% end -%>
-</table> -->
+    <tr dir="ltr">
+      <td class="hd"><p style="height:16px;">.</p></td>
+      <td class="s0"></td>
+      <td colspan="2" dir="ltr" class="s1">Summary</td>
+      <td style="display:none;"></td>
+      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Response</td>
+      <% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+      <% end -%>
+      <td colspan="3" dir="ltr" class="s1">Misconception</td>
+      <td style="display:none;"></td>
+      <td style="display:none;"></td>
+      <td dir="ltr" class="s2">Difficulty</td>
+      <td class="s3"></td>
+    </tr>
+    <tr dir="ltr">
+      <td class="hd"><p style="height:16px;">.</p></td>
+      <td class="s4"></td>
+      <td colspan="2" class="s5"></td>
+      <td style="display:none;"></td>
+      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s6">Asterisk indicates corr</td>
+      <% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+      <% end -%>
+      <td colspan="3" dir="ltr" class="s6">See Key Below</td>
+      <td style="display:none;"></td>
+      <td style="display:none;"></td>
+      <td dir="ltr" class="s7">Check Mark</td>
+      <td class="s8"></td>
+    </tr>
+    <tr dir="ltr">
+      <td class="hd"><p style="height:16px;">.</p></td>
+      <td dir="ltr" class="s9">Student ID</td>
+      <td dir="ltr" class="s10"># Corr</td>
+      <td dir="ltr" class="s11"># Attempt</td>
+      <% @quiz_question_count.times do |count| %>
+        <td dir="ltr" class="s12">Q<%= count + 1 %></td>
+      <% end -%>
+      <td dir="ltr" class="s10">M1</td>
+      <td dir="ltr" class="s12">M2</td>
+      <td dir="ltr" class="s11">M3</td>
+      <td dir="ltr" class="s13">Indicates Difficulty</td>
+      <td class="s8"></td>
+    </tr>
+    <% @submitted_students.each_with_index do |s, idx| %>
+      <% submission = @submissions.find{|qs| qs.user_id == s.id} %>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s14 student_number"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name"><%= s.short_name %></a></td>
+        <td class="s15"><%= @number_correct["#{s.id}"] %></td>
+        <td class="s15"><%= @number_attempted["#{s.id}"] %></td>
+        
+        <% @quiz_question_count.times do |count| %>
+          <td dir="ltr" class="s16"><%= @q["#{s.id}"]["#{count + 1}"] %></td>
+        <% end -%>
 
+        <td dir="ltr" class="s16">-</td>
+        <td dir="ltr" class="s16">-</td>
+        <td dir="ltr" class="s16">-</td>
+        <td class="s17"></td>
+        <td class="s8"></td>
+      </tr>
+    <% end -%>
 
-<!-- <table id="quiz_details">
-  <tr>
-    <td style="vertical-align: top;">
-      <h3><%= @quiz.survey? ? t('headers.submitted_students_survey', "Students who have taken the survey") : t('headers.submitted_students_quiz', "Students who have taken the quiz") %></h3>
-      <ul class="student_list submitted">
-        <% if @submitted_students.empty? %>
-          <li><%= @quiz.survey? ? t(:survey_no_submissions, "No Students have taken the survey yet") : t(:quiz_no_submissions, "No Students have taken the quiz yet") %></li>
-        <% end %>
-        <% @submitted_students.each_with_index do |s, idx| %>
-          <% submission = @submissions.find{|qs| qs.user_id == s.id} %>
-          <li class="student" data-id="<%= s.id %>">
-            <% if submission.pending_review? %>
-              <%= image_tag "pending_review.png", :title => t('titles.submission_needs_review', "This submission needs review") %>
-            <% end %>
-            <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name">
-              <% if @quiz.survey? && @quiz.anonymous_submissions %>
-                <%= t(:anonymous_student, "Student %{n}", :n => idx + 1) %>
-              <% else %>
-                <%= s.name %>
-              <% end %>
-            </a>
-          </li>
-        <% end %>
-      </ul>
-    </td><td style="vertical-align: top; padding-left: 20px;">
-      <% if @quiz.survey? && @quiz.anonymous_submissions %>
-        <h3><%= t('headers.unsubmitted_students_count', {:one => "1 student hasn't taken the survey", :other => "%{count} students haven't taken the survey"}, :count => @unsubmitted_students.length) %></h3>
-      <% else %>
-        <h3><%= @quiz.survey? ? t('headers.survey_unsubmitted_students', "Students who haven't taken the survey") : t('headers.quiz_unsubmitted_students', "Students who haven't taken the quiz") %></h3>
-        <ul class="student_list">
-          <% if @unsubmitted_students.empty? && !@submitted_students.empty? %>
-            <li><%= @quiz.survey? ? t(:survey_all_students_submitted, "All Students have taken the survey") : t(:quiz_all_students_submitted, "All Students have taken the quiz") %></li>
-          <% end %>
-          <% @unsubmitted_students.each do |s| %>
-            <li class="student" data-id="<%= s.id %>">
-              <span class="name"><%= s.name %></span>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </td>
-  </tr>
-</table> -->
+    <tr dir="ltr">
+      <td class="hd"><p style="height:16px;">.</p></td>
+      <td dir="ltr" class="s18">Total # Students: <%= @submitted_students.count %></td>
+      <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
+      <td style="display:none;"></td>
+      <% @quiz_question_count.times do |count| %>
+        <td dir="ltr" class="s15"><%= (@percent_correct["#{count+1}"].to_f / @submitted_students.count.to_f * 100).to_i %>%</td>
+      <% end -%>
+      <td class="s15">-</td>
+      <td class="s15">-</td>
+      <td class="s15">-</td>
+      <td class="s15">0</td>
+      <td class="s8"></td>
+    </tr>
+    <tr dir="ltr">
+      <td class="hd"><p style="height:16px;">.</p></td>
+      <td class="s20"></td>
+      <td class="s21"></td>
+      <td class="s22"></td>
+      <td colspan="7" dir="ltr" class="s23">% Correct per item</td>
+      <% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+      <% end -%>
+      <td colspan="3" dir="ltr" class="s23"># per</td>
+      <td style="display:none;"></td>
+      <td style="display:none;"></td>
+      <td class="s24">#</td>
+      <td class="s8"></td>
+    </tr>
+    <tr dir="ltr">
+      <td class="hd"><p style="height:16px;">.</p></td>
+      <td class="s20"></td>
+      <td class="s21"></td>
+      <td class="s22"></td>
+      <td colspan="7" dir="ltr" class="s25">(rounded to nearest whole number)</td>
+      <% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+      <% end -%>
+      <td colspan="3" dir="ltr" class="s25">misconception</td>
+      <td style="display:none;"></td>
+      <td style="display:none;"></td>
+      <td dir="ltr" class="s25">difficulty</td>
+      <td class="s8"></td>
+    </tr>
+    <tr dir="ltr">
+      <td class="hd"><p style="height:16px;">.</p></td>
+      <td class="s20"></td>
+      <td class="s21"></td>
+      <td class="s21"></td>
+      <% (@quiz_question_count).times do %>
+        <td class="s26"></td>
+      <% end -%>
+      <td class="s26"></td>
+      <td class="s26"></td>
+      <td class="s26"></td>
+      <td class="s26"></td>
+      <td class="s21"></td>
+    </tr>
+  </tbody>
+</table>
