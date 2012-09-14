@@ -51,7 +51,6 @@ class AssessmentReportsController < ApplicationController
               end
               if @sub_data[:answer_id] == answer[:id]
                 @q["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
-                # @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
               end
             end
             @cor_question_count += 1

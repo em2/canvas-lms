@@ -144,7 +144,7 @@
         <td class="s0"></td>
         <td colspan="2" dir="ltr" class="s1">Summary</td>
         <td style="display:none;"></td>
-        <td colspan="7" dir="ltr" class="s1">Student Response</td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Response</td>
         <% (@quiz_question_count-1).times do %>
         <td style="display:none;"></td>
         <% end -%>
@@ -159,7 +159,7 @@
         <td class="s4"></td>
         <td colspan="2" class="s5"></td>
         <td style="display:none;"></td>
-        <td colspan="7" dir="ltr" class="s6">Asterisk indicates corr</td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s6">Asterisk indicates corr</td>
         <% (@quiz_question_count-1).times do %>
         <td style="display:none;"></td>
         <% end -%>
