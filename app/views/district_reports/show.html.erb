@@ -207,7 +207,7 @@
 				<% (@quiz_question_count-1).times do |count| %>
 	        <td dir="ltr" class="s12"><%= @data[data.first]["item_analysis"]["#{count+1}"] %>%</td>
 	      <% end -%>
-	      <td dir="ltr" class="s23"><%#= @data[data.first]["item_analysis"]["#{@quiz_question_count}"] %>%</td>
+	      <td dir="ltr" class="s23"><%= @data[data.first]["item_analysis"]["#{@quiz_question_count}"] %>%</td>
 				<td class="s12">-</td>
 				<td class="s12">-</td>
 				<td class="s23">-</td>

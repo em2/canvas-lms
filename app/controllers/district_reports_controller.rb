@@ -84,18 +84,22 @@ class DistrictReportsController < ApplicationController
 
       @data.each do |sub_account|
         @data[sub_account.first].each do |sub_data|
-          if @data[sub_account.first]["item_analysis"] == nil
-            @data[sub_account.first]["item_analysis"] = {}
-          end
-          @quiz_question_count.times do |count|
-            if @data[sub_account.first][sub_data.first]["submitted_students_count"] != nil
-              if @data[sub_account.first][sub_data.first]["submitted_students_count"] > 0
-                @data[sub_account.first]["item_analysis"].merge!("#{count+1}"=>(@data[sub_account.first][sub_data.first]["percent_correct"]["#{count+1}"].to_f / @data[sub_account.first][sub_data.first]["submitted_students_count"].to_f * 100).to_i)
-              else
-                @data[sub_account.first]["item_analysis"].merge!("#{count+1}"=>0)
-              end
-            end
-          end
+
+          @data[sub_account.first]["item_analysis"] = school_analysis(@data[sub_account.first], @quiz_question_count)
+          # if @data[sub_account.first]["item_analysis"] == nil
+          #   @data[sub_account.first]["item_analysis"] = {}
+          # end
+
+          # @quiz_question_count.times do |count|
+          #   debugger
+          #   if @data[sub_account.first][sub_data.first]["submitted_students_count"] != nil
+          #     if @data[sub_account.first][sub_data.first]["submitted_students_count"] > 0
+          #       @data[sub_account.first]["item_analysis"].merge!("#{count+1}"=>(@data[sub_account.first][sub_data.first]["percent_correct"]["#{count+1}"].to_f / @data[sub_account.first][sub_data.first]["submitted_students_count"].to_f * 100).to_i)
+          #     else
+          #       @data[sub_account.first]["item_analysis"].merge!("#{count+1}"=>0)
+          #     end
+          #   end
+          # end
         end
       end
 	    
