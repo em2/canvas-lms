@@ -59,7 +59,10 @@ class ApplicationController < ActionController::Base
     data["number_correct"] = {}
     data["number_attempted"] = {}
     data["percent_correct"] = {}
-    data["submitted_students_count"] = {}
+    data["item_analysis"] = {}
+    data["teacher_id"] = course.teachers.first.id
+    data["teacher_name"] = course.teachers.first.sortable_name
+    data["course_name"] = course.name
     managed_quiz_data(course, quiz)
     data["submitted_students_count"] = @submitted_students.count
     @submitted_students.each do |user|
@@ -109,6 +112,16 @@ class ApplicationController < ActionController::Base
       data["number_correct"]["#{user.id}"] = number_correct
       data["number_attempted"]["#{user.id}"] = number_attempted
     end
+
+    
+    @quiz_question_count.times do |count|
+      if data["percent_correct"].count > 0 && data["submitted_students_count"] > 0
+        data["item_analysis"].merge!("#{count+1}"=>(data["percent_correct"]["#{count+1}"].to_f / data["submitted_students_count"].to_f * 100).to_i)
+      else
+        data["item_analysis"].merge!("#{count+1}"=>0)
+      end
+    end
+
     return data
   end
 

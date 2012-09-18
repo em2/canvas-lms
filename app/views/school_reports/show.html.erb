@@ -164,60 +164,25 @@
 				<td class="s9"></td>
 				<td class="s6"></td>
 			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s10">Monkey</td>
-				<td dir="ltr" class="s11">C001</td>
-				<td class="s12">21</td>
-				<td class="s12">57</td>
-				<td class="s12">29</td>
-				<td class="s12">57</td>
-				<td class="s12">67</td>
-				<td class="s12">33</td>
-				<td class="s12">48</td>
-				<td class="s12">38</td>
-				<td class="s12">3</td>
-				<td class="s12">3</td>
-				<td class="s12">9</td>
-				<td class="s12">2</td>
-				<td class="s6"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s10">Squirrel</td>
-				<td dir="ltr" class="s11">C001</td>
-				<td class="s12">16</td>
-				<td class="s12">56</td>
-				<td class="s12">50</td>
-				<td class="s12">44</td>
-				<td class="s12">44</td>
-				<td class="s12">44</td>
-				<td class="s12">44</td>
-				<td class="s12">19</td>
-				<td class="s12">5</td>
-				<td class="s12">7</td>
-				<td class="s12">1</td>
-				<td class="s12">0</td>
-				<td class="s6"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s10">Taffy</td>
-				<td dir="ltr" class="s11">C001</td>
-				<td class="s12">20</td>
-				<td class="s12">45</td>
-				<td class="s12">30</td>
-				<td class="s12">30</td>
-				<td class="s12">35</td>
-				<td class="s12">50</td>
-				<td class="s12">35</td>
-				<td class="s12">10</td>
-				<td class="s12">8</td>
-				<td class="s12">8</td>
-				<td class="s12">7</td>
-				<td class="s12">2</td>
-				<td class="s6"></td>
-			</tr>
+
+			<% @data.each do |data| -%>
+				<tr dir="ltr">
+					<td class="hd"><p style="height:16px;">.</p></td>
+					<td dir="ltr" class="s10"><%= @data[data.first]["teacher_name"] %></td>
+					<td dir="ltr" class="s11"><%= @data[data.first]["course_name"][/T[0-9]{3}/] %></td>
+					<td class="s12"><%= @data[data.first]["submitted_students_count"] %></td>
+					<% @quiz_question_count.times do |count| %>
+		        <td dir="ltr" class="s12"><%= @data[data.first]["item_analysis"]["#{count+1}"] %>%</td>
+		      <% end -%>
+					<td class="s12">-</td>
+					<td class="s12">-</td>
+					<td class="s12">-</td>
+					<td class="s12">-</td>
+					<td class="s6"></td>
+				</tr>
+			<% end -%>
+
+
 			<tr dir="ltr">
 				<td class="hd"><p style="height:16px;">.</p></td>
 				<td dir="ltr" class="s10">School</td>

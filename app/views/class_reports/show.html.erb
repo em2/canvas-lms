@@ -204,11 +204,7 @@
       <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
       <td style="display:none;"></td>
       <% @quiz_question_count.times do |count| %>
-        <% if @data["percent_correct"].count > 0 && @data["submitted_students_count"] > 0 -%>
-          <td dir="ltr" class="s15"><%= (@data["percent_correct"]["#{count+1}"].to_f / @data["submitted_students_count"].to_f * 100).to_i %>%</td>
-        <% else -%>
-          <td dir="ltr" class="s15">0%</td>
-        <% end -%>
+        <td dir="ltr" class="s15"><%= @data["item_analysis"]["#{count+1}"] %>%</td>
       <% end -%>
       <td class="s15">-</td>
       <td class="s15">-</td>
