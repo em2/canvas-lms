@@ -46,36 +46,6 @@ class ApplicationController < ActionController::Base
 
   add_crumb(proc { I18n.t('links.dashboard', "My Dashboard") }, :root_path, :class => "home")
 
-  def school_analysis(data, question_count)
-    analysis = {}
-    analysis["submitted_students_count"] = 0
-    data.each do |sub_data|
-      if analysis["school_name"] == nil
-        analysis["school_name"] = data[sub_data.first]["course_name"][/S[0-9]{3}/]
-      end
-      question_count.times do |count|
-        if analysis["#{count+1}"] == nil
-          analysis["#{count+1}"] = data[sub_data.first]["item_analysis"]["#{count+1}"]
-        else
-          analysis["#{count+1}"] += data[sub_data.first]["item_analysis"]["#{count+1}"]
-        end
-      end
-
-      analysis["submitted_students_count"] += data[sub_data.first]["submitted_students_count"]
-
-    end
-
-    question_count.times do |count|
-      if data.count > 0
-        analysis["#{count+1}"] = analysis["#{count+1}"] / data.count
-      else
-        analysis["#{count+1}"] = 0
-      end
-    end
-    
-    analysis
-  end
-
   def gather_class_responses(course, quiz)
     @quiz_question_count = 0
     quiz.quiz_data.each do |quiz_data|
@@ -93,6 +63,7 @@ class ApplicationController < ActionController::Base
     data["teacher_id"] = course.teachers.first.id
     data["teacher_name"] = course.teachers.first.sortable_name
     data["course_name"] = course.name
+    data["school_name"] = course.account.name
     managed_quiz_data(course, quiz)
     data["submitted_students_count"] = @submitted_students.count
     @submitted_students.each do |user|
@@ -145,7 +116,7 @@ class ApplicationController < ActionController::Base
 
     
     @quiz_question_count.times do |count|
-      if data["percent_correct"].count > 0 && data["submitted_students_count"] > 0
+      if data["submitted_students_count"] > 0
         data["item_analysis"].merge!("#{count+1}"=>(data["percent_correct"]["#{count+1}"].to_f / data["submitted_students_count"].to_f * 100).to_i)
       else
         data["item_analysis"].merge!("#{count+1}"=>0)
