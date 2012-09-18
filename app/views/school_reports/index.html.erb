@@ -9,7 +9,7 @@
 	<table>
 		<% @schools.each do |account| -%>
 		  <tr>
-		  	<td><%= link_to account.parent_account.name ? account.parent_account.name + account.name : account.name, report_school_report_path(params[:report_id], account.id) %> </td>
+		  	<td><%= link_to account.parent_account.name ? account.parent_account.name + account.name : account.name, report_school_report_path(params[:report_id], account.id), :class => "button"%> </td>
 		  </tr>
 	  <% end -%>
 	</table>

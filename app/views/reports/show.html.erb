@@ -5,17 +5,17 @@
 <table>
   <% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to "Districts", report_district_reports_path(params[:id]) %> </td>
+	  	<td><%= link_to "Districts", report_district_reports_path(params[:id]), :class => "button" %> </td>
 	  </tr>
 	<% end -%>
 	<% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to "Schools", report_school_reports_path(params[:id]) %> </td>
+	  	<td><%= link_to "Schools", report_school_reports_path(params[:id]), :class => "button" %> </td>
 	  </tr>
 	<% end -%>
 	<% if @is_admin || @is_teacher -%>
 	  <tr>
-	  	<td><%= link_to "Classes", report_class_reports_path(params[:id]) %> </td>
+	  	<td><%= link_to "Classes", report_class_reports_path(params[:id]), :class => "button" %> </td>
 	  </tr>
 	<% end -%>
 </table>

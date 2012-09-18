@@ -9,7 +9,7 @@
   <% @question_bank.each do |probe| -%>
   	<tr>
 	  	<th>
-		  	<%= link_to "#{probe.title}", report_path(probe.id) %>
+		  	<%= link_to "#{probe.title}", report_path(probe.id), :class => "button" %>
 		  </th>
 		</tr>
 	<% end -%>
