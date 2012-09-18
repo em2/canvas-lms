@@ -80,8 +80,6 @@
   .waffle-image-div{position:relative}
   .waffle-image-cell{display:block;position:absolute;left:-3px}
 
-  html {overflow:scroll;}
-
   .tblGenFixed td {padding:0 3px;overflow:hidden;white-space:normal;letter-spacing:0;word-spacing:0;background-color:#fff;z-index:1;border-top:0px none;border-left:0px none;border-bottom:1px solid rgb(255,255,255);border-bottom:1px solid rgba(204, 204, 204, 0);border-right:1px solid rgb(255,255,255);border-right:1px solid rgba(204, 204, 204, 0);} .dn {display:none} 
   .tblGenFixed td.s9 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:right;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s25 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
@@ -110,8 +108,7 @@
   .tblGenFixed td.s15 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s10 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s11 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
-
-
+  #content{overflow: scroll;}
 </style>
 <% content_for :page_title do -%>Class Report<% end -%>
 
@@ -188,13 +185,11 @@
       <tr dir="ltr">
         <td class="hd"><p style="height:16px;">.</p></td>
         <td class="s14 student_number"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name"><%= s.short_name %></a></td>
-        <td class="s15"><%= @number_correct["#{s.id}"] %></td>
-        <td class="s15"><%= @number_attempted["#{s.id}"] %></td>
-        
+        <td class="s15"><%= @data["number_correct"]["#{s.id}"] %></td>
+        <td class="s15"><%= @data["number_attempted"]["#{s.id}"] %></td>
         <% @quiz_question_count.times do |count| %>
-          <td dir="ltr" class="s16"><%= @q["#{s.id}"]["#{count + 1}"] %></td>
+          <td dir="ltr" class="s16"><%= @data["q"]["#{s.id}"]["#{count + 1}"] %></td>
         <% end -%>
-
         <td dir="ltr" class="s16">-</td>
         <td dir="ltr" class="s16">-</td>
         <td dir="ltr" class="s16">-</td>
@@ -205,11 +200,15 @@
 
     <tr dir="ltr">
       <td class="hd"><p style="height:16px;">.</p></td>
-      <td dir="ltr" class="s18">Total # Students: <%= @submitted_students.count %></td>
+      <td dir="ltr" class="s18">Total # Students: <%= @data["submitted_students_count"] %></td>
       <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
       <td style="display:none;"></td>
       <% @quiz_question_count.times do |count| %>
-        <td dir="ltr" class="s15"><%= (@percent_correct["#{count+1}"].to_f / @submitted_students.count.to_f * 100).to_i %>%</td>
+        <% if @data["percent_correct"].count > 0 && @data["submitted_students_count"] > 0 -%>
+          <td dir="ltr" class="s15"><%= (@data["percent_correct"]["#{count+1}"].to_f / @data["submitted_students_count"].to_f * 100).to_i %>%</td>
+        <% else -%>
+          <td dir="ltr" class="s15">0%</td>
+        <% end -%>
       <% end -%>
       <td class="s15">-</td>
       <td class="s15">-</td>

@@ -46,6 +46,86 @@ class ApplicationController < ActionController::Base
 
   add_crumb(proc { I18n.t('links.dashboard', "My Dashboard") }, :root_path, :class => "home")
 
+  def gather_class_responses(course, quiz)
+    @quiz_question_count = 0
+    quiz.quiz_data.each do |quiz_data|
+      next if quiz_data[:question_type] == "text_only_question"
+      @quiz_question_count += 1
+    end
+    #
+    # Gather all the correct responses, student responses, and explaination text
+    data = {}
+    data["q"] = {}
+    data["number_correct"] = {}
+    data["number_attempted"] = {}
+    data["percent_correct"] = {}
+    data["submitted_students_count"] = {}
+    managed_quiz_data(course, quiz)
+    data["submitted_students_count"] = @submitted_students.count
+    @submitted_students.each do |user|
+      number_correct = 0
+      number_attempted = 0
+      @question_count = 1
+      @submission = quiz.quiz_submissions.find_by_quiz_id_and_user_id(quiz.id,user.id)
+      @submission.quiz_data.each_with_index do |quiz_data, quiz_index|
+        next if quiz_data[:question_type] == "text_only_question"
+        begin
+          @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
+          if data["percent_correct"]["#{quiz_index}"] == nil
+            data["percent_correct"]["#{quiz_index}"] = 0
+          end
+          if data["q"]["#{user.id}"] == nil
+            data["q"]["#{user.id}"] = {"#{@question_count}" => 'Inc'}
+          else
+            data["q"]["#{user.id}"].merge!({"#{@question_count}" => 'Inc'})
+          end
+          quiz_data[:answers].each_with_index do |answer, index|
+
+            if @sub_data[:answer_id] == answer[:id]
+              number_attempted += 1
+              if answer[:weight] > 0
+                number_correct += 1
+                data["q"]["#{user.id}"].merge!({"#{@question_count}" => '*'})
+                num = data["percent_correct"]["#{quiz_index}"].to_i
+                num += 1
+                data["percent_correct"]["#{quiz_index}"] = num
+              else
+                case index+1
+                when 1
+                  data["q"]["#{user.id}"].merge!({"#{@question_count}" => 'G'})
+                when 2
+                  data["q"]["#{user.id}"].merge!({"#{@question_count}" => 'L'})
+                when 3
+                  data["q"]["#{user.id}"].merge!({"#{@question_count}" => 'E'})
+                end
+              end
+            end
+          end
+          @question_count += 1
+        rescue
+          r2d=2
+        end
+      end
+      data["number_correct"]["#{user.id}"] = number_correct
+      data["number_attempted"]["#{user.id}"] = number_attempted
+    end
+    return data
+  end
+
+  def managed_quiz_data(course, quiz)
+    @submissions = quiz.quiz_submissions.select{|s| !s.settings_only? }
+    submission_ids = {}
+    @submissions.each{|s| submission_ids[s.user_id] = s.id }
+    submission_users = @submissions.map{|s| s.user_id}
+    students = course.students.find(:all, :order => User.sortable_name_order_by_clause).to_a
+    @submitted_students = students.select{|stu| submission_ids[stu.id] }
+    if quiz.survey? && quiz.anonymous_submissions
+      @submitted_students = @submitted_students.sort_by{|stu| submission_ids[stu.id] }
+    end
+    @unsubmitted_students = students.reject{|stu| submission_ids[stu.id] }
+  end
+  protected :managed_quiz_data
+
   def is_admin?
     @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
   end
