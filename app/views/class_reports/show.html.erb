@@ -1,16 +1,4 @@
 <style>
-  #report_heading{
-    margin:auto;
-    width: 75%;
-  }
-  #course_name{
-    margin:auto;
-    width: 35%;
-  }
-  #semester{
-    margin:auto;
-    width: 29%;
-  }
   a{text-decoration:none}
   a:link{color:#15c}
   a:visited{color:#61c}
@@ -109,6 +97,22 @@
   .tblGenFixed td.s10 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   .tblGenFixed td.s11 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
   #content{overflow: scroll;}
+  
+  #report_heading{
+    margin:auto;
+    width: 75%;
+  }
+  #course_name{
+    margin:auto;
+    width: 35%;
+  }
+  #semester{
+    margin:auto;
+    width: 29%;
+  }
+  #printed_statement{
+    float:right;
+  }
 </style>
 <% content_for :page_title do -%>Class Report<% end -%>
 
@@ -258,3 +262,7 @@
     </tr>
   </tbody>
 </table>
+
+<div id="printed_statement"><%= t('reports.printed',"Printed") %> <%= DateTime.now.to_date %></div>
+<div><%= t('reports.grant_statement', "These results are for a formative assessment being piloted as part of IES grand award # R305A110306.") %></div>
+<div><%= @current_probe.title %></div>
