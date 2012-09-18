@@ -1,20 +1,3 @@
-<% content_for :page_title do -%>School Report<% end -%>
-
-
-<br/>
-
-
-<h1>Viewing Report for: <%= @current_probe.title %> for: <%= @account.parent_account.name + @account.name %></h1>
-
-<table>
-	<% @account.courses.active.each do |course| -%>
-	  <tr>
-	  	<td><%= link_to course.name, report_class_report_path(params[:report_id], course.id) %> </td>
-	  </tr>
-	<% end -%>
-</table>
-
-
 <style>
 	a{text-decoration:none}
 	a:link{color:#15c}
@@ -86,134 +69,190 @@
 
 	.tblGenFixed td {padding:0 3px;overflow:hidden;white-space:normal;letter-spacing:0;word-spacing:0;background-color:#fff;z-index:1;border-top:0px none;border-left:0px none;border-bottom:1px solid rgb(255,255,255);border-bottom:1px solid rgba(204, 204, 204, 0);border-right:1px solid rgb(255,255,255);border-right:1px solid rgba(204, 204, 204, 0);} 
 	.dn {display:none} 
-	.tblGenFixed td.s0 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:1px solid #000000;border-right:1px solid #000000;border-bottom:;border-left:1px solid #000000;} 
+	.tblGenFixed td.s0 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000000;border-right:3px solid #000000;border-bottom:;border-left:3px solid #000000;} 
 	.tblGenFixed td.s2 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-top:;border-right:;border-bottom:;} 
-	.tblGenFixed td.s1 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:1px solid #000000;border-right:1px solid #000000;border-bottom:;} 
-	.tblGenFixed td.s9 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
+	.tblGenFixed td.s1 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000000;border-right:3px solid #000000;border-bottom:;} 
+	.tblGenFixed td.s9 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-left:3px solid #000000;border-right:3px solid #000000;border-bottom:3px solid #000000;} 
 	.tblGenFixed td.s12 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
 	.tblGenFixed td.s13 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:;border-bottom:;border-left:;} 
-	.tblGenFixed td.s7 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;border-left:1px solid #000000;} 
+	.tblGenFixed td.s7 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:3px solid #000000;border-left:3px solid #000000;} 
 	.tblGenFixed td.s14 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:;border-bottom:;} 
 	.tblGenFixed td.s15 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:;border-bottom:;} 
-	.tblGenFixed td.s8 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
-	.tblGenFixed td.s5 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;} 
+	.tblGenFixed td.s8 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:3px solid #000000;} 
+	.tblGenFixed td.s5 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:;} 
 	.tblGenFixed td.s6 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:;border-bottom:;} 
-	.tblGenFixed td.s10 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;border-left:1px solid #000000;} 
-	.tblGenFixed td.s3 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;border-left:1px solid #000000;} 
+	.tblGenFixed td.s10 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:1px solid #000000;border-left:3px solid #000000;} 
+	.tblGenFixed td.s3 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:;border-left:3px solid #000000;} 
 	.tblGenFixed td.s11 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:1px solid #000000;} 
-	.tblGenFixed td.s4 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:;} 
+	.tblGenFixed td.s4 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:;}
+	.tblGenFixed td.s16 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:3px solid #000000;}
+	.tblGenFixed td.s17 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:3px solid #000000;border-top:3px solid #000000;border-left:3px solid #000000;} 
+	.tblGenFixed td.s18 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000000;border-bottom:3px solid #000000;border-left:3px solid #000000;border-right:1px solid #000000;} 
+	.tblGenFixed td.s19 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:3px solid #000000;border-top:3px solid #000000;}
+	.tblGenFixed td.s20 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:1px solid #000000;}
+	.tblGenFixed td.s21 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000000;border-bottom:3px solid #000000;border-top:3px solid #000000;}
+	.tblGenFixed td.s22 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:3px solid #000000;border-top:3px solid #000000;}
+	.tblGenFixed td.s23 {background-color:white;font-family:arial,sans,sans-serif;font-size:100.0%;font-weight:normal;font-style:normal;color:#000000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000000;border-bottom:1px solid #000000;} 
 	#content{overflow: scroll;}
-	</style>
-	<table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
-		<tbody>
-			<tr class="rShim">
-				<td class="rShim" style="width:0;"></td>
-				<td class="rShim" style="width:120px;"></td>
-				<td class="rShim" style="width:45px;"></td>
-				<td class="rShim" style="width:45px;"></td>
-				<% @quiz_question_count.times do %>
-	        <td class="rShim" style="width:35px;"></td>
-	      <% end -%>
-				<td class="rShim" style="width:35px;"></td>
-				<td class="rShim" style="width:35px;"></td>
-				<td class="rShim" style="width:35px;"></td>
-				<td class="rShim" style="width:60px;"></td>
-				<td class="rShim" style="width:0px;"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s0">ITEM ANALYSIS</td>
-				<td colspan="2" dir="ltr" class="s1">Class</td>
-				<td style="display:none;"></td>
-				<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Responses</td>
-				<% (@quiz_question_count-1).times do %>
-	        <td style="display:none;"></td>
-	      <% end -%>
-				<td colspan="3" dir="ltr" class="s1">Misconceptions</td>
-				<td style="display:none;"></td>
-				<td style="display:none;"></td>
-				<td dir="ltr" class="s1">Difficulty</td>
-				<td class="s2"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td class="s3"></td>
-				<td colspan="2" dir="ltr" class="s4">Information</td>
-				<td style="display:none;"></td>
-				<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s4">% correct per question</td>
-				<% (@quiz_question_count-1).times do %>
-	        <td style="display:none;"></td>
-	      <% end -%>
-				<td colspan="3" class="s5">#</td>
-				<td style="display:none;"></td>
-				<td style="display:none;"></td>
-				<td class="s5">#</td>
-				<td class="s6"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s7">Teacher last name</td>
-				<td dir="ltr" class="s8">ID</td>
-				<td dir="ltr" class="s8">N</td>
-				<% @quiz_question_count.times do |count| %>
-	        <td dir="ltr" class="s8">Q<%= count + 1 %></td>
-	      <% end -%>
-				<td dir="ltr" class="s8">M1</td>
-				<td dir="ltr" class="s8">M2</td>
-				<td dir="ltr" class="s8">M3</td>
-				<td class="s9"></td>
-				<td class="s6"></td>
-			</tr>
+	#report_heading{
+    margin:auto;
+    width: 75%;
+  }
+  #school_name{
+    margin:auto;
+    width: 35%;
+  }
+  #semester{
+    margin:auto;
+    width: 39%;
+  }
+  #printed_statement{
+  	float:right;
+  }
+</style>
 
-			<% @data.each do |data| -%>
-				<tr dir="ltr">
-					<td class="hd"><p style="height:16px;">.</p></td>
-					<td dir="ltr" class="s10"><%= @data[data.first]["teacher_name"] %></td>
-					<td dir="ltr" class="s11"><%= @data[data.first]["course_name"][/C[0-9]{3}/] %></td>
-					<td class="s12"><%= @data[data.first]["submitted_students_count"] %></td>
-					<% @quiz_question_count.times do |count| %>
-		        <td dir="ltr" class="s12"><%= @data[data.first]["item_analysis"]["#{count+1}"] %>%</td>
-		      <% end -%>
-					<td class="s12">-</td>
-					<td class="s12">-</td>
-					<td class="s12">-</td>
-					<td class="s12">-</td>
-					<td class="s6"></td>
-				</tr>
-			<% end -%>
+<% content_for :page_title do -%>School Report<% end -%>
 
 
+<!-- <h1>Viewing Report for: <%= @current_probe.title %> for: <%= @account.parent_account.name + @account.name %></h1> -->
+
+<%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
+
+<h1 id="report_heading"><b><%= t('reports.school_report', "School Report:") %> <i><%= @current_probe.full_name %></i></b></h1>
+<h3 id="school_name"><%= @account.parent_account.name + @account.name %></h3>
+<h3 id="semester"><%= semester?(@quiz.created_at) %> <%= @quiz.created_at.to_date.year %></h3>
+
+<br />
+
+<div>
+	<div><b><%= t('reports.probe_information', "PROBE INFORMATION") %></b></div>
+	<div><i><%= t('reports.probe_title', "Title:") %></i> <%= @current_probe.full_name %></div>
+	<div><i><%= t('reports.probe_description', "Description:") %></i> <%= t('reports.probe_description_details_a', "The probe has") %> <%= @quiz_question_count %> <%= t('reports.probe_description_details_b', "questions.") %> </div>
+</div>
+
+
+<div>
+	<div><b><%= t('reports.participation_data', "PARTICIPATION DATA") %></b></div>
+	<div><i><%= t('reports.total_participating_students', "Total number of participating students:") %></i> <%= @analysis["submitted_students_count"] %></div>
+	<div><i><%= t('reports.total_participating_classes', "Total number of participating classes:") %></i> <%= @data.count %></div>
+</div>
+
+
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
+	<tbody>
+		<tr class="rShim">
+			<td class="rShim" style="width:0;"></td>
+			<td class="rShim" style="width:120px;"></td>
+			<td class="rShim" style="width:45px;"></td>
+			<td class="rShim" style="width:45px;"></td>
+			<% @quiz_question_count.times do %>
+        <td class="rShim" style="width:35px;"></td>
+      <% end -%>
+			<td class="rShim" style="width:35px;"></td>
+			<td class="rShim" style="width:35px;"></td>
+			<td class="rShim" style="width:35px;"></td>
+			<td class="rShim" style="width:60px;"></td>
+			<td class="rShim" style="width:0px;"></td>
+		</tr>
+		<tr dir="ltr">
+			<td class="hd"><p style="height:16px;">.</p></td>
+			<td dir="ltr" class="s0">ITEM ANALYSIS</td>
+			<td colspan="2" dir="ltr" class="s1">Class</td>
+			<td style="display:none;"></td>
+			<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Responses</td>
+			<% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+      <% end -%>
+			<td colspan="3" dir="ltr" class="s1">Misconceptions</td>
+			<td style="display:none;"></td>
+			<td style="display:none;"></td>
+			<td dir="ltr" class="s1">Difficulty</td>
+			<td class="s2"></td>
+		</tr>
+		<tr dir="ltr">
+			<td class="hd"><p style="height:16px;">.</p></td>
+			<td class="s3"></td>
+			<td colspan="2" dir="ltr" class="s4">Information</td>
+			<td style="display:none;"></td>
+			<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s4">% correct per question</td>
+			<% (@quiz_question_count-1).times do %>
+        <td style="display:none;"></td>
+      <% end -%>
+			<td colspan="3" class="s5">#</td>
+			<td style="display:none;"></td>
+			<td style="display:none;"></td>
+			<td class="s5">#</td>
+			<td class="s6"></td>
+		</tr>
+		<tr dir="ltr">
+			<td class="hd"><p style="height:16px;">.</p></td>
+			<td dir="ltr" class="s7">Teacher last name</td>
+			<td dir="ltr" class="s8">ID</td>
+			<td dir="ltr" class="s16">N</td>
+			<% (@quiz_question_count-1).times do |count| %>
+        <td dir="ltr" class="s8">Q<%= count + 1 %></td>
+      <% end -%>
+      <td dir="ltr" class="s16">Q<%= @quiz_question_count %></td>
+			<td dir="ltr" class="s8">M1</td>
+			<td dir="ltr" class="s8">M2</td>
+			<td dir="ltr" class="s8">M3</td>
+			<td class="s9"></td>
+			<td class="s6"></td>
+		</tr>
+
+		<% @data.each do |data| -%>
 			<tr dir="ltr">
 				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s10">School</td>
-				<td dir="ltr" class="s11"><%= @analysis["school_name"] %></td>
-				<td class="s12"><%= @analysis["submitted_students_count"] %></td>
-				<% @quiz_question_count.times do |count| %>
-	        <td dir="ltr" class="s12"><%= @analysis["#{count+1}"] %>%</td>
+				<td dir="ltr" class="s10"><%= @data[data.first]["teacher_name"] %></td>
+				<td dir="ltr" class="s11"><%= link_to @data[data.first]["course_name"][/C[0-9]{3}/], report_class_report_path(params[:report_id], data.first) %> </td>
+				<td class="s20"><%= @data[data.first]["submitted_students_count"] %></td>
+				<% (@quiz_question_count-1).times do |count| %>
+	        <td dir="ltr" class="s12"><%= @data[data.first]["item_analysis"]["#{count+1}"] %>%</td>
 	      <% end -%>
+	      <td dir="ltr" class="s23"><%= @data[data.first]["item_analysis"]["#{@quiz_question_count}"] %>%</td>
 				<td class="s12">-</td>
 				<td class="s12">-</td>
-				<td class="s12">-</td>
-				<td class="s12">-</td>
+				<td class="s23">-</td>
+				<td class="s23">-</td>
 				<td class="s6"></td>
 			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td class="s13"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s15"></td>
-			</tr>
-		</tbody>
-	</table>
+		<% end -%>
+
+
+		<tr dir="ltr">
+			<td class="hd"><p style="height:16px;">.</p></td>
+			<td dir="ltr" class="s17">School</td>
+			<td dir="ltr" class="s18"><%= @analysis["school_name"] %></td>
+			<td class="s19"><%= @analysis["submitted_students_count"] %></td>
+			<% (@quiz_question_count-1).times do |count| %>
+        <td dir="ltr" class="s21"><%= @analysis["#{count+1}"] %>%</td>
+      <% end -%>
+      <td dir="ltr" class="s22"><%= @analysis["#{@quiz_question_count}"] %>%</td>
+			<td class="s21">-</td>
+			<td class="s21">-</td>
+			<td class="s22">-</td>
+			<td class="s22">-</td>
+			<td class="s6"></td>
+		</tr>
+		<tr dir="ltr">
+			<td class="hd"><p style="height:16px;">.</p></td>
+			<td class="s13"></td>
+			<td class="s14"></td>
+			<td class="s14"></td>
+			<% @quiz_question_count.times do |count| %>
+        <td class="s14"></td>
+      <% end -%>
+			<td class="s14"></td>
+			<td class="s14"></td>
+			<td class="s14"></td>
+			<td class="s14"></td>
+			<td class="s15"></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<div id="printed_statement"><%= t('reports.printed',"Printed") %> <%= DateTime.now.to_date %></div>
+<div><%= t('reports.grant_statement', "These results are for a formative assessment being piloted as part of IES grand award # R305A110306.") %></div>
+<div><%= @current_probe.title %></div>
