@@ -63,10 +63,11 @@ class SchoolReportsController < ApplicationController
       end
       @total_students_count = 0
       @data.each do |data|
-
         @total_students_count += @data[data.first]["submitted_students_count"].to_i
       end
-      
+
+      @analysis = school_analysis(@data, @quiz_question_count)
+
 		else
 			redirect_back_or_default(dashboard_url)
 		end
