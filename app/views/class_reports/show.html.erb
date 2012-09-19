@@ -184,21 +184,21 @@
       <td dir="ltr" class="s13">Indicates Difficulty</td>
       <td class="s8"></td>
     </tr>
-    <% @submitted_students.each_with_index do |s, idx| %>
+    <% @submitted_students.each_with_index do |s, index| %>
       <% submission = @submissions.find{|qs| qs.user_id == s.id} %>
       <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s14 student_number"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name"><%= s.short_name %></a></td>
-        <td class="s15"><%= @data["number_correct"]["#{s.id}"] %></td>
-        <td class="s15"><%= @data["number_attempted"]["#{s.id}"] %></td>
+        <td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
+        <td class="s14 student_number" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => submission.id) %>" class="name"><%= s.short_name %></a></td>
+        <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @data["number_correct"]["#{s.id}"] %></td>
+        <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @data["number_attempted"]["#{s.id}"] %></td>
         <% @quiz_question_count.times do |count| %>
-          <td dir="ltr" class="s16"><%= @data["q"]["#{s.id}"]["#{count + 1}"] %></td>
+          <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @data["q"]["#{s.id}"]["#{count + 1}"] %></td>
         <% end -%>
-        <td dir="ltr" class="s16">-</td>
-        <td dir="ltr" class="s16">-</td>
-        <td dir="ltr" class="s16">-</td>
-        <td class="s17"></td>
-        <td class="s8"></td>
+        <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
+        <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
+        <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
+        <td class="s17" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
+        <td class="s8" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
       </tr>
     <% end -%>
 
