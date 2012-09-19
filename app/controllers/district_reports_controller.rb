@@ -43,8 +43,13 @@ class DistrictReportsController < ApplicationController
       add_crumb(@account.name)
 
       @data = {}
+      @all_teacher_ids = {}
+      @school_teacher_ids = {}
+      @submitted_students_count = {}
       @account.sub_accounts.active.each do |sub_account|
         sub_data = {}
+        teacher_ids = {}
+        submitted_students_count = 0
         sub_account.courses.active.each do |course|
           course.quizzes.active.each do |quiz|
             if quiz.probe_name && quiz.probe_name[@current_probe.title]
@@ -56,11 +61,16 @@ class DistrictReportsController < ApplicationController
             # managed_quiz_data(@quiz) if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
             
             sub_data[course.id] = gather_class_responses(course, @quiz)
+            @all_teacher_ids[sub_data[course.id]["teacher_id"]] = true
+            teacher_ids[sub_data[course.id]["teacher_id"]] = true
+            submitted_students_count += sub_data[course.id]["submitted_students_count"]
           else
             flash[:error] = "No Assessment Found"
             redirect_back_or_default(report_school_reports_path(params[:report_id]))
           end
         end
+        @submitted_students_count[sub_account.id] = submitted_students_count
+        @school_teacher_ids[sub_account.id] = teacher_ids
         @data[sub_account.id] = sub_data
       end
 

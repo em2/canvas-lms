@@ -141,8 +141,8 @@
 		<tr class="rShim">
 			<td class="rShim" style="width:0;"></td>
 			<td class="rShim" style="width:120px;"></td>
-			<td class="rShim" style="width:45px;"></td>
-			<td class="rShim" style="width:45px;"></td>
+			<td class="rShim" style="width:55px;"></td>
+			<td class="rShim" style="width:55px;"></td>
 			<% @quiz_question_count.times do %>
         <td class="rShim" style="width:35px;"></td>
       <% end -%>
@@ -202,8 +202,8 @@
 			<tr dir="ltr">
 				<td class="hd"><p style="height:16px;">.</p></td>
 				<td dir="ltr" class="s10"><%= link_to @school_name[data.first]["school_name"], report_school_report_path(params[:report_id], data.first) %></td>
-				<td dir="ltr" class="s11"><%#= @data[data.first]["teacher_name"] %></td>
-				<td class="s20"><%#= @data[data.first]["submitted_students_count"] %></td>
+				<td dir="ltr" class="s11"><%= @school_teacher_ids[data.first].count %></td>
+				<td class="s20"><%= @submitted_students_count[data.first] %></td>
 				<% (@quiz_question_count-1).times do |count| %>
 	        <td dir="ltr" class="s12"><%= @data[data.first]["item_analysis"]["#{count+1}"] %>%</td>
 	      <% end -%>
@@ -220,7 +220,7 @@
 		<tr dir="ltr">
 			<td class="hd"><p style="height:16px;">.</p></td>
 			<td dir="ltr" class="s17"><%= t('reports.district', "District") %></td>
-			<td dir="ltr" class="s18"><%= @analysis["school_name"] %></td>
+			<td dir="ltr" class="s18"><%= @all_teacher_ids.count %></td>
 			<td class="s19"><%= @analysis["submitted_students_count"] %></td>
 			<% (@quiz_question_count-1).times do |count| %>
         <td dir="ltr" class="s21"><%= @analysis["#{count+1}"] %>%</td>
