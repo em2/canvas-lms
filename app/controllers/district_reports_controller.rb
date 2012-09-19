@@ -77,6 +77,7 @@ class DistrictReportsController < ApplicationController
       @total_students_count = 0
       @school_name = {}
       @data.each do |sub_account|
+        @data[sub_account.first]["item_analysis"] = school_analysis(@data[sub_account.first], @quiz_question_count)
         if @school_name[sub_account.first] == nil
           @school_name[sub_account.first] = {}
         end
@@ -87,13 +88,13 @@ class DistrictReportsController < ApplicationController
           end
         end
       end
-      
-
-      @data.each do |sub_account|
-        @data[sub_account.first]["item_analysis"] = school_analysis(@data[sub_account.first], @quiz_question_count)
-      end
 
       @analysis = district_analysis(@data, @quiz_question_count)
+
+      @participating_classes = 0
+      @school_teacher_ids.each do |ids|
+        @participating_classes += @school_teacher_ids[ids.first].count
+      end
 	    
 		else
 			redirect_back_or_default(dashboard_url)
