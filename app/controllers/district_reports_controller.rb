@@ -79,12 +79,11 @@ class DistrictReportsController < ApplicationController
       end
       
 
-      @analysis = district_analysis(@data, @quiz_question_count)
-
-
       @data.each do |sub_account|
         @data[sub_account.first]["item_analysis"] = school_analysis(@data[sub_account.first], @quiz_question_count)
       end
+
+      @analysis = district_analysis(@data, @quiz_question_count)
 	    
 		else
 			redirect_back_or_default(dashboard_url)
@@ -101,38 +100,6 @@ class DistrictReportsController < ApplicationController
     #
     # Make sure the user is authorized to do this
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
-  end
-
-  def district_analysis(data, question_count)
-    analysis = {}
-    analysis["submitted_students_count"] = 0
-    data.each do |sub_account|
-      data[sub_account.first].each do |sub_data|
-        if analysis["school_name"] == nil
-          analysis["school_name"] = data[sub_account.first][sub_data.first]["course_name"][/S[0-9]{3}/]
-        end
-        question_count.times do |count|
-          if analysis["#{count+1}"] == nil
-            analysis["#{count+1}"] = data[sub_account.first][sub_data.first]["item_analysis"]["#{count+1}"]
-          else
-            analysis["#{count+1}"] += data[sub_account.first][sub_data.first]["item_analysis"]["#{count+1}"]
-          end
-        end
-
-        analysis["submitted_students_count"] += data[sub_account.first][sub_data.first]["submitted_students_count"]
-      
-      end
-    end
-
-    question_count.times do |count|
-      if data.count > 0
-        analysis["#{count+1}"] = analysis["#{count+1}"] / data.count
-      else
-        analysis["#{count+1}"] = 0
-      end
-    end
-    
-    analysis
   end
 
 end

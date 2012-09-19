@@ -78,6 +78,38 @@ class ApplicationController < ActionController::Base
     analysis
   end
 
+
+  def district_analysis(data, question_count)
+    analysis = {}
+    analysis["submitted_students_count"] = 0
+    data.each do |sub_data|
+      if analysis["school_name"] == nil
+        analysis["school_name"] = data[sub_data.first]["item_analysis"]["school_name"]
+      end
+      question_count.times do |count|
+        if analysis["#{count+1}"] == nil
+          analysis["#{count+1}"] = data[sub_data.first]["item_analysis"]["#{count+1}"]
+        else
+          analysis["#{count+1}"] += data[sub_data.first]["item_analysis"]["#{count+1}"]
+        end
+      end
+
+      analysis["submitted_students_count"] += data[sub_data.first]["item_analysis"]["submitted_students_count"]
+      
+    end
+
+    question_count.times do |count|
+      if data.count > 0
+        analysis["#{count+1}"] = analysis["#{count+1}"] / data.count
+      else
+        analysis["#{count+1}"] = 0
+      end
+    end
+    
+    analysis
+  end
+  
+
   def gather_class_responses(course, quiz)
     @quiz_question_count = 0
     quiz.quiz_data.each do |quiz_data|
