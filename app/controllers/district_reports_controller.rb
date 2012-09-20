@@ -46,10 +46,12 @@ class DistrictReportsController < ApplicationController
       @all_teacher_ids = {}
       @school_teacher_ids = {}
       @submitted_students_count = {}
+      @participating_classes = 0
       @account.sub_accounts.active.each do |sub_account|
         sub_data = {}
         teacher_ids = {}
         submitted_students_count = 0
+        @participating_classes += sub_account.courses.active.count
         sub_account.courses.active.each do |course|
           course.quizzes.active.each do |quiz|
             if quiz.probe_name && quiz.probe_name[@current_probe.title]
@@ -90,11 +92,6 @@ class DistrictReportsController < ApplicationController
       end
 
       @analysis = district_analysis(@data, @quiz_question_count)
-
-      @participating_classes = 0
-      @school_teacher_ids.each do |ids|
-        @participating_classes += @school_teacher_ids[ids.first].count
-      end
 	    
 		else
 			redirect_back_or_default(dashboard_url)
