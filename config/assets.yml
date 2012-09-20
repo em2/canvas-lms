@@ -202,6 +202,14 @@ stylesheets:
     - public/stylesheets/compiled/no_chrome.css
   misconceptions:
     - public/stylesheets/compiled/misconceptions.css
+  reports_district:
+    - public/stylesheets/compiled/reports_district.css
+  reports_school:
+    - public/stylesheets/compiled/reports_school.css
+  reports_class:
+    - public/stylesheets/compiled/reports_class.css
+  reports_index:
+    - public/stylesheets/compiled/reports_index.css
   roster_user:
     - public/stylesheets/compiled/roster_user.css
   rosters:
