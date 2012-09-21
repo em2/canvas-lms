@@ -886,6 +886,13 @@ class Quiz < ActiveRecord::Base
       next if quiz_data[:question_type] == "text_only_question"
       @quiz_question_count += 1
     end
+
+    @submitted_users.each_with_index do |user, index|
+      if is_teacher?(user)
+        @submitted_users.slice!(index,1)
+      end
+    end
+
     #
     # Gather all the correct responses, student responses, and explaination text
     @q = {}
@@ -970,8 +977,8 @@ class Quiz < ActiveRecord::Base
       @count = @quiz_question_count
       @counter = 0
       while @counter < @count do
-        if @q["#{user.id}"] != nil || @q["#{user.id}"] != ''
-          if @q["#{user.id}"]["#{@counter+1}"] != nil || @q["#{user.id}"]["#{@counter+1}"] != ''
+        if @q["#{user.id}"] != nil && @q["#{user.id}"] != ''
+          if @q["#{user.id}"]["#{@counter+1}"] != nil && @q["#{user.id}"]["#{@counter+1}"] != ''
             row << @q["#{user.id}"]["#{@counter+1}"]
           else
             row << ''
@@ -979,25 +986,25 @@ class Quiz < ActiveRecord::Base
         else
           row << ''
         end
-        # row << @q["#{user.id}"] == nil || @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil || @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"]
+        # row << @q["#{user.id}"] == nil && @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil && @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"]
         @counter += 1
       end
 
       @counter = 0
       while @counter < @count do
-        if @cor["#{@counter+1}"] != nil || @cor["#{@counter+1}"] != ''
+        if @cor["#{@counter+1}"] != nil && @cor["#{@counter+1}"] != ''
             row << @cor["#{@counter+1}"]
         else
           row << ''
         end
-        # row << @cor["#{@counter+1}"] == nil || @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"]
+        # row << @cor["#{@counter+1}"] == nil && @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"]
         @counter += 1
       end
 
       @counter = 0
       while @counter < @count do
-        if @expl["#{user.id}"] != nil || @expl["#{user.id}"] != ''
-          if @expl["#{user.id}"]["#{@counter+1}"] != nil || @expl["#{user.id}"]["#{@counter+1}"] != ''
+        if @expl["#{user.id}"] != nil && @expl["#{user.id}"] != ''
+          if @expl["#{user.id}"]["#{@counter+1}"] != nil && @expl["#{user.id}"]["#{@counter+1}"] != ''
             row << @expl["#{user.id}"]["#{@counter+1}"]
           else
             row << ''
@@ -1005,20 +1012,39 @@ class Quiz < ActiveRecord::Base
         else
           row << ''
         end
-        # row << @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"]
+        # row << @expl["#{user.id}"] == nil && @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil && @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"]
         @counter += 1
       end
 
       rows << row
     end
-debugger
-r2d = 2
 
     FasterCSV.generate do |csv|
       rows.each do |val|
         csv << val
       end
     end
+  end
+
+  def is_teacher?(user)
+    found_teacher = false
+    if Course.are_available.count > 0
+      Course.by_name_available.each do |course|
+        course.teachers.each do |teacher|
+          if (teacher.id == user.id)
+            found_teacher = true
+            break
+          end
+          if found_teacher
+            break
+          end
+        end
+        if found_teacher
+          break
+        end
+      end
+    end
+    found_teacher
   end
 
   def statistics(include_all_versions=true)

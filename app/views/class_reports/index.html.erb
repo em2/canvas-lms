@@ -5,7 +5,7 @@
 <h1>View Reports for:</h1>
 
 <% if @classes.count == 0 -%>
-	<div> No classes found with this probe </div>
+	<div> <%= t('reports', 'No classes found with this probe.') %> </div>
 <% else -%>
 
 	<table>

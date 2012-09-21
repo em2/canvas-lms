@@ -77,12 +77,20 @@ class QuizzesController < ApplicationController
               next if quiz_data[:question_type] == "text_only_question"
               @quiz_question_count += 1
             end
+
+            @submitted_users.each_with_index do |user, index|
+              if is_teacher?(user)
+                @submitted_users.slice!(index,1)
+              end
+            end
+                        
             #
             # Gather all the correct responses, student responses, and explaination text
             @q = {}
             @cor = {}
             @expl = {}
             @submitted_users.each do |user|
+
               @cor_question_count = 1
               @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id)
               @submission.quiz_data.each do |quiz_data|

@@ -1,300 +1,50 @@
 /* line 1, ../../../app/stylesheets/reports_class.sass */
-a {
-  text-decoration: none; }
-  /* line 3, ../../../app/stylesheets/reports_class.sass */
-  a:link {
-    color: #1155cc; }
-  /* line 5, ../../../app/stylesheets/reports_class.sass */
-  a:visited {
-    color: #6611cc; }
-  /* line 7, ../../../app/stylesheets/reports_class.sass */
-  a:active {
-    color: #d14836; }
-  /* line 9, ../../../app/stylesheets/reports_class.sass */
-  a:hover {
-    text-decoration: underline; }
-
-/* line 12, ../../../app/stylesheets/reports_class.sass */
-::-webkit-scrollbar {
-  height: 16px;
-  overflow: visible;
-  width: 16px; }
-
-/* line 17, ../../../app/stylesheets/reports_class.sass */
-::-webkit-scrollbar-button {
-  height: 0;
-  width: 0; }
-
-/* line 21, ../../../app/stylesheets/reports_class.sass */
-::-webkit-scrollbar-track {
-  background-clip: padding-box;
-  border: solid transparent;
-  border-width: 0 0 0 4px; }
-  /* line 25, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-track:horizontal {
-    border-width: 4px 0 0; }
-  /* line 27, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-track:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1); }
-  /* line 30, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-track:horizontal:hover {
-    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1); }
-  /* line 32, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-track:active {
-    background-color: rgba(0, 0, 0, 0.05);
-    box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
-  /* line 35, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-track:horizontal:active {
-    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
-
-/* line 39, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-dark::-webkit-scrollbar-track:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.2); }
-/* line 42, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-dark::-webkit-scrollbar-track:horizontal:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2); }
-/* line 44, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-dark::-webkit-scrollbar-track:active {
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.25), inset -1px 0 0 rgba(255, 255, 255, 0.15); }
-/* line 47, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-dark::-webkit-scrollbar-track:horizontal:active {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(255, 255, 255, 0.15); }
-
-/* line 50, ../../../app/stylesheets/reports_class.sass */
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  background-clip: padding-box;
-  border: solid transparent;
-  border-width: 1px 1px 1px 6px;
-  min-height: 28px;
-  padding: 100px 0 0;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
-  /* line 58, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-thumb:horizontal {
-    border-width: 6px 1px 1px;
-    padding: 0 0 0 100px;
-    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
-  /* line 62, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25); }
-  /* line 65, ../../../app/stylesheets/reports_class.sass */
-  ::-webkit-scrollbar-thumb:active {
-    background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35); }
-
-/* line 69, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-dark::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.1); }
-  /* line 72, ../../../app/stylesheets/reports_class.sass */
-  .jfk-scrollbar-dark::-webkit-scrollbar-thumb:horizontal {
-    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.15), inset -1px 0 0 rgba(255, 255, 255, 0.1); }
-  /* line 74, ../../../app/stylesheets/reports_class.sass */
-  .jfk-scrollbar-dark::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.37); }
-  /* line 77, ../../../app/stylesheets/reports_class.sass */
-  .jfk-scrollbar-dark::-webkit-scrollbar-thumb:active {
-    background-color: rgba(255, 255, 255, 0.75);
-    box-shadow: inset 1px 1px 3px rgba(255, 255, 255, 0.5); }
-
-/* line 82, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-borderless::-webkit-scrollbar-track {
-  border-width: 0 1px 0 6px; }
-  /* line 84, ../../../app/stylesheets/reports_class.sass */
-  .jfk-scrollbar-borderless::-webkit-scrollbar-track:horizontal {
-    border-width: 6px 0 1px; }
-  /* line 86, ../../../app/stylesheets/reports_class.sass */
-  .jfk-scrollbar-borderless::-webkit-scrollbar-track:hover {
-    background-color: rgba(0, 0, 0, 0.035);
-    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.14), inset -1px -1px 0 rgba(0, 0, 0, 0.07); }
-/* line 89, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-borderless.jfk-scrollbar-dark::-webkit-scrollbar-track:hover {
-  background-color: rgba(255, 255, 255, 0.07);
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.25), inset -1px -1px 0 rgba(255, 255, 255, 0.15); }
-/* line 92, ../../../app/stylesheets/reports_class.sass */
-.jfk-scrollbar-borderless::-webkit-scrollbar-thumb {
-  border-width: 0 1px 0 6px; }
-  /* line 94, ../../../app/stylesheets/reports_class.sass */
-  .jfk-scrollbar-borderless::-webkit-scrollbar-thumb:horizontal {
-    border-width: 6px 0 1px; }
-
-/* line 97, ../../../app/stylesheets/reports_class.sass */
-::-webkit-scrollbar-corner {
-  background: transparent; }
-
-/* line 100, ../../../app/stylesheets/reports_class.sass */
 body {
   font-family: arial, sans, sans-serif;
   margin: 0;
   font-size: 13px; }
-  /* line 101, ../../../app/stylesheets/reports_class.sass */
+  /* line 2, ../../../app/stylesheets/reports_class.sass */
   body::-webkit-scrollbar-track-piece {
     background-clip: padding-box;
     background-color: #f5f5f5;
     border: solid white;
     border-width: 0 0 0 3px;
     box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
-    /* line 107, ../../../app/stylesheets/reports_class.sass */
+    /* line 8, ../../../app/stylesheets/reports_class.sass */
     body::-webkit-scrollbar-track-piece:horizontal {
       border-width: 3px 0 0;
       box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
-  /* line 110, ../../../app/stylesheets/reports_class.sass */
+  /* line 11, ../../../app/stylesheets/reports_class.sass */
   body::-webkit-scrollbar-thumb {
     border-width: 1px 1px 1px 5px; }
-    /* line 112, ../../../app/stylesheets/reports_class.sass */
+    /* line 13, ../../../app/stylesheets/reports_class.sass */
     body::-webkit-scrollbar-thumb:horizontal {
       border-width: 5px 1px 1px; }
-  /* line 114, ../../../app/stylesheets/reports_class.sass */
+  /* line 15, ../../../app/stylesheets/reports_class.sass */
   body::-webkit-scrollbar-corner {
     background-clip: padding-box;
     background-color: #f5f5f5;
     border: solid white;
     border-width: 3px 0 0 3px;
     box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.14); }
-  /* line 123, ../../../app/stylesheets/reports_class.sass */
+  /* line 24, ../../../app/stylesheets/reports_class.sass */
   body td {
     font-size: 13px; }
 
-/* line 126, ../../../app/stylesheets/reports_class.sass */
-.tblGenFixed, .tblGeneric {
-  font-size: 13px; }
-
-/* line 129, ../../../app/stylesheets/reports_class.sass */
-.dn {
-  display: none; }
-
-/* line 133, ../../../app/stylesheets/reports_class.sass */
-.tblGenFixed td {
-  padding: 0 3px;
-  overflow: hidden;
-  white-space: normal;
-  letter-spacing: 0;
-  word-spacing: 0;
-  background-color: white;
-  z-index: 1;
-  border: 1px #cccccc solid;
-  border-top: 0;
-  border-left: 0;
-  vertical-align: bottom; }
-  /* line 134, ../../../app/stylesheets/reports_class.sass */
-  .tblGenFixed td.comment {
-    background-image: url("//ssl.gstatic.com/docs/spreadsheets/comment.gif");
-    background-position: top right;
-    background-repeat: no-repeat; }
-  /* line 138, ../../../app/stylesheets/reports_class.sass */
-  .tblGenFixed td.chip-comment-icon {
-    background: white url("//ssl.gstatic.com/docs/spreadsheets/cell_chip_note_right.png") no-repeat top right; }
-  /* line 140, ../../../app/stylesheets/reports_class.sass */
-  .tblGenFixed td.chip-error-icon {
-    background: white url("//ssl.gstatic.com/docs/spreadsheets/cell_chip_error_right.png") no-repeat top right; }
-  /* line 153, ../../../app/stylesheets/reports_class.sass */
-  .tblGenFixed td.hd {
-    padding: 0;
-    border-right: 0;
-    background-color: #c8c8c8; }
-/* line 157, ../../../app/stylesheets/reports_class.sass */
-.tblGenFixed tr.rShim td, .tblGenFixed td.rShim {
-  padding: 0;
-  border-bottom: 0; }
-
-/* line 161, ../../../app/stylesheets/reports_class.sass */
-.divFrozRowHead .tblGenFixed td.hd, .divRowHead .tblGenFixed td.hd {
-  background-color: #e8eef7;
-  width: 35px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 8pt;
-  color: #333333;
-  border-style: solid;
-  border-color: #c8c8c8;
-  border-width: 0 1px 1px 0; }
-
-/* line 172, ../../../app/stylesheets/reports_class.sass */
+/* line 27, ../../../app/stylesheets/reports_class.sass */
 #tblMain td.hd p, .colHeadTable td.hd p, #tblMainOLD td.hd p, .colHeadTable td.hd p {
   margin: 0;
   width: 0;
   overflow: hidden;
   font-size: 0; }
 
-/* line 178, ../../../app/stylesheets/reports_class.sass */
+/* line 33, ../../../app/stylesheets/reports_class.sass */
 td.rShim {
   width: 35px;
   height: 0;
   border-right: 1px #c8c8c8 solid; }
 
-/* line 183, ../../../app/stylesheets/reports_class.sass */
-.divColHead .tblGenFixed tr.hd td, .tblGenFixed .sortBar {
-  background-color: #e8eef7;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 8pt;
-  color: #333333;
-  border-style: solid;
-  border-color: #c8c8c8;
-  border-width: 0 1px 1px 0; }
-
-/* line 193, ../../../app/stylesheets/reports_class.sass */
-.divColHead .tblGenFixed tr.hd td {
-  height: 20px; }
-  /* line 195, ../../../app/stylesheets/reports_class.sass */
-  .divColHead .tblGenFixed tr.hd td.on {
-    background-color: #c8c8c8; }
-
-/* line 198, ../../../app/stylesheets/reports_class.sass */
-.divRowHead .tblGenFixed tr.on td.hd {
-  background-color: #c8c8c8; }
-
-/* line 201, ../../../app/stylesheets/reports_class.sass */
-.divColHead .tblGenFixed tr.hd td {
-  border-bottom: 1px solid #9fc2fd; }
-  /* line 203, ../../../app/stylesheets/reports_class.sass */
-  .divColHead .tblGenFixed tr.hd td.first {
-    border-right: none; }
-
-/* line 206, ../../../app/stylesheets/reports_class.sass */
-.tblGenFixed .sortBar {
-  background-image: url("//ssl.gstatic.com/docs/spreadsheets/gradient-12.gif");
-  background-repeat: repeat-x;
-  height: 12px;
-  padding-right: 5px;
-  padding-left: 5px;
-  text-align: right;
-  z-index: 1;
-  overflow: hidden;
-  white-space: nowrap; }
-
-/* line 217, ../../../app/stylesheets/reports_class.sass */
-.FF .sortBar {
-  height: 13px; }
-
-/* line 220, ../../../app/stylesheets/reports_class.sass */
-.tblGenFixed td.headerEnd {
-  background-color: #e8eef7;
-  border: none; }
-
-/* line 224, ../../../app/stylesheets/reports_class.sass */
-.IE .divRowHead .tblGenFixed tr.equalize td {
-  overflow: visible !important;
-  white-space: normal;
-  text-indent: 0;
-  padding: 0 3px; }
-
-/* line 232, ../../../app/stylesheets/reports_class.sass */
-.FF .divColHead .tblGenFixed td.hd {
-  padding-bottom: 1px; }
-/* line 234, ../../../app/stylesheets/reports_class.sass */
-.FF .divColHead .tblGenFixed tr.hd td.hd {
-  padding-bottom: 0; }
-/* line 236, ../../../app/stylesheets/reports_class.sass */
-.FF .divRowHead .tblGenFixed td.hd {
-  padding-bottom: 0; }
-
-/* line 239, ../../../app/stylesheets/reports_class.sass */
+/* line 40, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed {
   table-layout: fixed;
   border-collapse: collapse;
@@ -303,46 +53,11 @@ td.rShim {
   width: 0px;
   border-bottom: 1px #cccccc solid; }
 
-/* line 247, ../../../app/stylesheets/reports_class.sass */
-.disclaimer {
-  padding-left: 12px;
-  font-size: 11px;
-  background-color: #efefef;
-  color: #676767;
-  border-left: 0px none;
-  border-bottom: 1px solid silver;
-  border-right: 0px none;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
-
-/* line 259, ../../../app/stylesheets/reports_class.sass */
-.disclaimerTop {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 6px;
-  border-top: 1px solid silver; }
-
-/* line 265, ../../../app/stylesheets/reports_class.sass */
-.disclaimer a {
-  color: #7777cc;
-  padding-left: 3px; }
-
-/* line 269, ../../../app/stylesheets/reports_class.sass */
+/* line 48, ../../../app/stylesheets/reports_class.sass */
 td.num {
   text-align: right; }
 
-/* line 272, ../../../app/stylesheets/reports_class.sass */
-.waffle-image-div {
-  position: relative; }
-
-/* line 275, ../../../app/stylesheets/reports_class.sass */
-.waffle-image-cell {
-  display: block;
-  position: absolute;
-  left: -3px; }
-
-/* line 280, ../../../app/stylesheets/reports_class.sass */
+/* line 51, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td {
   padding: 0 3px;
   overflow: hidden;
@@ -358,11 +73,7 @@ td.num {
   border-right: 1px solid white;
   border-right: 1px solid rgba(204, 204, 204, 0); }
 
-/* line 295, ../../../app/stylesheets/reports_class.sass */
-.dn {
-  display: none; }
-
-/* line 299, ../../../app/stylesheets/reports_class.sass */
+/* line 67, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s9 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -378,7 +89,7 @@ td.num {
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 314, ../../../app/stylesheets/reports_class.sass */
+/* line 82, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s25 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -394,7 +105,7 @@ td.num {
   overflow: hidden;
   border-left: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 329, ../../../app/stylesheets/reports_class.sass */
+/* line 97, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s26 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -406,7 +117,7 @@ td.num {
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 340, ../../../app/stylesheets/reports_class.sass */
+/* line 108, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s7 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -421,7 +132,7 @@ td.num {
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 354, ../../../app/stylesheets/reports_class.sass */
+/* line 122, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s23 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -436,7 +147,7 @@ td.num {
   white-space: normal;
   overflow: hidden;
   border-left: 3px solid black; }
-/* line 368, ../../../app/stylesheets/reports_class.sass */
+/* line 136, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s24 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -452,7 +163,7 @@ td.num {
   overflow: hidden;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 383, ../../../app/stylesheets/reports_class.sass */
+/* line 151, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s8, .tblGenFixed td.s21 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -464,7 +175,7 @@ td.num {
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 394, ../../../app/stylesheets/reports_class.sass */
+/* line 162, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s5 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -478,7 +189,7 @@ td.num {
   overflow: hidden;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 407, ../../../app/stylesheets/reports_class.sass */
+/* line 175, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s22 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -491,7 +202,7 @@ td.num {
   white-space: normal;
   overflow: hidden;
   border-right: 1px solid black; }
-/* line 419, ../../../app/stylesheets/reports_class.sass */
+/* line 187, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s6 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -506,7 +217,7 @@ td.num {
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 433, ../../../app/stylesheets/reports_class.sass */
+/* line 201, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s20 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -518,7 +229,7 @@ td.num {
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 444, ../../../app/stylesheets/reports_class.sass */
+/* line 212, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s4, .tblGenFixed td.s0 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -531,7 +242,7 @@ td.num {
   white-space: normal;
   overflow: hidden;
   border-right: 1px solid black; }
-/* line 456, ../../../app/stylesheets/reports_class.sass */
+/* line 224, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s2 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -547,7 +258,7 @@ td.num {
   overflow: hidden;
   border-top: 3px solid black;
   border-right: 3px solid black; }
-/* line 471, ../../../app/stylesheets/reports_class.sass */
+/* line 239, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s1 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -564,7 +275,7 @@ td.num {
   border-top: 3px solid black;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 487, ../../../app/stylesheets/reports_class.sass */
+/* line 255, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s16 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -580,7 +291,7 @@ td.num {
   overflow: hidden;
   border-right: 1px solid black;
   border-bottom: 1px solid black; }
-/* line 502, ../../../app/stylesheets/reports_class.sass */
+/* line 270, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s17 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -595,7 +306,7 @@ td.num {
   overflow: hidden;
   border-right: 1px solid black;
   border-bottom: 1px solid black; }
-/* line 516, ../../../app/stylesheets/reports_class.sass */
+/* line 284, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s18 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -610,7 +321,7 @@ td.num {
   white-space: normal;
   overflow: hidden;
   border-top: 3px solid black; }
-/* line 530, ../../../app/stylesheets/reports_class.sass */
+/* line 298, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s19 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -626,7 +337,7 @@ td.num {
   overflow: hidden;
   border-right: 3px solid black;
   border-top: 3px solid black; }
-/* line 545, ../../../app/stylesheets/reports_class.sass */
+/* line 313, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s12 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -642,7 +353,7 @@ td.num {
   overflow: hidden;
   border-right: 1px solid black;
   border-bottom: 3px solid black; }
-/* line 560, ../../../app/stylesheets/reports_class.sass */
+/* line 328, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s14 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -659,7 +370,7 @@ td.num {
   border-right: 3px solid black;
   border-bottom: 1px solid black;
   border-left: 3px solid black; }
-/* line 576, ../../../app/stylesheets/reports_class.sass */
+/* line 344, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s15 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -675,7 +386,7 @@ td.num {
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 1px solid black; }
-/* line 591, ../../../app/stylesheets/reports_class.sass */
+/* line 359, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s10, .tblGenFixed td.s11 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -691,7 +402,7 @@ td.num {
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 606, ../../../app/stylesheets/reports_class.sass */
+/* line 374, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s27 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -708,7 +419,7 @@ td.num {
   border-top: 3px solid black;
   border-bottom: 3px solid black;
   border-right: 1px solid black; }
-/* line 622, ../../../app/stylesheets/reports_class.sass */
+/* line 390, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s28 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -725,7 +436,7 @@ td.num {
   border-top: 3px solid black;
   border-bottom: 3px solid black;
   border-right: 3px solid black; }
-/* line 638, ../../../app/stylesheets/reports_class.sass */
+/* line 406, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s29 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -742,7 +453,7 @@ td.num {
   border-bottom: 3px solid black;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 654, ../../../app/stylesheets/reports_class.sass */
+/* line 422, ../../../app/stylesheets/reports_class.sass */
 .tblGenFixed td.s30 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -759,25 +470,25 @@ td.num {
   border-right: 3px solid black;
   border-bottom: 1px solid black; }
 
-/* line 670, ../../../app/stylesheets/reports_class.sass */
+/* line 438, ../../../app/stylesheets/reports_class.sass */
 #content {
   overflow: scroll; }
 
-/* line 673, ../../../app/stylesheets/reports_class.sass */
+/* line 441, ../../../app/stylesheets/reports_class.sass */
 #report_heading {
   margin: auto;
   width: 75%; }
 
-/* line 677, ../../../app/stylesheets/reports_class.sass */
+/* line 445, ../../../app/stylesheets/reports_class.sass */
 #course_name {
   margin: auto;
   width: 35%; }
 
-/* line 681, ../../../app/stylesheets/reports_class.sass */
+/* line 449, ../../../app/stylesheets/reports_class.sass */
 #semester {
   margin: auto;
   width: 29%; }
 
-/* line 685, ../../../app/stylesheets/reports_class.sass */
+/* line 453, ../../../app/stylesheets/reports_class.sass */
 #printed_statement {
   float: right; }

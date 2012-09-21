@@ -208,12 +208,12 @@ class ApplicationController < ActionController::Base
     @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
   end
 
-  def is_teacher?
+  def is_teacher?(user=@current_user)
     @found_teacher = false
     if Course.are_available.count > 0
       Course.by_name_available.each do |course|
         course.teachers.each do |teacher|
-          if (teacher.id == @current_user.id)
+          if (teacher.id == user.id)
             @found_teacher = true
             break
           end
