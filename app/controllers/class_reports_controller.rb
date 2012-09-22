@@ -76,7 +76,6 @@ class ClassReportsController < ApplicationController
           submitted_students_ids.each do |id|
             @submitted_students << User.find(id)
           end
-          debugger
           @quiz_question_count = data.quiz_question_count
           @submissions = JSON.parse(data.submissions)
         else

@@ -59,10 +59,7 @@ class ClassReport < ActiveRecord::Base
     unsubmitted_students = students.reject{|stu| submission_ids[stu.id] }
 
     data["submitted_students_count"] = submitted_students.count
-    if quiz.id == 11
-      debugger
-      r2d=2
-    end
+
     submitted_students.each do |user|
       data["submitted_students_ids"] << user.id
       number_correct = 0
