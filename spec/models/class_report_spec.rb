@@ -15,6 +15,7 @@ describe ClassReport do
       :course_name => "value for course_name",
       :school_name => "value for school_name",
       :submitted_student_count => 1,
+      :submitted_students_ids => "value for submitted_students_ids",
       :submissions => "value for submissions"
     }
   end

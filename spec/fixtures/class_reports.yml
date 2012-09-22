@@ -13,6 +13,7 @@ one:
   course_name: MyString
   school_name: MyString
   submitted_student_count: 1
+  submitted_students_ids: MyString
   submissions: MyString
 
 two:
@@ -28,4 +29,5 @@ two:
   course_name: MyString
   school_name: MyString
   submitted_student_count: 1
+  submitted_students_ids: MyString
   submissions: MyString
