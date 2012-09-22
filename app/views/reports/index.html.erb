@@ -1,6 +1,8 @@
 <% jammit_css :reports_index -%>
 
-<% content_for :page_title do -%>Course Reports<% end -%>
+<% content_for :page_title do -%>Reports<% end -%>
+
+<%= link_to 'Calculate Reports', calculate_reports_path(), :class => "button", :method => 'put' %>
 
 <h1>Available Probes</h1>
  

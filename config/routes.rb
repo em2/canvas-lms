@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.calculate_reports 'calculate_reports', :controller => 'reports', :action => 'calculate_reports', :conditions => {:method => :put}
 
   map.resources :rosters
   map.resources :reports, :only => [:index, :show] do |report|

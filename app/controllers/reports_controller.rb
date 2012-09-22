@@ -61,4 +61,18 @@ class ReportsController < ApplicationController
     # Make sure the user is authorized to do this
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
   end
+
+  def calculate_reports
+    courses = Course.active
+    courses.each do |course|
+      course.quizzes.active.each do |quiz|
+        if !report = ClassReport.find_by_course_id_and_quiz_id(course.id, quiz.id)
+          report = ClassReport.create!(:course_id => course.id, :quiz_id => quiz.id)
+        end
+        report.calculate_reports
+      end
+    end
+    flash[:notice] = "Attempting to calculate the reports..."
+    redirect_back_or_default(reports_path)
+  end
 end
