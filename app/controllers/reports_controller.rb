@@ -64,30 +64,35 @@ class ReportsController < ApplicationController
 
   def calculate_reports
     if is_authorized?(@current_user) # Make sure the user is authorized to do this
+      question_banks = AssessmentQuestionBank.active
       @context.sub_accounts.active.each do |district|
         district.sub_accounts.active.each do |school|
           class_reports = []
           school.courses.active.each do |course|
             course.quizzes.active.each do |quiz|
               probe = nil
-              AssessmentQuestionBank.active.each do |qb|
+              question_banks.each do |qb|
                 if quiz.probe_name && quiz.probe_name[qb.title]
                   probe = qb
                   break
                 end
               end
               if probe
-                if !report = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(course.id, probe.id, quiz.id)
-                  report = ClassReport.create!(:course_id => course.id, :probe_id => probe.id, :quiz_id => quiz.id)
+                if !class_report = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(course.id, probe.id, quiz.id)
+                  class_report = ClassReport.create!(:course_id => course.id, :probe_id => probe.id, :quiz_id => quiz.id)
                 end
-                report.calculate_reports
-                class_reports << report
+                class_report.calculate_reports
+                class_reports << class_report
               end
             end
           end
           # calculate school report
-          debugger
-          r2d=2
+          question_banks.each do |qb|
+            if !school_report = SchoolReport.find_by_account_id_and_probe_id(school.id, qb.id)
+              school_report = SchoolReport.create!(:account_id => school.id, :probe_id => qb.id)
+            end
+            school_report.calculate_reports(class_reports)
+          end
         end
         # calculate district report
       end

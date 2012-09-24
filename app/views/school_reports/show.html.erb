@@ -92,6 +92,7 @@
 
 		<% @data.each_with_index do |data, index| -%>
 			<tr dir="ltr">
+				<% debugger %>
 				<td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
 				<td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @data[data.first]["teacher_name"] %></td>
 				<td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to @data[data.first]["course_name"][/C[0-9]{3}/], report_class_report_path(params[:report_id], data.first) %> </td>
@@ -111,7 +112,7 @@
 
 		<tr dir="ltr">
 			<td class="hd"><p style="height:16px;">.</p></td>
-			<td dir="ltr" class="s17">School</td>
+			<td dir="ltr" class="s17"><%= t('reports.school','School') %></td>
 			<td dir="ltr" class="s18"><%= @analysis["school_name"] %></td>
 			<td class="s19"><%= @analysis["submitted_students_count"] %></td>
 			<% (@quiz_question_count-1).times do |count| %>
