@@ -4,6 +4,7 @@ class CreateClassReports < ActiveRecord::Migration
   def self.up
     create_table :class_reports do |t|
       t.integer :course_id, :limit => 8
+      t.integer :probe_id, :limit => 8
       t.integer :quiz_id, :limit => 8
       t.string :q, :limit => 2048
       t.string :number_correct, :limit => 2048

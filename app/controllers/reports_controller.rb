@@ -63,16 +63,50 @@ class ReportsController < ApplicationController
   end
 
   def calculate_reports
-    courses = Course.active
-    courses.each do |course|
-      course.quizzes.active.each do |quiz|
-        if !report = ClassReport.find_by_course_id_and_quiz_id(course.id, quiz.id)
-          report = ClassReport.create!(:course_id => course.id, :quiz_id => quiz.id)
+    if is_authorized?(@current_user) # Make sure the user is authorized to do this
+      @context.sub_accounts.active.each do |district|
+        district.sub_accounts.active.each do |school|
+          class_reports = []
+          school.courses.active.each do |course|
+            course.quizzes.active.each do |quiz|
+              probe = nil
+              AssessmentQuestionBank.active.each do |qb|
+                if quiz.probe_name && quiz.probe_name[qb.title]
+                  probe = qb
+                  break
+                end
+              end
+              if probe
+                if !report = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(course.id, probe.id, quiz.id)
+                  report = ClassReport.create!(:course_id => course.id, :probe_id => probe.id, :quiz_id => quiz.id)
+                end
+                report.calculate_reports
+                class_reports << report
+              end
+            end
+          end
+          # calculate school report
+          debugger
+          r2d=2
         end
-        report.calculate_reports
+        # calculate district report
       end
+      
+      # courses = Course.active
+      # courses.each do |course|
+      #   course.quizzes.active.each do |quiz|
+      #     if !report = ClassReport.find_by_course_id_and_quiz_id(course.id, quiz.id)
+      #       report = ClassReport.create!(:course_id => course.id, :quiz_id => quiz.id)
+      #     end
+      #     report.calculate_reports
+      #   end
+      # end
+      flash[:notice] = "Attempting to calculate the reports..."
+      redirect_back_or_default(reports_path)
+    else
+      flash[:notice] = "Not Authorized."
+      redirect_back_or_default(dashboard_url)
     end
-    flash[:notice] = "Attempting to calculate the reports..."
-    redirect_back_or_default(reports_path)
+
   end
 end

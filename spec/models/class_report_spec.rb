@@ -4,6 +4,7 @@ describe ClassReport do
   before(:each) do
     @valid_attributes = {
       :course_id => 1,
+      :probe_id => 1,
       :quiz_id => 1,
       :q => "value for q",
       :number_correct => "value for number_correct",

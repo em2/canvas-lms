@@ -60,7 +60,7 @@ class ClassReportsController < ApplicationController
         # managed_quiz_data(@quiz) if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
   	    
         # @data = gather_class_responses(@course, @quiz)
-        if data = ClassReport.find_by_course_id_and_quiz_id(@course.id, @quiz.id)
+        if data = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(@course.id, @current_probe.id, @quiz.id)
           @q = JSON.parse(data.q)
           @number_correct = JSON.parse(data.number_correct)
           @number_attempted = JSON.parse(data.number_attempted)
