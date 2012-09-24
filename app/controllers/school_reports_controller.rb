@@ -44,29 +44,47 @@ class SchoolReportsController < ApplicationController
       add_crumb("Schools", report_school_reports_path)
       add_crumb(@account.parent_account.name + @account.name)
 
-      @data = {}
-      @account.courses.active.each do |course|
-        course.quizzes.active.each do |quiz|
-          if quiz.probe_name && quiz.probe_name[@current_probe.title]
-            @quiz = quiz
-          end
-        end
+      if data = SchoolReport.find_by_account_id_and_probe_id(@account.id, @current_probe.id)
+        @quiz_question_count = data.quiz_question_count
+        @report_name = data.report_name
+        @participating_students_count = data.participating_students_count
+        @participating_class_count = data.participating_class_count
+        @course_ids = JSON.parse(data.course_ids)
+        @teacher_name = JSON.parse(data.teacher_name)
+        @submitted_students_count = JSON.parse(data.submitted_students_count)
+        @item_analysis = JSON.parse(data.item_analysis)
+        @school_name = data.school_name
+        @analysis = JSON.parse(data.analysis)
 
-        if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
-          # managed_quiz_data(@quiz) if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
+      else
+        flash[:error] = "This report is not yet ready."
+        redirect_back_or_default(report_class_reports_path(params[:report_id]))
+      end
+
+
+      # @data = {}
+      # @account.courses.active.each do |course|
+      #   course.quizzes.active.each do |quiz|
+      #     if quiz.probe_name && quiz.probe_name[@current_probe.title]
+      #       @quiz = quiz
+      #     end
+      #   end
+
+      #   if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
+      #     # managed_quiz_data(@quiz) if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
           
-          @data[course.id] = gather_class_responses(course, @quiz)
-        else
-          flash[:error] = "No Assessment Found"
-          redirect_back_or_default(report_school_reports_path(params[:report_id]))
-        end
-      end
-      @total_students_count = 0
-      @data.each do |data|
-        @total_students_count += @data[data.first]["submitted_students_count"].to_i
-      end
+      #     @data[course.id] = gather_class_responses(course, @quiz)
+      #   else
+      #     flash[:error] = "No Assessment Found"
+      #     redirect_back_or_default(report_school_reports_path(params[:report_id]))
+      #   end
+      # end
+      # @total_students_count = 0
+      # @data.each do |data|
+      #   @total_students_count += @data[data.first]["submitted_students_count"].to_i
+      # end
 
-      @analysis = school_analysis(@data, @quiz_question_count)
+      # @analysis = school_analysis(@data, @quiz_question_count)
 
 		else
 			redirect_back_or_default(dashboard_url)
