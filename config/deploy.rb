@@ -38,7 +38,7 @@ namespace :deploy do
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_configs', 'deploy:start_delayed_jobs'
+after 'deploy:update_code', 'deploy:symlink_configs', 'deploy:start_delayed_jobs', 'deploy:migrate_db'
 
 namespace :deploy do
   desc "Symlinks the config files"
@@ -53,6 +53,13 @@ namespace :deploy do
   desc "Start delayed_jobs"
   task :start_delayed_jobs, :roles => :app do
     run "cd #{current_path} && RAILS_ENV=production bundle exec script/delayed_job start"
+  end
+end
+
+namespace :deploy do
+  desc "Migrate Database"
+  task :migrate_db, :roles => :app do
+    run "cd #{current_path} && RAILS_ENV=production rake db:migrate"
   end
 end
 

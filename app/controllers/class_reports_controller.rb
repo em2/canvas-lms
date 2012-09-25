@@ -45,10 +45,9 @@ class ClassReportsController < ApplicationController
 	    @course = Course.find(params[:id])
 
 	    add_crumb("Reports", reports_path)
-      add_crumb(@current_probe.title, report_path(@current_probe.id))
-      add_crumb("Classes", report_class_reports_path)
+      add_crumb(@current_probe.title, report_path(params[:report_id]))
+      add_crumb("Classes", report_class_reports_path(params[:report_id]))
       add_crumb(@course.name)
-
 
       @course.quizzes.active.each do |quiz|
       	if quiz.probe_name && quiz.probe_name[@current_probe.title]
@@ -57,9 +56,7 @@ class ClassReportsController < ApplicationController
       end
 
       if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
-        # managed_quiz_data(@quiz) if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
   	    
-        # @data = gather_class_responses(@course, @quiz)
         if data = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(@course.id, @current_probe.id, @quiz.id)
           @q = JSON.parse(data.q)
           @number_correct = JSON.parse(data.number_correct)

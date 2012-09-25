@@ -38,8 +38,8 @@ class DistrictReportsController < ApplicationController
 	    @account = Account.find(params[:id])
 
 	    add_crumb("Reports", reports_path)
-      add_crumb(@current_probe.title, report_path(@current_probe.id))
-      add_crumb("Districts", report_district_reports_path)
+      add_crumb(@current_probe.title, report_path(params[:report_id]))
+      add_crumb("Districts", report_district_reports_path(params[:report_id]))
       add_crumb(@account.name)
 
       if data = DistrictReport.find_by_account_id_and_probe_id(@account.id, @current_probe.id)
@@ -56,7 +56,7 @@ class DistrictReportsController < ApplicationController
 
       else
         flash[:error] = "This report is not yet ready."
-        redirect_back_or_default(report_class_reports_path(params[:report_id]))
+        redirect_back_or_default(report_district_reports_path(params[:report_id]))
       end
 	    
 		else
