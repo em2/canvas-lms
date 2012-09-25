@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  account_id: 1
+  probe_id: 1
+  quiz_question_count: 1
+  report_name: MyString
+  participating_students_count: 1
+  participating_class_count: 1
+  course_ids: MyString
+  teacher_name: MyString
+  submitted_students_count: MyString
+  item_analysis: MyString
+  district_name: MyString
+  analysis: MyString
+
+two:
+  account_id: 1
+  probe_id: 1
+  quiz_question_count: 1
+  report_name: MyString
+  participating_students_count: 1
+  participating_class_count: 1
+  course_ids: MyString
+  teacher_name: MyString
+  submitted_students_count: MyString
+  item_analysis: MyString
+  district_name: MyString
+  analysis: MyString

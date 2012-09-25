@@ -5,8 +5,8 @@
 <%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
 
 <h1 id="report_heading"><b><%= t('reports.district_report', "District Report:") %> <i><%= @current_probe.full_name %></i></b></h1>
-<h3 id="district_name"><%= @account.name %></h3>
-<h3 id="semester"><%= semester?(@quiz.created_at) %> <%= @quiz.created_at.to_date.year %></h3>
+<h3 id="district_name"><%= @report_name %></h3>
+<h3 id="semester"><%#= semester?(@quiz.created_at) %> <%#= @quiz.created_at.to_date.year %></h3>
 
 <br />
 
@@ -19,8 +19,8 @@
 
 <div>
 	<div><b><%= t('reports.participation_data', "PARTICIPATION DATA") %></b></div>
-	<div><i><%= t('reports.total_participating_students', "Total number of participating students:") %></i> <%= @analysis["submitted_students_count"] %></div>
-	<div><i><%= t('reports.total_participating_classes', "Total number of participating classes:") %></i> <%= @participating_classes %></div>
+	<div><i><%= t('reports.total_participating_students', "Total number of participating students:") %></i> <%= @participating_students_count %></div>
+	<div><i><%= t('reports.total_participating_classes', "Total number of participating classes:") %></i> <%= @participating_class_count %></div>
 </div>
 
 
@@ -86,16 +86,16 @@
 			<td class="s6"></td>
 		</tr>
 
-		<% @data.each_with_index do |data, index| -%>
+		<% @account_ids.each_with_index do |id, index| -%>
 			<tr dir="ltr">
 				<td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
-				<td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to @school_name[data.first]["school_name"], report_school_report_path(params[:report_id], data.first) %></td>
-				<td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_teacher_ids[data.first].count %></td>
-				<td class="s20" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @submitted_students_count[data.first] %></td>
+				<td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to Account.find(id).name, report_school_report_path(params[:report_id], id) %></td>
+				<td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @teachers_count["#{id}"] %></td>
+				<td class="s20" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @submitted_students_count["#{id}"] %></td>
 				<% (@quiz_question_count-1).times do |count| %>
-	        <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @data[data.first]["item_analysis"]["#{count+1}"] %>%</td>
+	        <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{count+1}"] %>%</td>
 	      <% end -%>
-	      <td dir="ltr" class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @data[data.first]["item_analysis"]["#{@quiz_question_count}"] %>%</td>
+	      <td dir="ltr" class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{@quiz_question_count}"] %>%</td>
 				<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
@@ -108,8 +108,8 @@
 		<tr dir="ltr">
 			<td class="hd"><p style="height:16px;">.</p></td>
 			<td dir="ltr" class="s17"><%= t('reports.district', "District") %></td>
-			<td dir="ltr" class="s18"><%= @all_teacher_ids.count %></td>
-			<td class="s19"><%= @analysis["submitted_students_count"] %></td>
+			<td dir="ltr" class="s18"><%= @total_teachers_count %></td>
+			<td class="s19"><%= @participating_students_count %></td>
 			<% (@quiz_question_count-1).times do |count| %>
         <td dir="ltr" class="s21"><%= @analysis["#{count+1}"] %>%</td>
       <% end -%>

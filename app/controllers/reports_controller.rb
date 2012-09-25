@@ -66,6 +66,7 @@ class ReportsController < ApplicationController
     if is_authorized?(@current_user) # Make sure the user is authorized to do this
       question_banks = AssessmentQuestionBank.active
       @context.sub_accounts.active.each do |district|
+        school_reports = []
         district.sub_accounts.active.each do |school|
           class_reports = []
           school.courses.active.each do |course|
@@ -92,20 +93,17 @@ class ReportsController < ApplicationController
               school_report = SchoolReport.create!(:account_id => school.id, :probe_id => qb.id)
             end
             school_report.calculate_reports(class_reports)
+            school_reports << school_report
           end
         end
         # calculate district report
+        question_banks.each do |qb|
+          if !district_report = DistrictReport.find_by_account_id_and_probe_id(district.id, qb.id)
+            district_report = DistrictReport.create!(:account_id => district.id, :probe_id => qb.id)
+          end
+          district_report.calculate_reports(school_reports)
+        end
       end
-      
-      # courses = Course.active
-      # courses.each do |course|
-      #   course.quizzes.active.each do |quiz|
-      #     if !report = ClassReport.find_by_course_id_and_quiz_id(course.id, quiz.id)
-      #       report = ClassReport.create!(:course_id => course.id, :quiz_id => quiz.id)
-      #     end
-      #     report.calculate_reports
-      #   end
-      # end
       flash[:notice] = "Attempting to calculate the reports..."
       redirect_back_or_default(reports_path)
     else

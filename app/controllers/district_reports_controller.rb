@@ -42,56 +42,22 @@ class DistrictReportsController < ApplicationController
       add_crumb("Districts", report_district_reports_path)
       add_crumb(@account.name)
 
-      @data = {}
-      @all_teacher_ids = {}
-      @school_teacher_ids = {}
-      @submitted_students_count = {}
-      @participating_classes = 0
-      @account.sub_accounts.active.each do |sub_account|
-        sub_data = {}
-        teacher_ids = {}
-        submitted_students_count = 0
-        @participating_classes += sub_account.courses.active.count
-        sub_account.courses.active.each do |course|
-          course.quizzes.active.each do |quiz|
-            if quiz.probe_name && quiz.probe_name[@current_probe.title]
-              @quiz = quiz
-            end
-          end
+      if data = DistrictReport.find_by_account_id_and_probe_id(@account.id, @current_probe.id)
+        @quiz_question_count = data.quiz_question_count
+        @report_name = data.report_name
+        @participating_students_count = data.participating_students_count
+        @participating_class_count = data.participating_class_count
+        @account_ids = JSON.parse(data.account_ids)
+        @submitted_students_count = JSON.parse(data.submitted_students_count)
+        @item_analysis = JSON.parse(data.item_analysis)
+        @analysis = JSON.parse(data.analysis)
+        @teachers_count = JSON.parse(data.teachers_count)
+        @total_teachers_count = data.total_teachers_count
 
-          if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
-            # managed_quiz_data(@quiz) if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
-            
-            sub_data[course.id] = gather_class_responses(course, @quiz)
-            @all_teacher_ids[sub_data[course.id]["teacher_id"]] = true
-            teacher_ids[sub_data[course.id]["teacher_id"]] = true
-            submitted_students_count += sub_data[course.id]["submitted_students_count"]
-          else
-            flash[:error] = "No Assessment Found"
-            redirect_back_or_default(report_school_reports_path(params[:report_id]))
-          end
-        end
-        @submitted_students_count[sub_account.id] = submitted_students_count
-        @school_teacher_ids[sub_account.id] = teacher_ids
-        @data[sub_account.id] = sub_data
+      else
+        flash[:error] = "This report is not yet ready."
+        redirect_back_or_default(report_class_reports_path(params[:report_id]))
       end
-
-      @total_students_count = 0
-      @school_name = {}
-      @data.each do |sub_account|
-        @data[sub_account.first]["item_analysis"] = school_analysis(@data[sub_account.first], @quiz_question_count)
-        if @school_name[sub_account.first] == nil
-          @school_name[sub_account.first] = {}
-        end
-        @data[sub_account.first].each do |data|
-          @total_students_count += @data[sub_account.first][data.first]["submitted_students_count"].to_i
-          if @school_name[sub_account.first]["school_name"] == nil
-            @school_name[sub_account.first]["school_name"] = @data[sub_account.first][data.first]['school_name']
-          end
-        end
-      end
-
-      @analysis = district_analysis(@data, @quiz_question_count)
 	    
 		else
 			redirect_back_or_default(dashboard_url)
