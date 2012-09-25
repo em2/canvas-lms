@@ -19,11 +19,6 @@ class DistrictReport < ActiveRecord::Base
 				quiz_question_count = report.quiz_question_count if quiz_question_count == 0
 				report_name = Account.find(self.account_id).name if report_name == ''
 
-
-				# JSON.parse(report.submitted_students_count).each do |id, count|
-				# 	participating_students_count += report.submitted_students_count["#{index}"]
-				# end
-
 				account_ids << report.account_id
 				
 				counter = 0

@@ -61,31 +61,6 @@ class SchoolReportsController < ApplicationController
         redirect_back_or_default(report_class_reports_path(params[:report_id]))
       end
 
-
-      # @data = {}
-      # @account.courses.active.each do |course|
-      #   course.quizzes.active.each do |quiz|
-      #     if quiz.probe_name && quiz.probe_name[@current_probe.title]
-      #       @quiz = quiz
-      #     end
-      #   end
-
-      #   if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
-      #     # managed_quiz_data(@quiz) if @quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics)
-          
-      #     @data[course.id] = gather_class_responses(course, @quiz)
-      #   else
-      #     flash[:error] = "No Assessment Found"
-      #     redirect_back_or_default(report_school_reports_path(params[:report_id]))
-      #   end
-      # end
-      # @total_students_count = 0
-      # @data.each do |data|
-      #   @total_students_count += @data[data.first]["submitted_students_count"].to_i
-      # end
-
-      # @analysis = school_analysis(@data, @quiz_question_count)
-
 		else
 			redirect_back_or_default(dashboard_url)
 		end
