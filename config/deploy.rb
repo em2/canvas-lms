@@ -1,9 +1,8 @@
 set :stages, %w(production local)
 set :default_stage, "production"
-
-require 'capistrano/ext/multistage/whenever'
-
 set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+require 'capistrano/ext/multistage'
 
 set :application, "canvas-lms"
 set :repository,  "git@github.com:em2/canvas-lms.git"
