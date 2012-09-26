@@ -90,6 +90,10 @@ end
 gem 'unicorn', '~> 4.3.1'
 gem 'newrelic_rpm'
 
+#cron job stuff
+gem 'whenever', :require => false
+
+
 ONE_NINE = RUBY_VERSION >= "1.9"
 if !ONE_NINE
   gem 'fastercsv', '1.5.3'

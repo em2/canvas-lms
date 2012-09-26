@@ -1,4 +1,17 @@
 class Report < ActiveRecord::Base
+  def self.calculate_them()
+    context = Account.default
+    if !report = Report.first
+      report = Report.new
+      report.save!
+    end
+    puts "Attempting to calculate reports"
+    if context && report
+      report.calculate_reports(context)
+    end
+    puts "bfcoder is done calculating reports"
+  end
+
 	def calculate_reports(context)
 		question_banks = AssessmentQuestionBank.active
 		context.sub_accounts.active.each do |district|

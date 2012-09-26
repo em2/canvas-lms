@@ -71,6 +71,7 @@ class ReportsController < ApplicationController
       Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
       # report.send_later(:calculate_reports, @context)
       # report.calculate_reports(@context)
+      # Report.calculate_them
       
       flash[:notice] = "Attempting to calculate the reports..."
       redirect_back_or_default(reports_path)
