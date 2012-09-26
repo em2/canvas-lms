@@ -20,13 +20,9 @@ set :output, "/u/apps/canvas-lms/shared/log/cron_log.log"
 # Learn more: http://github.com/javan/whenever
 
 every :day, :at => '12:20am' do
-	puts "Starting report calculation"
   runner "Report.calculate_them"
-  puts "Finished report calculation"
 end
 
 every :hour do
-	puts "Starting report calculation"
   runner "Report.calculate_them"
-  puts "Finished report calculation"
 end
