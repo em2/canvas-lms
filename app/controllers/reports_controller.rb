@@ -64,16 +64,18 @@ class ReportsController < ApplicationController
 
   def calculate_reports
     if is_authorized?(@current_user) # Make sure the user is authorized to do this
-      if !report = Report.first
-        report = Report.new
-        report.save!
-      end
-      Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
+      # if !report = Report.first
+      #   report = Report.new
+      #   report.save!
+      # end
+  
+      # Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
       # report.send_later(:calculate_reports, @context)
       # report.calculate_reports(@context)
-      # Report.calculate_them
+      Report.calculate_them
       
       flash[:notice] = "Attempting to calculate the reports..."
+
       redirect_back_or_default(reports_path)
     else
       flash[:notice] = "Not Authorized."

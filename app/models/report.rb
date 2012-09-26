@@ -1,15 +1,18 @@
 class Report < ActiveRecord::Base
-  def self.calculate_them()
+  def self.calculate_them
     context = Account.default
     if !report = Report.first
       report = Report.new
       report.save!
     end
-    puts "Attempting to calculate reports"
+    puts "Attempting to calculate reports."
     if context && report
-      report.calculate_reports(context)
+      Delayed::Job.enqueue(ReportCalculateJob.new(report, context))
+      puts "bfcoder is done queueing reports calculation."
+    else
+      puts "bfcoder could not calculate reports."
     end
-    puts "bfcoder is done calculating reports"
+    
   end
 
 	def calculate_reports(context)
