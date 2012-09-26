@@ -1,16 +1,17 @@
 class Report < ActiveRecord::Base
   def self.calculate_them
     context = Account.default
-    if !report = Report.first
-      report = Report.new
-      report.save!
+    if !report = Report.find_by_account_id(context.id)
+      report = Report.create!(:account_id => context.id, :calculation_count => 0, :in_job => false)
     end
     puts "Attempting to calculate reports."
-    if context && report
+    if !report.in_job
+      report.in_job = true
+      report.save!
       Delayed::Job.enqueue(ReportCalculateJob.new(report, context))
       puts "bfcoder is done queueing reports calculation."
     else
-      puts "bfcoder could not calculate reports."
+      puts "bfcoder is already calculating reports."
     end
     
   end
@@ -56,5 +57,8 @@ class Report < ActiveRecord::Base
         district_report.calculate_reports(school_reports)
       end
     end
+    self.in_job = false
+    self.calculation_count += 1
+    self.save!
 	end
 end

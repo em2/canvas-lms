@@ -4,6 +4,10 @@ class ReportsController < ApplicationController
 
       add_crumb("Reports")
 
+      if !@report = Report.find_by_account_id(@context.id)
+        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
+      end
+
       @question_bank = AssessmentQuestionBank.active
       
     else
@@ -27,9 +31,20 @@ class ReportsController < ApplicationController
 
   def calculate_reports
     if is_authorized?(@current_user) # Make sure the user is authorized to do this
-      Report.calculate_them
+      if !report = Report.find_by_account_id(@context.id)
+        report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
+      end
+      puts "Attempting to calculate reports."
+      if !report.in_job
+        report.in_job = true
+        report.save!
+        Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
+        flash[:notice] = "Attempting to calculate the reports..."
+      else
+        flash[:error] = "The report is already in the queue."
+      end
       
-      flash[:notice] = "Attempting to calculate the reports..."
+      
       redirect_back_or_default(reports_path)
     else
       flash[:notice] = "Not Authorized."
