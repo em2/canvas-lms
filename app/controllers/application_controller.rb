@@ -229,6 +229,18 @@ class ApplicationController < ActionController::Base
     @is_teacher = @found_teacher
   end
 
+  def is_authorized?(user)
+    #
+    # get the current context
+    get_context
+    @context = @domain_root_account || Account.default unless @context.is_a?(Account)
+    @context = @context.root_account || @context
+
+    #
+    # Make sure the user is authorized to do this
+    @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
+  end
+
   def find_courses_in_account(account, top_account, current_probe, collection)
     if !account.courses.are_available.empty? && !@found_match
       account.courses.are_available.each do |course|
