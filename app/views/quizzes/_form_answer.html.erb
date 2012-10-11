@@ -14,15 +14,13 @@
           <input type="hidden" name="answer_html"/>
 
           <span class="answer_html" style="display:inline-block;"></span>
-
-          &nbsp <b><%= before_label(:answer_text_misconception, "Answer Misconception") %></b>
-          <select class="answer_misconception">
-            <% if @misconceptions -%>
-              <% @misconceptions.each do |misconception| -%>
-                <option value="<%= misconception.id %>" name="answer_misconception"><%= misconception.name %></option>
-              <% end -%> 
+          <br />
+          <% if @misconceptions -%>
+            <% @misconceptions.each do |misconception| -%>
+              &nbsp <b><%= before_label(:answer_text_misconception, misconception.name) %></b>
+                <input style="width:50px;" data-id="<%= misconception.id %>" class="answer_misconception answer_misconception_<%= misconception.id %>"></input>
             <% end -%>
-          </select>
+          <% end -%>
         </div>
         <div class="fixed_answer answer_type">
           <b class="answer_text"></b>

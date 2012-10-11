@@ -1409,9 +1409,16 @@ define([
           answer.answer_type = data.answer_type;
           answer.question_type = data.question_type;
           var $answer = makeFormAnswer(answer);
-          $answer.find(".answer_misconception option:selected").removeAttr('selected', 'selected')
-          $answer.find(".answer_misconception").val(answer.answer_misconception_id)
-          $answer.find(".answer_misconception option[value=" + answer.answer_misconception_id + "]").attr('selected','selected');
+
+          try {
+            var answer_misconceptions = JSON.parse(answer.answer_misconception_id)
+            $.each(answer_misconceptions, function(key, value){
+              $answer.find(".answer_misconception_"+key).val(value);
+            });
+          }
+          catch(e) {
+            var r2d=2;
+          }
 
           $form.find(".form_answers").append($answer);
 
@@ -2050,8 +2057,14 @@ define([
         data.blank_id = $answer.find(".blank_id").text();
         data.answer_text = $answer.find("input[name='answer_text']:visible").val();
         data.answer_html = $answer.find(".answer_html").html();
-        data.answer_misconception_id = $answer.find(".answer_misconception").val()
-        //data.answer_misconception_id = $answer.find("select option:selected").val()
+        misconceptions = $answer.find(".answer_misconception");
+        answer_misconception_id = {};
+        $.each(misconceptions, function(index, misconception){
+          answer_misconception_id[$(misconception).attr('data-id')] = $answer.find(".answer_misconception_"+$(misconception).attr('data-id')).val()  
+        });
+
+        data.answer_misconception_id = JSON.stringify(answer_misconception_id);
+
         if (questionData.question_type == "true_false_question") {
           data.answer_text = (i == 0) ? I18n.t('true', "True") : I18n.t('false', "False");
         }

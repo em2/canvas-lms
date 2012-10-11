@@ -41,15 +41,24 @@ class QuizQuestionsController < ApplicationController
 
       @question.question_data[:answers].each_with_index do |answer, index|
         if !answer[:misconception_id].empty?
-          misconception = QuizMisconception.find(answer[:misconception_id])
-          miscon = misconception.pattern
-          if miscon.empty?
-            misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
-          else
-            miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+          misconceptions = JSON.parse(answer[:misconception_id])
+          misconceptions.each_with_index do |misconception_id, index|
+            misconception = QuizMisconception.find(misconception_id.first.to_i)
+            miscon = misconception.pattern
+
+            answer_id = {}
+
+            answer_id["#{answer[:id]}"] = misconceptions["#{misconception_id.first}"]
+
+            if miscon.empty?
+              miscon.merge!({"#{@question.id}"=>answer_id})
+            else
+              answer_id.merge!(miscon["#{@question.id}"]) unless miscon["#{@question.id}"].nil?
+              miscon.merge!({"#{@question.id}"=>answer_id})
+            end
             misconception.pattern = miscon
+            misconception.save!
           end
-          misconception.save!
         end
       end
       
@@ -95,16 +104,24 @@ class QuizQuestionsController < ApplicationController
       
       @question.question_data[:answers].each_with_index do |answer, index|
         if !answer[:misconception_id].empty?
-          misconception = QuizMisconception.find(answer[:misconception_id])
-          miscon = misconception.pattern
+          misconceptions = JSON.parse(answer[:misconception_id])
+          misconceptions.each_with_index do |misconception_id, index|
+            misconception = QuizMisconception.find(misconception_id.first.to_i)
+            miscon = misconception.pattern
 
-          if miscon.empty?
-            misconception.pattern = {"#{@question.id}"=>[answer[:id]]}
-          else
-            miscon.merge!({"#{@question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+            answer_id = {}
+
+            answer_id["#{answer[:id]}"] = misconceptions["#{misconception_id.first}"]
+
+            if miscon.empty?
+              miscon.merge!({"#{@question.id}"=>answer_id})
+            else
+              answer_id.merge!(miscon["#{@question.id}"]) unless miscon["#{@question.id}"].nil?
+              miscon.merge!({"#{@question.id}"=>answer_id})
+            end
             misconception.pattern = miscon
+            misconception.save!
           end
-          misconception.save!
         end
       end
 
