@@ -343,35 +343,29 @@ class QuizSubmission < ActiveRecord::Base
 
     
     quiz = Quiz.find(data[:quiz_id])
-    @misconceptions = quiz.quiz_misconceptions
-    @error_hash = {"total_error_tally"=>0}
-    @misconceptions.active.each do |misconception|
-      temp_hash = @error_hash
-      temp_hash.merge!("#{misconception.name}"=>0)
-      @error_hash = temp_hash
-    end
-
+    misconceptions = quiz.quiz_misconceptions
+    probability_hash = {}
 
     self.questions_as_object.each do |q|
       user_answer = self.class.score_question(q, data)
       @user_answers << user_answer
 
       #
-      # go through all the misconceptions user answers and tally up
-      # all the misconceptions the student may have
-      @misconceptions.active.each do |misconception|
+      # go through all the misconceptions user answers and calculate
+      # the probability the student may have for that misconception
+      misconceptions.active.each do |misconception|
         if (misconception.pattern["#{user_answer[:question_id]}"] != nil)
-          misconception.pattern["#{user_answer[:question_id]}"].each do |value|
-            if (value == user_answer[:answer_id])
-              num = @error_hash["#{misconception.name}"]
-              num += 1
-              miscon = {"#{misconception.name}"=>num}
-              @error_hash.merge!(miscon)
-              if (!user_answer[:correct])
-                num = @error_hash["total_error_tally"]
-                num += 1
-                miscon = {"total_error_tally"=>num}
-                @error_hash.merge!(miscon)
+          misconception.pattern["#{user_answer[:question_id]}"].each do |answer_id, answer_probability|
+            if (answer_id == user_answer[:answer_id])
+
+              if probability_hash["#{misconception.name}"].nil?
+                prob = {"#{misconception.name}"=>"#{answer_probability}"}
+                probability_hash.merge!(prob)
+              else
+                num = probability_hash["#{misconception.name}"].to_f
+                num *= answer_probability.to_f
+                prob = {"#{misconception.name}"=>num}
+                probability_hash.merge!(prob)
               end
             end
           end
@@ -381,27 +375,12 @@ class QuizSubmission < ActiveRecord::Base
       @tally += (user_answer[:points] || 0) if user_answer[:correct]
     end
 
-    #
-    # Find the largest misconception and keep track of the 2nd and 3rd
-    # @max_error_code = ""
-    # @max_so_far = 0
-    # @second_largest_error_code = ""
-    # @third_largest_error_code = ""
-    # @error_hash.each do |key, value|
-    #   if (key != 'total_error_tally' && key != '0' && value > @max_so_far)
-    #     @third_largest_error_code = @second_largest_error_code
-    #     @second_largest_error_code = @max_error_code
-    #     @max_so_far = value
-    #     @max_error_code = key
-    #   end
-    # end
 
 
-    @misconceptions.active.each do |misconception|
-      @error_hash.each do |key, value|
-        if (key != '0' && key == misconception.name && value > 0)
-          confidence = 100
-          misconception.user_misconceptions.create!(:user_id => self.user.id, :confidence_level => confidence, :error_tally => value, :workflow_state => 'available')
+    misconceptions.active.each do |misconception|
+      probability_hash.each do |misconception_name, probability|
+        if (misconception_name == misconception.name)
+          misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :workflow_state => 'available')
         end
       end
     end

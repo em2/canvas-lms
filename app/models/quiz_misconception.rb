@@ -13,7 +13,7 @@ class QuizMisconception < ActiveRecord::Base
 	end
 
 	def pattern
-		JSON.parse(read_attribute(:pattern))
+		JSON.parse(read_attribute(:pattern)) rescue nil
 	end
 
 	def explanation_url=(url)
@@ -26,6 +26,6 @@ class QuizMisconception < ActiveRecord::Base
 	end
 
 	def explanation_url
-		read_attribute(:explanation_url)
+		read_attribute(:explanation_url) rescue nil
 	end
 end

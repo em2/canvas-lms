@@ -42,6 +42,7 @@ class Quiz < ActiveRecord::Base
   belongs_to :cloned_item
 
   has_many :quiz_misconceptions, :dependent => :destroy, :order => 'position, name, created_at'
+  has_one :quiz_misconception_probability, :dependent => :destroy
   #has_many :user_misconceptions, :through => :quiz_misconceptions
   
   validates_length_of :description, :maximum => maximum_long_text_length, :allow_nil => true, :allow_blank => true

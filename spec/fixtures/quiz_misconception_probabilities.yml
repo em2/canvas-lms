@@ -1,9 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  quiz_id: 1
   high_probability: MyString
   somewhat_probability: MyString
 
 two:
+  quiz_id: 1
   high_probability: MyString
   somewhat_probability: MyString

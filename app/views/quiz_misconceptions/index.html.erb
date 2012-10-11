@@ -12,6 +12,26 @@
     <% end -%>
   </div>
 <% end -%>
+
+<div class="misconception">
+  <div class="misconception_piece">
+    High Probability: <br />
+    <% if !@quiz_probabilities.high_probability.nil? -%>
+      <% @quiz_probabilities.high_probability.each do |hp| -%>
+        <%= QuizMisconception.find(hp.first.to_i).name %>:<%= hp.last %><br />
+      <% end -%>
+    <% end -%>
+    <br />
+    Somewhat Probability: <br />
+    <% if !@quiz_probabilities.somewhat_probability.nil? -%>
+      <% @quiz_probabilities.somewhat_probability.each do |hp| -%>
+        <%= QuizMisconception.find(hp.first.to_i).name %>:<%= hp.last %><br />
+      <% end -%>
+    <% end -%>
+  </div>
+</div>
+
+
 <% if @misconceptions.count > 0 -%>
 		<% @misconceptions.each do |misconception| -%>
 			<%= render :partial => "misconception_item", :object => misconception, :locals => {:question_bank_id => params[:question_bank_id]}, :id => params[:id] %>

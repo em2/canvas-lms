@@ -19,14 +19,17 @@ class QuizMisconceptionsController < ApplicationController
     end
   end
 
-  def index
-    @abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    
+  def index    
   	@quiz = Quiz.find(params[:quiz_id])
     add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
     #add_crumb(@quiz.id, url_for(@quiz))
     add_crumb("Misconceptions")
+
   	@misconceptions = @quiz.quiz_misconceptions
+    if !@quiz_probabilities = @quiz.quiz_misconception_probability
+      @quiz_probabilities = @quiz.build_quiz_misconception_probability
+      @quiz_probabilities.save!
+    end
 
   end
 
