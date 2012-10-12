@@ -356,8 +356,7 @@ class QuizSubmission < ActiveRecord::Base
       misconceptions.active.each do |misconception|
         if (misconception.pattern["#{user_answer[:question_id]}"] != nil)
           misconception.pattern["#{user_answer[:question_id]}"].each do |answer_id, answer_probability|
-            if (answer_id == user_answer[:answer_id])
-
+            if (answer_id.to_i == user_answer[:answer_id])
               if probability_hash["#{misconception.name}"].nil?
                 prob = {"#{misconception.name}"=>"#{answer_probability}"}
                 probability_hash.merge!(prob)
