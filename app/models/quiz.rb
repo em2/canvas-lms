@@ -43,7 +43,7 @@ class Quiz < ActiveRecord::Base
 
   has_many :quiz_misconceptions, :dependent => :destroy, :order => 'position, name, created_at'
   has_one :quiz_misconception_probability, :dependent => :destroy
-  #has_many :user_misconceptions, :through => :quiz_misconceptions
+  has_many :user_misconceptions, :dependent => :destroy
   
   validates_length_of :description, :maximum => maximum_long_text_length, :allow_nil => true, :allow_blank => true
   validates_length_of :title, :maximum => maximum_string_length, :allow_nil => true
