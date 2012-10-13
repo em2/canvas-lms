@@ -15,7 +15,7 @@
 						Q<%= quiz_question.position %>:
 	            <% quiz_question.question_data[:answers].each_with_index do |question, index| -%>
 	              <% if question[:id] == answer_id.first.to_i -%>
-	                A<%= index+1 %>:<%= answer_id.last %><br />
+	                A<%= index+1 %>:&nbsp<%= answer_id.last %><br />
 	              <% end -%>
 	            <% end -%> 
 	          <% end -%>

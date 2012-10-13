@@ -221,7 +221,6 @@ tr.question td .number_answer.correct_answer {
 	<h2>Student Misconceptions <a href="#"><u>(details)</u></a></h2>
 	<div class="rs-margin-lr rs-margin-bottom">
     <table id="misconceptions_summary">
-      <% @misconceptions = @quiz.quiz_misconceptions -%>
       <% @misconceptions.active.each_with_index do |misconception, index| -%>
 	      <tbody>
           <tr class="misconceptions_summary_row">
@@ -229,7 +228,7 @@ tr.question td .number_answer.correct_answer {
             </td>
 		      </tr>
 		      <tr>
-  	        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;"> <% misconception.user_misconceptions.active.each_with_index do |user, index| -%><%= User.find(user.user_id).name %><%= ',' if index < misconception.user_misconceptions.active.count-1 %> <% end -%></td>
+  	        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;"> <% misconception.user_misconceptions.active.each_with_index do |user, index| -%><%= User.find(user.user_id).name %>&nbsp-&nbsp<%= user.probability > @high_probability["#{user.quiz_misconception_id}"].to_f ? 'HP' : user.probability > @somewhat_probability["#{user.quiz_misconception_id}"].to_f ? 'SP' : 'NONE' %><%= ',' if index < misconception.user_misconceptions.active.count-1 %> <% end -%></td>
 		      </tr>
         </tbody>
       <% end -%>

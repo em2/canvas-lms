@@ -18,14 +18,14 @@
     High Probability: <br />
     <% if !@quiz_probabilities.high_probability.nil? -%>
       <% @quiz_probabilities.high_probability.each do |hp| -%>
-        <%= QuizMisconception.find(hp.first.to_i).name %>:<%= hp.last %><br />
+        <%= QuizMisconception.find(hp.first.to_i).name %>:&nbsp<%= hp.last %><br />
       <% end -%>
     <% end -%>
     <br />
     Somewhat Probability: <br />
     <% if !@quiz_probabilities.somewhat_probability.nil? -%>
       <% @quiz_probabilities.somewhat_probability.each do |hp| -%>
-        <%= QuizMisconception.find(hp.first.to_i).name %>:<%= hp.last %><br />
+        <%= QuizMisconception.find(hp.first.to_i).name %>:&nbsp<%= hp.last %><br />
       <% end -%>
     <% end -%>
   </div>
