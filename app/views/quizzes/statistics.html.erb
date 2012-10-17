@@ -227,9 +227,24 @@ tr.question td .number_answer.correct_answer {
 		        <td class="misconceptions_summary_row_standard misconception_heading"><%= index+1 %>. <%= misconception.name %> <%= "- #{misconception.description}" if !misconception.description.empty? %> <%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url)) if (!misconception.explanation_url.empty?) %>
             </td>
 		      </tr>
+          <tr>
+            <td>
+              &nbsp High Probability:
+            </td>
+          </tr>
 		      <tr>
-  	        <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;"> <% misconception.user_misconceptions.active.each_with_index do |user, index| -%><%= User.find(user.user_id).name %>&nbsp-&nbsp<%= user.probability > @high_probability["#{user.quiz_misconception_id}"].to_f ? 'HP' : user.probability > @somewhat_probability["#{user.quiz_misconception_id}"].to_f ? 'SP' : 'NONE' %><%= ',' if index < misconception.user_misconceptions.active.count-1 %> <% end -%></td>
-		      </tr>
+            <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">&nbsp&nbsp<% misconception.user_misconceptions.active.each_with_index do |user, um_index| -%><% if user.probability > @high_probability["#{user.quiz_misconception_id}"].to_f -%><%= User.find(user.user_id).name %><% end -%><%= ',' if um_index < misconception.user_misconceptions.active.count-1 %> <% end -%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              &nbsp Somewhat Probability:
+            </td>
+          </tr>
+          <tr>
+            <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">&nbsp&nbsp<% misconception.user_misconceptions.active.each_with_index do |user, um_index| -%><%= User.find(user.user_id).name if (user.probability > @somewhat_probability["#{user.quiz_misconception_id}"].to_f && user.probability < @high_probability["#{user.quiz_misconception_id}"].to_f) %><%= ',' if um_index < misconception.user_misconceptions.active.count-1 %> <% end -%>
+            </td>
+          </tr>
         </tbody>
       <% end -%>
       <tr>

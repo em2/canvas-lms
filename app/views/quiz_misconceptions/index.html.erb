@@ -14,21 +14,32 @@
 <% end -%>
 
 <div class="misconception">
-  <div class="misconception_piece">
-    High Probability: <br />
-    <% if !@quiz_probabilities.high_probability.nil? -%>
-      <% @quiz_probabilities.high_probability.each do |hp| -%>
-        <%= QuizMisconception.find(hp.first.to_i).name %>:&nbsp<%= hp.last %><br />
-      <% end -%>
+  
+  High Probability: <br />
+  <% if !@quiz_probabilities.high_probability.nil? -%>
+    <% @quiz_probabilities.high_probability.each do |hp| -%>
+      <div class="misconception_piece">
+        <span class="header"><%= QuizMisconception.find(hp.first.to_i).name %>:&nbsp</span>
+        <span class="header_content high_probability_limit"><%= hp.last %></span>
+        <span class="modify_buttons">
+          <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= hp.first.to_i %>"><%= image_tag "edit.png" %></a>
+        </span><br />
+      </div>
     <% end -%>
-    <br />
-    Somewhat Probability: <br />
-    <% if !@quiz_probabilities.somewhat_probability.nil? -%>
-      <% @quiz_probabilities.somewhat_probability.each do |hp| -%>
-        <%= QuizMisconception.find(hp.first.to_i).name %>:&nbsp<%= hp.last %><br />
-      <% end -%>
+  <% end -%>
+  <br />
+  Somewhat Probability: <br />
+  <% if !@quiz_probabilities.somewhat_probability.nil? -%>
+    <% @quiz_probabilities.somewhat_probability.each do |sp| -%>
+      <div class="misconception_piece">
+        <span class="header"><%= QuizMisconception.find(sp.first.to_i).name %>:&nbsp</span>
+        <span class="header_content somewhat_probability_limit"><%= sp.last %></span>
+        <span class="modify_buttons">
+          <a href="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= sp.first.to_i %>"><%= image_tag "edit.png" %></a>
+        </span><br />
+      </div>
     <% end -%>
-  </div>
+  <% end -%>
 </div>
 
 
@@ -41,17 +52,29 @@
 
 <a href="<%= new_course_quiz_quiz_misconception_path %>" class="button">Add Misconception</a>
 
-<% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_name_form", :style => "display: none;"} do |f| %>
+<% form_for :quiz_misconception_limit, :url => "", :html => {:id => "edit_misconception_hp_limit_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :high_probability_limit, :en => "Misconception Limit" %>
+  <%= f.text_field :high_probability_limit, :class => "misconception_limit_box" %>
+  <%= f.text_field :high_probability_id, :class => "misconception_limit_id_box", :hidden => true %>
+<% end %>
+
+<% form_for :quiz_misconception_limit, :url => "", :html => {:id => "edit_misconception_sp_limit_form", :style => "display: none;"} do |f| %>
+  <%= f.blabel :somewhat_probability, :en => "Misconception Limit" %>
+  <%= f.text_field :somewhat_probability_limit, :class => "misconception_limit_box" %>
+  <%= f.text_field :somewhat_probability_id, :class => "misconception_limit_id_box", :hidden => true %>
+<% end %>
+
+<% form_for :quiz_misconception, :url => "", :html => {:id => "edit_misconception_name_form", :style => "display: none;"} do |f| %>
   <%= f.blabel :name, :en => "Misconception Name" %>
   <%= f.text_field :name, :class => "misconception_name_box" %>
 <% end %>
 
-<% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_url_form", :style => "display: none;"} do |f| %>
+<% form_for :quiz_misconception, :url => "", :html => {:id => "edit_misconception_url_form", :style => "display: none;"} do |f| %>
   <%= f.blabel :explanation_url, :en => "Explanation URL" %>
   <%= f.text_field :explanation_url, :class => "misconception_url_box" %>
 <% end %>
 
-<% form_for :assessment_misconception, :url => "", :html => {:id => "edit_misconception_description_form", :style => "display: none;"} do |f| %>
+<% form_for :quiz_misconception, :url => "", :html => {:id => "edit_misconception_description_form", :style => "display: none;"} do |f| %>
   <%= f.blabel :description, :en => "Description" %>
   <%= f.text_area :description, :class => "misconception_description_box" %>
 <% end %>

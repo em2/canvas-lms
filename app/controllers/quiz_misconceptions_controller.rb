@@ -11,7 +11,7 @@ class QuizMisconceptionsController < ApplicationController
 
   def update
     @misconception = QuizMisconception.find(params[:id])
-    if @misconception.update_attributes(params[:assessment_misconception])
+    if @misconception.update_attributes(params[:quiz_misconception])
       @misconception.reload
       render :json => @misconception.to_json
     else
