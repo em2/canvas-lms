@@ -346,6 +346,8 @@ class QuizSubmission < ActiveRecord::Base
     misconceptions = quiz.quiz_misconceptions
     probability_hash = {}
 
+    question_count = 0
+
     self.questions_as_object.each do |q|
       user_answer = self.class.score_question(q, data)
       @user_answers << user_answer
@@ -362,7 +364,7 @@ class QuizSubmission < ActiveRecord::Base
                 probability_hash.merge!(prob)
               else
                 num = probability_hash["#{misconception.name}"].to_f
-                num *= answer_probability.to_f
+                num += answer_probability.to_f
                 prob = {"#{misconception.name}"=>num}
                 probability_hash.merge!(prob)
               end
@@ -371,18 +373,21 @@ class QuizSubmission < ActiveRecord::Base
         end
       end
 
+      if q[:question_type] != "text_only_question"
+        question_count += 1
+      end
+
       @tally += (user_answer[:points] || 0) if user_answer[:correct]
     end
-
 
 
     misconceptions.active.each do |misconception|
       probability_hash.each do |misconception_name, probability|
         if (misconception_name == misconception.name)
           if um = misconception.user_misconceptions.active.find_by_user_id_and_quiz_id(self.user.id, quiz.id)
-            um.update_attributes(:probability => probability)
+            um.update_attributes(:probability => probability/question_count)
           else
-            misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :quiz_id => quiz.id, :workflow_state => 'available')
+            misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
           end
         end
       end
