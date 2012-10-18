@@ -341,7 +341,6 @@ class QuizSubmission < ActiveRecord::Base
     @user_answers = []
     data = self.submission_data || {}
 
-    
     quiz = Quiz.find(data[:quiz_id])
     misconceptions = quiz.quiz_misconceptions
     probability_hash = {}
@@ -373,7 +372,7 @@ class QuizSubmission < ActiveRecord::Base
         end
       end
 
-      if q[:question_type] != "text_only_question"
+      if q[:question_type] != "text_only_question" && user_answer[:answer_id]
         question_count += 1
       end
 
@@ -385,9 +384,17 @@ class QuizSubmission < ActiveRecord::Base
       probability_hash.each do |misconception_name, probability|
         if (misconception_name == misconception.name)
           if um = misconception.user_misconceptions.active.find_by_user_id_and_quiz_id(self.user.id, quiz.id)
-            um.update_attributes(:probability => probability/question_count)
+            if question_count > 0
+              um.update_attributes(:probability => probability/question_count)
+            else
+              um.update_attributes(:probability => probability)
+            end
           else
-            misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
+            if question_count > 0
+              misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
+            else
+              misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :quiz_id => quiz.id, :workflow_state => 'available')
+            end
           end
         end
       end
