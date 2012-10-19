@@ -11,7 +11,7 @@ class AssessmentMisconceptionsController < ApplicationController
 
   def update
     @misconception = AssessmentMisconception.find(params[:id])
-    if @misconception.update_attributes(params[:assessment_misconception])
+    if @misconception.update_attributes(params[:quiz_misconception])
       @misconception.reload
       render :json => @misconception.to_json
     else
@@ -20,13 +20,16 @@ class AssessmentMisconceptionsController < ApplicationController
   end
 
   def index
-    @abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    
   	@bank = AssessmentQuestionBank.find(params[:question_bank_id])
     add_crumb(@bank.title)
     #add_crumb(@bank.id, url_for(@bank))
     add_crumb("Misconceptions")
+
   	@misconceptions = @bank.assessment_misconceptions
+    if !@quiz_probabilities = @bank.assessment_misconception_probability
+      @quiz_probabilities = @bank.build_assessment_misconception_probability
+      @quiz_probabilities.save!
+    end
 
   end
 

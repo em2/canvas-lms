@@ -1,0 +1,2 @@
+module AssessmentMisconceptionProbabilitiesHelper
+end

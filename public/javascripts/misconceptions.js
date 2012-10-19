@@ -81,7 +81,7 @@ require([
     success: function(data, $misconception_piece) {
       $misconception_piece.loadingImage('remove');
       $misconception_piece.removeClass('save_in_progress')
-      var misconception_piece = data.quiz_misconception;
+      var misconception_piece = data.quiz_misconception || data.assessment_misconception;
       misconception_piece.last_updated_at = $.parseFromISO(misconception_piece.updated_at).datetime_formatted;
       $misconception_piece.fillTemplateData({
         data: misconception_piece,
@@ -166,7 +166,7 @@ require([
     success: function(data, $misconception_piece) {
       $misconception_piece.loadingImage('remove');
       $misconception_piece.removeClass('save_in_progress')
-      var misconception_piece = data.quiz_misconception;
+      var misconception_piece = data.quiz_misconception || data.assessment_misconception;
       misconception_piece.last_updated_at = $.parseFromISO(misconception_piece.updated_at).datetime_formatted;
       $misconception_piece.fillTemplateData({
         data: misconception_piece,
@@ -249,7 +249,7 @@ require([
     success: function(data, $misconception_piece) {
       $misconception_piece.loadingImage('remove');
       $misconception_piece.removeClass('save_in_progress')
-      var misconception_piece = data.quiz_misconception;
+      var misconception_piece = data.quiz_misconception || data.assessment_misconception;
       misconception_piece.last_updated_at = $.parseFromISO(misconception_piece.updated_at).datetime_formatted;
       $misconception_piece.fillTemplateData({
         data: misconception_piece,
@@ -333,7 +333,7 @@ require([
     success: function(data, $misconception_piece) {
       $misconception_piece.loadingImage('remove');
       $misconception_piece.removeClass('save_in_progress');
-      var misconception_piece = data.quiz_misconception_probability;
+      var misconception_piece = data.quiz_misconception_probability || data.assessment_misconception_probability;
       misconception_piece.last_updated_at = $.parseFromISO(misconception_piece.updated_at).datetime_formatted;
       $misconception_piece.fillTemplateData({
         data: misconception_piece,
@@ -423,7 +423,7 @@ require([
     success: function(data, $misconception_piece) {
       $misconception_piece.loadingImage('remove');
       $misconception_piece.removeClass('save_in_progress');
-      var misconception_piece = data.quiz_misconception_probability;
+      var misconception_piece = data.quiz_misconception_probability || data.assessment_misconception_probability;
       misconception_piece.last_updated_at = $.parseFromISO(misconception_piece.updated_at).datetime_formatted;
       $misconception_piece.fillTemplateData({
         data: misconception_piece,

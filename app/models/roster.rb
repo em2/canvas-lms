@@ -206,7 +206,7 @@ class Roster < ActiveRecord::Base
     @quiz.content_being_saved_by(current_user)
     @quiz.infer_times()
     @quiz.add_assessment_questions(probe.assessment_questions.active)
-    @quiz.generate_quiz_data()
+    @quiz.generate_quiz_data(:update_misconception_ids => true)
     @quiz.published_at = Time.now
     @quiz.workflow_state = 'available'
     @quiz.anonymous_submissions = false

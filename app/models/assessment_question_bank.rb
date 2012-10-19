@@ -26,6 +26,7 @@ class AssessmentQuestionBank < ActiveRecord::Base
   has_many :quiz_groups
 
   has_many :assessment_misconceptions, :order => 'position, name, created_at', :dependent => :destroy
+  has_one :assessment_misconception_probability, :dependent => :destroy
   
   before_save :infer_defaults
   validates_length_of :title, :maximum => maximum_string_length, :allow_nil => true

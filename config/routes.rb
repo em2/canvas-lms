@@ -63,6 +63,7 @@ ActionController::Routing::Routes.draw do |map|
         question.move_question 'move', :controller => 'assessment_questions', :action => 'move'
       end
       bank.resources :assessment_misconceptions
+      bank.resources :assessment_misconception_probabilities
     end
   end
 

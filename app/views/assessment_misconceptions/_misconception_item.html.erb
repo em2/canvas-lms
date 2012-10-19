@@ -12,9 +12,10 @@
 				<% misconception_item.pattern.each do |question_id, answer_ids| -%>
 	        <% answer_ids.each do |answer_id| -%> 
 						<% if quiz_question = AssessmentQuestion.find(question_id) rescue nil -%>
+						Q<%= quiz_question.position %>:
 	            <% quiz_question.question_data[:answers].each_with_index do |question, index| -%>
-	              <% if question[:id] == answer_id.to_i -%>
-	                <%= quiz_question.position %>:<%= @abc[index] %>
+	              <% if question[:id] == answer_id.first.to_i -%>
+	                A<%= index+1 %>:&nbsp<%= answer_id.last %><br />
 	              <% end -%>
 	            <% end -%> 
 	          <% end -%>

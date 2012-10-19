@@ -524,6 +524,14 @@ class Quiz < ActiveRecord::Base
       e[:published_at] = t
     end
     data = entries
+
+    if opts[:update_misconception_ids] == true
+      data.each do |question|
+        quiz_question = QuizQuestion.find(question[:id])
+        question[:answers] = quiz_question.question_data[:answers]
+      end
+    end
+
     if opts[:persist] != false
       self.quiz_data = data
       if !self.survey?
@@ -542,6 +550,7 @@ class Quiz < ActiveRecord::Base
       question.write_attribute(:question_data, assessment_question.question_data)
       question.assessment_question = assessment_question
       question.assessment_question_version = assessment_question.version_number
+      question.save
       
       quiz = Quiz.find(question.quiz_id)
       found_misconception = false
@@ -559,30 +568,51 @@ class Quiz < ActiveRecord::Base
         end
         question.question_data[:answers].each do |answer|
           quiz.quiz_misconceptions.active.each do |misconception|
-            if answer[:misconception_id].to_i == misconception.assessment_misconception_id
-              answer[:misconception_id] = misconception.id
-              question.save
-              miscon = misconception.pattern
-              quiz.quiz_questions.each do |question|
-                question.question_data[:answers].each do |question_answer|
-                  if question_answer[:id] == answer[:id]
-                    if miscon.empty?
-                      misconception.pattern = {"#{question.id}"=>[answer[:id]]}
-                    else
-                      miscon.merge!({"#{question.id}"=>[answer[:id]]}) { |key, oldval, newval| oldval | newval }
+            answer_misconception_ids = JSON.parse(answer[:misconception_id]) rescue {}
+            answer_misconception_ids.each do |ami, probability|
+              if ami.to_i == misconception.assessment_misconception_id
+                quiz.quiz_questions.each do |quiz_question|
+                  quiz_question.question_data[:answers].each do |question_answer|
+                    if question_answer[:id] == answer[:id]
+
+                      #
+                      # update the quiz misconception_id for displaying the misconceptions
+                      # in the edit view
+                      misconception_id = JSON.parse(question_answer[:misconception_id])
+                      misconception_id.delete("#{ami}")
+                      misconception_id["#{misconception.id}"] = probability
+                      question_answer[:misconception_id] = misconception_id.to_json
+
+
+                      #
+                      # update the pattern in the misconception
+                      miscon = misconception.pattern
+                      answer_id = {}
+
+                      answer_id["#{answer[:id]}"] = probability
+
+                      if miscon.empty?
+                        miscon.merge!({"#{quiz_question.id}"=>answer_id})
+                      else
+                        answer_id.merge!(miscon["#{quiz_question.id}"]) unless miscon["#{quiz_question.id}"].nil?
+                        miscon.merge!({"#{quiz_question.id}"=>answer_id})
+                      end
                       misconception.pattern = miscon
+                      misconception.save!
+
                     end
                   end
+                  quiz_question.save!
                 end
+                misconception.save!
               end
-              misconception.save!
             end
           end
         end
       end
 
 
-      question.save
+      question.save!
       question
     end
     questions.compact.uniq
