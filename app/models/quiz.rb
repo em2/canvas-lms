@@ -553,6 +553,14 @@ class Quiz < ActiveRecord::Base
       question.save
       
       quiz = Quiz.find(question.quiz_id)
+
+      if !quiz_probabilities = quiz.quiz_misconception_probability
+        quiz_probabilities = quiz.build_quiz_misconception_probability
+        quiz_probabilities.save!
+      end
+
+      assessment_probabilities = assessment_question.assessment_question_bank.assessment_misconception_probability
+
       found_misconception = false
       AssessmentQuestion.find(question.assessment_question_id).assessment_question_bank.assessment_misconceptions.active.each do |am|
         quiz.quiz_misconceptions.active.each do |misconception|
@@ -583,6 +591,27 @@ class Quiz < ActiveRecord::Base
                       misconception_id["#{misconception.id}"] = probability
                       question_answer[:misconception_id] = misconception_id.to_json
 
+                      #
+                      # update the quiz_misconceptin_probabilities high_probability
+                      if assessment_probabilities.high_probability
+                        limit = assessment_probabilities.high_probability["#{ami}"]
+                        hp = quiz_probabilities.high_probability
+                        hp = {} if hp.nil?
+                        hp["#{misconception.id}"] = limit
+                        quiz_probabilities.high_probability = hp
+                      end
+
+                      #
+                      # update the quiz_misconceptin_probabilities somewhat_probability
+                      if assessment_probabilities.somewhat_probability
+                        limit = assessment_probabilities.somewhat_probability["#{ami}"]
+                        sp = quiz_probabilities.somewhat_probability
+                        sp = {} if sp.nil?
+                        sp["#{misconception.id}"] = limit
+                        quiz_probabilities.somewhat_probability = sp
+                      end
+
+                      quiz_probabilities.save!
 
                       #
                       # update the pattern in the misconception
@@ -611,8 +640,6 @@ class Quiz < ActiveRecord::Base
         end
       end
 
-
-      question.save!
       question
     end
     questions.compact.uniq
