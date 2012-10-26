@@ -268,7 +268,7 @@ require([
 
 //*******************************************
 //
-// To edit the high probability misconception limit
+// To edit the Highly Likely misconception limit
 //
 //*******************************************
 
@@ -358,7 +358,7 @@ require([
 
 //*******************************************
 //
-// To edit the somewhat probability misconception limit
+// To edit the Somewhat Likely misconception limit
 //
 //*******************************************
 
