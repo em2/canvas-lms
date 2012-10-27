@@ -55,7 +55,10 @@ class SchoolReportsController < ApplicationController
         @item_analysis = JSON.parse(data.item_analysis)
         @school_name = data.school_name
         @analysis = JSON.parse(data.analysis)
-
+        @class_misconceptions = JSON.parse(data.class_misconceptions)
+        @total_class_misconceptions = JSON.parse(data.total_class_misconceptions)
+        probe = AssessmentQuestionBank.find(data.probe_id)
+        @misconceptions = probe.assessment_misconceptions.active
       else
         flash[:error] = "This report is not yet ready."
         redirect_back_or_default(report_school_reports_path(params[:report_id]))

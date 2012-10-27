@@ -11,6 +11,8 @@ class SchoolReport < ActiveRecord::Base
 	  item_analysis = {}
 	  school_name = ''
 	  analysis = {}
+	  class_misconceptions = {}
+	  total_class_misconceptions = {}
 
 
 		class_reports.each do |report|
@@ -36,6 +38,26 @@ class SchoolReport < ActiveRecord::Base
 	          end
 	        end
 	      end
+
+	      class_misconceptions["#{report.course_id}"] = {}
+
+	      total_user_misconceptions = JSON.parse(report.total_user_misconceptions)
+	      total_user_misconceptions.each do |key, value|
+
+	      	#
+	      	# if the quiz was made from an assessment question, associate the misconceptions with that
+	      	if QuizMisconception.find(key).assessment_misconception
+		      	class_misconceptions["#{report.course_id}"]["#{QuizMisconception.find(key).assessment_misconception.id}"] = value
+
+		      	if total_class_misconceptions["#{QuizMisconception.find(key).assessment_misconception.id}"].nil?
+		      		total_class_misconceptions["#{QuizMisconception.find(key).assessment_misconception.id}"] = value
+		      	else
+		      		count = total_class_misconceptions["#{QuizMisconception.find(key).assessment_misconception.id}"]
+		      		count += value
+		      		total_class_misconceptions["#{QuizMisconception.find(key).assessment_misconception.id}"] = count
+		      	end
+		      end
+	      end
 	    end
 		end
 
@@ -57,6 +79,8 @@ class SchoolReport < ActiveRecord::Base
     self.item_analysis = item_analysis.to_json
     self.school_name = school_name
     self.analysis = analysis.to_json
+    self.class_misconceptions = class_misconceptions.to_json
+    self.total_class_misconceptions = total_class_misconceptions.to_json
     self.save!
   end
 end
