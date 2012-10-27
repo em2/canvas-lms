@@ -156,6 +156,13 @@ class ClassReport < ActiveRecord::Base
       data["number_attempted"]["#{user.id}"] = number_attempted
     end
 
+    #
+    # this would happen if there were no submissions
+    if data["earliest_submission"] > data["latest_submission"]
+      data["earliest_submission"] = nil
+      data["latest_submission"] = nil
+    end
+
     
     quiz_question_count.times do |count|
       if data["submitted_students_count"] > 0
