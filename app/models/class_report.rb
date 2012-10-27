@@ -19,6 +19,8 @@ class ClassReport < ActiveRecord::Base
     self.submitted_students_ids = data["submitted_students_ids"].to_json
     self.quiz_question_count = data["quiz_question_count"]
 		self.submissions = data["submissions"].to_json
+    self.user_misconceptions = data["user_misconceptions"].to_json
+    self.total_user_misconceptions = data["total_user_misconceptions"].to_json
     self.save!
 	end
 	
@@ -46,6 +48,8 @@ class ClassReport < ActiveRecord::Base
     data["course_name"] = course.name
     data["school_name"] = course.account.name
     data["quiz_question_count"] = quiz_question_count
+    data["user_misconceptions"] = {}
+    data["total_user_misconceptions"] = {}
 
     submissions = quiz.quiz_submissions.select{|s| !s.settings_only? }
     submission_ids = {}
@@ -106,6 +110,35 @@ class ClassReport < ActiveRecord::Base
           r2d=2
         end
       end
+
+      data["user_misconceptions"]["#{user.id}"] = {}
+
+      quiz.quiz_misconceptions.active.each do |quiz_misconception|
+        if user_misconception = user.user_misconceptions.find_by_quiz_id_and_quiz_misconception_id(quiz.id, quiz_misconception.id)
+          found_misconception = false
+          quiz_misconception_probability = QuizMisconceptionProbability.find_by_quiz_id(quiz.id)
+          if user_misconception.probability > quiz_misconception_probability.high_probability["#{quiz_misconception.id}"].to_f
+            data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "H"
+            found_misconception = true
+          elsif user_misconception.probability > quiz_misconception_probability.somewhat_probability["#{quiz_misconception.id}"].to_f
+            data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "S"
+            found_misconception = true
+          else
+            data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "-"
+          end
+
+          if found_misconception
+            if data["total_user_misconceptions"]["#{quiz_misconception.id}"].nil?
+              data["total_user_misconceptions"]["#{quiz_misconception.id}"] = 1
+            else
+              count = data["total_user_misconceptions"]["#{quiz_misconception.id}"]
+              count += 1
+              data["total_user_misconceptions"]["#{quiz_misconception.id}"] = count
+            end
+          end
+        end
+      end
+
       data["number_correct"]["#{user.id}"] = number_correct
       data["number_attempted"]["#{user.id}"] = number_attempted
     end
