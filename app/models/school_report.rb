@@ -13,6 +13,8 @@ class SchoolReport < ActiveRecord::Base
 	  analysis = {}
 	  class_misconceptions = {}
 	  total_class_misconceptions = {}
+    earliest_submission = Time.now
+    latest_submission = AssessmentQuestionBank.find(self.probe_id).created_at
 
 
 		class_reports.each do |report|
@@ -29,6 +31,15 @@ class SchoolReport < ActiveRecord::Base
 				submitted_students_count["#{report.course_id}"] = report.submitted_students_count
 				item_analysis["#{report.course_id}"] = JSON.parse(report.item_analysis)
 				school_name = report.school_name
+
+	      if report.earliest_submission && report.earliest_submission < earliest_submission
+	        earliest_submission = report.earliest_submission
+	      end
+
+	      if report.latest_submission && report.latest_submission > latest_submission
+	        latest_submission = report.latest_submission
+	      end
+
 				quiz_question_count.times do |count|
 	        if report.item_analysis != nil
 	          if analysis["#{count+1}"] == nil
@@ -81,6 +92,8 @@ class SchoolReport < ActiveRecord::Base
     self.analysis = analysis.to_json
     self.class_misconceptions = class_misconceptions.to_json
     self.total_class_misconceptions = total_class_misconceptions.to_json
+    self.earliest_submission = earliest_submission
+    self.latest_submission = latest_submission
     self.save!
   end
 end
