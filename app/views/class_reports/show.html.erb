@@ -17,7 +17,7 @@
       <td class="rShim" style="width:130px;"></td>
       <td class="rShim" style="width:81px;"></td>
       <td class="rShim" style="width:81px;"></td>
-      <% @quiz_question_count.times do %>
+      <% @quiz_question_count.times do -%>
         <td class="rShim" style="width:35px;"></td>
       <% end -%>
       <td class="rShim" style="width:30px;"></td>
@@ -32,7 +32,7 @@
       <td colspan="2" dir="ltr" class="s1">Summary</td>
       <td style="display:none;"></td>
       <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Response</td>
-      <% (@quiz_question_count-1).times do %>
+      <% (@quiz_question_count-1).times do -%>
         <td style="display:none;"></td>
       <% end -%>
       <td colspan="3" dir="ltr" class="s1">Misconception</td>
@@ -47,7 +47,7 @@
       <td colspan="2" class="s5"></td>
       <td style="display:none;"></td>
       <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s6">Asterisk indicates correct</td>
-      <% (@quiz_question_count-1).times do %>
+      <% (@quiz_question_count-1).times do -%>
         <td style="display:none;"></td>
       <% end -%>
       <td colspan="3" dir="ltr" class="s6">See Key</td>
@@ -61,7 +61,7 @@
       <td dir="ltr" class="s9">Student ID</td>
       <td dir="ltr" class="s12"># Correct</td>
       <td dir="ltr" class="s11"># Attempt</td>
-      <% (@quiz_question_count-1).times do |count| %>
+      <% (@quiz_question_count-1).times do |count| -%>
         <td dir="ltr" class="s12">Q<%= count + 1 %></td>
       <% end -%>
       <td dir="ltr" class="s11">Q<%= @quiz_question_count %></td>
@@ -72,13 +72,13 @@
       <td dir="ltr" class="s11">Indicates Difficulty</td>
       <td class="s8"></td>
     </tr>
-    <% @submitted_students.each_with_index do |s, index| %>
+    <% @submitted_students.each_with_index do |s, index| -%>
       <tr dir="ltr">
         <td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
         <td class="s14 student_number" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{s.id}"]) %>" class="name"><%= s.short_name %></a></td>
         <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_correct["#{s.id}"] %></td>
         <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_attempted["#{s.id}"] %></td>
-        <% (@quiz_question_count-1).times do |count| %>
+        <% (@quiz_question_count-1).times do |count| -%>
           <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"]["#{count + 1}"] %></td>
         <% end -%>
         <td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"]["#{@quiz_question_count}"] %></td>
@@ -128,7 +128,7 @@
       <td class="s21"></td>
       <td class="s22"></td>
       <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s25">(rounded to nearest whole number)</td>
-      <% (@quiz_question_count-1).times do %>
+      <% (@quiz_question_count-1).times do -%>
         <td style="display:none;"></td>
       <% end -%>
       <td colspan="3" dir="ltr" class="s25">misconception</td>
@@ -142,7 +142,7 @@
       <td class="s20"></td>
       <td class="s21"></td>
       <td class="s21"></td>
-      <% (@quiz_question_count).times do %>
+      <% (@quiz_question_count).times do -%>
         <td class="s26"></td>
       <% end -%>
       <td class="s26"></td>

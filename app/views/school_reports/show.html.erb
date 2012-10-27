@@ -32,7 +32,7 @@
 			<td class="rShim" style="width:120px;"></td>
 			<td class="rShim" style="width:45px;"></td>
 			<td class="rShim" style="width:45px;"></td>
-			<% @quiz_question_count.times do %>
+			<% @quiz_question_count.times do -%>
         <td class="rShim" style="width:35px;"></td>
       <% end -%>
 			<td class="rShim" style="width:35px;"></td>
@@ -47,7 +47,7 @@
 			<td colspan="2" dir="ltr" class="s1">Class</td>
 			<td style="display:none;"></td>
 			<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Responses</td>
-			<% (@quiz_question_count-1).times do %>
+			<% (@quiz_question_count-1).times do -%>
         <td style="display:none;"></td>
       <% end -%>
 			<td colspan="3" dir="ltr" class="s1">Misconceptions</td>
@@ -62,7 +62,7 @@
 			<td colspan="2" dir="ltr" class="s4">Information</td>
 			<td style="display:none;"></td>
 			<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s4">% correct per question</td>
-			<% (@quiz_question_count-1).times do %>
+			<% (@quiz_question_count-1).times do -%>
         <td style="display:none;"></td>
       <% end -%>
 			<td colspan="3" class="s5">#</td>
@@ -76,7 +76,7 @@
 			<td dir="ltr" class="s7">Teacher last name</td>
 			<td dir="ltr" class="s8">ID</td>
 			<td dir="ltr" class="s16">N</td>
-			<% (@quiz_question_count-1).times do |count| %>
+			<% (@quiz_question_count-1).times do |count| -%>
         <td dir="ltr" class="s8">Q<%= count + 1 %></td>
       <% end -%>
       <td dir="ltr" class="s16">Q<%= @quiz_question_count %></td>
@@ -93,7 +93,7 @@
 				<td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @teacher_name["#{id}"] %></td>
 				<td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to Course.find(id).name[/C[0-9]{3}/], report_class_report_path(params[:report_id], id) %> </td>
 				<td class="s20" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @submitted_students_count["#{id}"] %></td>
-				<% (@quiz_question_count-1).times do |count| %>
+				<% (@quiz_question_count-1).times do |count| -%>
 	        <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{count+1}"] %>%</td>
 	      <% end -%>
 	      <td dir="ltr" class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{@quiz_question_count}"] %>%</td>
@@ -113,7 +113,7 @@
 			<td dir="ltr" class="s17"><%= t('reports.school','School') %></td>
 			<td dir="ltr" class="s18"><%= @school_name %></td>
 			<td class="s19"><%= @participating_students_count %></td>
-			<% (@quiz_question_count-1).times do |count| %>
+			<% (@quiz_question_count-1).times do |count| -%>
         <td dir="ltr" class="s21"><%= @analysis["#{count+1}"] %>%</td>
       <% end -%>
       <td dir="ltr" class="s22"><%= @analysis["#{@quiz_question_count}"] %>%</td>
@@ -130,7 +130,7 @@
 			<td class="s13"></td>
 			<td class="s14"></td>
 			<td class="s14"></td>
-			<% @quiz_question_count.times do |count| %>
+			<% @quiz_question_count.times do |count| -%>
         <td class="s14"></td>
       <% end -%>
 			<td class="s14"></td>
