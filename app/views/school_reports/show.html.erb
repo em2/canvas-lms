@@ -104,7 +104,7 @@
 				<% (@misconceptions.count-1).times do |count| -%>
 					<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] : 0 : 0 %></td>
 				<% end -%>
-				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td>
+				<% if !@misconceptions.last.nil? -%><td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td><% end -%>
 
 				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s6" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
@@ -124,7 +124,7 @@
 			<% (@misconceptions.count-1).times do |count| -%>
 				<td class="s21"><%= @total_class_misconceptions["#{@misconceptions[count].id}"] ? @total_class_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
 			<% end -%>
-			<td class="s22"><%= @total_class_misconceptions["#{@misconceptions.last.id}"] ? @total_class_misconceptions["#{@misconceptions.last.id}"] : 0 %></td>
+			<% if !@misconceptions.last.nil? -%><td class="s22"><%= @total_class_misconceptions["#{@misconceptions.last.id}"] ? @total_class_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
 
 			<td class="s22">-</td>
 			<td class="s6"></td>

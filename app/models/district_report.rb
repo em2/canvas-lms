@@ -13,6 +13,8 @@ class DistrictReport < ActiveRecord::Base
     total_teachers_count = 0
 	  school_misconceptions = {}
 	  total_school_misconceptions = {}
+	  earliest_submission = Time.now
+    latest_submission = AssessmentQuestionBank.find(self.probe_id).created_at
 
 
 		school_reports.each do |report|
@@ -36,6 +38,15 @@ class DistrictReport < ActiveRecord::Base
 				submitted_students_count["#{report.account_id}"] = counter
 
 				item_analysis["#{report.account_id}"] = JSON.parse(report.analysis)
+
+				if report.earliest_submission && report.earliest_submission < earliest_submission
+	        earliest_submission = report.earliest_submission
+	      end
+
+	      if report.latest_submission && report.latest_submission > latest_submission
+	        latest_submission = report.latest_submission
+	      end
+
 				quiz_question_count.times do |count|
 	        if report.item_analysis != nil
 	          if analysis["#{count+1}"] == nil
@@ -68,7 +79,12 @@ class DistrictReport < ActiveRecord::Base
 	    end
 		end
 
-
+		#
+		# this would happen if there were no submissions
+		if earliest_submission > latest_submission
+			earliest_submission = nil
+			latest_submission = nil
+		end
 
 		quiz_question_count.times do |count|
       if participating_class_count > 0
@@ -90,6 +106,8 @@ class DistrictReport < ActiveRecord::Base
     self.total_teachers_count = total_teachers_count
     self.school_misconceptions = school_misconceptions.to_json
     self.total_school_misconceptions = total_school_misconceptions.to_json
+    self.earliest_submission = earliest_submission
+    self.latest_submission = latest_submission
     self.save!
   end
 end

@@ -72,6 +72,13 @@ class SchoolReport < ActiveRecord::Base
 	    end
 		end
 
+		#
+		# this would happen if there were no submissions
+		if earliest_submission > latest_submission
+			earliest_submission = nil
+			latest_submission = nil
+		end
+
 		quiz_question_count.times do |count|
       if participating_class_count > 0
         analysis["#{count+1}"] = analysis["#{count+1}"] / participating_class_count

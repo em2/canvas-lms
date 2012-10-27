@@ -6,7 +6,11 @@
 
 <h1 id="report_heading"><b><%= t('reports.district_report', "District Report:") %> <i><%= @current_probe.full_name %></i></b></h1>
 <h3 id="district_name"><%= @report_name %></h3>
-<h3 id="semester"><%#= semester?(@quiz.created_at) %> <%#= @quiz.created_at.to_date.year %></h3>
+<% if @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
+  <h3 id="assessment_date"><%= @earliest_submission.to_date %></h3>
+<% else -%>
+  <h3 id="assessment_date_range"><%= "#{@earliest_submission.to_date} through #{@latest_submission.to_date}" %></h3>
+<% end -%>
 
 <br />
 
@@ -99,11 +103,7 @@
 				<% (@misconceptions.count-1).times do |count| -%>
 					<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_misconceptions["#{id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions[count].id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions[count].id}"] : 0 : 0 %></td>
 				<% end -%>
-				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_misconceptions["#{id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td>
-
-				<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
-				<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
-				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
+				<% if !@misconceptions.last.nil? -%><td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_misconceptions["#{id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td><% end -%>
 
 				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s6" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
@@ -123,7 +123,7 @@
 			<% (@misconceptions.count-1).times do |count| -%>
 				<td class="s21"><%= @total_school_misconceptions["#{@misconceptions[count].id}"] ? @total_school_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
 			<% end -%>
-			<td class="s22"><%= @total_school_misconceptions["#{@misconceptions.last.id}"] ? @total_school_misconceptions["#{@misconceptions.last.id}"] : 0 %></td>
+			<% if !@misconceptions.last.nil? -%><td class="s22"><%= @total_school_misconceptions["#{@misconceptions.last.id}"] ? @total_school_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
 
 			<td class="s22">-</td>
 			<td class="s6"></td>
