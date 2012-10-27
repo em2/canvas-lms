@@ -78,6 +78,8 @@ class ClassReportsController < ApplicationController
           @user_misconceptions = JSON.parse(data.user_misconceptions)
           @misconceptions = @quiz.quiz_misconceptions.active
           @total_user_misconceptions = JSON.parse(data.total_user_misconceptions)
+          @earliest_submission = data.earliest_submission
+          @latest_submission = data.latest_submission 
         else
           flash[:error] = "This report is not yet ready."
           redirect_back_or_default(report_class_reports_path(params[:report_id]))

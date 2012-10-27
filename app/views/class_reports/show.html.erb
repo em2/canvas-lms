@@ -6,7 +6,11 @@
 
 <h1 id="report_heading"><b>Classroom Report: <%= @current_probe.full_name %></b></h1>
 <h3 id="course_name"><%= @course.name %></h3>
-<h3 id="semester"><%= semester?(@quiz.created_at) %> <%= @quiz.created_at.to_date.year %></h3>
+<% if @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
+  <h3 id="assessment_date"><%= @earliest_submission.to_date %></h3>
+<% else -%>
+  <h3 id="assessment_date_range"><%= "#{@earliest_submission.to_date} through #{@latest_submission.to_date}" %></h3>
+<% end -%>
 
 <br />
 

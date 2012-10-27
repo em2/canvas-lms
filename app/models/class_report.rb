@@ -21,6 +21,8 @@ class ClassReport < ActiveRecord::Base
 		self.submissions = data["submissions"].to_json
     self.user_misconceptions = data["user_misconceptions"].to_json
     self.total_user_misconceptions = data["total_user_misconceptions"].to_json
+    self.earliest_submission = data["earliest_submission"]
+    self.latest_submission = data["latest_submission"]
     self.save!
 	end
 	
@@ -50,6 +52,8 @@ class ClassReport < ActiveRecord::Base
     data["quiz_question_count"] = quiz_question_count
     data["user_misconceptions"] = {}
     data["total_user_misconceptions"] = {}
+    data["earliest_submission"] = Time.now
+    data["latest_submission"] = quiz.created_at
 
     submissions = quiz.quiz_submissions.select{|s| !s.settings_only? }
     submission_ids = {}
@@ -70,6 +74,15 @@ class ClassReport < ActiveRecord::Base
       number_attempted = 0
       question_count = 1
       submission = quiz.quiz_submissions.find_by_quiz_id_and_user_id(quiz.id,user.id)
+      
+      if submission.finished_at && submission.finished_at < data["earliest_submission"]
+        data["earliest_submission"] = submission.finished_at
+      end
+
+      if submission.finished_at && submission.finished_at > data["latest_submission"]
+        data["latest_submission"] = submission.finished_at
+      end
+
       data["submissions"]["#{user.id}"] = submission.id
       submission.quiz_data.each_with_index do |quiz_data, quiz_index|
         next if quiz_data[:question_type] == "text_only_question"
