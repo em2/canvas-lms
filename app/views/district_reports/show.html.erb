@@ -79,9 +79,9 @@
         <td dir="ltr" class="s8">Q<%= count + 1 %></td>
       <% end -%>
       <td dir="ltr" class="s16">Q<%= @quiz_question_count %></td>
-			<td dir="ltr" class="s8">M1</td>
-			<td dir="ltr" class="s8">M2</td>
-			<td dir="ltr" class="s8">M3</td>
+      <% (@misconceptions.count).times do |count| -%>
+				<td dir="ltr" class="s8"><%= @misconceptions[count].name %></td>
+			<% end -%>
 			<td class="s9"></td>
 			<td class="s6"></td>
 		</tr>
@@ -96,9 +96,15 @@
 	        <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{count+1}"] %>%</td>
 	      <% end -%>
 	      <td dir="ltr" class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{@quiz_question_count}"] %>%</td>
+				<% (@misconceptions.count-1).times do |count| -%>
+					<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_misconceptions["#{id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions[count].id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions[count].id}"] : 0 : 0 %></td>
+				<% end -%>
+				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_misconceptions["#{id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td>
+
 				<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
+
 				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s6" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
 			</tr>
@@ -114,9 +120,11 @@
         <td dir="ltr" class="s21"><%= @analysis["#{count+1}"] %>%</td>
       <% end -%>
       <td dir="ltr" class="s22"><%= @analysis["#{@quiz_question_count}"] %>%</td>
-			<td class="s21">-</td>
-			<td class="s21">-</td>
-			<td class="s22">-</td>
+			<% (@misconceptions.count-1).times do |count| -%>
+				<td class="s21"><%= @total_school_misconceptions["#{@misconceptions[count].id}"] ? @total_school_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
+			<% end -%>
+			<td class="s22"><%= @total_school_misconceptions["#{@misconceptions.last.id}"] ? @total_school_misconceptions["#{@misconceptions.last.id}"] : 0 %></td>
+
 			<td class="s22">-</td>
 			<td class="s6"></td>
 		</tr>

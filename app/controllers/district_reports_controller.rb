@@ -53,7 +53,10 @@ class DistrictReportsController < ApplicationController
         @analysis = JSON.parse(data.analysis)
         @teachers_count = JSON.parse(data.teachers_count)
         @total_teachers_count = data.total_teachers_count
-
+        @school_misconceptions = JSON.parse(data.school_misconceptions)
+        @total_school_misconceptions = JSON.parse(data.total_school_misconceptions)
+        probe = AssessmentQuestionBank.find(data.probe_id)
+        @misconceptions = probe.assessment_misconceptions.active
       else
         flash[:error] = "This report is not yet ready."
         redirect_back_or_default(report_district_reports_path(params[:report_id]))
