@@ -107,13 +107,34 @@ class ClassReport < ActiveRecord::Base
                 num += 1
                 data["percent_correct"]["#{quiz_index}"] = num
               else
-                case index+1
-                when 1
-                  data["q"]["#{user.id}"].merge!({"#{question_count}" => 'G'})
-                when 2
-                  data["q"]["#{user.id}"].merge!({"#{question_count}" => 'L'})
-                when 3
-                  data["q"]["#{user.id}"].merge!({"#{question_count}" => 'E'})
+                case quiz_data[:question_type]
+                when "compare_fractions_question"
+                  case index+1
+                  when 1
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'G'})
+                  when 2
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'L'})
+                  when 3
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'E'})
+                  end
+                when "represent_fractions_question"
+                  case index+1
+                  when 1
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'Y'})
+                  when 2
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'N'})
+                  end
+                when "locate_fractions_question"
+                  case index+1
+                  when 1
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '1'})
+                  when 2
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '2'})
+                  when 3
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '3'})
+                  when 4
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '4'})
+                  end
                 end
               end
             end

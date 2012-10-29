@@ -2122,7 +2122,9 @@ define([
       // Go through and inject the values as text
       $displayQuestion.find(".answers").each(function() {
         $(this).find(".answer").each(function(index){
-          $(this).find(".answer_misconception_id").text(question.answers[index].answer_misconception_id);
+          if (question.answers[index]){
+            $(this).find(".answer_misconception_id").text(question.answers[index].answer_misconception_id);
+          }
         });
       });
 
