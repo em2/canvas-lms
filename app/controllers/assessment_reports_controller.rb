@@ -2,7 +2,7 @@ class AssessmentReportsController < ApplicationController
   def index
   	if is_authorized?(@current_user) # Make sure the user is authorized to do this
 
-      add_crumb("Reports")
+      add_crumb("Reports", reports_path)
 
       is_admin?
       is_teacher?
@@ -31,6 +31,9 @@ class AssessmentReportsController < ApplicationController
   def load_district_probes
   	@account = Account.find(params[:district_report_id])
 
+    add_crumb("District Reports", district_reports_path)
+    add_crumb("#{@account.name}")
+
   	@account.sub_accounts.active.each do |sub_account|
   		find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @question_bank)
   	end
@@ -39,6 +42,9 @@ class AssessmentReportsController < ApplicationController
   def load_school_probes
   	@account = Account.find(params[:school_report_id])
 
+    add_crumb("School Reports", school_reports_path)
+    add_crumb("#{@account.name}")
+
   	@account.sub_accounts.active.each do |sub_account|
   		find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @question_bank)
   	end
@@ -46,7 +52,11 @@ class AssessmentReportsController < ApplicationController
 
   def load_class_probes
   	@course = Course.find(params[:class_report_id])
-  	find_probe_in_course(@course, AssessmentQuestionBank.active, @question_bank)
+
+    add_crumb("Class Reports", class_reports_path)
+    add_crumb("#{@course.name}")
+
+  	find_probes_in_course(@course, AssessmentQuestionBank.active, @question_bank)
   end
 
   def show
@@ -55,7 +65,8 @@ class AssessmentReportsController < ApplicationController
 	    is_admin?
 
 	    @current_probe = AssessmentQuestionBank.find(params[:id])
-	    
+      
+      add_crumb("Reports", reports_path)	    
 
 	    if params[:district_report_id]
 			  load_district_data
@@ -80,10 +91,9 @@ class AssessmentReportsController < ApplicationController
 
   	@account = Account.find(params[:district_report_id])
 
-  	# add_crumb("Reports", reports_path)
-    # add_crumb(@current_probe.title, report_path(params[:report_id]))
-    # add_crumb("Districts", report_district_reports_path(params[:report_id]))
-    # add_crumb(@account.name)
+    add_crumb("District Reports", district_reports_path)
+    add_crumb("#{@account.name}", district_report_assessment_reports_path)
+    add_crumb("#{@current_probe.title}")
     
 
     if data = DistrictReport.find_by_account_id_and_probe_id(@account.id, @current_probe.id)
@@ -116,11 +126,10 @@ class AssessmentReportsController < ApplicationController
     end
 
     @account = Account.find(params[:school_report_id])
-
-    # add_crumb("Reports", reports_path)
-    # add_crumb(@current_probe.title, report_path(params[:report_id]))
-    # add_crumb("Schools", report_school_reports_path(params[:report_id]))
-    # add_crumb(@account.parent_account.name + @account.name)
+    
+    add_crumb("District Reports", school_reports_path)
+    add_crumb("#{@account.name}", school_report_assessment_reports_path)
+    add_crumb("#{@current_probe.title}")
 
     if data = SchoolReport.find_by_account_id_and_probe_id(@account.id, @current_probe.id)
       @quiz_question_count = data.quiz_question_count
@@ -155,10 +164,9 @@ class AssessmentReportsController < ApplicationController
 
   	@course = Course.find(params[:class_report_id])
 
-    # add_crumb("Reports", reports_path)
-    # add_crumb(@current_probe.title, report_path(params[:report_id]))
-    # add_crumb("Classes", report_class_reports_path(params[:report_id]))
-    # add_crumb(@course.name)
+    add_crumb("District Reports", class_reports_path)
+    add_crumb("#{@course.name}", class_report_assessment_reports_path)
+    add_crumb("#{@current_probe.title}")
 
     @course.quizzes.active.each do |quiz|
     	if quiz.probe_name && quiz.probe_name[@current_probe.title]

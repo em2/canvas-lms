@@ -286,7 +286,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def find_probe_in_course(course, probes, collection)
+  def find_probes_in_course(course, probes, collection)
     course.quizzes.active.each do |quiz|
       probes.each do |probe|
         if quiz.probe_name && quiz.probe_name.include?(probe.title) && !collection.include?(probe)
