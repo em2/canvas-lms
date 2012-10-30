@@ -2387,10 +2387,14 @@ class Course < ActiveRecord::Base
   TAB_ANNOUNCEMENTS = 14
   TAB_OUTCOMES = 15
   TAB_COLLABORATIONS = 16
+  TAB_REPORTS = 17
+  TAB_ROSTERS = 18
 
   def self.default_tabs
     [
       { :id => TAB_HOME, :label => t('#tabs.home', "Home"), :css_class => 'home', :href => :course_path },
+      { :id => TAB_REPORTS, :label => t('#tabs.reports', "Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
+      { :id => TAB_ROSTERS, :label => t('#tabs.rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true },
       { :id => TAB_ANNOUNCEMENTS, :label => t('#tabs.announcements', "Announcements"), :css_class => 'announcements', :href => :course_announcements_path },
       { :id => TAB_ASSIGNMENTS, :label => t('#tabs.assignments', "Assignments"), :css_class => 'assignments', :href => :course_assignments_path },
       { :id => TAB_DISCUSSIONS, :label => t('#tabs.discussions', "Discussions"), :css_class => 'discussions', :href => :course_discussion_topics_path },
@@ -2503,6 +2507,9 @@ class Course < ActiveRecord::Base
       tabs.delete_if { |t| t[:id] == TAB_DISCUSSIONS } unless self.grants_rights?(user, opts[:session], :read_forum, :moderate_forum, :post_to_forum).values.any?
       tabs.detect { |t| t[:id] == TAB_DISCUSSIONS }[:manageable] = true if self.grants_right?(user, opts[:session], :moderate_forum)
       tabs.delete_if { |t| t[:id] == TAB_SETTINGS } unless self.grants_right?(user, opts[:session], :read_as_admin)
+      tabs.delete_if { |t| t[:id] == TAB_REPORTS } unless self.grants_right?(user, opts[:session], :read_as_admin)
+      tabs.delete_if { |t| t[:id] == TAB_ROSTERS } unless self.grants_right?(user, opts[:session], :read_as_admin)
+
 
       if !user || !self.grants_right?(user, nil, :manage_content)
         # remove some tabs for logged-out users or non-students

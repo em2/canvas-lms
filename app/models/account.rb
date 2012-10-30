@@ -750,20 +750,21 @@ class Account < ActiveRecord::Base
   end
   
   TAB_COURSES = 0
-  TAB_REPORTS = 1
-  TAB_STATISTICS = 2
-  TAB_PERMISSIONS = 3
-  TAB_SUB_ACCOUNTS = 4
-  TAB_TERMS = 5
-  TAB_AUTHENTICATION = 6
-  TAB_USERS = 7
-  TAB_OUTCOMES = 8
-  TAB_RUBRICS = 9
-  TAB_SETTINGS = 10
-  TAB_FACULTY_JOURNAL = 11
-  TAB_SIS_IMPORT = 12
-  TAB_GRADING_STANDARDS = 13
-  TAB_QUESTION_BANKS = 14
+  TAB_STATISTICS = 1
+  TAB_PERMISSIONS = 2
+  TAB_SUB_ACCOUNTS = 3
+  TAB_TERMS = 4
+  TAB_AUTHENTICATION = 5
+  TAB_USERS = 6
+  TAB_OUTCOMES = 7
+  TAB_RUBRICS = 8
+  TAB_SETTINGS = 9
+  TAB_FACULTY_JOURNAL = 10
+  TAB_SIS_IMPORT = 11
+  TAB_GRADING_STANDARDS = 12
+  TAB_QUESTION_BANKS = 13
+  TAB_REPORTS = 14
+  TAB_ROSTERS = 15
 
   def external_tool_tabs(opts)
     tools = ContextExternalTool.active.find_all_for(self, :account_navigation)
@@ -790,6 +791,7 @@ class Account < ActiveRecord::Base
       tabs = []
       tabs << { :id => TAB_COURSES, :label => t('#account.tab_courses', "Courses"), :css_class => 'courses', :href => :account_path } if user && self.grants_right?(user, nil, :read_course_list)
       tabs << { :id => TAB_REPORTS, :label => t('#account.tab_reports', "Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true } if user && self.grants_right?(user, nil, :manage_grades)
+      tabs << { :id => TAB_ROSTERS, :label => t('#account.tab_rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true } if user && self.grants_right?(user, nil, :manage_grades)
       tabs << { :id => TAB_USERS, :label => t('#account.tab_users', "Users"), :css_class => 'users', :href => :account_users_path } if user && self.grants_right?(user, nil, :read_roster)
       tabs << { :id => TAB_STATISTICS, :label => t('#account.tab_statistics', "Statistics"), :css_class => 'statistics', :href => :statistics_account_path } if user && self.grants_right?(user, nil, :view_statistics)
       tabs << { :id => TAB_PERMISSIONS, :label => t('#account.tab_permissions', "Permissions"), :css_class => 'permissions', :href => :account_permissions_path } if user && self.grants_right?(user, nil, :manage_role_overrides)
