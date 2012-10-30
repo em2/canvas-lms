@@ -266,11 +266,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def find_courses(account, top_account, current_probe, collection)
-    if !account.courses.are_available.empty? &&
+  def find_courses_with_probe(account, top_account, current_probe, collection)
+    if !account.courses.are_available.empty?
       account.courses.are_available.each do |course|
         course.quizzes.active.each do |quiz|
           if quiz.probe_name && quiz.probe_name[current_probe.title]
+            collection << course
+            return true
+          end
+        end
+      end
+    end
+  end
+
+  def find_courses(account, top_account, collection)
+    if !account.courses.are_available.empty?
+      account.courses.are_available.each do |course|
+        course.quizzes.active.each do |quiz|
+          if quiz.probe_name
             collection << course
             return true
           end

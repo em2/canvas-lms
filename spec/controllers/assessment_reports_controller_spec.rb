@@ -8,6 +8,13 @@ describe AssessmentReportsController do
   end
 
 
+  describe "GET 'index'" do
+    it "should be successful" do
+      get 'index'
+      response.should be_success
+    end
+  end
+
   describe "GET 'show'" do
     it "should be successful" do
       get 'show'

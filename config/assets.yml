@@ -210,6 +210,8 @@ stylesheets:
     - public/stylesheets/compiled/reports_class.css
   reports_index:
     - public/stylesheets/compiled/reports_index.css
+  assessment_reports_index:
+    - public/stylesheets/compiled/assessment_reports_index.css
   roster_user:
     - public/stylesheets/compiled/roster_user.css
   rosters:

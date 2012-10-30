@@ -1,0 +1,7 @@
+<% if params[:district_report_id] -%>
+	<%= render :partial => 'district_report' %>
+<% elsif params[:school_report_id] -%>
+	<%= render :partial => 'school_report' %>
+<% elsif params[:class_report_id] -%>
+	<%= render :partial => 'class_report' %>
+<% end -%>

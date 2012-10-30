@@ -3,10 +3,15 @@ ActionController::Routing::Routes.draw do |map|
   map.calculate_reports 'calculate_reports', :controller => 'reports', :action => 'calculate_reports', :conditions => {:method => :put}
 
   map.resources :rosters
-  map.resources :reports, :only => [:index, :show] do |report|
-    report.resources :district_reports, :only => [:index, :show]
-    report.resources :school_reports, :only => [:index, :show]
-    report.resources :class_reports, :only => [:index, :show]
+  map.resources :reports, :only => [:index]
+  map.resources :district_reports, :only => [:index] do |district_report|
+    district_report.resources :assessment_reports, :only => [:index, :show]
+  end
+  map.resources :school_reports, :only => [:index] do |school_report|
+    school_report.resources :assessment_reports, :only => [:index, :show]
+  end
+  map.resources :class_reports, :only => [:index] do |class_report|
+    class_report.resources :assessment_reports, :only => [:index, :show]
   end
   
   map.resources :submission_comments, :only => :destroy

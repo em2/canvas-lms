@@ -1,11 +1,11 @@
-<% jammit_css :reports_district -%>
-<% content_for :page_title do -%>District Report<% end -%>
+<% jammit_css :reports_school -%>
 
+<% content_for :page_title do -%>School Report<% end -%>
 
 <%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
 
-<h1 id="report_heading"><b><%= t('reports.district_report', "District Report:") %> <i><%= @current_probe.full_name %></i></b></h1>
-<h3 id="district_name"><%= @report_name %></h3>
+<h1 id="report_heading"><b><%= t('reports.school_report', "School Report:") %> <i><%= @current_probe.full_name %></i></b></h1>
+<h3 id="school_name"><%= @report_name %></h3>
 <% if @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
   <h3 id="assessment_date"><%= @earliest_submission.to_date %></h3>
 <% else -%>
@@ -28,13 +28,14 @@
 </div>
 
 
+
 <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
 	<tbody>
 		<tr class="rShim">
 			<td class="rShim" style="width:0;"></td>
 			<td class="rShim" style="width:120px;"></td>
-			<td class="rShim" style="width:55px;"></td>
-			<td class="rShim" style="width:55px;"></td>
+			<td class="rShim" style="width:45px;"></td>
+			<td class="rShim" style="width:45px;"></td>
 			<% @quiz_question_count.times do -%>
         <td class="rShim" style="width:35px;"></td>
       <% end -%>
@@ -47,7 +48,7 @@
 		<tr dir="ltr">
 			<td class="hd"><p style="height:16px;">.</p></td>
 			<td dir="ltr" class="s0">ITEM ANALYSIS</td>
-			<td colspan="2" dir="ltr" class="s1">School Counts</td>
+			<td colspan="2" dir="ltr" class="s1">Class</td>
 			<td style="display:none;"></td>
 			<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Responses</td>
 			<% (@quiz_question_count-1).times do -%>
@@ -62,7 +63,7 @@
 		<tr dir="ltr">
 			<td class="hd"><p style="height:16px;">.</p></td>
 			<td class="s3"></td>
-			<td colspan="2" dir="ltr" class="s4"></td>
+			<td colspan="2" dir="ltr" class="s4">Information</td>
 			<td style="display:none;"></td>
 			<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s4">% correct per question</td>
 			<% (@quiz_question_count-1).times do -%>
@@ -76,9 +77,9 @@
 		</tr>
 		<tr dir="ltr">
 			<td class="hd"><p style="height:16px;">.</p></td>
-			<td dir="ltr" class="s7">School</td>
-			<td dir="ltr" class="s8">Teacher N</td>
-			<td dir="ltr" class="s16">Student N</td>
+			<td dir="ltr" class="s7">Teacher last name</td>
+			<td dir="ltr" class="s8">ID</td>
+			<td dir="ltr" class="s16">N</td>
 			<% (@quiz_question_count-1).times do |count| -%>
         <td dir="ltr" class="s8">Q<%= count + 1 %></td>
       <% end -%>
@@ -90,20 +91,20 @@
 			<td class="s6"></td>
 		</tr>
 
-		<% @account_ids.each_with_index do |id, index| -%>
+		<% @course_ids.each_with_index do |id, index| -%>
 			<tr dir="ltr">
 				<td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
-				<td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to Account.find(id).name, report_school_report_path(params[:report_id], id) %></td>
-				<td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @teachers_count["#{id}"] %></td>
+				<td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @teacher_name["#{id}"] %></td>
+				<td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to Course.find(id).name[/C[0-9]{3}/], class_report_assessment_report_path(id, params[:id]) %> </td>
 				<td class="s20" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @submitted_students_count["#{id}"] %></td>
 				<% (@quiz_question_count-1).times do |count| -%>
 	        <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{count+1}"] %>%</td>
 	      <% end -%>
 	      <td dir="ltr" class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{@quiz_question_count}"] %>%</td>
 				<% (@misconceptions.count-1).times do |count| -%>
-					<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_misconceptions["#{id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions[count].id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions[count].id}"] : 0 : 0 %></td>
+					<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] : 0 : 0 %></td>
 				<% end -%>
-				<% if !@misconceptions.last.nil? -%><td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @school_misconceptions["#{id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @school_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td><% end -%>
+				<% if !@misconceptions.last.nil? -%><td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td><% end -%>
 
 				<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">-</td>
 				<td class="s6" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
@@ -113,17 +114,17 @@
 
 		<tr dir="ltr">
 			<td class="hd"><p style="height:16px;">.</p></td>
-			<td dir="ltr" class="s17"><%= t('reports.district', "District") %></td>
-			<td dir="ltr" class="s18"><%= @total_teachers_count %></td>
+			<td dir="ltr" class="s17"><%= t('reports.school','School') %></td>
+			<td dir="ltr" class="s18"><%= @school_name %></td>
 			<td class="s19"><%= @participating_students_count %></td>
 			<% (@quiz_question_count-1).times do |count| -%>
         <td dir="ltr" class="s21"><%= @analysis["#{count+1}"] %>%</td>
       <% end -%>
       <td dir="ltr" class="s22"><%= @analysis["#{@quiz_question_count}"] %>%</td>
 			<% (@misconceptions.count-1).times do |count| -%>
-				<td class="s21"><%= @total_school_misconceptions["#{@misconceptions[count].id}"] ? @total_school_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
+				<td class="s21"><%= @total_class_misconceptions["#{@misconceptions[count].id}"] ? @total_class_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
 			<% end -%>
-			<% if !@misconceptions.last.nil? -%><td class="s22"><%= @total_school_misconceptions["#{@misconceptions.last.id}"] ? @total_school_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
+			<% if !@misconceptions.last.nil? -%><td class="s22"><%= @total_class_misconceptions["#{@misconceptions.last.id}"] ? @total_class_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
 
 			<td class="s22">-</td>
 			<td class="s6"></td>

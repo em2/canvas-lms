@@ -8,18 +8,24 @@
 	<span> <%= t('reports.reports_are_calculating','Reports are currently calculating...') %> </span>
 <% end -%>
 
-<h1>Available Probes</h1>
+
+<h1>View Reports for:</h1>
  
 <table>
-  <tr>
-    <th>Choose a probe</th>
-  </tr>
-  <% @question_bank.each do |probe| -%>
-  	<tr>
-	  	<th>
-		  	<%= link_to "#{probe.title}", report_path(probe.id), :class => "button" %>
-		  </th>
-		</tr>
+  <% if @is_admin -%>
+	  <tr>
+	  	<td><%= link_to "Districts", district_reports_path(params[:id]), :class => "button" %> </td>
+	  </tr>
+	<% end -%>
+	<% if @is_admin -%>
+	  <tr>
+	  	<td><%= link_to "Schools", school_reports_path(params[:id]), :class => "button" %> </td>
+	  </tr>
+	<% end -%>
+	<% if @is_admin || @is_teacher -%>
+	  <tr>
+	  	<td><%= link_to "Classes", class_reports_path(params[:id]), :class => "button" %> </td>
+	  </tr>
 	<% end -%>
 </table>
  

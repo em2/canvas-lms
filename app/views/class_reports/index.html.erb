@@ -4,15 +4,10 @@
 
 <h1>View Reports for:</h1>
 
-<% if @classes.count == 0 -%>
-	<div> <%= t('reports', 'No classes found with this probe.') %> </div>
-<% else -%>
-
-	<table>
-		<% @classes.each do |course| -%>
-		  <tr>
-		  	<td><%= link_to course.name, report_class_report_path(params[:report_id], course.id), :class => "button" %> </td>
-		  </tr>
-		<% end -%>
-	</table>
-<% end -%>
+<table>
+	<% @classes.each do |course| -%>
+	  <tr>
+	  	<td><%= link_to course.name, class_report_assessment_reports_path(course.id), :class => "button" %> </td>
+	  </tr>
+	<% end -%>
+</table>

@@ -5,11 +5,11 @@ class ClassReportsController < ApplicationController
 	    is_admin?
 	    is_teacher?
 
-	    @current_probe = AssessmentQuestionBank.find(params[:report_id])
+	    # @current_probe = AssessmentQuestionBank.find(params[:report_id])
 
-	    add_crumb("Reports", reports_path)
-      add_crumb(@current_probe.title, report_path(@current_probe.id))
-      add_crumb("Classes")
+	    # add_crumb("Reports", reports_path)
+     #  add_crumb(@current_probe.title, report_path(@current_probe.id))
+     #  add_crumb("Classes")
 
 	    if !@is_admin && !@is_teacher
 				redirect_back_or_default(dashboard_url)
@@ -19,74 +19,12 @@ class ClassReportsController < ApplicationController
 
       @context.sub_accounts.active.each do |sub_account|
         sub_account.sub_accounts.active.each do |sub_sub_account|
-          find_courses(sub_sub_account, sub_sub_account, @current_probe, @classes)
+          find_courses(sub_sub_account, sub_sub_account, @classes)
         end
       end
 
       if @is_teacher && !@is_admin
         @classes = find_courses_for_teacher(@classes)
-      end
-
-		else
-			redirect_back_or_default(dashboard_url)
-		end
-  end
-
-  def show
-  	if is_authorized?(@current_user) # Make sure the user is authorized to do this
-
-	    is_admin?
-	    is_teacher?
-	    if !@is_admin && !@is_teacher
-				redirect_back_or_default(dashboard_url)
-			end
-
-	    @current_probe = AssessmentQuestionBank.find(params[:report_id])
-	    @course = Course.find(params[:id])
-
-	    add_crumb("Reports", reports_path)
-      add_crumb(@current_probe.title, report_path(params[:report_id]))
-      add_crumb("Classes", report_class_reports_path(params[:report_id]))
-      add_crumb(@course.name)
-
-      @course.quizzes.active.each do |quiz|
-      	if quiz.probe_name && quiz.probe_name[@current_probe.title]
-      		@quiz = quiz
-      	end
-      end
-
-      if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
-  	    
-        if data = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(@course.id, @current_probe.id, @quiz.id)
-          @q = JSON.parse(data.q)
-          @number_correct = JSON.parse(data.number_correct)
-          @number_attempted = JSON.parse(data.number_attempted)
-          @percent_correct = JSON.parse(data.percent_correct)
-          @item_analysis = JSON.parse(data.item_analysis)
-          @teacher_id = data.teacher_id
-          @teacher_name = data.teacher_name
-          @course_name = data.course_name
-          @school_name = data.school_name
-          @submitted_students_count = data.submitted_students_count
-          submitted_students_ids = JSON.parse(data.submitted_students_ids)
-          @submitted_students = []
-          submitted_students_ids.each do |id|
-            @submitted_students << User.find(id)
-          end
-          @quiz_question_count = data.quiz_question_count
-          @submissions = JSON.parse(data.submissions)
-          @user_misconceptions = JSON.parse(data.user_misconceptions)
-          @misconceptions = @quiz.quiz_misconceptions.active
-          @total_user_misconceptions = JSON.parse(data.total_user_misconceptions)
-          @earliest_submission = data.earliest_submission
-          @latest_submission = data.latest_submission 
-        else
-          flash[:error] = "This report is not yet ready."
-          redirect_back_or_default(report_class_reports_path(params[:report_id]))
-        end
-      else
-        flash[:error] = "No Assessment Found"
-        redirect_back_or_default(report_class_reports_path(params[:report_id]))
       end
 
 		else

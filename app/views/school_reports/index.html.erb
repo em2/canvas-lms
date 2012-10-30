@@ -4,15 +4,10 @@
 
 <h1>View Reports for:</h1>
 
-<% if @schools.count == 0 -%>
-	<div> No schools found with this probe </div>
-<% else -%>
-
-	<table>
-		<% @schools.each do |account| -%>
-		  <tr>
-		  	<td><%= link_to account.parent_account.name ? account.parent_account.name + account.name : account.name, report_school_report_path(params[:report_id], account.id), :class => "button"%> </td>
-		  </tr>
-	  <% end -%>
-	</table>
-<% end -%>
+<table>
+	<% @schools.each do |account| -%>
+	  <tr>
+	  	<td><%= link_to account.parent_account.name ? account.parent_account.name + account.name : account.name, school_report_assessment_reports_path(account.id), :class => "button"%> </td>
+	  </tr>
+  <% end -%>
+</table>

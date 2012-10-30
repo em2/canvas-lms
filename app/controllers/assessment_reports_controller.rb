@@ -1,69 +1,171 @@
 class AssessmentReportsController < ApplicationController
-	before_filter :get_context
+  def index
+  	if is_authorized?(@current_user) # Make sure the user is authorized to do this
 
-  def show
-  	@quiz = Quiz.find(params[:id])
-  	if authorized_action(@quiz, @current_user, :read_statistics)
-    	add_crumb("Reports", reports_path)
-      add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
-      add_crumb(t(:statistics_crumb, "Statistics"), named_context_url(@context, :context_quiz_statistics_url, @quiz))
-      @statistics = @quiz.statistics(params[:all_versions] == '1')
-      user_ids = @quiz.quiz_submissions.select{|s| !s.settings_only? }.map(&:user_id)
-      @submitted_users = user_ids.empty? ? [] : User.find_all_by_id(user_ids).compact.uniq.sort_by(&:last_name_first)
-      
+      # add_crumb("Reports")
+
       is_admin?
+      is_teacher?
 
-      @found_teacher = false
-      Course.find(params[:report_id]).teachers.each do |teacher|
-        if (teacher.id == @current_user.id)
-          @found_teacher = true
-          break
-        end
+      if !@report = Report.find_by_account_id(@context.id)
+        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
       end
 
-      @quiz_question_count = 0
-      @quiz.quiz_data.each do |quiz_data|
-        next if quiz_data[:question_type] == "text_only_question"
-        @quiz_question_count += 1
-      end
-      #
-      # Gather all the correct responses, student responses, and explaination text
-      @q = {}
-      @cor = {}
-      @expl = {}
-      @submitted_users.each do |user|
-        @cor_question_count = 1
-        @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id)
-        @submission.quiz_data.each do |quiz_data|
-          next if quiz_data[:question_type] == "text_only_question"
-          begin
-            @sub_data = @submission.submission_data.detect{|a| a[:question_id] == quiz_data[:id]}
-            if @q["#{user.id}"] == nil
-              @q["#{user.id}"] = {"#{@cor_question_count}" => ''}
-              @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
-            else
-              @q["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
-              @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
-            end
-            quiz_data[:answers].each_with_index do |answer, index|
-              if answer[:weight] > 0
-                @cor["#{@cor_question_count}"] = index+1
-              end
-              if @sub_data[:answer_id] == answer[:id]
-                @q["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
-              end
-            end
-            @cor_question_count += 1
-          rescue
-            r2d=2
-          end
-        end
-      end
+      @question_bank = AssessmentQuestionBank.active
+      
+    else
+      redirect_back_or_default(dashboard_url)
     end
   end
 
-  def is_admin?
-    @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
+  def show
+  	if is_authorized?(@current_user) # Make sure the user is authorized to do this
+
+	    is_admin?
+
+	    @current_probe = AssessmentQuestionBank.find(params[:id])
+	    
+
+	    if params[:district_report_id]
+			  load_district_data
+		  elsif params[:school_report_id]
+		  	load_school_data
+		  elsif params[:class_report_id]
+		  	load_class_data
+		  end
+
+	    
+	    
+		else
+			redirect_back_or_default(dashboard_url)
+		end
+  end
+
+  def load_district_data
+
+  	if !@is_admin
+      redirect_back_or_default(dashboard_url)
+    end
+
+  	@account = Account.find(params[:district_report_id])
+
+  	# add_crumb("Reports", reports_path)
+    # add_crumb(@current_probe.title, report_path(params[:report_id]))
+    # add_crumb("Districts", report_district_reports_path(params[:report_id]))
+    # add_crumb(@account.name)
+    
+
+    if data = DistrictReport.find_by_account_id_and_probe_id(@account.id, @current_probe.id)
+      @quiz_question_count = data.quiz_question_count
+      @report_name = data.report_name
+      @participating_students_count = data.participating_students_count
+      @participating_class_count = data.participating_class_count
+      @account_ids = JSON.parse(data.account_ids)
+      @submitted_students_count = JSON.parse(data.submitted_students_count)
+      @item_analysis = JSON.parse(data.item_analysis)
+      @analysis = JSON.parse(data.analysis)
+      @teachers_count = JSON.parse(data.teachers_count)
+      @total_teachers_count = data.total_teachers_count
+      @school_misconceptions = JSON.parse(data.school_misconceptions)
+      @total_school_misconceptions = JSON.parse(data.total_school_misconceptions)
+      probe = AssessmentQuestionBank.find(data.probe_id)
+      @misconceptions = probe.assessment_misconceptions.active
+      @earliest_submission = data.earliest_submission
+      @latest_submission = data.latest_submission
+    else
+      flash[:error] = "This report is not yet ready."
+      redirect_back_or_default(district_report_assessment_reports_path(@account.id))
+    end
+  end
+
+  def load_school_data
+
+  	if !@is_admin
+      redirect_back_or_default(dashboard_url)
+    end
+
+    @account = Account.find(params[:school_report_id])
+
+    # add_crumb("Reports", reports_path)
+    # add_crumb(@current_probe.title, report_path(params[:report_id]))
+    # add_crumb("Schools", report_school_reports_path(params[:report_id]))
+    # add_crumb(@account.parent_account.name + @account.name)
+
+    if data = SchoolReport.find_by_account_id_and_probe_id(@account.id, @current_probe.id)
+      @quiz_question_count = data.quiz_question_count
+      @report_name = data.report_name
+      @participating_students_count = data.participating_students_count
+      @participating_class_count = data.participating_class_count
+      @course_ids = JSON.parse(data.course_ids)
+      @teacher_name = JSON.parse(data.teacher_name)
+      @submitted_students_count = JSON.parse(data.submitted_students_count)
+      @item_analysis = JSON.parse(data.item_analysis)
+      @school_name = data.school_name
+      @analysis = JSON.parse(data.analysis)
+      @class_misconceptions = JSON.parse(data.class_misconceptions)
+      @total_class_misconceptions = JSON.parse(data.total_class_misconceptions)
+      probe = AssessmentQuestionBank.find(data.probe_id)
+      @misconceptions = probe.assessment_misconceptions.active
+      @earliest_submission = data.earliest_submission
+      @latest_submission = data.latest_submission
+    else
+      flash[:error] = "This report is not yet ready."
+      redirect_back_or_default(school_report_assessment_reports_path(@account.id))
+    end
+
+  end
+
+  def load_class_data
+
+		is_teacher?
+    if !@is_admin && !@is_teacher
+			redirect_back_or_default(dashboard_url)
+		end
+
+  	@course = Course.find(params[:class_report_id])
+
+    # add_crumb("Reports", reports_path)
+    # add_crumb(@current_probe.title, report_path(params[:report_id]))
+    # add_crumb("Classes", report_class_reports_path(params[:report_id]))
+    # add_crumb(@course.name)
+
+    @course.quizzes.active.each do |quiz|
+    	if quiz.probe_name && quiz.probe_name[@current_probe.title]
+    		@quiz = quiz
+    	end
+    end
+
+    if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
+	    
+      if data = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(@course.id, @current_probe.id, @quiz.id)
+        @q = JSON.parse(data.q)
+        @number_correct = JSON.parse(data.number_correct)
+        @number_attempted = JSON.parse(data.number_attempted)
+        @percent_correct = JSON.parse(data.percent_correct)
+        @item_analysis = JSON.parse(data.item_analysis)
+        @teacher_id = data.teacher_id
+        @teacher_name = data.teacher_name
+        @course_name = data.course_name
+        @school_name = data.school_name
+        @submitted_students_count = data.submitted_students_count
+        submitted_students_ids = JSON.parse(data.submitted_students_ids)
+        @submitted_students = []
+        submitted_students_ids.each do |id|
+          @submitted_students << User.find(id)
+        end
+        @quiz_question_count = data.quiz_question_count
+        @submissions = JSON.parse(data.submissions)
+        @user_misconceptions = JSON.parse(data.user_misconceptions)
+        @misconceptions = @quiz.quiz_misconceptions.active
+        @total_user_misconceptions = JSON.parse(data.total_user_misconceptions)
+        @earliest_submission = data.earliest_submission
+        @latest_submission = data.latest_submission 
+      else
+        flash[:error] = "This report is not yet ready."
+        redirect_back_or_default(class_report_assessment_reports_path(@account.id))
+      end
+    end
+
   end
 
 end

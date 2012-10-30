@@ -1,0 +1,32 @@
+<% jammit_css :assessment_reports_index -%>
+
+<% content_for :page_title do -%>Probe Selection<% end -%>
+
+<h1>Available Probes</h1>
+
+
+ 
+<table>
+  <% if @question_bank.count == 0 -%>
+		<tr>
+			<th><%= t('reports', 'No probes found.') %></th>
+		</tr>
+	<% else -%>
+		<tr>
+	    <th>Choose a probe</th>
+	  </tr>
+	  <% @question_bank.each do |probe| -%>
+	  	<tr>
+		  	<th>
+		  		<% if params[:district_report_id] -%>
+				  	<%= link_to "#{probe.title}", district_report_assessment_report_path(params[:district_report_id], probe.id), :class => "button" %>
+			  	<% elsif params[:school_report_id] -%>
+			  		<%= link_to "#{probe.title}", school_report_assessment_report_path(params[:school_report_id], probe.id), :class => "button" %>
+			  	<% elsif params[:class_report_id] -%>
+			  		<%= link_to "#{probe.title}", class_report_assessment_report_path(params[:class_report_id], probe.id), :class => "button" %>
+		  		<% end -%>
+			  </th>
+			</tr>
+		<% end -%>
+	<% end -%>
+</table>

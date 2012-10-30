@@ -3,21 +3,11 @@
 <% content_for :page_title do -%>Area Selection<% end -%>
 
 <h1>View Reports for:</h1>
- 
+
 <table>
-  <% if @is_admin -%>
+	<% @districts.each do |account| -%>
 	  <tr>
-	  	<td><%= link_to "Districts", report_district_reports_path(params[:id]), :class => "button" %> </td>
-	  </tr>
-	<% end -%>
-	<% if @is_admin -%>
-	  <tr>
-	  	<td><%= link_to "Schools", report_school_reports_path(params[:id]), :class => "button" %> </td>
-	  </tr>
-	<% end -%>
-	<% if @is_admin || @is_teacher -%>
-	  <tr>
-	  	<td><%= link_to "Classes", report_class_reports_path(params[:id]), :class => "button" %> </td>
+	  	<td><%= link_to account.name, report_district_report_path(params[:report_id], account.id), :class => "button" %> </td>
 	  </tr>
 	<% end -%>
 </table>

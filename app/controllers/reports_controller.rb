@@ -4,6 +4,9 @@ class ReportsController < ApplicationController
 
       add_crumb("Reports")
 
+      is_admin?
+      is_teacher?
+
       if !@report = Report.find_by_account_id(@context.id)
         @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
       end
@@ -19,7 +22,7 @@ class ReportsController < ApplicationController
       @current_probe = AssessmentQuestionBank.find(params[:id])
       
       add_crumb("Reports", reports_path)
-      add_crumb(@current_probe.title)
+      # add_crumb(@current_probe.title)
 
       is_admin?
       is_teacher?
@@ -38,7 +41,8 @@ class ReportsController < ApplicationController
       if !report.in_job
         report.in_job = true
         report.save!
-        Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
+        # Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
+        report.calculate_reports(@context)
         flash[:notice] = "Attempting to calculate the reports..."
       else
         flash[:error] = "The report is already in the queue."
