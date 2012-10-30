@@ -42,19 +42,37 @@ class Report < ActiveRecord::Base
         end
         # calculate school report
         question_banks.each do |qb|
-          if !school_report = SchoolReport.find_by_account_id_and_probe_id(school.id, qb.id)
-            school_report = SchoolReport.create!(:account_id => school.id, :probe_id => qb.id)
+          probe = nil
+          class_reports.each do |cr|
+            if cr.probe_id == qb.id
+              probe = qb
+              break
+            end
           end
-          school_report.calculate_reports(class_reports)
-          school_reports << school_report
+          if probe
+            if !school_report = SchoolReport.find_by_account_id_and_probe_id(school.id, qb.id)
+              school_report = SchoolReport.create!(:account_id => school.id, :probe_id => qb.id)
+            end
+            school_report.calculate_reports(class_reports)
+            school_reports << school_report
+          end
         end
       end
       # calculate district report
       question_banks.each do |qb|
-        if !district_report = DistrictReport.find_by_account_id_and_probe_id(district.id, qb.id)
-          district_report = DistrictReport.create!(:account_id => district.id, :probe_id => qb.id)
+        probe = nil
+        school_reports.each do |sr|
+          if sr.probe_id == qb.id
+            probe = qb
+            break
+          end
         end
-        district_report.calculate_reports(school_reports)
+        if probe
+          if !district_report = DistrictReport.find_by_account_id_and_probe_id(district.id, qb.id)
+            district_report = DistrictReport.create!(:account_id => district.id, :probe_id => qb.id)
+          end
+          district_report.calculate_reports(school_reports)
+        end
       end
     end
     self.in_job = false

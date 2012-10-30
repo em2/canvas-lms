@@ -2,7 +2,7 @@ class AssessmentReportsController < ApplicationController
   def index
   	if is_authorized?(@current_user) # Make sure the user is authorized to do this
 
-      # add_crumb("Reports")
+      add_crumb("Reports")
 
       is_admin?
       is_teacher?
@@ -11,11 +11,42 @@ class AssessmentReportsController < ApplicationController
         @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
       end
 
-      @question_bank = AssessmentQuestionBank.active
+      @question_bank = []
+
+      if params[:district_report_id]
+			  load_district_probes
+		  elsif params[:school_report_id]
+		  	load_school_probes
+		  elsif params[:class_report_id]
+		  	load_class_probes
+		  end
+
+      
       
     else
       redirect_back_or_default(dashboard_url)
     end
+  end
+
+  def load_district_probes
+  	@account = Account.find(params[:district_report_id])
+
+  	@account.sub_accounts.active.each do |sub_account|
+  		find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @question_bank)
+  	end
+  end
+
+  def load_school_probes
+  	@account = Account.find(params[:school_report_id])
+
+  	@account.sub_accounts.active.each do |sub_account|
+  		find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @question_bank)
+  	end
+  end
+
+  def load_class_probes
+  	@course = Course.find(params[:class_report_id])
+  	find_probe_in_course(@course, AssessmentQuestionBank.active, @question_bank)
   end
 
   def show

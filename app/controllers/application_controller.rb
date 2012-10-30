@@ -241,7 +241,7 @@ class ApplicationController < ActionController::Base
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
   end
 
-  def find_courses_in_account(account, top_account, current_probe, collection)
+  def find_courses_in_account_with_probe(account, top_account, current_probe, collection)
     if !account.courses.are_available.empty? && !@found_match
       account.courses.are_available.each do |course|
         course.quizzes.active.each do |quiz|
@@ -261,7 +261,37 @@ class ApplicationController < ActionController::Base
 
     if !account.sub_accounts.active.empty? && !@found_match
       account.sub_accounts.active.each do |sub_account|
-        find_courses_in_account(sub_account, top_account, current_probe, collection)
+        find_courses_in_account_with_probe(sub_account, top_account, current_probe, collection)
+      end
+    end
+  end
+
+  def find_probes_in_account(account, top_account, probes, collection)
+    if !account.courses.are_available.empty?
+      account.courses.are_available.each do |course|
+        course.quizzes.active.each do |quiz|
+          probes.each do |probe|
+            if quiz.probe_name && quiz.probe_name.include?(probe.title) && !collection.include?(probe)
+              collection << probe
+            end
+          end
+        end
+      end
+    end
+
+    if !account.sub_accounts.active.empty?
+      account.sub_accounts.active.each do |sub_account|
+        find_probes_in_account(sub_account, top_account, probes, collection)
+      end
+    end
+  end
+
+  def find_probe_in_course(course, probes, collection)
+    course.quizzes.active.each do |quiz|
+      probes.each do |probe|
+        if quiz.probe_name && quiz.probe_name.include?(probe.title) && !collection.include?(probe)
+          collection << probe
+        end
       end
     end
   end
