@@ -44,10 +44,8 @@ class AssessmentReportsController < ApplicationController
 
     add_crumb("School Reports", school_reports_path)
     add_crumb("#{@account.name}")
-
-  	@account.sub_accounts.active.each do |sub_account|
-  		find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @question_bank)
-  	end
+ 
+  	find_probes_in_account(@account, @account, AssessmentQuestionBank.active, @question_bank)
   end
 
   def load_class_probes
@@ -127,7 +125,7 @@ class AssessmentReportsController < ApplicationController
 
     @account = Account.find(params[:school_report_id])
     
-    add_crumb("District Reports", school_reports_path)
+    add_crumb("School Reports", school_reports_path)
     add_crumb("#{@account.name}", school_report_assessment_reports_path)
     add_crumb("#{@current_probe.title}")
 
@@ -164,7 +162,7 @@ class AssessmentReportsController < ApplicationController
 
   	@course = Course.find(params[:class_report_id])
 
-    add_crumb("District Reports", class_reports_path)
+    add_crumb("Class Reports", class_reports_path)
     add_crumb("#{@course.name}", class_report_assessment_reports_path)
     add_crumb("#{@current_probe.title}")
 
