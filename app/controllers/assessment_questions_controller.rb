@@ -27,24 +27,24 @@ class AssessmentQuestionsController < ApplicationController
       @question = @bank.assessment_questions.build(params[:assessment_question])
       if @question.with_versioning(&:save)
         
-        @question.question_data[:answers].each_with_index do |answer, index|
+        @question.question_data[:answers].each do |answer|
           if !answer[:misconception_id].empty?
             misconceptions = JSON.parse(answer[:misconception_id])
-            misconceptions.each_with_index do |misconception_id, index|
-              misconception = AssessmentMisconception.find(misconception_id.first.to_i)
-              miscon = misconception.pattern
+            misconceptions.each do |miscon_id, value|
+              misconception = AssessmentMisconception.find(miscon_id.to_i)
+              pattern = misconception.pattern
 
               answer_id = {}
 
-              answer_id["#{answer[:id]}"] = misconceptions["#{misconception_id.first}"]
+              answer_id["#{answer[:id]}"] = misconceptions["#{miscon_id}"]
 
-              if miscon.empty?
-                miscon.merge!({"#{@question.id}"=>answer_id})
+              if pattern.empty?
+                pattern.merge!({"#{@question.id}"=>answer_id})
               else
-                answer_id.merge!(miscon["#{@question.id}"]) unless miscon["#{@question.id}"].nil?
-                miscon.merge!({"#{@question.id}"=>answer_id})
+                answer_id.merge!(pattern["#{@question.id}"]) unless pattern["#{@question.id}"].nil?
+                pattern.merge!({"#{@question.id}"=>answer_id})
               end
-              misconception.pattern = miscon
+              misconception.pattern = pattern
               misconception.save!
             end
           end
@@ -61,6 +61,10 @@ class AssessmentQuestionsController < ApplicationController
   def update
     @question = @bank.assessment_questions.find(params[:id])
     if authorized_action(@question, @current_user, :update)
+      #
+      # grab the old misconception data in case we need to revert
+      old_answers = @question.question_data[:answers]
+
       params[:assessment_question] ||= {}
       # changing the question bank id needs to use the move action, below
       params[:assessment_question].delete(:assessment_question_bank_id)
@@ -68,39 +72,70 @@ class AssessmentQuestionsController < ApplicationController
       @question.edited_independent_of_quiz_question
       if @question.with_versioning { @question.update_attributes(params[:assessment_question]) }
         @question.ensure_in_list
-        
 
-        # remove the old references 
-        @bank.assessment_misconceptions.active.each do |misconception|
-          miscon = misconception.pattern
-          miscon.delete("#{@question.id}")
-          misconception.pattern = miscon
-          misconception.save!
-        end
-      
-        @question.question_data[:answers].each_with_index do |answer, index|
+        
+        #
+        # check the totals and make sure each misconception for all the question answers
+        # adds up to exactly 1
+        totals = {}
+        @question.question_data[:answers].each do |answer|
           if !answer[:misconception_id].empty?
             misconceptions = JSON.parse(answer[:misconception_id])
-            misconceptions.each_with_index do |misconception_id, index|
-              misconception = AssessmentMisconception.find(misconception_id.first.to_i)
-              miscon = misconception.pattern
-
-              answer_id = {}
-
-              answer_id["#{answer[:id]}"] = misconceptions["#{misconception_id.first}"]
-
-              if miscon.empty?
-                miscon.merge!({"#{@question.id}"=>answer_id})
+            misconceptions.each do |miscon_id, value|
+              if totals["#{miscon_id.first}"].nil?
+                totals["#{miscon_id.first}"] = value
               else
-                answer_id.merge!(miscon["#{@question.id}"]) unless miscon["#{@question.id}"].nil?
-                miscon.merge!({"#{@question.id}"=>answer_id})
+                num = totals["#{miscon_id.first}"].to_f
+                num += value.to_f
+                totals.merge!("#{miscon_id.first}" => num)
               end
-              misconception.pattern = miscon
-              misconception.save!
             end
           end
         end
         
+        ok_to_proceed = true
+        totals.each { |miscon_id,value| ok_to_proceed = false unless value==1 }
+
+        if ok_to_proceed
+          # remove the old references 
+          @bank.assessment_misconceptions.active.each do |misconception|
+            miscon = misconception.pattern
+            miscon.delete("#{@question.id}")
+            misconception.pattern = miscon
+            misconception.save!
+          end
+        
+          @question.question_data[:answers].each do |answer|
+            if !answer[:misconception_id].empty?
+              misconceptions = JSON.parse(answer[:misconception_id])
+              misconceptions.each do |miscon_id, value|
+                misconception = AssessmentMisconception.find(miscon_id.to_i)
+                pattern = misconception.pattern
+
+                answer_id = {}
+
+                answer_id["#{answer[:id]}"] = misconceptions["#{miscon_id}"]
+
+                if pattern.empty?
+                  pattern.merge!({"#{@question.id}"=>answer_id})
+                else
+                  answer_id.merge!(pattern["#{@question.id}"]) unless pattern["#{@question.id}"].nil?
+                  pattern.merge!({"#{@question.id}"=>answer_id})
+                end
+                misconception.pattern = pattern
+                misconception.save!
+              end
+            end
+          end
+        else
+          #
+          # revert the to misconception data
+          @question.question_data[:answers].each_with_index do |answer, index|
+            answer[:misconception_id] = old_answers[index][:misconception_id]
+          end
+          @question.save!
+        end
+
 
         render :json => @question.to_json
       else
