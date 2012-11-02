@@ -2078,6 +2078,36 @@ define([
         }
         question.answers.push(data);
       });
+
+      totals = {};
+      $.each(question.answers, function(index, answer){
+        ami = JSON.parse(answer.answer_misconception_id);
+        $.each(ami, function(key, value){
+          if (totals[key] == undefined){
+            totals[key] = parseFloat(value);
+          }else{
+            num = parseFloat(totals[key]);
+            num += parseFloat(value);
+            totals[key] = num;
+          }
+        });
+      });
+
+      var ok_to_proceed = true;
+
+      $.each(totals, function(key, value){
+        if (value != 1){
+          ok_to_proceed = false;
+        }
+      });
+      
+      if (!ok_to_proceed){
+        alert("Each Misconception must add up to 1!");
+        return ok_to_proceed;
+      }
+
+
+
       if ($question.hasClass('calculated_question')) {
         question.answers = [];
         question.variables = [];
