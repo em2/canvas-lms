@@ -97,6 +97,7 @@ define([
 
       $answer.fillFormData(answer, {call_change: false});
       $answer.find('.select_answer input').showIf(!answer.answer_html);
+      $answer.find('.answer_misconception').show();
       $answer.find('.matching_answer .answer_match_left').showIf(!answer.answer_match_left_html);
       $answer.find('.matching_answer .answer_match_left_html').showIf(answer.answer_match_left_html);
 
