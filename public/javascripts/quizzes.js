@@ -2087,8 +2087,11 @@ define([
           if (totals[key] == undefined){
             totals[key] = parseFloat(value);
           }else{
-            num = parseFloat(totals[key]);
-            num += parseFloat(value);
+            //
+            // have to pull the numbers out and multiply and divide to avoid float rounding errors
+            num1 = parseFloat(totals[key]) * 10000;
+            num2 = parseFloat(value) * 10000;
+            num = (num1 + num2) / 10000;
             totals[key] = num;
           }
         });
