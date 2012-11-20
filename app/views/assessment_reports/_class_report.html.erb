@@ -83,9 +83,9 @@
         <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_correct["#{s.id}"] %></td>
         <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_attempted["#{s.id}"] %></td>
         <% (@quiz_question_count-1).times do |count| -%>
-          <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"]["#{count + 1}"] %></td>
+          <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"] ? @q["#{s.id}"]["#{count + 1}"] : '' %></td>
         <% end -%>
-        <td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"]["#{@quiz_question_count}"] %></td>
+        <td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"] ? @q["#{s.id}"]["#{@quiz_question_count}"] : '' %></td>
         <% (@misconceptions.count-1).times do |count| -%>
           <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @user_misconceptions["#{s.id}"]["#{@misconceptions[count].id}"] %></td>
         <% end -%>

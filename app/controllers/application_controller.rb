@@ -315,7 +315,6 @@ class ApplicationController < ActionController::Base
         course.quizzes.active.each do |quiz|
           if quiz.probe_name
             collection << course
-            return true
           end
         end
       end
