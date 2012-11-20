@@ -7,9 +7,9 @@
 <h1 id="report_heading"><b>Classroom Report: <%= @current_probe.full_name %></b></h1>
 <h3 id="course_name"><%= @course.name %></h3>
 <% if @earliest_submission && @latest_submission && @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
-  <h3 id="assessment_date"><%= @earliest_submission.to_date %></h3>
+  <h3 id="assessment_date"><%= @earliest_submission.strftime("%B %d, %Y") %></h3>
 <% else -%>
-  <h3 id="assessment_date_range"><%= "#{@earliest_submission ? @earliest_submission.to_date : '--'} through #{@latest_submission ? @latest_submission.to_date : '--'}" %></h3>
+  <h3 id="assessment_date_range"><%= "#{@earliest_submission ? @earliest_submission.strftime("%B %d, %Y") : '--'} through #{@latest_submission ? @latest_submission.strftime("%B %d, %Y") : '--'}" %></h3>
 <% end -%>
 
 <br />
