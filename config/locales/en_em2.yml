@@ -386,7 +386,8 @@ em2:
     generate_rosters:
       must_be_a_number: "Must Be A Number"
     view_previous_rosters:
-      view_class_rosters: "View Class Rosters"
+      view_class_rosters: "Rosters"
+      view_class_reports: "Reports"
   shared: 
     full_assignment: 
       descriptions: 

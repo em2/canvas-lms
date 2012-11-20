@@ -1,6 +1,6 @@
 <% jammit_css :rosters -%>
 
-<h2><a href="<%= rosters_path %>"><%= t(:view_class_rosters, "View Class Rosters") %></a>&nbsp|&nbsp<a href="<%= reports_path() %>"> Reports </a> </h2>
+<h2>View Class <a href="<%= rosters_path %>"><%= t(:view_class_rosters, "Rosters") %></a>&nbsp|&nbsp<a href="<%= reports_path() %>"><%= t(:view_class_reports, "Reports") %></a> </h2>
 <div class="rs-margin-lr">
 	<% if @is_teacher || @is_admin -%>
 		<% @school_rosters.each do |roster| -%>
