@@ -83,6 +83,10 @@ group :development do
   gem 'af'
 end
 
+group :production do
+  gem 'mysql2'
+end
+
 group :redis do
   gem 'redis-store', '1.0.0.rc1'
 end
