@@ -111,6 +111,8 @@ class AssessmentReportsController < ApplicationController
       @misconceptions = probe.assessment_misconceptions.active
       @earliest_submission = data.earliest_submission
       @latest_submission = data.latest_submission
+      @school_difficulties = JSON.parse(data.school_difficulties)
+      @total_school_difficulties = data.total_school_difficulties
     else
       flash[:error] = "This report is not yet ready."
       redirect_back_or_default(district_report_assessment_reports_path(@account.id))
