@@ -21,6 +21,8 @@ class ClassReport < ActiveRecord::Base
 		self.submissions = data["submissions"].to_json
     self.user_misconceptions = data["user_misconceptions"].to_json
     self.total_user_misconceptions = data["total_user_misconceptions"].to_json
+    self.user_difficulties = data["user_difficulties"].to_json
+    self.total_user_difficulties = data["total_user_difficulties"].to_json
     self.earliest_submission = data["earliest_submission"]
     self.latest_submission = data["latest_submission"]
     self.save!
@@ -52,6 +54,8 @@ class ClassReport < ActiveRecord::Base
     data["quiz_question_count"] = quiz_question_count
     data["user_misconceptions"] = {}
     data["total_user_misconceptions"] = {}
+    data["user_difficulties"] = {}
+    data["total_user_difficulties"] = {}
     data["earliest_submission"] = Time.now
     data["latest_submission"] = quiz.created_at
 
@@ -146,6 +150,7 @@ class ClassReport < ActiveRecord::Base
       end
 
       data["user_misconceptions"]["#{user.id}"] = {}
+      data["user_difficulties"]["#{user.id}"] = {}
 
       quiz.quiz_misconceptions.active.each do |quiz_misconception|
         if user_misconception = user.user_misconceptions.find_by_quiz_id_and_quiz_misconception_id(quiz.id, quiz_misconception.id)
@@ -169,6 +174,9 @@ class ClassReport < ActiveRecord::Base
               count += 1
               data["total_user_misconceptions"]["#{quiz_misconception.id}"] = count
             end
+          else
+            debugger
+            r2d=2
           end
         end
       end
