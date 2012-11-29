@@ -90,7 +90,7 @@
             <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @user_misconceptions["#{s.id}"]["#{@misconceptions[count].id}"] %></td>
           <% end -%>
           <% if !@misconceptions.last.nil? -%><td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @user_misconceptions["#{s.id}"]["#{@misconceptions.last.id}"] %></td><% end -%>
-          <td class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
+          <td class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%=raw @user_difficulties["#{s.id}"] %></td>
           <td class="s8" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
         </tr>
       <% end -%>
@@ -108,7 +108,7 @@
           <td class="s27"><%= @total_user_misconceptions["#{@misconceptions[count].id}"] ? @total_user_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
         <% end -%>
         <% if !@misconceptions.last.nil? -%><td class="s28"><%= @total_user_misconceptions["#{@misconceptions.last.id}"] ? @total_user_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
-        <td class="s28">0</td>
+        <td class="s28"><%= @total_user_difficulties %></td>
         <td class="s8"></td>
       </tr>
       <tr dir="ltr">

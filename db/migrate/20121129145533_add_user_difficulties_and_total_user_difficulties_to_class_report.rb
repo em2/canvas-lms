@@ -3,7 +3,7 @@ class AddUserDifficultiesAndTotalUserDifficultiesToClassReport < ActiveRecord::M
 
   def self.up
     add_column :class_reports, :user_difficulties, :string
-    add_column :class_reports, :total_user_difficulties, :string
+    add_column :class_reports, :total_user_difficulties, :integer
   end
 
   def self.down

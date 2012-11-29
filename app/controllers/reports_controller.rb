@@ -27,8 +27,8 @@ class ReportsController < ApplicationController
       if !report.in_job
         report.in_job = true
         report.save!
-        Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
-        # report.calculate_reports(@context)
+        # Delayed::Job.enqueue(ReportCalculateJob.new(report, @context))
+        report.calculate_reports(@context)
         flash[:notice] = "Attempting to calculate the reports..."
       else
         flash[:error] = "The report is already in the queue."
