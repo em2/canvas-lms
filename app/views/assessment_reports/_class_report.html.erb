@@ -1,163 +1,302 @@
 <% jammit_css :reports_class -%>
 
 <% content_for :page_title do -%>Class Report<% end -%>
+<div class="classroom_reports">
+  <%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
 
-<%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
+  <h1 id="report_heading"><b>Classroom Report: <%= @current_probe.full_name %></b></h1>
 
-<h1 id="report_heading"><b>Classroom Report: <%= @current_probe.full_name %></b></h1>
-<h3 id="course_name"><%= @course.name %></h3>
-<% if @earliest_submission && @latest_submission && @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
-  <h3 id="assessment_date"><%= @earliest_submission.strftime("%B %d, %Y") %></h3>
-<% else -%>
-  <h3 id="assessment_date_range"><%= "#{@earliest_submission ? @earliest_submission.strftime("%B %d, %Y") : '--'} through #{@latest_submission ? @latest_submission.strftime("%B %d, %Y") : '--'}" %></h3>
-<% end -%>
+  <% if @earliest_submission && @latest_submission && @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
+    <h3 id="assessment_date"><%= @earliest_submission.strftime("%B %d, %Y") %></h3>
+  <% else -%>
+    <h3 id="assessment_date_range"><%= "#{@earliest_submission ? @earliest_submission.strftime("%B %d, %Y") : '--'} through #{@latest_submission ? @latest_submission.strftime("%B %d, %Y") : '--'}" %></h3>
+  <% end -%>
 
-<br />
+  <br />
 
-<table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
-  <tbody>
-    <tr class="rShim">
-      <td class="rShim" style="width:0;"></td>
-      <td class="rShim" style="width:130px;"></td>
-      <td class="rShim" style="width:81px;"></td>
-      <td class="rShim" style="width:81px;"></td>
-      <% @quiz_question_count.times do -%>
-        <td class="rShim" style="width:35px;"></td>
-      <% end -%>
-      <td class="rShim" style="width:30px;"></td>
-      <td class="rShim" style="width:30px;"></td>
-      <td class="rShim" style="width:30px;"></td>
-      <td class="rShim" style="width:120px;"></td>
-      <td class="rShim" style="width:0;"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s0"></td>
-      <td colspan="2" dir="ltr" class="s1">Summary</td>
-      <td style="display:none;"></td>
-      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Response</td>
-      <% (@quiz_question_count-1).times do -%>
-        <td style="display:none;"></td>
-      <% end -%>
-      <td colspan="3" dir="ltr" class="s1">Misconception</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td dir="ltr" class="s2">Difficulty</td>
-      <td class="s3"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s4"></td>
-      <td colspan="2" class="s5"></td>
-      <td style="display:none;"></td>
-      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s6">Asterisk indicates correct</td>
-      <% (@quiz_question_count-1).times do -%>
-        <td style="display:none;"></td>
-      <% end -%>
-      <td colspan="3" dir="ltr" class="s6">See Key</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td dir="ltr" class="s7">Check Mark</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td dir="ltr" class="s9">Student ID</td>
-      <td dir="ltr" class="s12"># Correct</td>
-      <td dir="ltr" class="s11"># Attempt</td>
-      <% (@quiz_question_count-1).times do |count| -%>
-        <td dir="ltr" class="s12">Q<%= count + 1 %></td>
-      <% end -%>
-      <td dir="ltr" class="s11">Q<%= @quiz_question_count %></td>
-      <% (@misconceptions.count-1).times do |count| -%>
-        <td dir="ltr" class="s12"><%= @misconceptions[count].name %></td>
-      <% end -%>
-      <% if !@misconceptions.last.nil? -%><td dir="ltr" class="s11"><%= @misconceptions.last.name %></td><% end -%>
-      <td dir="ltr" class="s11">Indicates Difficulty</td>
-      <td class="s8"></td>
-    </tr>
-    <% @submitted_students.each_with_index do |s, index| -%>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
-        <td class="s14 student_number" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{s.id}"]) %>" class="name"><%= s.short_name %></a></td>
-        <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_correct["#{s.id}"] %></td>
-        <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_attempted["#{s.id}"] %></td>
-        <% (@quiz_question_count-1).times do |count| -%>
-          <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"] ? @q["#{s.id}"]["#{count + 1}"] : '' %></td>
+  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
+    <tbody>
+      <tr class="rShim">
+        <td class="rShim" style="width:0;"></td>
+        <td class="rShim" style="width:130px;"></td>
+        <td class="rShim" style="width:81px;"></td>
+        <td class="rShim" style="width:81px;"></td>
+        <% @quiz_question_count.times do -%>
+          <td class="rShim" style="width:35px;"></td>
         <% end -%>
-        <td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"] ? @q["#{s.id}"]["#{@quiz_question_count}"] : '' %></td>
-        <% (@misconceptions.count-1).times do |count| -%>
-          <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @user_misconceptions["#{s.id}"]["#{@misconceptions[count].id}"] %></td>
-        <% end -%>
-        <% if !@misconceptions.last.nil? -%><td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @user_misconceptions["#{s.id}"]["#{@misconceptions.last.id}"] %></td><% end -%>
-        <td class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
-        <td class="s8" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:30px;"></td>
+        <td class="rShim" style="width:120px;"></td>
+        <td class="rShim" style="width:0;"></td>
       </tr>
-    <% end -%>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s0"></td>
+        <td colspan="2" dir="ltr" class="s1">Summary</td>
+        <td style="display:none;"></td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Response</td>
+        <% (@quiz_question_count-1).times do -%>
+          <td style="display:none;"></td>
+        <% end -%>
+        <td colspan="3" dir="ltr" class="s1">Misconception</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s2">Difficulty</td>
+        <td class="s3"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s4"></td>
+        <td colspan="2" class="s5"></td>
+        <td style="display:none;"></td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s6">Asterisk indicates correct</td>
+        <% (@quiz_question_count-1).times do -%>
+          <td style="display:none;"></td>
+        <% end -%>
+        <td colspan="3" dir="ltr" class="s6">See Key</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s7">Check Mark</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s9">Student ID</td>
+        <td dir="ltr" class="s12"># Correct</td>
+        <td dir="ltr" class="s11"># Attempt</td>
+        <% (@quiz_question_count-1).times do |count| -%>
+          <td dir="ltr" class="s12">Q<%= count + 1 %></td>
+        <% end -%>
+        <td dir="ltr" class="s11">Q<%= @quiz_question_count %></td>
+        <% (@misconceptions.count-1).times do |count| -%>
+          <td dir="ltr" class="s12"><%= @misconceptions[count].name %></td>
+        <% end -%>
+        <% if !@misconceptions.last.nil? -%><td dir="ltr" class="s11"><%= @misconceptions.last.name %></td><% end -%>
+        <td dir="ltr" class="s11">Indicates Difficulty</td>
+        <td class="s8"></td>
+      </tr>
+      <% @submitted_students.each_with_index do |s, index| -%>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
+          <td class="s14 student_number" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{s.id}"]) %>" class="name"><%= s.short_name %></a></td>
+          <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_correct["#{s.id}"] %></td>
+          <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_attempted["#{s.id}"] %></td>
+          <% (@quiz_question_count-1).times do |count| -%>
+            <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"] ? @q["#{s.id}"]["#{count + 1}"] : '' %></td>
+          <% end -%>
+          <td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @q["#{s.id}"] ? @q["#{s.id}"]["#{@quiz_question_count}"] : '' %></td>
+          <% (@misconceptions.count-1).times do |count| -%>
+            <td dir="ltr" class="s16" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @user_misconceptions["#{s.id}"]["#{@misconceptions[count].id}"] %></td>
+          <% end -%>
+          <% if !@misconceptions.last.nil? -%><td dir="ltr" class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @user_misconceptions["#{s.id}"]["#{@misconceptions.last.id}"] %></td><% end -%>
+          <td class="s30" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
+          <td class="s8" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
+        </tr>
+      <% end -%>
 
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td dir="ltr" class="s18">Total # Students: <%= @submitted_students_count %></td>
-      <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
-      <td style="display:none;"></td>
-      <% (@quiz_question_count-1).times do |count| -%>
-        <td dir="ltr" class="s27"><%= @item_analysis["#{count+1}"] %>%</td>
-      <% end -%>
-      <td dir="ltr" class="s28"><%= @item_analysis["#{@quiz_question_count}"] %>%</td>
-      <% (@misconceptions.count-1).times do |count| -%>
-        <td class="s27"><%= @total_user_misconceptions["#{@misconceptions[count].id}"] ? @total_user_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
-      <% end -%>
-      <% if !@misconceptions.last.nil? -%><td class="s28"><%= @total_user_misconceptions["#{@misconceptions.last.id}"] ? @total_user_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
-      <td class="s28">0</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s20"></td>
-      <td class="s21"></td>
-      <td class="s22"></td>
-      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s23">% Correct per item</td>
-      <% (@quiz_question_count-1).times do -%>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s18">Total # Students: <%= @submitted_students_count %></td>
+        <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
         <td style="display:none;"></td>
-      <% end -%>
-      <td colspan="3" dir="ltr" class="s23"># per</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td class="s24">#</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s20"></td>
-      <td class="s21"></td>
-      <td class="s22"></td>
-      <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s25">(rounded to nearest whole number)</td>
-      <% (@quiz_question_count-1).times do -%>
+        <% (@quiz_question_count-1).times do |count| -%>
+          <td dir="ltr" class="s27"><%= @item_analysis["#{count+1}"] %>%</td>
+        <% end -%>
+        <td dir="ltr" class="s28"><%= @item_analysis["#{@quiz_question_count}"] %>%</td>
+        <% (@misconceptions.count-1).times do |count| -%>
+          <td class="s27"><%= @total_user_misconceptions["#{@misconceptions[count].id}"] ? @total_user_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
+        <% end -%>
+        <% if !@misconceptions.last.nil? -%><td class="s28"><%= @total_user_misconceptions["#{@misconceptions.last.id}"] ? @total_user_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
+        <td class="s28">0</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s20"></td>
+        <td class="s21"></td>
+        <td class="s22"></td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s23">% Correct per item</td>
+        <% (@quiz_question_count-1).times do -%>
+          <td style="display:none;"></td>
+        <% end -%>
+        <td colspan="3" dir="ltr" class="s23"># per</td>
         <td style="display:none;"></td>
-      <% end -%>
-      <td colspan="3" dir="ltr" class="s25">misconception</td>
-      <td style="display:none;"></td>
-      <td style="display:none;"></td>
-      <td dir="ltr" class="s29">difficulty</td>
-      <td class="s8"></td>
-    </tr>
-    <tr dir="ltr">
-      <td class="hd"><p style="height:16px;">.</p></td>
-      <td class="s20"></td>
-      <td class="s21"></td>
-      <td class="s21"></td>
-      <% (@quiz_question_count).times do -%>
+        <td style="display:none;"></td>
+        <td class="s24">#</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s20"></td>
+        <td class="s21"></td>
+        <td class="s22"></td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s25">(rounded to nearest whole number)</td>
+        <% (@quiz_question_count-1).times do -%>
+          <td style="display:none;"></td>
+        <% end -%>
+        <td colspan="3" dir="ltr" class="s25">misconception</td>
+        <td style="display:none;"></td>
+        <td style="display:none;"></td>
+        <td dir="ltr" class="s29">difficulty</td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s20"></td>
+        <td class="s21"></td>
+        <td class="s21"></td>
+        <% (@quiz_question_count).times do -%>
+          <td class="s26"></td>
+        <% end -%>
         <td class="s26"></td>
-      <% end -%>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s26"></td>
-      <td class="s21"></td>
-    </tr>
-  </tbody>
-</table>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s26"></td>
+        <td class="s21"></td>
+      </tr>
+    </tbody>
+  </table>
 
-<div id="printed_statement"><%= t('reports.printed',"Printed") %> <%= DateTime.now.to_date %></div>
-<div><%= t('reports.grant_statement', "These results are for a formative assessment being piloted as part of IES grand award # R305A110306.") %></div>
-<div><%= @current_probe.title %></div>
+  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblKey">
+      <tbody>
+        <tr class="rShim">
+          <td class="rShim" style="width:0;"></td>
+          <td class="rShim" style="width:120px;"></td>
+          <td class="rShim" style="width:120px;"></td>
+          <td class="rShim" style="width:120px;"></td>
+          <td class="rShim" style="width:120px;"></td>
+          <td class="rShim" style="width:120px;"></td>
+          <td class="rShim" style="width:120px;"></td>
+          <td class="rShim" style="width:120px;"></td>
+          <td class="rShim" style="width:120px;"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s40">Response Key</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s41">Misconception Key</td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s41">Difficulty Indicated</td>
+          <td style="display:none;"></td>
+          <td class="s42"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s43">Astrisk (*) means a correct response</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s44">Dash (-)</td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s45">Check mark means the response</td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s47">* Correct response</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s48">means the response pattern does not</td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s48">pattern does not indicate a targeted</td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" class="s49"></td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s48">indicate the targeted misconeption</td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s48">misconception, but the responses</td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s50">Response choice provided for incorrect answer:</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" class="s51"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s48">demonstrate difficulty overall</td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s47">G   Greater Than (&gt;)</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s52">C   Consistent with</td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s52">(more than 50% incorrect)</td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s47">L   Less Than (&lt;)</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s52">   misconception pattern</td>
+          <td style="display:none;"></td>
+          <td colspan="2" class="s51"></td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s47">E   Equivalent (=)</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" class="s51"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" class="s51"></td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" class="s49"></td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s52">P Partial pattern indicates</td>
+          <td style="display:none;"></td>
+          <td colspan="2" class="s51"></td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td colspan="3" dir="ltr" class="s53">Inc   Incomplete or blank</td>
+          <td style="display:none;"></td>
+          <td style="display:none;"></td>
+          <td colspan="2" dir="ltr" class="s54">possible misconcpetion</td>
+          <td style="display:none;"></td>
+          <td colspan="2" class="s55"></td>
+          <td style="display:none;"></td>
+          <td class="s46"></td>
+        </tr>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;">.</p></td>
+          <td class="s56"></td>
+          <td class="s57"></td>
+          <td class="s57"></td>
+          <td class="s57"></td>
+          <td class="s57"></td>
+          <td class="s57"></td>
+          <td class="s57"></td>
+          <td class="s58"></td>
+        </tr>
+      </tbody>
+    </table>
+
+  <span id="course_name"><%= @course.name %></span>
+  <div id="printed_statement"><%= t('reports.printed',"Printed") %> <%= DateTime.now.to_date %></div>
+  <div><%= t('reports.grant_statement', "These results are for a formative assessment being piloted as part of IES grand award # R305A110306.") %></div>
+  <div><%= @current_probe.title %></div>
+</div>

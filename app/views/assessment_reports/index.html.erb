@@ -1,19 +1,19 @@
 <% jammit_css :assessment_reports_index -%>
 
-<% content_for :page_title do -%>Probe Selection<% end -%>
+<% content_for :page_title do -%>Assessment Selection<% end -%>
 
-<h1>Available Probes</h1>
+<h1>Available Assessments</h1>
 
 
  
 <table>
   <% if @question_bank.count == 0 -%>
 		<tr>
-			<th><%= t('reports', 'No probes found.') %></th>
+			<th><%= t('reports', 'No assessments found.') %></th>
 		</tr>
 	<% else -%>
 		<tr>
-	    <th>Choose a probe</th>
+	    <th>Choose an assessment</th>
 	  </tr>
 	  <% @question_bank.each do |probe| -%>
 	  	<tr>

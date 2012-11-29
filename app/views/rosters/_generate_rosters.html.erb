@@ -7,10 +7,10 @@
 #students_custom_count_less_validator {display: none;}
 </style>
 
-<h2>Assign Probe to Classes</h2>
+<h2>Assign Assessment to Classes</h2>
 <% @student_options = [['10', 10], ['15', 15], ['20', 20], ['25', 25], ['30', 30], ['Other', 'Other']] %>
 <% form_for :rosters, :url => rosters_path do |f| %>
-	&nbsp <%= f.label :probe_id, 'Probe:' %>
+	&nbsp <%= f.label :probe_id, 'Assessment:' %>
 		<% @question_bank = AssessmentQuestionBank.active -%>
 		&nbsp <%= f.select :probe_id, options_for_select(@question_bank.collect { |probe| [probe.title, probe.id] }) %> <br />
 	&nbsp <%= f.label :stage, 'Stage:' %>
@@ -39,7 +39,7 @@
 		
 			<span id='course_example_validator' class='validator'>Must Be In Form: <br />D***S***T***C*** <br />e.g., D123S123T123C123 &nbsp</span> <br />
 	</div>
-	&nbsp <%= f.submit 'Assign Probe' %>
+	&nbsp <%= f.submit 'Assign Assessment' %>
 <% end -%>
 
 <% js_block do %>
