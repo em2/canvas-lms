@@ -15,6 +15,8 @@ class SchoolReport < ActiveRecord::Base
 	  total_class_misconceptions = {}
     earliest_submission = Time.now
     latest_submission = AssessmentQuestionBank.find(self.probe_id).created_at
+    class_difficulties = {}
+    total_class_difficulties = 0
 
 
 		class_reports.each do |report|
@@ -69,6 +71,8 @@ class SchoolReport < ActiveRecord::Base
 		      	end
 		      end
 	      end
+	      class_difficulties["#{report.course_id}"] = report.total_user_difficulties
+	      total_class_difficulties += report.total_user_difficulties
 	    end
 		end
 
@@ -101,6 +105,8 @@ class SchoolReport < ActiveRecord::Base
     self.total_class_misconceptions = total_class_misconceptions.to_json
     self.earliest_submission = earliest_submission
     self.latest_submission = latest_submission
+    self.class_difficulties = class_difficulties.to_json
+    self.total_class_difficulties = total_class_difficulties
     self.save!
   end
 end
