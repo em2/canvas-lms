@@ -38,9 +38,9 @@
 				<% @quiz_question_count.times do -%>
 	        <td class="rShim" style="width:35px;"></td>
 	      <% end -%>
-				<td class="rShim" style="width:35px;"></td>
-				<td class="rShim" style="width:35px;"></td>
-				<td class="rShim" style="width:35px;"></td>
+        <% @misconceptions.count.times do -%>
+          <td class="rShim" style="width:35px;"></td>
+        <% end -%>
 				<td class="rShim" style="width:60px;"></td>
 				<td class="rShim" style="width:0px;"></td>
 			</tr>
@@ -53,9 +53,12 @@
 				<% (@quiz_question_count-1).times do -%>
 	        <td style="display:none;"></td>
 	      <% end -%>
-				<td colspan="3" dir="ltr" class="s1">Misconceptions</td>
-				<td style="display:none;"></td>
-				<td style="display:none;"></td>
+        <% if @misconceptions.count > 0 -%>
+          <td colspan="3" dir="ltr" class="s1">Misconceptions</td>
+          <% (@misconceptions.count-1).times do -%>
+            <td style="display:none;"></td>
+          <% end -%>
+        <% end -%>
 				<td dir="ltr" class="s1">Difficulty</td>
 				<td class="s2"></td>
 			</tr>
@@ -68,9 +71,12 @@
 				<% (@quiz_question_count-1).times do -%>
 	        <td style="display:none;"></td>
 	      <% end -%>
-				<td colspan="3" class="s5">#</td>
-				<td style="display:none;"></td>
-				<td style="display:none;"></td>
+        <% if @misconceptions.count > 0 -%>
+          <td colspan="3" class="s5">#</td>
+          <% (@misconceptions.count-1).times do -%>
+            <td style="display:none;"></td>
+          <% end -%>
+        <% end -%>
 				<td class="s5">#</td>
 				<td class="s6"></td>
 			</tr>
@@ -135,9 +141,9 @@
 				<% @quiz_question_count.times do |count| -%>
 	        <td class="s14"></td>
 	      <% end -%>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
+        <% @misconceptions.count.times do -%>
+          <td class="s14"></td>
+        <% end -%>
 				<td class="s14"></td>
 				<td class="s15"></td>
 			</tr>
