@@ -151,6 +151,8 @@ class ClassReport < ActiveRecord::Base
 
       data["user_misconceptions"]["#{user.id}"] = {}
 
+      misconceptions_not_found = 0
+
       quiz.quiz_misconceptions.active.each do |quiz_misconception|
         if user_misconception = user.user_misconceptions.find_by_quiz_id_and_quiz_misconception_id(quiz.id, quiz_misconception.id)
           found_misconception = false
@@ -174,15 +176,20 @@ class ClassReport < ActiveRecord::Base
               data["total_user_misconceptions"]["#{quiz_misconception.id}"] = count
             end
           else
-            if (number_correct.to_f / question_count.to_f) < 0.5
-              data["user_difficulties"]["#{user.id}"] = '&#10004;'
-              count = data["total_user_difficulties"]
-              count += 1
-              data["total_user_difficulties"] = count
-            end
+            misconceptions_not_found += 1
           end
         end
       end
+
+      if misconceptions_not_found == quiz.quiz_misconceptions.active.count
+        if (number_correct.to_f / question_count.to_f) < 0.5
+          data["user_difficulties"]["#{user.id}"] = '&#10004;'
+          count = data["total_user_difficulties"]
+          count += 1
+          data["total_user_difficulties"] = count
+        end
+      end
+
 
       data["number_correct"]["#{user.id}"] = number_correct
       data["number_attempted"]["#{user.id}"] = number_attempted
