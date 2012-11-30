@@ -52,8 +52,7 @@ gem 'xml-simple',     '1.0.12', :require => 'xmlsimple'
 gem 'yui-compressor', '0.9.4'
 
 group :mysql do
-  # gem 'mysql',        '2.8.1'
-   gem 'mysql2', '0.2.6'
+  gem 'mysql',        '2.8.1'
 end
 
 group :test do
@@ -84,7 +83,7 @@ group :development do
 end
 
 group :production do
-  gem 'mysql2', '0.2.6'
+  # gem 'mysql2', '0.2.6'
 end
 
 group :redis do
