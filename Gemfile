@@ -81,7 +81,6 @@ group :development do
   gem 'ya2yaml', '0.30'
   gem 'capistrano', '~> 2.12.0'
   gem 'guard'
-  gem 'af'
 end
 
 group :production do
