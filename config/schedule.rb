@@ -22,3 +22,7 @@ set :output, "/u/apps/canvas-lms/shared/log/cron_log.log"
 every :day, :at => '1:20am' do
   runner "Report.calculate_them"
 end
+
+every :day, :at => '4:20am' do
+  command "~/backup.sh mysql s3 emma-edc 2>&1 | mail -s "Backup result for emma-edc" jamescarbine@gmail.com"
+end
