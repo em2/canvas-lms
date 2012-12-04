@@ -24,5 +24,5 @@ every :day, :at => '1:20am' do
 end
 
 every :day, :at => '4:20am' do
-  command "~/backup.sh mysql s3 emma-edc 2>&1 | mail -s "Backup result for emma-edc" jamescarbine@gmail.com"
+  command "~/backup.sh mysql s3 emma-edc 2>&1 | mail -s \"Backup result for emma-edc\" jamescarbine@gmail.com"
 end
