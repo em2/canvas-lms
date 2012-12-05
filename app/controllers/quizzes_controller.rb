@@ -58,10 +58,6 @@ class QuizzesController < ApplicationController
         format.html {
           add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
           add_crumb(t(:statistics_crumb, "Statistics"), named_context_url(@context, :context_quiz_statistics_url, @quiz))
-
-          @misconceptions = @quiz.quiz_misconceptions
-          @high_probability = @quiz.quiz_misconception_probability.high_probability
-          @somewhat_probability = @quiz.quiz_misconception_probability.somewhat_probability
           
           @statistics = @quiz.statistics(params[:all_versions] == '1')
           user_ids = @quiz.quiz_submissions.select{|s| !s.settings_only? }.map(&:user_id)
