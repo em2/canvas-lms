@@ -15,7 +15,7 @@
         </div>
       <% end %>
     </div>
-    <a href="<%= context_url(@context, :context_quiz_url, q) %>" class="quiz_title"><%= q.quiz_title || q.readable_type %></a>
+    <a href="<%= context_url(@context, :context_quiz_students_reports_url, q) %>" class="quiz_title"><%= q.quiz_title || q.readable_type %></a>
     <span class="quiz_id" style="display: none;"><%= (q && q.id) || nbsp %></span>
     <% if q && q.assignment_id && q.assignment.try(:points_possible) %>
       <span style="font-size: 0.8em; font-weight: normal;">(<%= t(:assignment_points_possible, "pt", :count => q.assignment.points_possible) %>)</span>
@@ -82,6 +82,7 @@
       <%= user_content(truncate_html(q.description || t(:no_details, "No Details"), :num_words => 50)) %>
     </div>
     <div class="clear"></div>
-    <a href="<%= course_quiz_quiz_misconceptions_path(@context,q) %>" class="button"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %> </a>
+    <a href="<%= context_url(@context, :context_quiz_url, q) %>" class="quiz_title"><%= t('links.preview_quiz', "Preview Assessment") %></a>&nbsp|&nbsp
+    <a href="<%= context_url(@context, :context_quiz_quiz_misconceptions_url, q) %>" class="button"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %> </a>
   </div>
 </li>

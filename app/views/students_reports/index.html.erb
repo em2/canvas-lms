@@ -25,28 +25,45 @@
 	  font-weight:bold;
 	}*/
 	.misconception{
-		border: 1px;
 	}
 	.explanation_url_frame{
 		width: 800px;
 		height: 500px;
 		float: left;
 		padding-bottom: 30px;
+		padding-right: 15px;
 	}
 	.misconception_table{
 		float: left;
 	}
+	.misconception_table td{
+		width: 160px;
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	.difficulties{
+		float: left;
+	}
+	.difficulties td{
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
 </style>
 
-<h2>Student Misconceptions <a href="#"><u>(details)</u></a></h2>
-<div>
+<h2>Student Misconceptions</h2>
+<div class="misconceptions">
   <% @misconceptions.active.each_with_index do |misconception, index| -%>
   	<div class="misconception">
   		<iframe src="<%= misconception.explanation_url %>" class="explanation_url_frame"></iframe>
   		<table class="misconception_table">
 	      <tbody>
 	        <tr class="misconceptions_summary_row">
-		        <td class="misconceptions_summary_row_standard misconception_heading"><%= index+1 %>. <%= misconception.name %> <%= "- #{misconception.description}" if !misconception.description.empty? %> <%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
+		        <td class="misconceptions_summary_row_standard misconception_heading">
+		        	<%= index+1 %>.&nbsp<%= misconception.name %>&nbsp<%= "- #{misconception.description}" if !misconception.description.empty? %>&nbsp<%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
 	          </td>
 		      </tr>
 	        <tr>
@@ -55,7 +72,10 @@
 	          </td>
 	        </tr>
 		      <tr>
-	          <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">&nbsp&nbsp<% misconception.user_misconceptions.active.each_with_index do |user, um_index| -%><% if user.probability > @high_probability["#{user.quiz_misconception_id}"].to_f -%><%= User.find(user.user_id).name %><% end -%><%= ',' if um_index < misconception.user_misconceptions.active.count-1 %> <% end -%>
+	          <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">
+	          	<% @high_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
+	          		<%= User.find(user_id).name %><%= ', ' unless index == @high_probability["#{misconception.id}"].count-1 %> 
+	          	<% end -%>
 	          </td>
 	        </tr>
 	        <tr>
@@ -64,11 +84,34 @@
 	          </td>
 	        </tr>
 	        <tr>
-	          <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">&nbsp&nbsp<% misconception.user_misconceptions.active.each_with_index do |user, um_index| -%><%= User.find(user.user_id).name if (user.probability > @somewhat_probability["#{user.quiz_misconception_id}"].to_f && user.probability < @high_probability["#{user.quiz_misconception_id}"].to_f) %><%= ',' if um_index < misconception.user_misconceptions.active.count-1 %> <% end -%>
+	          <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">
+	          	<% @somewhat_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
+	          		<%= User.find(user_id).name %><%= ', ' unless index == @somewhat_probability["#{misconception.id}"].count-1 %>
+	          	<% end -%>
 	          </td>
 	        </tr>
 	      </tbody>
 	    </table>
 	  </div>
   <% end -%>
+  <div class="difficulties">
+  	<h2>Students with difficulties:</h2>
+  	<table>
+  		<tbody>
+  			<tr>
+				  <% @user_difficulties.each_with_index do |user_difficulty, index| -%>
+				  	<% if user_difficulty.last == "&#10004;" -%>
+					  	<td style="background-color:#FFCCCC;">
+					  		<%= User.find(user_difficulty.first).name %><%= ', ' unless index == @user_difficulties.count-1 %>
+					  	</td>
+				  	<% end -%>
+				  <% end -%>
+			  </tr>
+			</tbody>
+	  </table>
+	</div>
+
+
+
+
 </div>
