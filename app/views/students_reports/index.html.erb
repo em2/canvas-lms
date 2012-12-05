@@ -25,7 +25,16 @@
 	  font-weight:bold;
 	}*/
 	.misconception{
-		border:1px;
+		border: 1px;
+	}
+	.explanation_url_frame{
+		width: 800px;
+		height: 500px;
+		float: left;
+		padding-bottom: 30px;
+	}
+	.misconception_table{
+		float: left;
 	}
 </style>
 
@@ -33,10 +42,11 @@
 <div>
   <% @misconceptions.active.each_with_index do |misconception, index| -%>
   	<div class="misconception">
-  		<table>
+  		<iframe src="<%= misconception.explanation_url %>" class="explanation_url_frame"></iframe>
+  		<table class="misconception_table">
 	      <tbody>
 	        <tr class="misconceptions_summary_row">
-		        <td class="misconceptions_summary_row_standard misconception_heading"><%= index+1 %>. <%= misconception.name %> <%= "- #{misconception.description}" if !misconception.description.empty? %> <%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url)) if (!misconception.explanation_url.empty?) %>
+		        <td class="misconceptions_summary_row_standard misconception_heading"><%= index+1 %>. <%= misconception.name %> <%= "- #{misconception.description}" if !misconception.description.empty? %> <%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
 	          </td>
 		      </tr>
 	        <tr>
