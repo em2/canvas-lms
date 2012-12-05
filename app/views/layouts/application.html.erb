@@ -215,15 +215,15 @@
       </div>
     </div>
     <footer role="contentinfo" id="footer">
-      <a href="http://www.edc.org/"><%= image_tag 'EDC_logo.png', :alt => t('edc_description', "EDC, Learning transforms lives.") %></a>
+      <%= image_tag 'EDC_logo.png', :alt => t('edc_description', "EDC, Learning transforms lives.") %>
       <span id="footer-links">
-        <a href="http://www.tatemae.com/"><%= image_tag 'tatemae_logo.jpg', :alt => t('tatemae', 'Tatemae'), :height => '54' %></a>
+        <%= image_tag 'tatemae_logo.png', :alt => t('tatemae', 'Tatemae'), :height => '25' %>
         <%= help_link %>
         <%= render :partial => 'shared/footer_links' %>
       </span>
       <br/>
       <span id="IES_statement">
-        <%= t('IES_statement', 'These results are for a formative assessment being piloted as part of IES grand award # R305A110306.') %>
+        <%= t('IES_statement', 'Funded by IES grant award # R305A110306.') %>
       </span>
     </footer>
   </div>
