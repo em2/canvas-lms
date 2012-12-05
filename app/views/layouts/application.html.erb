@@ -215,13 +215,14 @@
       </div>
     </div>
     <footer role="contentinfo" id="footer">
-      <a href="http://www.instructure.com"><%= image_tag 'footer-logo.png', :alt => t('instructure_description', "Instructure, makers of the open source learning management system Canvas") %></a>
+      <a href="http://www.edc.org/"><%= image_tag 'EDC_logo.png', :alt => t('edc_description', "EDC, Learning transforms lives.") %></a>
       <span id="footer-links">
-        <% if Setting.get_cached("show_opensource_linkback", "false") == "true" %>
-          <a href="http://instructure.com"><%= t('open_source_learning_management_system', 'Open Source LMS') %></a>
-        <% end %>
+        <a href="http://www.tatemae.com/"><%= t('tatemae', 'Tatemae') %></a>
         <%= help_link %>
         <%= render :partial => 'shared/footer_links' %>
+      </span>
+      <span id="IES_statement">
+        <%= t('IES_statement', 'These results are for a formative assessment being piloted as part of IES grand award # R305A110306.') %>
       </span>
     </footer>
   </div>
