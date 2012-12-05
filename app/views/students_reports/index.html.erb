@@ -1,0 +1,64 @@
+<style>
+	/*#misconceptions_summary {
+	  border-collapse: collapse;
+	}
+	#misconceptions_summary th {
+	  text-align: left;
+	  font-size: 1.2em;
+	}
+	#misconceptions_summary td.red_button {
+		padding: 10px 15px;
+		background: url('/images/red_button.png');
+		background-size:36px 36px;
+		background-repeat:no-repeat;
+		color:white;
+	}
+	#misconceptions_summary td.misconceptions_summary_row_standard {
+	  padding: 2px 5px;
+	}
+	#misconceptions_summary_end_row {
+	  border-bottom: 1px dotted #ccc;
+	  padding: 2px 5px;
+	}
+
+	#misconceptions_summary td.misconception_heading {
+	  font-weight:bold;
+	}*/
+	.misconception{
+		border:1px;
+	}
+</style>
+
+<h2>Student Misconceptions <a href="#"><u>(details)</u></a></h2>
+<div>
+  <% @misconceptions.active.each_with_index do |misconception, index| -%>
+  	<div class="misconception">
+  		<table>
+	      <tbody>
+	        <tr class="misconceptions_summary_row">
+		        <td class="misconceptions_summary_row_standard misconception_heading"><%= index+1 %>. <%= misconception.name %> <%= "- #{misconception.description}" if !misconception.description.empty? %> <%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url)) if (!misconception.explanation_url.empty?) %>
+	          </td>
+		      </tr>
+	        <tr>
+	          <td>
+	            &nbsp Highly Likely:
+	          </td>
+	        </tr>
+		      <tr>
+	          <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">&nbsp&nbsp<% misconception.user_misconceptions.active.each_with_index do |user, um_index| -%><% if user.probability > @high_probability["#{user.quiz_misconception_id}"].to_f -%><%= User.find(user.user_id).name %><% end -%><%= ',' if um_index < misconception.user_misconceptions.active.count-1 %> <% end -%>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            &nbsp Somewhat Likely:
+	          </td>
+	        </tr>
+	        <tr>
+	          <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">&nbsp&nbsp<% misconception.user_misconceptions.active.each_with_index do |user, um_index| -%><%= User.find(user.user_id).name if (user.probability > @somewhat_probability["#{user.quiz_misconception_id}"].to_f && user.probability < @high_probability["#{user.quiz_misconception_id}"].to_f) %><%= ',' if um_index < misconception.user_misconceptions.active.count-1 %> <% end -%>
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	  </div>
+  <% end -%>
+</div>
