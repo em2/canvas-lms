@@ -2,7 +2,7 @@
   define(['i18n!lib.text_helper', 'str/htmlEscape'], function(I18n, htmlEscape) {
     var AUTO_LINKIFY_PLACEHOLDER, AUTO_LINKIFY_REGEX, th;
     AUTO_LINKIFY_PLACEHOLDER = "LINK-PLACEHOLDER";
-    AUTO_LINKIFY_REGEX = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«]))|(LINK-PLACEHOLDER)/gi;
+    AUTO_LINKIFY_REGEX = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))|(LINK-PLACEHOLDER)/gi;
     return th = {
       quoteClump: function(lines) {
         return "<div class='quoted_text_holder'>        <a href='#' class='show_quoted_text_link'>" + (I18n.t("quoted_text_toggle", "show quoted text")) + "</a>        <div class='quoted_text' style='display: none;'>          " + (lines.join("\n")) + "        </div>      </div>";
