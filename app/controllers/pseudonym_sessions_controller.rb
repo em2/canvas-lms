@@ -359,6 +359,7 @@ class PseudonymSessionsController < ApplicationController
   end
 
   def successful_login(user, pseudonym)
+    @current_user = user
     respond_to do |format|
       flash[:notice] = t 'notices.login_success', "Login successful." unless flash[:error]
       if session[:oauth2]
@@ -387,7 +388,11 @@ class PseudonymSessionsController < ApplicationController
         # assumed that if that URL is found rather than using the default,
         # they must have cookies enabled and we don't need to worry about
         # adding the :login_success param to it.
-        format.html { redirect_back_or_default(dashboard_url(:login_success => '1')) }
+        if !is_admin?
+          format.html { redirect_to courses_url }
+        else
+          format.html { redirect_back_or_default(dashboard_url(:login_success => '1')) }
+        end
       end
       format.json { render :json => pseudonym.to_json(:methods => :user_code), :status => :ok }
     end

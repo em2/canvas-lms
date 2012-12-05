@@ -10,7 +10,7 @@
     </div>
   </div>
   <% else %>
-  <a href="<%= course_path(current_enrollment.course_id) %>">
+  <a href="<%= course_quizzes_path(current_enrollment.course_id) %>">
     <span class="name ellipsis" title="<%= current_enrollment.long_name %>">
       <%= current_enrollment.long_name %>
       <% if current_enrollment.course.created? || current_enrollment.course.claimed? %>
