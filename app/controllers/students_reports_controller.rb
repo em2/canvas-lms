@@ -23,6 +23,7 @@ class StudentsReportsController < ApplicationController
 			end
 
 			@class_report = ClassReport.find_by_course_id_and_quiz_id(@course.id, @quiz.id)
+			@submissions = JSON.parse(@class_report.submissions)
 			@user_difficulties = JSON.parse(@class_report.user_difficulties)
 
 		end
