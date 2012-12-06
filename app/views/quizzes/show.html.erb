@@ -107,11 +107,17 @@
       </div>
     <% end %>
     
-
-    <h2> Misconceptions </h2>
     <% if can_do(@quiz, @current_user, :update) %>
-      <a href="<%= course_quiz_quiz_misconceptions_path(@context, @quiz) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
+      <h2> Misconceptions </h2>
+      <a href="<%= context_url(@context, :context_quiz_quiz_misconceptions_url, @quiz) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
     <% end -%>
+
+    <% if can_do(@quiz, @current_user, :update) %>
+      <h2> Students Reports </h2>
+      <a href="<%= context_url(@context, :context_quiz_students_reports_url, @quiz) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "information.png" %> <%= t('links.students_reports', "Students Reports") %></a>
+    <% end -%>
+
+
 
   <% end %>
 <% end %>

@@ -1,29 +1,4 @@
 <style>
-	/*#misconceptions_summary {
-	  border-collapse: collapse;
-	}
-	#misconceptions_summary th {
-	  text-align: left;
-	  font-size: 1.2em;
-	}
-	#misconceptions_summary td.red_button {
-		padding: 10px 15px;
-		background: url('/images/red_button.png');
-		background-size:36px 36px;
-		background-repeat:no-repeat;
-		color:white;
-	}
-	#misconceptions_summary td.misconceptions_summary_row_standard {
-	  padding: 2px 5px;
-	}
-	#misconceptions_summary_end_row {
-	  border-bottom: 1px dotted #ccc;
-	  padding: 2px 5px;
-	}
-
-	#misconceptions_summary td.misconception_heading {
-	  font-weight:bold;
-	}*/
 	.misconception{
 	}
 	.explanation_url_frame{
@@ -49,6 +24,7 @@
 		float: left;
 	}
 	.difficulties td{
+		float: left;
 		padding-left: 10px;
 		padding-right: 10px;
 		padding-top: 5px;
@@ -56,7 +32,9 @@
 	}
 </style>
 
-<h2>Student Misconceptions</h2>
+<% content_for :page_title do -%>Students Reports<% end -%>
+
+<h2>Students Reports</h2>
 <div class="misconceptions">
   <% @misconceptions.active.each_with_index do |misconception, index| -%>
   	<div class="misconception">
@@ -65,8 +43,13 @@
 	      <tbody>
 	        <tr class="misconceptions_summary_row">
 		        <td class="misconceptions_summary_row_standard misconception_heading">
-		        	<%= index+1 %>.&nbsp<%= misconception.name %>&nbsp<%= "- #{misconception.description}" if !misconception.description.empty? %>&nbsp<%= link_to(image_tag("question_mark_blue.png", :size => "16x16"), h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
+		        	<%= index+1 %>.&nbsp<%= misconception.name %>&nbsp<%= "- #{misconception.description}" if !misconception.description.empty? %>
 	          </td>
+	          <tr>
+	          	<td>
+		          	<%= link_to(misconception.explanation_url, h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
+		          </td>
+	          </tr>
 		      </tr>
 	        <tr>
 	          <td>
@@ -95,25 +78,23 @@
 	      </tbody>
 	    </table>
 	  </div>
+	  <div class="clear"></div>
   <% end -%>
-  <div class="difficulties">
-  	<h2>Students with difficulties:</h2>
-  	<table>
-  		<tbody>
-  			<tr>
-				  <% @user_difficulties.each_with_index do |user_difficulty, index| -%>
-				  	<% if user_difficulty.last == "&#10004;" -%>
-					  	<td style="background-color:#FFCCCC;">
-					  		<a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_difficulty.first}"]) %>" class="name"><%= User.find(user_difficulty.first).name %></a><%= ', ' unless index == @user_difficulties.count-1 %>
-					  	</td>
-				  	<% end -%>
-				  <% end -%>
-			  </tr>
-			</tbody>
-	  </table>
-	</div>
-
-
-
-
+</div>
+<div class="clear"></div>
+<div class="difficulties">
+	<h2>Students with difficulties:</h2>
+	<table>
+		<tbody>
+			<tr>
+			  <% @user_difficulties.each_with_index do |user_difficulty, index| -%>
+			  	<% if user_difficulty.last == "&#10004;" -%>
+				  	<td style="background-color:#FFCCCC;">
+				  		<a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_difficulty.first}"]) %>" class="name"><%= User.find(user_difficulty.first).name %></a><%= ', ' unless index == @user_difficulties.count-1 %>
+				  	</td>
+			  	<% end -%>
+			  <% end -%>
+		  </tr>
+		</tbody>
+  </table>
 </div>
