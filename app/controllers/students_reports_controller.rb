@@ -1,9 +1,16 @@
 class StudentsReportsController < ApplicationController
+	before_filter :require_context
+
   def index
 		if is_authorized?(@current_user)
 			@course = Course.find(params[:course_id])
-			@context = @course
 			@quiz = Quiz.find(params[:quiz_id])
+			@context = @course
+
+			add_crumb(t('#crumbs.assessments', "Assessments"), named_context_url(@context, :context_quizzes_url))
+			add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
+			add_crumb(t('#crumbs.students_reports', 'Students Reports'), named_context_url(@context, :context_quiz_students_reports_url, @quiz))
+
 			@misconceptions = @quiz.quiz_misconceptions
 			@high_probability_limits = @quiz.quiz_misconception_probability.high_probability if @quiz.quiz_misconception_probability
 			@somewhat_probability_limits = @quiz.quiz_misconception_probability.somewhat_probability if @quiz.quiz_misconception_probability
