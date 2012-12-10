@@ -283,7 +283,7 @@ ActionController::Routing::Routes.draw do |map|
       end
       quiz.resources :quiz_misconception_probabilities do |misconception_probability|
       end
-      quiz.resources :students_reports do |students_report|
+      quiz.resources :students_reports, :only => [:index] do |students_report|
       end
     end
 

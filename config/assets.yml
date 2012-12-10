@@ -216,6 +216,8 @@ stylesheets:
     - public/stylesheets/compiled/roster_user.css
   rosters:
     - public/stylesheets/compiled/rosters.css
+  students_reports:
+    - public/stylesheets/compiled/students_reports.css
   learning_outcomes:
     - public/stylesheets/compiled/learning_outcomes.css
   grade_summary:
