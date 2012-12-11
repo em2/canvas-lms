@@ -37,7 +37,4 @@ class StudentsReportsController < ApplicationController
 
   end
 
-  def show
-  end
-
 end
