@@ -30,8 +30,6 @@ describe "/students_reports/index" do
 		# @user_difficulties = JSON.parse(@class_report.user_difficulties)
 
 		course_with_student
-		user # create a second student
-		user # create a third student
 		view_context
 		assigns[:quizzes] = [@course.quizzes.create!]
 		assigns[:course] = @course
@@ -43,31 +41,10 @@ describe "/students_reports/index" do
     assigns[:surveys] = assigns[:quizzes]
     assigns[:submissions_hash] = {}
     assigns[:misconceptions] = @quiz.quiz_misconceptions
-    # assigns[:high_probability_limits] = @quiz.quiz_misconception_probability.high_probability
-    # assigns[:somewhat_probability_limits] = @quiz.quiz_misconception_probability.somewhat_probability
-    high_probability = {}
-    somewhat_probability = {}
-    misconceptions = @quiz.quiz_misconceptions
-    misconceptions.active.each_with_index do |misconception, index|
-			high_probability["#{misconception.id}"] = []
-			somewhat_probability["#{misconception.id}"] = []
-			if index % 2 == 0
-				high_probability["#{misconception.id}"] << 1
-			else
-				somewhat_probability["#{misconception.id}"] << 2
-			end
-		end
-		submissions = {}
-		submissions["#{1}"] = 100
-		submissions["#{2}"] = 200
-		assigns[:submissions] = submissions
-
-    assigns[:high_probability] = high_probability
-    assigns[:somewhat_probability] = somewhat_probability
-    
-    user_difficulties = {"3"=>"&#10004;"}
-    assigns[:user_difficulties] = user_difficulties
-
+		assigns[:submissions] = @submissions
+    assigns[:high_probability] = @high_probability
+    assigns[:somewhat_probability] = @somewhat_probability
+    assigns[:user_difficulties] = @user_difficulties
     render 'students_reports/index'
     response.should_not be_nil
   end

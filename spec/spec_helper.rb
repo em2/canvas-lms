@@ -168,6 +168,8 @@ Spec::Runner.configure do |config|
   end
 
   def fill_quiz_and_misconceptions(opts={})
+    user # create a second student
+    user # create a third student
     @quiz = @course.quizzes.last
     @quiz.quiz_misconceptions.create!(:quiz_id => @quiz.id, :name => "M1", :explanation_url => "http://www.bfcoder.com/", :description => "All about barefooting.", :pattern => {}, :workflow_state => "available")
     @quiz.quiz_misconceptions.create!(:quiz_id => @quiz.id, :name => "M2", :explanation_url => "http://www.justinball.com/", :description => "Justin and his life of coding.", :pattern => {}, :workflow_state => "available")
@@ -237,6 +239,23 @@ Spec::Runner.configure do |config|
 
     @quiz.workflow_state = "available"
     @quiz.save!
+
+    @high_probability = {}
+    @somewhat_probability = {}
+    @misconceptions = @quiz.quiz_misconceptions
+    @misconceptions.active.each_with_index do |misconception, index|
+      @high_probability["#{misconception.id}"] = []
+      @somewhat_probability["#{misconception.id}"] = []
+      if index % 2 == 0
+        @high_probability["#{misconception.id}"] << 1
+      else
+        @somewhat_probability["#{misconception.id}"] << 2
+      end
+    end
+    @submissions = {}
+    @submissions["#{1}"] = 100
+    @submissions["#{2}"] = 200
+    @user_difficulties = {"3"=>"&#10004;"}
   end
 
   def account_admin_user_with_role_changes(opts={})
