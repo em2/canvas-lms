@@ -167,6 +167,78 @@ Spec::Runner.configure do |config|
     @course
   end
 
+  def fill_quiz_and_misconceptions(opts={})
+    @quiz = @course.quizzes.last
+    @quiz.quiz_misconceptions.create!(:quiz_id => @quiz.id, :name => "M1", :explanation_url => "http://www.bfcoder.com/", :description => "All about barefooting.", :pattern => {}, :workflow_state => "available")
+    @quiz.quiz_misconceptions.create!(:quiz_id => @quiz.id, :name => "M2", :explanation_url => "http://www.justinball.com/", :description => "Justin and his life of coding.", :pattern => {}, :workflow_state => "available")
+    @quiz.quiz_misconceptions.create!(:quiz_id => @quiz.id, :name => "M3", :explanation_url => "http://www.tatemae.com/", :description => "The great company of tatemae!", :pattern => {}, :workflow_state => "available")
+    
+    @quiz_probabilities = @quiz.build_quiz_misconception_probability
+    @quiz_probabilities.save!
+    hp = {"#{@quiz.quiz_misconceptions.first.id}"=>"0.8","#{@quiz.quiz_misconceptions.second.id}"=>"0.8","#{@quiz.quiz_misconceptions.third.id}"=>"0.53"}
+    sp = {"#{@quiz.quiz_misconceptions.first.id}"=>"0.45","#{@quiz.quiz_misconceptions.second.id}"=>"0.75","#{@quiz.quiz_misconceptions.third.id}"=>"0.75"}
+    @quiz_probabilities.high_probability = hp
+    @quiz_probabilities.high_probability = sp
+    @quiz_probabilities.save!
+
+    question_data = {"correct_comments"=>"", "position"=>"0", "text_after_answers"=>"", "question_type"=>"represent_fractions_question", "assessment_question_id"=>"66", "incorrect_comments"=>"", "neutral_comments"=>"", "question_name"=>"1.", "points_possible"=>"1", "matching_answer_incorrect_matches"=>"", "question_text"=>"<p>Is the shaded part&nbsp;<img class=\"equation_image\" title=\"\\frac{1}{4}\" src=\"/equation_images/%255Cfrac%257B1%257D%257B4%257D\" alt=\"\\frac{1}{4}\" />&nbsp;? [split]&nbsp;<img src=\"http://s3.amazonaws.com/em2-images/EM2_RF_A_1_item1.png\" alt=\"\" /></p>", "answers"=>{"answer_0"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"Yes", "answer_weight"=>"0", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".75\",\"#{@quiz.quiz_misconceptions.second.id}\":\".13\",\"#{@quiz.quiz_misconceptions.third.id}\":\".55\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}, "answer_1"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"No", "answer_weight"=>"100", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".25\",\"#{@quiz.quiz_misconceptions.second.id}\":\".87\",\"#{@quiz.quiz_misconceptions.third.id}\":\".45\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}}}
+    @question = @quiz.quiz_questions.create!
+    @question.question_data = question_data
+    @question.save!
+    @question.question_data[:answers].each do |answer|
+      if !answer[:misconception_id].empty?
+        misconceptions = JSON.parse(answer[:misconception_id])
+        misconceptions.each do |miscon_id, value|
+          misconception = QuizMisconception.find(miscon_id.to_i)
+          pattern = misconception.pattern
+
+          answer_id = {}
+
+          answer_id["#{answer[:id]}"] = misconceptions["#{miscon_id}"]
+
+          if pattern.empty?
+            pattern.merge!({"#{@question.id}"=>answer_id})
+          else
+            answer_id.merge!(pattern["#{@question.id}"]) unless pattern["#{@question.id}"].nil?
+            pattern.merge!({"#{@question.id}"=>answer_id})
+          end
+          misconception.pattern = pattern
+          misconception.save!
+        end
+      end
+    end
+
+    question_data = {"correct_comments"=>"", "position"=>"0", "text_after_answers"=>"", "question_type"=>"represent_fractions_question", "assessment_question_id"=>"67", "incorrect_comments"=>"", "neutral_comments"=>"", "question_name"=>"2.", "points_possible"=>"1", "matching_answer_incorrect_matches"=>"", "question_text"=>"<p>Is the shaded part&nbsp;<img class=\"equation_image\" title=\"\\frac{1}{3}\" src=\"/equation_images/%255Cfrac%257B1%257D%257B3%257D\" alt=\"\\frac{1}{3}\" />&nbsp;? [split]&nbsp;<img src=\"http://s3.amazonaws.com/em2-images/EM2_RF_A_1_item2.png\" alt=\"\" /></p>", "answers"=>{"answer_0"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"Yes", "answer_weight"=>"100", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".71\",\"#{@quiz.quiz_misconceptions.second.id}\":\".51\",\"#{@quiz.quiz_misconceptions.third.id}\":\".69\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}, "answer_1"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"No", "answer_weight"=>"0", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".29\",\"#{@quiz.quiz_misconceptions.second.id}\":\".49\",\"#{@quiz.quiz_misconceptions.third.id}\":\".31\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}}}
+    @quesion = @quiz.quiz_questions.create!
+    @quesion.question_data = question_data
+    @quesion.save!
+    @question.question_data[:answers].each do |answer|
+      if !answer[:misconception_id].empty?
+        misconceptions = JSON.parse(answer[:misconception_id])
+        misconceptions.each do |miscon_id, value|
+          misconception = QuizMisconception.find(miscon_id.to_i)
+          pattern = misconception.pattern
+
+          answer_id = {}
+
+          answer_id["#{answer[:id]}"] = misconceptions["#{miscon_id}"]
+
+          if pattern.empty?
+            pattern.merge!({"#{@question.id}"=>answer_id})
+          else
+            answer_id.merge!(pattern["#{@question.id}"]) unless pattern["#{@question.id}"].nil?
+            pattern.merge!({"#{@question.id}"=>answer_id})
+          end
+          misconception.pattern = pattern
+          misconception.save!
+        end
+      end
+    end
+
+    @quiz.workflow_state = "available"
+    @quiz.save!
+  end
+
   def account_admin_user_with_role_changes(opts={})
     account = opts[:account] || Account.default
     if opts[:role_changes]
