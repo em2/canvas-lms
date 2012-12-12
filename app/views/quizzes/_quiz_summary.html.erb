@@ -82,7 +82,7 @@
       <%= user_content(truncate_html(q.description || t(:no_details, "No Details"), :num_words => 50)) %>
     </div>
     <div class="clear"></div>
-    <a href="<%= context_url(@context, :context_quiz_url, q) %>" class="quiz_title"><%= t('links.preview_quiz', "Preview Assessment") %></a>&nbsp|&nbsp
-    <a href="<%= context_url(@context, :context_quiz_quiz_misconceptions_url, q) %>" class="button"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %> </a>
+    <a href="<%= context_url(@context, :context_quiz_url, q) %>" class="quiz_title"><%= t('links.preview_quiz', "Preview Assessment") %></a>&nbsp|
+    <a href="<%= context_url(@context, :context_quiz_quiz_misconceptions_url, q) %>"><%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
   </div>
 </li>
