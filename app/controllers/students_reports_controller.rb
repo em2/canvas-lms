@@ -2,7 +2,7 @@ class StudentsReportsController < ApplicationController
 	before_filter :require_context
 
   def index
-		if is_authorized?(@current_user)
+		if authorized_action(@context, @current_user, :read)
 			@course = Course.find(params[:course_id])
 			@quiz = Quiz.find(params[:quiz_id])
 			@context = @course
