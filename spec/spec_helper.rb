@@ -183,11 +183,11 @@ Spec::Runner.configure do |config|
     @quiz_probabilities.high_probability = sp
     @quiz_probabilities.save!
 
-    question_data = {"correct_comments"=>"", "position"=>"0", "text_after_answers"=>"", "question_type"=>"represent_fractions_question", "assessment_question_id"=>"66", "incorrect_comments"=>"", "neutral_comments"=>"", "question_name"=>"1.", "points_possible"=>"1", "matching_answer_incorrect_matches"=>"", "question_text"=>"<p>Is the shaded part&nbsp;<img class=\"equation_image\" title=\"\\frac{1}{4}\" src=\"/equation_images/%255Cfrac%257B1%257D%257B4%257D\" alt=\"\\frac{1}{4}\" />&nbsp;? [split]&nbsp;<img src=\"http://s3.amazonaws.com/em2-images/EM2_RF_A_1_item1.png\" alt=\"\" /></p>", "answers"=>{"answer_0"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"Yes", "answer_weight"=>"0", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".75\",\"#{@quiz.quiz_misconceptions.second.id}\":\".13\",\"#{@quiz.quiz_misconceptions.third.id}\":\".55\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}, "answer_1"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"No", "answer_weight"=>"100", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".25\",\"#{@quiz.quiz_misconceptions.second.id}\":\".87\",\"#{@quiz.quiz_misconceptions.third.id}\":\".45\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}}}
-    @question = @quiz.quiz_questions.create!
-    @question.question_data = question_data
-    @question.save!
-    @question.question_data[:answers].each do |answer|
+    question_data1 = {"correct_comments"=>"", "position"=>"0", "text_after_answers"=>"", "question_type"=>"represent_fractions_question", "assessment_question_id"=>"66", "incorrect_comments"=>"", "neutral_comments"=>"", "question_name"=>"1.", "points_possible"=>"1", "matching_answer_incorrect_matches"=>"", "question_text"=>"<p>Is the shaded part&nbsp;<img class=\"equation_image\" title=\"\\frac{1}{4}\" src=\"/equation_images/%255Cfrac%257B1%257D%257B4%257D\" alt=\"\\frac{1}{4}\" />&nbsp;? [split]&nbsp;<img src=\"http://s3.amazonaws.com/em2-images/EM2_RF_A_1_item1.png\" alt=\"\" /></p>", "answers"=>{"answer_0"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"Yes", "answer_weight"=>"0", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".75\",\"#{@quiz.quiz_misconceptions.second.id}\":\".13\",\"#{@quiz.quiz_misconceptions.third.id}\":\".55\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}, "answer_1"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"No", "answer_weight"=>"100", "id"=>"1507", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".25\",\"#{@quiz.quiz_misconceptions.second.id}\":\".87\",\"#{@quiz.quiz_misconceptions.third.id}\":\".45\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}}}
+    @question1 = @quiz.quiz_questions.create!
+    @question1.question_data = question_data1
+    @question1.save!
+    @question1.question_data[:answers].each do |answer|
       if !answer[:misconception_id].empty?
         misconceptions = JSON.parse(answer[:misconception_id])
         misconceptions.each do |miscon_id, value|
@@ -199,10 +199,10 @@ Spec::Runner.configure do |config|
           answer_id["#{answer[:id]}"] = misconceptions["#{miscon_id}"]
 
           if pattern.empty?
-            pattern.merge!({"#{@question.id}"=>answer_id})
+            pattern.merge!({"#{@question1.id}"=>answer_id})
           else
-            answer_id.merge!(pattern["#{@question.id}"]) unless pattern["#{@question.id}"].nil?
-            pattern.merge!({"#{@question.id}"=>answer_id})
+            answer_id.merge!(pattern["#{@question1.id}"]) unless pattern["#{@question1.id}"].nil?
+            pattern.merge!({"#{@question1.id}"=>answer_id})
           end
           misconception.pattern = pattern
           misconception.save!
@@ -210,11 +210,11 @@ Spec::Runner.configure do |config|
       end
     end
 
-    question_data = {"correct_comments"=>"", "position"=>"0", "text_after_answers"=>"", "question_type"=>"represent_fractions_question", "assessment_question_id"=>"67", "incorrect_comments"=>"", "neutral_comments"=>"", "question_name"=>"2.", "points_possible"=>"1", "matching_answer_incorrect_matches"=>"", "question_text"=>"<p>Is the shaded part&nbsp;<img class=\"equation_image\" title=\"\\frac{1}{3}\" src=\"/equation_images/%255Cfrac%257B1%257D%257B3%257D\" alt=\"\\frac{1}{3}\" />&nbsp;? [split]&nbsp;<img src=\"http://s3.amazonaws.com/em2-images/EM2_RF_A_1_item2.png\" alt=\"\" /></p>", "answers"=>{"answer_0"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"Yes", "answer_weight"=>"100", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".71\",\"#{@quiz.quiz_misconceptions.second.id}\":\".51\",\"#{@quiz.quiz_misconceptions.third.id}\":\".69\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}, "answer_1"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"No", "answer_weight"=>"0", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".29\",\"#{@quiz.quiz_misconceptions.second.id}\":\".49\",\"#{@quiz.quiz_misconceptions.third.id}\":\".31\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}}}
-    @quesion = @quiz.quiz_questions.create!
-    @quesion.question_data = question_data
-    @quesion.save!
-    @question.question_data[:answers].each do |answer|
+    question_data2 = {"correct_comments"=>"", "position"=>"0", "text_after_answers"=>"", "question_type"=>"represent_fractions_question", "assessment_question_id"=>"67", "incorrect_comments"=>"", "neutral_comments"=>"", "question_name"=>"2.", "points_possible"=>"1", "matching_answer_incorrect_matches"=>"", "question_text"=>"<p>Is the shaded part&nbsp;<img class=\"equation_image\" title=\"\\frac{1}{3}\" src=\"/equation_images/%255Cfrac%257B1%257D%257B3%257D\" alt=\"\\frac{1}{3}\" />&nbsp;? [split]&nbsp;<img src=\"http://s3.amazonaws.com/em2-images/EM2_RF_A_1_item2.png\" alt=\"\" /></p>", "answers"=>{"answer_0"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"Yes", "answer_weight"=>"100", "id"=>"", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".71\",\"#{@quiz.quiz_misconceptions.second.id}\":\".51\",\"#{@quiz.quiz_misconceptions.third.id}\":\".69\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}, "answer_1"=>{"answer_comments"=>"", "answer_match_left"=>"", "numerical_answer_type"=>"exact_answer", "answer_html"=>"", "answer_match_right"=>"", "match_id"=>"", "answer_range_end"=>"", "answer_text"=>"No", "answer_weight"=>"0", "id"=>"7051", "answer_misconception_id"=>"{\"#{@quiz.quiz_misconceptions.first.id}\":\".29\",\"#{@quiz.quiz_misconceptions.second.id}\":\".49\",\"#{@quiz.quiz_misconceptions.third.id}\":\".31\"}", "answer_error_margin"=>"", "answer_range_start"=>"", "answer_comments_html"=>"", "answer_match_left_html"=>"", "answer_exact"=>"", "blank_id"=>""}}}
+    @question2 = @quiz.quiz_questions.create!
+    @question2.question_data = question_data2
+    @question2.save!
+    @question2.question_data[:answers].each do |answer|
       if !answer[:misconception_id].empty?
         misconceptions = JSON.parse(answer[:misconception_id])
         misconceptions.each do |miscon_id, value|
@@ -226,10 +226,10 @@ Spec::Runner.configure do |config|
           answer_id["#{answer[:id]}"] = misconceptions["#{miscon_id}"]
 
           if pattern.empty?
-            pattern.merge!({"#{@question.id}"=>answer_id})
+            pattern.merge!({"#{@question2.id}"=>answer_id})
           else
-            answer_id.merge!(pattern["#{@question.id}"]) unless pattern["#{@question.id}"].nil?
-            pattern.merge!({"#{@question.id}"=>answer_id})
+            answer_id.merge!(pattern["#{@question2.id}"]) unless pattern["#{@question2.id}"].nil?
+            pattern.merge!({"#{@question2.id}"=>answer_id})
           end
           misconception.pattern = pattern
           misconception.save!
@@ -238,7 +238,10 @@ Spec::Runner.configure do |config|
     end
 
     @quiz.workflow_state = "available"
+    @quiz.probe_name = "bfcoder"
     @quiz.save!
+
+    @aqb = AssessmentQuestionBank.create!(:title => 'bfcoder')
 
     @high_probability = {}
     @somewhat_probability = {}
@@ -256,6 +259,20 @@ Spec::Runner.configure do |config|
     @submissions["#{1}"] = 100
     @submissions["#{2}"] = 200
     @user_difficulties = {"3"=>"&#10004;"}
+
+    @student ||= user_model
+    @course.enroll_student(@student).accept
+
+    @qsub = @quiz.find_or_create_submission(@student)
+    @qsub.quiz_data = @quiz.quiz_questions
+    @qsub.submission_data = [{:points=>0, :text=>"1507", :question_id=>128, :correct=>false, :answer_id=>1507}, {:points=>0, :text=>"7051", :question_id=>128, :correct=>false, :answer_id=>7051}]
+    @qsub.workflow_state = 'complete'
+    @qsub.with_versioning(true) do
+      @qsub.save!
+    end
+
+    @report = Report.create!(:account_id => Account.default.id, :calculation_count => 0, :in_job => false)
+    @report.calculate_reports(Account.default)
   end
 
   def account_admin_user_with_role_changes(opts={})

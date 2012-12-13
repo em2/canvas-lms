@@ -3,8 +3,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../views_helper')
 
 describe "/students_reports/index" do
 	it "should render" do
-		course_with_student
+    district_account = Account.default.sub_accounts.create!(:name => 'D001')
+    school_account = district_account.sub_accounts.create!(:name => 'S001')
+		course_with_teacher_logged_in(:active_all => true, :account => school_account)
 		view_context
+
 		assigns[:quizzes] = [@course.quizzes.create!]
 		assigns[:course] = @course
 		fill_quiz_and_misconceptions
