@@ -1,6 +1,6 @@
 class ClassReportsController < ApplicationController
   def index
-  	if is_authorized?(@current_user) # Make sure the user is authorized to do this
+  	if authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
 
 	    is_admin?
 	    is_teacher?
@@ -23,10 +23,7 @@ class ClassReportsController < ApplicationController
       if @is_teacher && !@is_admin
         @classes = find_courses_for_teacher(@classes)
       end
-
-		else
-			redirect_back_or_default(dashboard_url)
-		end
+    end
   end
 
 end
