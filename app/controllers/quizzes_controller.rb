@@ -342,6 +342,12 @@ class QuizzesController < ApplicationController
 
   def history
     if authorized_action(@context, @current_user, :read)
+      is_admin?
+      is_teacher?
+      @class_report = @context.class_reports.find_by_quiz_id(params[:quiz_id])
+      if @class_report && @class_report.user_misconceptions
+        @user_misconceptions = JSON.parse(@class_report.user_misconceptions)
+      end
       add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
       if params[:quiz_submission_id]
         @submission = @quiz.quiz_submissions.find(params[:quiz_submission_id])

@@ -1,8 +1,7 @@
 class RostersController < ApplicationController
   
   def index
-
-    if is_authorized?(@current_user) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
 
       add_crumb("School Rosters")
       
@@ -71,7 +70,7 @@ class RostersController < ApplicationController
       errors_found = true
     end
 
-    if is_authorized?(@current_user) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
         flash[:error] = "Please complete the form."
         redirect_back_or_default(dashboard_url)
@@ -166,7 +165,7 @@ class RostersController < ApplicationController
   end
   
   def show
-    if is_authorized?(@current_user) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
       @current_school_roster = Roster.find(params[:id]).account
       
       add_crumb("Rosters", rosters_path)

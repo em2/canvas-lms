@@ -1,6 +1,6 @@
 class SchoolReportsController < ApplicationController
   def index
-  	if is_authorized?(@current_user) # Make sure the user is authorized to do this
+  	if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
 
 	    is_admin?
       is_teacher?

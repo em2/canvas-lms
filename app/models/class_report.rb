@@ -1,5 +1,7 @@
 class ClassReport < ActiveRecord::Base
 
+  belongs_to :course
+
 	def calculate_reports()
 		course = Course.find(self.course_id)
 		quiz = Quiz.find(self.quiz_id)

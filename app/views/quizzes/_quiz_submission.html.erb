@@ -1,3 +1,34 @@
+<style>
+  .user_misconceptions{
+    border: 2px solid #910;
+    border-radius: 3px;
+  }
+  .misconception_heading{
+    margin: 5px;
+  }
+  .misconception{
+    margin-left: 5px;
+  }
+</style>
+<div class="user_misconceptions">
+  <% if @user_misconceptions && @user_misconceptions["#{@submission.user_id}"] -%>
+    <h3 class="misconception_heading">This student may have the following misconceptions:</h3>
+    <% @user_misconceptions["#{@submission.user_id}"].each do |quiz_misconcption_id, likelyhood| -%>
+      <% unless likelyhood == '-' -%>
+        <div class="misconception">
+          <%= QuizMisconception.find(quiz_misconcption_id).name %>:
+          <% case likelyhood -%>
+            <% when 'H' -%>
+              <%= t('submission_results.highly_likely', 'Highly Likely') %>
+            <% when 'S' -%>
+              <%= t('submission_results.somewhat_likely', 'Somewhat Likely') %>
+          <% end -%>
+        </div>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+</div>
+<br>
 <% if !(@current_submission || @submission).results_visible? %>
   <h4><%= @quiz.hide_results == 'until_after_last_attempt' ?
           t(:quiz_results_protected_until_last_attempt, "Quiz results are protected for this quiz, and are not visible to students until they have submitted their last attempt.") :

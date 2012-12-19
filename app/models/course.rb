@@ -168,6 +168,8 @@ class Course < ActiveRecord::Base
   attr_accessor :import_source
   has_many :zip_file_imports, :as => :context
 
+  has_many :class_reports
+
   before_save :assign_uuid
   before_save :assert_defaults
   before_save :set_update_account_associations_if_changed
