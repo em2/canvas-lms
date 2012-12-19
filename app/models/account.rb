@@ -422,7 +422,7 @@ class Account < ActiveRecord::Base
   end
 
   def account_membership_types
-    res = ['AccountAdmin']
+    res = ['AccountAdmin', 'DistrictAdmin', 'SchoolAdmin']
     res += self.parent_account.account_membership_types if self.parent_account
     res += (self.membership_types || "").split(",").select{|t| !t.empty? }
     res.uniq

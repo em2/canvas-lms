@@ -24,8 +24,10 @@ class RoleOverride < ActiveRecord::Base
   attr_accessible :context, :permission, :enrollment_type, :enabled
 
   def self.account_membership_types(account)
-    res = [{:name => "AccountAdmin", :label => t('roles.account_admin', "Account Admin")}]
-    (account.account_membership_types - ['AccountAdmin']).each do |t| 
+    res = [{:name => "AccountAdmin", :label => t('roles.account_admin', "Account Admin")}, 
+      {:name => "DistrictAdmin", :label => t('roles.district_admin', "District Admin")}, 
+      {:name => "SchoolAdmin", :label => t('roles.school_admin', "School Admin")}]
+    (account.account_membership_types - ['AccountAdmin', 'DistrictAdmin', 'SchoolAdmin']).each do |t| 
       res << {:name => t, :label => t}
     end
     res
@@ -53,7 +55,9 @@ class RoleOverride < ActiveRecord::Base
       'StudentViewEnrollment',
       'ObserverEnrollment',
       'TeacherlessStudentEnrollment',
-      'AccountAdmin'
+      'AccountAdmin',
+      'DistrictAdmin',
+      'SchoolAdmin'
     ].freeze
   def self.known_role_types
     KNOWN_ROLE_TYPES
@@ -74,13 +78,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'TeacherEnrollment',
           'DesignerEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :read_forum => {
@@ -92,6 +100,8 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
@@ -100,7 +110,9 @@ class RoleOverride < ActiveRecord::Base
           'DesignerEnrollment',
           'ObserverEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :post_to_forum => {
@@ -112,6 +124,8 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
@@ -119,7 +133,9 @@ class RoleOverride < ActiveRecord::Base
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :moderate_forum => {
@@ -132,13 +148,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :send_messages => {
@@ -151,6 +171,8 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
@@ -158,7 +180,9 @@ class RoleOverride < ActiveRecord::Base
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_outcomes => {
@@ -171,13 +195,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'DesignerEnrollment',
           'TeacherEnrollment',
           'TeacherlessStudentEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :create_conferences => {
@@ -190,6 +218,8 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
@@ -197,7 +227,9 @@ class RoleOverride < ActiveRecord::Base
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :create_collaborations => {
@@ -210,6 +242,8 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
@@ -217,7 +251,9 @@ class RoleOverride < ActiveRecord::Base
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :read_roster => {
@@ -230,6 +266,8 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
@@ -237,7 +275,9 @@ class RoleOverride < ActiveRecord::Base
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :view_all_grades => {
@@ -247,12 +287,16 @@ class RoleOverride < ActiveRecord::Base
           'DesignerEnrollment',
           'TeacherEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_grades => {
@@ -261,12 +305,16 @@ class RoleOverride < ActiveRecord::Base
           'TaEnrollment',
           'TeacherEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :comment_on_others_submissions => {
@@ -278,13 +326,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherEnrollment',
           'TeacherlessStudentEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_students => {
@@ -295,13 +347,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherEnrollment',
           'TeacherlessStudentEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_admin_users => {
@@ -311,17 +367,21 @@ class RoleOverride < ActiveRecord::Base
           'DesignerEnrollment',
           'TeacherEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_role_overrides => {
         :label => lambda { t('permissions.manage_role_overrides', "Manage permissions") },
         :account_only => true,
-        :true_for => %w(AccountAdmin),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
         :available_to => %w(AccountMembership)
       },
       :manage_account_memberships => {
@@ -330,7 +390,9 @@ class RoleOverride < ActiveRecord::Base
           'AccountMembership'
         ],
         :true_for => [
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ],
         :account_only => true
       },
@@ -340,7 +402,9 @@ class RoleOverride < ActiveRecord::Base
           'AccountMembership'
         ],
         :true_for => [
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ],
         :account_only => true
       },
@@ -351,13 +415,17 @@ class RoleOverride < ActiveRecord::Base
           'DesignerEnrollment',
           'TeacherEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :view_group_pages => {
@@ -369,13 +437,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_files => {
@@ -387,13 +459,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_assignments => {
@@ -405,13 +481,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :read_question_banks => {
@@ -423,13 +503,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_calendar => {
@@ -442,13 +526,17 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :read_reports => {
@@ -459,85 +547,97 @@ class RoleOverride < ActiveRecord::Base
           'DesignerEnrollment',
           'TeacherEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'DesignerEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_courses => {
         :label => lambda { t('permissions.manage_courses', "Manage ( add / edit / delete ) courses") },
         :available_to => [
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :account_only => true,
         :true_for => [
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_user_logins => {
         :label => lambda { t('permissions.manage_user_logins', "Modify login details for users") },
         :available_to => [
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :account_only => true,
         :true_for => [
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_alerts => {
         :label => lambda { t('permissions.manage_alerts', "Manage global alerts") },
         :account_only => true,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership),
       },
 
       :read_messages => {
         :label => lambda { t('permissions.read_messages', "View notifications sent to users") },
         :account_only => :site_admin,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership),
       },
       :become_user => {
         :label => lambda { t('permissions.become_user', "Become other users") },
         :account_only => :root,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership),
       },
       :manage_site_settings => {
         :label => lambda { t('permissions.manage_site_settings', "Manage site-wide and plugin settings") },
         :account_only => :site_admin,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership),
       },
       :manage_sis => {
         :label => lambda { t('permissions.manage_sis', "Import and manage SIS data") },
         :account_only => true,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership),
       },
       :read_sis => {
         :label => lambda { t('permission.read_sis', "Read SIS data") },
         :account_only => true,
-        :true_for => %w(AccountAdmin TeacherEnrollment),
-        :available_to => %w(AccountAdmin AccountMembership TeacherEnrollment TaEnrollment StudentEnrollment)
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin TeacherEnrollment),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership TeacherEnrollment TaEnrollment StudentEnrollment)
       },
       :read_course_list => {
         :label => lambda { t('permissions.read_course_list', "View the list of courses") },
         :account_only => true,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership)
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership)
       },
       :view_statistics => {
         :label => lambda { t('permissions.view_statistics', "View statistics") },
         :account_only => true,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership)
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership)
       },
       :manage_user_notes => {
         :label => lambda { t('permissions.manage_user_notes', "Manage faculty journal entries") },
@@ -545,18 +645,22 @@ class RoleOverride < ActiveRecord::Base
           'TaEnrollment',
           'TeacherEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'TeacherEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :read_course_content => {
         :label => lambda { t('permissions.read_course_content', "View course content") },
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership)
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership)
       },
       :manage_content => {
         :label => lambda { t('permissions.manage_content', "Manage all other course content") },
@@ -567,47 +671,51 @@ class RoleOverride < ActiveRecord::Base
           'TeacherlessStudentEnrollment',
           'ObserverEnrollment',
           'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin',
           'AccountMembership'
         ],
         :true_for => [
           'TaEnrollment',
           'TeacherEnrollment',
           'DesignerEnrollment',
-          'AccountAdmin'
+          'AccountAdmin',
+          'DistrictAdmin',
+          'SchoolAdmin'
         ]
       },
       :manage_interaction_alerts => {
         :label => lambda { t('permissions.manage_interaction_alerts', "Manage alerts") },
-        :true_for => %w(AccountAdmin TeacherEnrollment),
-        :available_to => %w(AccountAdmin AccountMembership TeacherEnrollment TaEnrollment),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin TeacherEnrollment),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership TeacherEnrollment TaEnrollment),
       },
       :manage_jobs => {
         :label => lambda { t('permissions.managed_jobs', "Manage background jobs") },
         :account_only => :site_admin,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership),
       },
       :view_error_reports => {
         :label => lambda { t('permissions.view_error_reports', "View error reports") },
         :account_only => :site_admin,
-        :true_for => %w(AccountAdmin),
-        :available_to => %w(AccountAdmin AccountMembership),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership),
       },
       :change_course_state => {
         :label => lambda { t('permissions.change_course_state', "Change course state") },
-        :true_for => %w(AccountAdmin TeacherEnrollment DesignerEnrollment),
-        :available_to => %w(AccountAdmin AccountMembership TeacherEnrollment TaEnrollment DesignerEnrollment),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin TeacherEnrollment DesignerEnrollment),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership TeacherEnrollment TaEnrollment DesignerEnrollment),
       },
       :manage_sections => {
         :label => lambda { t('permissions.manage_sections', "Manage (create / edit / delete) course sections") },
-        :true_for => %w(AccountAdmin TeacherEnrollment DesignerEnrollment),
-        :available_to => %w(AccountAdmin AccountMembership TeacherEnrollment TaEnrollment DesignerEnrollment),
+        :true_for => %w(AccountAdmin DistrictAdmin SchoolAdmin TeacherEnrollment DesignerEnrollment),
+        :available_to => %w(AccountAdmin DistrictAdmin SchoolAdmin AccountMembership TeacherEnrollment TaEnrollment DesignerEnrollment),
       }
     })
 
   RESERVED_ROLES =
     [
-      'AccountAdmin', 'AccountMembership', 'DesignerEnrollment',
+      'AccountAdmin', 'DistrictAdmin', 'SchoolAdmin', 'AccountMembership', 'DesignerEnrollment',
       'ObserverEnrollment', 'StudentEnrollment', 'StudentViewEnrollment', 
       'TaEnrollment', 'TeacherEnrollment', 'TeacherlessStudentEnrollment'
     ].freeze

@@ -82,7 +82,16 @@ class AccountUser < ActiveRecord::Base
   end
   
   def self.readable_type(type)
-    if type == 'AccountAdmin' || !type || type.empty?
+    if ['AccountAdmin','DistrictAdmin','SchoolAdmin'].include?(type)
+      case type
+      when 'AccountAdmin'
+        t('types.account_admin', "Account Admin")
+      when 'DistrictAdmin'
+        t('types.district_admin', "District Admin")
+      when 'SchoolAdmin'
+        t('types.school_admin', "School Admin")
+      end
+    elsif !type || type.empty?
       t('types.account_admin', "Account Admin")
     else
       type

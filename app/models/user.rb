@@ -1157,6 +1157,8 @@ class User < ActiveRecord::Base
     end
     if context.respond_to?(:account_chain) && !context.account_chain_ids.empty?
       memberships += account_users.find_all_by_membership_type_and_account_id('AccountAdmin', context.account_chain_ids).uniq
+      memberships += account_users.find_all_by_membership_type_and_account_id('DistrictAccount', context.account_chain_ids).uniq
+      memberships += account_users.find_all_by_membership_type_and_account_id('SchoolAdmin', context.account_chain_ids).uniq
     end
     return ["urn:lti:sysrole:ims/lis/None"] if memberships.empty?
     memberships.map{|membership|

@@ -146,7 +146,7 @@ class AccountsController < ApplicationController
       load_course_right_side
       @account_users = @account.account_users
       order_hash = {}
-      (['AccountAdmin'] + @account.account_membership_types).each_with_index do |type, idx|
+      (['AccountAdmin', 'DistrictAdmin', 'SchoolAdmin'] + @account.account_membership_types).each_with_index do |type, idx|
         order_hash[type] = idx
       end
       @account_users = @account_users.select(&:user).sort_by{|au| [order_hash[au.membership_type] || 999, au.user.sortable_name.downcase] }

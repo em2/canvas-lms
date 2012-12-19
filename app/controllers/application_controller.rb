@@ -205,7 +205,15 @@ class ApplicationController < ActionController::Base
   protected :managed_quiz_data
 
   def is_admin?
-    @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
+    @is_admin = true if @current_user.account_users.find_by_membership_type('AccountAdmin') || @current_user.account_users.find_by_membership_type('DistrictAdmin') || @current_user.account_users.find_by_membership_type('SchoolAdmin')
+  end
+
+  def is_district_admin?
+    @is_district_admin = true if @current_user.account_users.find_by_membership_type('DistrictAdmin')
+  end
+
+  def is_school_admin?
+    @is_school_admin = true if @current_user.account_users.find_by_membership_type('SchoolAdmin')
   end
 
   def is_teacher?(user=@current_user)
