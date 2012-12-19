@@ -209,11 +209,11 @@ class ApplicationController < ActionController::Base
   end
 
   def is_district_admin?
-    @is_district_admin = true if @current_user.account_users.find_by_membership_type('DistrictAdmin')
+    @is_district_admin = true if @sub_account = @current_user.account_users.find_by_membership_type('DistrictAdmin')
   end
 
   def is_school_admin?
-    @is_school_admin = true if @current_user.account_users.find_by_membership_type('SchoolAdmin')
+    @is_school_admin = true if @sub_account = @current_user.account_users.find_by_membership_type('SchoolAdmin')
   end
 
   def is_teacher?(user=@current_user)

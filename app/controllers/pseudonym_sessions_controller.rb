@@ -391,7 +391,13 @@ class PseudonymSessionsController < ApplicationController
         if !is_admin?
           format.html { redirect_to courses_url }
         else
-          format.html { redirect_back_or_default(dashboard_url(:login_success => '1')) }
+          if is_district_admin?
+            format.html { redirect_back_or_default(account_sub_accounts_url(@sub_account.account_id, :login_success => '1')) }
+          elsif is_school_admin?
+            format.html { redirect_back_or_default(account_url(@sub_account.account_id, :login_success => '1')) }
+          else
+            format.html { redirect_back_or_default(dashboard_url(:login_success => '1')) }
+          end
         end
       end
       format.json { render :json => pseudonym.to_json(:methods => :user_code), :status => :ok }
