@@ -551,7 +551,8 @@ class QuizSubmission < ActiveRecord::Base
     user_answer[:explain_canvas_click_drag_data] = params["explain_canvas_#{q[:id]}_click_drag_data"] rescue ""
     user_answer[:explain_canvas_img_data] = params["explain_canvas_#{q[:id]}_img_data"] rescue ""
 
-    self.save_student_explain_to_png(params[:quiz_id], params[:user_id], q[:id], user_answer[:explain_canvas_img_data]) if user_answer[:explain_canvas_img_data]
+    Delayed::Job.enqueue(UploadPngS3Job.new(params[:quiz_id], params[:user_id], q[:id], user_answer[:explain_canvas_img_data])) if user_answer[:explain_canvas_img_data]
+    # self.save_student_explain_to_png(params[:quiz_id], params[:user_id], q[:id], user_answer[:explain_canvas_img_data]) if user_answer[:explain_canvas_img_data]
 
     question_type = q[:question_type]
     q[:points_possible] = q[:points_possible].to_f
