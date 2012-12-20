@@ -65,6 +65,19 @@ define([
         if(quizSubmission.currentlyBackingUp) { return; }
         quizSubmission.currentlyBackingUp = true;
         quizSubmission.lastSubmissionUpdate = new Date();
+        //
+        // go through and save the dataURL from each canvas element
+        var $questions = $('.question_holder');
+        $questions.each(function(index) {
+          var question = $questions[index]
+          var question_id = $(question).find($('a')).first().attr('name').split('_')[1];
+          question_id = parseInt(question_id);
+          if ($('#canvas_explain_canvas_'+question_id)[0] != undefined){
+            var canvas_png_data = $('#canvas_explain_canvas_'+question_id)[0].toDataURL("image/png");
+            $('#explain_canvas_'+question_id+'_img_data').val(canvas_png_data);
+          }
+        });
+
         var data = $("#submit_quiz_form").getFormData();
         $(".question_holder .question.marked").each(function() {
           data[$(this).attr('id') + "_marked"] = "1";

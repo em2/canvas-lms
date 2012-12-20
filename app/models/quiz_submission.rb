@@ -549,6 +549,9 @@ class QuizSubmission < ActiveRecord::Base
     user_answer[:explain_canvas_click_tool_data] = params["explain_canvas_#{q[:id]}_click_tool_data"] rescue ""
     user_answer[:explain_canvas_click_size_data] = params["explain_canvas_#{q[:id]}_click_size_data"] rescue ""
     user_answer[:explain_canvas_click_drag_data] = params["explain_canvas_#{q[:id]}_click_drag_data"] rescue ""
+    user_answer[:explain_canvas_img_data] = params["explain_canvas_#{q[:id]}_img_data"] rescue ""
+
+    self.save_student_explain_to_png(q[:id], user_answer[:explain_canvas_img_data]) if user_answer[:explain_canvas_img_data]
 
     question_type = q[:question_type]
     q[:points_possible] = q[:points_possible].to_f
@@ -714,6 +717,11 @@ class QuizSubmission < ActiveRecord::Base
     user_answer[:points] = 0.0 unless user_answer[:correct]
     user_answer[:points] = (user_answer[:points] * 100.0).round.to_f / 100.0
     user_answer
+  end
+
+  def self.save_student_explain_to_png(id, data)
+    prefix = 'data:image/png;base64,'
+    png = Base64.decode64(data[prefix.length, data.length-1])
   end
   
   named_scope :before, lambda{|date|
