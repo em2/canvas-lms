@@ -73,8 +73,10 @@ define([
           var question_id = $(question).find($('a')).first().attr('name').split('_')[1];
           question_id = parseInt(question_id);
           if ($('#canvas_explain_canvas_'+question_id)[0] != undefined){
+            $('#canvas_explain_canvas_'+question_id).trigger('hideYerStuff');
             var canvas_png_data = $('#canvas_explain_canvas_'+question_id)[0].toDataURL("image/png");
             $('#explain_canvas_'+question_id+'_img_data').val(canvas_png_data);
+            $('#canvas_explain_canvas_'+question_id).trigger('showYerStuff');
           }
         });
 

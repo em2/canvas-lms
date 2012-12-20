@@ -183,6 +183,27 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 	});
 
 
+	//
+	// events to hide the canvas border for taking a picture snapshot of the drawing
+	$('#canvas_'+canvas_element).bind("hideYerStuff", function(e){
+		hideIt();
+	});
+
+	$('#canvas_'+canvas_element).bind("showYerStuff", function(e){
+		showIt();
+	});
+
+	function hideIt() {
+		assessing = false;
+		redraw();
+	}
+
+	function showIt() {
+		assessing = true;
+		redraw();
+	}
+
+
 
 
 	
