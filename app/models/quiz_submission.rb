@@ -720,7 +720,7 @@ class QuizSubmission < ActiveRecord::Base
     user_answer
   end
 
-  def self.save_student_explain_to_png(quiz_id, user_id, id, data)
+  def self.save_student_explain_to_png(quiz_id, user_id, question_id, data)
     begin
       prefix = 'data:image/png;base64,'
       png = Base64.decode64(data[prefix.length, data.length-1])
@@ -735,7 +735,7 @@ class QuizSubmission < ActiveRecord::Base
 
         directory = connection.directories.get(aws_settings['bucket_name'])
 
-        filename = "#{quiz_id}/#{user_id}/#{id}.png"
+        filename = "#{quiz_id}/#{user_id}_#{question_id}.png"
         file = directory.files.create(
           :key => filename,
           :body => png,
