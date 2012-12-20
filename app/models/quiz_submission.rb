@@ -725,22 +725,24 @@ class QuizSubmission < ActiveRecord::Base
       prefix = 'data:image/png;base64,'
       png = Base64.decode64(data[prefix.length, data.length-1])
 
-      aws_settings = YAML.load_file('config/amazon_s3.yml')
-      connection = Fog::Storage.new(
-        :provider => 'AWS',
-        :aws_access_key_id => aws_settings['production']['access_key_id'],
-        :aws_secret_access_key => aws_settings['production']['secret_access_key']
-      )
+      aws_settings = YAML.load_file(RAILS_ROOT + "/config/amazon_s3.yml")[RAILS_ENV] rescue nil
+      if aws_settings
+        connection = Fog::Storage.new(
+          :provider => 'AWS',
+          :aws_access_key_id => aws_settings['access_key_id'],
+          :aws_secret_access_key => aws_settings['secret_access_key']
+        )
 
-      directory = connection.directories.get(aws_settings['production']['bucket_name'])
+        directory = connection.directories.get(aws_settings['bucket_name'])
 
-      filename = "#{quiz_id}/#{user_id}/#{id}.png"
-      file = directory.files.create(
-        :key => filename,
-        :body => png,
-        :public => true
-      )
-      file.save
+        filename = "#{quiz_id}/#{user_id}/#{id}.png"
+        file = directory.files.create(
+          :key => filename,
+          :body => png,
+          :public => true
+        )
+        file.save
+      end
     rescue => e
       r2d=2 #do nothing
     end
