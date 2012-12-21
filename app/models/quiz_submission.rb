@@ -743,7 +743,6 @@ class QuizSubmission < ActiveRecord::Base
           :body => png,
           :public => true
         )
-        file.save
 
         if dui = DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(quiz_submission_id, user_id, question_id)
           dui.url = file.public_url
