@@ -59,7 +59,7 @@
 
 				<% @counter = 0 -%>
 				<% while @counter < @quiz_question_count do -%>
-					<th><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %></th>
+					<th><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %><a href='<%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  @draw_url["#{user.id}"]["#{@counter+1}"] == nil || @draw_url["#{user.id}"]["#{@counter+1}"] == '' ? '' : @draw_url["#{user.id}"]["#{@counter+1}"] %>'><%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  @draw_url["#{user.id}"]["#{@counter+1}"] == nil || @draw_url["#{user.id}"]["#{@counter+1}"] == '' ? '' : @draw_url["#{user.id}"]["#{@counter+1}"] %></th>
 					<% @counter += 1 -%>
 				<% end -%>
 

@@ -90,6 +90,7 @@ class QuizzesController < ApplicationController
             @q = {}
             @cor = {}
             @expl = {}
+            @draw_url = {}
             @submitted_users.each do |user|
 
               @cor_question_count = 1
@@ -101,9 +102,11 @@ class QuizzesController < ApplicationController
                   if @q["#{user.id}"] == nil
                     @q["#{user.id}"] = {"#{@cor_question_count}" => ''}
                     @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
+                    @draw_url["#{user.id}"] = {"#{@cor_question_count}" => DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id]).url}
                   else
                     @q["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
                     @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+                    @draw_url["#{user.id}"].merge!({"#{@cor_question_count}" => DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id]).url})
                   end
                   quiz_data[:answers].each_with_index do |answer, index|
                     if answer[:weight] > 0

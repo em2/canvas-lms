@@ -956,6 +956,7 @@ class Quiz < ActiveRecord::Base
     @q = {}
     @cor = {}
     @expl = {}
+    @draw_url = {}
     @submitted_users.each do |user|
       @cor_question_count = 1
       @submission = self.quiz_submissions.find_by_quiz_id_and_user_id(self.id,user.id)
@@ -966,9 +967,11 @@ class Quiz < ActiveRecord::Base
           if @q["#{user.id}"] == nil
             @q["#{user.id}"] = {"#{@cor_question_count}" => ''}
             @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
+            @draw_url["#{user.id}"] = {"#{@cor_question_count}" => DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id]).url}
           else
             @q["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
             @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+            @draw_url["#{user.id}"].merge!({"#{@cor_question_count}" => DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id]).url})
           end
           quiz_data[:answers].each_with_index do |answer, index|
             if answer[:weight] > 0
@@ -1035,42 +1038,40 @@ class Quiz < ActiveRecord::Base
       @count = @quiz_question_count
       @counter = 0
       while @counter < @count do
+        asdf = ''
         if @q["#{user.id}"] != nil && @q["#{user.id}"] != ''
           if @q["#{user.id}"]["#{@counter+1}"] != nil && @q["#{user.id}"]["#{@counter+1}"] != ''
-            row << @q["#{user.id}"]["#{@counter+1}"]
-          else
-            row << ''
+            asdf = @q["#{user.id}"]["#{@counter+1}"]
           end
-        else
-          row << ''
         end
-        # row << @q["#{user.id}"] == nil && @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil && @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"]
+        row << asdf
         @counter += 1
       end
 
       @counter = 0
       while @counter < @count do
+        asdf = ''
         if @cor["#{@counter+1}"] != nil && @cor["#{@counter+1}"] != ''
-            row << @cor["#{@counter+1}"]
-        else
-          row << ''
+          asdf = @cor["#{@counter+1}"]
         end
-        # row << @cor["#{@counter+1}"] == nil && @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"]
+        row << asdf
         @counter += 1
       end
 
       @counter = 0
       while @counter < @count do
+        asdf = ''
         if @expl["#{user.id}"] != nil && @expl["#{user.id}"] != ''
           if @expl["#{user.id}"]["#{@counter+1}"] != nil && @expl["#{user.id}"]["#{@counter+1}"] != ''
-            row << @expl["#{user.id}"]["#{@counter+1}"]
-          else
-            row << ''
+            asdf = @expl["#{user.id}"]["#{@counter+1}"] + ' '
           end
-        else
-          row << ''
         end
-        # row << @expl["#{user.id}"] == nil && @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil && @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"]
+        if @draw_url["#{user.id}"] != nil && @draw_url["#{user.id}"] != ''
+          if @draw_url["#{user.id}"]["#{@counter+1}"] != nil && @draw_url["#{user.id}"]["#{@counter+1}"] != ''
+            asdf += @draw_url["#{user.id}"]["#{@counter+1}"]
+          end
+        end
+        row << asdf
         @counter += 1
       end
 
