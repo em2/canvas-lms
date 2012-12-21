@@ -385,13 +385,13 @@ class QuizSubmission < ActiveRecord::Base
         if (misconception_name == misconception.name)
           if um = misconception.user_misconceptions.active.find_by_user_id_and_quiz_id(self.user.id, quiz.id)
             if question_count > 0
-              um.update_attributes(:probability => probability/question_count)
+              um.update_attributes(:probability => probability.to_f/question_count)
             else
               um.update_attributes(:probability => probability)
             end
           else
             if question_count > 0
-              misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
+              misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability.to_f/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
             else
               misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :quiz_id => quiz.id, :workflow_state => 'available')
             end
@@ -551,8 +551,10 @@ class QuizSubmission < ActiveRecord::Base
     user_answer[:explain_canvas_click_drag_data] = params["explain_canvas_#{q[:id]}_click_drag_data"] rescue ""
     user_answer[:explain_canvas_img_data] = params["explain_canvas_#{q[:id]}_img_data"] rescue ""
 
-    Delayed::Job.enqueue(UploadPngS3Job.new(params[:quiz_id], params[:user_id], q[:id], user_answer[:explain_canvas_img_data])) if user_answer[:explain_canvas_img_data]
-    # self.save_student_explain_to_png(params[:quiz_id], params[:user_id], q[:id], user_answer[:explain_canvas_img_data]) if user_answer[:explain_canvas_img_data]
+    qs = QuizSubmission.find_by_user_id_and_quiz_id(params[:user_id],params[:quiz_id])
+
+    Delayed::Job.enqueue(UploadPngS3Job.new(qs.id, params[:quiz_id], params[:user_id], q[:id], user_answer[:explain_canvas_img_data])) if user_answer[:explain_canvas_img_data]
+    # self.save_student_explain_to_png(qs.id, params[:quiz_id], params[:user_id], q[:id], user_answer[:explain_canvas_img_data]) if user_answer[:explain_canvas_img_data]
 
     question_type = q[:question_type]
     q[:points_possible] = q[:points_possible].to_f
@@ -720,7 +722,7 @@ class QuizSubmission < ActiveRecord::Base
     user_answer
   end
 
-  def self.save_student_explain_to_png(quiz_id, user_id, question_id, data)
+  def self.save_student_explain_to_png(quiz_submission_id, quiz_id, user_id, question_id, data)
     begin
       prefix = 'data:image/png;base64,'
       png = Base64.decode64(data[prefix.length, data.length-1])
@@ -742,8 +744,16 @@ class QuizSubmission < ActiveRecord::Base
           :public => true
         )
         file.save
+
+        if dui = DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(quiz_submission_id, user_id, question_id)
+          dui.url = file.public_url
+          dui.save!
+        else
+          DrawingUrl.create!(:quiz_submission_id => quiz_submission_id, :quiz_id => quiz_id, :user_id => user_id, :question_id => question_id, :url => file.public_url)
+        end
       end
     rescue => e
+      puts "Something failed for #{quiz_id}/#{user_id}_#{question_id}.png"
       r2d=2 #do nothing
     end
 
