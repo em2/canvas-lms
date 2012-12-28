@@ -341,63 +341,67 @@ class QuizSubmission < ActiveRecord::Base
     @user_answers = []
     data = self.submission_data || {}
 
-    quiz = Quiz.find(data[:quiz_id])
-    misconceptions = quiz.quiz_misconceptions
-    probability_hash = {}
 
-    question_count = 0
+    quiz = Quiz.find(data[:quiz_id]) if data[:quiz_id]
+    if quiz
+      misconceptions = quiz.quiz_misconceptions
+      probability_hash = {}
 
-    self.questions_as_object.each do |q|
-      user_answer = self.class.score_question(q, data)
-      @user_answers << user_answer
+      question_count = 0
 
-      #
-      # go through all the misconceptions user answers and calculate
-      # the probability the student may have for that misconception
+      self.questions_as_object.each do |q|
+        user_answer = self.class.score_question(q, data)
+        @user_answers << user_answer
+
+        #
+        # go through all the misconceptions user answers and calculate
+        # the probability the student may have for that misconception
+        misconceptions.active.each do |misconception|
+          if (misconception.pattern["#{user_answer[:question_id]}"] != nil)
+            misconception.pattern["#{user_answer[:question_id]}"].each do |answer_id, answer_probability|
+              if (answer_id.to_i == user_answer[:answer_id])
+                if probability_hash["#{misconception.name}"].nil?
+                  prob = {"#{misconception.name}"=>"#{answer_probability}"}
+                  probability_hash.merge!(prob)
+                else
+                  num = probability_hash["#{misconception.name}"].to_f
+                  num += answer_probability.to_f
+                  prob = {"#{misconception.name}"=>num}
+                  probability_hash.merge!(prob)
+                end
+              end
+            end
+          end
+        end
+
+        if q[:question_type] != "text_only_question" && user_answer[:answer_id]
+          question_count += 1
+        end
+
+        @tally += (user_answer[:points] || 0) if user_answer[:correct]
+      end
+
+
       misconceptions.active.each do |misconception|
-        if (misconception.pattern["#{user_answer[:question_id]}"] != nil)
-          misconception.pattern["#{user_answer[:question_id]}"].each do |answer_id, answer_probability|
-            if (answer_id.to_i == user_answer[:answer_id])
-              if probability_hash["#{misconception.name}"].nil?
-                prob = {"#{misconception.name}"=>"#{answer_probability}"}
-                probability_hash.merge!(prob)
+        probability_hash.each do |misconception_name, probability|
+          if (misconception_name == misconception.name)
+            if um = misconception.user_misconceptions.active.find_by_user_id_and_quiz_id(self.user.id, quiz.id)
+              if question_count > 0
+                um.update_attributes(:probability => probability.to_f/question_count)
               else
-                num = probability_hash["#{misconception.name}"].to_f
-                num += answer_probability.to_f
-                prob = {"#{misconception.name}"=>num}
-                probability_hash.merge!(prob)
+                um.update_attributes(:probability => probability)
+              end
+            else
+              if question_count > 0
+                misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability.to_f/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
+              else
+                misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :quiz_id => quiz.id, :workflow_state => 'available')
               end
             end
           end
         end
       end
-
-      if q[:question_type] != "text_only_question" && user_answer[:answer_id]
-        question_count += 1
-      end
-
-      @tally += (user_answer[:points] || 0) if user_answer[:correct]
-    end
-
-
-    misconceptions.active.each do |misconception|
-      probability_hash.each do |misconception_name, probability|
-        if (misconception_name == misconception.name)
-          if um = misconception.user_misconceptions.active.find_by_user_id_and_quiz_id(self.user.id, quiz.id)
-            if question_count > 0
-              um.update_attributes(:probability => probability.to_f/question_count)
-            else
-              um.update_attributes(:probability => probability)
-            end
-          else
-            if question_count > 0
-              misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability.to_f/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
-            else
-              misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :quiz_id => quiz.id, :workflow_state => 'available')
-            end
-          end
-        end
-      end
+      
     end
 
 
