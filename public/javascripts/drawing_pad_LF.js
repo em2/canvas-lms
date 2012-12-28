@@ -24,6 +24,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 	}
 	
 	var outlineImage = new Image();
+	outlineImage.crossOrigin = '';
 	outlineImage.src = drawing_image;
 	var canvas;
 	var canvasX;
