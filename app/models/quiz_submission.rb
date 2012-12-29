@@ -732,11 +732,12 @@ class QuizSubmission < ActiveRecord::Base
       png = Base64.decode64(data[prefix.length, data.length-1])
 
       aws_settings = YAML.load_file(RAILS_ROOT + "/config/amazon_s3.yml")[RAILS_ENV] rescue nil
-      access_key_id = aws_settings['access_key_id']
-      secret_access_key = aws_settings['secret_access_key']
-      bucket_name = aws_settings['bucket_name']
 
       if aws_settings
+        access_key_id = aws_settings['access_key_id']
+        secret_access_key = aws_settings['secret_access_key']
+        bucket_name = aws_settings['bucket_name']
+
         connection = Fog::Storage.new(
           :provider => 'AWS',
           :aws_access_key_id => access_key_id,
