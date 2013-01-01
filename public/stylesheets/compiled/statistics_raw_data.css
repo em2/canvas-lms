@@ -495,13 +495,3 @@ td.num {
   width: 100%;
   height: 550px;
   overflow: scroll; }
-
-/* line 422, ../../../app/stylesheets/statistics_raw_data.sass */
-.table_header {
-  position: absolute;
-  top: 0; }
-
-/* line 425, ../../../app/stylesheets/statistics_raw_data.sass */
-.shims {
-  position: absolute;
-  top: 0; }
