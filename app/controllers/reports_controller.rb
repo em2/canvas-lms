@@ -1,23 +1,30 @@
 class ReportsController < ApplicationController
+  before_filter :require_user
+
 	def index
-		if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
+
+		if is_authorized?(@current_user) # Make sure the user is authorized to do this
 
       add_crumb("Reports")
 
       is_admin?
       is_teacher?
 
+      if !@is_admin && !@is_teacher
+        redirect_back_or_default(dashboard_url)
+      end
+
       if !@report = Report.find_by_account_id(@context.id)
         @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
       end
 
       @question_bank = AssessmentQuestionBank.active
-      
     end
+
 	end
 
   def calculate_reports
-    if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) # Make sure the user is authorized to do this
       if !report = Report.find_by_account_id(@context.id)
         report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
       end

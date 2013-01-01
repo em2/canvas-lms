@@ -1,4 +1,6 @@
 class DistrictReportsController < ApplicationController
+  before_filter :require_user
+  
   def index
   	if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
 
