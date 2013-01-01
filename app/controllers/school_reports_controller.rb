@@ -19,9 +19,6 @@ class SchoolReportsController < ApplicationController
           @schools << sub_sub_account
         end
       end
-
-		else
-			redirect_back_or_default(dashboard_url)
 		end
   end
 

@@ -13,8 +13,6 @@ class ReportsController < ApplicationController
 
       @question_bank = AssessmentQuestionBank.active
       
-    else
-      redirect_back_or_default(dashboard_url)
     end
 	end
 
@@ -36,9 +34,7 @@ class ReportsController < ApplicationController
       
       
       redirect_back_or_default(reports_path)
-    else
-      flash[:notice] = "Not Authorized."
-      redirect_back_or_default(dashboard_url)
+
     end
 
   end

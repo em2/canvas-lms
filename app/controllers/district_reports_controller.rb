@@ -14,8 +14,6 @@ class DistrictReportsController < ApplicationController
 
       @districts = @context.sub_accounts.active
 
-		else
-			redirect_back_or_default(dashboard_url)
 		end
   end
 
