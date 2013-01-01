@@ -2,17 +2,10 @@ class ClassReportsController < ApplicationController
   before_filter :require_user
   
   def index
-  	if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
-
-	    is_admin?
-	    is_teacher?
+  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
 	    add_crumb("Reports", reports_path)
       add_crumb("Class Reports")
-
-	    if !@is_admin && !@is_teacher
-				redirect_back_or_default(dashboard_url)
-			end
 
       @classes = []
 

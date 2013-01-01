@@ -3,16 +3,9 @@ class ReportsController < ApplicationController
 
 	def index
 
-		if is_authorized?(@current_user) # Make sure the user is authorized to do this
+		if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
 
       add_crumb("Reports")
-
-      is_admin?
-      is_teacher?
-
-      if !@is_admin && !@is_teacher
-        redirect_back_or_default(dashboard_url)
-      end
 
       if !@report = Report.find_by_account_id(@context.id)
         @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)

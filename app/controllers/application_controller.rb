@@ -204,6 +204,16 @@ class ApplicationController < ActionController::Base
   end
   protected :managed_quiz_data
 
+  def is_admin_or_teacher?
+    is_admin?
+    is_teacher?
+
+    if !@is_admin && !@is_teacher
+      redirect_back_or_default(dashboard_url) and return
+    end
+    @is_admin || @is_teacher
+  end
+
   def is_admin?
     @is_admin = true if @current_user.account_users.find_by_membership_type('AccountAdmin') || @current_user.account_users.find_by_membership_type('DistrictAdmin') || @current_user.account_users.find_by_membership_type('SchoolAdmin')
   end

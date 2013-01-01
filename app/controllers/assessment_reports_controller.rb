@@ -1,11 +1,10 @@
 class AssessmentReportsController < ApplicationController
+  before_filter :require_user
+
   def index
-  	if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
+  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
       add_crumb("Reports", reports_path)
-
-      is_admin?
-      is_teacher?
 
       if !@report = Report.find_by_account_id(@context.id)
         @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
@@ -58,9 +57,7 @@ class AssessmentReportsController < ApplicationController
   end
 
   def show
-  	if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
-
-	    is_admin?
+  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
 	    @current_probe = AssessmentQuestionBank.find(params[:id])
       
@@ -158,11 +155,6 @@ class AssessmentReportsController < ApplicationController
   end
 
   def load_class_data
-
-		is_teacher?
-    if !@is_admin && !@is_teacher
-			redirect_back_or_default(dashboard_url)
-		end
 
   	@course = Course.find(params[:class_report_id])
 

@@ -3,14 +3,7 @@ class StudentsReportsController < ApplicationController
 	before_filter :require_user
 
   def index
-		if authorized_action(@context, @current_user, :read)
-			
-			is_admin?
-			is_teacher?
-
-			if !@is_admin && !@is_teacher
-				redirect_back_or_default(dashboard_url)
-			end
+		if authorized_action(@context, @current_user, :read) && is_admin_or_teacher?
 
 			@course = Course.find(params[:course_id])
 			@quiz = Quiz.find(params[:quiz_id])
