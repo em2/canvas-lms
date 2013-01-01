@@ -1,72 +1,148 @@
 <% if (@found_teacher || @is_admin) -%>
+<% jammit_css :statistics_raw_data -%>
+<div class="clear"></div>
 <div id="raw_data_view">
-
-	<table border="1" class="assessment_report_table">
-		<tr>
-			<th>idDistr</th>
-			<th>idSchl</th>
-			<th>idTchr</th>
-			<th>idClass</th>
-			<th>name</th>
-			<th>id</th>
-			<th>submitted</th>
-			<% @count = 1 -%>
-			<% @quiz.quiz_data.each do |question| -%>
-				<% if question[:question_type] == "text_only_question" -%>
-					<% next -%>
+  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed responsive" id="tblMain">
+    <tbody>
+    	<tr class="rShim">
+    		<td class="rShim" style="width:0;"></td>
+    		<td class="rShim" style="width:60px;"></td>
+    		<td class="rShim" style="width:60px;"></td>
+    		<td class="rShim" style="width:60px;"></td>
+    		<td class="rShim" style="width:60px;"></td>
+    		<td class="rShim" style="width:85px;"></td>
+    		<td class="rShim" style="width:85px;"></td>
+    		<td class="rShim" style="width:95px;"></td>
+    		<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% if question[:question_type] == "text_only_question" -%>
+						<% next -%>
+					<% end -%>
+					<td class="rShim" style="width:35px;"></td>
+					<% @count += 1 -%>
 				<% end -%>
-				<th>q<%=@count%></th>
-				<% @count += 1 -%>
-			<% end -%>
-			<% @count = 1 -%>
-			<% @quiz.quiz_data.each do |question| -%>
-				<% if question[:question_type] == "text_only_question" -%>
-					<% next -%>
+				<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% if question[:question_type] == "text_only_question" -%>
+						<% next -%>
+					<% end -%>
+					<td class="rShim" style="width:40px;"></td>
+					<% @count += 1 -%>
 				<% end -%>
-				<th>cor<%=@count%></th>
-				<% @count += 1 -%>
-			<% end -%>
-			<% @count = 1 -%>
-			<% @quiz.quiz_data.each do |question| -%>
-				<% next if question[:question_type] == "text_only_question" -%>
-				<th>expl<%=@count%></th>
-				<% @count += 1 -%>
-			<% end -%>
-		</tr>
-
-		<% @submitted_users.each do |user| -%>
-			<tr>
-				<th><%= user.sortable_name[/[Dd][0-9]{3}/] %></th>
-				<th><%= user.sortable_name[/[Ss][0-9]{3}/] %></th>
-				<th><%= user.sortable_name[/[Tt][0-9]{3}/] %></th>
-				<th><%= user.sortable_name[/[Cc][0-9]{3}/] %></th>
-				<th><%= user.name %></th>
-				<th><%= user.id %></th>
+				<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% next if question[:question_type] == "text_only_question" -%>
+					<td class="rShim" style="width:85px;"></td>
+					<% @count += 1 -%>
+				<% end -%>
+    		<td class="rShim" style="width:0px;"></td>
+    	</tr>
+    	<tr dir="ltr">
+    		<td class="hd"><p style="height:16px;">.</p></td>
+    		<td dir="ltr" class="s0">idDistr</td>
+    		<td dir="ltr" class="s1">idSchl</td>
+    		<td dir="ltr" class="s1">idTchr</td>
+    		<td dir="ltr" class="s1">idClass</td>
+    		<td dir="ltr" class="s1">name</td>
+    		<td dir="ltr" class="s1">id</td>
+    		<td dir="ltr" class="s1">submitted</td>
+    		<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% if question[:question_type] == "text_only_question" -%>
+						<% next -%>
+					<% end -%>
+					<td dir="ltr" class="s1">q<%=@count%></td>
+					<% @count += 1 -%>
+				<% end -%>
+				<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% if question[:question_type] == "text_only_question" -%>
+						<% next -%>
+					<% end -%>
+					<td dir="ltr" class="s1">cor<%=@count%></td>
+					<% @count += 1 -%>
+				<% end -%>
+				<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% next if question[:question_type] == "text_only_question" -%>
+					<td dir="ltr" class="s1">expl<%=@count%></td>
+					<% @count += 1 -%>
+				<% end -%>
+    		<td class="s2"></td>
+    	</tr>
+    	<% @submitted_users.each do |user| -%>
+			<tr dir="ltr">
+				<td class="hd"><p style="height:16px;">.</p></td>
+    		<td dir="ltr" class="s3"><%= user.sortable_name[/[Dd][0-9]{3}/] %></td>
+    		<td dir="ltr" class="s4"><%= user.sortable_name[/[Ss][0-9]{3}/] %></td>
+    		<td dir="ltr" class="s4"><%= user.sortable_name[/[Tt][0-9]{3}/] %></td>
+    		<td dir="ltr" class="s4"><%= user.sortable_name[/[Cc][0-9]{3}/] %></td>
+    		<td dir="ltr" class="s5"><%= user.name %></td>
+    		<td dir="ltr" class="s5"><%= user.id %></td>
 				<% @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id) -%>
-				<th><%= Submission.find(@submission.submission_id).submitted_at %></th>
+				<td dir="ltr" class="s5"><%= Submission.find(@submission.submission_id).submitted_at.strftime("%m/%e/%Y at %l:%M%P") %></td>
 				
 				<% @counter = 0 -%>
 				<% while @counter < @quiz_question_count do -%>
-					<th><%=@q["#{user.id}"] == nil || @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil || @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] %></th>
+					<td dir="ltr" class="s6"><%=@q["#{user.id}"] == nil || @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil || @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] %></td>
 					<% @counter += 1 -%>
 				<% end -%>
 
 				<% @counter = 0 -%>
 				<% while @counter < @quiz_question_count do -%>
-					<th><%= @cor["#{@counter+1}"] == nil || @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"] %></th>
+					<td dir="ltr" class="s6"><%= @cor["#{@counter+1}"] == nil || @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"] %></td>
 					<% @counter += 1 -%>
 				<% end -%>
 
 				<% @counter = 0 -%>
 				<% while @counter < @quiz_question_count do -%>
-					<th><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %><a href='<%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  @draw_url["#{user.id}"]["#{@counter+1}"] == nil || @draw_url["#{user.id}"]["#{@counter+1}"] == '' ? '' : @draw_url["#{user.id}"]["#{@counter+1}"] %>'><%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  @draw_url["#{user.id}"]["#{@counter+1}"] == nil || @draw_url["#{user.id}"]["#{@counter+1}"] == '' ? '' : @draw_url["#{user.id}"]["#{@counter+1}"] %></th>
+					<td dir="ltr" class="s6"><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %>
+						<a href='<%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  @draw_url["#{user.id}"]["#{@counter+1}"] == nil || @draw_url["#{user.id}"]["#{@counter+1}"] == '' ? '' : @draw_url["#{user.id}"]["#{@counter+1}"] %>'><%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  t('links.view_it','View It') %></td>
 					<% @counter += 1 -%>
 				<% end -%>
 
+				<td class="s2"></td>
 			</tr>
 		<% end -%>
 
-	</table>
+    	<tr dir="ltr">
+    		<td class="hd"><p style="height:16px;">.</p></td>
+    		<td class="s8"></td>
+    		<td class="s9"></td>
+    		<td class="s9"></td>
+    		<td class="s9"></td>
+    		<td class="s9"></td>
+    		<td class="s9"></td>
+    		<td class="s9"></td>
+
+    		<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% if question[:question_type] == "text_only_question" -%>
+						<% next -%>
+					<% end -%>
+					<td class="s9"></td>
+					<% @count += 1 -%>
+				<% end -%>
+				<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% if question[:question_type] == "text_only_question" -%>
+						<% next -%>
+					<% end -%>
+					<td class="s9"></td>
+					<% @count += 1 -%>
+				<% end -%>
+				<% @count = 1 -%>
+				<% @quiz.quiz_data.each do |question| -%>
+					<% next if question[:question_type] == "text_only_question" -%>
+					<td class="s9"></td>
+					<% @count += 1 -%>
+				<% end -%>
+
+    		<td class="s2"></td>
+    	</tr>
+    </tbody>
+  </table>
+
 </div>
 
 <% end -%>

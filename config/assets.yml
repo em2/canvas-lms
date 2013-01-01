@@ -218,6 +218,8 @@ stylesheets:
     - public/stylesheets/compiled/rosters.css
   students_reports:
     - public/stylesheets/compiled/students_reports.css
+  statistics_raw_data:
+    - public/stylesheets/compiled/statistics_raw_data.css
   learning_outcomes:
     - public/stylesheets/compiled/learning_outcomes.css
   grade_summary:

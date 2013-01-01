@@ -178,12 +178,17 @@ tr.question td .number_answer.correct_answer {
           t(:quiz_latest_version_disclaimer, "This report is showing quiz statistics based on the latest attempt for each user.") %><br/>
       <% end %>
       <div style="margin-top: 5px;">
-        <% if @statistics[:multiple_attempts_exist] %>
-          <a href="<%= context_url(@context, :context_quiz_statistics_url, @quiz.id, :all_versions => '1') %>" class="button button-sidebar-wide"><%= mt('links.count_all_attempts', "Count **All** Attempts") %></a>
-        <% end %>
-        <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :format => :csv) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.download_csv', "Download csv") %></a>
-        <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.view_raw_data', "View raw data") %></a>
-        <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :csv) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.download_raw_csv', "Download raw csv") %></a>
+        <%# if @statistics[:multiple_attempts_exist] %>
+          <!-- <a href="<%#= context_url(@context, :context_quiz_statistics_url, @quiz.id, :all_versions => '1') %>" class="button button-sidebar-wide"><%#= mt('links.count_all_attempts', "Count **All** Attempts") %></a> -->
+        <%# end %>
+        <!-- <a href="<%#= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :format => :csv) %>" class="button button-sidebar-wide"><%#= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%#= t('links.download_csv', "Download csv") %></a> -->
+        <% if params[:raw] == "true" -%>
+          <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :format => :html) %>" class="button button-sidebar-wide"><%= t('links.view_raw_data', "View Normal Data") %></a>
+        <% else -%>
+          <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html) %>" class="button button-sidebar-wide"><%= t('links.view_raw_data', "View Raw Data") %></a>
+        <% end -%>
+
+        <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :csv) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.download_raw_csv', "Download Raw csv") %></a>
       </div>
     <% end %>
   </div>
@@ -248,7 +253,7 @@ require([
 $(document).ready(function() {
   //
   // set the style on the content id to fload left so it doesn't get hidden underneath the right-side content
-  $('#content').attr('style','float:left');
+  //$('#content').attr('style','float:left');
   $.scrollSidebar();
   $(".essay_answer").live('click', function(event) {
     event.preventDefault();
