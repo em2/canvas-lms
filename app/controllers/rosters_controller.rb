@@ -1,7 +1,7 @@
 class RostersController < ApplicationController
   
   def index
-    if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
       add_crumb("School Rosters")
       
@@ -34,8 +34,6 @@ class RostersController < ApplicationController
           end
         end
       end
-    else
-      redirect_back_or_default(dashboard_url)
     end
   end
   
