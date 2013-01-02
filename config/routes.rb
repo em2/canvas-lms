@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :simple_response, :only => [:index]
   
   map.calculate_reports 'calculate_reports', :controller => 'reports', :action => 'calculate_reports', :conditions => {:method => :put}
 
