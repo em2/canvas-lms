@@ -1,4 +1,5 @@
 class RostersController < ApplicationController
+  before_filter :require_user
   
   def index
     if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
