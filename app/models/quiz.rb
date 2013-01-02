@@ -1033,7 +1033,12 @@ class Quiz < ActiveRecord::Base
       row << user.name
       row << user.id
       @submission = self.quiz_submissions.find_by_quiz_id_and_user_id(self.id,user.id)
-      row << Submission.find(@submission.submission_id).submitted_at.strftime("%-m/%e/%Y at %l:%M%P")
+      @submission_time = Submission.find(@submission.submission_id).submitted_at
+      if @submission_time
+        row << @submission_time.strftime("%-m/%e/%Y at %l:%M%P")
+      else
+        row << ''
+      end
       
       @count = @quiz_question_count
       @counter = 0
