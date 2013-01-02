@@ -68,7 +68,7 @@ class RostersController < ApplicationController
       errors_found = true
     end
 
-    if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
         flash[:error] = "Please complete the form."
         redirect_back_or_default(dashboard_url)
@@ -113,9 +113,6 @@ class RostersController < ApplicationController
           # Pull out all the names using regex.
           extract_names(@course_title)
 
-          is_admin?
-          is_teacher?
-
           if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
           
             #
@@ -157,22 +154,15 @@ class RostersController < ApplicationController
         return true
 
       end
-    else
-      redirect_back_or_default(dashboard_url)
     end
   end
   
   def show
-    if is_authorized?(@current_user) && authorized_action(@context, @current_user, :read) # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
       @current_school_roster = Roster.find(params[:id]).account
       
       add_crumb("Rosters", rosters_path)
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
-
-      is_admin?
-      is_teacher?
-    else
-      redirect_back_or_default(dashboard_url)
     end
   end
 
