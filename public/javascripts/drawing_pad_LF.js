@@ -158,7 +158,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 		// ----------------
 
 		$('#canvas_'+canvas_element).bind("mousedown", function(e){
-			mouseDown();
+			mouseDown(e.originalEvent);
 		});
 
 		$('#canvas_'+canvas_element).bind("mousemove", function(e){
@@ -170,7 +170,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 		});
 
 		$('#canvas_'+canvas_element).bind("touchstart", function(e){
-			touchDown();
+			touchDown(e.originalEvent);
 		});
 
 		$('#canvas_'+canvas_element).bind("touchmove", function(e){
@@ -210,22 +210,21 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 
 
 		
-		function mouseDown() {
+		function mouseDown(e) {
 			if (assessing){
 			    mouseIsDragging = true;
-			    mouseXY();
+			    mouseXY(e);
 			}
 		}
 
-		function touchDown() {
+		function touchDown(e) {
 			if (assessing){
 			    mouseIsDragging = false;
-			    touchXY();
+			    touchXY(e);
 			}
 		}
 
 		function mouseXY(e) {
-			if (!e) var e = event;
 			if(assessing){
 				canvasX = e.pageX - canvas.offsetLeft;
 				canvasY = e.pageY - canvas.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - canvas.offsetTop + 60;
@@ -235,7 +234,6 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 		}
 		 
 		function touchXY(e) {
-			if (!e) var e = event;
 			if(assessing){
 			    e.preventDefault();
 			    canvasX = e.targetTouches[0].pageX - canvas.offsetLeft;
