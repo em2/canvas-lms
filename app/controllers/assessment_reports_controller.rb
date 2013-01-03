@@ -2,7 +2,7 @@ class AssessmentReportsController < ApplicationController
   before_filter :require_user
 
   def index
-  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
+  	if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
 
       add_crumb("Reports", reports_path)
 
@@ -57,7 +57,7 @@ class AssessmentReportsController < ApplicationController
   end
 
   def show
-  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
+  	if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
 
 	    @current_probe = AssessmentQuestionBank.find(params[:id])
       

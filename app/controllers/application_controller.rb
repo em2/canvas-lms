@@ -50,9 +50,9 @@ class ApplicationController < ActionController::Base
   def set_permissions
     @permission_levels = []
     if @current_user && (is_admin? || is_teacher?)
-      @permission_levels << 'account_admin' if is_account_admin?
-      @permission_levels << 'district_admin' if is_district_admin?
-      @permission_levels << 'school_admin' if is_school_admin?
+      @permission_levels << 'account_admin' if @is_account_admin
+      @permission_levels << 'district_admin' if @is_district_admin
+      @permission_levels << 'school_admin' if @is_school_admin
       @permission_levels << 'teacher' if @is_teacher
     end
   end
@@ -215,9 +215,8 @@ class ApplicationController < ActionController::Base
   end
   protected :managed_quiz_data
 
-  def is_admin_or_teacher?
-    is_admin?
-    is_teacher?
+  def redirect_if_not_admin_or_teacher
+    is_admin_or_teacher?
 
     if !@is_admin && !@is_teacher
       redirect_back_or_default(dashboard_url) and return
@@ -225,20 +224,27 @@ class ApplicationController < ActionController::Base
     @is_admin || @is_teacher
   end
 
+  def is_admin_or_teacher?
+    is_admin?
+    is_teacher?
+
+    @is_admin || @is_teacher
+  end
+
   def is_admin?
-    @is_admin = true if @current_user.account_users.find_by_membership_type('AccountAdmin') || @current_user.account_users.find_by_membership_type('DistrictAdmin') || @current_user.account_users.find_by_membership_type('SchoolAdmin')
+    @is_admin = true if is_account_admin? || is_district_admin? || is_school_admin?
   end
 
   def is_account_admin?
-    @is_account_admin = true if @sub_account = @current_user.account_users.find_by_membership_type('AccountAdmin')
+    @is_account_admin = true if @account_admin_sub_account = @current_user.account_users.find_by_membership_type('AccountAdmin')
   end
 
   def is_district_admin?
-    @is_district_admin = true if @sub_account = @current_user.account_users.find_by_membership_type('DistrictAdmin')
+    @is_district_admin = true if @district_admin_sub_account = @current_user.account_users.find_by_membership_type('DistrictAdmin')
   end
 
   def is_school_admin?
-    @is_school_admin = true if @sub_account = @current_user.account_users.find_by_membership_type('SchoolAdmin')
+    @is_school_admin = true if @school_admin_sub_account = @current_user.account_users.find_by_membership_type('SchoolAdmin')
   end
 
   def is_teacher?(user=@current_user)

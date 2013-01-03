@@ -394,9 +394,9 @@ class PseudonymSessionsController < ApplicationController
           if is_account_admin?
             format.html { redirect_back_or_default(dashboard_url(:login_success => '1')) }
           elsif is_district_admin?
-            format.html { redirect_back_or_default(account_sub_accounts_url(@sub_account.account_id, :login_success => '1')) }
+            format.html { redirect_back_or_default(account_sub_accounts_url(@district_admin_sub_account.account_id, :login_success => '1')) }
           elsif is_school_admin?
-            format.html { redirect_back_or_default(account_url(@sub_account.account_id, :login_success => '1')) }
+            format.html { redirect_back_or_default(account_url(@school_admin_sub_account.account_id, :login_success => '1')) }
           else
             format.html { redirect_back_or_default(dashboard_url(:login_success => '1')) }
           end

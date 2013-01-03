@@ -21,6 +21,9 @@ module ApplicationHelper
   include TextHelper
   include LocaleSelection
 
+  def permission_level(permission_levels)
+    permission_levels.include?("account_admin") ? 'Account Admin' : permission_levels.include?("district_admin") ? 'District Admin' : permission_levels.include?("school_admin") ? 'School Admin' : permission_levels.include?("teacher") ? 'Teacher' : ''
+  end
 
   def semester?(date)
     case date.to_date.month
