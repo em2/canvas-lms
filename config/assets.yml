@@ -200,6 +200,8 @@ stylesheets:
     - public/stylesheets/compiled/login_student.css
   no_chrome:
     - public/stylesheets/compiled/no_chrome.css
+  no_chrome_admin:
+    - public/stylesheets/compiled/no_chrome_admin.css
   misconceptions:
     - public/stylesheets/compiled/misconceptions.css
   reports_district:

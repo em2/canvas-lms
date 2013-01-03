@@ -34,7 +34,7 @@
 	<%= javascript_include_tag "assign_probe.js" %>
 <% end %>
 
-<% if @can_generate_assessment %>
+<% if @is_admin || @is_teacher %>
 	<% content_for :generate_rosters do -%>
 		<%= render :partial => 'rosters/generate_rosters'%>
 	<% end -%>

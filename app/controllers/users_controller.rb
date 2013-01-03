@@ -216,22 +216,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def can_generate?(user)
-    @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
-  end
-
   def user_dashboard
     get_context
     
-    @can_generate_assessment = false
-
-    if can_generate?(@current_user)
-      @can_generate_assessment = true
-    end
-    
     #
     # Redirect the students to their latest assessment
-    if (!@can_generate_assessment)
+    unless is_admin_or_teacher?
       # get the context codes which is just the course number
       @context_codes = @context.courses.map(&:asset_string)
 
@@ -250,11 +240,19 @@ class UsersController < ApplicationController
 
     @school_rosters = Roster.by_name
 
-    is_teacher?
-    is_admin?
-    
-    # @is_admin = is_authorized_action?(@domain_root_account, @current_user, :manage)
-
+    if !is_admin?
+      redirect_to courses_url
+    else
+      if is_account_admin?
+        redirect_back_or_default(dashboard_url)
+      elsif is_district_admin?
+        redirect_back_or_default(account_sub_accounts_url(@district_admin_sub_account.account_id))
+      elsif is_school_admin?
+        redirect_back_or_default(account_url(@school_admin_sub_account.account_id))
+      else
+        redirect_back_or_default(dashboard_url)
+      end
+    end
 
     # dont show crumbs on dashboard because it does not make sense to have a breadcrumb
     # trail back to home if you are already home
