@@ -43,8 +43,19 @@ class ApplicationController < ActionController::Base
   before_filter :fix_xhr_requests
   before_filter :init_body_classes
   before_filter :set_ua_header
+  before_filter :set_permissions
 
   add_crumb(proc { I18n.t('links.dashboard', "My Dashboard") }, :root_path, :class => "home")
+
+  def set_permissions
+    @permission_levels = []
+    if @current_user && (is_admin? || is_teacher?)
+      @permission_levels << 'account_admin' if is_account_admin?
+      @permission_levels << 'district_admin' if is_district_admin?
+      @permission_levels << 'school_admin' if is_school_admin?
+      @permission_levels << 'teacher' if @is_teacher
+    end
+  end
 
   def school_analysis(data, question_count)
     analysis = {}
@@ -216,6 +227,10 @@ class ApplicationController < ActionController::Base
 
   def is_admin?
     @is_admin = true if @current_user.account_users.find_by_membership_type('AccountAdmin') || @current_user.account_users.find_by_membership_type('DistrictAdmin') || @current_user.account_users.find_by_membership_type('SchoolAdmin')
+  end
+
+  def is_account_admin?
+    @is_account_admin = true if @sub_account = @current_user.account_users.find_by_membership_type('AccountAdmin')
   end
 
   def is_district_admin?
