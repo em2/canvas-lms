@@ -2391,10 +2391,12 @@ class Course < ActiveRecord::Base
   TAB_COLLABORATIONS = 16
   TAB_REPORTS = 17
   TAB_ROSTERS = 18
+  TAB_COURSES = 19
 
   def self.default_tabs
     [
       { :id => TAB_HOME, :label => t('#tabs.home', "Home"), :css_class => 'home', :href => :course_path },
+      { :id => TAB_COURSES, :label => t('#account.tab_courses', "Courses"), :css_class => 'courses', :href => :courses_path, :no_args => true },
       { :id => TAB_REPORTS, :label => t('#tabs.reports', "Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
       { :id => TAB_ROSTERS, :label => t('#tabs.rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true },
       { :id => TAB_ANNOUNCEMENTS, :label => t('#tabs.announcements', "Announcements"), :css_class => 'announcements', :href => :course_announcements_path },
@@ -2512,6 +2514,24 @@ class Course < ActiveRecord::Base
       tabs.delete_if { |t| t[:id] == TAB_REPORTS } unless self.grants_right?(user, opts[:session], :read_as_admin)
       tabs.delete_if { |t| t[:id] == TAB_ROSTERS } unless self.grants_right?(user, opts[:session], :read_as_admin)
 
+
+      #
+      # Remove all the tabs we don't want for EM2 teachers
+      tabs.delete_if { |t| t[:id] == TAB_HOME }
+      tabs.delete_if { |t| t[:id] == TAB_ANNOUNCEMENTS }
+      tabs.delete_if { |t| t[:id] == TAB_ASSIGNMENTS }
+      tabs.delete_if { |t| t[:id] == TAB_DISCUSSIONS }
+      tabs.delete_if { |t| t[:id] == TAB_GRADES }
+      tabs.delete_if { |t| t[:id] == TAB_PEOPLE }
+      tabs.delete_if { |t| t[:id] == TAB_CHAT }
+      tabs.delete_if { |t| t[:id] == TAB_PAGES }
+      tabs.delete_if { |t| t[:id] == TAB_FILES }
+      tabs.delete_if { |t| t[:id] == TAB_SYLLABUS }
+      tabs.delete_if { |t| t[:id] == TAB_OUTCOMES }
+      tabs.delete_if { |t| t[:id] == TAB_MODULES }
+      tabs.delete_if { |t| t[:id] == TAB_CONFERENCES }
+      tabs.delete_if { |t| t[:id] == TAB_COLLABORATIONS }
+      tabs.delete_if { |t| t[:id] == TAB_SETTINGS }
 
       if !user || !self.grants_right?(user, nil, :manage_content)
         # remove some tabs for logged-out users or non-students

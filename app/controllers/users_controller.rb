@@ -242,16 +242,10 @@ class UsersController < ApplicationController
 
     if !is_admin?
       redirect_to courses_url
-    else
-      if is_account_admin?
-        redirect_back_or_default(dashboard_url)
-      elsif is_district_admin?
-        redirect_back_or_default(account_sub_accounts_url(@district_admin_sub_account.account_id))
-      elsif is_school_admin?
-        redirect_back_or_default(account_url(@school_admin_sub_account.account_id))
-      else
-        redirect_back_or_default(dashboard_url)
-      end
+    elsif is_district_admin?
+      redirect_back_or_default(account_sub_accounts_url(@district_admin_sub_account.account_id))
+    elsif is_school_admin?
+      redirect_back_or_default(account_url(@school_admin_sub_account.account_id))
     end
 
     # dont show crumbs on dashboard because it does not make sense to have a breadcrumb
