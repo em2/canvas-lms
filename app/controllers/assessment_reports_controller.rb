@@ -10,6 +10,9 @@ class AssessmentReportsController < ApplicationController
         @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
       end
 
+      @context = @report
+      @active_tab = "reports"
+
       @question_bank = []
 
       if params[:district_report_id]
@@ -71,7 +74,12 @@ class AssessmentReportsController < ApplicationController
 		  	load_class_data
 		  end
 
-	    
+	    if !@report = Report.find_by_account_id(@context.id)
+        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
+      end
+
+      @context = @report
+      @active_tab = "reports"
 	    
 		else
 			redirect_back_or_default(dashboard_url)
@@ -151,7 +159,6 @@ class AssessmentReportsController < ApplicationController
       flash[:error] = "This report is not yet ready."
       redirect_back_or_default(school_report_assessment_reports_path(@account.id))
     end
-
   end
 
   def load_class_data
@@ -200,7 +207,6 @@ class AssessmentReportsController < ApplicationController
         redirect_back_or_default(class_report_assessment_reports_path(@account.id))
       end
     end
-
   end
 
 end

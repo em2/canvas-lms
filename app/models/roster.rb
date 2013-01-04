@@ -216,4 +216,23 @@ class Roster < ActiveRecord::Base
     @course_assignment.position = @course.assignments.count
     @course_assignment.save!
   end
+
+  TAB_COURSES = 0
+  TAB_REPORTS = 1
+  TAB_ROSTERS = 2
+
+  def self.default_tabs
+    [
+      { :id => TAB_COURSES, :label => t('#account.tab_courses', "Courses"), :css_class => 'courses', :href => :courses_path, :no_args => true },
+      { :id => TAB_REPORTS, :label => t('#tabs.reports', "Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
+      { :id => TAB_ROSTERS, :label => t('#tabs.rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true }
+    ]
+  end
+
+  def tabs_available(user=nil, opts={})
+    tabs = []
+    tabs += Roster.default_tabs
+    tabs
+  end
+  memoize :tabs_available
 end

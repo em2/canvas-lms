@@ -13,6 +13,12 @@ class DistrictReportsController < ApplicationController
 
       @districts = @context.sub_accounts.active
 
+      if !@report = Report.find_by_account_id(@context.id)
+        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
+      end
+
+      @context = @report
+      @active_tab = "reports"
 		end
   end
 

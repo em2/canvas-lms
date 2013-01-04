@@ -18,6 +18,13 @@ class ClassReportsController < ApplicationController
       if @is_teacher && !@is_admin
         @classes = find_courses_for_teacher(@classes)
       end
+
+      if !@report = Report.find_by_account_id(@context.id)
+        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
+      end
+
+      @context = @report
+      @active_tab = "reports"
     end
   end
 

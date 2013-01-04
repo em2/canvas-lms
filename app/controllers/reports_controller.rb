@@ -11,6 +11,9 @@ class ReportsController < ApplicationController
         @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
       end
 
+      @context = @report
+      @active_tab = "reports"
+
       @question_bank = AssessmentQuestionBank.active
     end
 

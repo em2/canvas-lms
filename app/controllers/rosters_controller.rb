@@ -8,8 +8,6 @@ class RostersController < ApplicationController
       
       @rosters = Roster.by_name
 
-      is_admin?
-      is_teacher?
       @courses = []
 
       @rosters.each do |roster|
@@ -35,6 +33,16 @@ class RostersController < ApplicationController
           end
         end
       end
+
+      #############################
+      # This is a sucky way to get the tabs into roster, need to refactor with something else
+      if !@report = Report.find_by_account_id(@context.id)
+        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
+      end
+
+      @context = @report
+      @active_tab = "rosters"
+      ##############################
     end
   end
   
@@ -160,10 +168,13 @@ class RostersController < ApplicationController
   
   def show
     if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
-      @current_school_roster = Roster.find(params[:id]).account
+      @roster = Roster.find(params[:id])
+      @current_school_roster = @roster.account
       
       add_crumb("Rosters", rosters_path)
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
+      @context = @roster
+      @active_tab = "rosters"
     end
   end
 

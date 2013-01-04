@@ -187,11 +187,13 @@
       <% if left_side %>
         <%= left_side %>
       <% else %>
-        <% if @context.try(:short_name) %>
-        <h1 id="section-tabs-header"><%= @context.short_name %></h1>
+        <% if @context.respond_to?(:short_name) && @context.try(:short_name) %>
+          <h1 id="section-tabs-header"><%= @context.short_name %></h1>
           <% if @context && @context.respond_to?(:context)  %>
-        <a href="<%= url_for(@context.context) %>" id="section-tabs-header-subtitle" class="ellipsis"><%= @context.context.name %></a>
+            <a href="<%= url_for(@context.context) %>" id="section-tabs-header-subtitle" class="ellipsis"><%= @context.context.name %></a>
           <% end %>
+        <% else -%>
+          <!-- <h1 id="section-tabs-header"><%#= @context.class.name.pluralize %></h1> -->
         <% end %>
         <%= section_tabs %>
       <% end %>
