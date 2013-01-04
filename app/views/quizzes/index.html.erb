@@ -3,7 +3,7 @@
   content_for :page_title, t(:page_titles, "Quizzes")
 %>
 <% content_for :right_side do %>
-  <% if can_do(@context.quizzes.new, @current_user, :create) %>
+  <% if can_do(@context.quizzes.new, @current_user, :create) && @is_admin %>
     <div class="rs-margin-lr rs-margin-top">
       <a href="<%= context_url(@context, :new_context_quiz_url, :fresh => 1) %>" class="button button-sidebar-wide new-quiz-link"><%= image_tag "add.png" %> <%= t('links.create_new_quiz', "Create a New Quiz") %></a>
       <% if can_do(@context, @current_user, :manage_assignments) && feature_enabled?(:question_banks) %>

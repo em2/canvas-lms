@@ -30,6 +30,7 @@ class QuizMisconceptionsController < ApplicationController
       add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
       #add_crumb(@quiz.id, url_for(@quiz))
       add_crumb("Misconceptions")
+      @active_tab = "quizzes"
 
     	@misconceptions = @quiz.quiz_misconceptions
       if !@quiz_probabilities = @quiz.quiz_misconception_probability
