@@ -63,15 +63,6 @@ class QuizzesController < ApplicationController
           user_ids = @quiz.quiz_submissions.select{|s| !s.settings_only? }.map(&:user_id)
           @submitted_users = user_ids.empty? ? [] : User.find_all_by_id(user_ids).compact.uniq.sort_by(&:last_name_first)
           if params[:raw] == "true"
-            is_admin?
-
-            @found_teacher = false
-            Course.find(params[:course_id]).teachers.each do |teacher|
-              if (teacher.id == @current_user.id)
-                @found_teacher = true
-                break
-              end
-            end
 
             @quiz_question_count = 0
             @quiz.quiz_data.each do |quiz_data|
@@ -102,11 +93,15 @@ class QuizzesController < ApplicationController
                   if @q["#{user.id}"] == nil
                     @q["#{user.id}"] = {"#{@cor_question_count}" => ''}
                     @expl["#{user.id}"] = {"#{@cor_question_count}" => @sub_data[:explain_area]}
-                    @draw_url["#{user.id}"] = {"#{@cor_question_count}" => DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id]).url}
+                    if drawing_url = DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id])
+                      @draw_url["#{user.id}"] = {"#{@cor_question_count}" => drawing_url.url}
+                    end
                   else
                     @q["#{user.id}"].merge!({"#{@cor_question_count}" => ''})
                     @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
-                    @draw_url["#{user.id}"].merge!({"#{@cor_question_count}" => DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id]).url})
+                    if drawing_url = DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id])
+                      @draw_url["#{user.id}"].merge!({"#{@cor_question_count}" => drawing_url.url})
+                    end
                   end
                   quiz_data[:answers].each_with_index do |answer, index|
                     if answer[:weight] > 0
@@ -119,11 +114,13 @@ class QuizzesController < ApplicationController
                   end
                   @cor_question_count += 1
                 rescue
+                  puts "An error was here."
                   r2d=2
                 end
               end
             end
           end
+          is_admin_or_teacher?
         }
         format.csv {
           cancel_cache_buster
