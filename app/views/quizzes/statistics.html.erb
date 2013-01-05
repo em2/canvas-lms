@@ -189,6 +189,7 @@ tr.question td .number_answer.correct_answer {
         <% end -%>
 
         <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :csv) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.download_raw_csv', "Download Raw csv") %></a>
+        <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :ds => :true, :format => :csv) %>" class="button button-sidebar-wide"><%= image_tag "inst_tree/file_types/page_white_excel.png", :alt => '' %> <%= t('links.download_raw_csv', "Download Descriptive Stats csv") %></a>
       </div>
     <% end %>
   </div>

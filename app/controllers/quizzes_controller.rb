@@ -131,6 +131,14 @@ class QuizzesController < ApplicationController
               :filename => t(:statistics_filename, "%{title} %{type} Report", :title => @quiz.title, :type => @quiz.readable_type) + ".csv",
               :disposition => "attachment"
             )
+          elsif params[:ds] == "true"
+            @statistics = @quiz.statistics(params[:all_versions] == '1')
+            send_data(
+              @quiz.statistics_descriptive_stats_csv(@statistics),
+              :type => "text/csv",
+              :filename => t(:statistics_filename, "%{title} %{type} Report", :title => @quiz.title, :type => @quiz.readable_type) + ".csv",
+              :disposition => "attachment"
+            )
           else
             send_data(
               @quiz.statistics_csv(:include_all_versions => params[:all_versions] == '1', :anonymous => @quiz.anonymous_submissions),

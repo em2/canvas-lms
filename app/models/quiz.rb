@@ -24,6 +24,7 @@ class Quiz < ActiveRecord::Base
   include CopyAuthorizedLinks
   include ActionView::Helpers::SanitizeHelper
   extend ActionView::Helpers::SanitizeHelper::ClassMethods
+  include ActionView::Helpers::DateHelper
   attr_accessible :title, :description, :points_possible, :assignment_id, :shuffle_answers,
     :show_correct_answers, :time_limit, :allowed_attempts, :scoring_policy, :quiz_type,
     :lock_at, :unlock_at, :due_at, :access_code, :anonymous_submissions, :assignment_group_id,
@@ -1087,6 +1088,43 @@ class Quiz < ActiveRecord::Base
       rows.each do |val|
         csv << val
       end
+    end
+  end
+
+  def statistics_descriptive_stats_csv(options={})
+    rows = []
+    row = []
+    row << "Average Time"
+    row << "Average Correct"
+    row << "Averate Incorrect"
+    row << "High Score"
+    row << "Low Score"
+    row << "Mean Score"
+    row << "Standard Deviation"
+    rows << row
+
+    row = []
+    row << time_ago_in_words(Time.now + options[:submission_duration_average])
+    row << render_score(options[:submission_correct_count_average])
+    row << render_score(options[:submission_incorrect_count_average])
+    row << render_score(options[:submission_score_high])
+    row << render_score(options[:submission_score_low])
+    row << render_score(options[:submission_score_average])
+    row << render_score(options[:submission_score_stdev])
+    rows << row
+
+    FasterCSV.generate do |csv|
+      rows.each do |val|
+        csv << val
+      end
+    end
+  end
+
+  def render_score(score)
+    if score.nil?
+      '_'
+    else
+      score.to_f.round(2).to_s
     end
   end
 
