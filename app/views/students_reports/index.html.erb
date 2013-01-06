@@ -14,7 +14,7 @@
 	          </td>
 	          <tr>
 	          	<td>
-		          	<%= link_to(misconception.explanation_url, h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
+		          	<%= link_to("Open URL", h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
 		          </td>
 	          </tr>
 		      </tr>
