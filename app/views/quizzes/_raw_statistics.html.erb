@@ -90,10 +90,10 @@
 				<% end -%>
 
 				<% @counter = 0 -%>
-				<% while @counter < @quiz_question_count do -%>
-					<td dir="ltr" class="s6"><%= @cor["#{@counter+1}"] == nil || @cor["#{@counter+1}"] == '' ? '' : @cor["#{@counter+1}"] %></td>
-					<% @counter += 1 -%>
-				<% end -%>
+        <% while @counter < @quiz_question_count do -%>
+          <td dir="ltr" class="s6"><%=@cor["#{user.id}"] == nil || @cor["#{user.id}"] == '' ? '' : @cor["#{user.id}"]["#{@counter+1}"] == nil || @cor["#{user.id}"]["#{@counter+1}"] == '' ? '' : @cor["#{user.id}"]["#{@counter+1}"] %></td>
+          <% @counter += 1 -%>
+        <% end -%>
 
 				<% @counter = 0 -%>
 				<% while @counter < @quiz_question_count do -%>
