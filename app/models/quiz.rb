@@ -959,6 +959,7 @@ class Quiz < ActiveRecord::Base
     @expl = {}
     @draw_url = {}
     @submitted_users.each do |user|
+      @cor["#{user.id}"] = {}
       @cor_question_count = 1
       @submission = self.quiz_submissions.find_by_quiz_id_and_user_id(self.id,user.id)
       @submission.quiz_data.each do |quiz_data|
@@ -974,9 +975,10 @@ class Quiz < ActiveRecord::Base
             @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
             @draw_url["#{user.id}"].merge!({"#{@cor_question_count}" => DrawingUrl.find_by_quiz_submission_id_and_user_id_and_question_id(@submission.id, user.id, quiz_data[:id]).url})
           end
+          @cor["#{user.id}"]["#{@cor_question_count}"] = 0
           quiz_data[:answers].each_with_index do |answer, index|
-            if answer[:weight] > 0
-              @cor["#{@cor_question_count}"] = index+1
+            if answer[:weight] > 0 && @sub_data[:answer_id] == answer[:id]
+              @cor["#{user.id}"]["#{@cor_question_count}"] = 1
             end
             if @sub_data[:answer_id] == answer[:id]
               @q["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
@@ -1057,8 +1059,10 @@ class Quiz < ActiveRecord::Base
       @counter = 0
       while @counter < @count do
         asdf = ''
-        if @cor["#{@counter+1}"] != nil && @cor["#{@counter+1}"] != ''
-          asdf = @cor["#{@counter+1}"]
+        if @cor["#{user.id}"] != nil && @cor["#{user.id}"] != ''
+          if @cor["#{user.id}"]["#{@counter+1}"] != nil && @cor["#{user.id}"]["#{@counter+1}"] != ''
+            asdf = @cor["#{user.id}"]["#{@counter+1}"]
+          end
         end
         row << asdf
         @counter += 1
