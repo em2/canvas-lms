@@ -106,12 +106,12 @@ class QuizzesController < ApplicationController
                   end
                   @cor["#{user.id}"]["#{@cor_question_count}"] = 0
                   quiz_data[:answers].each_with_index do |answer, index|
-                    if answer[:weight] > 0 && @sub_data[:answer_id] == answer[:id]
-                      @cor["#{user.id}"]["#{@cor_question_count}"] = 1
-                    end
                     if @sub_data[:answer_id] == answer[:id]
                       @q["#{user.id}"].merge!({"#{@cor_question_count}" => index+1})
                       # @expl["#{user.id}"].merge!({"#{@cor_question_count}" => @sub_data[:explain_area]})
+                      if answer[:weight] > 0
+                        @cor["#{user.id}"]["#{@cor_question_count}"] = 1
+                      end
                     end
                   end
                   @cor_question_count += 1
