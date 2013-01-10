@@ -1023,6 +1023,7 @@ class Quiz < ActiveRecord::Base
     self.quiz_data.each do |question|
       next if question[:question_type] == "text_only_question"
       row << "expl#{@count}"
+      row << "draw#{@count}"
       @count += 1
     end
     rows << row
@@ -1076,9 +1077,11 @@ class Quiz < ActiveRecord::Base
             asdf = @expl["#{user.id}"]["#{@counter+1}"] + ' '
           end
         end
+        row << asdf
+        asdf = ''
         if @draw_url["#{user.id}"] != nil && @draw_url["#{user.id}"] != ''
           if @draw_url["#{user.id}"]["#{@counter+1}"] != nil && @draw_url["#{user.id}"]["#{@counter+1}"] != ''
-            asdf += @draw_url["#{user.id}"]["#{@counter+1}"]
+            asdf = @draw_url["#{user.id}"]["#{@counter+1}"]
           end
         end
         row << asdf

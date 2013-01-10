@@ -33,6 +33,7 @@
 				<% @quiz.quiz_data.each do |question| -%>
 					<% next if question[:question_type] == "text_only_question" -%>
 					<td class="rShim" style="width:85px;"></td>
+          <td class="rShim" style="width:85px;"></td>
 					<% @count += 1 -%>
 				<% end -%>
     		<td class="rShim" style="width:0px;"></td>
@@ -66,6 +67,7 @@
 				<% @quiz.quiz_data.each do |question| -%>
 					<% next if question[:question_type] == "text_only_question" -%>
 					<td dir="ltr" class="s1">expl<%=@count%></td>
+          <td dir="ltr" class="s1">draw<%=@count%></td>
 					<% @count += 1 -%>
 				<% end -%>
     		<td class="s2"></td>
@@ -97,8 +99,8 @@
 
 				<% @counter = 0 -%>
 				<% while @counter < @quiz_question_count do -%>
-					<td dir="ltr" class="s6"><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %>
-						<a href='<%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  @draw_url["#{user.id}"]["#{@counter+1}"] == nil || @draw_url["#{user.id}"]["#{@counter+1}"] == '' ? '' : @draw_url["#{user.id}"]["#{@counter+1}"] %>'><%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  t('links.view_it','View It') %></td>
+					<td dir="ltr" class="s6"><%= @expl["#{user.id}"] == nil || @expl["#{user.id}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] == nil || @expl["#{user.id}"]["#{@counter+1}"] == '' ? '' : @expl["#{user.id}"]["#{@counter+1}"] %></td>
+					<td dir="ltr" class="s6"><a href='<%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  @draw_url["#{user.id}"]["#{@counter+1}"] == nil || @draw_url["#{user.id}"]["#{@counter+1}"] == '' ? '' : @draw_url["#{user.id}"]["#{@counter+1}"] %>'><%= @draw_url["#{user.id}"] == nil || @draw_url["#{user.id}"] == '' ? '' :  t('links.view_it','View') %></td>
 					<% @counter += 1 -%>
 				<% end -%>
 
@@ -136,6 +138,7 @@
 				<% @quiz.quiz_data.each do |question| -%>
 					<% next if question[:question_type] == "text_only_question" -%>
 					<td class="s9"></td>
+          <td class="s9"></td>
 					<% @count += 1 -%>
 				<% end -%>
 

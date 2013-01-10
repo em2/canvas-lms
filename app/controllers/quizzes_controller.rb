@@ -130,7 +130,7 @@ class QuizzesController < ApplicationController
             send_data(
               @quiz.statistics_raw_csv(:include_all_versions => params[:all_versions] == '1', :anonymous => @quiz.anonymous_submissions),
               :type => "text/csv",
-              :filename => t(:statistics_filename, "%{title} %{type} Report", :title => @quiz.title, :type => @quiz.readable_type) + ".csv",
+              :filename => t(:statistics_filename, "%{name} %{title} %{type} Report", :name => @quiz.context.name, :title => @quiz.probe_name ? @quiz.probe_name : @quiz.title, :type => @quiz.readable_type) + ".csv",
               :disposition => "attachment"
             )
           elsif params[:ds] == "true"
@@ -138,7 +138,7 @@ class QuizzesController < ApplicationController
             send_data(
               @quiz.statistics_descriptive_stats_csv(@statistics),
               :type => "text/csv",
-              :filename => t(:statistics_filename, "%{title} %{type} Report", :title => @quiz.title, :type => @quiz.readable_type) + ".csv",
+              :filename => t(:statistics_filename, "%{name} %{title} %{type} Report", :name => @quiz.context.name, :title => @quiz.probe_name ? @quiz.probe_name : @quiz.title, :type => @quiz.readable_type) + " DS.csv",
               :disposition => "attachment"
             )
           else
