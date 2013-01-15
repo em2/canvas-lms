@@ -2,7 +2,7 @@ class RostersController < ApplicationController
   before_filter :require_user
   
   def index
-    if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
 
       add_crumb("School Rosters")
       
@@ -43,6 +43,9 @@ class RostersController < ApplicationController
       @context = @report
       @active_tab = "rosters"
       ##############################
+    else
+      flash[:error] = "Not Authorized!"
+      redirect_back_or_default(dashboard_url)
     end
   end
   
@@ -77,7 +80,7 @@ class RostersController < ApplicationController
       errors_found = true
     end
 
-    if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
         flash[:error] = "Please complete the form."
         redirect_back_or_default(dashboard_url)
@@ -163,11 +166,14 @@ class RostersController < ApplicationController
         return true
 
       end
+    else
+      flash[:error] = "Not Authorized!"
+      redirect_back_or_default(dashboard_url)
     end
   end
   
   def show
-    if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
       @roster = Roster.find(params[:id])
       @current_school_roster = @roster.account
       
@@ -175,6 +181,9 @@ class RostersController < ApplicationController
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
       @context = @roster
       @active_tab = "rosters"
+    else
+      flash[:error] = "Not Authorized!"
+      redirect_back_or_default(dashboard_url)
     end
   end
 

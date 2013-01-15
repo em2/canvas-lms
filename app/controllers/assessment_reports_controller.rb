@@ -2,7 +2,7 @@ class AssessmentReportsController < ApplicationController
   before_filter :require_user
 
   def index
-  	if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
+  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
       add_crumb("Reports", reports_path)
 
@@ -22,10 +22,8 @@ class AssessmentReportsController < ApplicationController
 		  elsif params[:class_report_id]
 		  	load_class_probes
 		  end
-
-      
-      
     else
+      flash[:error] = "Not Authorized!"
       redirect_back_or_default(dashboard_url)
     end
   end
@@ -60,7 +58,7 @@ class AssessmentReportsController < ApplicationController
   end
 
   def show
-  	if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
+  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
 	    @current_probe = AssessmentQuestionBank.find(params[:id])
       
@@ -82,6 +80,7 @@ class AssessmentReportsController < ApplicationController
       @active_tab = "reports"
 	    
 		else
+      flash[:error] = "Not Authorized!"
 			redirect_back_or_default(dashboard_url)
 		end
   end

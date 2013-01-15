@@ -2,7 +2,7 @@ class ClassReportsController < ApplicationController
   before_filter :require_user
   
   def index
-  	if is_authorized?(@current_user) && redirect_if_not_admin_or_teacher# Make sure the user is authorized to do this
+  	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
 	    add_crumb("Reports", reports_path)
       add_crumb("Class Reports")
@@ -25,6 +25,9 @@ class ClassReportsController < ApplicationController
 
       @context = @report
       @active_tab = "reports"
+    else
+      flash[:error] = "Not Authorized!"
+      redirect_back_or_default(dashboard_url)
     end
   end
 
