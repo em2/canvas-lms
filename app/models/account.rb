@@ -513,7 +513,11 @@ class Account < ActiveRecord::Base
       result = false
       site_admin = self.site_admin?
 
-      if !site_admin && user && root_account.teachers_can_create_courses?
+      if !site_admin && user
+        count = user.account_users.scoped(:select=>'id', :conditions=>"account_users.membership_type IN ('DistrictAdmin', 'SchoolAdmin')").count
+        result = true if count > 0
+      end
+      if !site_admin && user && !result && root_account.teachers_can_create_courses?
         count = user.enrollments.scoped(:select=>'id', :conditions=>"enrollments.type IN ('TeacherEnrollment', 'DesignerEnrollment') AND (enrollments.workflow_state != 'deleted') AND root_account_id = #{root_account.id}").count
         result = true if count > 0
       end
