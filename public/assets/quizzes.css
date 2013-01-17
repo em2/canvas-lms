@@ -124,9 +124,9 @@ div.question{border-radius:3px}
 .no-touch .question.hover .links{visibility:visible}
 .no-touch .question.hover .flag_question{background-color:#fff}
 .no-touch .question.hover .flag_question .flag_icon{opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);display:inline}
-.question.multiple_choice_question .answer,.question.multiple_answers_question .answer,.question.matching_question .answer,.question.compare_fractions_question .answer,.question.locate_fractions_question .answer,.question.represent_fractions_question .answer{border-bottom:1px solid #ddd}
-.question.multiple_choice_question .answer:last-child,.question.multiple_answers_question .answer:last-child,.question.matching_question .answer:last-child,.question.compare_fractions_question .answer:last-child,.question.locate_fractions_question .answer:last-child,.question.represent_fractions_question .answer:last-child{border-bottom:0}
-.question.multiple_choice_question .answer_custom,.question.multiple_answers_question .answer_custom,.question.matching_question .answer_custom,.question.compare_fractions_question .answer_custom,.question.locate_fractions_question .answer_custom,.question.represent_fractions_question .answer_custom{border-bottom:0}
+.question.multiple_choice_question .answer,.question.multiple_answers_question .answer,.question.matching_question .answer,.question.compare_fractions_question .answer,.question.locate_fractions_question .answer,.question.represent_fractions_question .answer,.question.compare_decimals_question .answer,.compare_decimal_fraction_question .answer{border-bottom:1px solid #ddd}
+.question.multiple_choice_question .answer:last-child,.question.multiple_answers_question .answer:last-child,.question.matching_question .answer:last-child,.question.compare_fractions_question .answer:last-child,.question.locate_fractions_question .answer:last-child,.question.represent_fractions_question .answer:last-child,.question.compare_decimals_question .answer:last-child,.compare_decimal_fraction_question .answer:last-child{border-bottom:0}
+.question.multiple_choice_question .answer_custom,.question.multiple_answers_question .answer_custom,.question.matching_question .answer_custom,.question.compare_fractions_question .answer_custom,.question.locate_fractions_question .answer_custom,.question.represent_fractions_question .answer_custom,.question.compare_decimals_question .answer_custom,.compare_decimal_fraction_question .answer_custom{border-bottom:0}
 .answer .answer_select{vertical-align:top;padding-top:.5em}
 .answer .answer_select .answer_weight{display:none}
 .answer .answer_match{padding:0 0 10px 0}
@@ -268,7 +268,7 @@ ul#quiz_versions .quiz_version.selected{font-weight:bold}
 .question select{max-width:100%}
 .edit-html-done{float:right}
 .question_actions .atr-edit{display:none}
-.multiple_choice_question .question_actions .atr-edit,.multiple_answers_question .question_actions .atr-edit,.compare_fractions_question .question_actions .atr-edit,.locate_fractions_question .question_actions .atr-edit,.represent_fractions_question .question_actions .atr-edit{display:inline-block}
+.multiple_choice_question .question_actions .atr-edit,.multiple_answers_question .question_actions .atr-edit,.compare_fractions_question .question_actions .atr-edit,.locate_fractions_question .question_actions .atr-edit,.represent_fractions_question .question_actions .atr-edit,.compare_decimals_question .question_actions .atr-edit,.compare_decimal_fraction_question .question_actions .atr-edit{display:inline-block}
 #message_students_dialog .student_list{max-height:100px;overflow:auto;font-size:.8em;padding:5px 0;margin:0;list-style-type:none}
 #message_students_dialog .student_list li{float:left;padding:2px 4px;margin:1px 2px;background-color:#cdf;border:1px solid #aaa;-moz-border-radius:3px}
 #message_students_dialog .student_list li .score{display:none;padding-left:5px;font-size:.9em;color:#444}
