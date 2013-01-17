@@ -33,7 +33,8 @@ class AssessmentQuestion < ActiveRecord::Base
   ALL_QUESTION_TYPES = ["multiple_answers_question", "fill_in_multiple_blanks_question", 
                         "matching_question", "missing_word_question", 
                         "multiple_choice_question", "compare_fractions_question", 
-                        "locate_fractions_question", "represent_fractions_question", 
+                        "locate_fractions_question", "represent_fractions_question",
+                        "compare_decimals_question", "compare_decimal_fraction_question",
                         "numerical_question", "text_only_question", "short_answer_question", 
                         "multiple_dropdowns_question", "calculated_question", 
                         "essay_question", "true_false_question"]
@@ -241,31 +242,13 @@ class AssessmentQuestion < ActiveRecord::Base
     reset_local_ids
     qdata[:answers] ||= previous_data[:answers] rescue []
     answers = qdata[:answers].to_a.sort_by{|a| (a[0] || "").gsub(/answer_/, "").to_i || ""}
-    if question[:question_type] == "multiple_choice_question"
-      found_correct = false
-      answers.each do |key, answer|
-        found_correct = true if answer[:answer_weight].to_i == 100
-        a = {:text => check_length(answer[:answer_text], 'answer text', min_size), :comments => check_length(answer[:answer_comments], 'answer comments', min_size), :weight => answer[:answer_weight].to_f, :id => unique_local_id(answer[:id].to_i)}
-        a[:html] = sanitize(answer[:answer_html]) if answer[:answer_html].present?
-        question[:answers] << a
-      end
-    elsif question[:question_type] == "compare_fractions_question"
-      found_correct = false
-      answers.each do |key, answer|
-        found_correct = true if answer[:answer_weight].to_i == 100
-        a = {:text => check_length(answer[:answer_text], 'answer text', min_size), :comments => check_length(answer[:answer_comments], 'answer comments', min_size), :weight => answer[:answer_weight].to_f, :id => unique_local_id(answer[:id].to_i)}
-        a[:html] = sanitize(answer[:answer_html]) if answer[:answer_html].present?
-        question[:answers] << a
-      end
-    elsif question[:question_type] == "locate_fractions_question"
-      found_correct = false
-      answers.each do |key, answer|
-        found_correct = true if answer[:answer_weight].to_i == 100
-        a = {:text => check_length(answer[:answer_text], 'answer text', min_size), :comments => check_length(answer[:answer_comments], 'answer comments', min_size), :weight => answer[:answer_weight].to_f, :id => unique_local_id(answer[:id].to_i)}
-        a[:html] = sanitize(answer[:answer_html]) if answer[:answer_html].present?
-        question[:answers] << a
-      end
-    elsif question[:question_type] == "represent_fractions_question"
+    if question[:question_type] == "multiple_choice_question" || 
+      question[:question_type] == "compare_fractions_question" || 
+      question[:question_type] == "locate_fractions_question" || 
+      question[:question_type] == "represent_fractions_question" || 
+      question[:question_type] == "compare_decimals_question" || 
+      question[:question_type] == "compare_decimal_fraction_question"
+      
       found_correct = false
       answers.each do |key, answer|
         found_correct = true if answer[:answer_weight].to_i == 100

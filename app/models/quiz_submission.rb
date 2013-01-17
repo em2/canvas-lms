@@ -562,7 +562,15 @@ class QuizSubmission < ActiveRecord::Base
 
     question_type = q[:question_type]
     q[:points_possible] = q[:points_possible].to_f
-    if question_type == "multiple_choice_question" || question_type == "true_false_question" || question_type == "missing_word_question" || question_type == "compare_fractions_question" || question_type == "represent_fractions_question" || question_type == "locate_fractions_question"
+    if question_type == "multiple_choice_question" || 
+      question_type == "true_false_question" || 
+      question_type == "missing_word_question" || 
+      question_type == "compare_fractions_question" || 
+      question_type == "represent_fractions_question" || 
+      question_type == "locate_fractions_question" || 
+      question_type == "compare_decimals_question" || 
+      question_type == "compare_decimal_fraction_question"
+      
       q[:answers].each do |answer|
         if answer[:id] == answer_text.to_i
           user_answer[:answer_id] = answer[:id]

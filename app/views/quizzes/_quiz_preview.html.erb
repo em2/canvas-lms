@@ -261,55 +261,7 @@ if(!jQuery) {
 </script>
 <% end %>
 <div id="instructure_quiz_templates" style="display: none;">
-  <div id="multiple_choice_question_template" class="question">
-    <div class="header">
-      <%= t(:question_result, "%{question_name} : %{points} pts",
-            :question_name => raw('<span class="question_name">&nbsp;</span>'),
-            :points => raw('<span class="question_points">&nbsp;</span>')) %>
-    </div>
-    <div class="text">
-      <div class="question_text">
-      </div>
-      <div class="answers">
-        <div class="answer">
-          <input type="radio" class="option"><label class="answer_text"></label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="compare_fractions_question_template" class="question">
-    <div class="header">
-      <%= t(:question_result, "%{question_name} : %{points} pts",
-            :question_name => raw('<span class="question_name">&nbsp;</span>'),
-            :points => raw('<span class="question_points">&nbsp;</span>')) %>
-    </div>
-    <div class="text">
-      <div class="question_text">
-      </div>
-      <div class="answers">
-        <div class="answer">
-          <input type="radio" class="option"><label class="answer_text"></label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="locate_fractions_question_template" class="question">
-    <div class="header">
-      <%= t(:question_result, "%{question_name} : %{points} pts",
-            :question_name => raw('<span class="question_name">&nbsp;</span>'),
-            :points => raw('<span class="question_points">&nbsp;</span>')) %>
-    </div>
-    <div class="text">
-      <div class="question_text">
-      </div>
-      <div class="answers">
-        <div class="answer">
-          <input type="radio" class="option"><label class="answer_text"></label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="represent_fractions_question_template" class="question">
+  <div id="multiple_choice_question_template compare_fractions_question_template locate_fractions_question_template represent_fractions_question_template compare_decimals_question_template compare_decimal_fraction_question_template" class="question">
     <div class="header">
       <%= t(:question_result, "%{question_name} : %{points} pts",
             :question_name => raw('<span class="question_name">&nbsp;</span>'),

@@ -16,25 +16,25 @@
     <% elsif question && hash_get(question, :question_type) == "fill_in_multiple_blanks_question" && @stored_params %>
       <%= fill_in_multiple_blanks_question :question => question, :answers => @stored_params %>
     <% else %>
-  		<% fractions_raw = hash_get(question, :question_text) -%>
-  		<% fractions = fractions_raw.split("[split]") -%>
-  		<% found_fractions = false -%>
-  		<% if (fractions.count > 1) -%>
-  			<% found_fractions = true -%>
+  		<% sides_raw = hash_get(question, :question_text) -%>
+  		<% sides = sides_raw.split("[split]") -%>
+  		<% found_sides = false -%>
+  		<% if (sides.count > 1) -%>
+  			<% found_sides = true -%>
   		<% end -%>
-  		<% if (found_fractions) -%>
-  			<% fraction_a = fractions[0] -%>
-  			<% fraction_b = fractions[1] -%>
-  			<% fraction_a = fraction_a.gsub("<p>","") -%>
-  			<% fraction_a = fraction_a.gsub("</p>","") -%>
-  			<% fraction_b = fraction_b.gsub("<p>","") -%>
-  			<% fraction_b = fraction_b.gsub("</p>","") -%>
+  		<% if (found_sides) -%>
+  			<% side_a = sides[0] -%>
+  			<% side_b = sides[1] -%>
+  			<% side_a = side_a.gsub("<p>","") -%>
+  			<% side_a = side_a.gsub("</p>","") -%>
+  			<% side_b = side_b.gsub("<p>","") -%>
+  			<% side_b = side_b.gsub("</p>","") -%>
   		<% end -%>
     <% end %>
   </div>
-	<div class="question_text question_text_CF question_left_side">
-		<% if (found_fractions) -%>
-			<%= user_content(fraction_a) %>
+	<div class="question_text question_text_<%=question_type.question_type%><%= side_a.include?('frac') ? '_frac' : '' %> question_left_side">
+		<% if (found_sides) -%>
+			<%= user_content(side_a) %>
 		<% end -%>
 	</div>
   <% if question_type && question_type.unsupported %>
@@ -121,7 +121,7 @@
     <% }) %>
   </div>
   <% end %>
-  <div class="answers answers_CF">
+  <div class="answers answers_<%=question_type.question_type%>">
     <% if assessing %>
       <% if question %>
         <% if question_type.display_answers == "multiple" && hash_get(question, :question_type) != "missing_word_question" %>
@@ -220,9 +220,9 @@
       <% end %>
     <% end %>
   </div>
-	<div class="question_text question_text_CF question_right_side_CF">
-		<% if (found_fractions) -%>
-			<%= user_content(fraction_b) %>
+	<div class="question_text question_text_<%=question_type.question_type%><%= side_b.include?('frac') ? '_frac' : '' %> question_right_side_<%=question_type.question_type%>">
+		<% if (found_sides) -%>
+			<%= user_content(side_b) %>
 		<% end -%>
 	</div>
 </div>
@@ -230,10 +230,10 @@
 	<% if assessing || user_answer -%>
 		<div id="explain_text"><b>Explain your choice using words and/or pictures.</b></div> <br/>
 		<% if assessing -%>
-			<div id="explain_area_<%= question[:id] %>" class="explain_area_text_CF"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="30" rows="12"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
+			<div id="explain_area_<%= question[:id] %>" class="explain_area_text_<%=question_type.question_type%>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="30" rows="12"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
 		<% end -%>
 		<% if !assessing && user_answer -%>
-			<div id="explain_area_<%= question[:id] %>" class="explain_area_text_CF"><textarea cols="30" rows="12" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
+			<div id="explain_area_<%= question[:id] %>" class="explain_area_text_<%=question_type.question_type%>"><textarea cols="30" rows="12" disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
 		<% end -%>
 		<% if assessing -%>
 			<% click_x_data = @stored_params["explain_canvas_#{question[:id]}_click_x_data"] -%>
@@ -303,23 +303,44 @@
     height: 196px;
     resize: vertical;
 	}
-  .explain_area_text_CF{
+
+
+  .explain_area_text_compare_fractions_question, .explain_area_text_compare_decimals_question, .explain_area_text_compare_decimal_fraction_question{
     padding: 3px 6px;
     margin-top: 6px;
   }
-	.answers_CF{
+	.answers_compare_fractions_question, .answers_compare_decimals_question, .answers_compare_decimal_fraction_question{
 		float: left;
 		margin-top: 70px;
     padding-left: 5px;
     padding-right: 5px;
 	}
-	.question_text_CF{
-		float: left;
-		margin-top: 90px;
-	}
-	.question_right_side_CF{
+	.question_right_side_compare_fractions_question, .question_right_side_compare_decimals_question, .question_right_side_compare_decimal_fraction_question{
 		padding-right: 13px;
 	}
+
+  .question_text_compare_fractions_question_frac{
+    float: left;
+    margin-top: 90px;
+  }
+  .question_text_compare_decimals_question_frac{
+    float: left;
+    margin-top: 90px;
+  }
+  .question_text_compare_decimal_fraction_question_frac{
+    float: left;
+    margin-top: 80px;
+  }
+
+  .question_text_compare_decimals_question{
+    float: left;
+    margin-top: 105px;
+  }
+  .question_text_compare_decimal_fraction_question{
+    float: left;
+    margin-top: 90px;
+  }
+
 </style>
 
 <% js_block do %>

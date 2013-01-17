@@ -18,9 +18,11 @@
     </div>
     <div style="float: right; margin-right: 25px; margin-left: 25px; margin-top: 2px;">
       <select class="question_type" name="question_type">
-	    <option value="compare_fractions_question" style="padding: 2px;"><%= t('question_type.compare_fractions', "Compare Fractions") %></option>
+        <option value="compare_fractions_question" style="padding: 2px;"><%= t('question_type.compare_fractions', "Compare Fractions") %></option>
         <option value="locate_fractions_question" style="padding: 2px;"><%= t('question_type.locate_fractions', "Locate Fractions") %></option>
         <option value="represent_fractions_question" style="padding: 2px;"><%= t('question_type.represent_fractions', "Represent Fractions") %></option>
+        <option value="compare_decimals_question" style="padding: 2px;"><%= t('question_type.compare_decimals', "Compare Decimals") %></option>
+        <option value="compare_decimal_fraction_question" style="padding: 2px;"><%= t('question_type.compare_decimal_fraction', "Compare Decimal & Fraction") %></option>
         <option value="multiple_choice_question" style="padding: 2px;"><%= t('question_type.multiple_choice', "Multiple Choice") %></option>
         <option value="true_false_question" style="padding: 2px;"><%= t('question_type.true_false', "True/False") %></option>
         <option value="short_answer_question" style="padding: 2px;"><%= t('question_type.short_answer', "Fill In the Blank") %></option>
@@ -53,6 +55,12 @@
     </div>
     <div class="represent_fractions_question_explanation explanation subheader">
       <%= t('explanations.represent_fractions', "Enter the question and an image to represent a fraction, separated with [split] and multiple answers, then select the one correct answer.") %>
+    </div>
+    <div class="compare_decimals_question_explanation explanation subheader">
+      <%= t('explanations.compare_decimals', "Enter the two decimals to compare, separated with [split] and multiple answers, then select the one correct answer.") %>
+    </div>
+    <div class="compare_decimal_fraction_question_explanation explanation subheader">
+      <%= t('explanations.compare_decimal_fraction', "Enter the a fraction and decimal to compare, separated with [split] and multiple answers, then select the one correct answer.") %>
     </div>
 
 

@@ -141,6 +141,22 @@ class ClassReport < ActiveRecord::Base
                   when 4
                     data["q"]["#{user.id}"].merge!({"#{question_count}" => '4'})
                   end
+                when "compare_decimals_question"
+                  case index+1
+                  when 1
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'G'})
+                  when 2
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'L'})
+                  when 3
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'E'})
+                  end
+                when "compare_decimal_fraction_question"
+                  case index+1
+                  when 1
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'E'})
+                  when 2
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => 'N'})
+                  end
                 end
               end
             end

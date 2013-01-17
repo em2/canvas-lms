@@ -52,6 +52,18 @@ module QuizzesHelper
         :display_answers => "multiple",
         :answer_type => "select_answer"
       }),
+      "compare_decimals_question" => OpenObject.new({
+        :question_type => "compare_decimals_question",
+        :entry_type => "radio",
+        :display_answers => "multiple",
+        :answer_type => "select_answer"
+      }),
+      "compare_decimal_fraction_question" => OpenObject.new({
+        :question_type => "compare_decimal_fraction_question",
+        :entry_type => "radio",
+        :display_answers => "multiple",
+        :answer_type => "select_answer"
+      }),
       "true_false_question" => OpenObject.new({
         :question_type => "true_false_question",
         :entry_type => "radio",
