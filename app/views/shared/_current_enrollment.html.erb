@@ -17,6 +17,10 @@
         <%= image_tag "hammer.png", :title => t('course_unpublished', "This course hasn't been published yet"), :alt => "Unpublished", :class => "unpublished_icon" %>
       <% end %>
     </span>
+
+    <% unless current_enrollment.long_name == current_enrollment.course.em2_identifier -%>
+      <span class="subtitle ellipsis"><%= t('em2_identifier','EM2 Identifier: ') %><%= current_enrollment.course.em2_identifier %></span>
+    <% end -%>
     
     <% unless current_enrollment.course.enrollment_term.default_term? %>
       <span class="subtitle ellipsis"><%= current_enrollment.course.enrollment_term.name %></span>

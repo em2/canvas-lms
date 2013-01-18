@@ -4,6 +4,10 @@
     <% if defined? menu_course[:term] %>
       <span class="subtitle ellipsis enrollment_term menu-item-drop-float-right"><%= menu_course[:term] %></span>
     <% end %>
+    <% course = Course.find(menu_course[:id]) -%>
+    <% unless menu_course[:short_name] == course.em2_identifier -%>
+      <span class="subtitle ellipsis"><%= t('em2_identifier','EM2 Identifier: ') %><%= course.em2_identifier %></span>
+    <% end -%>
     <span class="subtitle ellipsis"><%= menu_course[:subtitle] %></span>
   </a>
 </li>
