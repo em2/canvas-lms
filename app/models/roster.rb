@@ -80,7 +80,7 @@ class Roster < ActiveRecord::Base
   end
 
   def create_course(course_title, school_account)
-    @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account)
+    @course = Course.create!(:name => course_title, :course_code => course_title, :account => school_account, :em2_identifier => course_title)
     @course.offer!
     @course.save!
   end
