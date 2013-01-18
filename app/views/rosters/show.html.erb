@@ -23,10 +23,10 @@ td { padding:2px; }
 		<div class="break">
 			<br/>
 
-			<% @district = school.name[/[Dd][0-9]{3}/] -%>
-			<% @school = school.name[/[Ss][0-9]{3}/] -%>
-			<% @teacher = school.name[/[Tt][0-9]{3}/] -%>
-			<% @class = school.name[/[Cc][0-9]{3}/] -%>
+			<% @district = school.em2_identifier[/[Dd][0-9]{3}/] -%>
+			<% @school = school.em2_identifier[/[Ss][0-9]{3}/] -%>
+			<% @teacher = school.em2_identifier[/[Tt][0-9]{3}/] -%>
+			<% @class = school.em2_identifier[/[Cc][0-9]{3}/] -%>
 			<div class="roster_info"> District: <%= @district %> School: <%= @school %> Teacher: <b><%= @teacher %></b> Class: <%= @class %></div><br/>
 			<div class="teacher_info"> Teachers login at http://elicitingmathmeaning.edc.org/teacher <br/>
 				<% school.teachers.each do |teacher| -%>

@@ -23,6 +23,10 @@ class Report < ActiveRecord::Base
       district.sub_accounts.active.each do |school|
         class_reports = []
         school.courses.active.each do |course|
+          if !course.em2_identifier
+            course.em2_identifier = course.course_code 
+            course.save!
+          end
           course.quizzes.active.each do |quiz|
             probe = nil
             if quiz.question_bank_id
