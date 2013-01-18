@@ -25,12 +25,18 @@ class Report < ActiveRecord::Base
         school.courses.active.each do |course|
           course.quizzes.active.each do |quiz|
             probe = nil
-            quiz_probe_name = quiz.probe_name
-            4.times { quiz_probe_name.chop! }
-            question_banks.active.each do |qb|
-              if quiz_probe_name && quiz_probe_name == qb.title
-                probe = qb
-                break
+            if quiz.question_bank_id
+              probe = AssessmentQuestionBank.find(quiz.question_bank_id)
+            else
+              #
+              # for backward compatability, use the old style of probe lookup
+              quiz_probe_name = quiz.probe_name
+              4.times { quiz_probe_name.chop! }
+              question_banks.each do |qb|
+                if quiz_probe_name && quiz_probe_name == qb.title
+                  probe = qb
+                  break
+                end
               end
             end
             if probe
