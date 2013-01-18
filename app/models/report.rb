@@ -25,8 +25,10 @@ class Report < ActiveRecord::Base
         school.courses.active.each do |course|
           course.quizzes.active.each do |quiz|
             probe = nil
-            question_banks.each do |qb|
-              if quiz.probe_name && quiz.probe_name[qb.title]
+            quiz_probe_name = quiz.probe_name
+            4.times { quiz_probe_name.chop! }
+            question_banks.active.each do |qb|
+              if quiz_probe_name && quiz_probe_name == qb.title
                 probe = qb
                 break
               end
