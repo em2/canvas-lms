@@ -57,7 +57,8 @@ class Course < ActiveRecord::Base
                   :grading_standard,
                   :grading_standard_enabled,
                   :locale,
-                  :settings
+                  :settings,
+                  :em2_identifier
 
   serialize :tab_configuration
   serialize :settings, Hash
