@@ -203,7 +203,7 @@ class AssessmentReportsController < ApplicationController
         @total_user_difficulties = data.total_user_difficulties
       else
         flash[:error] = "This report is not yet ready."
-        redirect_back_or_default(class_report_assessment_reports_path(@account.id))
+        redirect_back_or_default(class_report_assessment_reports_path(@course.id))
       end
     end
   end

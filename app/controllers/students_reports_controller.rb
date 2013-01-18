@@ -31,9 +31,13 @@ class StudentsReportsController < ApplicationController
 				end
 			end
 
-			@class_report = ClassReport.find_by_course_id_and_quiz_id(@course.id, @quiz.id)
-			@submissions = JSON.parse(@class_report.submissions)
-			@user_difficulties = JSON.parse(@class_report.user_difficulties)
+			if @class_report = ClassReport.find_by_course_id_and_quiz_id(@course.id, @quiz.id)
+				@submissions = JSON.parse(@class_report.submissions)
+				@user_difficulties = JSON.parse(@class_report.user_difficulties)
+			else
+				flash[:error]="This report is not yet ready. Please try back later."
+				redirect_to course_quiz_path(params[:course_id], params[:quiz_id])
+			end
 
 		end
 
