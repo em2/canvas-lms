@@ -309,9 +309,18 @@ class ApplicationController < ActionController::Base
     if !account.courses.are_available.empty?
       account.courses.are_available.each do |course|
         course.quizzes.active.each do |quiz|
-          probes.each do |probe|
-            if quiz.probe_name && quiz.probe_name.include?(probe.title) && !collection.include?(probe)
+          if quiz.question_bank_id
+            if probe = probes.find(quiz.question_bank_id)
               collection << probe
+            end
+          else # for backwards compatibility
+            quiz_probe_name = quiz.probe_name
+            4.times { quiz_probe_name.chop! }
+            probes.each do |probe|
+              if quiz_probe_name && quiz_probe_name == probe.title
+                collection << probe
+                break
+              end
             end
           end
         end
@@ -327,9 +336,18 @@ class ApplicationController < ActionController::Base
 
   def find_probes_in_course(course, probes, collection)
     course.quizzes.active.each do |quiz|
-      probes.each do |probe|
-        if quiz.probe_name && quiz.probe_name.include?(probe.title) && !collection.include?(probe)
+      if quiz.question_bank_id
+        if probe = probes.find(quiz.question_bank_id)
           collection << probe
+        end
+      else # for backwards compatibility
+        quiz_probe_name = quiz.probe_name
+        4.times { quiz_probe_name.chop! }
+        probes.each do |probe|
+          if quiz_probe_name && quiz_probe_name == probe.title
+            collection << probe
+            break
+          end
         end
       end
     end
