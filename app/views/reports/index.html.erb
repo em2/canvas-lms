@@ -3,7 +3,7 @@
 <% content_for :page_title do -%>Reports<% end -%>
 
 <% if !@report.in_job -%>
-	<span><%= link_to 'Calculate Reports', calculate_reports_path(), :class => "button", :method => 'put' %> <%= t('reports.reports_updated_at','Reports last completed: ') %> <%= @report.updated_at.strftime("%-m/%e/%Y at %l:%M%P") %></span>
+	<span><%= link_to 'Calculate Reports', calculate_reports_path(), :class => "button", :method => 'put' %> <%= t('reports.reports_updated_at','Reports last completed: ') %> <%= @report.updated_at.strftime("%-m/%-d/%Y at %l:%M%P") %></span>
 <% else -%>
 	<span> <%= t('reports.reports_are_calculating','Reports are currently calculating...') %> </span>
 <% end -%>

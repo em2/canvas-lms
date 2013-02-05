@@ -317,7 +317,7 @@ class ApplicationController < ActionController::Base
             quiz_probe_name = quiz.probe_name
             4.times { quiz_probe_name.chop! }
             probes.each do |probe|
-              if quiz_probe_name && quiz_probe_name == probe.title
+              if quiz_probe_name && quiz_probe_name == probe.title && !collection.map { |c| c.id == probe.id }.any?
                 collection << probe
                 break
               end
@@ -344,7 +344,7 @@ class ApplicationController < ActionController::Base
         quiz_probe_name = quiz.probe_name
         4.times { quiz_probe_name.chop! }
         probes.each do |probe|
-          if quiz_probe_name && quiz_probe_name == probe.title
+          if quiz_probe_name && quiz_probe_name == probe.title && !collection.map { |c| c.id == probe.id }.any?
             collection << probe
             break
           end

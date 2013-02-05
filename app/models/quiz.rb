@@ -1039,7 +1039,7 @@ class Quiz < ActiveRecord::Base
       @submission = self.quiz_submissions.find_by_quiz_id_and_user_id(self.id,user.id)
       @submission_time = Submission.find(@submission.submission_id).submitted_at
       if @submission_time
-        row << @submission_time.strftime("%-m/%e/%Y at %l:%M%P")
+        row << @submission_time.strftime("%-m/%-d/%Y at %l:%M%P")
       else
         row << ''
       end
