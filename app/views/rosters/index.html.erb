@@ -1,16 +1,9 @@
 <% content_for :page_title do -%>School Rosters<% end -%>
 
-<h1>View School Rosters</h1>
- 
-<table>
-  <tr>
-    <th>School Name</th>
-  </tr>
-  <% @courses.each do |course| -%>
-	  <tr>
-	  	<td><%= link_to course.name, roster_path(course) %> &nbsp </td>
-	  </tr>
-	<% end -%>
-</table>
- 
-<br />
+<div style="width:100%; height:345px; overflow:scroll">
+  <ul>
+    <% @courses.each do |course| -%>
+      <li style="font-size:18px;"><%= link_to course.name, roster_path(course) %></td>
+    <% end -%>
+  </ul>
+</div>
