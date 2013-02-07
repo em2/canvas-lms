@@ -89,7 +89,7 @@
       <input type="hidden" name="headless" value="1"/>
     <% end %>
     <input type="hidden" name="submission_version_number" value="<%= @submission.version_number %>"/>
-    <%= render :partial => "quizzes/quiz_submission", :locals => {:editable => false} %>
+    <%= render :partial => "quizzes/quiz_submission", :locals => {:editable => false && can_do(@quiz, @current_user, :grade)} %>
     <% if false && can_do(@quiz, @current_user, :grade) %>
       <div class="button-container">
         <button type="submit" class="button"><%= t('buttons.update_scores', "Update Scores") %></button>
