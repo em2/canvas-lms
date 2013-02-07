@@ -6,7 +6,7 @@
 
 <% unless params[:headless] %>
 <% content_for :right_side do %>
-  <% if @current_version && can_do(@quiz, @current_user, :grade) %>
+  <% if false && @current_version && can_do(@quiz, @current_user, :grade) %>
     <div class="rs-margin-lr rs-margin-top">
       <p><%= @quiz.survey? ?
            t(:latest_survey_results, "Here's the latest survey results for %{user}. You can modify the points for any question and add more comments, then click \"Update Scores\" at the bottom of the page.", :user => user_name) :
@@ -89,8 +89,8 @@
       <input type="hidden" name="headless" value="1"/>
     <% end %>
     <input type="hidden" name="submission_version_number" value="<%= @submission.version_number %>"/>
-    <%= render :partial => "quizzes/quiz_submission", :locals => {:editable => can_do(@quiz, @current_user, :grade)} %>
-    <% if can_do(@quiz, @current_user, :grade) %>
+    <%= render :partial => "quizzes/quiz_submission", :locals => {:editable => false} %>
+    <% if false && can_do(@quiz, @current_user, :grade) %>
       <div class="button-container">
         <button type="submit" class="button"><%= t('buttons.update_scores', "Update Scores") %></button>
       </div>
