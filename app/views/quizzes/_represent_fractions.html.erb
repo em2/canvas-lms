@@ -282,6 +282,11 @@
 
 <style>
   #explain_canvas_<%= question[:id] %>{
+    cursor: pointer;
+    float: left;
+  }
+  #explain_canvas_<%= question[:id] %>:active, #explain_canvas_<%= question[:id] %>:focus{
+    cursor: crosshair;
     float: left;
   }
   #explain_text{
