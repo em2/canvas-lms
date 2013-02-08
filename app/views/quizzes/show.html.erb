@@ -125,7 +125,7 @@
 <% jammit_css :quizzes %>
 
 <% if @submission && @submission.completed? && @submission.attempts_left == 0 && @no_chrome -%>
-  <%= render :partial => "quizzes/thank_you" %>
+  <%= render :partial => "quizzes/thank_you", :locals => {:submission => @submission}%>
 <% else -%>
 <a id="context_quzzes_url" style="display:none;" href="<%= context_url(@context, :context_quizzes_url) %>">&nbsp;<!-- needed by quiz_show.js --></a>
 <% if @quiz.for_assignment? && @quiz.assignment.context_module_tag && @quiz.assignment.context_module_tag.context_module %>

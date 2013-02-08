@@ -14,6 +14,11 @@
 	<%= image_tag("logo.png") %>
 </div>
 <div class="thank_you"> <p> Thank you for participating! </p> </div>
+<% number_answered = 0 -%>
+<% submission.submission_data.each do |sd| -%>
+	<% number_answered = number_answered + 1 if sd[:text] != "" -%>
+<% end -%>
+<div class="number_answered thank_you"> <p> You answered <%= number_answered %> <%= number_answered == 1 ? 'question.' : 'questions.' %> </p> </div>
 <div class="thank_you">Logging out in ... <b id="countdown">5</b> </div>
 <div class="button-container thank_you">
 	<%= link_to t('links.logout', "Logout"), logout_path, :method => :delete, :id => "countdown_logout", :class => "button" %>
