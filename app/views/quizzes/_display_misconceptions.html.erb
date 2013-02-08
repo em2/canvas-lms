@@ -1,0 +1,9 @@
+<% if misconceptions -%>
+  <% misconceptions.each do |misconception, value| -%>
+    <% if @is_question_bank -%>
+      <%= AssessmentMisconception.find(misconception).name %>(<%= value %>)
+    <% else -%>  
+      <%= QuizMisconception.find(misconception).name %>(<%= value %>)
+    <% end -%>
+  <% end -%>
+<% end -%>

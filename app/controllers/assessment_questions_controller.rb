@@ -82,12 +82,12 @@ class AssessmentQuestionsController < ApplicationController
           if !answer[:misconception_id].empty?
             misconceptions = JSON.parse(answer[:misconception_id])
             misconceptions.each do |miscon_id, value|
-              if totals["#{miscon_id.first}"].nil?
-                totals["#{miscon_id.first}"] = value
+              if totals["#{miscon_id}"].nil?
+                totals["#{miscon_id}"] = value
               else
-                num = totals["#{miscon_id.first}"].to_f
+                num = totals["#{miscon_id}"].to_f
                 num += value.to_f
-                totals.merge!("#{miscon_id.first}" => num)
+                totals.merge!("#{miscon_id}" => num)
               end
             end
           end

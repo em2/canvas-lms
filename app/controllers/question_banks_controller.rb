@@ -58,6 +58,7 @@ class QuestionBanksController < ApplicationController
     add_crumb(@bank.title)
     if authorized_action(@bank, @current_user, :read)
       @misconceptions = @bank.assessment_misconceptions.active
+      @is_question_bank = true
       @outcome_tags = @bank.learning_outcome_tags.sort_by{|t| t.learning_outcome.short_description.downcase }
       @questions = @bank.assessment_questions.active.paginate(:per_page => 50, :page => 1)
     end
