@@ -288,8 +288,12 @@
     max-width: 150px;
   }
   #explain_canvas_<%= question[:id] %>{
+    cursor: pointer;
     float: left;
     padding-left: 4px;
+  }
+  #explain_canvas_<%= question[:id] %>:active, #explain_canvas_<%= question[:id] %>:focus{
+    cursor: crosshair;
   }
   #explain_text{
     float: left;
