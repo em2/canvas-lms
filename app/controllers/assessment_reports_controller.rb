@@ -50,7 +50,7 @@ class AssessmentReportsController < ApplicationController
     add_crumb("Class Reports", class_reports_path)
     add_crumb("#{@course.name}")
 
-  	find_probes_in_course(@course, AssessmentQuestionBank.active, @quizzes)
+    find_quizzes_in_course(@course, @quizzes)
   end
 
   def show

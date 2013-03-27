@@ -309,7 +309,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def find_probes_in_course(course, probes, collection)
+  def find_quizzes_in_course(course, collection)
     course.quizzes.active.each do |quiz|
       collection << quiz if quiz.probe_name
     end
