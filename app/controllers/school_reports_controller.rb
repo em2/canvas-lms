@@ -11,19 +11,17 @@ class SchoolReportsController < ApplicationController
 	    add_crumb("Reports", reports_path)
       add_crumb("School Reports")
 
-      @schools = []
+      @schools = {}
 
       @context.sub_accounts.active.each do |sub_account|
         sub_account.sub_accounts.active.each do |sub_sub_account|
-          @schools << sub_sub_account
+          @probes = []
+          find_probes_in_account(sub_sub_account, sub_sub_account, AssessmentQuestionBank.active, @probes)
+          @schools[sub_sub_account] = @probes
         end
       end
 
-      if !@report = Report.find_by_account_id(@context.id)
-        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
-      end
-
-      @context = @report
+      @context = prepare_for_report
       @active_tab = "reports"
 		else
       flash[:error] = "Not Authorized!"

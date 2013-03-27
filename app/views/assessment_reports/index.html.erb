@@ -7,7 +7,7 @@
 
  
 <table>
-  <% if @question_bank.count == 0 -%>
+  <% if @quizzes.empty? -%>
 		<tr>
 			<th><%= t('reports', 'No assessments found.') %></th>
 		</tr>
@@ -15,15 +15,15 @@
 		<tr>
 	    <th>Choose an assessment</th>
 	  </tr>
-	  <% @question_bank.each do |probe| -%>
+	  <% @quizzes.each do |quiz| -%>
 	  	<tr>
 		  	<th>
 		  		<% if params[:district_report_id] -%>
-				  	<%= link_to "#{probe.title}", district_report_assessment_report_path(params[:district_report_id], probe.id), :class => "button" %>
+				  	<%= link_to "#{quiz.title}", district_report_assessment_report_path(params[:district_report_id], quiz.id) %>
 			  	<% elsif params[:school_report_id] -%>
-			  		<%= link_to "#{probe.title}", school_report_assessment_report_path(params[:school_report_id], probe.id), :class => "button" %>
+			  		<%= link_to "#{quiz.title}", school_report_assessment_report_path(params[:school_report_id], quiz.id) %>
 			  	<% elsif params[:class_report_id] -%>
-			  		<%= link_to "#{probe.title}", class_report_assessment_report_path(params[:class_report_id], probe.id), :class => "button" %>
+			  		<%= link_to "#{quiz.title}", class_report_assessment_report_path(params[:class_report_id], quiz.id) %>
 		  		<% end -%>
 			  </th>
 			</tr>

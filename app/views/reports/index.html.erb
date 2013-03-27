@@ -2,31 +2,25 @@
 
 <% content_for :page_title do -%>Reports<% end -%>
 
-<% if !@report.in_job -%>
-	<span><%= link_to 'Calculate Reports', calculate_reports_path(), :class => "button", :method => 'put' %> <%= t('reports.reports_updated_at','Reports last completed: ') %> <%= @report.updated_at.strftime("%-m/%-d/%Y at %l:%M%P") %></span>
-<% else -%>
-	<span> <%= t('reports.reports_are_calculating','Reports are currently calculating...') %> </span>
-<% end -%>
-
 <div class="clear"></div>
 <br/>
 <h1>View Reports for:</h1>
 <table>
   <% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to "Districts", district_reports_path(params[:id]), :class => "button" %> </td>
+	  	<td><%= link_to "Districts", district_reports_path(params[:id]) %> </td>
 	  </tr>
 	<% end -%>
 	<% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to "Schools", school_reports_path(params[:id]), :class => "button" %> </td>
+	  	<td><%= link_to "Schools", school_reports_path(params[:id]) %> </td>
 	  </tr>
 	<% end -%>
 	<% if @is_admin || @is_teacher -%>
 	  <tr>
-	  	<td><%= link_to "Classes", class_reports_path(params[:id]), :class => "button" %> </td>
+	  	<td><%= link_to "Classes", class_reports_path(params[:id]) %> </td>
 	  </tr>
 	<% end -%>
 </table>
- 
-<br />
+
+<%= render :partial => 'reports/update_reports', :object => @report %>

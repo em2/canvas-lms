@@ -1,0 +1,5 @@
+<% if !update_reports.in_job -%>
+  <span><%= t('reports.reports_updated_at','Reports last updated: ') %> <%= update_reports.updated_at.strftime("%-m/%-d/%Y at %l:%M%P") %>&nbsp<%= link_to 'Update Reports', calculate_reports_path(), :class => "button", :method => 'put' %></span>
+<% else -%>
+  <span> <%= t('reports.reports_are_calculating','Reports are currently updating...') %> </span>
+<% end -%>

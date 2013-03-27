@@ -4,7 +4,7 @@
 <div class="classroom_reports">
   <%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
 
-  <h1 id="report_heading"><b>Classroom Report: <%= @current_probe.full_name %></b></h1>
+  <h1 id="report_heading"><b>Classroom Report: <%= @quiz.title %></b></h1>
 
   <% if @earliest_submission && @latest_submission && @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
     <h3 id="assessment_date"><%= @earliest_submission.strftime("%B %d, %Y") %></h3>
@@ -310,5 +310,5 @@
   <h3 id="course_name"><%= @course.name %></h3>
   <div id="printed_statement"><%= t('reports.printed',"Printed") %> <%= DateTime.now.to_date %></div>
   <div><%= t('reports.grant_statement', "These results are for a formative assessment being piloted as part of IES grand award # R305A110306.") %></div>
-  <div><%= @current_probe.title %></div>
+  <div><%= @quiz.title %></div>
 </div>

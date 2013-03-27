@@ -1,13 +1,16 @@
 <% jammit_css :reports_index -%>
 
-<% content_for :page_title do -%>School Selection<% end -%>
+<% content_for :page_title do -%>Assessment Reports (District)<% end -%>
 
-<h1>View Reports for:</h1>
+<h1>Assessment Reports (District)</h1>
 
-<table>
-	<% @schools.each do |account| -%>
-	  <tr>
-	  	<td><%= link_to account.parent_account.name ? account.parent_account.name + account.name : account.name, school_report_assessment_reports_path(account.id), :class => "button"%> </td>
-	  </tr>
+<dl>
+  <% @schools.each do |school, probes| -%>
+    <dt><%= link_to school.parent_account.name ? school.parent_account.name + school.name : school.name, school_report_assessment_reports_path(school.id) %> (School)</dt>
+    <% probes.each do |probe| -%>
+      <dd><%= link_to probe.title, school_report_assessment_report_path(school.id, probe.id) %> (Assessment)</dd>
+    <% end -%>
   <% end -%>
-</table>
+</dl>
+
+<%= render :partial => 'reports/update_reports', :object => @report %>

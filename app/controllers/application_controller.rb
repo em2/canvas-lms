@@ -280,31 +280,6 @@ class ApplicationController < ActionController::Base
     @domain_root_account.manually_created_courses_account.grants_rights?(user, session, :create_courses, :manage_courses).values.any?
   end
 
-  def find_courses_in_account_with_probe(account, top_account, current_probe, collection)
-    if !account.courses.are_available.empty? && !@found_match
-      account.courses.are_available.each do |course|
-        course.quizzes.active.each do |quiz|
-          if quiz.probe_name && quiz.probe_name[current_probe.title]
-            @found_match = true
-            collection << top_account
-          end
-          if @found_match
-            break
-          end
-        end
-        if @found_match
-          break
-        end
-      end
-    end
-
-    if !account.sub_accounts.active.empty? && !@found_match
-      account.sub_accounts.active.each do |sub_account|
-        find_courses_in_account_with_probe(sub_account, top_account, current_probe, collection)
-      end
-    end
-  end
-
   def find_probes_in_account(account, top_account, probes, collection)
     if !account.courses.are_available.empty?
       account.courses.are_available.each do |course|
@@ -336,59 +311,29 @@ class ApplicationController < ActionController::Base
 
   def find_probes_in_course(course, probes, collection)
     course.quizzes.active.each do |quiz|
-      if quiz.question_bank_id
-        if probe = probes.find(quiz.question_bank_id)
-          collection << probe
-        end
-      else # for backwards compatibility
-        quiz_probe_name = quiz.probe_name
-        4.times { quiz_probe_name.chop! }
-        probes.each do |probe|
-          if quiz_probe_name && quiz_probe_name == probe.title && !collection.map { |c| c.id == probe.id }.any?
-            collection << probe
-            break
-          end
-        end
-      end
+      collection << quiz if quiz.probe_name
     end
   end
 
-  def find_courses_with_probe(account, top_account, current_probe, collection)
-    if !account.courses.are_available.empty?
-      account.courses.are_available.each do |course|
-        course.quizzes.active.each do |quiz|
-          if quiz.probe_name && quiz.probe_name[current_probe.title]
-            collection << course
-            return true
-          end
-        end
-      end
-    end
-  end
-
-  def find_courses(account, top_account, collection)
+  def find_courses(account, collection)
     if !account.courses.are_available.empty?
       account.courses.are_available.each do |course|
         course.quizzes.active.each do |quiz|
           if quiz.probe_name
-            collection << course
+            collection[course] = [] if !collection[course]
+            collection[course] << quiz
           end
         end
       end
     end
   end
 
-  def find_courses_for_teacher(courses)
-    new_courses = []
-    courses.each do |course|
-      course.teachers.each do |teacher|
-        if (teacher.id == @current_user.id)
-          new_courses << course
-          break
-        end
-      end
+  def find_courses_for_teacher(collection)
+    new_collection = {}
+    collection.each do |course, quizzes|
+      new_collection[course] = quizzes if course.teachers.include?(@current_user)
     end
-    return new_courses
+    new_collection
   end
 
   ##
@@ -588,6 +533,13 @@ class ApplicationController < ActionController::Base
     end
     response.headers["Pragma"] = "no-cache"
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+  end
+
+  def prepare_for_report
+    if !@report = Report.find_by_account_id(@context.id)
+      @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
+    end
+    @report
   end
   
   # To be used as a before_filter, requires controller or controller actions

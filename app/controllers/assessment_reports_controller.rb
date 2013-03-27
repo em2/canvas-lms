@@ -6,14 +6,10 @@ class AssessmentReportsController < ApplicationController
 
       add_crumb("Reports", reports_path)
 
-      if !@report = Report.find_by_account_id(@context.id)
-        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
-      end
-
-      @context = @report
+      @context = prepare_for_report
       @active_tab = "reports"
 
-      @question_bank = []
+      @quizzes = []
 
       if params[:district_report_id]
 			  load_district_probes
@@ -35,7 +31,7 @@ class AssessmentReportsController < ApplicationController
     add_crumb("#{@account.name}")
 
   	@account.sub_accounts.active.each do |sub_account|
-  		find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @question_bank)
+  		find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @quizzes)
   	end
   end
 
@@ -45,7 +41,7 @@ class AssessmentReportsController < ApplicationController
     add_crumb("School Reports", school_reports_path)
     add_crumb("#{@account.name}")
  
-  	find_probes_in_account(@account, @account, AssessmentQuestionBank.active, @question_bank)
+  	find_probes_in_account(@account, @account, AssessmentQuestionBank.active, @quizzes)
   end
 
   def load_class_probes
@@ -54,29 +50,26 @@ class AssessmentReportsController < ApplicationController
     add_crumb("Class Reports", class_reports_path)
     add_crumb("#{@course.name}")
 
-  	find_probes_in_course(@course, AssessmentQuestionBank.active, @question_bank)
+  	find_probes_in_course(@course, AssessmentQuestionBank.active, @quizzes)
   end
 
   def show
   	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
-
-	    @current_probe = AssessmentQuestionBank.find(params[:id])
       
       add_crumb("Reports", reports_path)	    
 
 	    if params[:district_report_id]
+        @current_probe = AssessmentQuestionBank.find(params[:id])
 			  load_district_data
 		  elsif params[:school_report_id]
+        @current_probe = AssessmentQuestionBank.find(params[:id])
 		  	load_school_data
 		  elsif params[:class_report_id]
+        @quiz = Quiz.find(params[:id])
 		  	load_class_data
 		  end
 
-	    if !@report = Report.find_by_account_id(@context.id)
-        @report = Report.create!(:account_id => @context.id, :calculation_count => 0, :in_job => false)
-      end
-
-      @context = @report
+      @context = prepare_for_report
       @active_tab = "reports"
 	    
 		else
@@ -166,17 +159,11 @@ class AssessmentReportsController < ApplicationController
 
     add_crumb("Class Reports", class_reports_path)
     add_crumb("#{@course.name}", class_report_assessment_reports_path)
-    add_crumb("#{@current_probe.title}")
-
-    @course.quizzes.active.each do |quiz|
-    	if quiz.probe_name && quiz.probe_name[@current_probe.title]
-    		@quiz = quiz
-    	end
-    end
+    add_crumb("#{@quiz.title}")
 
     if @quiz && (@quiz.grants_right?(@current_user, session, :grade) || @quiz.grants_right?(@current_user, session, :read_statistics))
 	    
-      if data = ClassReport.find_by_course_id_and_probe_id_and_quiz_id(@course.id, @current_probe.id, @quiz.id)
+      if data = ClassReport.find_by_course_id_and_quiz_id(@course.id, @quiz.id)
         @q = JSON.parse(data.q)
         @number_correct = JSON.parse(data.number_correct)
         @number_attempted = JSON.parse(data.number_attempted)
