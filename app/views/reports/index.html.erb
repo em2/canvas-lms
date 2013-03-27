@@ -8,17 +8,17 @@
 <table>
   <% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to "Districts", district_reports_path(params[:id]) %> </td>
+	  	<td><%= link_to "Districts", district_reports_path %> </td>
 	  </tr>
 	<% end -%>
 	<% if @is_admin -%>
 	  <tr>
-	  	<td><%= link_to "Schools", school_reports_path(params[:id]) %> </td>
+	  	<td><%= link_to "Schools", school_reports_path %> </td>
 	  </tr>
 	<% end -%>
 	<% if @is_admin || @is_teacher -%>
 	  <tr>
-	  	<td><%= link_to "Classes", class_reports_path(params[:id]) %> </td>
+	  	<td><%= link_to "Classes", class_reports_path %> </td>
 	  </tr>
 	<% end -%>
 </table>

@@ -11,6 +11,14 @@ class ReportsController < ApplicationController
       @active_tab = "reports"
 
       @question_bank = AssessmentQuestionBank.active
+
+      if is_account_admin?
+        redirect_back_or_default(district_reports_path)
+      elsif is_district_admin?
+        redirect_back_or_default(school_reports_path)
+      elsif is_school_admin? || @is_teacher
+        redirect_back_or_default(class_reports_path)
+      end
     else
       flash[:error] = "Not Authorized!"
       redirect_back_or_default(dashboard_url)
