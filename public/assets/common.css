@@ -110,7 +110,7 @@ body.with-sidebar-pinned-to-bottom #right-side,body.with-sidebar-pinned-to-botto
 #identity li.first,#identity li#identity-help-container{border-left:none}
 #identity .no-left-border{border-left:none}
 #identity .user_name{border-left:none;margin-right:15px}
-#identity .user_name a{color:#444!important;text-decoration:none!important}
+#identity .user_name a{text-decoration:none!important}
 #identity a{color:#4c7092}
 #identity .inbox a{text-decoration:none}
 #identity .inbox a:hover span,#identity .inbox a:active span{text-decoration:underline}

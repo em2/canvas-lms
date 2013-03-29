@@ -35,7 +35,7 @@ class Report < ActiveRecord::Base
               #
               # for backward compatability, use the old style of probe lookup
               quiz_probe_name = quiz.probe_name
-              4.times { quiz_probe_name.chop! }
+              4.times { quiz_probe_name.chop! if quiz_probe_name }
               question_banks.each do |qb|
                 if quiz_probe_name && quiz_probe_name == qb.title
                   probe = qb
