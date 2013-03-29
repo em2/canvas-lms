@@ -304,7 +304,7 @@ em2:
       quiz_fudged_negative: "This assessment score has been manually adjusted by %{fudge} points."
       quiz_fudged_positive: "This assessment score has been manually adjusted by +%{fudge} points."
       quiz_not_yet_taken: "The assessment hasn't been taken yet."
-      quiz_results_protected: "Quiz results are protected for this assessment, and are not visible to students."
+      quiz_results_protected: "Assessment results are protected for this assessment, and are not visible to students."
       quiz_results_protected_until_last_attempt: "Assessment results are protected for this assessment, and are not visible to students until they have submitted their last attempt."
       requires_lockdown: "Respondus LockDown Browser is required to view your assessment results."
     quiz_summary: 
@@ -337,6 +337,8 @@ em2:
       headers: 
         quiz_unsubmitted_students: "Students who haven't taken the assessment"
         submitted_students_quiz: "Students who have taken the assessment"
+      labels: 
+        instructions: Characteristics
       links: 
         delete_this_quiz: "Delete This Assessment"
         edit_this_quiz: "Edit this Assessment"
