@@ -290,7 +290,7 @@ class ApplicationController < ActionController::Base
             end
           else # for backwards compatibility
             quiz_probe_name = quiz.probe_name
-            4.times { quiz_probe_name.chop! }
+            4.times { quiz_probe_name.chop! if quiz_probe_name}
             probes.each do |probe|
               if quiz_probe_name && quiz_probe_name == probe.title && !collection.map { |c| c.id == probe.id }.any?
                 collection << probe
