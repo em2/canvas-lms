@@ -29,7 +29,7 @@
         <%= display_answer ? display_answer[:misconception_id] : nbsp %>
       </div>
       <div class="answer_misconceptions" <%= hidden(true) if hash_get(answer, :html).present? %>>
-        <%= render :partial => 'quizzes/display_misconceptions', :locals => {:misconceptions =>  display_answer ? JSON.parse(display_answer[:misconception_id]) : nil } %>
+        <%= render :partial => 'quizzes/display_misconceptions', :locals => {:misconceptions =>  display_answer && display_answer[:misconception_id] ? JSON.parse(display_answer[:misconception_id]) : nil } %>
       </div>
     </div>
     <div class="answer_type short_answer" <%= hidden(true) unless answer_type == "short_answer" %>>

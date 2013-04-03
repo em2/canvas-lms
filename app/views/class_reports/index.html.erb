@@ -4,13 +4,19 @@
 
 <h1>Assessment Reports (School)</h1>
 
-<dl>
-  <% @classes.each do |course, quizzes| -%>
-    <dt><%= link_to course.name, class_report_assessment_reports_path(course.id) %> (Class)</dt>
-    <% quizzes.each do |quiz| -%>
-      <dd><%= link_to quiz.title, class_report_assessment_report_path(course.id, quiz.id) %> (Assessment)</dd>
+<span class='assessment_reports'>
+  <ol>
+    <% @classes.each do |course, quizzes| -%>
+      <li><span class="report_group_label"><%= course.name %></span> <span class="title">(Class)</span></li>
+      <ol class="report_group">
+        <% quizzes.each do |quiz| -%>
+          <li>
+            <%= link_to quiz.title, class_report_assessment_report_path(course.id, quiz.id) %> <span class="title">(Assessment)</span>
+          </li>
+        <% end -%>
+      </ol>
     <% end -%>
-  <% end -%>
-</dl>
+  </ol>
+</span>
 
 <%= render :partial => 'reports/update_reports', :object => @report %>
