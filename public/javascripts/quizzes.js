@@ -2115,6 +2115,7 @@ define([
       });
 
       totals = {};
+      var ok_to_proceed = true;
       $.each(question.answers, function(index, answer){
         ami = JSON.parse(answer.answer_misconception_id);
         $.each(ami, function(key, value){
@@ -2127,20 +2128,21 @@ define([
             num2 = parseFloat(value) * 10000;
             num = (num1 + num2) / 10000;
             totals[key] = num;
+            if (value != 0 && value != 1){
+              ok_to_proceed = false;
+            }
           }
         });
       });
 
-      var ok_to_proceed = true;
-
       $.each(totals, function(key, value){
-        if (value != 1){
+        if (value != 0 && value != 1){
           ok_to_proceed = false;
         }
       });
       
       if (!ok_to_proceed){
-        alert("Each Misconception must add up to 1!");
+        alert("Each Misconception be all 0's or only one 1!");
         return ok_to_proceed;
       }
 

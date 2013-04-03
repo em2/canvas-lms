@@ -386,17 +386,9 @@ class QuizSubmission < ActiveRecord::Base
         probability_hash.each do |misconception_name, probability|
           if (misconception_name == misconception.name)
             if um = misconception.user_misconceptions.active.find_by_user_id_and_quiz_id(self.user.id, quiz.id)
-              if question_count > 0
-                um.update_attributes(:probability => probability.to_f/question_count)
-              else
-                um.update_attributes(:probability => probability)
-              end
+              um.update_attributes(:probability => probability)
             else
-              if question_count > 0
-                misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability.to_f/question_count, :quiz_id => quiz.id, :workflow_state => 'available')
-              else
-                misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :quiz_id => quiz.id, :workflow_state => 'available')
-              end
+              misconception.user_misconceptions.create!(:user_id => self.user.id, :probability => probability, :quiz_id => quiz.id, :workflow_state => 'available')
             end
           end
         end
