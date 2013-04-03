@@ -39,7 +39,7 @@
     <a href="#" class="button button-sidebar-wide add_outcome_link"><%= image_tag "ball.png" %> <span class="add_outcome_text"><%= t 'links.align_outcome', "Align Outcome" %></span></a>
   </div>
   <%= render :partial => 'shared/find_outcome', :locals => {:purpose => 'question_bank'}  %>
-  <% if can_do(@bank, @current_user, :update) %>
+  <% if can_do(@bank, @current_user, :update) && @is_account_admin %>
     <h2 id="edit_misconceptions"><%= t 'headings.edit_misconceptions', "Misconceptions" %></h2>
     <a href="<%= account_question_bank_assessment_misconceptions_path(@context, @bank) %>" class="button button-sidebar button-sidebar-wide"><%= image_tag "edit.png" %> <%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
   <% end -%>

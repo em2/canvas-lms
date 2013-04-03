@@ -82,7 +82,9 @@
       <%= user_content(truncate_html(q.description || t(:no_details, "No Details"), :num_words => 50)) %>
     </div>
     <div class="clear"></div>
-    <a href="<%= context_url(@context, :context_quiz_students_reports_url, q) %>" class="quiz_title"><%= t('links.student_reports', "Student Reports") %></a>&nbsp|
-    <a href="<%= context_url(@context, :context_quiz_quiz_misconceptions_url, q) %>"><%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
+    <a href="<%= context_url(@context, :context_quiz_students_reports_url, q) %>" class="quiz_title"><%= t('links.student_reports', "Student Reports") %></a>
+    <% if @is_account_admin %>
+    &nbsp| <a href="<%= context_url(@context, :context_quiz_quiz_misconceptions_url, q) %>"><%= t('links.edit_misconceptions', "Edit Misconceptions") %></a>
+    <% end -%>
   </div>
 </li>

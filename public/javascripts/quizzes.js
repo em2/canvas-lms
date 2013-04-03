@@ -1428,7 +1428,11 @@ define([
           try {
             var answer_misconceptions = JSON.parse(answer.answer_misconception_id)
             $.each(answer_misconceptions, function(key, value){
-              $answer.find(".answer_misconception_"+key).val(value);
+              if ($answer.find(".answer_misconception_"+key).is('input')){
+                $answer.find(".answer_misconception_"+key).val(value);
+              }else{
+                $answer.find(".answer_misconception_"+key).text(value);
+              }
             });
           }
           catch(e) {
@@ -2087,7 +2091,11 @@ define([
         misconceptions = $answer.find(".answer_misconception");
         answer_misconception_id = {};
         $.each(misconceptions, function(index, misconception){
-          answer_misconception_id[$(misconception).attr('data-id')] = $answer.find(".answer_misconception_"+$(misconception).attr('data-id')).val()  
+          if ($answer.find(".answer_misconception_"+$(misconception).attr('data-id')).is('input')){
+            answer_misconception_id[$(misconception).attr('data-id')] = $answer.find(".answer_misconception_"+$(misconception).attr('data-id')).val();
+          }else{
+            answer_misconception_id[$(misconception).attr('data-id')] = $answer.find(".answer_misconception_"+$(misconception).attr('data-id')).text();
+          }
         });
 
         data.answer_misconception_id = JSON.stringify(answer_misconception_id);

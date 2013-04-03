@@ -35,6 +35,7 @@ class QuizzesController < ApplicationController
       @submissions_hash
       @current_user.quiz_submissions.each{|s| @submissions_hash[s.quiz_id] = s } if @current_user
       log_asset_access("quizzes:#{@context.asset_string}", "quizzes", 'other')
+      is_account_admin?
     end
   end
 
