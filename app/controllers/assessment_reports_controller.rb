@@ -134,6 +134,7 @@ class AssessmentReportsController < ApplicationController
       @participating_students_count = data.participating_students_count
       @participating_class_count = data.participating_class_count
       @course_ids = JSON.parse(data.course_ids)
+      @quiz_ids = JSON.parse(data.quiz_ids)
       @teacher_name = JSON.parse(data.teacher_name)
       @submitted_students_count = JSON.parse(data.submitted_students_count)
       @item_analysis = JSON.parse(data.item_analysis)

@@ -102,6 +102,7 @@ class QuizQuestionsController < ApplicationController
       # check the totals and make sure each misconception for all the question answers
       # adds up to exactly 1
       totals = {}
+      ok_to_proceed = true
       @question.question_data[:answers].each do |answer|
         if !answer[:misconception_id].empty?
           misconceptions = JSON.parse(answer[:misconception_id])
@@ -112,13 +113,13 @@ class QuizQuestionsController < ApplicationController
               num = totals["#{miscon_id}"].to_f
               num += value.to_f
               totals.merge!("#{miscon_id}" => num)
+              ok_to_proceed = false unless value.to_i==1 || value.to_i==0
             end
           end
         end
       end
       
-      ok_to_proceed = true
-      totals.each { |miscon_id,value| ok_to_proceed = false unless value==1 }
+      totals.each { |miscon_id,value| ok_to_proceed = false unless value.to_i==1 || value.to_i==0 }
 
       if ok_to_proceed
         #

@@ -174,27 +174,28 @@ class ClassReport < ActiveRecord::Base
       quiz.quiz_misconceptions.active.each do |quiz_misconception|
         if user_misconception = user.user_misconceptions.find_by_quiz_id_and_quiz_misconception_id(quiz.id, quiz_misconception.id)
           found_misconception = false
-          quiz_misconception_probability = QuizMisconceptionProbability.find_by_quiz_id(quiz.id)
-          if user_misconception.probability > quiz_misconception_probability.high_probability["#{quiz_misconception.id}"].to_f
-            data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "H"
-            found_misconception = true
-          elsif user_misconception.probability > quiz_misconception_probability.somewhat_probability["#{quiz_misconception.id}"].to_f
-            data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "S"
-            found_misconception = true
-          else
-            data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "-"
-          end
-
-          if found_misconception
-            if data["total_user_misconceptions"]["#{quiz_misconception.id}"].nil?
-              data["total_user_misconceptions"]["#{quiz_misconception.id}"] = 1
+          if quiz_misconception_probability = QuizMisconceptionProbability.find_by_quiz_id(quiz.id)
+            if quiz_misconception_probability.high_probability && user_misconception.probability > quiz_misconception_probability.high_probability["#{quiz_misconception.id}"].to_f
+              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "H"
+              found_misconception = true
+            elsif quiz_misconception_probability.somewhat_probability && user_misconception.probability > quiz_misconception_probability.somewhat_probability["#{quiz_misconception.id}"].to_f
+              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "S"
+              found_misconception = true
             else
-              count = data["total_user_misconceptions"]["#{quiz_misconception.id}"]
-              count += 1
-              data["total_user_misconceptions"]["#{quiz_misconception.id}"] = count
+              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "-"
             end
-          else
-            misconceptions_not_found += 1
+
+            if found_misconception
+              if data["total_user_misconceptions"]["#{quiz_misconception.id}"].nil?
+                data["total_user_misconceptions"]["#{quiz_misconception.id}"] = 1
+              else
+                count = data["total_user_misconceptions"]["#{quiz_misconception.id}"]
+                count += 1
+                data["total_user_misconceptions"]["#{quiz_misconception.id}"] = count
+              end
+            else
+              misconceptions_not_found += 1
+            end
           end
         end
       end

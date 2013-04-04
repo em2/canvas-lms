@@ -17,18 +17,32 @@ class SchoolReport < ActiveRecord::Base
     latest_submission = AssessmentQuestionBank.find(self.probe_id).created_at
     class_difficulties = {}
     total_class_difficulties = 0
+    quiz_ids = {}
 
 
 		class_reports.each do |report|
 			if self.probe_id == report.probe_id
 				participating_class_count += 1
 				quiz_question_count = report.quiz_question_count if quiz_question_count == 0
-				if report_name == ''
-					course = Course.find(report.course_id)
+				course = Course.find(report.course_id)
+        if report_name == ''
 					report_name = course.account.parent_account.name + course.account.name
 				end
 				participating_students_count += report.submitted_students_count
-				course_ids << report.course_id
+				course_ids << course.id
+
+        current_probe = AssessmentQuestionBank.find(self.probe_id)
+
+        course.quizzes.active.each do |quiz|
+          if quiz.question_bank_id == self.probe_id
+            quiz_ids["#{course.id}"] = quiz.id
+          elsif quiz.probe_name.include?(current_probe.title) # for backwards compatibility
+            quiz_ids["#{course.id}"] = quiz.id
+          end
+        end
+
+
+
 				teacher_name["#{report.course_id}"] = report.teacher_name
 				submitted_students_count["#{report.course_id}"] = report.submitted_students_count
 				item_analysis["#{report.course_id}"] = JSON.parse(report.item_analysis)
@@ -107,6 +121,7 @@ class SchoolReport < ActiveRecord::Base
     self.latest_submission = latest_submission
     self.class_difficulties = class_difficulties.to_json
     self.total_class_difficulties = total_class_difficulties
+    self.quiz_ids = quiz_ids.to_json
     self.save!
   end
 end
