@@ -1,5 +1,7 @@
 --- 
 em2:
+  account:
+    tab_courses: Classes
   account_settings: 
     titles: 
       what_are_quiz_ip_filters: "What are Assessment IP Filters?"      

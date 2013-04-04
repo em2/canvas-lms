@@ -6,7 +6,7 @@ class AssessmentMisconceptionProbabilitiesController < ApplicationController
       	limit_id = params[:quiz_misconception_limit][:high_probability_id].to_f
       	limit = params[:quiz_misconception_limit][:high_probability_limit].to_f
 
-      	if limit > 0 && limit < 1
+      	if limit > 0
 
   	    	hp = @misconception_probability.high_probability || {}
   	    	hp.merge!({"#{limit_id}" => "#{limit}"})
@@ -20,7 +20,7 @@ class AssessmentMisconceptionProbabilitiesController < ApplicationController
       	limit_id = params[:quiz_misconception_limit][:somewhat_probability_id].to_f
       	limit = params[:quiz_misconception_limit][:somewhat_probability_limit].to_f
 
-      	if limit > 0 && limit < 1
+      	if limit > 0
 
   	    	sp = @misconception_probability.somewhat_probability || {}
   	    	sp.merge!({"#{limit_id}" => "#{limit}"})
