@@ -27,7 +27,7 @@ div.question{border-radius:3px}
 #questions.assessing .question_holder .question.related,#questions.assessment_results .question_holder .question.related{border-width:2px}
 #questions.assessing .question_holder .question .header,#questions.assessment_results .question_holder .question .header{float:right;margin-right:10px;font-size:.9em}
 #questions.assessing .question_holder .question .move,#questions.assessment_results .question_holder .question .move{display:none}
-#questions.assessing .answer{padding:5px 5px;margin:0 25px}
+#questions.assessing .answer{padding:5px 5px;margin:0 15px}
 #questions.assessing .answer:last-child{border-bottom:0}
 #questions.brief .question_holder .display_question{font-size:.9em}
 #questions.brief .question_holder .display_question .answer,#questions.brief .question_holder .display_question .question_comment{display:none}
