@@ -36,7 +36,7 @@ class SchoolReport < ActiveRecord::Base
         course.quizzes.active.each do |quiz|
           if quiz.question_bank_id == self.probe_id
             quiz_ids["#{course.id}"] = quiz.id
-          elsif quiz.probe_name && quiz.probe_name.include?(current_probe.title) # for backwards compatibility
+          elsif !quiz.probe_name.nil? && quiz.probe_name.include?(current_probe.title) # for backwards compatibility
             quiz_ids["#{course.id}"] = quiz.id
           end
         end
