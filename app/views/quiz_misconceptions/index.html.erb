@@ -13,42 +13,6 @@
   </div>
 <% end -%>
 
-<h1>Misconception Limits</h1>
-<div class="misconception_limits">
-  <table>
-    <tr>
-      <td></td>
-      <td>Highly Likely</td>
-      <td>Somewhat Likely</td>
-    </tr>
-    <% if !@misconceptions.nil? -%>
-      <% @misconceptions.active.each do |misconception| -%>
-        <tr>
-          <td><span class="header"><%= misconception.name %>:&nbsp</span></td>
-          <td>
-            <span class="misconception_piece">
-              <span class="header_content high_probability_limit"><%= @quiz_probabilities.high_probability ? @quiz_probabilities.high_probability["#{misconception.id}"] ? @quiz_probabilities.high_probability["#{misconception.id}"] : '' : '' %></span>
-              <span class="modify_buttons">
-                <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception.id %>"><%= image_tag "edit.png" %></a>
-              </span>
-            </span>
-          </td>
-          <td>
-            <span class="misconception_piece">
-              <span class="header_content somewhat_probability_limit"><%= @quiz_probabilities.somewhat_probability ? @quiz_probabilities.somewhat_probability["#{misconception.id}"] ? @quiz_probabilities.somewhat_probability["#{misconception.id}"] : '' : '' %></span>
-              <span class="modify_buttons">
-                <a href="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception.id %>"><%= image_tag "edit.png" %></a>
-              </span><br />
-            </span>
-          </td>
-        </tr>
-      <% end -%>
-    <% end -%>
-  </table>
-</div>
-
-<div class="clear"></div>
-
 
 <h1>Misconceptions</h1>
 <% if @misconceptions.count > 0 -%>
