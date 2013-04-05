@@ -4,7 +4,7 @@
 %>
 
 <% context = @context %>
-<h1>Misconceptions</h1>
+
 <% content_for :right_side do %>
   <div style="position: relative;">
     <% if can_do(@quiz, @current_user, :update) -%>
@@ -13,36 +13,44 @@
   </div>
 <% end -%>
 
-<div class="misconception">
-  
-  Highly Likely: <br />
-  <% if !@misconceptions.nil? -%>
-    <% @misconceptions.active.each do |hp| -%>
-      <div class="misconception_piece">
-        <span class="header"><%= hp.name %>:&nbsp</span>
-        <span class="header_content high_probability_limit"><%= @quiz_probabilities.high_probability ? @quiz_probabilities.high_probability["#{hp.id}"] ? @quiz_probabilities.high_probability["#{hp.id}"] : '' : '' %></span>
-        <span class="modify_buttons">
-          <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= hp.id %>"><%= image_tag "edit.png" %></a>
-        </span><br />
-      </div>
+<h1>Misconception Limits</h1>
+<div class="misconception_limits">
+  <table>
+    <tr>
+      <td></td>
+      <td>Highly Likely</td>
+      <td>Somewhat Likely</td>
+    </tr>
+    <% if !@misconceptions.nil? -%>
+      <% @misconceptions.active.each do |misconception| -%>
+        <tr>
+          <td><span class="header"><%= misconception.name %>:&nbsp</span></td>
+          <td>
+            <span class="misconception_piece">
+              <span class="header_content high_probability_limit"><%= @quiz_probabilities.high_probability ? @quiz_probabilities.high_probability["#{misconception.id}"] ? @quiz_probabilities.high_probability["#{misconception.id}"] : '' : '' %></span>
+              <span class="modify_buttons">
+                <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception.id %>"><%= image_tag "edit.png" %></a>
+              </span>
+            </span>
+          </td>
+          <td>
+            <span class="misconception_piece">
+              <span class="header_content somewhat_probability_limit"><%= @quiz_probabilities.somewhat_probability ? @quiz_probabilities.somewhat_probability["#{misconception.id}"] ? @quiz_probabilities.somewhat_probability["#{misconception.id}"] : '' : '' %></span>
+              <span class="modify_buttons">
+                <a href="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception.id %>"><%= image_tag "edit.png" %></a>
+              </span><br />
+            </span>
+          </td>
+        </tr>
+      <% end -%>
     <% end -%>
-  <% end -%>
-  <br />
-  Somewhat Likely: <br />
-  <% if !@misconceptions.nil? -%>
-    <% @misconceptions.active.each do |sp| -%>
-      <div class="misconception_piece">
-        <span class="header"><%= sp.name %>:&nbsp</span>
-        <span class="header_content somewhat_probability_limit"><%= @quiz_probabilities.somewhat_probability ? @quiz_probabilities.somewhat_probability["#{sp.id}"] ? @quiz_probabilities.somewhat_probability["#{sp.id}"] : '' : '' %></span>
-        <span class="modify_buttons">
-          <a href="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= sp.id %>"><%= image_tag "edit.png" %></a>
-        </span><br />
-      </div>
-    <% end -%>
-  <% end -%>
+  </table>
 </div>
 
+<div class="clear"></div>
 
+
+<h1>Misconceptions</h1>
 <% if @misconceptions.count > 0 -%>
 		<% @misconceptions.each do |misconception| -%>
 			<%= render :partial => "misconception_item", :object => misconception, :locals => {:question_bank_id => params[:question_bank_id]}, :id => params[:id] %>
@@ -53,14 +61,14 @@
 <a href="<%= new_course_quiz_quiz_misconception_path %>" class="button">Add Misconception</a>
 
 <% form_for :quiz_misconception_limit, :url => "", :html => {:id => "edit_misconception_hp_limit_form", :style => "display: none;"} do |f| %>
-  <%= f.blabel :high_probability_limit, :en => "Misconception Limit" %>
-  <%= f.text_field :high_probability_limit, :class => "misconception_limit_box" %>
+  <%#= f.blabel :high_probability_limit, :en => "Limit" %>
+  <%= f.text_field :high_probability_limit, :class => "misconception_limit_box", :size => '1'%>
   <%= f.text_field :high_probability_id, :class => "misconception_limit_id_box", :hidden => true %>
 <% end %>
 
 <% form_for :quiz_misconception_limit, :url => "", :html => {:id => "edit_misconception_sp_limit_form", :style => "display: none;"} do |f| %>
-  <%= f.blabel :somewhat_probability, :en => "Misconception Limit" %>
-  <%= f.text_field :somewhat_probability_limit, :class => "misconception_limit_box" %>
+  <%#= f.blabel :somewhat_probability, :en => "Limit" %>
+  <%= f.text_field :somewhat_probability_limit, :class => "misconception_limit_box", :size => '1' %>
   <%= f.text_field :somewhat_probability_id, :class => "misconception_limit_id_box", :hidden => true %>
 <% end %>
 

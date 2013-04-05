@@ -1,1 +1,31 @@
-.misconception{border:2px solid #888;border-radius:3px}.misconception .misconception_piece{padding-left:5px}.misconception .name{font-size:25px}.misconception .responses{font-size:15px}.misconception .explanation_url{font-size:15px}.misconception .description{font-size:15px}
+/* line 1, ../../../app/stylesheets/misconceptions.sass */
+.misconception {
+  border: 2px solid #888888;
+  border-radius: 3px;
+  background-color: #f6f6f6; }
+  /* line 5, ../../../app/stylesheets/misconceptions.sass */
+  .misconception .misconception_piece {
+    padding-left: 5px; }
+  /* line 7, ../../../app/stylesheets/misconceptions.sass */
+  .misconception .name {
+    font-size: 25px; }
+  /* line 9, ../../../app/stylesheets/misconceptions.sass */
+  .misconception .responses {
+    font-size: 15px; }
+  /* line 11, ../../../app/stylesheets/misconceptions.sass */
+  .misconception .explanation_url {
+    font-size: 15px; }
+  /* line 13, ../../../app/stylesheets/misconceptions.sass */
+  .misconception .description {
+    font-size: 15px; }
+
+/* line 15, ../../../app/stylesheets/misconceptions.sass */
+.misconception_limits {
+  margin-bottom: 50px;
+  border: 2px solid #777777;
+  border-radius: 3px;
+  background-color: #e5e5e5; }
+  /* line 20, ../../../app/stylesheets/misconceptions.sass */
+  .misconception_limits td {
+    padding: 4px;
+    text-align: center; }
