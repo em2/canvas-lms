@@ -3,26 +3,49 @@
 		<div class="misconception_piece">
 			<span class="header_content name"><%=misconception_item.name%></span>
 			<span class="modify_buttons">
-				<a href="<%= course_quiz_quiz_misconception_path(@context, Quiz.find(params[:quiz_id]), misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
-				<a href="<%= course_quiz_quiz_misconception_path(@context, Quiz.find(params[:quiz_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+				<% quiz = Quiz.find(params[:quiz_id]) -%>
+				<a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+				<a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
 			</span>
 		</div>
+
 		<div class="misconception_piece responses">
-			<% if !misconception_item.pattern.empty? -%>
-				<% misconception_item.pattern.each do |question_id, answer_ids| -%>
-	        <% answer_ids.each do |answer_id| -%> 
-						<% if quiz_question = QuizQuestion.find(question_id) rescue nil -%>
-						Q<%= quiz_question.position %>:
-	            <% quiz_question.question_data[:answers].each_with_index do |question, index| -%>
-	              <% if question[:id] == answer_id.first.to_i -%>
-	                A<%= index+1 %>:&nbsp<%= answer_id.last %><br />
-	              <% end -%>
-	            <% end -%> 
-	          <% end -%>
-	        <% end -%>
+			<table>
+				<% @max_answer_count = 0 -%>
+				<% if !misconception_item.pattern.empty? -%>
+					<% quiz_questions = quiz.quiz_questions -%>
+					<tr class="rShim">
+						<td class="rShim" style="width:20px;"></td>
+						<% quiz_questions.each do |qq| -%>
+							<% if qq.question_data[:question_type] != "text_only_question" -%>
+								<td class="rShim" style="width:20px;"></td>
+								<% @max_answer_count = qq.question_data[:answers].count if qq.question_data[:answers].count > @max_answer_count -%>
+							<% end -%>
+						<% end -%>
+					</tr>
+					<tr>
+						<td></td>
+						<% quiz_questions.each do |qq| -%>
+							<% if qq.question_data[:question_type] != "text_only_question" -%>
+								<td class="s1"><%= qq.question_data[:name] %></td>
+							<% end -%>
+						<% end -%>
+					</tr>
+
+					<% @max_answer_count.times do |m| -%>
+						<tr>
+							<td class="s2"><%= raw "&##{65+m};" %></td>
+							<% quiz_questions.each do |qq| -%>
+								<% if qq.question_data[:question_type] != "text_only_question" -%>
+									<td class="s3"><%= misconception_item.pattern["#{qq.id}"] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %></td>
+								<% end -%>
+							<% end -%>
+						</tr>
+					<% end -%>
 				<% end -%>
-			<% end -%>
+			</table>
 		</div>
+		
 		<div class="misconception_piece">
 			<span class="header">Explanation URL: &nbsp </span>
 			<span class="header_content explanation_url">
