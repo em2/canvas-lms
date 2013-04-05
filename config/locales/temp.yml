@@ -3533,11 +3533,6 @@ en:
       media_contribution: "Media Contribution"
       play_comment: "Play Media Comment"
       record_upload_media_comment: "Record/Upload Media Comment"
-  menu: 
-    current_groups: "Current Groups"
-    customize: Customize
-    managed_accounts: "Managed Accounts"
-    my_courses: "My Courses"
   message: 
     default_subject: "Canvas Alert"
   message_students: 
@@ -7137,10 +7132,6 @@ en:
       remove_scheme: "Remove Grading Scheme"
       some_standard: "Some standard"
       use_this_standard: "Use This Grading Standard"
-    home_menu: 
-      links: 
-        courses: Courses
-        courses_and_groups: "Courses & Groups"
     identity: 
       links: 
         help: Help

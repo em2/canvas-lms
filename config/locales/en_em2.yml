@@ -144,6 +144,8 @@ em2:
         quiz_review: "This assessment needs review"
   labels: 
     quizzes: Assessments
+  menu: 
+    my_courses: "My Classes"
   messages: 
     content_locked: "This assessment is currently locked."
     quiz_locked: "This assessment is currently locked."
@@ -410,6 +412,10 @@ em2:
         quiz: "Click here to go to the assessment"
       options: 
         quiz: Assessment
+    home_menu: 
+      links: 
+        courses: Classes
+        courses_and_groups: "Classes & Groups"
     select_content_dialog: 
       labels: 
         quiz_name: "Assessment Name"
