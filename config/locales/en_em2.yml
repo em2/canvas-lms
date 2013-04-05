@@ -6,6 +6,8 @@ em2:
     titles: 
       what_are_quiz_ip_filters: "What are Assessment IP Filters?"      
   accounts: 
+    courses: 
+      courses_crumb: Classes
     settings: 
       quiz_ip_filters_help_message: |-
         Assessment IP filters are a way to limit access to assessments to computers in a specified IP range.
@@ -14,6 +16,8 @@ em2:
       quiz_ip_filters_help_title: "What are Assessment IP Filters?"
       quiz_ip_filters_help_tooltip: "What are Assessment IP Filters?"
       quiz_ip_filters_title: "Assessment IP Address Filters"
+    show:
+      title: "Classes In This Account"
   assignments: 
     submission_sidebar: 
       links: 
