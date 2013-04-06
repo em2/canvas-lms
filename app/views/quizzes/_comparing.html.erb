@@ -32,7 +32,7 @@
   		<% end -%>
     <% end %>
   </div>
-	<div class="question_text question_text_<%=question_type.question_type%><%= side_a.include?('frac') ? '_frac' : '' %> question_left_side">
+	<div class="question_text question_text_<%=question_type.question_type%><%= side_a && side_a.include?('frac') ? '_frac' : '' %> question_left_side">
 		<% if (found_sides) -%>
 			<%= user_content(side_a) %>
 		<% end -%>
@@ -220,7 +220,7 @@
       <% end %>
     <% end %>
   </div>
-	<div class="question_text question_text_<%=question_type.question_type%><%= side_b.include?('frac') ? '_frac' : '' %> question_right_side_<%=question_type.question_type%>">
+	<div class="question_text question_text_<%=question_type.question_type%><%= side_b && side_b.include?('frac') ? '_frac' : '' %> question_right_side_<%=question_type.question_type%>">
 		<% if (found_sides) -%>
 			<%= user_content(side_b) %>
 		<% end -%>

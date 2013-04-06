@@ -32,9 +32,9 @@ class AssessmentMisconceptionsController < ApplicationController
       add_crumb("Misconceptions")
 
     	@misconceptions = @bank.assessment_misconceptions
-      if !@quiz_probabilities = @bank.assessment_misconception_probability
-        @quiz_probabilities = @bank.build_assessment_misconception_probability
-        @quiz_probabilities.save!
+      if !@assessment_probabilities = @bank.assessment_misconception_probability
+        @assessment_probabilities = @bank.build_assessment_misconception_probability
+        @assessment_probabilities.save!
       end
     else
       flash[:error] = "Unauthorized"

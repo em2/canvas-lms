@@ -25,13 +25,11 @@
 <a href="<%= new_course_quiz_quiz_misconception_path %>" class="button">Add Misconception</a>
 
 <% form_for :quiz_misconception_limit, :url => "", :html => {:id => "edit_misconception_hp_limit_form", :style => "display: none;"} do |f| %>
-  <%#= f.blabel :high_probability_limit, :en => "Limit" %>
-  <%= f.text_field :high_probability_limit, :class => "misconception_limit_box", :size => '1'%>
+  <%= f.text_field :high_probability_limit, :class => "misconception_limit_box", :size => '1' %>
   <%= f.text_field :high_probability_id, :class => "misconception_limit_id_box", :hidden => true %>
 <% end %>
 
 <% form_for :quiz_misconception_limit, :url => "", :html => {:id => "edit_misconception_sp_limit_form", :style => "display: none;"} do |f| %>
-  <%#= f.blabel :somewhat_probability, :en => "Limit" %>
   <%= f.text_field :somewhat_probability_limit, :class => "misconception_limit_box", :size => '1' %>
   <%= f.text_field :somewhat_probability_id, :class => "misconception_limit_id_box", :hidden => true %>
 <% end %>

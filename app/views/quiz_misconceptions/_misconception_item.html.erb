@@ -37,7 +37,7 @@
 							<td class="s2"><%= raw "&##{65+m};" %></td>
 							<% quiz_questions.each do |qq| -%>
 								<% if qq.question_data[:question_type] != "text_only_question" -%>
-									<td class="s3"><%= misconception_item.pattern["#{qq.id}"] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %></td>
+									<td class="s3"><%= misconception_item.pattern["#{qq.id}"] && qq.question_data[:answers][m] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %></td>
 								<% end -%>
 							<% end -%>
 						</tr>
@@ -59,7 +59,7 @@
 		        <span class="misconception_piece">
 		          <span class="header_content somewhat_probability_limit"><%= @quiz_probabilities.somewhat_probability ? @quiz_probabilities.somewhat_probability["#{misconception_item.id}"] ? @quiz_probabilities.somewhat_probability["#{misconception_item.id}"] : '' : '' %></span>
 		          <span class="modify_buttons">
-		            <a href="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+		            <a href="<%= course_quiz_quiz_misconception_probability_path(@context, quiz, @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
 		          </span><br />
 		        </span>
 		      </td>
@@ -67,7 +67,7 @@
 		        <span class="misconception_piece">
 		          <span class="header_content high_probability_limit"><%= @quiz_probabilities.high_probability ? @quiz_probabilities.high_probability["#{misconception_item.id}"] ? @quiz_probabilities.high_probability["#{misconception_item.id}"] : '' : '' %></span>
 		          <span class="modify_buttons">
-		            <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, Quiz.find(params[:quiz_id]), @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+		            <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, quiz, @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
 		          </span>
 		        </span>
 		      </td>

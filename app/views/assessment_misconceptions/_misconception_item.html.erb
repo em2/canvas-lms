@@ -3,25 +3,74 @@
 		<div class="misconception_piece">
 			<span class="header_content name"><%=misconception_item.name%></span>
 			<span class="modify_buttons">
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+				<% bank = AssessmentQuestionBank.find(params[:question_bank_id]) -%>
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
 			</span>
 		</div>
 		<div class="misconception_piece responses">
-			<% if !misconception_item.pattern.empty? -%>
-				<% misconception_item.pattern.each do |question_id, answer_ids| -%>
-	        <% answer_ids.each do |answer_id| -%> 
-						<% if quiz_question = AssessmentQuestion.find(question_id) rescue nil -%>
-						Q<%= quiz_question.position %>:
-	            <% quiz_question.question_data[:answers].each_with_index do |question, index| -%>
-	              <% if question[:id] == answer_id.first.to_i -%>
-	                A<%= index+1 %>:&nbsp<%= answer_id.last %><br />
-	              <% end -%>
-	            <% end -%> 
-	          <% end -%>
-	        <% end -%>
+			<table>
+				<% @max_answer_count = 0 -%>
+				<% if !misconception_item.pattern.empty? -%>
+					<% assessment_questions = bank.assessment_questions -%>
+					<tr class="rShim">
+						<td class="rShim" style="width:20px;"></td>
+						<% assessment_questions.each do |aq| -%>
+							<% if aq.question_data[:question_type] != "text_only_question" -%>
+								<td class="rShim" style="width:20px;"></td>
+								<% @max_answer_count = aq.question_data[:answers].count if aq.question_data[:answers].count > @max_answer_count -%>
+							<% end -%>
+						<% end -%>
+					</tr>
+					<tr>
+						<td></td>
+						<% assessment_questions.each do |aq| -%>
+							<% if aq.question_data[:question_type] != "text_only_question" -%>
+								<td class="s1"><%= aq.question_data[:name] %></td>
+							<% end -%>
+						<% end -%>
+					</tr>
+
+					<% @max_answer_count.times do |m| -%>
+						<tr>
+							<td class="s2"><%= raw "&##{65+m};" %></td>
+							<% assessment_questions.each do |aq| -%>
+								<% if aq.question_data[:question_type] != "text_only_question" -%>
+									<td class="s3"><%= misconception_item.pattern["#{aq.id}"] && aq.question_data[:answers][m] ? misconception_item.pattern["#{aq.id}"]["#{aq.question_data[:answers][m][:id]}"] : "" %></td>
+								<% end -%>
+							<% end -%>
+						</tr>
+					<% end -%>
 				<% end -%>
-			<% end -%>
+			</table>
+		</div>
+		<div class="misconception_limits">
+			<span class="title">Lower Cutoff Limits</span>
+			<div class="line"></div>
+			<table>
+		    <tr>
+		    	<td>Somewhat Likely</td>
+		      <td>Highly Likely</td>
+		    </tr>
+				<tr>
+					<td>
+		        <span class="misconception_piece">
+		          <span class="header_content somewhat_probability_limit"><%= @assessment_probabilities.somewhat_probability ? @assessment_probabilities.somewhat_probability["#{misconception_item.id}"] ? @assessment_probabilities.somewhat_probability["#{misconception_item.id}"] : '' : '' %></span>
+		          <span class="modify_buttons">
+		            <a href="<%= account_question_bank_assessment_misconception_probability_path(@context, bank, @assessment_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+		          </span><br />
+		        </span>
+		      </td>
+		      <td>
+		        <span class="misconception_piece">
+		          <span class="header_content high_probability_limit"><%= @assessment_probabilities.high_probability ? @assessment_probabilities.high_probability["#{misconception_item.id}"] ? @assessment_probabilities.high_probability["#{misconception_item.id}"] : '' : '' %></span>
+		          <span class="modify_buttons">
+		            <a href ="<%= account_question_bank_assessment_misconception_probability_path(@context, bank, @assessment_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+		          </span>
+		        </span>
+		      </td>
+		    </tr>
+		  </table>
 		</div>
 		<div class="misconception_piece">
 			<span class="header">Explanation URL: &nbsp </span>
@@ -29,7 +78,7 @@
 				<%= misconception_item.explanation_url %>
 			</span>
 			<span class="modify_buttons">
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
 			</span>
 		</div>
 		<div class="misconception_piece">
@@ -38,7 +87,7 @@
 				<%= misconception_item.description %>
 			</span>
 			<span class="modify_buttons">
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, AssessmentQuestionBank.find(params[:question_bank_id]), misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
+				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
 			</span>
 		</div>
 	</div>
