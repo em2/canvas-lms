@@ -1,6 +1,6 @@
 <% if misconception_item.workflow_state == "available" -%>
 	<div class="misconception">
-		<div class="misconception_piece">
+		<div class="misconception_piece misconception_piece_title">
 			<span class="header_content name"><%=misconception_item.name%></span>
 			<span class="modify_buttons">
 				<% quiz = Quiz.find(params[:quiz_id]) -%>
