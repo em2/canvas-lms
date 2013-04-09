@@ -66,3 +66,4 @@ app/views/jst/plugins/
 app/stylesheets/plugins/
 spec/coffeescripts/plugins/
 .elasticbeanstalk/
+.ebextensions/
