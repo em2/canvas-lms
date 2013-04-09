@@ -21,7 +21,7 @@ class QuizMisconceptionsController < ApplicationController
       if params[:quiz_misconception][:pattern]
         pattern = JSON.parse(params[:quiz_misconception][:pattern])
         if !validate_pattern(pattern)
-          render :json => {:error => "Only one 1 or all zeros allowed for each question."}, :status => :bad_request and return
+          render :json => {:error => "Only one 1 or all zeros are allowed for each question."}, :status => :bad_request and return
         end
         quiz = Quiz.find(params[:quiz_id])
         quiz_data = quiz.quiz_data

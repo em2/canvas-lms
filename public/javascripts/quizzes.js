@@ -2142,7 +2142,7 @@ define([
       });
       
       if (!ok_to_proceed){
-        alert("Each Misconception be all 0's or only one 1!");
+        alert("Only one 1 or all zeros are allowed for each question's misconception.");
         return ok_to_proceed;
       }
 

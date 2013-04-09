@@ -19,7 +19,7 @@ class AssessmentMisconceptionsController < ApplicationController
     if params[:quiz_misconception][:pattern]
       pattern = JSON.parse(params[:quiz_misconception][:pattern])
       if !validate_pattern(pattern)
-        render :json => {:error => "Only one 1 or all zeros allowed for each question."}, :status => :bad_request and return
+        render :json => {:error => "Only one 1 or all zeros are allowed for each question."}, :status => :bad_request and return
       end
       question_bank = AssessmentQuestionBank.find(params[:question_bank_id])
       assessment_questions = question_bank.assessment_questions

@@ -27,13 +27,18 @@ require([
     $misconception_piece.removeClass('dont_save');
 
     var data = {};
-    data["pattern"] = JSON.stringify(gather_pattern($misconception_piece));
+    var pattern = gather_pattern($misconception_piece);
+
+    if (!validate_pattern(pattern)){
+      return false;
+    }
     
     var $form = $("#edit_misconception_pattern_form");
     $misconception_piece.prepend($form.show());
     $form.attr('action', $(this).attr('href'));
     $form.attr('method', 'PUT');
 
+    data["pattern"] = JSON.stringify(pattern);
     $form.fillFormData(data, {object_name: 'quiz_misconception'});
 
     $("#edit_misconception_pattern_form").submit();
@@ -67,6 +72,39 @@ require([
     };
 
     return data;
+  };
+
+  validate_pattern = function(pattern){
+    var totals = {};
+    var ok_to_proceed = true;
+    $.each(pattern, function(assessment_question_id, values){
+      $.each(values, function(answer_id, value){
+        if (totals[assessment_question_id] === undefined){
+          totals[assessment_question_id] = parseFloat(value);
+        }else{
+          //
+          // have to pull the numbers out and multiply and divide to avoid float rounding errors
+          num1 = parseFloat(totals[assessment_question_id]) * 10000;
+          num2 = parseFloat(value) * 10000;
+          num = (num1 + num2) / 10000;
+          totals[assessment_question_id] = num;
+          if (value != 0 && value != 1){
+            ok_to_proceed = false;
+          }
+        }
+      });
+    });
+
+    $.each(totals, function(key, value){
+      if (value != 0 && value != 1){
+        ok_to_proceed = false;
+      }
+    });
+    
+    if (!ok_to_proceed){
+      alert("Only one 1 or all zeros are allowed for each question.");
+    }
+    return ok_to_proceed;
   };
 
   $(".cancel_update_misconception_link").click(function(event) {
