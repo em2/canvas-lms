@@ -16,6 +16,20 @@ class AssessmentMisconceptionsController < ApplicationController
 
   def update
     @misconception = AssessmentMisconception.find(params[:id])
+    if params[:quiz_misconception][:pattern]
+      pattern = JSON.parse(params[:quiz_misconception][:pattern])
+      question_bank = AssessmentQuestionBank.find(params[:question_bank_id])
+      assessment_questions = question_bank.assessment_questions
+      assessment_questions.each do |assessment_question|
+        assessment_question[:question_data][:answers].each do |answer|
+          a = JSON.parse(answer[:misconception_id])
+          a[params[:id]] = pattern["#{assessment_question[:id]}"]["#{answer[:id]}"]
+          answer[:misconception_id] = a.to_json
+        end
+        assessment_question.save!
+      end
+      params[:quiz_misconception][:pattern] = pattern
+    end
     if @misconception.update_attributes(params[:quiz_misconception]) && is_account_admin?
       @misconception.reload
       render :json => @misconception.to_json

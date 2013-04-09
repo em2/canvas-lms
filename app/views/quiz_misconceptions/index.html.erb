@@ -48,3 +48,7 @@
   <%= f.blabel :description, :en => "Description" %>
   <%= f.text_area :description, :class => "misconception_description_box" %>
 <% end %>
+
+<% form_for :quiz_misconception, :url => "", :html => {:id => "edit_misconception_pattern_form", :style => "display: none;"} do |f| %>
+  <%= f.text_area :pattern, :class => "misconception_pattern_box", :hidden => true %>
+<% end %>

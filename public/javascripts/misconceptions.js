@@ -2,6 +2,117 @@ require([
   'jquery' /* $ */
 ], function($) {
    $(document).ready(function() {
+
+
+
+//*******************************************
+//
+// To edit the misconception pattern
+//
+//*******************************************
+
+
+  $(".edit_misconception_link").click(function(event) {
+    event.preventDefault();
+    $(this).parent().find(".s3").toggle();
+    $(this).parent().find(".s4").toggle();
+    $(this).toggle();
+    $(this).parent().find(".update_misconception_link").toggle();
+    $(this).parent().find(".cancel_update_misconception_link").toggle();
+  });
+
+  $(".update_misconception_link").click(function(event) {
+    event.preventDefault();
+    var $misconception_piece = $(this).parents(".misconception_piece");
+    $misconception_piece.removeClass('dont_save');
+
+    var data = {};
+    data["pattern"] = JSON.stringify(gather_pattern($misconception_piece));
+    
+    var $form = $("#edit_misconception_pattern_form");
+    $misconception_piece.prepend($form.show());
+    $form.attr('action', $(this).attr('href'));
+    $form.attr('method', 'PUT');
+
+    $form.fillFormData(data, {object_name: 'quiz_misconception'});
+
+    $("#edit_misconception_pattern_form").submit();
+
+    $(this).parent().find(".s3").toggle();
+    $(this).parent().find(".s4").toggle();
+    $(this).toggle();
+    $(this).parent().find(".cancel_update_misconception_link").toggle();
+    $(this).parent().find(".edit_misconception_link").toggle();
+  });
+
+
+
+  gather_pattern = function(element){
+    var data, patterns, pattern, answer_id, question_id, pattern_value;
+
+    data = {};
+    patterns = element.find('.pattern');
+
+    for (var i = 0; i < patterns.length; i++) {
+      pattern = {};
+      answer_id = $(patterns[i]).find('.answer_id_box').val();
+      question_id = $(patterns[i]).find('.question_id_box').val();
+      pattern_value = $(patterns[i]).find('.misconception_pattern_box').val();
+      if (question_id !== undefined && data[question_id] === undefined){
+        data[question_id] = {};
+      }
+      if (answer_id !== undefined){
+        data[question_id][answer_id] = pattern_value;
+      }
+    };
+
+    return data;
+  };
+
+  $(".cancel_update_misconception_link").click(function(event) {
+    event.preventDefault();
+    $(this).parent().find(".s3").toggle();
+    $(this).parent().find(".s4").toggle();
+    $(this).toggle();
+    $(this).parent().find(".update_misconception_link").toggle();
+    $(this).parent().find(".edit_misconception_link").toggle();
+  });
+
+
+  $("#edit_misconception_pattern_form").formSubmit({
+    object_name: 'quiz_misconception',
+    beforeSubmit: function(data) {
+      var $misconception_piece = $(this).parents(".misconception_piece");
+      $misconception_piece.attr('id', 'misconception_adding');
+      try {
+        $misconception_piece.addClass('save_in_progress');
+      } catch(e) { }
+      $misconception_piece.loadingImage();
+      return $misconception_piece;
+    },
+    success: function(data, $misconception_piece) {
+      $misconception_piece.loadingImage('remove');
+      $misconception_piece.removeClass('save_in_progress')
+      var misconception_piece = data.quiz_misconception || data.assessment_misconception;
+      var patterns = $misconception_piece.find('.pattern_display');
+      var qid;
+      $.each(misconception_piece.pattern, function(question_id){
+        qid = question_id;
+        $.each(this, function(answer_id, value){
+          $(patterns).find('span[data-id='+qid+'][data-answerid='+answer_id+']').text(value);
+        });
+      });
+    },
+    error: function(data, $misconception_piece) {
+      $misconception_piece.loadingImage('remove');
+      $misconception_piece.removeClass('save_in_progress')
+    }
+  });
+
+
+
+
+
    	
 
 
