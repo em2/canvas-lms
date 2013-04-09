@@ -68,28 +68,4 @@ class AssessmentMisconceptionsController < ApplicationController
     end
   end
 
-  def validate_pattern(pattern)
-    #
-    # check the totals and make sure each misconception for all the question answers
-    # adds up to exactly 1
-    totals = {}
-    ok_to_proceed = true
-    pattern.each do |assessment_question_id, values|
-      values.each do |answer_id, value|
-        if totals[assessment_question_id].nil?
-          totals[assessment_question_id] = value
-        else
-          num = totals[assessment_question_id].to_f
-          num = num + value.to_f
-          totals.merge!(assessment_question_id => num)
-          ok_to_proceed = false unless value.to_i==1 || value.to_i==0
-        end
-      end
-    end
-    
-    totals.each { |miscon_id,value| ok_to_proceed = false unless value.to_i==1 || value.to_i==0 }
-
-    ok_to_proceed
-  end
-
 end
