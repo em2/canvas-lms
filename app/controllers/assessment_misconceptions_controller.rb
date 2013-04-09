@@ -19,7 +19,7 @@ class AssessmentMisconceptionsController < ApplicationController
     if params[:quiz_misconception][:pattern]
       pattern = JSON.parse(params[:quiz_misconception][:pattern])
       if !validate_pattern(pattern)
-        render :json => @misconception.errors.to_json, :status => :bad_request and return
+        render :json => {:error => "Only one 1 or all zeros allowed for each question."}, :status => :bad_request and return
       end
       question_bank = AssessmentQuestionBank.find(params[:question_bank_id])
       assessment_questions = question_bank.assessment_questions
@@ -74,23 +74,22 @@ class AssessmentMisconceptionsController < ApplicationController
     # adds up to exactly 1
     totals = {}
     ok_to_proceed = true
-    @question.question_data[:answers].each do |answer|
-      if !answer[:misconception_id].empty?
-        misconceptions = JSON.parse(answer[:misconception_id])
-        misconceptions.each do |miscon_id, value|
-          if totals["#{miscon_id}"].nil?
-            totals["#{miscon_id}"] = value
-          else
-            num = totals["#{miscon_id}"].to_f
-            num += value.to_f
-            totals.merge!("#{miscon_id}" => num)
-            ok_to_proceed = false unless value.to_i==1 || value.to_i==0
-          end
+    pattern.each do |assessment_question_id, values|
+      values.each do |answer_id, value|
+        if totals[assessment_question_id].nil?
+          totals[assessment_question_id] = value
+        else
+          num = totals[assessment_question_id].to_f
+          num = num + value.to_f
+          totals.merge!(assessment_question_id => num)
+          ok_to_proceed = false unless value.to_i==1 || value.to_i==0
         end
       end
     end
     
     totals.each { |miscon_id,value| ok_to_proceed = false unless value.to_i==1 || value.to_i==0 }
+
+    ok_to_proceed
   end
 
 end
