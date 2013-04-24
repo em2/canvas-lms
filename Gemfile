@@ -54,8 +54,11 @@ gem 'yui-compressor', '0.9.4'
 # to do file uploads to s3 for the student response drawings
 gem 'fog'
 
+gem 'bluecloth',    '2.0.10' # for generating api docs
+
 group :mysql do
-  gem 'mysql',        '2.8.1'
+  gem 'mysql2'
+  gem 'activerecord-mysql2-adapter'
 end
 
 group :test do
@@ -86,7 +89,7 @@ group :development do
 end
 
 group :production do
-  # gem 'mysql2', '0.2.6'
+  gem 'mysql2'
 end
 
 group :redis do
