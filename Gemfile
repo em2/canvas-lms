@@ -57,8 +57,7 @@ gem 'fog'
 gem 'bluecloth',    '2.0.10' # for generating api docs
 
 group :mysql do
-  gem 'mysql2'
-  gem 'activerecord-mysql2-adapter'
+  gem 'mysql2', '~> 0.2.18'
 end
 
 group :test do
@@ -89,7 +88,7 @@ group :development do
 end
 
 group :production do
-  gem 'mysql2'
+  gem 'mysql2', '~> 0.2.18'
 end
 
 group :redis do
