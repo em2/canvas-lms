@@ -27,10 +27,7 @@ every :day, :at => '4:20am' do
   command "~/backup.sh mysql s3 emma-edc 2>&1 | mail -s \"Backup result for emma-edc\" jamescarbine@gmail.com"
 end
 
-# every :reboot do
-# 	script "unicorn_rails -c config/unicorn.rb -D"
-# 	script "script/delayed_job start"
-
-# 	command "cd /u/apps/canvas-lms/current && RAILS_ENV=production bundle exec unicorn_rails -c config/unicorn.rb -D"
-# 	command "cd /u/apps/canvas-lms/current && RAILS_ENV=production bundle exec script/delayed_job start"
-# end
+every :reboot do
+  command "cd /u/apps/canvas-lms/current && RAILS_ENV=production bundle exec unicorn_rails -c config/unicorn.rb -D"
+  command "cd /u/apps/canvas-lms/current && RAILS_ENV=production bundle exec script/delayed_job start"
+end
