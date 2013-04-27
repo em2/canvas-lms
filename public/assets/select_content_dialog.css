@@ -1,5 +1,5 @@
 #select_context_content_dialog #context_external_tools_select .tools{vertical-align:top;padding:10px 0;max-height:150px;overflow:auto}
-#select_context_content_dialog #context_external_tools_select .tools .tool{-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;-khtml-border-radius:3px;border-radius:3px;padding:2px 5px;border-bottom:1px dotted #ccc;cursor:pointer}
+#select_context_content_dialog #context_external_tools_select .tools .tool{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px;padding:2px 5px;border-bottom:1px dotted #ccc;cursor:pointer}
 #select_context_content_dialog #context_external_tools_select .tools .tool .name{font-weight:bold}
 #select_context_content_dialog #context_external_tools_select .tools .tool .description{max-height:2.9em;overflow:hidden;font-size:.8em}
 #select_context_content_dialog #context_external_tools_select .tools .tool:hover{background-color:#eee}

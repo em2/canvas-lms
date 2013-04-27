@@ -1,60 +1,44 @@
-/* line 3, ../../../app/stylesheets/external_tools.sass */
 #external_tools .external_tool {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px; }
-  /* line 5, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool .header {
     padding: 5px 10px 0; }
-    /* line 7, ../../../app/stylesheets/external_tools.sass */
     #external_tools .external_tool .header .name {
       float: left;
       font-size: 1.2em;
       font-weight: bold; }
-    /* line 11, ../../../app/stylesheets/external_tools.sass */
     #external_tools .external_tool .header .links {
       float: right;
       opacity: 0.5;
       -ms-filter: alpha(Opacity=50);
       filter: alpha(Opacity=50); }
-  /* line 14, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool .content {
     padding: 0 20px 5px; }
-  /* line 16, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool .extras {
     display: none; }
-    /* line 18, ../../../app/stylesheets/external_tools.sass */
     #external_tools .external_tool .extras div {
       font-style: italic;
       font-size: 0.9em; }
-  /* line 21, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool:hover {
     background-color: #eeeeee; }
-    /* line 23, ../../../app/stylesheets/external_tools.sass */
     #external_tools .external_tool:hover .links {
       opacity: 1;
       -ms-filter: alpha(Opacity=100);
       filter: alpha(Opacity=100); }
-  /* line 26, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool.has_editor_button .extras, #external_tools .external_tool.has_resource_selection .extras, #external_tools .external_tool.has_course_navigation .extras, #external_tools .external_tool.has_user_navigation .extras, #external_tools .external_tool.has_account_navigation .extras {
     display: table-row; }
-    /* line 28, ../../../app/stylesheets/external_tools.sass */
     #external_tools .external_tool.has_editor_button .extras div, #external_tools .external_tool.has_resource_selection .extras div, #external_tools .external_tool.has_course_navigation .extras div, #external_tools .external_tool.has_user_navigation .extras div, #external_tools .external_tool.has_account_navigation .extras div {
       display: none; }
-  /* line 31, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool.has_editor_button div.editor_button {
     display: block; }
-  /* line 34, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool.has_resource_selection div.resource_selection {
     display: block; }
-  /* line 37, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool.has_course_navigation div.course_navigation {
     display: block; }
-  /* line 40, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool.has_user_navigation div.user_navigation {
     display: block; }
-  /* line 43, ../../../app/stylesheets/external_tools.sass */
   #external_tools .external_tool.has_account_navigation div.account_navigation {
     display: block; }

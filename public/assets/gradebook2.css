@@ -12,7 +12,7 @@
 .submission_details_dialog .submisison-attachment{padding:3px 0}
 .submission_details_dialog .submisison-attachment a{font-size:11px}
 .submission_details_dialog .submission_details_comments{overflow:auto;max-height:200px;border-top:1px solid #bbb;padding:0 12px;position:relative;background:#a3a3a3 url(/images/messages/messages-background.png?1341500195) 0 0 repeat}
-.submission_details_dialog .comment{background:#fff;clear:both;border-bottom:1px solid #ccc;padding:10px;margin:10px 0}
+.submission_details_dialog .comment{background:white;clear:both;border-bottom:1px solid #ccc;padding:10px;margin:10px 0}
 .submission_details_dialog .comment:last-child{border-bottom:none}
 .submission_details_dialog .comment .middle{padding-left:69px}
 .submission_details_dialog .comment .photo{float:left;width:50px;height:50px}
@@ -30,8 +30,8 @@
 #assignment-details-dialog .distribution .bar-left,#assignment-details-dialog .distribution .bar-right{height:10px;width:0;margin:5px 0}
 #assignment-details-dialog .distribution .bar-left{left:0;border-width:2px 0 2px 2px}
 #assignment-details-dialog .distribution .none-left,#assignment-details-dialog .distribution .none-right{height:11px;border-bottom-width:2px}
-#assignment-details-dialog .distribution .some-left{height:20px;border-width:2px 0 2px 2px;border-top-left-radius:3px;border-bottom-left-radius:3px;background:#fff;z-index:2}
-#assignment-details-dialog .distribution .some-right{height:20px;border-width:2px;overflow:hidden;border-top-right-radius:3px;border-bottom-right-radius:3px;background:#fff;z-index:2}
+#assignment-details-dialog .distribution .some-left{height:20px;border-width:2px 0 2px 2px;border-top-left-radius:3px;border-bottom-left-radius:3px;background:white;z-index:2}
+#assignment-details-dialog .distribution .some-right{height:20px;border-width:2px;overflow:hidden;border-top-right-radius:3px;border-bottom-right-radius:3px;background:white;z-index:2}
 #assignment-details-dialog .distribution .bar-right{width:0;height:10px;margin:5px 0;right:0;border-width:2px 2px 2px 0}
 #assignment-details-dialog-stats-table{font-size:1.2em}
 #assignment-details-dialog-stats-table th,#assignment-details-dialog-stats-table td{padding:2px 5px;white-space:nowrap}
@@ -54,8 +54,8 @@
 .slick-header-column.ui-state-default{height:30px}
 .slick-header-column.hovered-column{background-color:#cedfee;background-image:-webkit-gradient(linear,left top,left bottom,from(#e0ecf9),to(#bdd2e3));background-image:-webkit-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-moz-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-ms-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:-o-linear-gradient(top,#e0ecf9,#bdd2e3);background-image:linear-gradient(top,#e0ecf9,#bdd2e3);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#e0ecf9',EndColorStr='#bdd2e3')";zoom:1}
 .ie9 .slick-header-column.hovered-column{border-radius:0!important}
-.slick-header-column .slick-column-name{font-weight:bold;color:#2f2a34;text-shadow:#fff 0 0 1px}
-.slick-header-column a.assignment-name{font-weight:normal;color:#1b7ecf;text-shadow:#fff 0 0 1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slick-header-column .slick-column-name{font-weight:bold;color:#2f2a34;text-shadow:white 0 0 1px}
+.slick-header-column a.assignment-name{font-weight:normal;color:#1b7ecf;text-shadow:white 0 0 1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .slick-header-column .muted{background:url(/images/sound_mute.png?1341500195) no-repeat center right;padding-right:16px}
 .slick-header-column .assignment-points-possible{font-weight:normal;text-shadow:#84848a 0 0 1px;font-size:10px;opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);color:#2f2a34;margin-left:10px;margin-right:14px}
 .slick-header-column .gradebook-header-drop{z-index:1;background:url(/images/jqueryui/gradebook-header-drop.png?1341500195) no-repeat top left;width:14px;height:14px;position:absolute;bottom:3px;right:3px;text-indent:999px;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(Opacity=0)}
@@ -75,7 +75,7 @@
 .slick-cell div.cell-content{text-align:center;vertical-align:middle}
 .slick-cell.editable{border-color:#2fa1ff}
 .slick-cell.ungraded{background-image:url(/images/4_percent_opacity.png?1341500195);background-repeat:repeat}
-.gradebook-tooltip{display:none;background-color:#444;color:#fff;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;-khtml-border-radius:3px;border-radius:3px;padding:5px 10px;z-index:5;position:absolute;font-size:.8em;left:0;top:-30px}
+.gradebook-tooltip{display:none;background-color:#444;color:white;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px;padding:5px 10px;z-index:5;position:absolute;font-size:.8em;left:0;top:-30px}
 .gradebook-tooltip:after{border-color:#444 transparent;border-style:solid;border-width:5px 5px 0;position:absolute;bottom:-5px;width:0;left:15px;content:""}
 .slick-row[row="0"] .gradebook-tooltip{bottom:-30px;top:auto}
 .slick-row[row="0"] .gradebook-tooltip:after{border-width:0 5px 5px;bottom:auto;top:-5px}
@@ -90,7 +90,7 @@
 .slick-cell.with-comments .gradebook-cell-comment{visibility:visible}
 .slick-cell.focus .gradebook-cell-comment,.slick-cell.hover .gradebook-cell-comment{visibility:visible;background-position:100% -41px;width:25px;height:25px}
 .gradebook-cell-comment-label{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat}
-.gradebook-cell-editable{height:32px -8px;padding-top:8px;margin:0;border:0;border:1px solid #35a5e5;background-color:#fff;box-shadow:0 0 5px #51cbee;-webkit-box-shadow:0 0 5px #51cbee;-moz-box-shadow:0 0 5px #51cbee}
+.gradebook-cell-editable{height:32px -8px;padding-top:8px;margin:0;border:0;border:1px solid #35a5e5;background-color:white;box-shadow:0 0 5px #51cbee;-webkit-box-shadow:0 0 5px #51cbee;-moz-box-shadow:0 0 5px #51cbee}
 .gradebook-cell .grade{border:none;text-align:center;outline:none;font-size:12px;width:100%;padding:0;margin:0;background:none}
 .gradebook-cell .grade::-webkit-outer-spin-button{display:none}
 .gradebook-cell-out-of-formatter{padding-top:0;height:32px}

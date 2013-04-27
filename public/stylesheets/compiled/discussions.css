@@ -1,146 +1,113 @@
-/* line 2, ../../../app/stylesheets/discussions.sass */
 .discussion-entries {
   list-style: none;
   margin: -4px 0 0 8px;
   padding: 0;
   background: url("/images/discussions/line.png") left repeat-y; }
-  /* line 7, ../../../app/stylesheets/discussions.sass */
   .discussion-entries .entry {
     padding: 4px 0 0 10px;
     background: url("/images/discussions/child_bg.png") left -13px no-repeat; }
-    /* line 10, ../../../app/stylesheets/discussions.sass */
     .discussion-entries .entry:last-child {
       background-color: white; }
 
-/* line 14, ../../../app/stylesheets/discussions.sass */
 .highlighted-entry,
 .highlighted-entry > .replies > .discussion-entries {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABBJREFUeNpiYFv5biZAgAEABI0CN2VktcMAAAAASUVORK5CYII='); }
 
-/* line 17, ../../../app/stylesheets/discussions.sass */
 .highlighted-entry > .replies > .discussion-entries > .entry {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAvCAYAAAA1kTAGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAD1JREFUeNpiZFv5biYDA0M6EDP8DBNkwAeYGEgAo4pHFY8qHlU8qnhU8ajiAVfMgsxhX/WeKMUziTEZIMAA93IGmFCfPigAAAAASUVORK5CYII='); }
 
-/* line 21, ../../../app/stylesheets/discussions.sass */
 .show-if-collapsed {
   display: none; }
 
-/* line 24, ../../../app/stylesheets/discussions.sass */
 .collapsed .hide-if-collapsed {
   display: none; }
-/* line 26, ../../../app/stylesheets/discussions.sass */
 .collapsed .show-if-collapsed {
   display: block; }
 
-/* line 29, ../../../app/stylesheets/discussions.sass */
 .discussion_entry {
   margin: 5px 0;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px; }
-  /* line 32, ../../../app/stylesheets/discussions.sass */
   .discussion_entry .new-and-total-badge {
     float: right;
     margin-top: 10px; }
-  /* line 35, ../../../app/stylesheets/discussions.sass */
   .discussion_entry .al-trigger {
     margin-left: 10px;
     margin-right: -10px;
     margin-top: -4px; }
-  /* line 40, ../../../app/stylesheets/discussions.sass */
   .discussion_entry .admin-link-hover-area:hover, .discussion_entry .admin-link-hover-area.active {
     cursor: pointer;
     background-color: #e4f3fe; }
-    /* line 43, ../../../app/stylesheets/discussions.sass */
     .discussion_entry .admin-link-hover-area:hover .discussion-title a, .discussion_entry .admin-link-hover-area.active .discussion-title a {
       color: #15a3fa;
       text-decoration: none; }
-  /* line 46, ../../../app/stylesheets/discussions.sass */
   .discussion_entry .ellipsis {
     padding-right: 70px; }
 
-/* line 49, ../../../app/stylesheets/discussions.sass */
 .reply-textarea {
   width: 100%; }
 
-/* line 52, ../../../app/stylesheets/discussions.sass */
 .discussion-section {
   padding: 3px 13px;
   background-color: #f3f4f5;
   border-top: 1px solid white;
   border-bottom: 1px solid #e1e1e1;
   position: relative; }
-  /* line 58, ../../../app/stylesheets/discussions.sass */
   .discussion-section:first-child {
     border-top: 0; }
-  /* line 60, ../../../app/stylesheets/discussions.sass */
   .discussion-section:last-child {
     border-bottom: 0; }
 
-/* line 63, ../../../app/stylesheets/discussions.sass */
 .topic .discussion-section {
   padding-left: 5px; }
-/* line 65, ../../../app/stylesheets/discussions.sass */
 .topic h1.discussion-title {
   font-size: 19px; }
 
-/* line 68, ../../../app/stylesheets/discussions.sass */
 .discussion-title {
   font-size: 13px;
   margin: 0; }
 
-/* line 71, ../../../app/stylesheets/discussions.sass */
 .discussion-subtitle {
   font-size: 11px;
   margin: 0; }
 
-/* line 74, ../../../app/stylesheets/discussions.sass */
 .discussion-header-content {
   position: relative; }
-  /* line 76, ../../../app/stylesheets/discussions.sass */
   .discussion-header-content a {
     color: inherit; }
 
-/* line 78, ../../../app/stylesheets/discussions.sass */
 .discussion-header-right {
   float: right; }
 
-/* line 80, ../../../app/stylesheets/discussions.sass */
 .discussion-pubdate {
   font-size: 11px;
   color: #777777; }
 
-/* line 83, ../../../app/stylesheets/discussions.sass */
 .discussion-assignment-section {
   background-image: url("/images/discussions/assignment_bg.png");
   background-position: 8px 8px;
   background-repeat: no-repeat;
   padding-left: 40px !important;
   min-height: 40px; }
-  /* line 89, ../../../app/stylesheets/discussions.sass */
   .discussion-assignment-section .discussion-title {
     font-size: 14px; }
-  /* line 91, ../../../app/stylesheets/discussions.sass */
   .discussion-assignment-section .discussion-header-content {
     margin-bottom: 15px;
     min-height: 30px; }
 
-/* line 94, ../../../app/stylesheets/discussions.sass */
 .discussion-assignment-links {
   margin: 10px -13px -3px -40px;
   padding: 3px 0;
   border-top: 1px solid #b6b7b7;
   background-color: #e9e9ea;
   text-align: center; }
-  /* line 100, ../../../app/stylesheets/discussions.sass */
   .discussion-assignment-links a {
     margin-right: 20px; }
 
-/* line 103, ../../../app/stylesheets/discussions.sass */
 .discussion-fyi {
   font-style: italic;
   font-size: 12px;
   color: #777777; }
 
-/* line 108, ../../../app/stylesheets/discussions.sass */
 .discussion-read-state {
   position: absolute;
   top: 0;
@@ -148,36 +115,28 @@
   bottom: 0;
   width: 8px;
   background-color: #d7d7d7; }
-  /* line 115, ../../../app/stylesheets/discussions.sass */
   .discussion-read-state .tooltip_wrap {
     left: -4px;
     top: -25px;
     bottom: auto;
     display: none; }
-  /* line 120, ../../../app/stylesheets/discussions.sass */
   .unread .discussion-read-state {
     background-color: #6dc0ff; }
 
-/* line 124, ../../../app/stylesheets/discussions.sass */
 .unread .discussion-read-state .unread,
 .just_read .discussion-read-state .just_read {
   display: block; }
 
-/* line 129, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-form .show-if-replying {
   display: none; }
-/* line 132, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-form.replying .hide-if-replying {
   display: none; }
-/* line 134, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-form.replying .show-if-replying {
   display: block; }
 
-/* line 138, ../../../app/stylesheets/discussions.sass */
 .entry .cancel_button {
   font-size: 11px; }
 
-/* line 141, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-label {
   display: block;
   background-color: white;
@@ -187,35 +146,28 @@
   cursor: text;
   border: 1px inset; }
 
-/* line 150, ../../../app/stylesheets/discussions.sass */
 .avatar {
   float: left;
   margin: 0 10px 0 0; }
-  /* line 153, ../../../app/stylesheets/discussions.sass */
   .avatar img {
     max-width: 35px;
     min-height: 35px; }
 
-/* line 159, ../../../app/stylesheets/discussions.sass */
 .topic .avatar img {
   max-width: 50px;
   min-height: 0; }
 
-/* line 164, ../../../app/stylesheets/discussions.sass */
 .discussion-header-content .author.unknown {
   font-style: italic; }
 
-/* line 167, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-attachments {
   list-style: none;
   padding: 0;
   margin: 0; }
-  /* line 171, ../../../app/stylesheets/discussions.sass */
   .discussion-reply-attachments li {
     padding: 0 0 0 20px;
     margin: 0;
     background: transparent url(/images/messages/attach-gray.png) left center no-repeat; }
-  /* line 175, ../../../app/stylesheets/discussions.sass */
   .discussion-reply-attachments a {
     display: inline-block;
     text-indent: -1000em;
@@ -223,25 +175,20 @@
     height: 16px;
     background: transparent url(/images/delete_circle.png) left center no-repeat; }
 
-/* line 182, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-add-attachment {
   display: inline-block;
   padding-left: 20px;
   background: transparent url(/images/messages/attach-blue.png) left center no-repeat; }
 
-/* line 187, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-attachments-container {
   float: right; }
 
-/* line 190, ../../../app/stylesheets/discussions.sass */
 .discussion-reply-buttons {
   float: left; }
 
-/* line 193, ../../../app/stylesheets/discussions.sass */
 .message-notification, .notification {
   background: #ffffcc; }
 
-/* line 197, ../../../app/stylesheets/discussions.sass */
 .view_switcher {
   width: 258px;
   text-decoration: none !important;
@@ -253,100 +200,76 @@
   font-size: 1.08em;
   font-weight: normal;
   text-shadow: 0px, 1px, 0px, rgba(255, 255, 255, 0.8); }
-  /* line 209, ../../../app/stylesheets/discussions.sass */
   .view_switcher.ui-state-hover, .view_switcher.ui-state-active, .view_switcher.ui-selectmenu-menu-dropdown {
     box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px; }
-  /* line 211, ../../../app/stylesheets/discussions.sass */
   .view_switcher a {
     color: inherit; }
-  /* line 213, ../../../app/stylesheets/discussions.sass */
   .view_switcher.ui-selectmenu-menu-dropdown {
     background: #ebebeb none !important;
     border-top: 0; }
-  /* line 218, ../../../app/stylesheets/discussions.sass */
   .view_switcher li.ui-selectmenu-hasIcon a,
   .view_switcher .ui-selectmenu-status {
     padding-left: 25px;
     margin-left: 12px; }
 
-/* line 222, ../../../app/stylesheets/discussions.sass */
 .collapsed-view .ui-selectmenu-item-icon {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADZJREFUeNpiDA0N/c9AAVi1ahUjC5BmBDIoMeg/I9AlDBS6hAHkEoq8A/LJqHdGvTO0vAMQYADHKCgMzJKYmAAAAABJRU5ErkJggg=='); }
 
-/* line 224, ../../../app/stylesheets/discussions.sass */
 .unread-view .ui-selectmenu-item-icon {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAD5JREFUeNpiDA0NZaAErFq1ioEFSP9noAwwMjFQDv5TwxCwdxiB/qLIS4yDJmCp4Z3/jKPpZDSdEBGwAAEGAK0dIBUjKX2FAAAAAElFTkSuQmCC'); }
 
-/* line 226, ../../../app/stylesheets/discussions.sass */
 .expanded-view .ui-selectmenu-item-icon {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADxJREFUeNpiDA0N/c9AAVi1ahUjEwPl4D81DGFgAWJGoJMo8hIjMEwYKAwTsEv+U+ib0YAdDViiAECAAQA8UxgSHWBJWAAAAABJRU5ErkJggg=='); }
 
-/* line 229, ../../../app/stylesheets/discussions.sass */
 .deleted-discussion-entry {
   opacity: 0.5; }
-  /* line 231, ../../../app/stylesheets/discussions.sass */
   .deleted-discussion-entry .discussion-header-content {
     min-height: 0; }
-  /* line 234, ../../../app/stylesheets/discussions.sass */
   .deleted-discussion-entry .admin-link-hover-area:hover, .deleted-discussion-entry .admin-link-hover-area.active {
     cursor: normal; }
-  /* line 236, ../../../app/stylesheets/discussions.sass */
   .deleted-discussion-entry .discussion-title {
     font-size: 12px;
     font-style: italic; }
 
-/* line 240, ../../../app/stylesheets/discussions.sass */
 .add_root_reply {
   display: inline-block;
   margin-top: 20px; }
 
-/* line 245, ../../../app/stylesheets/discussions.sass */
 .add_side_comment {
   margin-left: 42px !important;
   margin-top: 10px !important; }
 
-/* line 251, ../../../app/stylesheets/discussions.sass */
 .side_comment_discussion .discussion-entries {
   margin-left: 0;
   margin-top: 0;
   background: none; }
-  /* line 255, ../../../app/stylesheets/discussions.sass */
   .side_comment_discussion .discussion-entries:last-child {
     margin-bottom: 0; }
-/* line 258, ../../../app/stylesheets/discussions.sass */
 .side_comment_discussion .entry {
   padding-left: 0;
   background: none; }
-  /* line 261, ../../../app/stylesheets/discussions.sass */
   .side_comment_discussion .entry:last-child {
     margin-bottom: 0;
     padding-bottom: 4px; }
-  /* line 265, ../../../app/stylesheets/discussions.sass */
   .side_comment_discussion .entry .discussion_entry {
     margin-bottom: 0;
     position: relative; }
-    /* line 269, ../../../app/stylesheets/discussions.sass */
     .side_comment_discussion .entry .discussion_entry .entry {
       margin-left: 0;
       background: none;
       padding-left: 10px;
       padding-right: 0; }
-      /* line 275, ../../../app/stylesheets/discussions.sass */
       .side_comment_discussion .entry .discussion_entry .entry .discussion_entry {
         margin-bottom: 5px;
         border-bottom: none; }
-        /* line 278, ../../../app/stylesheets/discussions.sass */
         .side_comment_discussion .entry .discussion_entry .entry .discussion_entry:first-child {
           margin-top: 10px; }
-  /* line 281, ../../../app/stylesheets/discussions.sass */
   .side_comment_discussion .entry .replies {
     background-color: #cccccc;
     margin-left: 20px; }
-/* line 285, ../../../app/stylesheets/discussions.sass */
 .side_comment_discussion #discussion_subentries > .discussion-entries > .entry > .replies {
   padding-right: 10px; }
 
-/* line 287, ../../../app/stylesheets/discussions.sass */
 .add-side-comment-wrap .discussion-reply-form {
   background: #cccccc;
   padding: 10px;

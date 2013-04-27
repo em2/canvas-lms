@@ -1,37 +1,27 @@
-/* line 2, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog .more-details-link {
   float: right;
   font-size: 1.2em;
   line-height: 42px; }
-/* line 6, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog h1 {
   margin: 20px 0 0;
   padding: 0 12px;
   font-size: 23px; }
-/* line 10, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog .submission-details {
   padding: 10px; }
-  /* line 12, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .submission-details h1 {
     margin: 0 -10px 15px;
     border-bottom: 1px solid #bbbbbb; }
-  /* line 15, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .submission-details h2, .submission_details_dialog .submission-details h2 select {
     font-size: 15px; }
-/* line 17, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog .submission_detail {
   font-size: 1.1em;
   margin: 3px 0 10px; }
-/* line 20, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog .rubric-link {
   font-weight: bold; }
-/* line 22, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog .submisison-attachment {
   padding: 3px 0; }
-  /* line 24, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .submisison-attachment a {
     font-size: 11px; }
-/* line 26, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog .submission_details_comments {
   overflow: auto;
   max-height: 200px;
@@ -39,60 +29,47 @@
   padding: 0 12px;
   position: relative;
   background: #a3a3a3 url(/images/messages/messages-background.png) 0 0 repeat; }
-/* line 34, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_dialog .comment {
   background: white;
   clear: both;
   border-bottom: 1px solid #cccccc;
   padding: 10px;
   margin: 10px 0; }
-  /* line 40, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .comment:last-child {
     border-bottom: none; }
-  /* line 43, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .comment .middle {
     padding-left: 69px; }
-  /* line 45, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .comment .photo {
     float: left;
     width: 50px;
     height: 50px; }
-  /* line 49, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .comment time {
     float: right;
     color: #777777;
     font-size: 11px; }
-  /* line 53, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .comment address {
     font-style: normal;
     font-weight: bold;
     margin: 0; }
-  /* line 57, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_dialog .comment .comment_attachments a {
     padding-top: 4px; }
 
-/* line 59, ../../../app/stylesheets/submissionDetailsDialog.sass */
 .submission_details_add_comment_form {
   position: relative;
   border-top: 1px solid #bbbbbb;
   background-color: #f2f2f2;
   margin: 0px;
   padding: 5px 10px; }
-  /* line 65, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_add_comment_form label {
     font-weight: bold;
     display: block; }
-  /* line 68, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_add_comment_form #add_a_comment {
     width: 99%;
     display: block; }
-  /* line 71, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_add_comment_form #group-comment-container {
     float: left; }
-    /* line 73, ../../../app/stylesheets/submissionDetailsDialog.sass */
     .submission_details_add_comment_form #group-comment-container label {
       display: inline;
       font-weight: normal; }
-  /* line 76, ../../../app/stylesheets/submissionDetailsDialog.sass */
   .submission_details_add_comment_form .button {
     float: right; }

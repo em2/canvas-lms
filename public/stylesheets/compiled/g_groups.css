@@ -1,7 +1,5 @@
-/* line 1, ../../../app/stylesheets/g_groups.sass */
 .group_list {
   list-style: none; }
-  /* line 4, ../../../app/stylesheets/g_groups.sass */
   .group_list .group .group_name {
     clear: left;
     position: relative;
@@ -9,29 +7,23 @@
     padding-top: 5px;
     margin: 1em;
     margin-bottom: -2px; }
-    /* line 11, ../../../app/stylesheets/g_groups.sass */
     .group_list .group .group_name .management {
       float: left;
       position: absolute;
       right: 0; }
-    /* line 15, ../../../app/stylesheets/g_groups.sass */
     .group_list .group .group_name .name {
       font-size: 1.5em;
       padding-left: 20px;
       background: url(/images/group.png) no-repeat center left; }
-  /* line 20, ../../../app/stylesheets/g_groups.sass */
   .group_list .group.teacher_group .name {
     background: url(/images/assignment.png) no-repeat center left; }
-  /* line 22, ../../../app/stylesheets/g_groups.sass */
   .group_list .group .group_info {
     margin-top: -2px;
     padding-left: 3em; }
-  /* line 25, ../../../app/stylesheets/g_groups.sass */
   .group_list .group .member_list {
     list-style: none;
     max-height: 150px;
     overflow: auto; }
 
-/* line 31, ../../../app/stylesheets/g_groups.sass */
 .left_side a.assign_students_link {
   display: none; }

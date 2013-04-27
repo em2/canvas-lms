@@ -37,7 +37,7 @@ h3 .tally{font-family:arial,sans-serif;font-size:12px;padding-left:5px}
 #nav_disabled_list li.disabled{padding:4px 0 4px 0;border-bottom:1px solid #c6c6c6}
 #nav_disabled_list li.navitem{color:#888}
 #nav_disabled_list li.navitem .disabled_message{display:block;font-size:.8em;padding-left:10px;line-height:.7em;font-style:italic}
-#external_tools .external_tool{-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}
+#external_tools .external_tool{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px}
 #external_tools .external_tool .header{padding:5px 10px 0}
 #external_tools .external_tool .header .name{float:left;font-size:1.2em;font-weight:bold}
 #external_tools .external_tool .header .links{float:right;opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50)}

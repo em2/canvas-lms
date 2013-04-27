@@ -1,6 +1,6 @@
 #grades_summary{border-collapse:collapse;border-bottom:1px solid #eee}
-#grades_summary th{font-size:1em;padding:4px 5px 2px;font-weight:bold;background-color:#444;color:#fff;text-align:left}
-#grades_summary tr td{padding:5px 5px;text-align:left;border-top:1px solid #ccc;background-color:#fff}
+#grades_summary th{font-size:1em;padding:4px 5px 2px;font-weight:bold;background-color:#444;color:white;text-align:left}
+#grades_summary tr td{padding:5px 5px;text-align:left;border-top:1px solid #ccc;background-color:white}
 #grades_summary tr.comments td{border-width:0;font-size:.8em;padding-left:30px}
 #grades_summary tr.rubric_assessments>td{border-width:0;padding-left:30px}
 #grades_summary tr.rubric_assessments>td table.rubric{margin-top:0;margin-bottom:20px}
@@ -31,7 +31,7 @@
 #grades_summary .tooltip .tooltip_wrap,#grades_summary .tooltip .tooltip_text{display:block;visibility:hidden}
 #grades_summary .tooltip .tooltip_wrap{background:url(/images/tooltip_carat.png?1341500195) no-repeat left bottom;bottom:15px;padding-bottom:3px;position:absolute}
 .ie #grades_summary .tooltip .tooltip_wrap{bottom:25px}
-#grades_summary .tooltip .tooltip_text{background-color:#444;background-position:left bottom;color:#fff;left:0;max-width:250px;padding:2px 7px 2px;white-space:nowrap}
+#grades_summary .tooltip .tooltip_text{background-color:#444;background-position:left bottom;color:white;left:0;max-width:250px;padding:2px 7px 2px;white-space:nowrap}
 #grades_summary .tooltip .tooltip_text table tr td{background-color:transparent;font-size:1em;padding:0 2px;border-width:0}
 #grades_summary .tooltip .right{right:0;background-position:right bottom}
 #observer_user_url{font-size:.8em;border:1px solid #aaa}

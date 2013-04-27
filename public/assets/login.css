@@ -27,5 +27,5 @@ span.field-with-fancyplaceholder label.focus{color:#ccc}
 span.field-with-fancyplaceholder input:-webkit-autofill{background-color:transparent!important}
 span.field-with-fancyplaceholder input{outline:none}
 span.field-with-fancyplaceholder input.invalid{background:#ffffc5;color:#f30}
-span.field-with-fancyplaceholder input.editing{color:#000;background:none repeat scroll 0 0 transparent;overflow:hidden}
+span.field-with-fancyplaceholder input.editing{color:black;background:none repeat scroll 0 0 transparent;overflow:hidden}
 #register_link{position:absolute;display:block;background:url(/images/use_canvas_free_callout.png?1341500195) no-repeat;padding-left:229px;width:93px;height:41px;right:-1px;top:94px;font-size:11px;font-weight:bold;line-height:27px}

@@ -63,11 +63,11 @@ div.question{border-radius:3px}
 .question_holder>.question .question_comment.empty{display:none}
 .question_holder>.question .answer_comment_holder.empty{display:none}
 .question_holder>.question .answer_comment,.question_holder>.question .question_comment_text{white-space:pre-wrap}
-.question{border:2px solid #888;margin-bottom:30px;margin-top:.7em;-moz-border-radius:5px;background-color:#fff;position:relative;min-height:50px;_height:10px}
+.question{border:2px solid #888;margin-bottom:30px;margin-top:.7em;-moz-border-radius:5px;background-color:white;position:relative;min-height:50px;_height:10px}
 .question.modified_but_not_saved{border-width:3px}
 .question .move{float:left;margin-top:-0.8em;_margin-top:0;margin-left:20px;width:16px;height:16px;padding:2px}
 .question .move .move_icon{display:none;cursor:move}
-.question .header{font-size:1.2em;font-weight:bold;float:left;background-color:#fff;margin-left:10px;margin-top:-0.7em;_margin-top:0;padding:0 3px}
+.question .header{font-size:1.2em;font-weight:bold;float:left;background-color:white;margin-left:10px;margin-top:-0.7em;_margin-top:0;padding:0 3px}
 .question .text{clear:left;padding:5px 20px}
 .question .text .question_text .answer_select{border:2px solid #888}
 .question .text .question_text .text_after_answers{display:block;margin-top:10px}
@@ -113,16 +113,16 @@ div.question{border-radius:3px}
 .question .question_comment.question_correct_comment{border-color:#4a4}
 .question .question_comment.question_correct_comment .comment_top{background-image:url(/images/comment_top_correct.png?1341500195)}
 .question .links{float:right;top:2px;right:2px;visibility:hidden}
-.question .user_points{float:right;margin-right:5px;font-size:1.1em;font-weight:bold;background-color:#fff}
+.question .user_points{float:right;margin-right:5px;font-size:1.1em;font-weight:bold;background-color:white}
 .question .user_points .points_possible{font-size:.8em;font-weight:normal}
 .question .flag_question{float:left;margin-top:-0.8em;margin-left:20px;width:20px;height:20px;padding:2px;cursor:pointer}
 .question .flag_question .flag_icon{display:none}
-.question.marked .flag_question,.question.marked:hover .flag_question{background-color:#fff}
+.question.marked .flag_question,.question.marked:hover .flag_question{background-color:white}
 .question.marked .flag_question .flag_icon,.question.marked:hover .flag_question .flag_icon{display:inline;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
-.no-touch .question.hover .move{background-color:#fff}
+.no-touch .question.hover .move{background-color:white}
 .no-touch .question.hover .move .move_icon{display:inline}
 .no-touch .question.hover .links{visibility:visible}
-.no-touch .question.hover .flag_question{background-color:#fff}
+.no-touch .question.hover .flag_question{background-color:white}
 .no-touch .question.hover .flag_question .flag_icon{opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);display:inline}
 .question.multiple_choice_question .answer,.question.multiple_answers_question .answer,.question.matching_question .answer,.question.compare_fractions_question .answer,.question.locate_fractions_question .answer,.question.represent_fractions_question .answer,.question.compare_decimals_question .answer,.compare_decimal_fraction_question .answer{border-bottom:1px solid #ddd}
 .question.multiple_choice_question .answer:last-child,.question.multiple_answers_question .answer:last-child,.question.matching_question .answer:last-child,.question.compare_fractions_question .answer:last-child,.question.locate_fractions_question .answer:last-child,.question.represent_fractions_question .answer:last-child,.question.compare_decimals_question .answer:last-child,.compare_decimal_fraction_question .answer:last-child{border-bottom:0}
@@ -165,7 +165,7 @@ form.question_form .multi_answer_sets{display:none}
 form.question_form .fill_in_multiple_blanks_question .multi_answer_sets,form.question_form .multiple_dropdowns_question .multi_answer_sets{display:block}
 form.question_form .fill_in_multiple_blanks_question .multi_answer_sets_subheader,form.question_form .multiple_dropdowns_question .multi_answer_sets_subheader{font-size:.8em}
 form.question_form .explanation{font-size:.8em;margin-bottom:5px}
-form.question_form .form_answers .answer{border:1px solid #fff;-moz-border-radius:5px}
+form.question_form .form_answers .answer{border:1px solid white;-moz-border-radius:5px}
 form.question_form .form_answers .answer.hover{border:1px solid #ddd}
 form.question_form .form_answers .answer .question_actions{display:none}
 form.question_form .form_answers .answer.hover .question_actions{display:block}
@@ -255,13 +255,13 @@ ul#quiz_versions .quiz_version.selected{font-weight:bold}
 #aligned_outcomes_list .outcome .delete_outcome_link{float:right}
 #aligned_outcomes_list .outcome .content{font-size:.8em;padding-left:20px}
 #find_bank_dialog .bank_list{max-height:220px;overflow:auto;margin:10px 0}
-#find_bank_dialog .bank{-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;-khtml-border-radius:3px;border-radius:3px;padding:4px 5px;cursor:pointer;margin:0 20px;border-bottom:1px dotted #ccc}
+#find_bank_dialog .bank{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px;padding:4px 5px;cursor:pointer;margin:0 20px;border-bottom:1px dotted #ccc}
 #find_bank_dialog .bank .title{font-weight:bold}
 #find_bank_dialog .bank .sub_content{font-size:.8em;padding-left:20px}
 #find_bank_dialog .bank:hover{background-color:#eee}
 #find_bank_dialog .bank.selected{background-color:#ccc;font-weight:bold}
 #last_saved_indicator{margin-bottom:10px}
-.muted-notice{background:#f1f1f1;background-color:#f2f2f2;background-image:-webkit-gradient(linear,left top,left bottom,from(#eee),to(#f7f7f7));background-image:-webkit-linear-gradient(top,#eee,#f7f7f7);background-image:-moz-linear-gradient(top,#eee,#f7f7f7);background-image:-ms-linear-gradient(top,#eee,#f7f7f7);background-image:-o-linear-gradient(top,#eee,#f7f7f7);background-image:linear-gradient(top,#eee,#f7f7f7);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#eee',EndColorStr='#f7f7f7')";zoom:1;border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;padding:16px;text-shadow:1px 1px 1px rgba(255,255,255,0.75)}
+.muted-notice{background:#f1f1f1;background-color:#f2f2f2;background-image:-webkit-gradient(linear,left top,left bottom,from(#eee),to(#f7f7f7));background-image:-webkit-linear-gradient(top,#eee,#f7f7f7);background-image:-moz-linear-gradient(top,#eee,#f7f7f7);background-image:-ms-linear-gradient(top,#eee,#f7f7f7);background-image:-o-linear-gradient(top,#eee,#f7f7f7);background-image:linear-gradient(top,#eee,#f7f7f7);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#eeeeee',EndColorStr='#f7f7f7')";zoom:1;border:1px solid #ccc;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;padding:16px;text-shadow:1px 1px 1px rgba(255,255,255,0.75)}
 .ie9 .muted-notice{border-radius:0!important}
 .ui-selectmenu-menu a,.ui-selectmenu{color:#222!important;font-weight:normal;text-decoration:none!important}
 .ui-selectmenu{max-width:100%!important}

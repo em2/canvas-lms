@@ -1,27 +1,22 @@
-/* line 3, ../../../../app/stylesheets/calendar/sidebar.sass */
 .rs-section {
   padding: 13px;
   border-bottom: 1px solid #d0d1d2;
   border-top: 1px solid #f5f5f6;
   position: relative; }
-  /* line 8, ../../../../app/stylesheets/calendar/sidebar.sass */
   .rs-section:last-child {
     padding-bottom: 0;
     border-bottom: none; }
 
-/* line 12, ../../../../app/stylesheets/calendar/sidebar.sass */
 #undated-events ul {
   margin: 0;
   padding: 0;
   list-style: none; }
-/* line 16, ../../../../app/stylesheets/calendar/sidebar.sass */
 #undated-events .event {
   padding: 0px 4px;
   cursor: move;
   border-radius: 3px;
   margin: 2px 0;
   border: 1px solid; }
-/* line 22, ../../../../app/stylesheets/calendar/sidebar.sass */
 #undated-events .spin_holder {
   display: none;
   float: left;
@@ -29,30 +24,24 @@
   height: 20px;
   position: relative; }
 
-/* line 30, ../../../../app/stylesheets/calendar/sidebar.sass */
 #calendar-feed-message {
   background: url("/images/ical_big.png") no-repeat top left;
   padding-left: 40px; }
 
-/* line 33, ../../../../app/stylesheets/calendar/sidebar.sass */
 #calendar-feed-box-lower {
   text-align: center; }
-  /* line 35, ../../../../app/stylesheets/calendar/sidebar.sass */
   #calendar-feed-box-lower input {
     width: 98%; }
 
-/* line 37, ../../../../app/stylesheets/calendar/sidebar.sass */
 #context-list-holder {
   padding: 0; }
 
-/* line 39, ../../../../app/stylesheets/calendar/sidebar.sass */
 #context-list {
   margin: 0;
   padding: 10px 0;
   max-height: 215px;
   overflow-y: auto;
   overflow-x: hidden; }
-  /* line 45, ../../../../app/stylesheets/calendar/sidebar.sass */
   #context-list .context_list_context {
     list-style: none;
     margin: 0;
@@ -60,30 +49,24 @@
     cursor: pointer;
     line-height: 22px;
     position: relative; }
-  /* line 53, ../../../../app/stylesheets/calendar/sidebar.sass */
   #context-list .checkbox {
     width: 11px;
     height: 11px;
     margin: 5px 11px 0 15px;
     float: left;
     border: 1px solid; }
-  /* line 60, ../../../../app/stylesheets/calendar/sidebar.sass */
   #context-list .not-checked {
     color: #888888; }
-    /* line 62, ../../../../app/stylesheets/calendar/sidebar.sass */
     #context-list .not-checked .checkbox {
       border-color: #bbbbbb !important;
       background-color: #e6e7e9 !important; }
-  /* line 65, ../../../../app/stylesheets/calendar/sidebar.sass */
   #context-list .settings {
     visibility: hidden;
     padding: 4px 0;
     position: absolute;
     right: 5px; }
-  /* line 70, ../../../../app/stylesheets/calendar/sidebar.sass */
   #context-list .hovering .settings, #context-list .settings.ui-state-hover {
     visibility: visible; }
-  /* line 72, ../../../../app/stylesheets/calendar/sidebar.sass */
   #context-list .hovering {
     color: inherit;
     background: #b5b5b5; }

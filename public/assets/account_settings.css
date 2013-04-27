@@ -1,6 +1,6 @@
 .admins_list{list-style-type:none;padding-left:10px}
 .admins_list li{width:300px;padding:2px 5px;margin-bottom:5px}
-.admins_list li:hover{background-color:#eee;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;-khtml-border-radius:3px;border-radius:3px}
+.admins_list li:hover{background-color:#eee;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px}
 .admins_list .user_name{font-weight:bold;float:left}
 .admins_list .email{clear:left;display:block;font-size:.8em;color:#888;padding-left:10px}
 .admins_list .membership_type{clear:left;display:block;font-size:.8em;padding-left:10px}
@@ -20,9 +20,9 @@
 .announcements_list li .delete_notification_link{float:right;opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50)}
 .announcements_list li .dates{font-size:.8em;border-bottom:1px dotted #ccc;margin-bottom:5px}
 .announcements_list li .message{font-size:.8em}
-.announcements_list li:hover{background:#eee;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}
+.announcements_list li:hover{background:#eee;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px}
 .announcements_list li:hover .delete_notification_link{opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
-#external_tools .external_tool{-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}
+#external_tools .external_tool{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px}
 #external_tools .external_tool .header{padding:5px 10px 0}
 #external_tools .external_tool .header .name{float:left;font-size:1.2em;font-weight:bold}
 #external_tools .external_tool .header .links{float:right;opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50)}

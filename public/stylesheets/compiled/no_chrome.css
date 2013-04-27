@@ -1,48 +1,34 @@
-/* line 5, ../../../app/stylesheets/no_chrome.sass */
 body.with-left-side #left-side {
   display: none; }
-/* line 7, ../../../app/stylesheets/no_chrome.sass */
 body.with-left-side #main {
   margin-left: 0; }
-/* line 9, ../../../app/stylesheets/no_chrome.sass */
 body.with-left-side #footer {
   display: none; }
 
-/* line 13, ../../../app/stylesheets/no_chrome.sass */
 body.with-right-side #right-side-wrapper {
   display: none; }
 
-/* line 17, ../../../app/stylesheets/no_chrome.sass */
 body.with-right-side.with-left-side #menu {
   display: none; }
-/* line 19, ../../../app/stylesheets/no_chrome.sass */
 body.with-right-side.with-left-side #topbar {
   display: none; }
-/* line 21, ../../../app/stylesheets/no_chrome.sass */
 body.with-right-side.with-left-side #header {
   display: none; }
-/* line 23, ../../../app/stylesheets/no_chrome.sass */
 body.with-right-side.with-left-side #breadcrumbs {
   display: none; }
-/* line 25, ../../../app/stylesheets/no_chrome.sass */
 body.with-right-side.with-left-side .flag_question {
   display: none; }
 
-/* line 29, ../../../app/stylesheets/no_chrome.sass */
 #questions.assessment_results .header {
   display: none; }
-/* line 31, ../../../app/stylesheets/no_chrome.sass */
 #questions.assessment_results .user_points {
   display: none; }
 
-/* line 36, ../../../app/stylesheets/no_chrome.sass */
 #questions.assessing .header .question_points_holder {
   display: none; }
 
-/* line 40, ../../../app/stylesheets/no_chrome.sass */
 body.with-scrolling-right-side #content, body.with-scrolling-right-side body.with-sidebar-pinned-to-bottom {
   padding-right: 13px; }
 
-/* line 43, ../../../app/stylesheets/no_chrome.sass */
 .summary {
   display: none; }

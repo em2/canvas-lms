@@ -1,62 +1,46 @@
-/* line 1, ../../../app/stylesheets/misconceptions.sass */
 .misconception {
   border: 2px solid #888888;
   border-radius: 3px;
   background-color: #f6f6f6; }
-  /* line 5, ../../../app/stylesheets/misconceptions.sass */
   .misconception .misconception_piece {
     padding-left: 5px; }
-    /* line 8, ../../../app/stylesheets/misconceptions.sass */
     .misconception .misconception_piece td.s1 {
       border-right: 1px solid black;
       border-bottom: 1px solid black; }
-    /* line 11, ../../../app/stylesheets/misconceptions.sass */
     .misconception .misconception_piece td.s2 {
       border-right: 1px solid black;
       border-bottom: 1px solid black; }
-    /* line 14, ../../../app/stylesheets/misconceptions.sass */
     .misconception .misconception_piece td.s3 {
       border-right: 1px solid black;
       border-bottom: 1px solid black; }
-  /* line 17, ../../../app/stylesheets/misconceptions.sass */
   .misconception .name {
     font-size: 25px; }
-  /* line 19, ../../../app/stylesheets/misconceptions.sass */
   .misconception .responses {
     font-size: 15px; }
-  /* line 21, ../../../app/stylesheets/misconceptions.sass */
   .misconception .explanation_url {
     font-size: 15px; }
-  /* line 23, ../../../app/stylesheets/misconceptions.sass */
   .misconception .description {
     font-size: 15px; }
-  /* line 25, ../../../app/stylesheets/misconceptions.sass */
   .misconception td {
     padding: 4px;
     text-align: center; }
-  /* line 28, ../../../app/stylesheets/misconceptions.sass */
   .misconception .misconception_piece_title {
     border-bottom: 1px solid #888888; }
-  /* line 30, ../../../app/stylesheets/misconceptions.sass */
   .misconception .edit_misconception_link, .misconception .update_misconception_link {
     margin-top: 5px;
     margin-left: 5px; }
 
-/* line 33, ../../../app/stylesheets/misconceptions.sass */
 .misconception_limits {
   margin-bottom: 10px;
   margin-top: 15px;
   border-top: 2px solid #777777;
   border-bottom: 2px solid #777777;
   background-color: #e5e5e5; }
-  /* line 39, ../../../app/stylesheets/misconceptions.sass */
   .misconception_limits td {
     padding: 4px;
     text-align: center; }
-  /* line 42, ../../../app/stylesheets/misconceptions.sass */
   .misconception_limits .title {
     margin-left: 15px; }
 
-/* line 44, ../../../app/stylesheets/misconceptions.sass */
 .line {
   border-bottom: 1px solid #777777; }

@@ -1,63 +1,50 @@
-/* line 2, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports body {
   font-family: arial, sans, sans-serif;
   margin: 0;
   font-size: 13px; }
-  /* line 3, ../../../app/stylesheets/reports_class.sass */
   .classroom_reports body::-webkit-scrollbar-track-piece {
     background-clip: padding-box;
     background-color: whitesmoke;
     border: solid white;
     border-width: 0 0 0 3px;
     box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
-    /* line 9, ../../../app/stylesheets/reports_class.sass */
     .classroom_reports body::-webkit-scrollbar-track-piece:horizontal {
       border-width: 3px 0 0;
       box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
-  /* line 12, ../../../app/stylesheets/reports_class.sass */
   .classroom_reports body::-webkit-scrollbar-thumb {
     border-width: 1px 1px 1px 5px; }
-    /* line 14, ../../../app/stylesheets/reports_class.sass */
     .classroom_reports body::-webkit-scrollbar-thumb:horizontal {
       border-width: 5px 1px 1px; }
-  /* line 16, ../../../app/stylesheets/reports_class.sass */
   .classroom_reports body::-webkit-scrollbar-corner {
     background-clip: padding-box;
     background-color: whitesmoke;
     border: solid white;
     border-width: 3px 0 0 3px;
     box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.14); }
-  /* line 25, ../../../app/stylesheets/reports_class.sass */
   .classroom_reports body td {
     font-size: 13px; }
-/* line 28, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports #tblMain td.hd p, .classroom_reports .colHeadTable td.hd p {
   margin: 0;
   width: 0;
   overflow: hidden;
   font-size: 0; }
-/* line 34, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports #tblKey td.hd p, .classroom_reports .colHeadTable td.hd p {
   margin: 0;
   width: 0;
   overflow: hidden;
   font-size: 0; }
-/* line 40, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports td.rShim {
   width: 35px;
   height: 0;
   border-right: 1px #c8c8c8 solid; }
-/* line 47, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed {
   table-layout: fixed;
   border-collapse: collapse;
   border-style: none;
   border-spacing: 0px;
   width: 0px; }
-/* line 55, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports td.num {
   text-align: right; }
-/* line 59, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s9 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -73,7 +60,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 74, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s25 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -89,7 +75,6 @@
   overflow: hidden;
   border-left: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 89, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s26 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -101,7 +86,6 @@
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 100, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s7 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -116,7 +100,6 @@
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 114, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s23 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -131,7 +114,6 @@
   white-space: normal;
   overflow: hidden;
   border-left: 3px solid black; }
-/* line 128, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s24 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -147,7 +129,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 143, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s8, .classroom_reports .tblGenFixed td.s21 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -159,7 +140,6 @@
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 154, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s5 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -173,7 +153,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 167, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s22 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -186,7 +165,6 @@
   white-space: normal;
   overflow: hidden;
   border-right: 1px solid black; }
-/* line 179, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s6 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -201,7 +179,6 @@
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 193, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s20 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -213,7 +190,6 @@
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 204, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s4, .classroom_reports .tblGenFixed td.s0 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -226,7 +202,6 @@
   white-space: normal;
   overflow: hidden;
   border-right: 1px solid black; }
-/* line 216, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s2 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -242,7 +217,6 @@
   overflow: hidden;
   border-top: 3px solid black;
   border-right: 3px solid black; }
-/* line 231, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s1 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -259,7 +233,6 @@
   border-top: 3px solid black;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 247, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s16 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -275,7 +248,6 @@
   overflow: hidden;
   border-right: 1px solid black;
   border-bottom: 1px solid black; }
-/* line 262, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s17 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -290,7 +262,6 @@
   overflow: hidden;
   border-right: 1px solid black;
   border-bottom: 1px solid black; }
-/* line 276, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s18 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -305,7 +276,6 @@
   white-space: normal;
   overflow: hidden;
   border-top: 3px solid black; }
-/* line 290, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s19 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -321,7 +291,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-top: 3px solid black; }
-/* line 305, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s12 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -337,7 +306,6 @@
   overflow: hidden;
   border-right: 1px solid black;
   border-bottom: 3px solid black; }
-/* line 320, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s14 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -354,7 +322,6 @@
   border-right: 3px solid black;
   border-bottom: 1px solid black;
   border-left: 3px solid black; }
-/* line 336, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s15 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -370,7 +337,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 1px solid black; }
-/* line 351, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s10, .classroom_reports .tblGenFixed td.s11 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -386,7 +352,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 366, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s27 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -403,7 +368,6 @@
   border-top: 3px solid black;
   border-bottom: 3px solid black;
   border-right: 1px solid black; }
-/* line 382, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s28 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -420,7 +384,6 @@
   border-top: 3px solid black;
   border-bottom: 3px solid black;
   border-right: 3px solid black; }
-/* line 398, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s29 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -437,7 +400,6 @@
   border-bottom: 3px solid black;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 414, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s30 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -453,7 +415,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 1px solid black; }
-/* line 430, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s40 {
   background-color: #efefef;
   font-family: arial, sans, sans-serif;
@@ -471,7 +432,6 @@
   border-right: 3px solid black;
   border-bottom: 3px solid black;
   border-left: 3px solid black; }
-/* line 447, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s42 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -484,7 +444,6 @@
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 459, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s41 {
   background-color: #efefef;
   font-family: arial, sans, sans-serif;
@@ -501,7 +460,6 @@
   border-top: 3px solid black;
   border-right: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 475, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s56 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -514,7 +472,6 @@
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 487, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s57, .classroom_reports .tblGenFixed td.s58 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -527,7 +484,6 @@
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 499, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s49 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -542,7 +498,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 513, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s52 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -557,7 +512,6 @@
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 527, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s53 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -574,7 +528,6 @@
   border-right: 3px solid black;
   border-bottom: 3px solid black;
   border-left: 3px solid black; }
-/* line 543, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s47 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -590,7 +543,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 558, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s54 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -606,7 +558,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 573, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s55 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -621,7 +572,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-bottom: 3px solid black; }
-/* line 587, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s48, .classroom_reports .tblGenFixed td.s45 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -636,7 +586,6 @@
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 601, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s46 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -649,7 +598,6 @@
   direction: Context;
   white-space: normal;
   overflow: hidden; }
-/* line 613, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s43, .classroom_reports .tblGenFixed td.s50 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -665,7 +613,6 @@
   overflow: hidden;
   border-right: 3px solid black;
   border-left: 3px solid black; }
-/* line 628, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s44 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -680,7 +627,6 @@
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 642, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports .tblGenFixed td.s51 {
   background-color: white;
   font-family: arial, sans, sans-serif;
@@ -694,18 +640,13 @@
   white-space: normal;
   overflow: hidden;
   border-right: 3px solid black; }
-/* line 656, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports #content {
   overflow: scroll; }
-/* line 659, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports #report_heading {
   margin-left: 240px; }
-/* line 662, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports #assessment_date_range {
   margin-left: 320px; }
-/* line 665, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports #assessment_date {
   margin-left: 395px; }
-/* line 668, ../../../app/stylesheets/reports_class.sass */
 .classroom_reports #printed_statement {
   float: right; }

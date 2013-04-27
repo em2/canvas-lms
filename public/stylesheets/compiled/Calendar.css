@@ -1,13 +1,10 @@
-/* line 3, ../../../app/stylesheets/Calendar.sass */
 #right-side {
   background-color: #e6e7e9;
   box-shadow: none; }
 
-/* line 6, ../../../app/stylesheets/Calendar.sass */
 #breadcrumbs {
   box-shadow: none; }
 
-/* line 14, ../../../app/stylesheets/Calendar.sass */
 #content, #right-side-wrapper {
   opacity: 0;
   -ms-filter: alpha(Opacity=0);
@@ -16,65 +13,49 @@
   -moz-transition: opacity 0.3s;
   -o-transition: opacity 0.3s;
   transition: opacity 0.3s; }
-  /* line 17, ../../../app/stylesheets/Calendar.sass */
   .calendar-loaded #content, .calendar-loaded #right-side-wrapper {
     opacity: 1;
     -ms-filter: alpha(Opacity=100);
     filter: alpha(Opacity=100); }
 
-/* line 20, ../../../app/stylesheets/Calendar.sass */
 #not_right_side {
   background: url("/images/black-header-bg.png") repeat-x 0 27px; }
 
-/* line 23, ../../../app/stylesheets/Calendar.sass */
 #calendar-header {
   text-align: center;
   height: 28px;
   padding: 8px 0;
   margin: -13px 0 0; }
 
-/* line 29, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-view-month .fc-widget-header {
   color: #627382;
   font-size: 14px;
   background-color: #f6f7f9;
   line-height: 35px; }
-/* line 34, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-widget-header, .calendar .fc-widget-content {
   border-color: #dadada; }
-/* line 36, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-header {
   margin-top: 20px; }
-  /* line 38, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-header h2 {
     margin-bottom: 0; }
-/* line 40, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-other-month {
   color: #b4b3b3;
   background-color: #f8f9f9; }
-/* line 44, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-state-highlight {
   background-color: #ecf3f6;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3); }
-/* line 47, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-event-inner {
   border-color: inherit; }
-/* line 50, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-event-time {
   font-weight: bold; }
-/* line 53, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-agenda .fc-agenda-slots .fc-agenda-axis {
   border-top-color: transparent; }
-/* line 55, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-agenda .fc-widget-header {
   background-color: #f6f7f9; }
-/* line 58, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-agenda .scheduler-reserved {
   font-weight: bold; }
-/* line 60, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-agenda .scheduler-full {
   background-color: #eeeeee !important; }
-/* line 64, ../../../app/stylesheets/Calendar.sass */
 .calendar .agenda-col-wrapper {
   overflow: hidden;
   display: inline-block;
@@ -84,36 +65,29 @@
   padding: 10px 0;
   text-transform: uppercase;
   text-align: left; }
-  /* line 73, ../../../app/stylesheets/Calendar.sass */
   .calendar .agenda-col-wrapper .day-num {
     font-size: 24px;
     float: left;
     padding-right: 5px;
     line-height: 23px;
     text-shadow: -1px -1px 1px white; }
-  /* line 80, ../../../app/stylesheets/Calendar.sass */
   .calendar .agenda-col-wrapper .day-name {
     float: left;
     line-height: 13px; }
-  /* line 83, ../../../app/stylesheets/Calendar.sass */
   .calendar .agenda-col-wrapper .month-name {
     line-height: 10px;
     float: left;
     color: #9da5ab; }
 
-/* line 88, ../../../app/stylesheets/Calendar.sass */
 .fc-event.assignment {
   border-color: transparent;
   background-color: transparent;
   overflow-x: hidden; }
-  /* line 92, ../../../app/stylesheets/Calendar.sass */
   .fc-event.assignment * {
     display: inline; }
-  /* line 94, ../../../app/stylesheets/Calendar.sass */
   .fc-event.assignment:hover .fc-event-title {
     text-decoration: underline; }
 
-/* line 96, ../../../app/stylesheets/Calendar.sass */
 .counter-badge {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -126,7 +100,6 @@
   box-shadow: inset 1px 0px 1px rgba(0, 0, 0, 0.3);
   padding: 1px 6px; }
 
-/* line 104, ../../../app/stylesheets/Calendar.sass */
 #refresh_calendar_link {
   display: inline-block;
   text-indent: 999px;
@@ -136,11 +109,9 @@
   height: 20px;
   margin-top: 4px;
   background-image: url("/images/ajax-loader-white-on-black copy-static.gif"); }
-  /* line 110, ../../../app/stylesheets/Calendar.sass */
   #refresh_calendar_link.loading {
     background-image: url("/images/ajax-loader-white-on-black.gif"); }
 
-/* line 114, ../../../app/stylesheets/Calendar.sass */
 .event-details {
   position: absolute;
   z-index: 1000;
@@ -148,49 +119,38 @@
   box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 10px;
   background-color: white;
   max-width: 500px; }
-  /* line 115, ../../../app/stylesheets/Calendar.sass */
   .event-details h3 {
     margin-bottom: 0; }
-  /* line 117, ../../../app/stylesheets/Calendar.sass */
   .event-details.carat-bottom .ui-menu-carat span {
     border-color: white transparent; }
-  /* line 126, ../../../app/stylesheets/Calendar.sass */
   .event-details ul {
     margin: 0;
     padding: 0;
     list-style: none; }
-    /* line 28, ../../../app/stylesheets/mixins/_misc.sass */
     .event-details ul li {
       margin: 0;
       padding: 0; }
-  /* line 128, ../../../app/stylesheets/Calendar.sass */
   .event-details th {
     font-weight: bold;
     padding-bottom: 3px;
     padding-right: 8px; }
-  /* line 132, ../../../app/stylesheets/Calendar.sass */
   .event-details td, .event-details th {
     vertical-align: top; }
-  /* line 134, ../../../app/stylesheets/Calendar.sass */
   .event-details .delete_event_link {
     float: right !important; }
 
-/* line 136, ../../../app/stylesheets/Calendar.sass */
 .event-details-timestring {
   margin: 5px 0 10px;
   color: #666666;
   font-size: 14px; }
 
-/* line 141, ../../../app/stylesheets/Calendar.sass */
 .event-details-links a {
   padding-right: 6px;
   line-height: 12px;
   border-right: 1px solid #333333; }
-/* line 145, ../../../app/stylesheets/Calendar.sass */
 .event-details-links a:last-child {
   border-right: none; }
 
-/* line 147, ../../../app/stylesheets/Calendar.sass */
 .event-details-header,
 .event-details-content,
 .event-details-footer {
@@ -198,19 +158,16 @@
   border-bottom: 1px solid #eeeeee;
   overflow: auto;
   max-height: 225px; }
-  /* line 154, ../../../app/stylesheets/Calendar.sass */
   .event-details-header:last-child,
   .event-details-content:last-child,
   .event-details-footer:last-child {
     border-bottom: none; }
 
-/* line 156, ../../../app/stylesheets/Calendar.sass */
 .event-details-actual-context {
   font-size: 0.8em;
   font-style: italic;
   color: #666666; }
 
-/* line 161, ../../../app/stylesheets/Calendar.sass */
 #attendees li {
   white-space: nowrap;
   float: left;
@@ -225,7 +182,6 @@
   border-radius: 10px;
   cursor: default;
   position: relative; }
-  /* line 2, ../../../app/stylesheets/mixins/_name_bubbles.sass */
   #attendees li div {
     background-color: #dee7fa;
     -webkit-border-radius: 10px;
@@ -236,13 +192,11 @@
     padding: 0 14px 0 11px;
     display: inline-block;
     overflow: hidden; }
-  /* line 8, ../../../app/stylesheets/mixins/_name_bubbles.sass */
   #attendees li span {
     color: white;
     font-size: 0.8em;
     vertical-align: top;
     display: inline-block; }
-  /* line 13, ../../../app/stylesheets/mixins/_name_bubbles.sass */
   #attendees li a {
     position: absolute;
     right: 1px;
@@ -253,18 +207,14 @@
     vertical-align: top;
     cursor: pointer;
     background: transparent url(/images/messages/token-delete.png) 12px center no-repeat; }
-  /* line 33, ../../../app/stylesheets/mixins/_name_bubbles.sass */
   #attendees li:hover {
     border-color: #6f94e6; }
-    /* line 34, ../../../app/stylesheets/mixins/_name_bubbles.sass */
     #attendees li:hover div {
       background-color: #bccef4; }
-    /* line 37, ../../../app/stylesheets/mixins/_name_bubbles.sass */
     #attendees li:hover a {
       background-position: 1px center; }
 
 /*replicate button styles to work for fullcalendar */
-/* line 165, ../../../app/stylesheets/Calendar.sass */
 .calendar .fc-button {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -283,14 +233,11 @@
   box-shadow: rgba(0, 0, 0, 0.5), 0px, 1px, 2px, 0;
   border: 1px solid #bdbdbd;
   padding: 3px 15px; }
-  /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
   .ie9 .calendar .fc-button {
     border-radius: 0 !important; }
-  /* line 171, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-button ~ .fc-button {
     border-left: 0;
     margin-left: 0; }
-  /* line 174, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-button.fc-state-hover {
     background-color: #efefef;
     background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#dfdfdf));
@@ -301,10 +248,8 @@
     background-image: linear-gradient(top, #ffffff, #dfdfdf);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='white',EndColorStr='#dfdfdf')";
     zoom: 1; }
-    /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
     .ie9 .calendar .fc-button.fc-state-hover {
       border-radius: 0 !important; }
-  /* line 176, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-button.fc-state-down {
     background-color: #b7b7b7;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#a8a8a8), to(#c6c6c6));
@@ -315,18 +260,14 @@
     background-image: linear-gradient(top, #a8a8a8, #c6c6c6);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#a8a8a8',EndColorStr='#c6c6c6')";
     zoom: 1; }
-    /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
     .ie9 .calendar .fc-button.fc-state-down {
       border-radius: 0 !important; }
-  /* line 178, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-button.fc-state-disabled {
     opacity: 0.7; }
-  /* line 180, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-button .fc-button-content {
     font-weight: bold;
     color: #525252;
     text-shadow: white 0 1px 1px; }
-  /* line 184, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-button.fc-corner-left {
     -moz-border-radius-topleft: 20px;
     -webkit-border-top-left-radius: 20px;
@@ -334,7 +275,6 @@
     -moz-border-radius-bottomleft: 20px;
     -webkit-border-bottom-left-radius: 20px;
     border-bottom-left-radius: 20px; }
-  /* line 186, ../../../app/stylesheets/Calendar.sass */
   .calendar .fc-button.fc-corner-right {
     -moz-border-radius-topright: 20px;
     -webkit-border-top-right-radius: 20px;
@@ -343,17 +283,13 @@
     -webkit-border-bottom-right-radius: 20px;
     border-bottom-right-radius: 20px; }
 
-/* line 190, ../../../app/stylesheets/Calendar.sass */
 #delete_event_dialog textarea {
   width: 100%; }
 
-/* line 194, ../../../app/stylesheets/Calendar.sass */
 #edit_appt_calendar_event_form p {
   margin-bottom: 0.5em; }
-/* line 196, ../../../app/stylesheets/Calendar.sass */
 #edit_appt_calendar_event_form textarea {
   width: 500px;
   height: 100px; }
-/* line 199, ../../../app/stylesheets/Calendar.sass */
 #edit_appt_calendar_event_form .max-participants {
   width: 40px; }

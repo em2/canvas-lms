@@ -8,7 +8,7 @@ input.outcome_rating_description{width:200px}
 .outcome_result .results_link{font-size:.8em;margin-left:20px}
 .outcome_result.mastery_result .mastery{display:inline}
 .outcome_group>.header{display:none}
-.outcome_group .outcome_group{border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;background-color:#fff;margin:5px 0 10px}
+.outcome_group .outcome_group{border:1px solid #ccc;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;background-color:white;margin:5px 0 10px}
 .outcome_group .outcome_group>.header{position:relative;background-color:#eee;display:block;border-bottom:1px solid #ccc;padding:5px 10px 2px}
 .outcome_group .outcome_group>.header .reorder_link{position:absolute;top:3px;left:0;visibility:hidden}
 .outcome_group .outcome_group>.header .title{margin:0 44px 0 20px;font-size:1em;font-weight:bold}
@@ -23,7 +23,7 @@ input.outcome_rating_description{width:200px}
 .outcome_group form.outcome_group>.header{border-bottom-width:0}
 .outcome_group>.header .title{font-size:1.2em;font-weight:bold}
 .child_outcomes{min-height:10px;padding-bottom:10px}
-.learning_outcome{margin-bottom:10px;background-color:#fff;margin:5px 11px 10px;display:block}
+.learning_outcome{margin-bottom:10px;background-color:white;margin:5px 11px 10px;display:block}
 .learning_outcome .header{padding:0 44px 0 20px;position:relative;border-bottom:1px solid #888}
 .learning_outcome .header .reorder_link{position:absolute;top:3px;left:0;visibility:hidden}
 .learning_outcome .header .short_description{font-size:1.2em;font-weight:bold}
@@ -59,7 +59,7 @@ input.outcome_rating_description{width:200px}
 #alignments li .title{font-size:1.2em;font-weight:bold}
 #alignments li .header{float:left}
 #alignments li .links{float:right;opacity:.5}
-#alignments li.hover_alignment{background-color:#eee;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}
+#alignments li.hover_alignment{background-color:#eee;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px}
 #alignments li.hover_alignment .links{opacity:1}
 #alignments li .type_icon{background:url(/images/file.png?1341500195) no-repeat left top}
 #alignments li.attachment .type_icon{background-image:url(/images/file_download.png?1341500195)}
@@ -70,7 +70,7 @@ input.outcome_rating_description{width:200px}
 #alignments.orderable li .move_alignment_link{display:inline}
 #artifacts{list-style-type:none;padding-left:20px}
 #artifacts li{margin-bottom:10px;padding:2px 5px;display:block}
-#artifacts li.hover_artifact{background-color:#eee;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}
+#artifacts li.hover_artifact{background-color:#eee;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px}
 #artifacts li .scoring{margin-bottom:5px}
 #artifacts li .title{font-weight:bold}
 .outcomes .uneditable .outcome_group .header .reorder_link{display:none}
