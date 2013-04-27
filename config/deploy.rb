@@ -40,7 +40,8 @@ namespace :deploy do
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_configs', 'deploy:start_delayed_jobs'
+after 'deploy:update_code', 'deploy:symlink_configs'
+after 'deploy:symlink', 'deploy:start_delayed_jobs'
 
 namespace :deploy do
   desc "Symlinks the config files"
