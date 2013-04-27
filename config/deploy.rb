@@ -46,7 +46,7 @@ after 'deploy:create_symlink', 'deploy:start_delayed_jobs'
 namespace :deploy do
   desc "Symlinks the config files"
   task :symlink_configs, :roles => :app do
-    %w{security.yml delayed_jobs.yml domain.yml database.yml newrelic.yml outgoing_mail.yml amazon_s3.yml assets.yml}.each do |config|
+    %w{security.yml delayed_jobs.yml domain.yml database.yml newrelic.yml outgoing_mail.yml amazon_s3.yml assets.yml cache_store.yml redis.yml}.each do |config|
       run "ln -fs #{shared_path}/config/#{config} #{release_path}/config/#{config}"
     end
   end
