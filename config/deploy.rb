@@ -69,14 +69,14 @@ end
 namespace :deploy do
   desc "Enable newrelic Pinging"
   task :enable_pinging, :roles => :app do
-    run "cd #{current_path} && curl https://rpm.newrelic.com/accounts/102708/applications/2090183/ping_targets/enable -X POST -H \"X-Api-Key: 9317770e9abe93b1a37514625fcaf91d50eeb879f54b3a5\""
+    run "cd #{current_path} && curl https://rpm.newrelic.com/accounts/102708/applications/2098552/ping_targets/enable -X POST -H \"X-Api-Key: 9317770e9abe93b1a37514625fcaf91d50eeb879f54b3a5\""
   end
 end
 
 namespace :deploy do
   desc "Disable newrelic Pinging"
   task :disable_pinging, :roles => :app do
-    run "cd #{current_path} && curl https://rpm.newrelic.com/accounts/102708/applications/2090183/ping_targets/disable -X POST -H \"X-Api-Key: 9317770e9abe93b1a37514625fcaf91d50eeb879f54b3a5\""
+    run "cd #{current_path} && curl https://rpm.newrelic.com/accounts/102708/applications/2098552/ping_targets/disable -X POST -H \"X-Api-Key: 9317770e9abe93b1a37514625fcaf91d50eeb879f54b3a5\""
   end
 end
 
