@@ -1,3 +1,4 @@
+/* line 2, ../../../app/stylesheets/message_students.sass */
 #message_students_dialog .student_list {
   max-height: 100px;
   overflow: auto;
@@ -5,6 +6,7 @@
   padding: 5px 0;
   margin: 0;
   list-style-type: none; }
+  /* line 9, ../../../app/stylesheets/message_students.sass */
   #message_students_dialog .student_list li {
     float: left;
     padding: 2px 4px;
@@ -12,10 +14,12 @@
     background-color: #ccddff;
     border: 1px solid #aaaaaa;
     -moz-border-radius: 3px; }
+    /* line 16, ../../../app/stylesheets/message_students.sass */
     #message_students_dialog .student_list li .score {
       display: none;
       padding-left: 5px;
       font-size: 0.9em;
       color: #444444; }
+  /* line 23, ../../../app/stylesheets/message_students.sass */
   #message_students_dialog .student_list.show_score li .score {
     display: inline; }

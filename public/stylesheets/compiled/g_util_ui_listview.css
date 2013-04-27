@@ -1,3 +1,4 @@
+/* line 3, ../../../app/stylesheets/g_util_ui_listview.scss */
 .ui-listview {
   -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
@@ -13,6 +14,7 @@
   /*  &, li:first-child, li:last-child {
       @include background-clip(padding-box);
     }*/ }
+  /* line 12, ../../../app/stylesheets/g_util_ui_listview.scss */
   .ui-listview li:first-child {
     -moz-border-radius-topleft: 0.6em;
     -webkit-border-top-left-radius: 0.6em;
@@ -20,6 +22,7 @@
     -moz-border-radius-topright: 0.6em;
     -webkit-border-top-right-radius: 0.6em;
     border-top-right-radius: 0.6em; }
+  /* line 13, ../../../app/stylesheets/g_util_ui_listview.scss */
   .ui-listview li:last-child {
     -moz-border-radius-bottomleft: 0.6em;
     -webkit-border-bottom-left-radius: 0.6em;
@@ -27,6 +30,7 @@
     -moz-border-radius-bottomright: 0.6em;
     -webkit-border-bottom-right-radius: 0.6em;
     border-bottom-right-radius: 0.6em; }
+  /* line 16, ../../../app/stylesheets/g_util_ui_listview.scss */
   .ui-listview.ui-listview-no-rounded-bottom, .ui-listview.ui-listview-no-rounded-bottom li:last-child {
     -moz-border-radius-bottomleft: 0;
     -webkit-border-bottom-left-radius: 0;
@@ -34,6 +38,7 @@
     -moz-border-radius-bottomright: 0;
     -webkit-border-bottom-right-radius: 0;
     border-bottom-right-radius: 0; }
+  /* line 23, ../../../app/stylesheets/g_util_ui_listview.scss */
   .ui-listview li {
     border: 1px solid #ccc;
     border-bottom-width: 0;
@@ -51,8 +56,10 @@
     background-image: linear-gradient(top, #fdfdfd, #eeeeee);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fdfdfd',EndColorStr='#eeeeee')";
     zoom: 1; }
+    /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
     .ie9 .ui-listview li {
       border-radius: 0 !important; }
+    /* line 32, ../../../app/stylesheets/g_util_ui_listview.scss */
     .ui-listview li .ui-listview-text {
       display: block;
       position: relative;
@@ -65,6 +72,7 @@
       /*this is to override the .file, .pdf, .doc etc 10px size*/
       background-position: 15px center;
       /*overrides background-position left of attachment_links*/ }
+    /* line 41, ../../../app/stylesheets/g_util_ui_listview.scss */
     .ui-listview li:hover {
       border-color: #bbb;
       background: #dadada;
@@ -81,10 +89,13 @@
       background-image: linear-gradient(top, #ededed, #dadada);
       -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ededed',EndColorStr='#dadada')";
       zoom: 1; }
+      /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
       .ie9 .ui-listview li:hover {
         border-radius: 0 !important; }
+      /* line 49, ../../../app/stylesheets/g_util_ui_listview.scss */
       .ui-listview li:hover a {
         text-decoration: none; }
+    /* line 51, ../../../app/stylesheets/g_util_ui_listview.scss */
     .ui-listview li:active, .ui-listview li.active {
       border: 1px solid     #999;
       background: #999;
@@ -103,15 +114,20 @@
       -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#cccccc',EndColorStr='#aaaaaa')";
       zoom: 1;
       outline: none; }
+      /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
       .ie9 .ui-listview li:active, .ie9 .ui-listview li.active {
         border-radius: 0 !important; }
+      /* line 61, ../../../app/stylesheets/g_util_ui_listview.scss */
       .ui-listview li:active a, .ui-listview li.active a {
         color: #fff; }
+    /* line 63, ../../../app/stylesheets/g_util_ui_listview.scss */
     .ui-listview li .ui-listview-right {
       display: block;
       float: right; }
+      /* line 66, ../../../app/stylesheets/g_util_ui_listview.scss */
       .ui-listview li .ui-listview-right .turnitin_similarity_score {
         margin-right: 10px; }
+    /* line 71, ../../../app/stylesheets/g_util_ui_listview.scss */
     .ui-listview li.ui-listview-header, .ui-listview li.ui-listview-header:hover {
       padding: .5em 15px;
       font-size: 14px;
@@ -129,5 +145,6 @@
       background-image: linear-gradient(top, #c8e0d1, #b3cbbc);
       -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#c8e0d1',EndColorStr='#b3cbbc')";
       zoom: 1; }
+      /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
       .ie9 .ui-listview li.ui-listview-header, .ie9 .ui-listview li.ui-listview-header:hover {
         border-radius: 0 !important; }

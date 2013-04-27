@@ -1,40 +1,52 @@
+/* line 1, ../../../app/stylesheets/profile.sass */
 .profile_table td {
   vertical-align: top;
   padding: 2px 5px; }
 
+/* line 5, ../../../app/stylesheets/profile.sass */
 .profile_table .edit_data {
   display: none; }
 
+/* line 8, ../../../app/stylesheets/profile.sass */
 .profile_table.editing .edit_data {
   display: inline; }
 
+/* line 11, ../../../app/stylesheets/profile.sass */
 .profile_table.editing .display_data {
   display: none; }
 
+/* line 14, ../../../app/stylesheets/profile.sass */
 #registered_services .service {
   font-size: 1.2em;
   padding: 2px; }
 
+/* line 18, ../../../app/stylesheets/profile.sass */
 #registered_services .service .delete_service_link {
   display: none; }
 
+/* line 21, ../../../app/stylesheets/profile.sass */
 #registered_services .service.service-hover {
   background-color: #eeeeee;
   -moz-border-radius: 3px; }
 
+/* line 25, ../../../app/stylesheets/profile.sass */
 #registered_services .service.service-hover .delete_service_link {
   display: inline; }
 
+/* line 28, ../../../app/stylesheets/profile.sass */
 #unregistered_services .button {
   width: 150px;
   margin: 3px; }
 
+/* line 32, ../../../app/stylesheets/profile.sass */
 #unregistered_services .button img {
   vertical-align: middle; }
 
+/* line 35, ../../../app/stylesheets/profile.sass */
 .profile_pic_link img {
   max-width: 50px; }
 
+/* line 38, ../../../app/stylesheets/profile.sass */
 .profile_pic_list span.img {
   float: left;
   width: 50px;
@@ -44,30 +56,37 @@
   padding: 4px;
   display: inline-block; }
 
+/* line 47, ../../../app/stylesheets/profile.sass */
 .profile_pic_list img {
   max-height: 75px;
   min-height: 25px;
   max-width: 50px;
   vertical-align: middle; }
 
+/* line 53, ../../../app/stylesheets/profile.sass */
 .profile_pic_list span.img:hover {
   padding: 2px;
   border: 2px solid #888888; }
 
+/* line 57, ../../../app/stylesheets/profile.sass */
 .profile_pic_list span.img.selected {
   padding: 2px;
   border: 2px solid #444444; }
 
+/* line 61, ../../../app/stylesheets/profile.sass */
 #token_details_dialog table {
   border-collapse: collapse;
   width: 100%; }
+  /* line 64, ../../../app/stylesheets/profile.sass */
   #token_details_dialog table th {
     width: 5%;
     white-space: nowrap;
     font-weight: bold;
     vertical-align: top; }
+  /* line 69, ../../../app/stylesheets/profile.sass */
   #token_details_dialog table td, #token_details_dialog table th {
     padding: 3px 8px;
     border-top: 1px dotted #cccccc; }
+  /* line 72, ../../../app/stylesheets/profile.sass */
   #token_details_dialog table .full_token_warning {
     font-size: 0.8em; }

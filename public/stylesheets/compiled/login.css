@@ -1,12 +1,15 @@
+/* line 6, ../../../app/stylesheets/login.sass */
 body.modal #footer {
   display: block !important;
   width: 667px;
   margin: 20px auto; }
+/* line 11, ../../../app/stylesheets/login.sass */
 body.modal #main {
   background-color: transparent;
   border: 0 none;
   margin: 0;
   padding: 0; }
+/* line 17, ../../../app/stylesheets/login.sass */
 body.modal #modal-box-top {
   background: url(/images/login-bg.png) no-repeat;
   width: 647px;
@@ -15,6 +18,7 @@ body.modal #modal-box-top {
   margin: 75px auto 0;
   padding: 10px 20px 0 20px;
   position: relative; }
+/* line 25, ../../../app/stylesheets/login.sass */
 body.modal #modal-box-bottom {
   background: url(/images/login-bg.png) no-repeat bottom center;
   width: 647px;
@@ -23,15 +27,19 @@ body.modal #modal-box-bottom {
   margin: 0 auto 0;
   padding: 0px 20px 10px 20px;
   position: relative; }
+/* line 33, ../../../app/stylesheets/login.sass */
 body.modal #modal-box-arbitrary-size {
   margin-top: -30px !important;
   height: auto !important;
   background-image: url(/images/login-bg-middle-tall.jpg) !important; }
+  /* line 37, ../../../app/stylesheets/login.sass */
   body.modal #modal-box-arbitrary-size #register_form {
     margin-top: 40px; }
+/* line 39, ../../../app/stylesheets/login.sass */
 body.modal #modal-box-arbitrary-size.modal-box-more-padding {
   width: 607px;
   padding: 60px 40px 26px; }
+/* line 42, ../../../app/stylesheets/login.sass */
 body.modal #modal-box, body.modal #modal-box-arbitrary-size {
   background: url(/images/login-bg.jpg) no-repeat;
   width: 647px;
@@ -41,23 +49,30 @@ body.modal #modal-box, body.modal #modal-box-arbitrary-size {
   margin: 75px auto 0;
   position: relative;
   color: #4b4b4b; }
+  /* line 51, ../../../app/stylesheets/login.sass */
   body.modal #modal-box.modal-box-tall, body.modal #modal-box-arbitrary-size.modal-box-tall {
     margin-top: 50px; }
+  /* line 53, ../../../app/stylesheets/login.sass */
   body.modal #modal-box a, body.modal #modal-box-arbitrary-size a {
     color: inherit !important;
     text-decoration: underline; }
+  /* line 56, ../../../app/stylesheets/login.sass */
   body.modal #modal-box ul, body.modal #modal-box-arbitrary-size ul {
     list-style-type: none; }
+  /* line 59, ../../../app/stylesheets/login.sass */
   body.modal #modal-box .button, body.modal #modal-box-arbitrary-size .button {
     float: right;
     padding: 10px 24px;
     margin-right: 7px; }
+  /* line 64, ../../../app/stylesheets/login.sass */
   body.modal #modal-box .button_box, body.modal #modal-box-arbitrary-size .button_box {
     text-align: right;
     margin-right: 7px;
     width: 100%; }
+    /* line 68, ../../../app/stylesheets/login.sass */
     body.modal #modal-box .button_box .button, body.modal #modal-box-arbitrary-size .button_box .button {
       float: none; }
+  /* line 71, ../../../app/stylesheets/login.sass */
   body.modal #modal-box input.text, body.modal #modal-box-arbitrary-size input.text {
     background: url(/images/login-input-bg.png) no-repeat;
     border: 0 none;
@@ -66,12 +81,15 @@ body.modal #modal-box, body.modal #modal-box-arbitrary-size {
     width: 204px;
     color: #303030;
     margin: 0 6px 6px 0; }
+  /* line 79, ../../../app/stylesheets/login.sass */
   body.modal #modal-box .radio_spacer, body.modal #modal-box-arbitrary-size .radio_spacer {
     width: 25px;
     display: inline-block; }
+/* line 83, ../../../app/stylesheets/login.sass */
 body.modal .modal-box-content {
   min-height: 150px; }
 
+/* line 88, ../../../app/stylesheets/login.sass */
 body.webkit #modal-box input.text,
 body.webkit #modal-box-arbitrary-size input.text {
   background: #f6f6f6 none;
@@ -82,47 +100,60 @@ body.webkit #modal-box-arbitrary-size input.text {
   background-clip: padding-box;
   width: 197px; }
 
+/* line 98, ../../../app/stylesheets/login.sass */
 #login_form {
   margin: 200px auto 0;
   width: 487px; }
 
+/* line 101, ../../../app/stylesheets/login.sass */
 #forgot_password_form {
   margin: 200px auto 0;
   width: 435px; }
+  /* line 104, ../../../app/stylesheets/login.sass */
   #forgot_password_form button.button {
     margin: 7px; }
 
+/* line 107, ../../../app/stylesheets/login.sass */
 span.field-with-fancyplaceholder {
   display: block;
   display: inline-block;
   position: relative;
   vertical-align: top; }
+  /* line 113, ../../../app/stylesheets/login.sass */
   span.field-with-fancyplaceholder label {
     display: none; }
+    /* line 115, ../../../app/stylesheets/login.sass */
     span.field-with-fancyplaceholder label.placeholder {
       display: inline;
       color: #999999;
       cursor: text;
       pointer-events: none; }
+      /* line 121, ../../../app/stylesheets/login.sass */
       span.field-with-fancyplaceholder label.placeholder span {
         position: absolute;
         z-index: 2;
         -webkit-user-select: none;
         padding: 19px 22px 18px 24px; }
+    /* line 127, ../../../app/stylesheets/login.sass */
     span.field-with-fancyplaceholder label.focus {
       color: #cccccc; }
+  /* line 131, ../../../app/stylesheets/login.sass */
   span.field-with-fancyplaceholder input:-webkit-autofill {
     background-color: transparent !important; }
+  /* line 134, ../../../app/stylesheets/login.sass */
   span.field-with-fancyplaceholder input {
     outline: none; }
+    /* line 136, ../../../app/stylesheets/login.sass */
     span.field-with-fancyplaceholder input.invalid {
       background: #ffffc5;
       color: #ff3300; }
+    /* line 140, ../../../app/stylesheets/login.sass */
     span.field-with-fancyplaceholder input.editing {
       color: black;
       background: none repeat scroll 0 0 transparent;
       overflow: hidden; }
 
+/* line 145, ../../../app/stylesheets/login.sass */
 #register_link {
   position: absolute;
   display: block;

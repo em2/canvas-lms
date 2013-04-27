@@ -1,23 +1,29 @@
+/* line 2, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
 #assignment-details-dialog .distribution {
   margin: 15px 0;
   height: 30px;
   position: relative; }
+  /* line 6, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog .distribution div {
     position: absolute;
     top: 0;
     border-style: solid;
     border-color: #aaaaaa;
     overflow: hidden; }
+  /* line 12, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog .distribution .bar-left, #assignment-details-dialog .distribution .bar-right {
     height: 10px;
     width: 0px;
     margin: 5px 0px; }
+  /* line 16, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog .distribution .bar-left {
     left: 0;
     border-width: 2px 0 2px 2px; }
+  /* line 19, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog .distribution .none-left, #assignment-details-dialog .distribution .none-right {
     height: 11px;
     border-bottom-width: 2px; }
+  /* line 22, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog .distribution .some-left {
     height: 20px;
     border-width: 2px 0pt 2px 2px;
@@ -25,6 +31,7 @@
     border-bottom-left-radius: 3px;
     background: white;
     z-index: 2; }
+  /* line 29, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog .distribution .some-right {
     height: 20px;
     border-width: 2px;
@@ -33,6 +40,7 @@
     border-bottom-right-radius: 3px;
     background: white;
     z-index: 2; }
+  /* line 37, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog .distribution .bar-right {
     width: 0;
     height: 10px;
@@ -40,11 +48,14 @@
     right: 0;
     border-width: 2px 2px 2px 0; }
 
+/* line 44, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
 #assignment-details-dialog-stats-table {
   font-size: 1.2em; }
+  /* line 46, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog-stats-table th, #assignment-details-dialog-stats-table td {
     padding: 2px 5px;
     white-space: nowrap; }
+  /* line 49, ../../../app/stylesheets/AssignmentDetailsDialog.sass */
   #assignment-details-dialog-stats-table td {
     font-size: 1.1em;
     font-weight: bold; }

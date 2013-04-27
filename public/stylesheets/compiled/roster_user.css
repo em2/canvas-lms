@@ -1,3 +1,4 @@
+/* line 3, ../../../app/stylesheets/roster_user.sass */
 fieldset {
   border: 1px solid #cccccc;
   -webkit-border-radius: 3px;
@@ -7,19 +8,24 @@ fieldset {
   border-radius: 3px;
   padding: 5px 10px;
   margin-bottom: 5px; }
+  /* line 8, ../../../app/stylesheets/roster_user.sass */
   fieldset legend {
     font-weight: bold;
     margin-left: 20px; }
 
+/* line 12, ../../../app/stylesheets/roster_user.sass */
 table.details td {
   padding: 1px 5px; }
 
+/* line 15, ../../../app/stylesheets/roster_user.sass */
 .user-switch-alert {
   border: 1px solid black;
   background-color: #ffffdd;
   margin: 5px 0;
   padding: 20px; }
+  /* line 21, ../../../app/stylesheets/roster_user.sass */
   .user-switch-alert .warning-text {
     font-weight: bold; }
+  /* line 24, ../../../app/stylesheets/roster_user.sass */
   .user-switch-alert .links, .user-switch-alert .add_holder {
     display: none; }

@@ -1,39 +1,51 @@
+/* line 1, ../../../app/stylesheets/alerts.scss */
 .alert_separator {
   border-top: 1px dotted #aaa;
   width: auto;
   margin-top: 10px;
   margin-bottom: 10px; }
 
+/* line 8, ../../../app/stylesheets/alerts.scss */
 .alert {
   padding-left: 40px;
   padding-right: 40px;
   margin: 1px 2px 2px 2px;
   width: auto;
   padding: 20px 20px 6px 6px; }
+  /* line 14, ../../../app/stylesheets/alerts.scss */
   .alert .label {
     color: black;
     font-weight: bold;
     marge-top: 5px; }
+  /* line 19, ../../../app/stylesheets/alerts.scss */
   .alert .labelled_region {
     margin-bottom: 15px; }
+  /* line 22, ../../../app/stylesheets/alerts.scss */
   .alert .links {
     float: right;
     opacity: 0.5; }
+    /* line 25, ../../../app/stylesheets/alerts.scss */
     .alert .links:hover {
       opacity: 1.0; }
+  /* line 29, ../../../app/stylesheets/alerts.scss */
   .alert .repetition_group {
     margin-left: 40px; }
+  /* line 32, ../../../app/stylesheets/alerts.scss */
   .alert li {
     width: 400px;
     clear: right; }
+    /* line 35, ../../../app/stylesheets/alerts.scss */
     .alert li .delete_item_link {
       float: right; }
 
+/* line 41, ../../../app/stylesheets/alerts.scss */
 .alert.blank {
   display: none; }
 
+/* line 45, ../../../app/stylesheets/alerts.scss */
 .alert.editing .displaying {
   display: none; }
 
+/* line 49, ../../../app/stylesheets/alerts.scss */
 .alert.displaying .editing {
   display: none; }

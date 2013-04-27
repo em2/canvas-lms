@@ -1,6 +1,7 @@
 /* Resets default browser CSS.
  * pulled from blueprint's css reset.
  * Based on Eric Meyer's reset http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+/* line 5, ../../../app/stylesheets/g_reset.sass */
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, code,
@@ -16,6 +17,7 @@ hgroup, nav, section {
   font-family: inherit;
   vertical-align: baseline; }
 
+/* line 22, ../../../app/stylesheets/g_reset.sass */
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, code,
@@ -26,10 +28,12 @@ hgroup, nav, section {
   border: 0;
   margin: 0; }
 
+/* line 33, ../../../app/stylesheets/g_reset.sass */
 article, aside, dialog, figure, footer, header,
 hgroup, nav, section {
   display: block; }
 
+/* line 38, ../../../app/stylesheets/g_reset.sass */
 body {
   line-height: 1.5; }
 
@@ -40,29 +44,37 @@ body {
  * (which is what tinyMCE uses). But we can, and do, reset border-collapse which makes
  * it so we dont have to add cellspacing=0 to all our tables.
  * see: http://stackoverflow.com/questions/339923/how-to-set-cellpadding-cellspacing-in-css */
+/* line 48, ../../../app/stylesheets/g_reset.sass */
 table {
   border-collapse: collapse; }
 
+/* line 51, ../../../app/stylesheets/g_reset.sass */
 .user_content table, .mceContentBody table {
   border-collapse: separate; }
 
+/* line 55, ../../../app/stylesheets/g_reset.sass */
 caption, th, td {
   text-align: left;
   font-weight: normal; }
 
+/* line 58, ../../../app/stylesheets/g_reset.sass */
 table, td, th {
   vertical-align: middle; }
 
 /* Remove possible quote marks (") from <q>, <blockquote>. */
+/* line 62, ../../../app/stylesheets/g_reset.sass */
 blockquote:before, blockquote:after, q:before, q:after {
   content: ""; }
 
+/* line 64, ../../../app/stylesheets/g_reset.sass */
 blockquote, q {
   quotes: "" ""; }
 
 /* Remove annoying border on linked images. */
+/* line 68, ../../../app/stylesheets/g_reset.sass */
 a img {
   border: 0 none; }
 
+/* line 78, ../../../app/stylesheets/g_reset.sass */
 img {
   vertical-align: text-bottom; }
