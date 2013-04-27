@@ -1,1 +1,8 @@
-#assignments_menu_item{display:none}#grades_menu_item{display:none}#calendar_menu_item{display:none}
+#assignments_menu_item {
+  display: none; }
+
+#grades_menu_item {
+  display: none; }
+
+#calendar_menu_item {
+  display: none; }

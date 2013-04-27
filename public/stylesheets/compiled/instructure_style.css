@@ -1,1 +1,226 @@
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,dialog,figure,footer,header,hgroup,nav,section{padding:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,fieldset,form,label,legend,article,aside,dialog,figure,footer,header,hgroup,nav,section{border:0;margin:0}article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block}body{line-height:1.5}table{border-collapse:collapse}.user_content table,.mceContentBody table{border-collapse:separate}caption,th,td{text-align:left;font-weight:normal}table,td,th{vertical-align:middle}blockquote:before,blockquote:after,q:before,q:after{content:""}blockquote,q{quotes:"" ""}a img{border:0 none}img{vertical-align:text-bottom}a:link,a:visited{color:#4b7092;text-decoration:none}a:link:-moz-read-write{color:#4b7092 !important;text-decoration:none !important}a:hover,a:active,a:focus{text-decoration:underline}a.external:hover,a.external:focus,a.external:active{text-decoration:none}a.external:hover span,a.external:focus span,a.external:active span{text-decoration:underline}a.external:hover span.ui-icon-extlink,a.external:focus span.ui-icon-extlink,a.external:active span.ui-icon-extlink{text-decoration:none}a.external span.ui-icon-extlink{display:inline-block;padding:0;vertical-align:middle}.content_underline_links a{text-decoration:underline}.content_underline_links a.external{text-decoration:none !important}.content_underline_links a.external span{text-decoration:underline}.content_underline_links a.external span.ui-icon-extlink{text-decoration:none;display:inline-block;padding:0;vertical-align:middle}table.stylized{margin-bottom:1.4em;width:100%}table.stylized th{font-weight:bold}table.stylized th,table.stylized td,table.stylized caption{padding:2px 5px 2px 2px}table.stylized tfoot{font-style:italic}table.stylized caption{background:#eee}table.striped thead th{background-color:#ddd;background-color:rgba(0,0,0,0.06)}table.striped tr.even td,table.striped tr:nth-child(2n) td{background-color:#fbfbfb;background-color:rgba(0,0,0,0.02)}table.bordered th,table.bordered td{border:1px solid #ccc}html{font-size:100.01%}body{font-size:75%;color:#333;font:13px/1.5 "Helvetica Neue",Arial,"Liberation Sans",FreeSans,sans-serif}h1,h2,h3,h4,h5,h6{font-weight:normal;color:#444}h1,h2{font-size:1.8em;margin-bottom:0.5em}h3{font-size:1.5em;line-height:1;margin-bottom:1em}h4{font-size:1.2em;line-height:1.25;margin-bottom:1.25em}h5{font-size:1em;font-weight:bold;margin-bottom:1.5em}h6{font-size:1em;font-weight:bold}h1 img,h2 img,h3 img,h4 img,h5 img,h6 img{margin:0}p{margin:0 0 1.5em}p img.left{float:left;margin:1.5em 1.5em 1.5em 0;padding:0}p img.right{float:right;margin:1.5em 0 1.5em 1.5em}blockquote{margin:1.5em;color:#666;font-style:italic}strong{font-weight:bold}em{font-style:italic}dfn{font-style:italic;font-weight:bold}sup,sub{line-height:0}abbr,acronym{border-bottom:1px dotted #666}address{margin:0 0 1.5em;font-style:italic}del{color:#666}pre{margin:1.5em 0;white-space:pre}pre,code,tt{font:1em "andale mono","lucida console",monospace;line-height:1.5}.mceContentBody{margin:5px}td{padding:2px;min-width:20px}td p{margin-bottom:0}.mceItemTable,.mceItemTable td,.mceItemTable th,.mceItemTable caption,.mceItemVisualAid{border:1px dashed #888}
+/* Resets default browser CSS.
+ * pulled from blueprint's css reset.
+ * Based on Eric Meyer's reset http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+  padding: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline; }
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd,
+fieldset, form, label, legend,
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+  border: 0;
+  margin: 0; }
+
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {
+  display: block; }
+
+body {
+  line-height: 1.5; }
+
+/* NOTE: table border-spacing is purposely not being reset because TinyMCE relies on
+ * it not being there. Once you set border-spacing: 0 in css,  there is no way to do
+ * table.user_content {border-spacing:auto} (there is no 'auto' or 'default' value for
+ * border-spacing) and you cannot override it with the cellspacing html attribute
+ * (which is what tinyMCE uses). But we can, and do, reset border-collapse which makes
+ * it so we dont have to add cellspacing=0 to all our tables.
+ * see: http://stackoverflow.com/questions/339923/how-to-set-cellpadding-cellspacing-in-css */
+table {
+  border-collapse: collapse; }
+
+.user_content table, .mceContentBody table {
+  border-collapse: separate; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; }
+
+table, td, th {
+  vertical-align: middle; }
+
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: ""; }
+
+blockquote, q {
+  quotes: "" ""; }
+
+/* Remove annoying border on linked images. */
+a img {
+  border: 0 none; }
+
+img {
+  vertical-align: text-bottom; }
+
+a:link, a:visited {
+  color: #4b7092;
+  text-decoration: none; }
+a:link:-moz-read-write {
+  color: #4b7092 !important;
+  text-decoration: none !important; }
+a:hover, a:active, a:focus {
+  text-decoration: underline; }
+a.external:hover, a.external:focus, a.external:active {
+  text-decoration: none; }
+  a.external:hover span, a.external:focus span, a.external:active span {
+    text-decoration: underline; }
+  a.external:hover span.ui-icon-extlink, a.external:focus span.ui-icon-extlink, a.external:active span.ui-icon-extlink {
+    text-decoration: none; }
+a.external span.ui-icon-extlink {
+  display: inline-block;
+  padding: 0;
+  vertical-align: middle; }
+
+.content_underline_links a {
+  text-decoration: underline; }
+  .content_underline_links a.external {
+    text-decoration: none !important; }
+    .content_underline_links a.external span {
+      text-decoration: underline; }
+    .content_underline_links a.external span.ui-icon-extlink {
+      text-decoration: none;
+      display: inline-block;
+      padding: 0;
+      vertical-align: middle; }
+
+/* Tables
+ * -------------------------------------------------------------- */
+table.stylized {
+  margin-bottom: 1.4em;
+  width: 100%; }
+  table.stylized th {
+    font-weight: bold; }
+  table.stylized th, table.stylized td, table.stylized caption {
+    padding: 2px 5px 2px 2px; }
+  table.stylized tfoot {
+    font-style: italic; }
+  table.stylized caption {
+    background: #eeeeee; }
+
+table.striped thead th {
+  background-color: #dddddd;
+  background-color: rgba(0, 0, 0, 0.06); }
+table.striped tr.even td, table.striped tr:nth-child(2n) td {
+  background-color: #fbfbfb;
+  background-color: rgba(0, 0, 0, 0.02); }
+
+table.bordered th, table.bordered td {
+  border: 1px solid #cccccc; }
+
+/* Sets up some sensible default typography. */
+/* Default font settings.
+ * The font-size percentage is of 16px. (0.75 * 16px = 12px) */
+html {
+  font-size: 100.01%; }
+
+body {
+  font-size: 75%;
+  color: #333333;
+  font: 13px/1.5 "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif; }
+
+/* Headings
+ * -------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  color: #444444; }
+
+h1, h2 {
+  font-size: 1.8em;
+  margin-bottom: 0.5em; }
+
+h3 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em; }
+
+h4 {
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-bottom: 1.25em; }
+
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em; }
+
+h6 {
+  font-size: 1em;
+  font-weight: bold; }
+
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+  margin: 0; }
+
+/* Text elements
+ * -------------------------------------------------------------- */
+p {
+  margin: 0 0 1.5em; }
+  p img.left {
+    float: left;
+    margin: 1.5em 1.5em 1.5em 0;
+    padding: 0; }
+  p img.right {
+    float: right;
+    margin: 1.5em 0 1.5em 1.5em; }
+
+blockquote {
+  margin: 1.5em;
+  color: #666666;
+  font-style: italic; }
+
+strong {
+  font-weight: bold; }
+
+em {
+  font-style: italic; }
+
+dfn {
+  font-style: italic;
+  font-weight: bold; }
+
+sup, sub {
+  line-height: 0; }
+
+abbr, acronym {
+  border-bottom: 1px dotted #666666; }
+
+address {
+  margin: 0 0 1.5em;
+  font-style: italic; }
+
+del {
+  color: #666666; }
+
+pre {
+  margin: 1.5em 0;
+  white-space: pre; }
+
+pre, code, tt {
+  font: 1em "andale mono", "lucida console", monospace;
+  line-height: 1.5; }
+
+.mceContentBody {
+  margin: 5px; }
+
+td {
+  padding: 2px;
+  min-width: 20px; }
+  td p {
+    margin-bottom: 0; }
+
+.mceItemTable, .mceItemTable td, .mceItemTable th, .mceItemTable caption, .mceItemVisualAid {
+  border: 1px dashed #888888; }

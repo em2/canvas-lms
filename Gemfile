@@ -8,7 +8,6 @@ gem 'authlogic',      '2.1.3'
 gem "aws-s3-instructure", "~> 0.6.2.1319643167",  :require => 'aws/s3'
 gem 'bcrypt-ruby',    '3.0.1'
 gem 'builder',        '2.1.2'
-gem 'compass',        '0.11.5'
 gem 'daemons',        '1.1.0'
 gem 'diff-lcs',       '1.1.2',  :require => 'diff/lcs'
 gem 'erubis',         '2.7.0'
@@ -58,6 +57,10 @@ gem 'bluecloth',    '2.0.10' # for generating api docs
 
 group :mysql do
   gem 'mysql'
+end
+
+group :assets do
+  gem 'compass-rails', '1.0.3'
 end
 
 group :test do

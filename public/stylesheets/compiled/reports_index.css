@@ -1,1 +1,11 @@
-.button{margin-top:5px}.assessment_reports ol{list-style-type:none}.assessment_reports ol .report_group_label{font-size:24px}.assessment_reports ol .report_group{margin-bottom:10px}.assessment_reports ol .title{font-size:10px}
+.button {
+  margin-top: 5px; }
+
+.assessment_reports ol {
+  list-style-type: none; }
+  .assessment_reports ol .report_group_label {
+    font-size: 24px; }
+  .assessment_reports ol .report_group {
+    margin-bottom: 10px; }
+  .assessment_reports ol .title {
+    font-size: 10px; }

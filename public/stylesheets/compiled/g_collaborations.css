@@ -1,1 +1,35 @@
-.collaborator_list{list-style-type:none;margin:0;padding-left:30px;max-height:300px;overflow:auto;border:1px solid #aaa}.collaborator_list .collaborator{color:#444;font-size:0.8em}#collaborations .collaboration{background-image:url(/images/google_docs.png);background-repeat:no-repeat;border:1px solid #aaa;padding:10px 10px 10px 60px;margin-bottom:10px;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}#collaborations .collaboration.etherpad{background-image:url(/images/ether_pad.png);background-position:5px 20px;padding-left:85px}#collaborations .collaboration .links{float:right;line-height:0.8em}#collaborations .collaboration h3{font-family:arial,sans-serif;font-size:1.2em;border-bottom:1px solid #ccc}#collaborations .collaboration .collaborators{display:none}
+.collaborator_list {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 30px;
+  max-height: 300px;
+  overflow: auto;
+  border: 1px solid #aaaaaa; }
+  .collaborator_list .collaborator {
+    color: #444444;
+    font-size: 0.8em; }
+
+#collaborations .collaboration {
+  background-image: url(/images/google_docs.png);
+  background-repeat: no-repeat;
+  border: 1px solid #aaaaaa;
+  padding: 10px 10px 10px 60px;
+  margin-bottom: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  #collaborations .collaboration.etherpad {
+    background-image: url(/images/ether_pad.png);
+    background-position: 5px 20px;
+    padding-left: 85px; }
+  #collaborations .collaboration .links {
+    float: right;
+    line-height: 0.8em; }
+  #collaborations .collaboration h3 {
+    font-family: arial, sans-serif;
+    font-size: 1.2em;
+    border-bottom: 1px solid #cccccc; }
+  #collaborations .collaboration .collaborators {
+    display: none; }

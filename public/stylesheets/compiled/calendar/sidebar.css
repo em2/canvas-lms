@@ -1,1 +1,72 @@
-.rs-section{padding:13px;border-bottom:1px solid #d0d1d2;border-top:1px solid #f5f5f6;position:relative}.rs-section:last-child{padding-bottom:0;border-bottom:none}#undated-events ul{margin:0;padding:0;list-style:none}#undated-events .event{padding:0px 4px;cursor:move;border-radius:3px;margin:2px 0;border:1px solid}#undated-events .spin_holder{display:none;float:left;width:22px;height:20px;position:relative}#calendar-feed-message{background:url("/images/ical_big.png") no-repeat top left;padding-left:40px}#calendar-feed-box-lower{text-align:center}#calendar-feed-box-lower input{width:98%}#context-list-holder{padding:0}#context-list{margin:0;padding:10px 0;max-height:215px;overflow-y:auto;overflow-x:hidden}#context-list .context_list_context{list-style:none;margin:0;padding:3px 0;cursor:pointer;line-height:22px;position:relative}#context-list .checkbox{width:11px;height:11px;margin:5px 11px 0 15px;float:left;border:1px solid}#context-list .not-checked{color:#888}#context-list .not-checked .checkbox{border-color:#bbb !important;background-color:#e6e7e9 !important}#context-list .settings{visibility:hidden;padding:4px 0;position:absolute;right:5px}#context-list .hovering .settings,#context-list .settings.ui-state-hover{visibility:visible}#context-list .hovering{color:inherit;background:#b5b5b5}
+.rs-section {
+  padding: 13px;
+  border-bottom: 1px solid #d0d1d2;
+  border-top: 1px solid #f5f5f6;
+  position: relative; }
+  .rs-section:last-child {
+    padding-bottom: 0;
+    border-bottom: none; }
+
+#undated-events ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+#undated-events .event {
+  padding: 0px 4px;
+  cursor: move;
+  border-radius: 3px;
+  margin: 2px 0;
+  border: 1px solid; }
+#undated-events .spin_holder {
+  display: none;
+  float: left;
+  width: 22px;
+  height: 20px;
+  position: relative; }
+
+#calendar-feed-message {
+  background: url("/images/ical_big.png") no-repeat top left;
+  padding-left: 40px; }
+
+#calendar-feed-box-lower {
+  text-align: center; }
+  #calendar-feed-box-lower input {
+    width: 98%; }
+
+#context-list-holder {
+  padding: 0; }
+
+#context-list {
+  margin: 0;
+  padding: 10px 0;
+  max-height: 215px;
+  overflow-y: auto;
+  overflow-x: hidden; }
+  #context-list .context_list_context {
+    list-style: none;
+    margin: 0;
+    padding: 3px 0;
+    cursor: pointer;
+    line-height: 22px;
+    position: relative; }
+  #context-list .checkbox {
+    width: 11px;
+    height: 11px;
+    margin: 5px 11px 0 15px;
+    float: left;
+    border: 1px solid; }
+  #context-list .not-checked {
+    color: #888888; }
+    #context-list .not-checked .checkbox {
+      border-color: #bbbbbb !important;
+      background-color: #e6e7e9 !important; }
+  #context-list .settings {
+    visibility: hidden;
+    padding: 4px 0;
+    position: absolute;
+    right: 5px; }
+  #context-list .hovering .settings, #context-list .settings.ui-state-hover {
+    visibility: visible; }
+  #context-list .hovering {
+    color: inherit;
+    background: #b5b5b5; }

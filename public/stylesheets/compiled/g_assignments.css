@@ -1,1 +1,306 @@
-.move_icon,.group_move_icon{vertical-align:middle;cursor:move}#groups .assignment_group{margin:1px 2px 2px 2px;width:auto;border:1px solid #999;color:#000;background-color:#fff}#groups .assignment_group .group_move_icon,#groups .assignment_group .add_assignment_link,#groups .assignment_group .edit_group_link,#groups .assignment_group .delete_group_link{display:none}#groups .assignment_group .group_move{visibility:hidden}#groups .assignment_group.group-hover{border-width:2px}#groups .assignment_group.group-hover div.header{padding:0px 0px 0px 5px}#groups .assignment_group.group-hover div.assignment_list{padding:0 0px 0px 0px}#groups .assignment_group.droppable_group{border:2px solid #999}#groups .assignment_group div.assignment_list{padding:0 1px 1px 1px;min-height:10px}#groups .assignment_group div.header{width:auto;border-bottom:1px solid #999;background:#ccc;padding:1px 1px 0px 6px;_height:10px;color:#666;margin-top:0px;margin-bottom:0px}#groups .assignment_group div.header .links a{opacity:0.5}#groups .assignment_group div.header .group_move .group_move_icon{visibility:hidden}#groups .assignment_group div.header:hover .links a{opacity:1}#groups .assignment_group div.header:hover .group_move .group_move_icon{visibility:visible}#groups .assignment_group div.header .assignment_count{font-size:0.8em}#groups .assignment_group div.padding{padding:0px 0px 5px 0px;display:none}#groups .assignment_group div.load_pending{background-image:url(/images/ajax-loader-small-ccc.gif);background-repeat:no-repeat;background-position:center left}#groups .assignment_group div .edit_assignment_link,#groups .assignment_group div .delete_assignment_link{display:none}#groups .assignment_group div .context_name{display:none}#groups .assignment_group div .details{display:none}#groups .assignment_group div span.no_points{display:none}#groups .assignment_group div.points_uneditable form span.points{display:none}#groups .assignment_group div.points_uneditable form span.no_points{display:inline}#groups .assignment_group div div.data{float:left;border:0px;padding:2px 5px 2px 5px}#groups .assignment_group div div.data.assignment_title{width:25%;margin-right:4%;white-space:nowrap;overflow:hidden}#groups .assignment_group div div.data.assignment_title a{color:#4b7092}#groups .assignment_group div div.data.assignment_due{width:27%;font-size:0.8em;padding-top:0.5em;color:#888;display:block}#groups .assignment_group div div.data.assignment_points{font-size:0.8em;padding-top:0.5em;color:#888}#groups .assignment_group div div.data.buttons{float:right}#groups .assignment_group div div.data.links{text-align:right;float:right;padding-right:10px;opacity:0.5;display:none}#groups .assignment_group div div.data.links:hover{opacity:1}#groups .assignment_group div div.data.date{color:#888}#groups .assignment_group div div.data.name{margin-right:10px;width:200px}#groups .assignment_group div div.data.move{padding-left:5px;width:20px;display:block}#groups .assignment_group div div.data.move .move_icon{visibility:hidden}#groups .assignment_group div.assignment-hover,#groups .assignment_group div .ui-sortable-helper{background-color:#eee}#groups .assignment_group div.assignment-hover div.data.links,#groups .assignment_group div .ui-sortable-helper div.data.links{display:block}#groups .assignment_group div.assignment-hover div.data.move .move_icon,#groups .assignment_group div .ui-sortable-helper div.data.move .move_icon{visibility:visible}#groups .assignment_group div.editing{background-color:#ddd}#groups.groups_editable .assignment_group .group_move_icon,#groups.groups_editable .assignment_group .add_assignment_link,#groups.groups_editable .assignment_group .edit_group_link,#groups.groups_editable .assignment_group .delete_group_link{display:inline}#groups.groups_editable .assignment_group .group_move{visibility:visible}#groups.groups_editable .assignment_group div .edit_assignment_link,#groups.groups_editable .assignment_group div .delete_assignment_link{display:inline}#assignments_for_student .group_assignment{min-height:40px;border-bottom:1px solid #ccc}#assignments_for_student .group_assignment.last{border-bottom-width:0px}#assignments_for_student .group_assignment .content{padding-top:3px}#assignments_for_student .group_assignment .details{display:block;margin-left:60px;font-size:0.8em;margin-bottom:5px}#assignments_for_student .group_assignment .grade{display:none}#assignments_for_student .group_assignment.group_assignment_graded{color:#aaa}#assignments_for_student .group_assignment.group_assignment_graded a{color:#888}#assignments_for_student .group_assignment.group_assignment_graded a.grade{color:#444;font-weight:bold;display:inline}#assignments_for_student .group_assignment.group_assignment_ungraded .assignment_due{font-weight:bold;color:#882}#assignments_for_student .group_assignment.group_assignment_overdue .assignment_due{font-weight:bold;color:#c00}#assignments_for_student .group_assignment:hover{background-color:#eee}#assignments_for_student .group_assignment:hover .course_name{opacity:1 !important;-moz-opacity:1 !important;filter:alpha(opacity=1) !important}#assignments_for_student .group_assignment div.data{float:left;border:0px;padding:2px 5px 2px 5px}#assignments_for_student .group_assignment div.data.assignment_title{width:40%;margin-left:30px}#assignments_for_student .group_assignment div.data.assignment_title .title{font-size:1.3em;font-weight:bold}#assignments_for_student .group_assignment div.data.assignment_title .course_name{font-size:0.8em;line-height:1.2em;padding:2px 7px;color:inherit;opacity:0.75;-ms-filter:alpha(Opacity=75);filter:alpha(Opacity=75);-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;-ms-border-radius:10px;-khtml-border-radius:10px;border-radius:10px}#assignments_for_student .group_assignment div.data.assignment_due{width:30%;font-size:1em;padding-top:0.5em;display:block}#assignments_for_student .group_assignment div.data.assignment_points{font-size:0.9em;padding-top:0.5em}#assignments_for_student .group_assignment div.data.links{display:none}#assignments_for_student .group_assignment div.data.move{display:none}#assignments_for_student .assignment_list.show_context .group_assignment .context_name{display:block}#groups_for_student .assignment_group{margin:0 0.5em 1.5em 0.5em;width:auto;border:1px solid #999;color:#000;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}#groups_for_student .assignment_group .group_move_icon,#groups_for_student .assignment_group .add_assignment_link,#groups_for_student .assignment_group .edit_group_link,#groups_for_student .assignment_group .delete_group_link{display:none}#groups_for_student .assignment_group .group_move{visibility:hidden}#groups_for_student .assignment_group div.header{width:auto;border-bottom:1px solid #999;background-color:#ddd;padding-left:25px;color:#666;margin-bottom:0px;-moz-border-radius-topleft:3px;-webkit-border-top-left-radius:3px;-o-border-top-left-radius:3px;-ms-border-top-left-radius:3px;-khtml-border-top-left-radius:3px;border-top-left-radius:3px;-moz-border-radius-topright:3px;-webkit-border-top-right-radius:3px;-o-border-top-right-radius:3px;-ms-border-top-right-radius:3px;-khtml-border-top-right-radius:3px;border-top-right-radius:3px}#groups_for_student .assignment_group div.header .group_name{font-size:1.5em;font-weight:bold}#groups_for_student .assignment_group div.header .more_info_brief{line-height:1.7em}#groups_for_student .assignment_group div.header .links{display:none}#groups_for_student .assignment_group div.padding{padding:0px 0px 5px 0px;display:none}#groups_for_student .assignment_group .group_assignment{min-height:30px;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;-khtml-border-radius:3px;border-radius:3px;color:#444;border-bottom:1px solid #eee}#groups_for_student .assignment_group .group_assignment:hover{background-color:#eee}#groups_for_student .assignment_group .group_assignment .content{padding-top:3px}#groups_for_student .assignment_group .group_assignment.group_assignment_graded{color:#aaa}#groups_for_student .assignment_group .group_assignment.group_assignment_graded a{color:#888}#groups_for_student .assignment_group .group_assignment.group_assignment_overdue .assignment_due{font-weight:bold;color:#c00}#groups_for_student .assignment_group .group_assignment div.data{float:left;border:0px;padding:2px 5px 2px 5px}#groups_for_student .assignment_group .group_assignment div.data.assignment_title{width:40%;font-weight:bold;margin-left:30px}#groups_for_student .assignment_group .group_assignment div.data.assignment_title .context_name{font-weight:normal;font-size:0.7em;padding-left:10px;color:#888}#groups_for_student .assignment_group .group_assignment div.data.assignment_due{width:30%;font-size:0.8em;padding-top:0.5em;display:block}#groups_for_student .assignment_group .group_assignment div.data.assignment_points{font-size:0.8em;padding-top:0.5em}#groups_for_student .assignment_group .group_assignment div.data.buttons{float:right}#groups_for_student .assignment_group .group_assignment div.data.links{display:none}#groups_for_student .assignment_group .group_assignment div.data.name{margin-right:10px;font-weight:bold;width:200px}#groups_for_student .assignment_group .group_assignment div.data.move{display:none}#group_weight_table input.weight{width:35px}#group_weight_table th,#group_weight_table td{padding:1px}#group_weight_table th{font-weight:bold;border-bottom:1px solid #888}#group_weight_table td.total{font-weight:bold}#group_weight_table tr.group_weight .move{cursor:move;visibility:hidden}#group_weight_table tr.group_weight td{border-bottom:1px solid #aaa}#group_weight_table .group_weight_hover .move{visibility:visible}#full_assignment_details h2{margin:0px}.show-only-from a{display:block;margin-top:3px;color:#595959;padding-left:5px}
+.move_icon, .group_move_icon {
+  vertical-align: middle;
+  cursor: move; }
+
+#groups .assignment_group {
+  margin: 1px 2px 2px 2px;
+  width: auto;
+  border: 1px solid #999999;
+  color: black;
+  background-color: white; }
+  #groups .assignment_group .group_move_icon, #groups .assignment_group .add_assignment_link, #groups .assignment_group .edit_group_link, #groups .assignment_group .delete_group_link {
+    display: none; }
+  #groups .assignment_group .group_move {
+    visibility: hidden; }
+  #groups .assignment_group.group-hover {
+    border-width: 2px; }
+    #groups .assignment_group.group-hover div.header {
+      padding: 0px 0px 0px 5px; }
+    #groups .assignment_group.group-hover div.assignment_list {
+      padding: 0 0px 0px 0px; }
+  #groups .assignment_group.droppable_group {
+    border: 2px solid #999999; }
+  #groups .assignment_group div.assignment_list {
+    padding: 0 1px 1px 1px;
+    min-height: 10px; }
+  #groups .assignment_group div.header {
+    width: auto;
+    border-bottom: 1px solid #999999;
+    background: #cccccc;
+    padding: 1px 1px 0px 6px;
+    _height: 10px;
+    color: #666666;
+    margin-top: 0px;
+    margin-bottom: 0px; }
+    #groups .assignment_group div.header .links a {
+      opacity: 0.5; }
+    #groups .assignment_group div.header .group_move .group_move_icon {
+      visibility: hidden; }
+    #groups .assignment_group div.header:hover .links a {
+      opacity: 1; }
+    #groups .assignment_group div.header:hover .group_move .group_move_icon {
+      visibility: visible; }
+    #groups .assignment_group div.header .assignment_count {
+      font-size: 0.8em; }
+  #groups .assignment_group div.padding {
+    padding: 0px 0px 5px 0px;
+    display: none; }
+  #groups .assignment_group div.load_pending {
+    background-image: url(/images/ajax-loader-small-ccc.gif);
+    background-repeat: no-repeat;
+    background-position: center left; }
+  #groups .assignment_group div .edit_assignment_link, #groups .assignment_group div .delete_assignment_link {
+    display: none; }
+  #groups .assignment_group div .context_name {
+    display: none; }
+  #groups .assignment_group div .details {
+    display: none; }
+  #groups .assignment_group div span.no_points {
+    display: none; }
+  #groups .assignment_group div.points_uneditable form span.points {
+    display: none; }
+  #groups .assignment_group div.points_uneditable form span.no_points {
+    display: inline; }
+  #groups .assignment_group div div.data {
+    float: left;
+    border: 0px;
+    padding: 2px 5px 2px 5px; }
+    #groups .assignment_group div div.data.assignment_title {
+      width: 25%;
+      margin-right: 4%;
+      white-space: nowrap;
+      overflow: hidden; }
+      #groups .assignment_group div div.data.assignment_title a {
+        color: #4b7092; }
+    #groups .assignment_group div div.data.assignment_due {
+      width: 27%;
+      font-size: 0.8em;
+      padding-top: 0.5em;
+      color: #888888;
+      display: block; }
+    #groups .assignment_group div div.data.assignment_points {
+      font-size: 0.8em;
+      padding-top: 0.5em;
+      color: #888888; }
+    #groups .assignment_group div div.data.buttons {
+      float: right; }
+    #groups .assignment_group div div.data.links {
+      text-align: right;
+      float: right;
+      padding-right: 10px;
+      opacity: 0.5;
+      display: none; }
+      #groups .assignment_group div div.data.links:hover {
+        opacity: 1; }
+    #groups .assignment_group div div.data.date {
+      color: #888888; }
+    #groups .assignment_group div div.data.name {
+      margin-right: 10px;
+      width: 200px; }
+    #groups .assignment_group div div.data.move {
+      padding-left: 5px;
+      width: 20px;
+      display: block; }
+      #groups .assignment_group div div.data.move .move_icon {
+        visibility: hidden; }
+  #groups .assignment_group div.assignment-hover, #groups .assignment_group div .ui-sortable-helper {
+    background-color: #eeeeee; }
+    #groups .assignment_group div.assignment-hover div.data.links, #groups .assignment_group div .ui-sortable-helper div.data.links {
+      display: block; }
+    #groups .assignment_group div.assignment-hover div.data.move .move_icon, #groups .assignment_group div .ui-sortable-helper div.data.move .move_icon {
+      visibility: visible; }
+  #groups .assignment_group div.editing {
+    background-color: #dddddd; }
+#groups.groups_editable .assignment_group .group_move_icon, #groups.groups_editable .assignment_group .add_assignment_link, #groups.groups_editable .assignment_group .edit_group_link, #groups.groups_editable .assignment_group .delete_group_link {
+  display: inline; }
+#groups.groups_editable .assignment_group .group_move {
+  visibility: visible; }
+#groups.groups_editable .assignment_group div .edit_assignment_link, #groups.groups_editable .assignment_group div .delete_assignment_link {
+  display: inline; }
+
+#assignments_for_student .group_assignment {
+  min-height: 40px;
+  border-bottom: 1px solid #cccccc; }
+  #assignments_for_student .group_assignment.last {
+    border-bottom-width: 0px; }
+  #assignments_for_student .group_assignment .content {
+    padding-top: 3px; }
+  #assignments_for_student .group_assignment .details {
+    display: block;
+    margin-left: 60px;
+    font-size: 0.8em;
+    margin-bottom: 5px; }
+  #assignments_for_student .group_assignment .grade {
+    display: none; }
+  #assignments_for_student .group_assignment.group_assignment_graded {
+    color: #aaaaaa; }
+    #assignments_for_student .group_assignment.group_assignment_graded a {
+      color: #888888; }
+    #assignments_for_student .group_assignment.group_assignment_graded a.grade {
+      color: #444444;
+      font-weight: bold;
+      display: inline; }
+  #assignments_for_student .group_assignment.group_assignment_ungraded .assignment_due {
+    font-weight: bold;
+    color: #888822; }
+  #assignments_for_student .group_assignment.group_assignment_overdue .assignment_due {
+    font-weight: bold;
+    color: #cc0000; }
+  #assignments_for_student .group_assignment:hover {
+    background-color: #eeeeee; }
+    #assignments_for_student .group_assignment:hover .course_name {
+      opacity: 1 !important;
+      -moz-opacity: 1 !important;
+      filter: alpha(opacity=1) !important; }
+  #assignments_for_student .group_assignment div.data {
+    float: left;
+    border: 0px;
+    padding: 2px 5px 2px 5px; }
+    #assignments_for_student .group_assignment div.data.assignment_title {
+      width: 40%;
+      margin-left: 30px; }
+      #assignments_for_student .group_assignment div.data.assignment_title .title {
+        font-size: 1.3em;
+        font-weight: bold; }
+      #assignments_for_student .group_assignment div.data.assignment_title .course_name {
+        font-size: 0.8em;
+        line-height: 1.2em;
+        padding: 2px 7px;
+        color: inherit;
+        opacity: 0.75;
+        -ms-filter: alpha(Opacity=75);
+        filter: alpha(Opacity=75);
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        border-radius: 10px; }
+    #assignments_for_student .group_assignment div.data.assignment_due {
+      width: 30%;
+      font-size: 1em;
+      padding-top: 0.5em;
+      display: block; }
+    #assignments_for_student .group_assignment div.data.assignment_points {
+      font-size: 0.9em;
+      padding-top: 0.5em; }
+    #assignments_for_student .group_assignment div.data.links {
+      display: none; }
+    #assignments_for_student .group_assignment div.data.move {
+      display: none; }
+#assignments_for_student .assignment_list.show_context .group_assignment .context_name {
+  display: block; }
+
+#groups_for_student .assignment_group {
+  margin: 0 0.5em 1.5em 0.5em;
+  width: auto;
+  border: 1px solid #999999;
+  color: black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  #groups_for_student .assignment_group .group_move_icon, #groups_for_student .assignment_group .add_assignment_link, #groups_for_student .assignment_group .edit_group_link, #groups_for_student .assignment_group .delete_group_link {
+    display: none; }
+  #groups_for_student .assignment_group .group_move {
+    visibility: hidden; }
+  #groups_for_student .assignment_group div.header {
+    width: auto;
+    border-bottom: 1px solid #999999;
+    background-color: #dddddd;
+    padding-left: 25px;
+    color: #666666;
+    margin-bottom: 0px;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px; }
+    #groups_for_student .assignment_group div.header .group_name {
+      font-size: 1.5em;
+      font-weight: bold; }
+    #groups_for_student .assignment_group div.header .more_info_brief {
+      line-height: 1.7em; }
+    #groups_for_student .assignment_group div.header .links {
+      display: none; }
+  #groups_for_student .assignment_group div.padding {
+    padding: 0px 0px 5px 0px;
+    display: none; }
+  #groups_for_student .assignment_group .group_assignment {
+    min-height: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    color: #444444;
+    border-bottom: 1px solid #eeeeee; }
+    #groups_for_student .assignment_group .group_assignment:hover {
+      background-color: #eeeeee; }
+    #groups_for_student .assignment_group .group_assignment .content {
+      padding-top: 3px; }
+    #groups_for_student .assignment_group .group_assignment.group_assignment_graded {
+      color: #aaaaaa; }
+      #groups_for_student .assignment_group .group_assignment.group_assignment_graded a {
+        color: #888888; }
+    #groups_for_student .assignment_group .group_assignment.group_assignment_overdue .assignment_due {
+      font-weight: bold;
+      color: #cc0000; }
+    #groups_for_student .assignment_group .group_assignment div.data {
+      float: left;
+      border: 0px;
+      padding: 2px 5px 2px 5px; }
+      #groups_for_student .assignment_group .group_assignment div.data.assignment_title {
+        width: 40%;
+        font-weight: bold;
+        margin-left: 30px; }
+        #groups_for_student .assignment_group .group_assignment div.data.assignment_title .context_name {
+          font-weight: normal;
+          font-size: 0.7em;
+          padding-left: 10px;
+          color: #888888; }
+      #groups_for_student .assignment_group .group_assignment div.data.assignment_due {
+        width: 30%;
+        font-size: 0.8em;
+        padding-top: 0.5em;
+        display: block; }
+      #groups_for_student .assignment_group .group_assignment div.data.assignment_points {
+        font-size: 0.8em;
+        padding-top: 0.5em; }
+      #groups_for_student .assignment_group .group_assignment div.data.buttons {
+        float: right; }
+      #groups_for_student .assignment_group .group_assignment div.data.links {
+        display: none; }
+      #groups_for_student .assignment_group .group_assignment div.data.name {
+        margin-right: 10px;
+        font-weight: bold;
+        width: 200px; }
+      #groups_for_student .assignment_group .group_assignment div.data.move {
+        display: none; }
+
+#group_weight_table input.weight {
+  width: 35px; }
+#group_weight_table th, #group_weight_table td {
+  padding: 1px; }
+#group_weight_table th {
+  font-weight: bold;
+  border-bottom: 1px solid #888888; }
+#group_weight_table td.total {
+  font-weight: bold; }
+#group_weight_table tr.group_weight .move {
+  cursor: move;
+  visibility: hidden; }
+#group_weight_table tr.group_weight td {
+  border-bottom: 1px solid #aaaaaa; }
+#group_weight_table .group_weight_hover .move {
+  visibility: visible; }
+
+#full_assignment_details h2 {
+  margin: 0px; }
+
+.show-only-from a {
+  display: block;
+  margin-top: 3px;
+  color: #595959;
+  padding-left: 5px; }

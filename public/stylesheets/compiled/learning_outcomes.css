@@ -1,1 +1,224 @@
-input.outcome_rating_description{width:200px}.criterion_title{white-space:nowrap}.outcome_result{margin:10px 0}.outcome_result .title{font-weight:bold}.outcome_result .scoring{margin-left:20px;font-size:0.9em}.outcome_result .last_attempt{margin-left:20px;font-size:0.9em}.outcome_result .mastery{display:none}.outcome_result .results_link{font-size:0.8em;margin-left:20px}.outcome_result.mastery_result .mastery{display:inline}.outcome_group>.header{display:none}.outcome_group .outcome_group{border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px;background-color:#fff;margin:5px 0 10px}.outcome_group .outcome_group>.header{position:relative;background-color:#eee;display:block;border-bottom:1px solid #ccc;padding:5px 10px 2px}.outcome_group .outcome_group>.header .reorder_link{position:absolute;top:3px;left:0;visibility:hidden}.outcome_group .outcome_group>.header .title{margin:0 44px 0 20px;font-size:1em;font-weight:bold}.outcome_group .outcome_group>.header .links{position:absolute;right:0;top:3px;opacity:0.5}.outcome_group .outcome_group>.header .links a img{visibility:hidden}.outcome_group .outcome_group>.header .description{margin-left:20px}.outcome_group .outcome_group:hover>.header .links{float:right;opacity:1}.outcome_group .outcome_group:hover>.header .links a img{visibility:visible}.outcome_group .outcome_group:hover>.header .reorder_link{visibility:visible}.outcome_group .outcome_group>.content{padding:5px 10x;min-height:40px;margin:5px 0}.outcome_group .outcome_group .outcome_group{margin-left:10px;margin-right:10px}.outcome_group form.outcome_group>.header{border-bottom-width:0}.outcome_group>.header .title{font-size:1.2em;font-weight:bold}.child_outcomes{min-height:10px;padding-bottom:10px}.learning_outcome{margin-bottom:10px;background-color:#fff;margin:5px 11px 10px;display:block}.learning_outcome .header{padding:0 44px 0 20px;position:relative;border-bottom:1px solid #888}.learning_outcome .header .reorder_link{position:absolute;top:3px;left:0;visibility:hidden}.learning_outcome .header .short_description{font-size:1.2em;font-weight:bold}.learning_outcome .header .links{position:absolute;right:0;top:3px;opacity:0.5}.learning_outcome .header .links a img{visibility:hidden}.learning_outcome:hover .links{opacity:1}.learning_outcome:hover .links a img{visibility:visible}.learning_outcome:hover .reorder_link{visibility:visible}.learning_outcome .body{margin:5px 25px}.learning_outcome .body>.description{display:none}.learning_outcome .body .hide_details_link{display:none}.learning_outcome .body .aligned_artifacts{display:none}.learning_outcome .body .rubric_criterion{display:none}.learning_outcome .body .rubric_criterion{margin-top:5px;border-top:1px solid #ccc;width:100%}.learning_outcome .body .rubric_criterion td{vertical-align:top;padding-bottom:3px}.learning_outcome .body .rubric_criterion td.add_holder{padding-left:10px}.learning_outcome .body .rubric_criterion td.criterion_title{padding-right:10px}.learning_outcome .body .rubric_criterion .rating{font-size:0.8em}.learning_outcome .body .rubric_criterion .rating td,.learning_outcome .body .rubric_criterion .add_holder td{padding-left:20px}.learning_outcome .body .aligned_artifacts{font-size:0.8em}.learning_outcome.expanded .body>.description{display:block}.learning_outcome.expanded .rubric_criterion{display:inline-table}.learning_outcome.expanded .aligned_artifacts{display:block}.learning_outcome.expanded .show_details_link{display:none}.learning_outcome.expanded .hide_details_link{display:inline}#edit_outcome_form .header{padding-bottom:5px}#edit_outcome_form .rubric_criterion{margin-left:0;border-collapse:collapse}#edit_outcome_form .rubric_criterion td{padding:5px 2px}#edit_outcome_form .rubric_criterion .rating td,#edit_outcome_form .rubric_criterion .add_holder td{padding:5px 5px 5px 20px}#alignments{list-style-type:none;padding-left:20px}#alignments li{margin-bottom:10px;padding:2px 5px;display:block}#alignments li .move_alignment_link{display:none}#alignments li .title{font-size:1.2em;font-weight:bold}#alignments li .header{float:left}#alignments li .links{float:right;opacity:0.5}#alignments li.hover_alignment{background-color:#eee;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}#alignments li.hover_alignment .links{opacity:1}#alignments li .type_icon{background:url(/images/file.png) no-repeat left top}#alignments li.attachment .type_icon{background-image:url(/images/file_download.png)}#alignments li.discussion_topic .type_icon{background-image:url(/images/word_bubble.png)}#alignments li.assignment .type_icon{background-image:url(/images/assignment.png)}#alignments li.quiz .type_icon{background-image:url(/images/quiz.png)}#alignments li.external_url .type_icon{background-image:url(/images/link.png)}#alignments.orderable li .move_alignment_link{display:inline}#artifacts{list-style-type:none;padding-left:20px}#artifacts li{margin-bottom:10px;padding:2px 5px;display:block}#artifacts li.hover_artifact{background-color:#eee;-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}#artifacts li .scoring{margin-bottom:5px}#artifacts li .title{font-weight:bold}.outcomes .uneditable .outcome_group .header .reorder_link{display:none}
+input.outcome_rating_description {
+  width: 200px; }
+
+.criterion_title {
+  white-space: nowrap; }
+
+.outcome_result {
+  margin: 10px 0; }
+  .outcome_result .title {
+    font-weight: bold; }
+  .outcome_result .scoring {
+    margin-left: 20px;
+    font-size: 0.9em; }
+  .outcome_result .last_attempt {
+    margin-left: 20px;
+    font-size: 0.9em; }
+  .outcome_result .mastery {
+    display: none; }
+  .outcome_result .results_link {
+    font-size: 0.8em;
+    margin-left: 20px; }
+  .outcome_result.mastery_result .mastery {
+    display: inline; }
+
+.outcome_group > .header {
+  display: none; }
+.outcome_group .outcome_group {
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-color: white;
+  margin: 5px 0 10px; }
+  .outcome_group .outcome_group > .header {
+    position: relative;
+    background-color: #eeeeee;
+    display: block;
+    border-bottom: 1px solid #cccccc;
+    padding: 5px 10px 2px; }
+    .outcome_group .outcome_group > .header .reorder_link {
+      position: absolute;
+      top: 3px;
+      left: 0;
+      visibility: hidden; }
+    .outcome_group .outcome_group > .header .title {
+      margin: 0 44px 0 20px;
+      font-size: 1em;
+      font-weight: bold; }
+    .outcome_group .outcome_group > .header .links {
+      position: absolute;
+      right: 0;
+      top: 3px;
+      opacity: 0.5; }
+      .outcome_group .outcome_group > .header .links a img {
+        visibility: hidden; }
+    .outcome_group .outcome_group > .header .description {
+      margin-left: 20px; }
+  .outcome_group .outcome_group:hover > .header .links {
+    float: right;
+    opacity: 1; }
+    .outcome_group .outcome_group:hover > .header .links a img {
+      visibility: visible; }
+  .outcome_group .outcome_group:hover > .header .reorder_link {
+    visibility: visible; }
+  .outcome_group .outcome_group > .content {
+    padding: 5px 10x;
+    min-height: 40px;
+    margin: 5px 0; }
+  .outcome_group .outcome_group .outcome_group {
+    margin-left: 10px;
+    margin-right: 10px; }
+.outcome_group form.outcome_group > .header {
+  border-bottom-width: 0; }
+.outcome_group > .header .title {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.child_outcomes {
+  min-height: 10px;
+  padding-bottom: 10px; }
+
+.learning_outcome {
+  margin-bottom: 10px;
+  background-color: white;
+  margin: 5px 11px 10px;
+  display: block; }
+  .learning_outcome .header {
+    padding: 0 44px 0 20px;
+    position: relative;
+    border-bottom: 1px solid #888888; }
+    .learning_outcome .header .reorder_link {
+      position: absolute;
+      top: 3px;
+      left: 0;
+      visibility: hidden; }
+    .learning_outcome .header .short_description {
+      font-size: 1.2em;
+      font-weight: bold; }
+    .learning_outcome .header .links {
+      position: absolute;
+      right: 0;
+      top: 3px;
+      opacity: 0.5; }
+      .learning_outcome .header .links a img {
+        visibility: hidden; }
+  .learning_outcome:hover .links {
+    opacity: 1; }
+    .learning_outcome:hover .links a img {
+      visibility: visible; }
+  .learning_outcome:hover .reorder_link {
+    visibility: visible; }
+  .learning_outcome .body {
+    margin: 5px 25px; }
+    .learning_outcome .body > .description {
+      display: none; }
+    .learning_outcome .body .hide_details_link {
+      display: none; }
+    .learning_outcome .body .aligned_artifacts {
+      display: none; }
+    .learning_outcome .body .rubric_criterion {
+      display: none; }
+    .learning_outcome .body .rubric_criterion {
+      margin-top: 5px;
+      border-top: 1px solid #cccccc;
+      width: 100%; }
+      .learning_outcome .body .rubric_criterion td {
+        vertical-align: top;
+        padding-bottom: 3px; }
+        .learning_outcome .body .rubric_criterion td.add_holder {
+          padding-left: 10px; }
+        .learning_outcome .body .rubric_criterion td.criterion_title {
+          padding-right: 10px; }
+      .learning_outcome .body .rubric_criterion .rating {
+        font-size: 0.8em; }
+      .learning_outcome .body .rubric_criterion .rating td, .learning_outcome .body .rubric_criterion .add_holder td {
+        padding-left: 20px; }
+    .learning_outcome .body .aligned_artifacts {
+      font-size: 0.8em; }
+  .learning_outcome.expanded .body > .description {
+    display: block; }
+  .learning_outcome.expanded .rubric_criterion {
+    display: inline-table; }
+  .learning_outcome.expanded .aligned_artifacts {
+    display: block; }
+  .learning_outcome.expanded .show_details_link {
+    display: none; }
+  .learning_outcome.expanded .hide_details_link {
+    display: inline; }
+
+#edit_outcome_form .header {
+  padding-bottom: 5px; }
+#edit_outcome_form .rubric_criterion {
+  margin-left: 0;
+  border-collapse: collapse; }
+  #edit_outcome_form .rubric_criterion td {
+    padding: 5px 2px; }
+  #edit_outcome_form .rubric_criterion .rating td, #edit_outcome_form .rubric_criterion .add_holder td {
+    padding: 5px 5px 5px 20px; }
+
+#alignments {
+  list-style-type: none;
+  padding-left: 20px; }
+  #alignments li {
+    margin-bottom: 10px;
+    padding: 2px 5px;
+    display: block; }
+    #alignments li .move_alignment_link {
+      display: none; }
+    #alignments li .title {
+      font-size: 1.2em;
+      font-weight: bold; }
+    #alignments li .header {
+      float: left; }
+    #alignments li .links {
+      float: right;
+      opacity: 0.5; }
+    #alignments li.hover_alignment {
+      background-color: #eeeeee;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px; }
+      #alignments li.hover_alignment .links {
+        opacity: 1; }
+    #alignments li .type_icon {
+      background: url(/images/file.png) no-repeat left top; }
+    #alignments li.attachment .type_icon {
+      background-image: url(/images/file_download.png); }
+    #alignments li.discussion_topic .type_icon {
+      background-image: url(/images/word_bubble.png); }
+    #alignments li.assignment .type_icon {
+      background-image: url(/images/assignment.png); }
+    #alignments li.quiz .type_icon {
+      background-image: url(/images/quiz.png); }
+    #alignments li.external_url .type_icon {
+      background-image: url(/images/link.png); }
+
+#alignments.orderable li .move_alignment_link {
+  display: inline; }
+
+#artifacts {
+  list-style-type: none;
+  padding-left: 20px; }
+  #artifacts li {
+    margin-bottom: 10px;
+    padding: 2px 5px;
+    display: block; }
+    #artifacts li.hover_artifact {
+      background-color: #eeeeee;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px; }
+    #artifacts li .scoring {
+      margin-bottom: 5px; }
+    #artifacts li .title {
+      font-weight: bold; }
+
+.outcomes .uneditable .outcome_group .header .reorder_link {
+  display: none; }

@@ -1,1 +1,534 @@
-a.external_link{padding-right:15px;background:no-repeat right center;background-image:url(/images/popout.png)}a.equella_content_link{padding-left:17px;background:no-repeat left center;background-image:url(/images/equella_icon.png)}a.add{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/add.png)}a.add-small{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;padding-left:15px;background-image:url(/images/add-small.png)}a.add-feed{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/add_feed.png)}a.add-file{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/file.png)}a.announcement-icon-small{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/announcement_icon_small.png)}a.atom{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/atom.png)}a.media-comment{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/audio_comment.gif)}a.back{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/back.png)}a.calendar{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/due_date_icon.png)}a.collapse{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/collapse.png)}a.delete{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/delete.png)}a.delete-circle{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/delete_circle.png)}a.discussion-icon-small{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/discussion_icon_small.png)}a.discussion-topic{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/discussion_topic.png);padding-left:30px}a.download{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/download.png)}a.download-small{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;padding-left:15px;background-image:url(/images/download-small.png)}a.edit{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/edit.png)}a.email{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/email.png)}a.expand{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/expand.png)}a.feed{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/atom.png)}a.file-multiple{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/file_multiple.png)}a.file_big{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/file_big.png)}a.folder-closed{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/folder_closed.png)}a.forward{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/forward.png)}a.find{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/find.png)}a.grading_dim{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/grading_icon_gray.png)}a.grading{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/grading_icon.png)}a.help{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/help.png)}a.history{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/history.png)}a.information{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;font-size:0.8em;background-image:url(/images/information.png)}a.link{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/link.png)}a.lock{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/lock.png)}a.pass{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/pass.png)}a.peer-review{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/peer_review.png)}a.pending-review{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/pending_review.png)}a.quiz{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/quiz.png)}a.refresh{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/ajax-reload.gif)}a.refreshing{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/ajax-reload-animated.gif)}a.rename{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/rename.png)}a.reply{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/reply.png)}a.rubric{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/rubric.png)}a.small-calendar{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/ical.png)}a.speedgrader{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/speedgrader_icon.png)}a.text-entry{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/text_entry.png)}a.warning{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/warning.png)}a.word-bubble{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/word_bubble.png)}a.unlock{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/unlock.png)}a.icon-grading{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/grading_icon.png)}a.icon-grading-gray{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/grading_icon_gray.png)}a.icon-clock{background-repeat:no-repeat;background-position:left center;line-height:20px;padding:1px 0 1px 20px;display:inline-block;background-image:url(/images/icon-clock.png)}a.admin{color:#d15545}a.file{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white.png") !important}a.pdf{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_acrobat.png") !important}a.image{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_picture.png") !important}a.spreadsheet{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_excel.png") !important}a.xls{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_excel.png") !important}a.word,a.doc{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_word.png") !important}a.ppt{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_powerpoint.png") !important}a.zip{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_zip.png") !important}a.html{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_world.png") !important}a.code{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_code.png") !important}a.text{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_text.png") !important}a.audio{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/sound_none.png") !important}a.video{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_camera.png") !important}a.flash{background-repeat:no-repeat;background-position:left center;font-size:10px;padding:1px 0 2px 20px;background-image:url("/images/inst_tree/file_types/page_white_flash.png") !important}a.no-hover:hover,a.no-hover:focus{background-color:transparent}a.no-underline,a.no-underline:hover,a.no-underline:focus{text-decoration:none}.atr-reply{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat;width:16px;height:16px;background-image:url(/images/reply.png)}.atr-edit{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat;width:16px;height:16px;background-image:url(/images/edit.png)}.atr-delete{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat;width:16px;height:16px;background-image:url(/images/delete.png)}
+a.external_link {
+  padding-right: 15px;
+  background: no-repeat right center;
+  background-image: url(/images/popout.png); }
+
+a.equella_content_link {
+  padding-left: 17px;
+  background: no-repeat left center;
+  background-image: url(/images/equella_icon.png); }
+
+a.add {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/add.png); }
+
+a.add-small {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  padding-left: 15px;
+  background-image: url(/images/add-small.png); }
+
+a.add-feed {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/add_feed.png); }
+
+a.add-file {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/file.png); }
+
+a.announcement-icon-small {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/announcement_icon_small.png); }
+
+a.atom {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/atom.png); }
+
+a.media-comment {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/audio_comment.gif); }
+
+a.back {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/back.png); }
+
+a.calendar {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/due_date_icon.png); }
+
+a.collapse {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/collapse.png); }
+
+a.delete {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/delete.png); }
+
+a.delete-circle {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/delete_circle.png); }
+
+a.discussion-icon-small {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/discussion_icon_small.png); }
+
+a.discussion-topic {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/discussion_topic.png);
+  padding-left: 30px; }
+
+a.download {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/download.png); }
+
+a.download-small {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  padding-left: 15px;
+  background-image: url(/images/download-small.png); }
+
+a.edit {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/edit.png); }
+
+a.email {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/email.png); }
+
+a.expand {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/expand.png); }
+
+a.feed {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/atom.png); }
+
+a.file-multiple {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/file_multiple.png); }
+
+a.file_big {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/file_big.png); }
+
+a.folder-closed {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/folder_closed.png); }
+
+a.forward {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/forward.png); }
+
+a.find {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/find.png); }
+
+a.grading_dim {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/grading_icon_gray.png); }
+
+a.grading {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/grading_icon.png); }
+
+a.help {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/help.png); }
+
+a.history {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/history.png); }
+
+a.information {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  font-size: 0.8em;
+  background-image: url(/images/information.png); }
+
+a.link {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/link.png); }
+
+a.lock {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/lock.png); }
+
+a.pass {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/pass.png); }
+
+a.peer-review {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/peer_review.png); }
+
+a.pending-review {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/pending_review.png); }
+
+a.quiz {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/quiz.png); }
+
+a.refresh {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/ajax-reload.gif); }
+
+a.refreshing {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/ajax-reload-animated.gif); }
+
+a.rename {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/rename.png); }
+
+a.reply {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/reply.png); }
+
+a.rubric {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/rubric.png); }
+
+a.small-calendar {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/ical.png); }
+
+a.speedgrader {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/speedgrader_icon.png); }
+
+a.text-entry {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/text_entry.png); }
+
+a.warning {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/warning.png); }
+
+a.word-bubble {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/word_bubble.png); }
+
+a.unlock {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/unlock.png); }
+
+a.icon-grading {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/grading_icon.png); }
+
+a.icon-grading-gray {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/grading_icon_gray.png); }
+
+a.icon-clock {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 20px;
+  padding: 1px 0 1px 20px;
+  display: inline-block;
+  background-image: url(/images/icon-clock.png); }
+
+a.admin {
+  color: #d15545; }
+
+a.file {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white.png") !important; }
+a.pdf {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_acrobat.png") !important; }
+a.image {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_picture.png") !important; }
+a.spreadsheet {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_excel.png") !important; }
+a.xls {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_excel.png") !important; }
+a.word, a.doc {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_word.png") !important; }
+a.ppt {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_powerpoint.png") !important; }
+a.zip {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_zip.png") !important; }
+a.html {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_world.png") !important; }
+a.code {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_code.png") !important; }
+a.text {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_text.png") !important; }
+a.audio {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/sound_none.png") !important; }
+a.video {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_camera.png") !important; }
+a.flash {
+  background-repeat: no-repeat;
+  background-position: left center;
+  font-size: 10px;
+  padding: 1px 0 2px 20px;
+  background-image: url("/images/inst_tree/file_types/page_white_flash.png") !important; }
+
+a.no-hover:hover, a.no-hover:focus {
+  background-color: transparent; }
+
+a.no-underline, a.no-underline:hover, a.no-underline:focus {
+  text-decoration: none; }
+
+.atr-reply {
+  display: inline-block;
+  text-indent: 999px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  background-image: url(/images/reply.png); }
+
+.atr-edit {
+  display: inline-block;
+  text-indent: 999px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  background-image: url(/images/edit.png); }
+
+.atr-delete {
+  display: inline-block;
+  text-indent: 999px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  background-image: url(/images/delete.png); }

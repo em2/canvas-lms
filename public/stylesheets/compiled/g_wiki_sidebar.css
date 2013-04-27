@@ -1,1 +1,100 @@
-#editor_tabs{font-size:0.8em}#editor_tabs #tree1{margin:10px 0}#editor_tabs h4{margin:0 0 0.5em}#editor_tabs .ui-tabs-panel{padding:0.5em 0.8em}#editor_tabs .wiki_pages{list-style:none;margin:0;padding:0}#editor_tabs .wiki_pages a:hover{text-decoration:underline}#editor_tabs .page_list{font-size:1.2em;line-height:1.5em}#editor_tabs .page_list li{padding-left:20px;background-image:url(/images/tick.png);background-position:left center;background-repeat:no-repeat}#editor_tabs .page_list li:hover{background-image:url(/images/back.png);background-color:#eee;-moz-border-radius:3px;-webkit-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px;-khtml-border-radius:3px;border-radius:3px}#editor_tabs #pages_accordion span.header{display:block}#editor_tabs #pages_accordion .ui-accordion-header a{padding:0.1em 0.5em 0.1em 2.2em}#editor_tabs #pages_accordion .ui-accordion-content{padding:0.5em;height:190px;overflow:auto}#editor_tabs #pages_accordion .add{display:block}#editor_tabs .image_list_holder{position:relative}#editor_tabs .image_list_holder .dragging_message{display:none}#editor_tabs .image_list_holder.file_drag .image_list *{visibility:hidden}#editor_tabs .image_list_holder.file_drag .dragging_message{position:absolute;top:5px;left:5px;display:block;font-size:1.4em;font-weight:bold;padding-left:20px;background:transparent url(/images/page_white_get.png) no-repeat left center}#editor_tabs .uploading_file_list{margin-top:5px}#editor_tabs .uploading_file_list .uploading{font-weight:bold}#editor_tabs .uploading_file_list .remaining{font-size:0.8em;color:#888;margin-left:7px;margin-top:-5px}#editor_tabs .image_list .img_link{cursor:pointer;overflow:hidden;border:1px solid #ccc;margin:3px;padding:3px;float:left}#editor_tabs .image_list .img_link .img_holder{min-height:50px}#editor_tabs .image_list .img_link img{max-height:50px;max-width:200px}#editor_tabs .image_list .img_link.default_image{display:none}#editor_tabs .file_list_holder{position:relative}#editor_tabs .file_list_holder .dragging_message{display:none}#editor_tabs .file_list_holder.file_drag .file_list *{visibility:hidden}#editor_tabs .file_list_holder.file_drag .dragging_message{position:absolute;top:5px;left:5px;display:block;font-size:1.4em;font-weight:bold;padding-left:20px;background:transparent url(/images/page_white_get.png) no-repeat left center}.ui-effects-transfer{border:2px dashed #000}
+#editor_tabs {
+  font-size: 0.8em; }
+  #editor_tabs #tree1 {
+    margin: 10px 0; }
+  #editor_tabs h4 {
+    margin: 0 0 0.5em; }
+  #editor_tabs .ui-tabs-panel {
+    padding: 0.5em 0.8em; }
+  #editor_tabs .wiki_pages {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    #editor_tabs .wiki_pages a:hover {
+      text-decoration: underline; }
+  #editor_tabs .page_list {
+    font-size: 1.2em;
+    line-height: 1.5em; }
+    #editor_tabs .page_list li {
+      padding-left: 20px;
+      background-image: url(/images/tick.png);
+      background-position: left center;
+      background-repeat: no-repeat; }
+      #editor_tabs .page_list li:hover {
+        background-image: url(/images/back.png);
+        background-color: #eeeeee;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px; }
+  #editor_tabs #pages_accordion span.header {
+    display: block; }
+  #editor_tabs #pages_accordion .ui-accordion-header a {
+    padding: 0.1em 0.5em 0.1em 2.2em; }
+  #editor_tabs #pages_accordion .ui-accordion-content {
+    padding: 0.5em;
+    height: 190px;
+    overflow: auto; }
+  #editor_tabs #pages_accordion .add {
+    display: block; }
+
+#editor_tabs .image_list_holder {
+  position: relative; }
+  #editor_tabs .image_list_holder .dragging_message {
+    display: none; }
+  #editor_tabs .image_list_holder.file_drag .image_list * {
+    visibility: hidden; }
+  #editor_tabs .image_list_holder.file_drag .dragging_message {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding-left: 20px;
+    background: transparent url(/images/page_white_get.png) no-repeat left center; }
+
+#editor_tabs .uploading_file_list {
+  margin-top: 5px; }
+  #editor_tabs .uploading_file_list .uploading {
+    font-weight: bold; }
+  #editor_tabs .uploading_file_list .remaining {
+    font-size: 0.8em;
+    color: #888888;
+    margin-left: 7px;
+    margin-top: -5px; }
+
+#editor_tabs .image_list .img_link {
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid #cccccc;
+  margin: 3px;
+  padding: 3px;
+  float: left; }
+  #editor_tabs .image_list .img_link .img_holder {
+    min-height: 50px; }
+  #editor_tabs .image_list .img_link img {
+    max-height: 50px;
+    max-width: 200px; }
+#editor_tabs .image_list .img_link.default_image {
+  display: none; }
+
+#editor_tabs .file_list_holder {
+  position: relative; }
+  #editor_tabs .file_list_holder .dragging_message {
+    display: none; }
+  #editor_tabs .file_list_holder.file_drag .file_list * {
+    visibility: hidden; }
+  #editor_tabs .file_list_holder.file_drag .dragging_message {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding-left: 20px;
+    background: transparent url(/images/page_white_get.png) no-repeat left center; }
+
+.ui-effects-transfer {
+  border: 2px dashed black; }

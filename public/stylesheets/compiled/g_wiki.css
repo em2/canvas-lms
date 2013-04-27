@@ -1,1 +1,71 @@
-#wiki_show_view_main{overflow:auto}#last_edited_by{border:solid #eee;border-width:0 0 1px 0;font-size:0.7em;margin-bottom:10px;margin-right:2px}#last_edited_by h3{margin:0px 20px 10px;font-size:1.5em;color:#444}#page_history{float:right}#wiki_page_comments{margin-top:50px}#wiki_page_comments textarea{width:97%;-moz-border-radius:4px;-webkit-border-radius:4px;-o-border-radius:4px;-ms-border-radius:4px;-khtml-border-radius:4px;border-radius:4px;border:1px solid #aaa;height:50px}#wiki_page_comments .wiki_page_comment{margin-bottom:20px}#wiki_page_comments .wiki_page_comment .commenting{display:none}#wiki_page_comments .wiki_page_comment.commenting .commenting{display:block}#wiki_page_comments .wiki_page_comment.commenting .formatted_body .not_commenting{display:none}#wiki_page_comments .wiki_page_comment .header{border-bottom:1px solid #ccc;margin-bottom:2px;color:#888;font-size:0.8em}#wiki_page_comments .wiki_page_comment .header .user_name{float:left}#wiki_page_comments .wiki_page_comment .header .links{float:right}#wiki_page_comments .wiki_page_comment .header .links .delete_comment_link{display:none}#wiki_page_comments .wiki_page_comment.deletable_comment .header .links .delete_comment_link{display:inline;opacity:0.5}#wiki_page_comments .wiki_page_comment.deletable_comment .header:hover .links .delete_comment_link{opacity:1}#wiki_page_comments .wiki_page_comment .formatted_body{margin:0 10px}#wiki_page_comments .wiki_page_comment .formatted_body .add_comment_link{width:97%;-moz-border-radius:4px;-webkit-border-radius:4px;-o-border-radius:4px;-ms-border-radius:4px;-khtml-border-radius:4px;border-radius:4px;border:1px solid #aaa;cursor:text;display:block;padding:2px 4px;text-decoration:none;color:#888}#wiki_page_body_parent.mceEditor{display:block;overflow:auto}
+#wiki_show_view_main {
+  overflow: auto; }
+
+#last_edited_by {
+  border: solid #eeeeee;
+  border-width: 0 0 1px 0;
+  font-size: 0.7em;
+  margin-bottom: 10px;
+  margin-right: 2px; }
+  #last_edited_by h3 {
+    margin: 0px 20px 10px;
+    font-size: 1.5em;
+    color: #444444; }
+
+#page_history {
+  float: right; }
+
+#wiki_page_comments {
+  margin-top: 50px; }
+  #wiki_page_comments textarea {
+    width: 97%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #aaaaaa;
+    height: 50px; }
+  #wiki_page_comments .wiki_page_comment {
+    margin-bottom: 20px; }
+    #wiki_page_comments .wiki_page_comment .commenting {
+      display: none; }
+    #wiki_page_comments .wiki_page_comment.commenting .commenting {
+      display: block; }
+    #wiki_page_comments .wiki_page_comment.commenting .formatted_body .not_commenting {
+      display: none; }
+    #wiki_page_comments .wiki_page_comment .header {
+      border-bottom: 1px solid #cccccc;
+      margin-bottom: 2px;
+      color: #888888;
+      font-size: 0.8em; }
+      #wiki_page_comments .wiki_page_comment .header .user_name {
+        float: left; }
+      #wiki_page_comments .wiki_page_comment .header .links {
+        float: right; }
+        #wiki_page_comments .wiki_page_comment .header .links .delete_comment_link {
+          display: none; }
+    #wiki_page_comments .wiki_page_comment.deletable_comment .header .links .delete_comment_link {
+      display: inline;
+      opacity: 0.5; }
+    #wiki_page_comments .wiki_page_comment.deletable_comment .header:hover .links .delete_comment_link {
+      opacity: 1; }
+    #wiki_page_comments .wiki_page_comment .formatted_body {
+      margin: 0 10px; }
+      #wiki_page_comments .wiki_page_comment .formatted_body .add_comment_link {
+        width: 97%;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+        border: 1px solid #aaaaaa;
+        cursor: text;
+        display: block;
+        padding: 2px 4px;
+        text-decoration: none;
+        color: #888888; }
+
+#wiki_page_body_parent.mceEditor {
+  display: block;
+  overflow: auto; }

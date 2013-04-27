@@ -1,1 +1,26 @@
-.explanation_url_frame{border:2px solid #888;border-radius:3px;width:800px;height:500px;float:left;margin-bottom:30px;padding:5px}.misconception_table{float:left}.misconception_table td{width:160px;padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px}.difficulties{float:left}.difficulties td{float:left;padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px}
+.explanation_url_frame {
+  border: 2px solid #888888;
+  border-radius: 3px;
+  width: 800px;
+  height: 500px;
+  float: left;
+  margin-bottom: 30px;
+  padding: 5px; }
+
+.misconception_table {
+  float: left; }
+  .misconception_table td {
+    width: 160px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px; }
+
+.difficulties {
+  float: left; }
+  .difficulties td {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px; }

@@ -1,1 +1,615 @@
-.school_reports body{font-family:arial,sans,sans-serif;margin:0;font-size:13px}.school_reports body::-webkit-scrollbar-track-piece{background-clip:padding-box;background-color:#f5f5f5;border:solid #fff;border-width:0 0 0 3px;box-shadow:inset 1px 0 0 rgba(0,0,0,0.14),inset -1px 0 0 rgba(0,0,0,0.07)}.school_reports body::-webkit-scrollbar-track-piece:horizontal{border-width:3px 0 0;box-shadow:inset 0 1px 0 rgba(0,0,0,0.14),inset 0 -1px 0 rgba(0,0,0,0.07)}.school_reports body::-webkit-scrollbar-thumb{border-width:1px 1px 1px 5px}.school_reports body::-webkit-scrollbar-thumb:horizontal{border-width:5px 1px 1px}.school_reports body::-webkit-scrollbar-corner{background-clip:padding-box;background-color:#f5f5f5;border:solid #fff;border-width:3px 0 0 3px;box-shadow:inset 1px 1px 0 rgba(0,0,0,0.14)}.school_reports body td{font-size:13px}.school_reports #tblMain td.hd p,.school_reports .colHeadTable td.hd p{margin:0;width:0;overflow:hidden;font-size:0}.school_reports #tblKey td.hd p,.school_reports .colHeadTable td.hd p{margin:0;width:0;overflow:hidden;font-size:0}.school_reports td.rShim{width:35px;height:0;border-right:1px #c8c8c8 solid}.school_reports .tblGenFixed{table-layout:fixed;border-collapse:collapse;border-style:none;border-spacing:0px;width:0px}.school_reports td.num{text-align:right}.school_reports .tblGenFixed td.s0{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000;border-right:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s2{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s1{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000;border-right:3px solid #000}.school_reports .tblGenFixed td.s9{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-left:3px solid #000;border-right:3px solid #000;border-bottom:3px solid #000}.school_reports .tblGenFixed td.s12{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000;border-bottom:1px solid #000}.school_reports .tblGenFixed td.s13{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s7{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s14,.school_reports .tblGenFixed td.s15{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s8{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000;border-bottom:3px solid #000}.school_reports .tblGenFixed td.s5{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000}.school_reports .tblGenFixed td.s6{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s10{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:1px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s3{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s11{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:1px solid #000;border-bottom:1px solid #000}.school_reports .tblGenFixed td.s4{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000}.school_reports .tblGenFixed td.s16{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000}.school_reports .tblGenFixed td.s17{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000;border-top:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s18{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000;border-bottom:3px solid #000;border-left:3px solid #000;border-right:1px solid #000}.school_reports .tblGenFixed td.s19{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000;border-top:3px solid #000}.school_reports .tblGenFixed td.s20{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:1px solid #000}.school_reports .tblGenFixed td.s21{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:1px solid #000;border-bottom:3px solid #000;border-top:3px solid #000}.school_reports .tblGenFixed td.s22{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000;border-top:3px solid #000}.school_reports .tblGenFixed td.s23{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:1px solid #000}.school_reports .tblGenFixed td.s40{background-color:#efefef;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000;border-right:3px solid #000;border-bottom:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s42{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s41{background-color:#efefef;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-top:3px solid #000;border-right:3px solid #000;border-bottom:3px solid #000}.school_reports .tblGenFixed td.s56{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s57,.school_reports .tblGenFixed td.s58{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s49{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s52{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000}.school_reports .tblGenFixed td.s53{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s47{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s54{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000}.school_reports .tblGenFixed td.s55{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000;border-bottom:3px solid #000}.school_reports .tblGenFixed td.s48,.school_reports .tblGenFixed td.s45{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000}.school_reports .tblGenFixed td.s46{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden}.school_reports .tblGenFixed td.s43,.school_reports .tblGenFixed td.s50{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000;border-left:3px solid #000}.school_reports .tblGenFixed td.s44{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;color:#000;text-decoration:none;text-align:center;vertical-align:bottom;direction:auto-ltr;white-space:normal;overflow:hidden;border-right:3px solid #000}.school_reports .tblGenFixed td.s51{background-color:#fff;font-family:arial,sans,sans-serif;font-size:100%;font-weight:normal;font-style:normal;text-decoration:none;text-align:center;vertical-align:bottom;direction:Context;white-space:normal;overflow:hidden;border-right:3px solid #000}.school_reports #content{overflow:scroll}.school_reports #report_heading{margin-left:115px}.school_reports #assessment_date_range{margin-left:170px}.school_reports #assessment_date{margin-left:250px}.school_reports #printed_statement{float:right}
+.school_reports body {
+  font-family: arial, sans, sans-serif;
+  margin: 0;
+  font-size: 13px; }
+  .school_reports body::-webkit-scrollbar-track-piece {
+    background-clip: padding-box;
+    background-color: whitesmoke;
+    border: solid white;
+    border-width: 0 0 0 3px;
+    box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
+    .school_reports body::-webkit-scrollbar-track-piece:horizontal {
+      border-width: 3px 0 0;
+      box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
+  .school_reports body::-webkit-scrollbar-thumb {
+    border-width: 1px 1px 1px 5px; }
+    .school_reports body::-webkit-scrollbar-thumb:horizontal {
+      border-width: 5px 1px 1px; }
+  .school_reports body::-webkit-scrollbar-corner {
+    background-clip: padding-box;
+    background-color: whitesmoke;
+    border: solid white;
+    border-width: 3px 0 0 3px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.14); }
+  .school_reports body td {
+    font-size: 13px; }
+.school_reports #tblMain td.hd p, .school_reports .colHeadTable td.hd p {
+  margin: 0;
+  width: 0;
+  overflow: hidden;
+  font-size: 0; }
+.school_reports #tblKey td.hd p, .school_reports .colHeadTable td.hd p {
+  margin: 0;
+  width: 0;
+  overflow: hidden;
+  font-size: 0; }
+.school_reports td.rShim {
+  width: 35px;
+  height: 0;
+  border-right: 1px #c8c8c8 solid; }
+.school_reports .tblGenFixed {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-style: none;
+  border-spacing: 0px;
+  width: 0px; }
+.school_reports td.num {
+  text-align: right; }
+.school_reports .tblGenFixed td.s0 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s2 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s1 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-top: 3px solid black;
+  border-right: 3px solid black; }
+.school_reports .tblGenFixed td.s9 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black; }
+.school_reports .tblGenFixed td.s12 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; }
+.school_reports .tblGenFixed td.s13 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s7 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s14, .school_reports .tblGenFixed td.s15 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s8 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 1px solid black;
+  border-bottom: 3px solid black; }
+.school_reports .tblGenFixed td.s5 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black; }
+.school_reports .tblGenFixed td.s6 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s10 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 1px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s3 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s11 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; }
+.school_reports .tblGenFixed td.s4 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black; }
+.school_reports .tblGenFixed td.s16 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black; }
+.school_reports .tblGenFixed td.s17 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  border-top: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s18 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black;
+  border-right: 1px solid black; }
+.school_reports .tblGenFixed td.s19 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  border-top: 3px solid black; }
+.school_reports .tblGenFixed td.s20 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 1px solid black; }
+.school_reports .tblGenFixed td.s21 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 1px solid black;
+  border-bottom: 3px solid black;
+  border-top: 3px solid black; }
+.school_reports .tblGenFixed td.s22 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  border-top: 3px solid black; }
+.school_reports .tblGenFixed td.s23 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 1px solid black; }
+.school_reports .tblGenFixed td.s40 {
+  background-color: #efefef;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s42 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s41 {
+  background-color: #efefef;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black; }
+.school_reports .tblGenFixed td.s56 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s57, .school_reports .tblGenFixed td.s58 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s49 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s52 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black; }
+.school_reports .tblGenFixed td.s53 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s47 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s54 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black; }
+.school_reports .tblGenFixed td.s55 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black; }
+.school_reports .tblGenFixed td.s48, .school_reports .tblGenFixed td.s45 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black; }
+.school_reports .tblGenFixed td.s46 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden; }
+.school_reports .tblGenFixed td.s43, .school_reports .tblGenFixed td.s50 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black;
+  border-left: 3px solid black; }
+.school_reports .tblGenFixed td.s44 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: auto-ltr;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black; }
+.school_reports .tblGenFixed td.s51 {
+  background-color: white;
+  font-family: arial, sans, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: bottom;
+  direction: Context;
+  white-space: normal;
+  overflow: hidden;
+  border-right: 3px solid black; }
+.school_reports #content {
+  overflow: scroll; }
+.school_reports #report_heading {
+  margin-left: 115px; }
+.school_reports #assessment_date_range {
+  margin-left: 170px; }
+.school_reports #assessment_date {
+  margin-left: 250px; }
+.school_reports #printed_statement {
+  float: right; }

@@ -1,1 +1,23 @@
-#editCalendarEventFull [name="description"]{width:100%;min-height:200px}#editCalendarEventFull [name="title"]{width:100%;font-size:21px}#editCalendarEventFull .date_start_end_row{overflow:hidden;*zoom:1}#editCalendarEventFull .date_start_end_row th,#editCalendarEventFull .date_start_end_row td{vertical-align:top}#editCalendarEventFull .date_start_end_row span{float:left;padding:0px 5px;min-height:40px}#editCalendarEventFull .date_start_end_row label{font-weight:bold}#editCalendarEventFull .show_if_using_sections{display:none}#editCalendarEventFull.use_section_dates .show_if_using_sections{display:block}#editCalendarEventFull.use_section_dates .hide_if_using_sections{display:none}
+#editCalendarEventFull [name="description"] {
+  width: 100%;
+  min-height: 200px; }
+#editCalendarEventFull [name="title"] {
+  width: 100%;
+  font-size: 21px; }
+#editCalendarEventFull .date_start_end_row {
+  overflow: hidden;
+  *zoom: 1; }
+  #editCalendarEventFull .date_start_end_row th, #editCalendarEventFull .date_start_end_row td {
+    vertical-align: top; }
+  #editCalendarEventFull .date_start_end_row span {
+    float: left;
+    padding: 0px 5px;
+    min-height: 40px; }
+  #editCalendarEventFull .date_start_end_row label {
+    font-weight: bold; }
+#editCalendarEventFull .show_if_using_sections {
+  display: none; }
+#editCalendarEventFull.use_section_dates .show_if_using_sections {
+  display: block; }
+#editCalendarEventFull.use_section_dates .hide_if_using_sections {
+  display: none; }

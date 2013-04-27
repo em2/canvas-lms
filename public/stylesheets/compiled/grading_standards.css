@@ -1,1 +1,43 @@
-#standards .grading_standard{border-bottom:1px dotted #ccc;margin-bottom:25px}#standards .grading_standard .links{opacity:0.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50)}#standards .grading_standard:hover .links{opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}#standards .grading_standard .standard_title{font-weight:bold;font-size:1.2em}#standards .grading_standard .display_grading_standard .data_holder{max-height:50px}#standards .grading_standard .data_holder{margin-left:20px}#standards .grading_standard.editing .display_grading_standard .data_holder{max-height:175px}.grading_standard .data_holder{max-height:175px;overflow:auto;padding-bottom:10px}.grading_standard .read_only{display:none}.grading_standard .editing_box{display:none}.grading_standard .editing_td{display:none}.grading_standard .editing_tr{display:none}.grading_standard .min_score,.grading_standard .max_score{width:100px}.grading_standard.editing .displaying{display:none}.grading_standard.editing .editing_box{display:block}.grading_standard.editing td.editing_box{display:table-cell}.grading_standard.editing tr.editing_box{display:table-row}
+#standards .grading_standard {
+  border-bottom: 1px dotted #cccccc;
+  margin-bottom: 25px; }
+  #standards .grading_standard .links {
+    opacity: 0.5;
+    -ms-filter: alpha(Opacity=50);
+    filter: alpha(Opacity=50); }
+  #standards .grading_standard:hover .links {
+    opacity: 1;
+    -ms-filter: alpha(Opacity=100);
+    filter: alpha(Opacity=100); }
+  #standards .grading_standard .standard_title {
+    font-weight: bold;
+    font-size: 1.2em; }
+  #standards .grading_standard .display_grading_standard .data_holder {
+    max-height: 50px; }
+  #standards .grading_standard .data_holder {
+    margin-left: 20px; }
+  #standards .grading_standard.editing .display_grading_standard .data_holder {
+    max-height: 175px; }
+
+.grading_standard .data_holder {
+  max-height: 175px;
+  overflow: auto;
+  padding-bottom: 10px; }
+.grading_standard .read_only {
+  display: none; }
+.grading_standard .editing_box {
+  display: none; }
+.grading_standard .editing_td {
+  display: none; }
+.grading_standard .editing_tr {
+  display: none; }
+.grading_standard .min_score, .grading_standard .max_score {
+  width: 100px; }
+.grading_standard.editing .displaying {
+  display: none; }
+.grading_standard.editing .editing_box {
+  display: block; }
+.grading_standard.editing td.editing_box {
+  display: table-cell; }
+.grading_standard.editing tr.editing_box {
+  display: table-row; }

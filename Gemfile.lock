@@ -37,10 +37,12 @@ GEM
       execjs
     coffee-script-source (1.1.2)
     columnize (0.3.6)
-    compass (0.11.5)
+    compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     daemons (1.1.0)
     diff-lcs (1.1.2)
     erubis (2.7.0)
@@ -233,7 +235,7 @@ DEPENDENCIES
   capistrano (~> 2.12.0)
   coffee-script
   coffee-script-source (= 1.1.2)
-  compass (= 0.11.5)
+  compass-rails (= 1.0.3)
   daemons (= 1.1.0)
   diff-lcs (= 1.1.2)
   erubis (= 2.7.0)

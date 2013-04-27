@@ -1,1 +1,44 @@
-#external_tools .external_tool{-moz-border-radius:5px;-webkit-border-radius:5px;-o-border-radius:5px;-ms-border-radius:5px;-khtml-border-radius:5px;border-radius:5px}#external_tools .external_tool .header{padding:5px 10px 0}#external_tools .external_tool .header .name{float:left;font-size:1.2em;font-weight:bold}#external_tools .external_tool .header .links{float:right;opacity:0.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50)}#external_tools .external_tool .content{padding:0 20px 5px}#external_tools .external_tool .extras{display:none}#external_tools .external_tool .extras div{font-style:italic;font-size:0.9em}#external_tools .external_tool:hover{background-color:#eee}#external_tools .external_tool:hover .links{opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}#external_tools .external_tool.has_editor_button .extras,#external_tools .external_tool.has_resource_selection .extras,#external_tools .external_tool.has_course_navigation .extras,#external_tools .external_tool.has_user_navigation .extras,#external_tools .external_tool.has_account_navigation .extras{display:table-row}#external_tools .external_tool.has_editor_button .extras div,#external_tools .external_tool.has_resource_selection .extras div,#external_tools .external_tool.has_course_navigation .extras div,#external_tools .external_tool.has_user_navigation .extras div,#external_tools .external_tool.has_account_navigation .extras div{display:none}#external_tools .external_tool.has_editor_button div.editor_button{display:block}#external_tools .external_tool.has_resource_selection div.resource_selection{display:block}#external_tools .external_tool.has_course_navigation div.course_navigation{display:block}#external_tools .external_tool.has_user_navigation div.user_navigation{display:block}#external_tools .external_tool.has_account_navigation div.account_navigation{display:block}
+#external_tools .external_tool {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px; }
+  #external_tools .external_tool .header {
+    padding: 5px 10px 0; }
+    #external_tools .external_tool .header .name {
+      float: left;
+      font-size: 1.2em;
+      font-weight: bold; }
+    #external_tools .external_tool .header .links {
+      float: right;
+      opacity: 0.5;
+      -ms-filter: alpha(Opacity=50);
+      filter: alpha(Opacity=50); }
+  #external_tools .external_tool .content {
+    padding: 0 20px 5px; }
+  #external_tools .external_tool .extras {
+    display: none; }
+    #external_tools .external_tool .extras div {
+      font-style: italic;
+      font-size: 0.9em; }
+  #external_tools .external_tool:hover {
+    background-color: #eeeeee; }
+    #external_tools .external_tool:hover .links {
+      opacity: 1;
+      -ms-filter: alpha(Opacity=100);
+      filter: alpha(Opacity=100); }
+  #external_tools .external_tool.has_editor_button .extras, #external_tools .external_tool.has_resource_selection .extras, #external_tools .external_tool.has_course_navigation .extras, #external_tools .external_tool.has_user_navigation .extras, #external_tools .external_tool.has_account_navigation .extras {
+    display: table-row; }
+    #external_tools .external_tool.has_editor_button .extras div, #external_tools .external_tool.has_resource_selection .extras div, #external_tools .external_tool.has_course_navigation .extras div, #external_tools .external_tool.has_user_navigation .extras div, #external_tools .external_tool.has_account_navigation .extras div {
+      display: none; }
+  #external_tools .external_tool.has_editor_button div.editor_button {
+    display: block; }
+  #external_tools .external_tool.has_resource_selection div.resource_selection {
+    display: block; }
+  #external_tools .external_tool.has_course_navigation div.course_navigation {
+    display: block; }
+  #external_tools .external_tool.has_user_navigation div.user_navigation {
+    display: block; }
+  #external_tools .external_tool.has_account_navigation div.account_navigation {
+    display: block; }
