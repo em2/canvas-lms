@@ -165,37 +165,6 @@ en:
       failed: "Course Import failed with the following error:"
     files: 
       description: "You can upload a zipped collection of files into your course and we'll extract them all out for you. This is an easy way to move files from another system into Canvas."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     intro: 
       description: "If you're moving to Canvas from another course management system, then chances are there are files, quizzes, assignments and things over there that you're going to want moved over here. This wizard should make that process pretty easy."
       links: 
@@ -232,429 +201,35 @@ en:
     quizzes: 
       buttons: 
         back: "I'm Done Importing, back to the Course."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      defaults: 
-        unnamed_quiz: "Unnamed Quiz"
-      details: "Canvas can import quizzes in the IMS QTI format. Most systems allow you to export your quizzes in this format. You can also use popular quiz tools like Respondus to create and export IMS QTI. Upload the file below and you'll receive an email when the importing is complete."
-      errors: 
-        choose_file: "You must choose a .zip file to upload"
-        upload_failed: "Upload Failed, please try again"
-      instructions: 
-        respondus: 
-          ? "1"
-          : "Open Respondus and select the system you're currently using"
-          ? "2"
-          : "Click the \"Retrieval & Reports\" tab, then \"Retrieve Questions\" on the left"
-          ? "3"
-          : "Select or setup your current system's configuration"
-          ? "4"
-          : "Click the \"Retrieve\" button"
-          ? "5"
-          : "Click back on the \"Start\" tab"
-          ? "6"
-          : "Change \"Current Personality\" to \"IMS QTI 1.1+\""
-          ? "7"
-          : "Click the \"Preview & Publish\" tab, then \"Save QTI XML File\""
-          ? "8"
-          : "Select \"Points as decimal numbers\" and \"QTI xml zip file\" for the settings"
-          ? "9"
-          : "Click \"Save As\" and save the zipped file to your local computer"
-      links: 
-        quiz_from_respondus: "How do I save a quiz using Respondus?"
-      messages: 
-        choose_file: "Please Choose a .zip file"
-        file_uploaded: "**Thank you!**  We'll start importing your QTI data and send you an email when it's complete. The process normally finishes within 10 minutes."
-        uploading: "Uploading and processing your zip file, if it is large it may take a while."
-        uploading_button: "Uploading QTI File..."
-      page_title: "Import Quizzes"
-      question_bank_configuration: "Question Bank Configuration"
-      question_count: 
-        one: "1 Question"
-        other: "%{count} Questions"
-      titles: 
-        current_quizzes: "Current Quizzes"
-        uploading: "Uploading, Please Wait."
-      upload_qti_file: "Choose a QTI .zip package"
-    titles: 
-      copy_discussion_replies: "Copy Discussion Replies?"
-    wizard_secondary_nav: 
-      wizard_steps: 
-        import_files: "Import Files"
-        import_quizzes: "Import Quizzes"
-        intro: Intro
-  content_locks: 
-    buttons: 
-      ok_thanks: "Ok, Thanks"
-    messages: 
-      assignment_locked_at: "This assignment was locked %{at}."
-      assignment_locked_module: "This assignment is part of the module *%{module}* and hasn't been unlocked yet."
-      assignment_locked_no_reason: "This assignment is locked.  No other reason has been provided."
-      assignment_locked_until: "This assignment is locked until %{date}."
-      content_locked_at: "This content was locked %{at}."
-      content_locked_module: "This content is part of the module *%{module}* and hasn't been unlocked yet."
-      content_locked_no_reason: "This content is locked.  No other reason has been provided."
-      content_locked_until: "This content is locked until %{date}."
-      file_locked_at: "This file was locked %{at}."
-      file_locked_module: "This file is part of the module *%{module}* and hasn't been unlocked yet."
-      file_locked_no_reason: "This file is locked.  No other reason has been provided."
-      file_locked_until: "This file is locked until %{date}."
-      page_locked_at: "This page was locked %{at}."
-      page_locked_module: "This page is part of the module *%{module}* and hasn't been unlocked yet."
-      page_locked_no_reason: "This page is locked.  No other reason has been provided."
-      page_locked_until: "This page is locked until %{date}."
-      quiz_locked_at: "This quiz was locked %{at}."
-      quiz_locked_module: "This quiz is part of the module *%{module}* and hasn't been unlocked yet."
-      quiz_locked_no_reason: "This quiz is locked.  No other reason has been provided."
-      quiz_locked_until: "This quiz is locked until %{date}."
-      topic_locked_at: "This topic was locked %{at}."
-      topic_locked_module: "This topic is part of the module *%{module}* and hasn't been unlocked yet."
-      topic_locked_no_reason: "This topic is locked.  No other reason has been provided."
-      topic_locked_until: "This topic is locked until %{date}."
-      visit_modules_page_for_details: "Visit the modules page for information on how to unlock this content."
-    titles: 
-      content_is_locked: "Content Is Locked"
-  content_migration: 
-    unknown: Unknown
-  content_tag: 
-    no_title: "No title"
-  content_tags: 
-    defaults: 
-      comments: Comments
-      page_title: "Page Title"
-    prompts: 
-      delete_tag: "Are you sure you want to delete this tag?"
-    titles: 
-      tag_external_web_page: "Tag External Web Page"
-  context: 
-    all_marked_read: "Inbox messages all marked as read"
-    bad_message: "This message could not be displayed"
-    chat: 
-      titles: 
-        chat: Chat
-    chat_not_enabled: "Chat has not been enabled for this Canvas site"
+  context:
     communication: 
-      headings: 
-        discussions: Discussions
       links: 
         feeds: 
           course_discussions: "Course Discussions Atom Feed"
-        start_collaboration: "Start a Collaboration"
-        start_conference: "Start a Web Conference"
-        start_topic: "Start a New Topic"
-      titles: 
-        communication: Communication
-    dashboard_conference: 
-      images: 
-        alt: 
-          web_conference: "web conference"
-        title: 
-          web_conference: "Web Conference"
-      last_viewed: "Last viewed *%{date_time}*"
-      links: 
-        participants: 
-          one: "1 Participant"
-          other: "%{count} Participants"
-    dashboard_conversation: 
-      conversation: "Conversation Activity"
-      images: 
-        alt: 
-          email: email
-        title: 
-          conversation: Conversation
-      links: 
-        add_message: "Add Message"
-        show_messages: 
-          one: "Show %{count} More Message"
-          other: "Show %{count} More Messages"
-      participant_count: 
-        one: "1 participants"
-        other: "%{count} participants"
-    dashboard_conversation_message: 
-      links: 
-        title: 
-          author_name: "Author's name"
-    dashboard_ignore_link: 
-      images: 
-        alt: 
-          ignore: ignore
-      links: 
-        title: 
-          ignore: "Ignore this stream item"
-    dashboard_notification: 
-      images: 
-        alt: 
-          notification: notification
-    dashboard_submission: 
-      images: 
-        alt: 
-          submission: submission
-        title: 
-          submission: "Assignment Submission"
-      links: 
-        add_comment: "Add a Comment..."
-        show_more_comments: 
-          one: "Show 1 More Comment"
-          other: "Show %{count} More Comments"
-        view_original_submission: "View Original Submission"
-      pending_review: "(still needs teacher review)"
-      state: 
-        graded: graded
-        posted: posted
-        submitted: submitted
-    dashboard_topic: 
-      delayed_posting: "This topic will not be visible to users until *%{date_time}*"
-      images: 
-        alt: 
-          announcement: announcement
-          topic: topic
-        title: 
-          announcement: Announcement
-          topic: Discussion
-      initial_post_required: "Replies are only visible to those who have posted at least one reply."
-      labels: 
-        attached_file: "Attached File"
-      links: 
-        add_comment: "Add a Comment..."
-        show_more_entries: 
-          one: "Show 1 More Entry"
-          other: "Show %{count} More Entries"
-        view_topic: "View Entire Topic"
-      no_title: "No Title"
-      post_date: "posted *%{post_date}*"
-      posts_for_grading: "Posts will be used for grading."
-      read_more: more
-      titles: 
-        author_name: "Author's name"
-      topic_for_assignment: "This topic is for the assignment, %{assignment_name_link}."
-    dashboard_topic_entry: 
-      links: 
-        title: 
-          author_name: "Author's name"
-    deleted_item: 
-      created: created
-      last_updated: "last updated"
-      links: 
-        restore: restore
-    inbox: 
-      buttons: 
-        mark_all_as_read: "Mark All Messages as Read"
-      errors: 
-        mark_as_read_failed: "Marking failed, please try again"
-      inbox: 
-        discussion_replies: "Discussion Replies"
-      status: 
-        marking_all_as_read: "Marking All as Read..."
-    inbox_item: 
-      images: 
-        alt: 
-          topic: topic
-        title: 
-          topic: 
-            read: "Discussion Message - read"
-            unread: "Discussion Message"
-      links: 
-        remove: Remove
-        title: 
-          remove_message: "Remove this Message"
-      no_title: "No Title"
-    inbox_items: 
-      inbox_delete_confirm: "Are you sure you want to delete this item from your inbox?"
-      loading_results: "Loading more results"
-      no_messages: "Sorry, no messages yet."
-    media_object_inline: 
-      titles: 
-        media_playback: "Media Playback"
-    media_objects_not_configured: "Media Objects not configured"
-    message_deleted: "This message has been deleted"
-    message_removed: "The message you were trying to view has been removed"
     no_user: 
       course: "That user does not exist or is not currently a member of this course"
-      group: "That user does not exist or is not currently a member of this group"
-    prior_users: 
-      headings: 
-        prior_users: "Prior Users"
-      links: 
-        back_to_people: "Back to People"
-      titles: 
-        prior_users: "Prior Users"
     roster: 
-      group_members: "Group Members"
-      links: 
-        manage_users: "Manage Users"
-        view_faculty_journals: "View Faculty Journals"
-        view_prior_enrollments: "View Prior Enrollments"
-        view_services: "View Registered Services"
-        view_student_groups: "View Student Groups"
-      students: Students
-      teachers: "Teachers & TAs"
       titles: 
         course_roster: "Course Roster"
-        group_roster: "Group Roster"
     roster_user: 
-      completed_enrollment: "completed *%{completed_at}*"
-      confirm: 
-        conclude_student: "Are you sure you want to conclude this student's enrollment?"
-        delete_enrollment: "Are you sure you want to delete this student's enrollment?"
-      enrolled_as: "Enrolled as a %{enrollment_type}"
-      enrollment_change_failed: "Enrollment privilege change failed, please try again"
-      enrollment_linked_to: "linked to %{linked_user}"
-      headings: 
-        recent_messages: "Recent Messages"
-        user_details: "User Details"
-        user_services: "%{user}'s Services"
-        users_details: "%{user}'s Details"
       help: 
         list_services: "You haven't enabled your list of registered services. Enabling this list will let fellow course and group members more easily link up with you outside of class."
         services: "You haven't linked your user profile to any external services. You can link your Canvas account to services like Facebook and Twitter. This will make it easier for fellow course and group members to link up with you outside of class."
       labels: 
         public_list_services: "Let fellow course/group members see which services I've linked to my profile"
-        user_privileges: Privileges
-      legends: 
-        memberships: Membership(s)
       links: 
-        access_report: "Access Report for %{user}"
-        cant_delete: "Can't Delete"
-        conclude_enrollment: "Conclude this Enrollment"
-        delete_enrollment: "Delete this Enrollment"
-        faculty_journal: "Faculty Journal for %{user}"
-        link_enrollment: "Link this Enrollment"
-        link_services: "Link web services to my account"
-        message_user: "Message %{user}"
-        more_user_details: "more user details..."
-        remove_avatar: "Remove avatar picture"
-        report_avatar: "Report inappropriate picture"
-        restore_enrollment: "Restore this Enrollment"
-        student_teacher_activity: "Your Interactions Report with %{user}"
-        teacher_activity: "Student Interactions Report for %{user}"
-        title: 
-          enrollment_sis_defined: "This enrollment was defined by the university, and can't be deleted"
-        user_account_details: "User Account Details"
-        user_grades: "Grades for %{user}"
-        user_only_view_section: "limit this user to only see fellow section users"
-        user_outcomes: "Outcomes for %{user}"
         user_view_all_sections: "let this user see all course users"
-      no_messages: "No Messages"
-      no_services: "%{user} hasn't linked any external services to their account yet."
-      services_not_visible: "%{user}'s registered services are not visible to you at this time."
       user_only_view_section: "this user can only view students in their assigned course section(s)"
       user_view_all_sections: "this user can view students in any course section"
     roster_user_services: 
-      headings: 
-        registered_services: "Registered Services"
-        service_types: "Service Types"
       help: 
-        no_services: "You haven't linked your user profile to any external services. You can link your Canvas account to services like Facebook and Twitter."
         services_private: "You haven't enabled your list of registered services. Enabling this list will let fellow course and group members see which services you have linked to your Canvas account."
-        user_services: "If other members choose, they can let you see which outside services they've linked to their Canvas account. This can make it easier to coordinate group projects and also link up outside of class."
       labels: 
         allow_view_services: "Let fellow course/group members see which services I've linked to my profile"
-      links: 
-        alt: 
-          skype_status: "skype status"
-        back_to_roster: "Back to Roster"
-        link_existing_service_account: "Link Existing Account"
-        link_service: "Link web services to my account"
-        sign_up_for_service: "Sign Up"
-      titles: 
-        registered_services: "Registered Services"
-    roster_user_usage: 
-      headings: 
-        user_access_report: "%{user} Access Report"
-      links: 
-        back_to_user: "Back to User Page"
-      table_headings: 
-        content: Content
-        last_viewed_time: "Last Viewed"
-        num_times_participated: "Times Participated"
-        num_times_viewed: "Times Viewed"
-      titles: 
-        access_report: "Access Report"
-    undelete_index: 
-      headings: 
-        restore__items: "Restore Deleted Items"
-      help: 
-        restore_items: "Keep in mind that some items may have lost some of their associated data when they were deleted. Make sure you confirm the results of any restores you perform."
   context_external_tool: 
     external_tool_attention_needed: "The security parameters for the external tool \"%{tool_name}\" need to be set in Course Settings."
-  context_module: 
-    requirements: 
-      max_score: "must score no more than a %{score}"
-      min_score: "must score at least a %{score}"
-      must_contribute: "must contribute to the page"
-      must_submit: "must submit the assignment"
-      must_view: "must view the page"
   context_modules: 
-    buttons: 
-      add: "Add Module"
-      add_item: "Add Item"
-      add_module: "Add a New Module"
-      update: "Update Module"
-    confirm: 
-      delete: "Are you sure you want to delete this module?"
-      delete_item: "Are you sure you want to remove this item from the module?"
     content: 
-      add_prerequisite: "Add prerequisite to *%{module}*"
-      assignment_points_possible: "out of %{points_possible}"
-      buttons: 
-        add_module: "Add Module"
-        add_prerequisite: "Add Prerequisite"
-      criterion_for_assignment: "For %{assignment} users must %{select_criterion}"
-      headings: 
-        add_prerequisite: "Add Prerequisite to %{name}"
-        student_progress: "Module Progress by Student"
-        student_progress_for_module: "Student Progress for %{module}"
-        students_completed: "Students who have Completed the Module"
-        students_in_progress: "Students who are Working on the Module"
-        students_locked: "Students who haven't Unlocked the Module"
-        students_unlocked: "Students who have Unlocked (but not started) the Module"
       help: 
         create: |-
             Course modules let you organize your assignments, pages, files, etc. into smaller sections or units. Modules could be centered around a theme, focused on a specific topic, or even just grouped chronologically.
@@ -663,418 +238,29 @@ en:
             
             To start organizing your course into modules, click the "%{button}" button to the right.
         no_modules: "No modules have been defined for this course."
-      images: 
-        alt: 
-          min_score: "minimum score"
-          must_contribute: "must contribute"
-          must_submit: "must submit"
-          must_view: "must view"
-        title: 
-          min_score: "Students must get at least a %{min_score} on this item before the module is considered complete"
-          must_contribute: "Students must contribute to this item before the module is considered complete"
-          must_submit: "Students must submit this assignment before the module is considered complete"
-          must_view: "Students must view this item before the module is considered complete"
-      indent: 
-        ? "n"
-        : 
-          one: "Indent 1 Level"
-          other: "Indent %{count} Levels"
-          zero: "Don't Indent"
-      key: 
-        description: 
-          delete: "Delete Current Module/Item"
-          edit: "Edit Module/Item"
-          indent: "Indent Current Item"
-          new: "New Module"
-          next: "Next Module/Item"
-          outdent: "Outdent Current Item"
-          previous: "Previous Module/Item"
-      keycodes: 
-        delete: d
-        edit: e
-        indent: i
-        new: "n"
-        next: j
-        outdent: o
-        previous: k
-      labels: 
-        indent: Indent
-        module_complete_when: "This module is complete when"
-        module_name: Name
-        modules: 
-          before_students_view: "Before students can view this module"
-        new_tab: "Load this tool in a new tab"
-        require_sequential_progress: "students must move through requirements in this module in sequential order"
-        sort_by: "Sort By"
-        title: Title
-        unlock_at: "Unlock At"
-        url: URL
-      links: 
-        add_prerequisite: "Add prerequisite"
-        add_requirement: "Add requirement"
-        reload_student: "Reload Student's Progress"
-        sort_by_name: Name
-        sort_by_progress: Progress
-        title: 
-          remove_prerequisite: "Remove this prerequisite"
-      module: module
-      module_details: "Modules are shown in sequential order, so only modules that are above %{name} can be set as prerequisites."
-      must_complete_prerequisites: "They must complete"
-      no_preprequisites: "No prerequisites defined"
-      no_requirements: "No requirements defined"
-      prerequisites: 
-        another_module: "Another Module"
-      prerequisites_need_item: "You'll need to add items before you can specify how a user will complete this module"
-      requirements: 
-        must_contribute: "contribute to the page"
-        must_score_at_least: "score at least"
-        must_submit: "submit the assignment"
-        must_view: "view the item"
-      select_module: 
-        instructions: "Select Module"
-        name: "the module, %{module}"
-      select_prerequisite: "Select the type of prerequisite. Students cannot see a module until all prerequisites are satisfied."
-      student_name: "Student Name"
-      table_headings: 
-        module: Module
-        state: State
-      titles: 
-        student_progression: "Module Progression by Student"
-    context_module: 
-      default_module_name: module
-      images: 
-        alt: 
-          complete: done
-          incomplete: incomplete
-          locked: locked
-        title: 
-          complete: "Module Completed"
-          incomplete: "Module Incomplete"
-          locked: "Module Locked"
-      labels: 
-        prerequisites: Prerequisites
-      links: 
-        add_item: "Add item to module"
-        hide_contents: "Hide module contents"
-        settings: "Module Settings"
-        show_contents: "Show module contents"
-        title: 
-          delete_module: "Delete this module"
-          edit_module: "Edit module settings"
-          remove_prerequisite: "Remove this prerequisite"
-          student_progress: "See Student Progress for this Module"
-      module_will_unlock_at: "will unlock *%{unlock_date}*"
-      progression_complete_count: "*%{count}* Complete"
-      progression_started_count: "*%{count}* In Progress"
-      reorder_modules: "Drag to reorder modules"
-    context_module_right_side: 
-      links: 
-        student_progress: "View Student Progress for Modules"
-      loading_progressions: "Loading Student Progress..."
-    errors: 
-      reorder: "Reorder failed, please try again."
     index: 
       headings: 
         course_modules: "Course Modules"
       titles: 
         course_modules: "Course Modules"
-    module_empty: "There are no items in the module \"%{module}\""
-    module_item: 
-      drag_to_reorder: "Drag to reorder or move item to another module"
-      images: 
-        alt: 
-          complete: done
-          incomplete: incomplete
-          max_score: "maximum score"
-          min_score: "minimum score"
-          must_contribute: "must contribute"
-          must_submit: "must submit"
-          must_view: "must view"
-        title: 
-          complete: "Module Item Completed"
-          incomplete: "Module Item Incomplete"
-          max_score: "Students must not exceed the maximum score on this item before the module is considered complete"
-          min_score: "Students must reach the minimum score on this item before the module is considered complete"
-          must_contribute: "Students must contribute to this item before the module is considered complete"
-          must_submit: "Students must submit this assignment before the module is considered complete"
-          must_view: "Students must view this item before the module is considered complete"
-      links: 
-        edit_item: "Edit item details"
-        indent: "Indent item"
-        outdent: "Outdent item"
-        remove_item: "Remove this item from the module"
-      max_score: 
-        fulfilled: "scored no more than a%{score}"
-        unfulfilled: "must score no more than a %{score}"
-      min_score: 
-        fulfilled: "scored at least a %{score}"
-        unfulfilled: "must score at least a %{score}"
-      must_contribute: 
-        fulfilled: "contributed to the content of the page"
-        unfulfilled: "must contribute to the content of the page"
-      must_submit: 
-        fulfilled: "submitted the assignment"
-        unfulfilled: "must submit the assignment"
-      must_view: 
-        fulfilled: "viewed the page"
-        unfulfilled: "must view the page"
-    none_in_progress: "none in progress"
-    optgroup: 
-      assignments: Assignments
-      discussion_topics: Discussions
-      external_tools: "External Tools"
-      external_urls: "External URLs"
-      files: Files
-      quizzes: Quizzes
-      wiki_pages: "Wiki Pages"
-    points_possible_short: "%{points} pts"
-    still_needs_completing: "Still Needs to Complete"
-    titles: 
-      add: "Add Module"
-      add_item: "Add Item to %{module}"
-      add_prerequisite: "Add Prerequisite to %{module}"
-      edit: "Edit Module Settings"
-      edit_item: "Edit Item Details"
-      student_progress: "Student Progress for Module"
-  conversation_message: 
-    conversation_message: 
-      users_added: 
-        one: "%{user} was added to the conversation by %{current_user}"
-        other: "%{list_of_users} were added to the conversation by %{current_user}"
-    subject: "Private message, %{timestamp}"
-  conversation_participant: 
-    labels: 
-      blue: Blue
-      green: Green
-      orange: Orange
-      purple: Purple
-      red: Red
-      yellow: Yellow
   conversations: 
     course_sections: "Course Sections"
-    crumbs: 
-      messages: Conversations
-    enrollments_observers: Observers
-    enrollments_students: Students
-    enrollments_tas: "Teaching Assistants"
-    enrollments_teachers: Teachers
-    index: 
-      add_recipients_instructions: "People you add to the conversation will see all previous messages."
-      audio_comment: "Audio Comment"
-      buttons: 
-        send_message: Send
-      has_attachments: "This conversation has one or more attachments"
-      has_audio: "This conversation has one or more audio comments"
-      headings: 
-        new_message: "New Message"
-      inbox_actions: 
-        add_label: "Add Label"
-        add_people: "Add People..."
-        archive: Archive
-        delete: Delete
-        forward: Forward
-        mark_as_read: "Mark as Read"
-        mark_as_unread: "Mark as Unread"
-        no_label: None
-        remove_label: "Remove Label"
-        subscribe: Subscribe
-        unarchive: Unarchive
-        unsubscribe: Unsubscribe
-      inbox_actions_description: Actions
-      inbox_view: VIEW
-      inbox_views: 
-        archived: Archived
-        archived_messages: Archived
-        discussion_replies: "Discussion Replies"
-        inbox: Inbox
-        labeled: Labeled
-        unread: Unread
-        unread_messages: Unread
-      labels: 
-        add_to_faculty_journal: "Add as a Faculty Journal entry"
-        conversation_label: Label
-        group_conversation: "This is a group conversation. Participants will see everyone's replies"
-        message: Message
-        submitted: Submitted
-        to: To
-      links: 
-        add_attachment: Attach
-        audio_comment: Record
-        compose_new_message: "New Message"
-      loading_conversations: Loading...
-      more_messages: "%{count} more..."
-      page_title: Conversations
-      read_more: more...
-      send_private_message: "New message..."
-      titles: 
-        add_attachment: "Add an attachment"
-        attachment: "File to attach"
-        audio_comment: "Recorded audio comment"
-        compose_new_message: "Write a new message"
-        download_attachment: "Download attachment"
-        play_audio_comment: "Play audio comment"
-        record_audio_comment: "Record an audio comment"
-        remove_attachment: "Remove attachment"
-        remove_audio_comment: "Remove audio comment"
-        submission_author: "Submission Author"
-        submission_score: "Submission Score"
-        view_submission: "Open submission in new window."
-    no_archived_messages: "You have no archived messages"
-    no_blue_messages: "You have no blue messages"
-    no_green_messages: "You have no green messages"
-    no_labeled_messages: "You have no labeled messages"
-    no_messages: "You have no messages"
-    no_orange_messages: "You have no orange messages"
-    no_purple_messages: "You have no purple messages"
-    no_red_messages: "You have no red messages"
-    no_unread_messages: "You have no unread messages"
-    no_yellow_messages: "You have no yellow messages"
-    student_groups: "Student Groups"
   course: 
-    csv: 
-      comments: Comments
-      current_score: "Current Score"
-      final_grade: "Final Grade"
-      final_score: "Final Score"
-      id: ID
-      points_possible: "Points Possible"
-      read_only_field: "(read only)"
-      section: Section
-      sis_login_id: "SIS Login ID"
-      sis_user_id: "SIS User ID"
-      student: Student
-    default_grading_scheme_name: "Default Grading Scheme"
     default_name: "My Course"
     default_short_name: Course-101
-    errors: 
-      import: 
-        kaltura: "There was an error importing Kaltura media objects. Some or all of your media was not imported."
-      sis_in_use: "SIS ID \"%{sis_id}\" is already in use"
-    grade_export_types: 
-      instructure_csv: "Instructure formatted CSV"
-    grade_publishing_status: 
-      error: Error
-      error_with_message: "Error: %{message}"
-      pending: Pending
-      pending_with_message: "Pending: %{message}"
-      published: Published
-      published_with_message: "Published: %{message}"
-      publishing: Publishing
-      publishing_with_message: "Publishing: %{message}"
-      unknown: "Unknown status, %{status}"
-      unknown_with_message: "Unknown status, %{status}: %{message}"
-      unpublishable: Unpublishable
-      unpublishable_with_message: "Unpublishable: %{message}"
-      unpublished: Unpublished
-      unpublished_with_message: "Unpublished: %{message}"
     missing_name: "Unnamed Course"
-    wiki_permissions: 
-      all: Anyone
-      only_teachers: "Only Teachers"
-      teachers_students: "Teacher and Students"
   course_exports: 
     errors: 
-      assignment: "The assignment \"%{title}\" failed to export"
-      assignment_groups: "Failed to export assignment groups"
-      assignments: "Failed to export some assignments"
-      canvas_meta: "Failed to export canvas-specific meta data"
       course_export: "Error running course export."
       course_settings: "Failed to export course settings"
-      events: "Failed to export calendar events"
-      external_feeds: "Failed to export external feeds"
-      file: "The file \"%{file_name}\" failed to export"
-      file_meta: "Failed to export file meta data"
-      files: "Failed to export some files"
-      grading_standards: "Failed to export grading standards"
-      learning_outcomes: "Failed to export learning outcomes"
-      lti_links: "Failed to export some web links"
-      media_file: "A media file failed to export"
-      media_files: "Failed to export some media files"
-      module_meta: "Failed to export module meta data"
-      organization: "Failed to generate organization structure."
-      question_bank: "The question bank \"%{title}\" failed to export"
-      quiz: "The quiz \"%{title}\" failed to export"
-      quizzes: "Some quizzes failed to export"
-      resources: "Failed to link some resources."
-      rubrics: "Failed to export rubrics"
-      topic: "The discussion topic \"%{title}\" failed to export"
-      topics: "Failed to export some topics"
-      web_links: "Failed to export some web links"
-      wiki_page: "The wiki page \"%{title}\" failed to export"
-      wiki_pages: "Failed to export wiki pages"
-    errors_list_message: "Export errors for export %{export_id}:"
-    unknown_titles: 
-      assignment: "Unknown assignment"
-      file: "Unknown file"
-      topic: "Unknown topic"
-      wiki_page: "Unknown wiki page"
-  course_list: 
-    wrapper: 
-      close_course_menu_title: close
-      reset_course_menu: Reset
-  course_section: 
-    sis_id_taken: "SIS ID \"%{sis_id}\" is already in use"
   course_settings: 
-    buttons: 
-      add_section: "Add Section"
-      adding_section: "Adding Section..."
-      re_sending_all: "Re-Sending Unaccepted Invitations..."
-      re_sent_all: "Re-Sent All Unaccepted Invitations!"
-    confirm: 
-      delete_section: "Are you sure you want to delete this section?"
-      publish_grades: "Are you sure you want to publish these grades to the student information system? You should only do this if all your grades have been finalized."
-      re_publish_grades: "Are you sure you want to republish these grades to the student information system?"
     course_dates_enforced: "Users can only participate in the course between these dates"
     course_dates_unenforced: "These dates will not affect course availability"
-    defaults: 
-      user_name: User
-    details: 
-      re_send_invitation: "This user has not yet accepted their invitation.  Click to re-send invitation."
-    errors: 
-      invalid_sis_status: "Invalid SIS publish status"
-      invitation: "Invitation Failed.  Please try again."
-      move_user: "Something went wrong moving the user to the new section. Please try again later."
-      publish_grades: "Something went wrong when trying to publish grades to the student information system. Please try again later."
-      re_send_all: "Send Failed, Please Try Again"
-      section: "Add Section Failed, Please Try Again"
-    grading_standard_set: "Currently Set"
-    grading_standard_unset: "Not Set"
     indexed_course: "Included in public course index"
-    invitation_sent: "Invitation Sent!"
-    invitation_sent_now: "Just Now"
-    links: 
-      publish: "Publish grades to SIS"
-      publishing: "Publishing grades to SIS..."
-      re_send_all: "Re-Send All Unaccepted Invitations"
-      re_send_invitation: "Re-Send Invitation"
-      re_sending_invitation: "Re-Sending Invitation..."
-      republish: "Republish grades to SIS"
-    private_course: Private
-    public_course: Public
     titles: 
-      click_to_edit: "Click to Edit"
-      enrollment_details: "Enrollment Details"
-      hashtag_help: "What's a Hashtag?"
       move_course: "Move Course"
       reset_course_content_dialog_help: "Reset Course Content"
   courses: 
-    assignments_needing_grading: 
-      due_at: "Due %{date}"
-      headings: 
-        grade: "Grade %{assignment}"
-        to_do: "To Do"
-      images: 
-        alt: 
-          ignore: ignore
-      links: 
-        title: 
-          ignore: "Ignore this assignment"
-      need_grading_count: 
-        one: "1 needs grading"
-        other: "%{count} need grading"
-      points_possible: "out of %{points_possible}"
-      tooltip: 
-        due_at: "due: %{date}"
     confirm_action: 
       buttons: 
         conclude_course: "Conclude Course"
@@ -1083,31 +269,21 @@ en:
         confirm_conclude: "Are you sure you want to conclude this course? Students and teachers will still be able to see the course contents in a read-only format from their \"past courses\" page. If you don't want anyone to see the course, you can *delete the course completely*."
         confirm_delete: "Are you sure you want to delete this course? Once it is deleted students and teachers will no longer have access to it. If you just want to remove it from the course dropdown then you should *conclude the course instead*."
       headings: 
-        confirm: "Confirm Action"
         confirm_conclude: "Confirm Conclude Course"
         confirm_delete: "Confirm Course Deletion"
-      titles: 
-        confirm: "Confirm Action"
     confirm_reject_invitation: "Are you sure you want to reject the invitation to participate in this course?"
     copy: 
       buttons: 
         create_course: "Create Course"
       details: "Enter the following details to begin creating a copy of this course."
-      headings: 
-        copy_course: "Copy %{course}"
       labels: 
-        conclude_at: "End Date"
         course_code: "Course Code"
-        enrollment_term_id: Term
-        name: Name
-        start_at: "Start Date"
       titles: 
         copy_course: "Copy Course"
     course_wizard_box: 
       buttons: 
         publish: "Publish Course"
       details: 
-        assignments: "Add your assignments. You can just make a long list, or break them up into groups -- and even specify weights for each assignment group."
         available: "Now that your course is set up and available, you probably won't need this checklist anymore.  But we'll keep it around in case you realize later you want to try something new, or you just want a little extra help as you make changes to your course content."
         calendar: "Here's a great chance to get to know the calendar -- and add any non-assignment events you might have to the course. Don't worry, we'll help you through it."
         claimed: 
@@ -1129,7 +305,6 @@ en:
               If you need to leave and come back before then, just save *this link* to get back here later.
               
               Please **log in** or ***register*** to claim this course.
-        files: "The Files tab is the place to share lecture slides, example documents, study helps -- anything your students will want to download. Uploading and organizing your files is easy with Canvas. We'll show you how."
         home: "When people visit the course, this is the page they'll see. You can set it to show an activity stream, the list of course modules, a syllabus, or a custom page you write yourself. The default is the course activity stream. To customize this, just click %{change_layout}."
         import: "If you've been using another course management system, you probably have stuff in there that you're going to want moved over to Canvas. We can walk you through the process of easily migrating your content into Canvas."
         navigation: "By default all links are enabled for a course. Students won't see links to sections that don't have content. For example, if you haven't created any quizzes, they won't see the quizzes link. You can sort and explicitly disable these links if there are areas of the course you don't want your students accessing."
@@ -1141,27 +316,15 @@ en:
           not_registered: "This course is claimed and ready, but you'll need to finish the registration process before you can publish the course. You should have received an email from Canvas with a link to finish the process. Be sure to check your spam box."
         students: "You'll definitely want some of these. What's the fun of teaching a course if nobody's even listening?"
         tas: "You may want to assign some TAs to help you with the course. TAs can grade student submissions, help moderate the discussions and even update due dates and assignment details for you."
-      headings: 
-        next_steps: "Next Steps"
       links: 
         assignments: "Add Course Assignments"
         calendar: "Add Course Calendar Events"
         files: "Add Course Files"
         home: "Choose a Course Home Page"
-        import: "Import Content"
-        navigation: "Select Navigation Links"
         publish: "Publish Course"
-        re_send_confirmation: "Re-Send the Confirmation Email"
         students: "Add Students to the Course"
         tas: "Add TAs to the Course"
-        title: 
-          bookmark: "Copy or bookmark this link"
     enrollment_reminders: 
-      buttons: 
-        accept: "Accept Invitation"
-        reject: "Reject Invitation"
-      headings: 
-        invitation: Invitation
       invitation: 
         designer: "You've been invited to join this course as a *designer* for the user account *%{user}*."
         observer: "You've been invited to join this course as an *observer* for the user account *%{user}*."
@@ -1173,17 +336,12 @@ en:
         look_around: "Feel free to wander around and look over the course. When you're ready, you can either accept or reject the invitation."
     errors: 
       create_failed: "Course creation failed"
-      invalid_email: "Invalid e-mail address, please try again."
-      invalid_role: "Invalid role type"
-      unauthorized: 
-        switch_roles: "You do not have permission to switch roles"
     group_list: 
       headings: 
         groups: "Course Groups"
     index: 
       headings: 
         my_courses: "My Courses"
-        past_enrollments: "Past Enrollments"
       links: 
         start_course: "Start a New Course"
       titles: 
@@ -1191,28 +349,17 @@ en:
         rss: 
           course_announcements: "Course Announcements Atom Feed"
     link_enrollment: 
-      buttons: 
-        link: "Link to Student"
       details: |-
           When an observer is linked to a student, they have access to that student's grades and course interactions. *Right now this observer is linked to the student, %{student}.*
           
           To link the course observer %{user} to a student, select the student's name from the list below.
-      labels: 
-        student: Student
-      loading: "Loading Students..."
-      select_student: "Select Student"
     notices: 
-      backup_restored: "Backup Successfully Restored!"
       concluded: "Course successfully concluded"
       deleted: "Course successfully deleted"
       enrolled: "You are now enrolled in this course."
       enrollment_not_active: "Your membership in the course, %{course}, is not yet activated"
-      invitation_accepted: "Invitation accepted!  Welcome to %{course}!"
-      invitation_cancelled: "Invitation cancelled."
       login_required: "Please log in to join this course."
-      login_to_accept: "You'll need to log in before you can accept the enrollment."
       preview_course: "You've been invited to join this course.  You can look around, but you'll need to accept the enrollment invitation before you can participate."
-      role_restored: "Your default role and permissions have been restored"
       role_switched: "You have switched roles for this course.  You will now see the course in this new role: %{enrollment_type}"
       unconcluded: "Course un-concluded"
       updated: "Course was successfully updated."
@@ -1221,208 +368,71 @@ en:
         enroll: "Enroll in Course"
       details: "You've been invited to participate in this course, %{course}. To continue the enrollment process, please provide us with your current email address."
       headings: 
-        accept_invitation: "Accept Enrollment Invitation"
         invitation: "Course Invitation"
-      labels: 
-        email: "Email Address"
-      titles: 
-        invitation: "Invitation to %{course}"
     open_enrollment_confirmed: 
-      details: "You should get an email at %{email} in the next few minutes. That email will have a link that you can use to finish the registration process. Once you've set up your account you'll be able to access content from %{course}. Welcome to Canvas!"
       headings: 
         invitation: "Course Invitation"
-        received: "Invitation Received!"
-      titles: 
-        invitation: "Invitation to %{course}"
-    recent_event: 
-      all_graded: "all graded"
-      needs_grading: "needs grading"
-      no_new_submissions: "no new submissions"
-      no_submissions: "no submissions"
-      not_submitted: "not submitted"
-      submission_score: "%{score} *out of %{points_possible}*"
-    recent_feedback: 
-      comments: "Comments: %{count}"
-      graded: Graded
-      labels: 
-        due_date: Due
-      not_graded: "not graded"
-      submission_points: 
-        with_score: "Score: %{score} *out of %{points_possible}*"
-        without_score: "out of %{points_possible}"
-      submitted: Submitted
-      unsubmitted: "Not submitted"
     settings: 
       accepted_invitation: "%{user} has already received and accepted the invitation to join the course, but you can still re-send the invitation if they need it."
       admin_invitation_unaccepted: "%{user} hasn't yet accepted the invitation to join the course. The invitation was sent: %{time}"
-      alerts_title: Alerts
       buttons: 
-        add_section: "Add Section"
-        add_users: "OK Looks Good, Add These Users"
-        continue: Continue...
-        kthxbai: "Cool, Thanks"
-        modify_users: "Go back and edit the list of users"
         move_course: "Move Course"
         reset: "Reset Course Content"
         unconclude: "Un-Conclude Course"
         update_course: "Update Course Details"
-      course_overrides_term: "This will override any term availability settings."
       date_restricted: "Users can only participate in the course between these dates"
       deatils: 
         move_course: "Select a new root account for this course. After you move the course you'll want to specify a new department for the course as well."
       drag_details: "Disabling most pages will cause students who visit those pages to be redirected to the course home page."
-      drag_to_hide: "Drag items here to hide them from students."
-      enrollment_count: 
-        one: "1 User"
-        other: "%{count} Users"
-      good_twitter_hashtag: 
-        example: "#sfu-bio100"
-      grading_standard_currently_set: "Currently Set"
-      grading_standard_not_set: "Not Set"
       headings: 
         add_users: "Add Course Users"
-        current_users: "Current Users"
         details: "Course Details"
-        external_tools: "External Tools"
-        grade_publishing: "Grade Publishing"
         move_course: "Move the course to another root account"
-        observers: Observers
         sections: "Course Sections"
-        students: Students
-        tas: TAs
-        teachers: Teachers
       help: 
         edit_navigation: "Drag and drop items to reorder them in the course navigation."
         hashtags: |-
             Hashtags are special phrases that let people consistently mention the same idea (like a course) on web sites like Twitter.  For example, the message "I like #instructure" is using the hashtag "instructure".
             
             Hashtags should consist of letters, numbers, dashes and underscores (no spaces).  The hashtag should be unique, easily recognizable, and short.  Short hashtags are better since sites like Twitter limit the number of letters per message.
-        public_course: "(student data will remain private)"
         reset_course_content: "Resetting course content will permanently delete all associated assignments, discussions, quizzes, modules, rubrics, pages, files, learning outcomes, question banks, collaborations, conferences, or any other content.  This action is irreversible, and the data *cannot* be recovered. Are you sure you wish to continue?"
-      images: 
-        alt: 
-          cant_delete: "can't delete"
-          delete: delete
-          edit: edit
       indexed_course: "Included in public course index"
       invitations_pending_publish: "Invitations aren't sent until the course is *published*"
       invite_to_unpublished_course: "Since the course hasn't been published, students and TAs will be added, but won't be invited to join the course. Invitations will be sent out when the course is published."
       labels: 
-        account_id: Department
-        allow_student_assignment_edits: "Let Students edit Assignment Descriptions"
-        allow_student_forum_attachments: "Let Students attach files to Discussion Posts"
-        allow_student_organized_groups: "Let Students organize their own Groups"
-        auto_accept_enrollment: "don't send invite, just auto-accept these users"
-        conclude_at: Ends
         course_code: "Course Code"
-        course_name: Name
         course_open_enrollment: "This course has enabled open enrollment. Students can self-enroll in the course once you share with them this url"
-        course_section_id: "For the section"
-        course_section_name: "Add a New Section"
-        course_visibility: Visibility
-        enrollment_term_id: Term
-        enrollment_type: "Add More"
-        examples: Examples
-        good_twitter_hashtag: 
-          description: "much better"
-        grading_scheme: "Grading Scheme"
         grading_standard_enabled: "Enable course grading scheme"
-        hashtag: Hashtag
-        hide_final_grade: "Hide totals in student grades summary"
         indexed: "Include this course in the public course index"
         is_public: "Make this course publicly visible"
-        language: Language
-        license: License
         limit_privileges_to_course_section: "these admins can only grade students in their section"
-        observers: Observers
         open_enrollment: "Add a \"Join this Course\" link to the course home page"
         restrict_enrollments_to_course_dates: "Users can only participate in the course between these dates"
-        root_account_id: "Root Account"
-        self_enrollment: "Let students self-enroll by sharing with them a secret URL"
-        show_public_context_messages: "collect public messages for this hashtag"
-        sis_source_id: "SIS ID"
-        start_at: Starts
-        storage_quota: "File Storage"
-        students: Students
-        tas: TAs
-        teachers: Teachers
-        too_general_twitter_hashtag: 
-          description: "too general"
-        too_long_twitter_hashtag: 
-          description: "too long"
-        turnitin_comments: "Turnitin Submission Comments"
       language_overrides_preferences: "This will override any user/system language preferences. This is only recommended for foreign language courses"
       links: 
-        add_users: "Add Users"
         calendar: "Course Calendar"
         conclude: "End this Course"
         copy: "Copy this Course"
         delete: "Permanently Delete this Course"
         edit_course: "Edit Course Details"
         export: "Export this Course"
-        hashtag_help: "What's a hashtag?"
         import: "Import Content into this Course"
-        more_options: "more options"
-        move_course: "Move To Another Account"
-        re_send_invitation: "Re-Send Invitation"
         reset: "Reset Course Content"
         stats: "Course Statistics"
-        title: 
-          cant_delete: "You can't delete sections that have users enrolled"
-          delete_section: "Delete Section"
-          edit_section: "Edit Section"
-      megabytes: megabytes
-      no_date: "No Date Set"
-      no_language_preference: "Not set (user-configurable, defaults to %{language})"
-      no_observers: "No Observers Enrolled"
-      no_students: "No Students Enrolled"
-      no_tas: "No TAs Assigned"
-      no_teachers: "No Teachers Assigned"
-      none: None
       not_date_restricted: "These dates will not affect course availability"
-      option: 
-        observers: Observers
-        students: Students
-        tas: TAs
-        teachers: Teachers
       page_title: "Course Details"
-      private_course: Private
-      public_course: Public
-      re_send_all: "or *Re-Send All Unaccepted Invitations*"
-      section_sis_id: "SIS ID: %{section_sis}"
-      set_grading_scheme: "set grading scheme"
-      sis_source_id: "SIS ID"
       student_invitation_unaccepted_available: "%{user} hasn't yet accepted the invitation to join the course. The invitation was sent: %{time}"
       student_invitation_unaccepted_unavailable: "%{user} was added to the course: %{time}"
-      tab_cant_disable: "This page can't be disabled, only hidden"
       tab_disabled: "Page disabled, will redirect to course home page"
-      tab_hidden_if_disabled: "Page disabled, won't appear in navigation"
       tabs: 
-        alerts: Alerts
         details: "Course Details"
-        grade_publishing: "Grade Publishing"
-        navigation: Navigation
-        sections: Sections
-        tools: "External Tools"
-        users: Users
       teacherless_invite_details: "If you invite a teacher and they accept, you will give up administrative privileges for this course."
       titles: 
         course_section: "Course Section"
         edit_navigation: "Edit Course Navigation"
-        enrollment_type: "Enrollment Type"
-      too_general_twitter_hashtag: 
-        example: "#biology"
-      too_long_twitter_hashtag: 
-        example: "#san-fransisco-university-biology-100"
-      turnitin: "these comments will be shown to students when submitting a Turnitin-enabled assignment"
-      unaccepted_invitations: "%{count} Invitations haven't been accepted. You can click a user's name to re-send their invitation"
-      view_grading_scheme: "view grading scheme"
       wiki_editing_roles: "can edit course wiki pages by default"
-      wiki_editing_roles_change_existing: "Change pages currently editable by \"%{current_setting}\" to \"%{new_setting}\"."
     show: 
       acting_as: "You are currently viewing this course with the role: %{enrollment_type}. You will only have permissions and access available to users of this role."
-      buttons: 
-        update_layout: "Update Layout"
       details: 
         assignments: "This view shows the **list of assignments** for this course, with upcoming and recent assignments at the top."
         communication_stream: "The **communication stream** lets participants see the most recent conversations, notifications, and interactions for this course.  It's very similar to the dashboard page users see when they first log in, but only shows content for this specific course."
@@ -1435,974 +445,86 @@ en:
             This layout is probably best for courses that aren't based on a specific schedule like a term or semester.
         syllabus: "The **syllabus view** lets you write up a description of course expectations or introduce the course with links, images, etc. and then also shows a calendar view of all assignments and course events."
       dropping_course: "Dropping Course..."
-      empty_body: "No Content"
       headings: 
-        confirm_unenroll: "Confirm Unenrollment"
         joining_a_course: "Joining a Course"
-        set_layout: "Set Home Page Layout"
         unpublished: "This Course is Unpublished"
       joining_course: "Joining Course..."
       labels: 
         set_layout: "When people visit the course page, show them"
       license_notice: "This course content is offered under a %{license_type} license. Content in this course can be considered under this license unless otherwise noted."
       links: 
-        change_layout: "Change Home Page Layout"
         course_setup: "Course Setup Checklist"
         course_stream: "See Course Stream"
         delete: "Delete This Course"
         drop_course: "Drop this Course"
         join_course: "Join this Course"
-        new_announcement: "New Announcement"
-        restore_role: "Restore Role and Permissions"
       options: 
-        assignments: "the Assignment List"
-        communication_stream: "the Communication Stream"
-        custom_page: "a Page I'll Design Myself"
         modules: "the Course Modules/Sections"
-        syllabus: "the Assignments with Syllabus"
-      period_name: "the last 2 weeks"
-      re_sending: Re-Sending...
-      send_done: "Done! Message may take a few minutes."
-      send_failed: "Request failed. Try again."
       teachers_only: "Only teachers can see this course until it is *published*"
       titles: 
         drop_course: "Drop this Course"
         join_course: "Join this Course"
-        recent_feedback: "Recent Feedback"
     sidebar_weighting: 
-      default_name: Group
-      headings: 
-        group: Group
-        total: Total
-        weight: Weight
-      labels: 
-        assignments_weighting: "Assignments are weighted by group"
-      no_groups: "No Groups Set Up"
       not_weighted: "Course assignments are not weighted."
     statistics: 
-      active_students: "Active Students"
-      all_rubrics: "All Rubrics"
-      any: Any
-      assignment_groups: "Assignment Groups"
-      assignments: Assignments
       course_rubrics: "Course Rubrics"
-      discussion_posts: "Discussion Posts"
-      discussion_topic: "Discussion Topic"
-      discussions: Discussions
-      file_count: 
-        one: "1 file"
-        other: "%{count} files"
-      file_upload: "File Upload"
-      headings: 
-        assignments: "Assignments Usage Report"
-        files: "File Storage"
-        page_views: "Page views over time"
-        stats: "Statistics for %{course}"
-        students: "Recently Logged-In Users"
-        totals: "Running Totals"
-      labels: 
-        allotted_storage: "Allotted Storage"
-        media_files: "Media Files"
-        uploaded_files: "Uploaded Files"
-      new: New
-      new_discussion_entries: "New Discussion Entries"
-      new_discussions: "New Discussions"
-      none_to_show: "None to show"
-      num_assignments: "# Assignments"
-      num_submissions: "# Submissions"
       page_title: "Course Statistics"
-      page_views: "'Page Views'"
-      quiz: Quiz
-      quiz_questions: "Quiz Questions"
-      quiz_submissions: "Quiz Submissions"
-      quizzes: Quizzes
-      student_last_logged_in: "last logged in %{time}"
-      submission_type: "Submission Type"
-      tabs: 
-        assignments: Assignments
-        files: "File Storage"
-        students: Students
-        totals: Totals
-      text_entry: "Text Entry"
-      unaccepted_students: "Unaccepted Students"
-      website_url: "Website URL"
-    titles: 
-      rss_feed: "%{course} Feed"
     unauthorized: 
       invalid_link: "The enrollment link you used appears to no longer be valid.  Please contact the course instructor and make sure you're still correctly enrolled."
       not_started_yet: "The course you are trying to access has not started yet.  It will start %{date}."
       unpublished: "This course has not been published by the instructor yet."
-  crumb: 
-    conversations: Conversations
-    discussion_replies: "Discussion Replies"
   crumbs: 
-    access_report: "Access Report"
-    assignments: Assignments
-    calendar_events: "Calendar Events"
-    chat: Chat
-    conferences: Conferences
-    confirmation: Confirmation
     copy_course: "Copy Course"
-    discussions: Discussions
-    eportfolio_welcome: "Welcome to Your ePortfolio"
-    error_reports: "Error Reports"
-    files: Files
-    grading_schemes: "Grading Schemes"
-    groups: Groups
-    media: Media
-    modules: Modules
-    outcomes: Outcomes
-    people: People
-    plugins: Plugins
-    prior_users: "Prior Users"
-    registered_services: "Registered Services"
-    results: Results
-    revisions: Revisions
-    rubrics: Rubrics
-    settings: Settings
-    stats: Statistics
-    syllabus: Syllabus
-    users: Users
-    wiki_page_revisions: Revisions
-    wiki_pages: Pages
-  curve_grades_dialog: 
-    average_score: "Average Score"
-    buttons: 
-      curve_grades: "Curve Grades"
-      curving_grades: "Curving Grades..."
-    curve_average: "Enter an average grade for the curve for *%{assignment.name}*. The chart shows a best attempt at curving the grades based on current student scores."
-    curve_grade_for_assignment: "Curve Grade for %{assignment.name}"
-    labels: 
-      assign_blanks: "Assign zeroes to unsubmitted students"
-    out_of_points_possible: "out of %{assignment.points_possible}"
-  dashboard: 
-    links: 
-      show_notifications: "click to show these notifications in the stream"
-  date: 
-    abbr_day_names: 
-      - Sun
-      - Mon
-      - Tue
-      - Wed
-      - Thu
-      - Fri
-      - Sat
-    abbr_month_names: 
-      - ~
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    day_names: 
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
-    days: 
-      today: Today
-      today_lower: today
-      tomorrow: Tomorrow
-      yesterday: Yesterday
-    formats: 
-      default: "%Y-%m-%d"
-      long: "%B %d, %Y"
-      medium: "%b %e, %Y"
-      short: "%b %e"
-      weekday: "%A"
-    month_names: 
-      - ~
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
-    order: 
-      - !ruby/symbol year
-      - !ruby/symbol month
-      - !ruby/symbol day
-  datetime: 
-    distance_in_words: 
-      about_x_hours: 
-        one: "about 1 hour"
-        other: "about %{count} hours"
-      about_x_months: 
-        one: "about 1 month"
-        other: "about %{count} months"
-      about_x_years: 
-        one: "about 1 year"
-        other: "about %{count} years"
-      almost_x_years: 
-        one: "almost 1 year"
-        other: "almost %{count} years"
-      half_a_minute: "half a minute"
-      less_than_x_minutes: 
-        one: "less than a minute"
-        other: "less than %{count} minutes"
-      less_than_x_seconds: 
-        one: "less than 1 second"
-        other: "less than %{count} seconds"
-      over_x_years: 
-        one: "over 1 year"
-        other: "over %{count} years"
-      x_days: 
-        one: "1 day"
-        other: "%{count} days"
-      x_minutes: 
-        one: "1 minute"
-        other: "%{count} minutes"
-      x_months: 
-        one: "1 month"
-        other: "%{count} months"
-      x_seconds: 
-        one: "1 second"
-        other: "%{count} seconds"
-    prompts: 
-      day: Day
-      hour: Hour
-      minute: Minute
-      month: Month
-      second: Seconds
-      year: Year
-  defaults: 
-    assignment: Assignment
-  discussion_entries: 
-    created_entry_notice: "Entry was successfully created."
-    deleted_entry_notice: "That entry has been deleted"
-    disabled_podcasts_notice: "Podcasts have not been enabled for this topic."
-    podcast_description: "Any media files linked from or embedded within entries in the topic \"%{title}\" will appear in this feed."
-    podcast_feed_title: "%{title} Posts Podcast Feed"
-    posts_feed_title: "%{title} Posts Feed"
-    updated_entry_notice: "Entry was successfully updated."
-  discussion_entry: 
-    default_user_name: "User Name"
-    file_added_warning: "Added file \"%{file_path}\" which is needed for an entry in the topic \"%{discussion_topic_title}\""
-  discussion_topic: 
-    default_title: "No Title"
-    default_user_name: "User Name"
-    empty_message: "No message"
   discussion_topics: 
-    deleted_topic_notice: "That topic has been deleted"
-    discussion_feed_title: "%{title} Discussion Feed"
-    entry: 
-      authors_name: "Author's name"
-      delete_message: "Delete this Message"
-      edit_message: "Edit this Message"
-      edited_comment: "This comment was edited by %{user}."
-      labels: 
-        attached_file: "Attached File"
-      make_side_comment: "Make a Side Comment..."
-      reply_to_message: "Make a Side Comment"
-      show_more_entries: 
-        one: "Show 1 More Entry"
-        other: "Show %{count} More Entries"
-    group_assignment_discussion_entry: 
-      posts: 
-        one: "1 Post"
-        other: "%{count} Posts"
-      separated_conversation_notice: "The conversation for this topic has been separated into separate groups. Below are all the group topics you have access to."
     index: 
       course_discussions_atom_feed_title: "Course Discussions Atom Feed"
-      drag_and_drop_notice: "You can manually define the order in which discussions will appear. Click and drag any topic to change where it will appear in the list."
-      locked_message: "This topic is currently locked. Visit the topic details page for more information."
-      locked_title: locked
-      manage_announcements: "Manage Announcements"
-      reorder_topics: "Reorder Topics"
-      start_new_topic: "Start a New Topic"
-      view_only_topics: "View Only Topics"
-      view_topics_and_announcements: "View Topics and Announcements"
-    loading_results: "Loading more results"
-    reordered_topics_notice: "Topics successfully reordered"
-    show: 
-      add_new_entry: "Add New Entry"
-      add_new_topic: "Add New Entry"
-      attach_file: "Attach File"
-      delete_confirm: "Are you sure you want to delete this topic?"
-      delete_current_message: "Delete Current Message"
-      delete_topic: "Delete Topic"
-      discussion_atom_feed_title: "Discussion Atom Feed"
-      discussion_podcast_feed_title: "Discussion Podcast Feed"
-      edit_current_message: "Edit Current Message"
-      edit_topic: "Edit Topic"
-      initial_post_required: "Replies are only visible to those who have posted at least one reply."
-      just_due: "due %{date}"
-      labels: 
-        file: File
-        file_attached: "File Attached"
-      lock_topic: "Close for Comments"
-      locked_topic: "This topic is currently locked."
-      message_count: 
-        one: "*1* **post**"
-        other: "*%{count}* **posts**"
-      next_message: "Next Message"
-      points_possible: 
-        one: "1 pt"
-        other: "%{count} pts"
-      points_possible_and_due: 
-        one: "1 pt, due %{date}"
-        other: "%{count} pts, due %{date}"
-      post_count: 
-        one: "1 Post"
-        other: "%{count} Posts"
-      post_entry: "Post Entry"
-      previous_message: "Previous Message"
-      replace_file: "Replace File"
-      reply_to_message: "Reply to Current Message"
-      reply_to_topic: "Reply to Topic"
-      separated_conversation_notice: "The conversation for this topic has been separated into separate groups. Below are the list of group topics you have access to."
-      show_all_posts: "Show Posts from all Topics"
-      show_assignment_rubric: "Show Assignment Rubric"
-      switch_views: "Switch Views"
-      topic: Topic
-      topic_agglomerated_notice: "This view shows all the messages from all this topic's group topics. If you want to comment or edit posts, you'll have to visit each topic individually."
-      topic_for_assignment: |-
-          This topic is for the assignment  
-          **%{title}**
-      topic_locked: "This topic is closed for comments"
-      topic_locked_notice: "This topic is closed for comments."
-      topic_podcast_feed_link: "Topic Podcast Feed"
-      total_message_count: "*%{count}* including subtopics"
-      unlock_topic: "Re-Open for Comments"
-    sub_entry: 
-      authors_name: "Author's name"
-      post_message: "Post Message"
-    topic_created_notice: "Topic was successfully created."
-    topic_updated_notice: "Topic was successfully updated."
-  edit_rubric: 
-    errors: 
-      load_rubrics_failed: "Loading rubrics failed, please try again"
-    messages: 
-      loading_rubric_groups: "Loading rubric groups..."
-      loading_rubrics: "Loading rubrics..."
-    prompts: 
-      confirm_delete: "Are you sure you want to delete this rubric?"
-      read_only_rubric: "You can't edit this rubric, either because you don't have permission or it's being used in more than one place. Any changes you make will result in a new rubric based on the old rubric.  Continue anyway?"
-      update_assignment_points: "%{assignment_title} has %{assignment_points} points possible, would you like to change it to have %{rubric_points} points possible to match this rubric?"
-    titles: 
-      criterion_long_description: "Criterion Long Description"
-      find_existing_rubric: "Find Existing Rubric"
-      update_assignment_points: "Change points possible to match rubric?"
-  editor: 
-    switch_views: "Switch Views"
-  email: 
-    default_from_name: "Instructure Canvas"
   enrollment: 
     default_course_name: Course
-    default_email: "No Email"
-    default_user_name: "Unknown User"
-    roles: 
-      designer: Designer
-      observer: Observer
-      student: Student
-      ta: TA
-      teacher: Teacher
-    title: "%{user_name} in %{course_name}"
-    with_section: "%{course_name}, %{section_name}"
-    workflow: 
-      active: Active
-      completed: Completed
-      deleted: Deleted
-      inactive: Inactive
-      invited: Invited
-      pending: Pending
-      rejected: Rejected
-  enrollment_term: 
-    errors: 
-      not_unique: "SIS ID \"%{sis_source_id}\" is already in use"
-  eportfolio: 
-    action_instructions: "Click to %{action}"
-    buttons: 
-      done_editing: "Done Editing"
-      manage_sections: "Manage Sections"
-    confirm_delete_message: "Are you sure you want to delete this message?"
-    confirm_delete_page: "Delete this page and all its content?"
-    confirm_delete_section: "Delete this section and all its pages?"
-    default_description: "This is my %{assignment} submission for %{course}."
-    eportfolio_settings: "ePortfolio Settings"
-    errors: 
-      compiling: "There was an error compiling your eportfolio.  Please try again in a little while."
-      missing_file: "Please select a file"
-      upload_failed: "Upload Failed."
-    first_category: Home
-    first_entry: 
-      content: "Nothing entered yet"
-      title: Welcome
-    links: 
-      manage_pages: "Click to edit, drag to reorder"
-    titles: 
-      add_submission: "Add Page for Submission"
-      download_eportfolio: "Download ePortfolio"
-      section_list: "Drag to Arrange, Click to Edit"
-  eportfolio_categories: 
-    default_name: "New Page"
-    errors: 
-      missing_page: "Couldn't find that page"
-  eportfolio_category: 
-    default_section: "Section Name"
-  eportfolio_entries: 
-    errors: 
-      not_found: "Not Found"
-    notices: 
-      missing_page: "Couldn't find that page"
-  eportfolio_entry: 
-    click_through: "Click to view page content"
-    default_content: "No Content Added Yet"
-    default_name: "Page Name"
   eportfolios: 
     _page_section: 
       section_types: 
-        attachment: "Image/File Upload"
-        html: "HTML/Embedded Content"
-        rich_text: "Rich Text Content"
         submission: "Course Submission"
-    crumb: ePortfolios
-    edit_link_text: "%{edit_icon} Edit This Page"
-    eportfolio: 
-      entry_count: 
-        one: "*1* page"
-        other: "*%{count}* pages"
-      updated_at: "last updated %{updated_at}"
-    help_link_text: "%{help_icon} How Do I...?"
-    manage_pages_link_text: "Organize/Manage Pages"
-    manage_sections_link_text: "Organize Sections"
-    notices: 
-      created: "Porfolio successfully created"
-      deleted: "Portfolio successfully deleted"
-      updated: "Porfolio successfully updated"
-      zipping: "File zipping still in process..."
-    page_list: 
-      buttons: 
-        done_editing: "Done Editing"
-      default_page_name: "Page Name"
-      edit_instructions: "Click any page name to rename it, or click and drag to reorder."
-      headers: 
-        page_list: "Pages for this section"
-      links: 
-        add_page: "Add Another Page"
-      titles: 
-        delete_page: "Delete this Page"
-        manage_pages: "Add, remove or rearrange pages for this section"
-        rename_page: "Rename Page"
     page_section: 
-      links: 
-        download_attachment: "Click here to Download *%{attachment}*"
-      rich_text: 
-        default_content: "Nothing Entered Yet"
       section_types: 
-        attachment: "Image/File Upload"
-        html: "HTML/Embedded Content"
-        rich_text: "Rich Text Content"
         submission: "Course Submission"
-      titles: 
-        delete_section: "Delete this section"
-        move_section: "Drag to rearrange sections"
-    page_section_static: 
-      headers: 
-        submission: "Student Submission for %{assignment}, created %{created_date}"
-      links: 
-        download_attachment: "Click here to Download *%{attachment}*"
-        submission_url: "View the URL submitted for this assignment"
-      not_rendered: "There used to be a submission here, but we couldn't find it or didn't support the submission type for exporting."
-      rich_text: 
-        default_content: "Nothing Entered Yet"
-    private_portfolio: 
-      content: "This ePortfolio is not publicly visible. If you know the portfolio's owner, you can ask them to grant you access to the portfolio. Otherwise, you're out of luck."
-    section_list: 
-      buttons: 
-        done_editing: "Done Editing"
-      default_section_name: "Section Name"
-      links: 
-        add_section: "Add Section"
-        settings: "ePortfolio Settings"
-      titles: 
-        manage_sections: "Add, remove or rearrange sections for this portfolio"
-        rename_section: "Rename this Section"
     show: 
-      add_submission: "To make a new page for this submission, select a section and enter the name for the new page."
-      attachment_count: 
-        one: "1 Attachment"
-        other: "%{count} Attachments"
-      buttons: 
-        add_comment: "Add Comment"
-        add_page: "Add Page"
-        delete: "Delete ePortfolio"
-        keep_editing: "Keep Editing"
-        preview: Preview
-        save_page: "Save Page"
-        select_submission: "Select Submission"
-        update_eportfolio: "Update ePortfolio"
-        upload_file: "Select/Upload File"
-      current_pages: "Current Pages"
-      delete_confirm: 
-        one: "You currently have 1 page in this ePortfolio. Are you sure you want to delete the entire ePortfolio?"
-        other: "You currently have %{count} pages in this ePortfolio. Are you sure you want to delete the entire ePortfolio?"
-      headers: 
-        add_content: "Add Content"
-        export_progress: "Collecting ePortfolio resources. this may take a while if you have a lot of files in your ePortfolio."
-        private_eportfolio: "Your ePortfolio is Private"
-        public_eportfolio: "Your ePortfolio is Public"
-        recent_submissions: "Recent Submissions"
-        welcome: "Welcome to Your ePortfolio"
-      headings: 
-        page_comments: "Page Comments"
-      labels: 
-        add_comment: "Add a New Comment"
-        allow_comments: "Allow Comments on this Page"
-        choose_submission: "Select an assignment submission to embed in this page"
-        eportfolio_name: "ePortfolio Name"
-        file_select: "Select a file to include on this page"
-        file_upload: "Or upload a new file"
-        html_content: "Copy and paste your HTML code into the box below"
-        loading_submission: "Loading Submission"
-        make_public: "Make it Public"
-        page_name: "Page Name"
-        section: Section
-        show_comments: "Make Comments Public"
-        uploading_file: Uploading
       links: 
-        back: "Back to Portfolio Dashboard"
         choose_submission: "Course Submission"
-        delete: "Delete this ePortfolio"
-        download_eportfolio: "Download the contents of this ePortfolio as a zip file"
-        download_file: "Click here to download %{filename}"
-        file_uload: "Image/File Upload"
-        html_content: "HTML/Embedded Content"
-        portfolio: "Go to the Actual ePortfolio"
-        rich_content: "Rich Text Content"
-        share: "Copy and share this link to give others access to your private ePortfolio."
-        switch_views: "Switch Views"
-        view_original: "View the Original File"
-        wizard: "Getting Started Wizard"
-      login_required: "You must be *logged in* to make comments on this page."
-      new_section: "New Section"
-      no_comments: "No Comments"
-      no_files: "No Files Uploaded"
-      no_submissions: "No Submissions Found"
-      private_comments: "Right now only you can see the comments for this page. You can make the comments public if you like by *changing the settings for this page*."
-      private_eportfolio: "That means people can't find it or even view it without permission. You can see it since it's your portfolio, but if you want to let anybody else see it, you'll need to copy and share the the following special link so they can access your portfolio:"
-      public_eportfolio: "That means anyone who knows the address of your portfolio can view it. You can make your portfolio private by *changing your portfolio settings*."
-      recent_submissions: "Click any submission to add it to a new page in your ePortfolio."
-      titles: 
-        already_used: "This submission is already included in your portfolio"
-        feed: "Eportfolio Atom Feed"
-        view_submission: "View the Submission"
-      upload_limit: "limit 50MB per file"
-      welcome: "If this is your first time here, you may want to pop up the wizard and see how best to get started. Otherwise you can quickly add recent submissions or just jump straight to the portfolio."
-      write_only_comments: "Comments for this page are private. You can make comments, but only the portfolio's owner will be able to see them."
-    show_me: "show me"
-    static_page: 
-      created_with_canvas: "Created with Canvas"
-      headers: 
-        page_comments: "Page Comments"
-      links: 
-        skip_navigation: "Skip Navigation"
-      logo: logo
-    title: "%{portfolio_name} Feed"
-    user_index: 
-      buttons: 
-        add_eportfolio: "Make ePortfolio"
-      defaults: 
-        eportfolio_name: "My Portfolio"
-      headers: 
-        add_eportfolio: "Make an ePortfolio"
-        my_eportfolios: "My ePortfolios"
-        what: "What's an ePortfolio?"
-      labels: 
-        eportfolio_name: "ePortfolio Name"
-        make_public: "Make it Public"
-      links: 
-        create: "Create an ePortfolio"
-      page_title: "My ePortfolios"
-      what: 
-        details1: |-
-            ePortfolios are a place where you can display and discuss the significant
-            submissions and experiences that are happening during your learning
-            process. You can use an ePortfolio to:
-            
-            * Display the papers you're proud of for more than just your instructor to see
-            * Talk about all the thought and work that went into your class submissions
-            * Gather an overview of your educational experience as a whole
-            * Share your work with friends, future employers, etc.
-            
-            ePortfolios can be public for everyone to see, or private so only those you
-            allow can see, and you can change that setting at any time.
-            
-            Ready to get started? Click the button.
-    wizard_box: 
-      finish: 
-        body: "Ready to get started? You can always get back to this wizard from any page by clicking the \"%{help_link_text}\" link you'll see there."
-      headers: 
-        finish: "Let's Do It"
-        getting_started: "Getting Started"
-        instructions: "Using an ePortfolio"
-        introduction: Introduction
-        page_content: "Page Content"
-        pages: "Section Pages"
-        sections: "Portfolio Sections"
-        settings: "ePortfolio Settings"
-        submissions: "Adding Submissions"
-      introduction: 
-        body: "ePortfolios are a place to demonstrate your work. They are made of sections and pages. The list of sections are along the left side of the window (%{showme1}). Each section can have multiple pages, shown on the right side of the window (%{showme2})."
-      links: 
-        portfolio: "View the Portfolio"
-      page_content: 
-        body1: "The content you see on a page is the same content any visitors will see. To edit this content, click the \"%{edit_link_text}\" link (%{showme}) and the page will change to editing mode."
-        body2: "Now you're editing! Rename the page or change commenting options (%{showme1}) if you like. You can save, preview or cancel your changes at any time by clicking the button on the right side (%{showme2})."
-        body3: "Content is divided into subsections, which each have a dotted border. You can delete or edit the contents of a subsection by clicking the %{edit_icon} or %{delete_icon} icons at the top right corner of the subsection."
-        body4: "To add new subsections, find and click the type of content you want to add in the options list on the right side of the page (%{showme})."
-      pages: 
-        body1: "Sections have multiple pages. You can see the list of pages for the current section on the right side of the window (%{showme1}). To organize or add pages, click the \"%{manage_pages}\" link (%{showme2})."
-        body2: "You can rename any page by click on the %{edit_icon} icon that appears, delete a page by clicking the %{delete_icon} icon, or rearrange the order of pages by click and dragging them."
-      sections: 
-        body1: "Sections are listed along the left side of the window (%{showme1}). Each section can have multiple pages inside of it. To organize or add sections, click the \"%{manage_sections}\" link (%{showme2})."
-        body2: "You can rename any section by clicking on the %{edit_icon} icon that appears, rearrange sections by clicking and dragging them, or delete sections by clicking the %{delete_icon} icon."
-      settings: 
-        body: "To change the settings for your ePortfolio, click the \"ePortfolio Settings\" link (%{showme}). You can rename the portfolio and also change whether it is public or private. Private portfolios are only visible to those to whom you grant access."
-      submissions: 
-        body1: "You may have noticed at the bottom of this page is a list of recent submissions from your classes (%{showme}). You can quickly add submissions to new pages in your portfolio from this page. Just click the submission you want to add and a simple dialog will pop up."
-        body2: "Great! Now to finish adding the submission, you need to choose which section you'd like to add it to and give the page a name. After you click \"Add Page\" you'll be taken to the new page so you can edit it in more detail if you like."
-  errors: 
-    failed: Failed
-    index: 
-      all_categories: "- All Categories -"
-      default_category: default
-      labels: 
-        category: category
-      message_contains: "Message contains"
-    sis_id_in_use: "SIS ID \"%{sis_id}\" is already in use"
-  external_content: 
-    cancel: 
-      canceling: Canceling...
-      popup_failure: "Cannot find the parent window, you'll need to close this popup manually."
-      popup_success: "Cancelled. This popup should close on its own..."
-    success: 
-      content_failure: "Content retrieval failed, please try again or notify your system administrator of the error."
-      oembed_failure: "Content retrieval failed, please try again or notify your system administrator of the error."
-      popup_success: "Success! This popup should close on its own..."
-      retrieving_content: "Retrieving Content..."
-  external_feed: 
-    original_article: "Original article"
-    short_feed_title: "%{short_url} feed"
   external_tools: 
-    buttons: 
-      save_tool_settings: "Save Tool Settings"
-    errors: 
-      save_tool_settings_failed: "Save Tool Settings Failed"
-    external_tool: 
-      delete_tool: "Delete Tool"
-      edit_tool: "Edit Tool"
-      labels: 
-        consumer_key: "Consumer Key"
-        description: Description
-        domain: Domain
-        privacy: Privacy
-        url: URL
     external_tools: 
-      anonymous: Anonymous
-      custom_fields_explanation: "(one per line, format: name=value)"
-      domain: Domain
       external_tools_note: "External tools are tools outside of Canvas that support Basic LTI integrations. You will need to check with the author of the tool for the correct configuration parameters to add. Tools are configured at the account level, and can then be added as content in course modules for courses in the account."
-      labels: 
-        consumer_key: "Consumer Key"
-        custom_fields_string: "Custom Fields"
-        description: Description
-        domain: Domain
-        match_by: "Match By"
-        name: Name
-        privacy_level: Privacy
-        shared_secret: "Shared Secret"
-        url: URL
-      name_only: "Name Only"
-      public: Public
-      shared_secret_note: "enter a new value to change"
-      url: URL
-    finished: 
-      load_failure_message: "There was a problem loading the specified tool. Please contact your administrator if these problems persist."
-      load_failure_title: "Tool Failed to Load"
-      load_success_message: "You are free to navigate away from this page."
-      load_success_title: "Tool Use Finished"
-    messages: 
-      saving_tool_settings: "Saving Tool Settings..."
     prompts: 
       remove_tool: "Are you sure you want to remove this tool?  Any courses using this tool will no longer work."
-    titles: 
-      edit_external_tool: "Edit External Tool"
-    tool_show: 
-      load_tool_button: "Load %{tool}"
-      load_tool_new_tab_button: "Load %{tool} in a new window"
-      new_tab: "This tool needs to be loaded in a new browser window"
-      new_tab_expired: "The session for this tool has expired. Please reload the page to access the tool again"
-      new_tab_loaded: "This tool was successfully loaded in a new browser window. Reload the page to access the tool again."
   facebook: 
-    authorization_required: "Only authorized users can access that page"
-    authorization_success: "Authorization successful!  Canvas and Facebook are now friends."
-    deleted: Deleted
     index: 
-      all_set: "You're all set up!"
-      bookmark_notice: "You can see the number of new Canvas notifications from your Facebook home page if you bookmark this application."
-      canvas_messages: "Canvas Messages"
-      configure_notification_preferences_notice: "After you *configure your notification preferences* you should start to see notifications show up here letting you know about things happening in your Canvas account."
-      installation_about: "To install the Canvas Facebook app, go to your profile page in Canvas and click the Facebook button to connect your account to Facebook."
-      learn_more: "Learn More at instructure.com"
-      more_information: "More information at %{domain_list}"
       no_messages_notice: "As things happen in the course you'll start seeing notifications show up here letting you know about things happening in your Canvas account."
       notification_about: "The Canvas Facebook app is here to give you easier access to the interactions going on inside your courses. You can set it to send you notifications when your assignments are graded, when due dates change, etc. Your private data will still stay private at Canvas."
-      notification_settings: "Notification Settings"
-      notifications_notice: "Below you can see a list of your most recent notifications from Canvas. You can see the number of new Canvas notifications from your Facebook home page if you bookmark this application."
-      welcome: "Welcome back, %{name}!"
-      welcome_message: "Welcome to a new breed of online learning software, courtesy of Instructure. We're here to make it easy for you to use the web to improve learning. Our interface is simple, clean and open, and we work with the tools you and your students are already using -- tools like Facebook -- to provide a more open, collaborative learning experience. We roll it all up into one powerful, open package that does more than just tracks assignments. It encourages interaction and fosters learning."
-      welcome_title: "Welcome to Instructure Canvas"
-    index_disabled: 
-      disabled_notice: "This Canvas site is not configured to communicate with Facebook."
-      get_help: "Get help at support.instructure.com"
-      instructure_canvas: "Instructure Canvas"
-    invalid_signature: "Invalid Facebook signature"
-    message: 
-      hide: Hide
-    notification_policies: 
-      alerts: Alerts
-      cancel: Cancel
-      change_settings: "Change Settings"
-      daily: Daily
-      labels: 
-        alerts_for_category: "%{category_name} Alerts"
-      loading: loading...
-      never: Never
-      notification_type: "Notification Type"
-      right_away: "Right Away"
-      send_to_facebook: "Send to Facebook?"
-      update_preferences: "Update Preferences"
-      updating_preferences: "Updating Preferences..."
-      weekly: Weekly
-    settings: 
-      back_to_messages: "Back to Messages"
-      link_needed: "Before you can configure the Canvas Facebook App you need to link it to your Canvas login. Please click \"Welcome\" for more information."
-      notifications_config_notice: "Notifications from Canvas can automatically be sent over to your Facebook account. Below you'll see the types of notifications you can have sent. You can change your notification preferences at any time, either here or in Canvas."
-      settings_title: "Canvas Notification Settings"
-      updating_preferences: "Updating Preferences..."
-  feedback: 
-    buttons: 
-      send_feedback: "Send Feedback"
-    errors: 
-      send_failed: "Send Failed, please try again"
-    titles: 
-      feedback: "Canvas Feedback"
   files: 
-    alts: 
-      collaboration: Collaboration
-      file: File
-      folder_locked: "Locked Folder"
-      locked_file: "Locked File"
-    buttons: 
-      add_collaboration: "Add Collaboration"
-      update_collaboration: "Update Collaboration"
-      update_file: "Update File"
-    content_file: 
-      links: 
-        delete: "Delete this file"
-        drag_to_reorder: "Drag to reorder files in this folder"
-        edit: "Click to edit, drag to move to another folder"
-        preview_file: "Preview this file"
-        rename: "Rename this file"
-    content_folder: 
-      titles: 
-        edit_and_move_instructions: "Click to edit, drag to move to another folder"
-    descriptions: 
-      collaborations: "Collaborations are a way for you to use web-based tools like Google Docs and EtherPad to work collaboratively on tasks like group papers or note-taking.  This is a special folder that shows you any collaborations you have created so you have an easy place to keep track of and create those collaborations"
-      collaborations2: "To find out more about a particular type of collaboration, click &quot;New collaboration&quot; and then choose that type in the dropdown list."
-    errors: 
-      empty_file: "That file is empty.  Please upload a different file."
-      extracting: "There were errors extracting the zip file.  Please try again."
-      failed: Failed
-      failed_uploading: "Failed uploading: %{error_info}"
-      loading_file: "Error Loading File Contents.  Please try again."
-      missing_field: "Upload failed, expected form field missing"
-      not_found: "It looks like something went wrong when this file was uploaded, and we can't find the actual file.  You may want to notify the owner of the file and have them re-upload it."
-      server_error: "Upload failed, server error, please try again."
-      server_returned_invalid_status: "The server stopped returning a valid status"
-      server_unresponsive: "The server stopped responding to status requests"
-      too_large: "The file is too large to edit"
-      unexpected_response: "didn't get back expected response"
-      update_file_failed: "Updating File Failed, please try again"
-      upload_failed: "Upload failed, please try again."
-      uploading: "Uploading Error"
-    feed_title: "%{course_or_group} Files Feed"
-    fields: 
-      file: File
     full_index: 
-      alts: 
-        drag_to_reorder: "Drag to reorder"
-        file_locked: locked
-        file_preview: preview
-        folder_locked: locked
-      buttons: 
-        add_a_file: "Add File"
-        add_collaboration: "Add Collaboration"
-        lock_file: "Lock this File"
-        lock_folder: "Lock this Folder"
-        overwrite_duplicate_attachment: Overwrite
-        rename_duplicate_attachment: "Rename New Files"
-        update: "Update File"
-      descriptions: 
-        etherpad: "EtherPad is a site that lets you quickly set up shared documents. It's fast enough that you can see what others are typing as they're typing it -- although \"pads\" aren't protected by a password so anyone that knows about them can edit them. EtherPad might be better suited than Google Docs for things like taking notes because it's so fast."
-        file_locked_after: "It will be locked after %{lock_at}."
-        file_locked_until: "It is locked until %{unlock_at}."
-        folder_locked: "This folder is locked and cannot be viewed by students."
-        folder_locked_after: "It will be locked after %{lock_at}."
-        folder_locked_until: "It is locked until %{unlock_at}."
-        google_docs: "Google Docs are a great place to collaborate on a group project. It's like Microsoft Word, but lets you work together with others on the same file without having to email it around. You'll need a Google account in order to participate in any Google Docs collaborations."
-        lock_file: "When a file is locked, only teachers and TAs can access it."
-        lock_folder: "When a folder is locked, only teachers and TAs can access it."
-      drop_here: "Drop files here to add them to this folder."
-      drop_zip_files: "You can also drop zip files and choose to extract their contents into this folder."
-      labels: 
-        collaborate_using: "Collaborate Using"
-        collaborate_with: "Collaborate With"
-        description: Description
-        just_hide_file: "Let students download or view the file if I link to it, just don't show it in the file listings for students"
-        just_hide_folder: "Let students download or view files in this folder if I link to them, just don't show it in the file listings for students"
-        last_viewed: "Last Viewed"
-        lock_after: "Lock After"
-        lock_until: "Lock Until"
-        locked: "Lock until I manually unlock it"
-        title: "Document Name"
       links: 
-        add_file: "Add File"
-        add_folder: "Add Folder"
-        all_collaborations: "ALL Collaborations"
-        delete_file: "Delete this File"
-        delete_folder: "Delete this Folder"
-        download_as_zip: "Download files in this folder as a zip"
-        download_file: "Download this File"
-        download_with_size: "download the file (%{size})"
-        edit_collaboration: "Edit this Collaboration"
-        edit_content: "edit content"
-        import_zip: "Import a zip file"
-        lock_file: "Lock this File"
-        lock_folder: "Lock this Folder"
-        new_collaboration: "New Collaboration"
-        preview: preview
-        rename_file: "Rename this File"
-        rename_folder: "Rename this Folder"
-        reorder_file: "Drag to reorder"
         show_all_files: "see files for all your courses/groups"
-        show_personal_files: "just show my personal files"
-        unlock_file: "Unlock this File"
-        unlock_folder: "Unlock this Folder"
-        view_collaboration: "View this Collaboration"
-        view_item: "Click here to view %{name}"
-      locked: "This file isn't unlocked yet, so it can't be downloaded."
-      locked2: "This file is locked and cannot be downloaded by students."
-      messages: 
-        gathering_and_zipping: |-
-            **The contents of this folder are being gathered** and compressed
-            into a zip file.  This may take some time, depending on the size and number of files.
-        gathering_files: "Gathering Files..."
-        no_preview_avaialble: "No Preview Available"
-        uploading: "Uploading 5 Files..."
-      page_title: Files
-      storage_used: "Storage Used: %{size1} out of %{size2}"
-      titles: 
-        collaborations: "Collaborations for %{name}"
-        collaborators: Collaborators
-        created_by_etherpad: "This document was created using EtherPad."
-        created_by_google_docs: "This document was created using Google Docs."
-        edit_file: "Edit %{file}"
-        edit_file_contents: "Edit File Contents"
-        file_locked: Locked
-        folder_locked: Locked
-        lock_file: "Lock %{file_name}"
-        lock_folder: "Lock %{folder_name}"
       warnings: 
         too_many: "There were too many courses/groups to show all at once. Below are the first 15 results."
-    links: 
-      add_files: "Add Files"
-      download_zip: "Click here to download %{size}"
-    messages: 
-      access_denied: "You cannot read the contents of this folder."
-      creating_zip: "Creating zip file..."
-      done_uploading: "Done uploading"
-      error_count: 
-        one: "1 Error"
-        other: "%{count} Errors"
-      extraction_complete: "Extraction complete!  Updating File Structure..."
-      finalizing: Finalizing
-      folder_empty: "Nothing in this Folder"
-      gathering_data: "Gathering data..."
-      gathering_files_with_progress: "Gathering Files (%{progress}%)..."
-      loading_files: "Loading Files..."
-      no_collaborations: "There are no collaborations to show"
-      no_files_selected: "No valid files were selected"
-      queue: Queued
-      queued: Queued
-      updating_file: "Updating File..."
-      upload_complete: "Done uploading"
-      uploading: Uploading
-      uploading_files: 
-        one: "Uploading 1 File..."
-        other: "Uploading %{count} Files..."
-      uploading_with_speed: "Uploading (%{speed}KB/s)"
-      zip_finished: "Finished!  Redirecting to File..."
-    new: 
-      buttons: 
-        create: Create
-      titles: 
-        upload: "Upload a File"
-    notices: 
-      deleted: "The file %{display_name} has been deleted"
-      updated: "File was successfully updated."
-    prompts: 
-      delete_file: "Are you sure you want to delete this file?"
-      delete_folder: "Are you sure you want to delete this folder and all of its contents?"
-      duplicate_filenames: "Files with the following names already exist in this folder. Do you want to replace them, or rename the new files with unique names?"
-      extract_zip: "This file is a zip file.  Do you want to extract its contents into this folder?"
-    show: 
-      messages: 
-        file_locked: "This file has not been unlocked yet."
-        folder_locked: "The folder \"%{folder},\" which includes this file, has been locked."
-    text_show: 
-      page_title: "File Preview"
-    titles: 
-      add_collaboration: "Add New Collaboration"
-      click_and_drag: "Click and drag to move folder to another folder"
-      download_folder_contents: "Download Folder Contents"
-      drag_to_move: "Drag to move to a different folder"
-      edit_collaboration: "Edit Collaboration"
-      extracting: "Extracting Files into Folder"
-      file_uplaods_queue: "File Uploads Queue"
-      lock_file: "Lock File"
-      lock_folder: "Lock Folder"
-    warnings: 
-      file_uploaded_without_response: "File may have uploaded, but the server failed to respond.  Reload the page to confirm."
-  find_outcome: 
-    errors: 
-      outcome_retrieval_failed: "Outcomes Retrieval failed unexpected.  Please try again."
-    messages: 
-      loading_outcomes: "Loading Outcomes..."
-      no_outcomes_found: "No Outcomes found"
-      no_rubric_outcomes_found: "No Rubric-Configured Outcomes found"
-    titles: 
-      find_outcome: "Find Outcome"
-      find_outcome_criterion: "Find Outcome Criterion"
   folder: 
     course_content_folder_name: "course content"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     default_folder_name: folder
     files_folder_name: files
     folder_created: "Folder \"%{name}\" created"
