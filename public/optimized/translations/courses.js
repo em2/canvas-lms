@@ -1,1 +1,1 @@
-define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{courses:{confirm_reject_invitation:"Está seguro que quiere rechazar la invitación a participar en este curso?"}}}})})
+define(["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{em2:{courses:{confirm_reject_invitation:"Are you sure you want to reject the invitation to participate in this class?"}},es:{courses:{confirm_reject_invitation:"Está seguro que quiere rechazar la invitación a participar en este curso?"}}}})})
