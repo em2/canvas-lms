@@ -4,6 +4,10 @@
 # Code is not reloaded between requests
 config.cache_classes = true
 
+
+# Enable serving of images, stylesheets, and JavaScripts from an asset server
+config.action_controller.asset_host = "//d3jjnn74umai3u.cloudfront.net"
+
 # Full error reports are disabled and caching is turned on
 config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
