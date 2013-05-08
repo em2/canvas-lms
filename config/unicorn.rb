@@ -1,7 +1,7 @@
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete documentation.
 env = ENV["RAILS_ENV"] || "development" # Set environment to development unless something else is specified
 
-worker_processes 4
+worker_processes 8
 
 listen "/tmp/unicorn.canvas-lms.socket", :backlog => 64
 
