@@ -189,6 +189,7 @@ class AssessmentReportsController < ApplicationController
         @latest_submission = data.latest_submission
         @user_difficulties = JSON.parse(data.user_difficulties)
         @total_user_difficulties = data.total_user_difficulties
+        @correct_answers = JSON.parse(data.correct_answers)
       else
         flash[:error] = "This report is not yet ready."
         redirect_back_or_default(class_report_assessment_reports_path(@course.id))
