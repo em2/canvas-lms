@@ -176,13 +176,13 @@ class ClassReport < ActiveRecord::Base
           found_misconception = false
           if quiz_misconception_probability = QuizMisconceptionProbability.find_by_quiz_id(quiz.id)
             if quiz_misconception_probability.high_probability && user_misconception.probability > quiz_misconception_probability.high_probability["#{quiz_misconception.id}"].to_f
-              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "H"
+              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = 'HL'
               found_misconception = true
             elsif quiz_misconception_probability.somewhat_probability && user_misconception.probability > quiz_misconception_probability.somewhat_probability["#{quiz_misconception.id}"].to_f
-              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "S"
+              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = 'P'
               found_misconception = true
             else
-              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = "-"
+              data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = ''
             end
 
             if found_misconception
