@@ -12,45 +12,43 @@
 		<div class="misconception_piece responses">
 			<table>
 				<% @max_answer_count = 0 -%>
-				<% if !misconception_item.pattern.empty? -%>
-					<% quiz_questions = quiz.quiz_questions -%>
-					<tr class="rShim">
-						<td class="rShim" style="width:20px;"></td>
-						<% quiz_questions.each do |qq| -%>
-							<% if qq.question_data[:question_type] != "text_only_question" -%>
-								<td class="rShim" style="width:20px;"></td>
-								<% @max_answer_count = qq.question_data[:answers].count if qq.question_data[:answers].count > @max_answer_count -%>
-							<% end -%>
+				<% quiz_questions = quiz.quiz_questions -%>
+				<tr class="rShim">
+					<td class="rShim" style="width:20px;"></td>
+					<% quiz_questions.each do |qq| -%>
+						<% if qq.question_data[:question_type] != "text_only_question" -%>
+							<td class="rShim" style="width:20px;"></td>
+							<% @max_answer_count = qq.question_data[:answers].count if qq.question_data[:answers].count > @max_answer_count -%>
 						<% end -%>
-					</tr>
-					<tr>
-						<td></td>
-						<% quiz_questions.each do |qq| -%>
-							<% if qq.question_data[:question_type] != "text_only_question" -%>
-								<td class="s1"><%= qq.question_data[:name] %></td>
-							<% end -%>
-						<% end -%>
-					</tr>
-					<% @max_answer_count.times do |m| -%>
-						<tr>
-							<td class="s2"><%= raw "&##{65+m};" %></td>
-							<% quiz_questions.each do |qq| -%>
-								<% if qq.question_data[:question_type] != "text_only_question" -%>
-									<td class="s3 pattern_display"><span data-id="<%= qq.id %>" data-answerid="<%= qq.question_data[:answers][m] ? qq.question_data[:answers][m][:id] : '' %>"><%= misconception_item.pattern["#{qq.id}"] && qq.question_data[:answers][m] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %></span></td>
-									<td class="s4 pattern" style="display:none;">
-										<% if qq.question_data[:answers][m] -%>
-										  <input class="misconception_pattern_box" id="quiz_misconception_pattern" name="quiz_misconception[patternValue]" size="1" type="text" value="<%= misconception_item.pattern["#{qq.id}"] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %>"></input>
-										  <input class="answer_id_box" type="hidden" name="quiz_misconception[answer_id]" value="<%= qq.question_data[:answers][m][:id] %>"></input>
-										  <input class="question_id_box" type="hidden" name="quiz_misconception[question_id]" value="<%= qq.id %>"></input>
-										<% else -%>
-											<span></span>
-										<% end -%>
-									</td>
-								<% end -%>
-							<% end -%>
-						</tr>
 					<% end -%>
-				<% end %>
+				</tr>
+				<tr>
+					<td></td>
+					<% quiz_questions.each do |qq| -%>
+						<% if qq.question_data[:question_type] != "text_only_question" -%>
+							<td class="s1"><%= qq.question_data[:name] %></td>
+						<% end -%>
+					<% end -%>
+				</tr>
+				<% @max_answer_count.times do |m| -%>
+					<tr>
+						<td class="s2"><%= raw "&##{65+m};" %></td>
+						<% quiz_questions.each do |qq| -%>
+							<% if qq.question_data[:question_type] != "text_only_question" -%>
+								<td class="s3 pattern_display"><span data-id="<%= qq.id %>" data-answerid="<%= qq.question_data[:answers][m] ? qq.question_data[:answers][m][:id] : '' %>"><%= misconception_item.pattern["#{qq.id}"] && qq.question_data[:answers][m] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %></span></td>
+								<td class="s4 pattern" style="display:none;">
+									<% if qq.question_data[:answers][m] -%>
+									  <input class="misconception_pattern_box" id="quiz_misconception_pattern" name="quiz_misconception[patternValue]" size="1" type="text" value="<%= misconception_item.pattern["#{qq.id}"] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %>"></input>
+									  <input class="answer_id_box" type="hidden" name="quiz_misconception[answer_id]" value="<%= qq.question_data[:answers][m][:id] %>"></input>
+									  <input class="question_id_box" type="hidden" name="quiz_misconception[question_id]" value="<%= qq.id %>"></input>
+									<% else -%>
+										<span></span>
+									<% end -%>
+								</td>
+							<% end -%>
+						<% end -%>
+					</tr>
+				<% end -%>
 			</table>
 			<a href="#" class="button edit_misconception_link no-hover"><%= image_tag "edit.png" %> Edit</a>
 			<a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="button update_misconception_link no-hover" style="display:none;">Update</a>
