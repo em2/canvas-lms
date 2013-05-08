@@ -26,6 +26,7 @@ class ClassReport < ActiveRecord::Base
     self.user_difficulties = data["user_difficulties"].to_json
     self.total_user_difficulties = data["total_user_difficulties"]
     self.earliest_submission = data["earliest_submission"]
+    self.correct_answers = data["correct_answers"].to_json
     self.latest_submission = data["latest_submission"]
     self.save!
 	end
@@ -60,6 +61,7 @@ class ClassReport < ActiveRecord::Base
     data["total_user_difficulties"] = 0
     data["earliest_submission"] = Time.now
     data["latest_submission"] = quiz.created_at
+    data["correct_answers"] = {}
 
     submissions = quiz.quiz_submissions.select{|s| !s.settings_only? }
     submission_ids = {}
@@ -73,6 +75,63 @@ class ClassReport < ActiveRecord::Base
     unsubmitted_students = students.reject{|stu| submission_ids[stu.id] }
 
     data["submitted_students_count"] = submitted_students.count
+
+    quiz.quiz_data.each_with_index do |quiz_data, question_index|
+      next if quiz_data[:question_type] == "text_only_question"
+      begin
+        quiz_data[:answers].each_with_index do |answer, index|
+          if answer[:weight] > 0
+            case quiz_data[:question_type]
+            when "compare_fractions_question"
+              case index+1
+              when 1
+                data["correct_answers"]["#{question_index}"] = 'G'
+              when 2
+                data["correct_answers"]["#{question_index}"] = 'L'
+              when 3
+                data["correct_answers"]["#{question_index}"] = 'E'
+              end
+            when "represent_fractions_question"
+              case index+1
+              when 1
+                data["correct_answers"]["#{question_index}"] = 'Y'
+              when 2
+                data["correct_answers"]["#{question_index}"] = 'N'
+              end
+            when "locate_fractions_question"
+              case index+1
+              when 1
+                data["correct_answers"]["#{question_index}"] = '1'
+              when 2
+                data["correct_answers"]["#{question_index}"] = '2'
+              when 3
+                data["correct_answers"]["#{question_index}"] = '3'
+              when 4
+                data["correct_answers"]["#{question_index}"] = '4'
+              end
+            when "compare_decimals_question"
+              case index+1
+              when 1
+                data["correct_answers"]["#{question_index}"] = 'G'
+              when 2
+                data["correct_answers"]["#{question_index}"] = 'L'
+              when 3
+                data["correct_answers"]["#{question_index}"] = 'E'
+              end
+            when "compare_decimal_fraction_question"
+              case index+1
+              when 1
+                data["correct_answers"]["#{question_index}"] = 'E'
+              when 2
+                data["correct_answers"]["#{question_index}"] = 'N'
+              end
+            end
+          end
+        end
+      rescue
+        r2d=2
+      end
+    end
 
     submitted_students.each do |user|
       data["submitted_students_ids"] << user.id

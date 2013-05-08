@@ -68,13 +68,32 @@
       </tr>
       <tr dir="ltr">
         <td class="hd"><p style="height:16px;">.</p></td>
-        <td dir="ltr" class="s9">Student ID</td>
-        <td dir="ltr" class="s12"># Correct</td>
-        <td dir="ltr" class="s11"># Attempt</td>
+        <td class="s4"></td>
+        <td colspan="2" class="s5"></td>
+        <td style="display:none;"></td>
         <% (@quiz_question_count-1).times do |count| -%>
           <td dir="ltr" class="s12">Q<%= count + 1 %></td>
         <% end -%>
         <td dir="ltr" class="s11">Q<%= @quiz_question_count %></td>
+        <% if @misconceptions.count > 0 -%>
+          <td colspan="3" dir="ltr" class="s6"></td>
+          <% (@misconceptions.count-1).times do -%>
+            <td style="display:none;"></td>
+          <% end -%>
+        <% end -%>
+        <td dir="ltr" class="s7"></td>
+        <td class="s8"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s9">Student ID</td>
+        <td dir="ltr" class="s12"># Correct</td>
+        <td dir="ltr" class="s11"># Attempt</td>
+        <% (@quiz_question_count-1).times do |count| -%>
+          <td dir="ltr" class="s12"><%= @correct_answers["#{count+1}"] %></td>
+        <% end -%>
+        <td dir="ltr" class="s11"><%= @correct_answers["#{@correct_answers.count}"] %></td>
+
         <% (@misconceptions.count-1).times do |count| -%>
           <td dir="ltr" class="s12"><%= @misconceptions[count].name %></td>
         <% end -%>
