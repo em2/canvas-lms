@@ -51,6 +51,7 @@ module UserContent
       child.add_next_sibling(form)
     end
     html.css('img.equation_image').each do |node|
+      node['src'] = "http://latex.codecogs.com/gif.latex?" + CGI.escape(node['alt'])
       mathml = Nokogiri::HTML::DocumentFragment.parse('<span class="hidden-readable">' + Ritex::Parser.new.parse(node.delete('alt').value) + '</span>') rescue next
       node.add_next_sibling(mathml)
     end
