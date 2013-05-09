@@ -92,7 +92,8 @@ class CoursesController < ApplicationController
         end
         render :json => hash.to_json
       }
-      @context = Report.first
+      report = Report.first
+      @context = report unless report.nil?
     end
   end
 
