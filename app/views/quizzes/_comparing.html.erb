@@ -1,3 +1,4 @@
+<div class="clear"></div>
 <div class="question_answer_holder" style="float:left;">
 <div class="original_question_text" style="display: none;">
     <textarea style="display: none;" name="text_after_answers" class="textarea_text_after_answers"><%= h(hash_get(question, :text_after_answers)) %></textarea>
@@ -228,7 +229,7 @@
 </div>
 <div class="explain_answer">
 	<% if assessing || user_answer -%>
-		<div id="explain_text"><b>Explain your thinking process.</b></div> <br/>
+		<div id="explain_text">Explain your thinking process:</div><br/>
 		<% if assessing -%>
 			<div id="explain_area_<%= question[:id] %>" class="explain_area_text_<%=question_type.question_type%>"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>" cols="30" rows="12"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
 		<% end -%>
@@ -250,7 +251,7 @@
 			<% click_size_data = user_answer[:explain_canvas_click_size_data] -%>
 			<% click_drag_data = user_answer[:explain_canvas_click_drag_data] -%>
 		<% end -%>
-		
+    <div class="clear"></div>
 		<div id="explain_canvas_<%= question[:id] %>"></div>
 		<input type="hidden" class="explain_canvas_data", id="explain_canvas_<%= question[:id] %>_click_x_data" name="explain_canvas_<%= question[:id] %>_click_x_data" value="<%=click_x_data%>" % />
 		<input type="hidden" id="explain_canvas_<%= question[:id] %>_click_y_data" name="explain_canvas_<%= question[:id] %>_click_y_data" value="<%= click_y_data %>" />
@@ -284,6 +285,9 @@
 <% end -%>
 
 <style>
+  .explain_answer {
+    margin-left: 250px;
+  }
 	#explain_canvas_<%= question[:id] %>{
     cursor: pointer;
 		float: left;
@@ -295,7 +299,6 @@
 	#explain_text{
 		float: left;
     margin-left: 7px;
-    border-left: 1px solid #ddd;
     padding-left: 15px;
 	}
 	#explain_area_<%= question[:id] %>{
@@ -304,8 +307,8 @@
 	#explain_area_<%= question[:id] %>_text{
 		margin-top: 1px;
 		font-size: 13px;
-    width: 220px;
-    height: 196px;
+    width: 600px;
+    height: 200px;
     resize: vertical;
 	}
 

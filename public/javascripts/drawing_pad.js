@@ -28,8 +28,8 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var canvasY;
 	var mouseIsDragging = false;
 	var context;
-	var canvasWidth = 386;
-	var canvasHeight = 220;
+	var canvasWidth = 600;
+	var canvasHeight = 350;
 	var padding = 25;
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
@@ -51,8 +51,8 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var curSize = "normal";
 	var drawingAreaX = 7;
 	var drawingAreaY = 11;
-	var drawingAreaWidth = 267;
-	var drawingAreaHeight = 200;
+	var drawingAreaWidth = 481;
+	var drawingAreaHeight = 330;
 	var toolHotspotStartY = 95;
 	var toolHotspotHeight = 38;
 	var totalLoadResources = 3;
@@ -340,7 +340,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 			alert("Error: Current Tool is undefined");
 		}
 		
-		var locX = 313;
+		var locX = 527;
 		var locY = 75;
 		
 		if (assessing == true){
@@ -470,7 +470,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 				alert("Error: Current Tool is undefined");
 			}
 
-			locX = 313;
+			locX = 527;
 			locY = 75;
 
 			if (assessing == true){

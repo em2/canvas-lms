@@ -31,7 +31,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 	var mouseIsDragging = false;
 	var context;
 	var canvasWidth = 722;
-	var canvasHeight = 170;
+	var canvasHeight = 350;
 	var padding = 25;
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
@@ -418,7 +418,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 
 		//
 		// Draw the outline if there is one
-		context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+		context.drawImage(outlineImage, drawingAreaX, drawingAreaY+(drawingAreaHeight/2), drawingAreaWidth, drawingAreaHeight);
 
 	}
 	function draw () {
@@ -499,7 +499,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 
 			//
 			// Draw the outline if there is one
-			context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+			context.drawImage(outlineImage, drawingAreaX, drawingAreaY+(drawingAreaHeight/2), drawingAreaWidth, drawingAreaHeight);
 			}
 	}
 }

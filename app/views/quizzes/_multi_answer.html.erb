@@ -23,6 +23,8 @@
           <% end %>
         </td>
         <td class="answer_label">
+          <%# answer[:html] = answer[:html].gsub(/\/equation_images\/([a-zA-Z\d%]+)/, "http://latex.codecogs.com/gif.latex?#{$1 ? CGI.unescape($1) : ''}") if hash_get(answer, :html).present? -%>
+          <% answer[:html] = answer[:html].gsub(/\/equation_images\/([a-zA-Z\d%]+)/) { |latex| "http://latex.codecogs.com/gif.latex?#{CGI.unescape($1)}" } if hash_get(answer, :html).present? -%>
           <label for="question_<%= hash_get(question, :id) %>_answer_<%= hash_get(answer, :id) %>"><%= hash_get(answer, :html).present? ? hash_get(answer, :html).html_safe : hash_get(answer, :text) %></label>
         </td>
       </tr>
