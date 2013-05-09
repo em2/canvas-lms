@@ -507,7 +507,7 @@ require([
 
 //*******************************************
 //
-// To edit the Somewhat Likely misconception limit
+// To edit the Probable misconception limit
 //
 //*******************************************
 

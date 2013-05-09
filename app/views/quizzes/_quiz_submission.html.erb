@@ -10,24 +10,24 @@
     margin-left: 5px;
   }
 </style>
-<div class="user_misconceptions">
-  <% if @user_misconceptions && @user_misconceptions["#{@submission.user_id}"] -%>
+<% if @user_misconceptions && @user_misconceptions["#{@submission.user_id}"] && @user_misconceptions["#{@submission.user_id}"].map { |quiz_misconcption_id, likelyhood| !likelyhood.empty? }.any? -%>
+  <div class="user_misconceptions">
     <h3 class="misconception_heading">This student may have the following misconceptions:</h3>
     <% @user_misconceptions["#{@submission.user_id}"].each do |quiz_misconcption_id, likelyhood| -%>
-      <% unless likelyhood == '-' -%>
+      <% unless likelyhood == '' -%>
         <div class="misconception">
           <%= QuizMisconception.find(quiz_misconcption_id).name %>:
           <% case likelyhood -%>
-            <% when 'H' -%>
+            <% when 'HL' -%>
               <%= t('submission_results.highly_likely', 'Highly Likely') %>
-            <% when 'S' -%>
-              <%= t('submission_results.somewhat_likely', 'Somewhat Likely') %>
+            <% when 'P' -%>
+              <%= t('submission_results.probable', 'Probable') %>
           <% end -%>
         </div>
       <% end -%>
     <% end -%>
-  <% end -%>
-</div>
+  </div>
+<% end -%>
 <br>
 <% if !(@current_submission || @submission).results_visible? %>
   <h4><%= @quiz.hide_results == 'until_after_last_attempt' ?
