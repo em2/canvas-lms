@@ -58,7 +58,7 @@
           <td style="display:none;"></td>
         <% end -%>
         <% if @misconceptions.count > 0 -%>
-          <td colspan="3" dir="ltr" class="s6">See Key</td>
+          <td colspan="<%= @misconceptions.count %>" dir="ltr" class="s6">See Key</td>
           <% (@misconceptions.count-1).times do -%>
             <td style="display:none;"></td>
           <% end -%>
@@ -68,32 +68,13 @@
       </tr>
       <tr dir="ltr">
         <td class="hd"><p style="height:16px;">.</p></td>
-        <td class="s4"></td>
-        <td colspan="2" class="s5"></td>
-        <td style="display:none;"></td>
-        <% (@quiz_question_count-1).times do |count| -%>
-          <td dir="ltr" class="s12">Q<%= count + 1 %></td>
-        <% end -%>
-        <td dir="ltr" class="s11">Q<%= @quiz_question_count %></td>
-        <% if @misconceptions.count > 0 -%>
-          <td colspan="3" dir="ltr" class="s6"></td>
-          <% (@misconceptions.count-1).times do -%>
-            <td style="display:none;"></td>
-          <% end -%>
-        <% end -%>
-        <td dir="ltr" class="s7"></td>
-        <td class="s8"></td>
-      </tr>
-      <tr dir="ltr">
-        <td class="hd"><p style="height:16px;">.</p></td>
         <td dir="ltr" class="s9">Student ID</td>
         <td dir="ltr" class="s12"># Correct</td>
         <td dir="ltr" class="s11"># Attempt</td>
         <% (@quiz_question_count-1).times do |count| -%>
-          <td dir="ltr" class="s12"><%= @correct_answers["#{count+1}"] %></td>
+          <td dir="ltr" class="s12">Q<%= count + 1 %></td>
         <% end -%>
-        <td dir="ltr" class="s11"><%= @correct_answers["#{@correct_answers.count}"] %></td>
-
+        <td dir="ltr" class="s11">Q<%= @quiz_question_count %></td>
         <% (@misconceptions.count-1).times do |count| -%>
           <td dir="ltr" class="s12"><%= @misconceptions[count].name %></td>
         <% end -%>
@@ -120,22 +101,43 @@
         </tr>
       <% end -%>
 
+
+
       <tr dir="ltr">
         <td class="hd"><p style="height:16px;">.</p></td>
         <td dir="ltr" class="s18">Total # Students: <%= @submitted_students_count %></td>
-        <td colspan="2" dir="ltr" class="s19">Item Analysis:</td>
+        <td colspan="2" dir="ltr" class="s19"></td>
+        <td style="display:none;"></td>
+        <% (@quiz_question_count-1).times do |count| -%>
+          <td dir="ltr" class="s27"><%= @correct_answers["#{count+1}"] %></td>
+        <% end -%>
+        <td dir="ltr" class="s28"><%= @correct_answers["#{@correct_answers.count}"] %></td>
+        <% (@misconceptions.count).times do |count| -%>
+          <td dir="ltr" class="s2"></td>
+        <% end -%>
+        <td dir="ltr" class="s2"></td>
+        <td class="s8"></td>
+      </tr>
+
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s20"></td>
+        <td colspan="2" dir="ltr" class="s7">Item Analysis:</td>
         <td style="display:none;"></td>
         <% (@quiz_question_count-1).times do |count| -%>
           <td dir="ltr" class="s27"><%= @item_analysis["#{count+1}"] %>%</td>
         <% end -%>
         <td dir="ltr" class="s28"><%= @item_analysis["#{@quiz_question_count}"] %>%</td>
         <% (@misconceptions.count-1).times do |count| -%>
-          <td class="s27"><%= @total_user_misconceptions["#{@misconceptions[count].id}"] ? @total_user_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
+          <td class="s7"><%= @total_user_misconceptions["#{@misconceptions[count].id}"] ? @total_user_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
         <% end -%>
-        <% if !@misconceptions.last.nil? -%><td class="s28"><%= @total_user_misconceptions["#{@misconceptions.last.id}"] ? @total_user_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
-        <td class="s28"><%= @total_user_difficulties %></td>
+        <% if !@misconceptions.last.nil? -%><td class="s7"><%= @total_user_misconceptions["#{@misconceptions.last.id}"] ? @total_user_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
+        <td class="s10"><%= @total_user_difficulties %></td>
         <td class="s8"></td>
       </tr>
+
+
+
       <tr dir="ltr">
         <td class="hd"><p style="height:16px;">.</p></td>
         <td class="s20"></td>
