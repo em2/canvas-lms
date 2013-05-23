@@ -22,6 +22,7 @@ class Report < ActiveRecord::Base
       school_reports = []
       district.sub_accounts.active.each do |school|
         class_reports = []
+        # calculate class report
         school.courses.active.each do |course|
           if !course.em2_identifier
             course.em2_identifier = course.course_code 

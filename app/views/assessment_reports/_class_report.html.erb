@@ -125,9 +125,9 @@
         <td colspan="2" dir="ltr" class="s7">Item Analysis:</td>
         <td style="display:none;"></td>
         <% (@quiz_question_count-1).times do |count| -%>
-          <td dir="ltr" class="s27"><%= @item_analysis["#{count+1}"] %>%</td>
+          <td dir="ltr" class="s27"><%= @item_analysis["#{count+1}"].nil? ? '-' : @item_analysis["#{count+1}"].to_s + '%' %></td>
         <% end -%>
-        <td dir="ltr" class="s28"><%= @item_analysis["#{@quiz_question_count}"] %>%</td>
+        <td dir="ltr" class="s28"><%= @item_analysis["#{@quiz_question_count}"].nil? ? '-' : @item_analysis["#{@quiz_question_count}"].to_s + '%' %></td>
         <% (@misconceptions.count-1).times do |count| -%>
           <td class="s7"><%= @total_user_misconceptions["#{@misconceptions[count].id}"] ? @total_user_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
         <% end -%>

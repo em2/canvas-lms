@@ -2,157 +2,157 @@
 
 <% content_for :page_title do -%>School Report<% end -%>
 <div class="school_reports">
-	<%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
+  <%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
 
-	<h1 id="report_heading"><b><%= t('reports.school_report', "School Report:") %> <i><%= @current_probe.full_name %></i></b></h1>
-	
-	<% if @earliest_submission && @latest_submission && @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
-	  <h3 id="assessment_date"><%= @earliest_submission.strftime("%B %d, %Y") %></h3>
-	<% else -%>
-	  <h3 id="assessment_date_range"><%= "#{@earliest_submission ? @earliest_submission.strftime("%B %d, %Y") : '--'} through #{@latest_submission ? @latest_submission.strftime("%B %d, %Y") : '--'}" %></h3>
-	<% end -%>
+  <h1 id="report_heading"><b><%= t('reports.school_report', "School Report:") %> <i><%= @current_probe.full_name %></i></b></h1>
 
-	<br />
+  <% if @earliest_submission && @latest_submission && @earliest_submission.to_date.to_s == @latest_submission.to_date.to_s -%>
+    <h3 id="assessment_date"><%= @earliest_submission.strftime("%B %d, %Y") %></h3>
+  <% else -%>
+    <h3 id="assessment_date_range"><%= "#{@earliest_submission ? @earliest_submission.strftime("%B %d, %Y") : '--'} through #{@latest_submission ? @latest_submission.strftime("%B %d, %Y") : '--'}" %></h3>
+  <% end -%>
 
-	<div>
-		<div><b><%= t('reports.probe_information', "ASSESSMENT INFORMATION") %></b></div>
-		<div><i><%= t('reports.probe_title', "Title:") %></i> <%= @current_probe.full_name %></div>
-		<div><i><%= t('reports.probe_description', "Description:") %></i> <%= t('reports.probe_description_details_a', "The assessment has") %> <%= @quiz_question_count %> <%= t('reports.probe_description_details_b', "questions.") %> </div>
-	</div>
+  <br />
 
-
-	<div>
-		<div><b><%= t('reports.participation_data', "PARTICIPATION DATA") %></b></div>
-		<div><i><%= t('reports.total_participating_students', "Total number of participating students:") %></i> <%= @participating_students_count %></div>
-		<div><i><%= t('reports.total_participating_classes', "Total number of participating classes:") %></i> <%= @participating_class_count %></div>
-	</div>
+  <div>
+    <div><b><%= t('reports.probe_information', "ASSESSMENT INFORMATION") %></b></div>
+    <div><i><%= t('reports.probe_title', "Title:") %></i> <%= @current_probe.full_name %></div>
+    <div><i><%= t('reports.probe_description', "Description:") %></i> <%= t('reports.probe_description_details_a', "The assessment has") %> <%= @quiz_question_count %> <%= t('reports.probe_description_details_b', "questions.") %> </div>
+  </div>
 
 
+  <div>
+    <div><b><%= t('reports.participation_data', "PARTICIPATION DATA") %></b></div>
+    <div><i><%= t('reports.total_participating_students', "Total number of participating students:") %></i> <%= @participating_students_count %></div>
+    <div><i><%= t('reports.total_participating_classes', "Total number of participating classes:") %></i> <%= @participating_class_count %></div>
+  </div>
 
-	<table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
-		<tbody>
-			<tr class="rShim">
-				<td class="rShim" style="width:0;"></td>
-				<td class="rShim" style="width:120px;"></td>
-				<td class="rShim" style="width:45px;"></td>
-				<td class="rShim" style="width:45px;"></td>
-				<% @quiz_question_count.times do -%>
-	        <td class="rShim" style="width:35px;"></td>
-	      <% end -%>
-				<% @misconceptions.count.times do -%>
+
+
+  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblMain">
+    <tbody>
+      <tr class="rShim">
+        <td class="rShim" style="width:0;"></td>
+        <td class="rShim" style="width:120px;"></td>
+        <td class="rShim" style="width:45px;"></td>
+        <td class="rShim" style="width:45px;"></td>
+        <% @quiz_question_count.times do -%>
           <td class="rShim" style="width:35px;"></td>
         <% end -%>
-				<td class="rShim" style="width:60px;"></td>
-				<td class="rShim" style="width:0px;"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s0">ITEM ANALYSIS</td>
-				<td colspan="2" dir="ltr" class="s1">Class</td>
-				<td style="display:none;"></td>
-				<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Responses</td>
-				<% (@quiz_question_count-1).times do -%>
-	        <td style="display:none;"></td>
-	      <% end -%>
-	      <% if @misconceptions.count > 0 -%>
+        <% @misconceptions.count.times do -%>
+          <td class="rShim" style="width:35px;"></td>
+        <% end -%>
+        <td class="rShim" style="width:60px;"></td>
+        <td class="rShim" style="width:0px;"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s0">ITEM ANALYSIS</td>
+        <td colspan="2" dir="ltr" class="s1">Class</td>
+        <td style="display:none;"></td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s1">Student Responses</td>
+        <% (@quiz_question_count-1).times do -%>
+          <td style="display:none;"></td>
+        <% end -%>
+        <% if @misconceptions.count > 0 -%>
           <td colspan="3" dir="ltr" class="s1">Misconceptions</td>
           <% (@misconceptions.count-1).times do -%>
             <td style="display:none;"></td>
           <% end -%>
         <% end -%>
-				<td dir="ltr" class="s1">Difficulty</td>
-				<td class="s2"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td class="s3"></td>
-				<td colspan="2" dir="ltr" class="s4">Information</td>
-				<td style="display:none;"></td>
-				<td colspan="<%= @quiz_question_count %>" dir="ltr" class="s4">% correct per question</td>
-				<% (@quiz_question_count-1).times do -%>
-	        <td style="display:none;"></td>
-	      <% end -%>
-	      <% if @misconceptions.count > 0 -%>
+        <td dir="ltr" class="s1">Difficulty</td>
+        <td class="s2"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s3"></td>
+        <td colspan="2" dir="ltr" class="s4">Information</td>
+        <td style="display:none;"></td>
+        <td colspan="<%= @quiz_question_count %>" dir="ltr" class="s4">% correct per question</td>
+        <% (@quiz_question_count-1).times do -%>
+          <td style="display:none;"></td>
+        <% end -%>
+        <% if @misconceptions.count > 0 -%>
           <td colspan="3" class="s5">#</td>
           <% (@misconceptions.count-1).times do -%>
             <td style="display:none;"></td>
           <% end -%>
         <% end -%>
-				<td class="s5">#</td>
-				<td class="s6"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s7">Teacher last name</td>
-				<td dir="ltr" class="s8">ID</td>
-				<td dir="ltr" class="s16">N</td>
-				<% (@quiz_question_count-1).times do |count| -%>
-	        <td dir="ltr" class="s8">Q<%= count + 1 %></td>
-	      <% end -%>
-	      <td dir="ltr" class="s16">Q<%= @quiz_question_count %></td>
-	      <% (@misconceptions.count).times do |count| -%>
-					<td dir="ltr" class="s8"><%= @misconceptions[count].name %></td>
-				<% end -%>
-				<td class="s9"></td>
-				<td class="s6"></td>
-			</tr>
+        <td class="s5">#</td>
+        <td class="s6"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s7">Teacher last name</td>
+        <td dir="ltr" class="s8">ID</td>
+        <td dir="ltr" class="s16">N</td>
+        <% (@quiz_question_count-1).times do |count| -%>
+          <td dir="ltr" class="s8">Q<%= count + 1 %></td>
+        <% end -%>
+        <td dir="ltr" class="s16">Q<%= @quiz_question_count %></td>
+        <% (@misconceptions.count).times do |count| -%>
+          <td dir="ltr" class="s8"><%= @misconceptions[count].name %></td>
+        <% end -%>
+        <td class="s9"></td>
+        <td class="s6"></td>
+      </tr>
 
-			<% @course_ids.each_with_index do |id, index| -%>
-				<tr dir="ltr">
-					<td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
-					<td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @teacher_name["#{id}"] %></td>
-					<td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to Course.find(id).name[/C[0-9]{3}/], class_report_assessment_report_path(id, @quiz_ids["#{id}"]) %> </td>
-					<td class="s20" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @submitted_students_count["#{id}"] %></td>
-					<% (@quiz_question_count-1).times do |count| -%>
-		        <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{count+1}"] %>%</td>
-		      <% end -%>
-		      <td dir="ltr" class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{@quiz_question_count}"] %>%</td>
-					<% (@misconceptions.count-1).times do |count| -%>
-						<td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] : 0 : 0 %></td>
-					<% end -%>
-					<% if !@misconceptions.last.nil? -%><td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td><% end -%>
+      <% @course_ids.each_with_index do |id, index| -%>
+        <tr dir="ltr">
+          <td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
+          <td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @teacher_name["#{id}"] %></td>
+          <td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to Course.find(id).name[/C[0-9]{3}/], class_report_assessment_report_path(id, @quiz_ids["#{id}"]) %> </td>
+          <td class="s20" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @submitted_students_count["#{id}"] %></td>
+          <% (@quiz_question_count-1).times do |count| -%>
+            <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{count+1}"].nil? ? '-' : @item_analysis["#{id}"]["#{count+1}"].to_s + '%' %></td>
+          <% end -%>
+          <td dir="ltr" class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{@quiz_question_count}"].nil? ? '-' : @item_analysis["#{id}"]["#{@quiz_question_count}"].to_s + '%' %></td>
+          <% (@misconceptions.count-1).times do |count| -%>
+            <td class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions[count].id}"] : 0 : 0 %></td>
+          <% end -%>
+          <% if !@misconceptions.last.nil? -%><td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_misconceptions["#{id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] ? @class_misconceptions["#{id}"]["#{@misconceptions.last.id}"] : 0 : 0 %></td><% end -%>
 
-					<td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_difficulties["#{id}"] %></td>
-					<td class="s6" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
-				</tr>
-			<% end -%>
+          <td class="s23" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @class_difficulties["#{id}"] %></td>
+          <td class="s6" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"></td>
+        </tr>
+      <% end -%>
 
 
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td dir="ltr" class="s17"><%= t('reports.school','School') %></td>
-				<td dir="ltr" class="s18"><%= @school_name %></td>
-				<td class="s19"><%= @participating_students_count %></td>
-				<% (@quiz_question_count-1).times do |count| -%>
-	        <td dir="ltr" class="s21"><%= @analysis["#{count+1}"] %>%</td>
-	      <% end -%>
-	      <td dir="ltr" class="s22"><%= @analysis["#{@quiz_question_count}"] %>%</td>
-				<% (@misconceptions.count-1).times do |count| -%>
-					<td class="s21"><%= @total_class_misconceptions["#{@misconceptions[count].id}"] ? @total_class_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
-				<% end -%>
-				<% if !@misconceptions.last.nil? -%><td class="s22"><%= @total_class_misconceptions["#{@misconceptions.last.id}"] ? @total_class_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td dir="ltr" class="s17"><%= t('reports.school','School') %></td>
+        <td dir="ltr" class="s18"><%= @school_name %></td>
+        <td class="s19"><%= @participating_students_count %></td>
+        <% (@quiz_question_count-1).times do |count| -%>
+          <td dir="ltr" class="s21"><%= @analysis["#{count+1}"].nil? ? '-' : @analysis["#{count+1}"].to_s + '%' %></td>
+        <% end -%>
+        <td dir="ltr" class="s22"><%= @analysis["#{@quiz_question_count}"].nil? ? '-' : @analysis["#{@quiz_question_count}"].to_s + '%' %></td>
+        <% (@misconceptions.count-1).times do |count| -%>
+          <td class="s21"><%= @total_class_misconceptions["#{@misconceptions[count].id}"] ? @total_class_misconceptions["#{@misconceptions[count].id}"] : 0 %></td>
+        <% end -%>
+        <% if !@misconceptions.last.nil? -%><td class="s22"><%= @total_class_misconceptions["#{@misconceptions.last.id}"] ? @total_class_misconceptions["#{@misconceptions.last.id}"] : 0 %></td><% end -%>
 
-				<td class="s22"><%= @total_class_difficulties %></td>
-				<td class="s6"></td>
-			</tr>
-			<tr dir="ltr">
-				<td class="hd"><p style="height:16px;">.</p></td>
-				<td class="s13"></td>
-				<td class="s14"></td>
-				<td class="s14"></td>
-				<% @quiz_question_count.times do |count| -%>
-	        <td class="s14"></td>
-	      <% end -%>
-	      <% @misconceptions.count.times do -%>
+        <td class="s22"><%= @total_class_difficulties %></td>
+        <td class="s6"></td>
+      </tr>
+      <tr dir="ltr">
+        <td class="hd"><p style="height:16px;">.</p></td>
+        <td class="s13"></td>
+        <td class="s14"></td>
+        <td class="s14"></td>
+        <% @quiz_question_count.times do |count| -%>
           <td class="s14"></td>
         <% end -%>
-				<td class="s14"></td>
-				<td class="s15"></td>
-			</tr>
-		</tbody>
-	</table>
+        <% @misconceptions.count.times do -%>
+          <td class="s14"></td>
+        <% end -%>
+        <td class="s14"></td>
+        <td class="s15"></td>
+      </tr>
+    </tbody>
+  </table>
 
-	<table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblKey">
+  <table dir="ltr" border="0" cellpadding="0" cellspacing="0" class="tblGenFixed" id="tblKey">
     <tbody>
       <tr class="rShim">
         <td class="rShim" style="width:0;"></td>
@@ -289,8 +289,8 @@
     </tbody>
   </table>
 
-	<h3 id="school_name"><%= @report_name %></h3>
-	<div id="printed_statement"><%= t('reports.printed',"Printed") %> <%= DateTime.now.to_date %></div>
-	<div><%= t('reports.grant_statement', "These results are for a formative assessment being piloted as part of IES grand award # R305A110306.") %></div>
-	<div><%= @current_probe.title %></div>
+  <h3 id="school_name"><%= @report_name %></h3>
+  <div id="printed_statement"><%= t('reports.printed',"Printed") %> <%= DateTime.now.to_date %></div>
+  <div><%= t('reports.grant_statement', "These results are for a formative assessment being piloted as part of IES grand award # R305A110306.") %></div>
+  <div><%= @current_probe.title %></div>
 </div>

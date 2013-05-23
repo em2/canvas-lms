@@ -2,25 +2,25 @@ class ClassReport < ActiveRecord::Base
 
   belongs_to :course
 
-	def calculate_reports()
-		course = Course.find(self.course_id)
-		quiz = Quiz.find(self.quiz_id)
-		
+  def calculate_reports()
+    course = Course.find(self.course_id)
+    quiz = Quiz.find(self.quiz_id)
+
     data = gather_class_responses(course, quiz)
 
-		self.q = data["q"].to_json
-		self.number_correct = data["number_correct"].to_json
-		self.number_attempted = data["number_attempted"].to_json
-		self.percent_correct = data["percent_correct"].to_json
-		self.item_analysis = data["item_analysis"].to_json
-		self.teacher_id = data["teacher_id"]
-		self.teacher_name = data["teacher_name"]
-		self.course_name = data["course_name"]
-		self.school_name = data["school_name"]
-		self.submitted_students_count = data["submitted_students_count"]
+    self.q = data["q"].to_json
+    self.number_correct = data["number_correct"].to_json
+    self.number_attempted = data["number_attempted"].to_json
+    self.percent_correct = data["percent_correct"].to_json
+    self.item_analysis = data["item_analysis"].to_json
+    self.teacher_id = data["teacher_id"]
+    self.teacher_name = data["teacher_name"]
+    self.course_name = data["course_name"]
+    self.school_name = data["school_name"]
+    self.submitted_students_count = data["submitted_students_count"]
     self.submitted_students_ids = data["submitted_students_ids"].to_json
     self.quiz_question_count = data["quiz_question_count"]
-		self.submissions = data["submissions"].to_json
+    self.submissions = data["submissions"].to_json
     self.user_misconceptions = data["user_misconceptions"].to_json
     self.total_user_misconceptions = data["total_user_misconceptions"].to_json
     self.user_difficulties = data["user_difficulties"].to_json
@@ -29,10 +29,10 @@ class ClassReport < ActiveRecord::Base
     self.correct_answers = data["correct_answers"].to_json
     self.latest_submission = data["latest_submission"]
     self.save!
-	end
-	
+  end
 
-	def gather_class_responses(course, quiz)
+
+  def gather_class_responses(course, quiz)
     quiz_question_count = 0
     if quiz.quiz_data
       quiz.quiz_data.each do |quiz_data|
@@ -63,6 +63,8 @@ class ClassReport < ActiveRecord::Base
     data["latest_submission"] = quiz.created_at
     data["correct_answers"] = {}
 
+    counts = {}
+
     submissions = quiz.quiz_submissions.select{|s| !s.settings_only? }
     submission_ids = {}
     submissions.each{|s| submission_ids[s.user_id] = s.id }
@@ -79,6 +81,7 @@ class ClassReport < ActiveRecord::Base
     quiz.quiz_data.each_with_index do |quiz_data, question_index|
       next if quiz_data[:question_type] == "text_only_question"
       begin
+        # get the correc answers to display in the class report
         quiz_data[:answers].each_with_index do |answer, index|
           if answer[:weight] > 0
             case quiz_data[:question_type]
@@ -161,6 +164,8 @@ class ClassReport < ActiveRecord::Base
           else
             data["q"]["#{user.id}"].merge!({"#{question_count}" => 'Inc'})
           end
+          # if the student answered the question correctly, they get a *
+          # if they answered incorrectly, they get the correct answer
           quiz_data[:answers].each_with_index do |answer, index|
 
             if sub_data[:answer_id] == answer[:id]
@@ -220,6 +225,7 @@ class ClassReport < ActiveRecord::Base
               end
             end
           end
+
           question_count += 1
         rescue
           r2d=2
@@ -280,12 +286,20 @@ class ClassReport < ActiveRecord::Base
       data["latest_submission"] = nil
     end
 
-    
     quiz_question_count.times do |count|
-      if data["submitted_students_count"] > 0
-        data["item_analysis"].merge!("#{count+1}"=>(data["percent_correct"]["#{count+1}"].to_f / data["submitted_students_count"].to_f * 100).to_i)
-      else
-        data["item_analysis"].merge!("#{count+1}"=>0)
+      counts["#{count+1}"] = 0
+      data["submitted_students_ids"].each do |ss_id|
+        counts["#{count+1}"] += 1 if !data["q"]["#{ss_id}"].nil? && data["q"]["#{ss_id}"]["#{count+1}"] != 'Inc'
+      end
+    end
+
+    if !counts.empty?
+      quiz_question_count.times do |count|
+        if !counts["#{count+1}"].nil? && counts["#{count+1}"] > 0
+          data["item_analysis"].merge!("#{count+1}"=>(data["percent_correct"]["#{count+1}"].to_f / counts["#{count+1}"].to_f * 100).to_i)
+        else
+          data["item_analysis"].merge!("#{count+1}"=>nil)
+        end
       end
     end
 
