@@ -35,7 +35,15 @@ class QuizzesController < ApplicationController
       @submissions_hash
       @current_user.quiz_submissions.each{|s| @submissions_hash[s.quiz_id] = s } if @current_user
       log_asset_access("quizzes:#{@context.asset_string}", "quizzes", 'other')
-      is_account_admin?
+      if is_admin_or_teacher?
+        @all_submitted_students_count = {}
+        @quizzes.each do |quiz|
+          @quiz = quiz
+          managed_quiz_data
+          @all_submitted_students_count[quiz.id] = @submitted_students.count
+          @all_students_count = @students.count
+        end
+      end
     end
   end
 
@@ -259,12 +267,12 @@ class QuizzesController < ApplicationController
     submission_ids = {}
     @submissions.each{|s| submission_ids[s.user_id] = s.id }
     submission_users = @submissions.map{|s| s.user_id}
-    students = @context.students.find(:all, :order => User.sortable_name_order_by_clause).to_a
-    @submitted_students = students.select{|stu| submission_ids[stu.id] }
+    @students = @context.students.find(:all, :order => User.sortable_name_order_by_clause).to_a
+    @submitted_students = @students.select{|stu| submission_ids[stu.id] }
     if @quiz.survey? && @quiz.anonymous_submissions
       @submitted_students = @submitted_students.sort_by{|stu| submission_ids[stu.id] }
     end
-    @unsubmitted_students = students.reject{|stu| submission_ids[stu.id] }
+    @unsubmitted_students = @students.reject{|stu| submission_ids[stu.id] }
   end
   protected :managed_quiz_data
 

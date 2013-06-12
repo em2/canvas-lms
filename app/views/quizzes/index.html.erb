@@ -39,6 +39,9 @@ ul.quiz_list li.quiz div.description {
   font-size: 0.85em;
   margin-left: 20px;
 }
+ul.quiz_list li.quiz div.description .quiz_info {
+  margin-left: 20px;
+}
 </style>
 <% end %>
 <% if can_do(@context, @current_user, :manage_assignments) && @unpublished_quizzes && !@unpublished_quizzes.empty? %>
