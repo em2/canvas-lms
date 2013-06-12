@@ -296,7 +296,9 @@ class ClassReport < ActiveRecord::Base
     if !counts.empty?
       quiz_question_count.times do |count|
         if !counts["#{count+1}"].nil? && counts["#{count+1}"] > 0
-          data["item_analysis"].merge!("#{count+1}"=>(data["percent_correct"]["#{count+1}"].to_f / counts["#{count+1}"].to_f * 100).to_i)
+          percent_correct = data["percent_correct"]["#{count+1}"].to_f / counts["#{count+1}"].to_f + 0.005 # get the percentage and round up
+          percent_correct = (percent_correct * 100).to_i
+          data["item_analysis"].merge!("#{count+1}"=> percent_correct)
         else
           data["item_analysis"].merge!("#{count+1}"=>nil)
         end

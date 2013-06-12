@@ -99,7 +99,9 @@ class DistrictReport < ActiveRecord::Base
 
     quiz_question_count.times do |count|
       if !counts["#{count+1}"].nil? && counts["#{count+1}"] > 0
-        analysis["#{count+1}"] = analysis["#{count+1}"] / counts["#{count+1}"]
+        percent_correct = analysis["#{count+1}"].to_f / counts["#{count+1}"].to_f / 100 + 0.005 # get percentage and round up
+        percent_correct = (percent_correct * 100).to_i
+        analysis["#{count+1}"] = percent_correct
       else
         analysis["#{count+1}"] = nil
       end
