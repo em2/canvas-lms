@@ -1,4 +1,4 @@
-<% dashboard ||= false %>
+<% dashboard ||= false; my_classes ||= false -%>
 <% unless dashboard %>
   <li class="<%= 'unpublished' if current_enrollment.course.created? || current_enrollment.course.claimed? %> <%= current_enrollment.state_based_on_date %>">
 <% end %>
@@ -10,37 +10,45 @@
     </div>
   </div>
   <% else %>
-  <a href="<%= course_quizzes_path(current_enrollment.course_id) %>">
-    <span class="name ellipsis" title="<%= current_enrollment.long_name %>">
-      <%= current_enrollment.long_name %>
-      <% if current_enrollment.course.created? || current_enrollment.course.claimed? %>
-        <%= image_tag "hammer.png", :title => t('course_unpublished', "This course hasn't been published yet"), :alt => "Unpublished", :class => "unpublished_icon" %>
-      <% end %>
-    </span>
+    <a href="<%= course_quizzes_path(current_enrollment.course_id) %>">
+      <span class="name ellipsis" title="<%= current_enrollment.long_name %>">
+        <%= current_enrollment.long_name %>
+        <% if current_enrollment.course.created? || current_enrollment.course.claimed? %>
+          <%= image_tag "hammer.png", :title => t('course_unpublished', "This course hasn't been published yet"), :alt => "Unpublished", :class => "unpublished_icon" %>
+        <% end %>
+      </span>
 
-    <% unless current_enrollment.long_name == current_enrollment.course.em2_identifier -%>
-      <span class="subtitle ellipsis"><%= t('em2_identifier','EM2 Identifier: ') %><%= current_enrollment.course.em2_identifier %></span>
+      <% unless current_enrollment.long_name == current_enrollment.course.em2_identifier -%>
+        <span class="subtitle ellipsis"><%= t('em2_identifier','EM2 Identifier: ') %><%= current_enrollment.course.em2_identifier %></span>
+      <% end -%>
+
+      <% unless current_enrollment.course.enrollment_term.default_term? %>
+        <span class="subtitle ellipsis"><%= current_enrollment.course.enrollment_term.name %></span>
+      <% end %>
+
+      <%#
+         message = t('enrolled_as_student', "Enrolled as a student")
+         case current_enrollment.type
+         when 'TeacherEnrollment'
+           message = t('enrolled_as_teacher', "Enrolled as a teacher")
+         when 'TaEnrollment'
+           message = t('enrolled_as_ta', "Enrolled as a TA")
+         when 'ObserverEnrollment'
+           message = t('enrolled_as_observer', "Enrolled as an observer")
+         when 'CourseDesignerEnrollment'
+           message = t('enrolled_as_designer', "Enrolled as a designer")
+         end
+      %>
+      <!-- <span class="subtitle ellipsis"><%#= message %></span>  -->
+    </a>
+    <% if my_classes -%>
+      <% student_count = current_enrollment.course.students.count -%>
+      <span class="classes_info"><a href=<%= roster_path(current_enrollment.course.account.roster) %>><%= student_count %> <%= student_count == 1 ? t('my_classes.student', 'student') : t('my_classes.students', 'students') %> (roster)</a></span>
+      <% assignments = current_enrollment.course.assignments.active -%>
+      <% assignment = assignments.find_by_position(assignments.count) -%>
+      <span class="classes_info"><a href="<%= course_quiz_students_reports_url(current_enrollment.course.id, assignment.quiz.id) %>" class="quiz_title"><%= t('my_classes.print_reports', "Print reports") %></a></span>
+      <span class="classes_info"><%= t('my_classes.last_assessment', 'Last Assessment:') %> <a href=<%= course_quiz_path(current_enrollment.course.id, assignment.quiz.id) %>><%= assignment.title %></span></a>
     <% end -%>
-    
-    <% unless current_enrollment.course.enrollment_term.default_term? %>
-      <span class="subtitle ellipsis"><%= current_enrollment.course.enrollment_term.name %></span>
-    <% end %>
-    
-    <%#
-       message = t('enrolled_as_student', "Enrolled as a student")
-       case current_enrollment.type
-       when 'TeacherEnrollment'
-         message = t('enrolled_as_teacher', "Enrolled as a teacher")
-       when 'TaEnrollment'
-         message = t('enrolled_as_ta', "Enrolled as a TA")
-       when 'ObserverEnrollment'
-         message = t('enrolled_as_observer', "Enrolled as an observer")
-       when 'CourseDesignerEnrollment'
-         message = t('enrolled_as_designer', "Enrolled as a designer")
-       end
-    %> 
-    <!-- <span class="subtitle ellipsis"><%#= message %></span>  -->
-  </a>  
   <% end %>
 <% unless dashboard %>
   </li>
