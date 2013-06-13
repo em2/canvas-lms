@@ -104,8 +104,6 @@ class RostersController < ApplicationController
         # Loop until a probe has been generated for each class id
         i = 0
         while (i < @course_titles.count)
-          
-
 
           #
           # Create the Roster
