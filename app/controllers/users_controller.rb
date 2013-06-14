@@ -242,9 +242,11 @@ class UsersController < ApplicationController
 
     if !is_admin?
       redirect_to courses_url
-    elsif is_district_admin?
+    elsif @is_account_admin
+      redirect_back_or_default(account_sub_accounts_url(@account_admin_sub_account.account_id))
+    elsif @is_district_admin
       redirect_back_or_default(account_sub_accounts_url(@district_admin_sub_account.account_id))
-    elsif is_school_admin?
+    elsif @is_school_admin
       redirect_back_or_default(account_url(@school_admin_sub_account.account_id))
     end
 

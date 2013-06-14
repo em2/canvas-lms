@@ -827,6 +827,10 @@ em2:
     sub_accounts: 
       account_courses: 
         one: 1 Class
+        other: "%{count} Classes"
+      account_sub_accounts:
+        one: "1 Sub-Account"
+        other: "%{count} Sub-Accounts"
       can_not_delete: You can't delete a sub-account that has classes in it
   content_locks: 
     messages: 
