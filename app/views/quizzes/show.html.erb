@@ -107,7 +107,7 @@
             <% end -%>
           </span>
           <span>
-            <a href="<%= context_url(@context, :context_quiz_teacher_instructions_url, @quiz) %>" class="button button-quiz-buttons-right"><%= image_tag "ball.png" %> <%= t('links.teacher_instructions', "Teacher Instructions") %></a>
+            <a href="<%= context_url(@context, :context_quiz_teacher_instructions_url, @quiz) %>" class="button <%= @is_admin ? 'button-quiz-buttons-right' : 'button-quiz-buttons' %>"><%= image_tag "ball.png" %> <%= t('links.teacher_instructions', "Teacher Instructions") %></a>
           </span>
         </div>
         <div class="button_layer">
