@@ -413,10 +413,10 @@ em2:
         keep_editing_this_quiz: Keep Editing This Assessment
         quiz_statistics: Assessment Statistics
         delete_this_quiz: Delete This Assessment
-        edit_this_quiz: Edit this Assessment
+        edit_this_quiz: Edit Assessment
         see_full_quiz: See Full Assessment
         take_the_quiz_again: Take the Assessment Again
-        moderate_this_quiz: Moderate This Assessment
+        moderate_this_quiz: Moderate Assessment
         take_the_quiz: Take the Assessment
         show_student_quiz_results: Show Student Results
       quiz_no_submissions: No Students have taken the assessment yet

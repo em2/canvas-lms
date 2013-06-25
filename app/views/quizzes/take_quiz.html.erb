@@ -69,11 +69,13 @@
 </div>
 <%= render :partial => "display_question", :collection => @submission.questions_as_object, :locals => {:assessing => true } %>
 
-<div class="button-container">
-  <button type="submit" class="button submit_button"><%= t('buttons.submit_answer', "Submit Answers") %></button>
-</div>
+  <% unless params[:preview] %>
+    <div class="button-container">
+      <button type="submit" class="button submit_button"><%= t('buttons.submit_answer', "Submit Answers") %></button>
+    </div>
+  <% end -%>
 <% end %>
-<% if @no_chrome -%>
+<% if @no_chrome && !params[:preview] -%>
 	<div class="button-container">
     <%= link_to t('links.finish_later', "Finish Later"), logout_path, :method => :delete, :id => "finish_later_button", :class => "button" %>
 	</div>

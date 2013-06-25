@@ -41,7 +41,7 @@ class QuizzesController < ApplicationController
           @quiz = quiz
           managed_quiz_data
           @all_submitted_students_count[quiz.id] = @submitted_students.count
-          @all_students_count = @students.count
+          @all_students_count ||= @students.count
         end
       end
     end
@@ -210,7 +210,11 @@ class QuizzesController < ApplicationController
       if is_teacher? || is_admin?
         @no_chrome = false
       end
-      
+
+      if params[:preview]
+        @no_chrome = true
+      end
+
       add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
 
       @headers = !params[:headless]
@@ -245,6 +249,11 @@ class QuizzesController < ApplicationController
       @stored_params ||= {}
       log_asset_access(@quiz, "quizzes", "quizzes")
 
+      if is_teacher? || is_admin?
+        @all_submitted_students_count = @submitted_students.count
+        @all_students_count = @students.count
+      end
+
       if (@no_chrome && @submission == nil)
         params[:take] = true
       end
@@ -260,7 +269,17 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def teacher_instructions
+    @quiz = Quiz.find(params[:quiz_id])
+    add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
+    add_crumb("Teacher Instructions")
+  end
 
+  def student_instructions
+    @quiz = Quiz.find(params[:quiz_id])
+    add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
+    add_crumb("Student Instructions")
+  end
 
   def managed_quiz_data
     @submissions = @quiz.quiz_submissions.select{|s| !s.settings_only? }
