@@ -19,7 +19,7 @@
 <div class="question_holder <%= "group" if in_group %>" id="<%= "question_template" unless question %>" style="<%= hidden unless question %>">
   <div style="display: block; height: 1px; overflow: hidden;">&nbsp;</div>
   <a name="question_<%= hash_get(question, :id, "blank") %>"></a>
-  <div class="display_question question <%= question_type.question_type %> <%= "marked" if assessing && @stored_params && @stored_params["question_#{hash_get(question, :id)}_marked"] %> <%= "correct" if user_answer && hash_get(user_answer, :correct) == true %> <%= "incorrect" if user_answer && hash_get(user_answer, :correct) == false %>" id="question_<%= hash_get(question, :id, "new") %>">
+  <div class="display_question <%= 'question' unless question_type.question_type == "text_only_question" %> <%= question_type.question_type %> <%= "marked" if assessing && @stored_params && @stored_params["question_#{hash_get(question, :id)}_marked"] %> <%= "correct" if user_answer && hash_get(user_answer, :correct) == true %> <%= "incorrect" if user_answer && hash_get(user_answer, :correct) == false %>" id="question_<%= hash_get(question, :id, "new") %>">
     <div class="move"><%= image_tag "move.png", :class => "move_icon" %></div>
     <% if assessing %>
       <div class="flag_question">
@@ -27,13 +27,13 @@
       </div>
     <% end %>
 
-	<% if (@no_chrome && question_type.question_type == "compare_fractions_question" || question_type.question_type == "locate_fractions_question" || question_type.question_type == "represent_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question") -%>
-    	<div class="header" style="float:left" <%= hidden(true) if (assessing || assessment_results) && question_type && question_type.entry_type == "none" %>>
-	      <span class="name question_name"><%= hash_get(question, :question_name) %></span>:
-	<% else -%>
-	    <div class="header" <%= hidden(true) if (assessing || assessment_results) && question_type && question_type.entry_type == "none" %>>
-	      <span class="name question_name"><%= hash_get(question, :question_name) %></span>:
-	<% end -%>
+  <% if (@no_chrome && question_type.question_type == "compare_fractions_question" || question_type.question_type == "locate_fractions_question" || question_type.question_type == "represent_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question") -%>
+      <div class="header" style="float:left" <%= hidden(true) if (assessing || assessment_results) && question_type && question_type.entry_type == "none" %>>
+        <span class="name question_name"><%= hash_get(question, :question_name) %></span>
+  <% else -%>
+      <div class="header" <%= hidden(true) if (assessing || assessment_results) && question_type && question_type.entry_type == "none" %>>
+        <span class="name question_name"><%= hash_get(question, :question_name) %></span>:
+  <% end -%>
 
       <span class="question_points_holder" style="<%= hidden if question_type && question_type.entry_type == "none" %>">
         <%= t(:points_possible, "%{points_possible} pts", :points_possible => raw("<span class=\"points question_points\">#{hash_get(question, :points_possible, "0")}</span>")) %>
@@ -60,21 +60,21 @@
     </div>
     <div class="clear"></div>
     <div class="text">
-	<% if question_type.question_type == "compare_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question" -%>
-		<%= render :partial => "quizzes/comparing", :locals => 
+  <% if question_type.question_type == "compare_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question" -%>
+    <%= render :partial => "quizzes/comparing", :locals => 
                 {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
-	<% elsif question_type.question_type == "locate_fractions_question" -%>
-		<%= render :partial => "quizzes/locate_fractions", :locals => 
+  <% elsif question_type.question_type == "locate_fractions_question" -%>
+    <%= render :partial => "quizzes/locate_fractions", :locals => 
                 {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
-	<% elsif question_type.question_type == "represent_fractions_question" -%>
-		<%= render :partial => "quizzes/represent_fractions", :locals => 
+  <% elsif question_type.question_type == "represent_fractions_question" -%>
+    <%= render :partial => "quizzes/represent_fractions", :locals => 
                 {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
-	<% else -%>
+  <% else -%>
       <div class="original_question_text" style="display: none;">
         <textarea style="display: none;" name="text_after_answers" class="textarea_text_after_answers"><%= h(hash_get(question, :text_after_answers)) %></textarea>
         <textarea style="display: none;" name="question_text" class="textarea_question_text"><%= h(hash_get(question, :question_text)) %></textarea>
       </div>
-      <div id="question_<%= hash_get(question, :id, "new") %>_question_text" class="question_text user_content">
+      <div id="question_<%= hash_get(question, :id, "new") %>_question_text" class="<%= 'question_text' unless question_type.question_type == "text_only_question" %> user_content">
         <% if question && hash_get(question, :question_type) == "missing_word_question" %>
           <span class="text_before_answers"><%= user_content(hash_get(question, :question_text)) %></span>
           <select class="answer_select question_input" name="question_<%= hash_get(question, :id, "blank") %>">
@@ -288,7 +288,7 @@
       </div>
     <% end -%>
     </div>
-	<% if user_answer %>
+  <% if user_answer %>
       <% if hash_get(user_answer, :correct) == true && comment_get(question, :correct_comments).present? %>
         <div class="question_comment question_correct_comment">
           <div class="comment_top"></div>

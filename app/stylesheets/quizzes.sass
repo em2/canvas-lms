@@ -1,7 +1,20 @@
 @import environment.sass
 
 div.question
-  border-radius: 3px
+  max-width: 936px
+
+.drawing_pad
+  :padding-bottom 8px
+.question_type_tab
+  :padding-top 15px
+.question_name
+  :color #FFFFFF
+  :padding-top 3px
+  :padding-left 5px
+  :position absolute
+  :font-family "Times New Roman"
+  :font-weight 700
+  :text-shadow 3px 3px 5px rgba(0,0,0,0.65)
 
 #sort_questions
   :max-height 250px
@@ -80,6 +93,15 @@ div.question
         :float right
         :margin-right 10px
         :font-size 0.9em
+        :background #1E6EA6
+        :border-bottom-right-radius 3px
+        :border-top-left-radius 6px
+        :-moz-border-bottom-right-radius 3px
+        :-moz-border-top-left-radius 6px
+        :width 81px
+        :height 25px
+        :margin-top 0px
+        :margin-left 0px
       .move
         :display none
 
@@ -196,11 +218,11 @@ div.question
       white-space: pre-wrap
 
 .question
-  :border 2px solid #888
-  :margin-bottom 30px
-  :margin-top 0.7em
+  :margin-bottom 10px
   :-moz-border-radius 5px
-  :background-color #fff
+  :border-top-left-radius 6px
+  :-moz-border-top-left-radius 6px
+  :background-color #EAEBEC
   :position relative
   :min-height 50px
   :_height 10px
@@ -233,7 +255,8 @@ div.question
   .text
     :clear left
     :padding 5px 20px
-    
+    :padding-top 29px
+
     .question_text
       .answer_select
         :border 2px solid #888
@@ -474,6 +497,8 @@ div.question
     .answer_select .select_answer_link
       :display none
 .text_only_question
+  :margin-top 4px
+  :margin-bottom -7px
   .text
     .question_text
       :padding-top 1.5em
@@ -920,3 +945,6 @@ ul#quiz_versions
 .button-quiz-buttons-right
   width: 225px
   margin-left: 100px
+
+.logo_banner
+  margin-left: -7px

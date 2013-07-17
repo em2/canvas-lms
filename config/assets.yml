@@ -212,6 +212,8 @@ stylesheets:
     - public/stylesheets/compiled/reports_class.css
   reports_index:
     - public/stylesheets/compiled/reports_index.css
+  comparing:
+    - public/stylesheets/compiled/comparing.css
   assessment_reports_index:
     - public/stylesheets/compiled/assessment_reports_index.css
   roster_user:

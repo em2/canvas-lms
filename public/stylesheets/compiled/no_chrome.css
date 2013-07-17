@@ -8,49 +8,53 @@ body.with-left-side #main {
 body.with-left-side #footer {
   display: none; }
 
-/* line 14, ../../../app/stylesheets/no_chrome.sass */
+/* line 12, ../../../app/stylesheets/no_chrome.sass */
+.move {
+  display: none; }
+
+/* line 16, ../../../app/stylesheets/no_chrome.sass */
 body.with-right-side #right-side-wrapper {
   display: none; }
 
-/* line 17, ../../../app/stylesheets/no_chrome.sass */
+/* line 19, ../../../app/stylesheets/no_chrome.sass */
 #wrapper {
   width: 100%; }
 
-/* line 20, ../../../app/stylesheets/no_chrome.sass */
+/* line 22, ../../../app/stylesheets/no_chrome.sass */
 #menu {
   display: none; }
 
-/* line 22, ../../../app/stylesheets/no_chrome.sass */
+/* line 24, ../../../app/stylesheets/no_chrome.sass */
 #topbar {
   display: none; }
 
-/* line 24, ../../../app/stylesheets/no_chrome.sass */
+/* line 26, ../../../app/stylesheets/no_chrome.sass */
 #header {
   display: none; }
 
-/* line 26, ../../../app/stylesheets/no_chrome.sass */
+/* line 28, ../../../app/stylesheets/no_chrome.sass */
 #breadcrumbs {
   display: none; }
 
-/* line 28, ../../../app/stylesheets/no_chrome.sass */
+/* line 30, ../../../app/stylesheets/no_chrome.sass */
 .flag_question {
   display: none; }
 
-/* line 32, ../../../app/stylesheets/no_chrome.sass */
+/* line 34, ../../../app/stylesheets/no_chrome.sass */
 #questions.assessment_results .header {
   display: none; }
-/* line 34, ../../../app/stylesheets/no_chrome.sass */
+/* line 36, ../../../app/stylesheets/no_chrome.sass */
 #questions.assessment_results .user_points {
   display: none; }
 
-/* line 39, ../../../app/stylesheets/no_chrome.sass */
+/* line 41, ../../../app/stylesheets/no_chrome.sass */
 #questions.assessing .header .question_points_holder {
   display: none; }
 
-/* line 43, ../../../app/stylesheets/no_chrome.sass */
+/* line 45, ../../../app/stylesheets/no_chrome.sass */
 body.with-scrolling-right-side #content, body.with-scrolling-right-side body.with-sidebar-pinned-to-bottom {
   padding-right: 13px; }
 
-/* line 46, ../../../app/stylesheets/no_chrome.sass */
+/* line 48, ../../../app/stylesheets/no_chrome.sass */
 .summary {
   display: none; }
