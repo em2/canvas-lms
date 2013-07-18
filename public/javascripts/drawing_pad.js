@@ -239,7 +239,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
   function touchXY(e) {
     if(assessing){
       e.preventDefault();
-      var xy = getMousePos(e);
+      var xy = getTouchPos(e);
       canvasX = xy.x;
       canvasY = xy.y;
       checkPos();
@@ -258,17 +258,25 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
     };
   }
 
+  function getTouchPos(e) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: e.targetTouches[0].clientX - rect.left,
+      y: e.targetTouches[0].clientY - rect.top
+    };
+  }
+
   function mouseUp() {
     if (assessing){
-        mouseIsDragging = false;
-        paint = false;
+      mouseIsDragging = false;
+      paint = false;
     }
   }
 
   function touchUp() {
     if (assessing){
-        mouseIsDragging = false;
-        paint = false;
+      mouseIsDragging = false;
+      paint = false;
     }
   }
 
