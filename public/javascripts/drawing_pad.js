@@ -28,8 +28,8 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var canvasY;
 	var mouseIsDragging = false;
 	var context;
-	var canvasWidth = 600;
-	var canvasHeight = 350;
+	var canvasWidth = 590;
+	var canvasHeight = 332;
 	var padding = 25;
 	var lineWidth = 8;
 	var colorPurple = "#cb3594";
@@ -39,6 +39,7 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var markerBackgroundImage = new Image();
 	var eraserBackgroundImage = new Image();
 	var plainBackgroungImage = new Image();
+	var whiteBackgroundImage = new Image();
 	var clickX = new Array();
 	var clickY = new Array();
 	var clickColor = new Array();
@@ -49,16 +50,18 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	var curColor = colorBlue;
 	var curTool = "marker";
 	var curSize = "normal";
-	var drawingAreaX = 7;
-	var drawingAreaY = 11;
+	var drawingAreaX = 1;
+	var drawingAreaY = 1;
 	var drawingAreaWidth = 481;
 	var drawingAreaHeight = 330;
-	var toolHotspotStartY = 95;
-	var toolHotspotHeight = 38;
-	var totalLoadResources = 3;
+	var toolHotspotStartY = 65;
+	var toolHeight = 38;
+	var totalLoadResources = 4;
 	var curLoadResNum = 0;
 	var lastIndexDrawn = 0;
-	
+	var markerTipX = 521;
+	var markerTipY = 65;
+
 	// Load the previous canvas data
 	if ($('#explain_canvas_'+question_id+'_click_x_data').val().length > 0){
 
@@ -137,6 +140,10 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	plainBackgroungImage.onload = function() { resourceLoaded(); 
 	}
 	plainBackgroungImage.src = "../../../../images/canvas_drawing/plain-background.png";
+
+	whiteBackgroundImage.onload = function() { resourceLoaded(); 
+	}
+	whiteBackgroundImage.src = "../../../../images/canvas_drawing/background-white.png";
 
 	//
 	// add the event listens for touch pads and the mouse
@@ -221,8 +228,9 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 
 	function mouseXY(e) {
 		if(assessing){
-			canvasX = e.pageX - canvas.offsetLeft;
-			canvasY = e.pageY - canvas.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - canvas.offsetTop + 60;
+			var xy = getMousePos(e);
+			canvasX = xy.x;
+			canvasY = xy.y;
 			checkPos();
 			draw();
 		}
@@ -230,16 +238,25 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	 
 	function touchXY(e) {
 		if(assessing){
-		    e.preventDefault();
-		    canvasX = e.targetTouches[0].pageX - canvas.offsetLeft;
-		    canvasY = e.targetTouches[0].pageY - canvas.parentNode.parentNode.parentNode.parentNode.parentNode.offsetTop - canvas.offsetTop + 60;
-		    checkPos();
-		    draw();
-		    if (!mouseIsDragging){
-		    	mouseIsDragging = true;
-		    }
+	    e.preventDefault();
+	    var xy = getMousePos(e);
+			canvasX = xy.x;
+			canvasY = xy.y;
+	    checkPos();
+	    draw();
+	    if (!mouseIsDragging){
+	    	mouseIsDragging = true;
+	    }
 		}
 	}
+
+	function getMousePos(e) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
 
 	function mouseUp() {
 		if (assessing){
@@ -256,14 +273,15 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	}
 
 	function checkPos() {
-		if(canvasX > drawingAreaX + drawingAreaWidth + 16) // Right of the drawing area
+		// if (canvasX < getDrawingArea(drawingAreaX) || canvasX > canvasWidth - getDrawingArea(drawingAreaX) || canvasY < getDrawingArea(drawingAreaY) || canvasY > canvasHeight - getDrawingArea(drawingAreaY)){ return; }
+		if(canvasX > drawingAreaX + drawingAreaWidth) // Right of the drawing area
 		{
 			if(canvasY > toolHotspotStartY && !mouseIsDragging)
 			{
-				if(canvasY < toolHotspotStartY + toolHotspotHeight * 2){
+				if(canvasY < toolHotspotStartY + toolHeight){
 					curTool = "marker";
 					curSize = "normal";
-				}else if(canvasY < toolHotspotStartY + toolHotspotHeight * 3){
+				}else if(canvasY < toolHotspotStartY + toolHeight*2){
 					curTool = "eraser";
 					curSize = "huge";
 				}
@@ -274,7 +292,21 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		addClick();
 		
 	}
-	
+
+	// function getDrawingArea(measure) {
+	// 	var radius = 0;
+	// 	if(curSize == "small"){
+	// 		radius = 2;
+	// 	}else if(curSize == "normal"){
+	// 		radius = 3;
+	// 	}else if(curSize == "large"){
+	// 		radius = 6;
+	// 	}else if(curSize == "huge"){
+	// 		radius = 11;
+	// 	}
+	// 	return measure + radius;
+	// }
+
 	/**
 	* Adds a point to the drawing array.
 	*/
@@ -318,7 +350,9 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		if(curLoadResNum < totalLoadResources){ return; }
 
 		clearCanvas();
-		
+
+		// Draw the white square behind the drawing pad
+		context.drawImage(whiteBackgroundImage, 0, 0, canvasWidth, canvasHeight);
 
 		if(curTool == "marker" && assessing == true)
 		{
@@ -339,23 +373,20 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 		{
 			alert("Error: Current Tool is undefined");
 		}
-		
-		var locX = 527;
-		var locY = 75;
-		
+
 		if (assessing == true){
 			//
 			// Draw the marker tip blue
 			context.beginPath();
-			context.moveTo(locX, locY);
-			context.lineTo(locX + 10, locY + 6);
-			context.lineTo(locX, locY + 11);
-			context.lineTo(locX, locY);
+			context.moveTo(markerTipX, markerTipY);
+			context.lineTo(markerTipX + 10, markerTipY + 6);
+			context.lineTo(markerTipX, markerTipY + 11);
+			context.lineTo(markerTipX, markerTipY);
 			context.closePath();
 			context.fillStyle = colorBlue;
 			context.fill();
 		}
-		
+
 		// Keep the drawing in the drawing area
 		context.save();
 		context.beginPath();
@@ -383,11 +414,11 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 
 			context.beginPath();
 			if(clickDrag[i] && i){
-				context.moveTo(clickX[i-1]-15, clickY[i-1]-70);
+				context.moveTo(clickX[i-1], clickY[i-1]);
 			}else{
-				context.moveTo(clickX[i]-15, clickY[i]-70);
+				context.moveTo(clickX[i], clickY[i]);
 			}
-			context.lineTo(clickX[i]-15, clickY[i]-70);
+			context.lineTo(clickX[i], clickY[i]);
 			context.closePath();
 
 			if(clickTool[i] == "eraser"){
@@ -411,7 +442,8 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 	}
 
 	function draw () {
-		var radius, i, locX, locY;
+		var radius, i;
+
 		i = lastIndexDrawn;
 		for(; i < clickX.length; i++)
 		{
@@ -430,11 +462,11 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 
 			context.beginPath();
 			if(clickDrag[i] && i){
-				context.moveTo(clickX[i-1]-15, clickY[i-1]-70);
+				context.moveTo(clickX[i-1], clickY[i-1]);
 			}else{
-				context.moveTo(clickX[i]-15, clickY[i]-70);
+				context.moveTo(clickX[i], clickY[i]);
 			}
-			context.lineTo(clickX[i]-15, clickY[i]-70);
+			context.lineTo(clickX[i], clickY[i]);
 			context.closePath();
 
 			if(clickTool[i] == "eraser"){
@@ -450,41 +482,39 @@ function prepareCanvas(canvas_element, question_id, assessing, editing)
 
 			lastIndexDrawn = i;
 
-			if(curTool == "marker" && assessing == true)
-			{
-				// Draw the marker tool background
-				context.drawImage(markerBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-			}
-			else if(curTool == "eraser" && assessing == true)
-			{
-				// Draw the eraser tool background
-				context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
-			}
-			else if(!assessing)
-			{
-				// Draw the plain background
-				context.drawImage(plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
-			}
-			else
-			{
-				alert("Error: Current Tool is undefined");
-			}
+		}
 
-			locX = 527;
-			locY = 75;
+		if(curTool == "marker" && assessing == true)
+		{
+			// Draw the marker tool background
+			context.drawImage(markerBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+		}
+		else if(curTool == "eraser" && assessing == true)
+		{
+			// Draw the eraser tool background
+			context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+		}
+		else if(!assessing)
+		{
+			// Draw the plain background
+			context.drawImage(plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
+		}
+		else
+		{
+			alert("Error: Current Tool is undefined");
+		}
 
-			if (assessing == true){
-				//
-				// Draw the marker tip blue
-				context.beginPath();
-				context.moveTo(locX, locY);
-				context.lineTo(locX + 10, locY + 6);
-				context.lineTo(locX, locY + 11);
-				context.lineTo(locX, locY);
-				context.closePath();
-				context.fillStyle = colorBlue;
-				context.fill();
-			}
+		if (assessing == true){
+			//
+			// Draw the marker tip blue
+			context.beginPath();
+			context.moveTo(markerTipX, markerTipY);
+			context.lineTo(markerTipX + 10, markerTipY + 6);
+			context.lineTo(markerTipX, markerTipY + 11);
+			context.lineTo(markerTipX, markerTipY);
+			context.closePath();
+			context.fillStyle = colorBlue;
+			context.fill();
 		}
 	}
 }
