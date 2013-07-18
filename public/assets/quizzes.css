@@ -1,5 +1,5 @@
 div.question{max-width:936px}
-.drawing_pad{padding-bottom:8px}
+.drawing_pad{padding-top:8px;padding-bottom:16px}
 .question_type_tab{padding-top:15px}
 .question_name{color:white;padding-top:3px;padding-left:5px;position:absolute;font-family:"Times New Roman";font-weight:700;text-shadow:3px 3px 5px rgba(0,0,0,0.65)}
 #sort_questions{max-height:250px;overflow:auto;margin:0 0 20px;padding-left:30px;line-height:1.5em}
