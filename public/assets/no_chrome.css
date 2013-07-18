@@ -1,12 +1,14 @@
 body.with-left-side #left-side{display:none}
 body.with-left-side #main{margin-left:0}
 body.with-left-side #footer{display:none}
+.move{display:none}
 body.with-right-side #right-side-wrapper{display:none}
-body.with-right-side.with-left-side #menu{display:none}
-body.with-right-side.with-left-side #topbar{display:none}
-body.with-right-side.with-left-side #header{display:none}
-body.with-right-side.with-left-side #breadcrumbs{display:none}
-body.with-right-side.with-left-side .flag_question{display:none}
+#wrapper{width:100%}
+#menu{display:none}
+#topbar{display:none}
+#header{display:none}
+#breadcrumbs{display:none}
+.flag_question{display:none}
 #questions.assessment_results .header{display:none}
 #questions.assessment_results .user_points{display:none}
 #questions.assessing .header .question_points_holder{display:none}

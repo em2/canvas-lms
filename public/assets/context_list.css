@@ -9,3 +9,4 @@ ul.context_list li .reminder{margin-left:0}
 ul.context_list .unpublished a{color:#888;font-weight:normal}
 ul.context_list .name{display:block;font-size:1.5em}
 ul.context_list .subtitle{display:block;font-style:italic;margin-left:10px;font-size:.8em;line-height:.8em;margin-bottom:3px}
+ul.context_list .classes_info{font-style:italic;margin-left:10px;font-size:.8em;line-height:.8em;margin-bottom:3px}
