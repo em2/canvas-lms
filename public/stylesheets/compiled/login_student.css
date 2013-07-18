@@ -112,62 +112,64 @@ body.webkit #modal-box-arbitrary-size input.text {
   border: 1px solid #c2c0c0;
   border-radius: 4px;
   background: linear-gradient(90deg, #f5f3f3, #ffffff);
+  background: -webkit-linear-gradient(90deg, #f5f3f3, white);
+  background: -moz-linear-gradient(90deg, #f5f3f3, white);
+  box-shadow: inset 0 0 5px 0 rgba(107, 107, 107, 0.25);
   -webkit-box-shadow: inset 0 0 5px 0 rgba(107, 107, 107, 0.25);
-  -moz-box-shadow: inset 0 0 5px 0 rgba(107, 107, 107, 0.25);
-  box-shadow: inset 0 0 5px 0 rgba(107, 107, 107, 0.25); }
+  -moz-box-shadow: inset 0 0 5px 0 rgba(107, 107, 107, 0.25); }
 
-/* line 113, ../../../app/stylesheets/login_student.sass */
+/* line 115, ../../../app/stylesheets/login_student.sass */
 #login_form {
   width: 487px; }
 
-/* line 115, ../../../app/stylesheets/login_student.sass */
+/* line 117, ../../../app/stylesheets/login_student.sass */
 #forgot_password_form {
   margin: 200px auto 0;
   width: 435px; }
-  /* line 118, ../../../app/stylesheets/login_student.sass */
+  /* line 120, ../../../app/stylesheets/login_student.sass */
   #forgot_password_form button.button {
     margin: 7px; }
 
-/* line 121, ../../../app/stylesheets/login_student.sass */
+/* line 123, ../../../app/stylesheets/login_student.sass */
 span.field-with-fancyplaceholder {
   display: block;
   display: inline-block;
   position: relative; }
-  /* line 126, ../../../app/stylesheets/login_student.sass */
+  /* line 128, ../../../app/stylesheets/login_student.sass */
   span.field-with-fancyplaceholder label {
     display: none; }
-    /* line 128, ../../../app/stylesheets/login_student.sass */
+    /* line 130, ../../../app/stylesheets/login_student.sass */
     span.field-with-fancyplaceholder label.placeholder {
       display: inline;
       color: #999999;
       cursor: text;
       pointer-events: none; }
-      /* line 134, ../../../app/stylesheets/login_student.sass */
+      /* line 136, ../../../app/stylesheets/login_student.sass */
       span.field-with-fancyplaceholder label.placeholder span {
         position: absolute;
         z-index: 2;
         -webkit-user-select: none;
-        padding: 4px 0 0 7px; }
-    /* line 140, ../../../app/stylesheets/login_student.sass */
+        padding: 5px 0 0 7px; }
+    /* line 142, ../../../app/stylesheets/login_student.sass */
     span.field-with-fancyplaceholder label.focus {
       color: #cccccc; }
-  /* line 144, ../../../app/stylesheets/login_student.sass */
+  /* line 146, ../../../app/stylesheets/login_student.sass */
   span.field-with-fancyplaceholder input:-webkit-autofill {
     background-color: transparent !important; }
-  /* line 147, ../../../app/stylesheets/login_student.sass */
+  /* line 149, ../../../app/stylesheets/login_student.sass */
   span.field-with-fancyplaceholder input {
     outline: none; }
-    /* line 149, ../../../app/stylesheets/login_student.sass */
+    /* line 151, ../../../app/stylesheets/login_student.sass */
     span.field-with-fancyplaceholder input.invalid {
       background: #ffffc5;
       color: #ff3300; }
-    /* line 153, ../../../app/stylesheets/login_student.sass */
+    /* line 155, ../../../app/stylesheets/login_student.sass */
     span.field-with-fancyplaceholder input.editing {
       color: black;
       background: none repeat scroll 0 0 transparent;
       overflow: hidden; }
 
-/* line 158, ../../../app/stylesheets/login_student.sass */
+/* line 160, ../../../app/stylesheets/login_student.sass */
 #register_link {
   position: absolute;
   display: block;
