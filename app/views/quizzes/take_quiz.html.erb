@@ -42,13 +42,9 @@
 <% jammit_css :quizzes, :tinymce, :comparing %>
 
 <span class="logo_banner"><%= image_tag "logo_banner.png" %></span>
-
-<% if @quiz.quiz_title && @quiz.quiz_title == "Comparing Fractions" %>
-  <div class="clear"></div>
-  <%= image_tag "comparing-fractions-tab.png", :class => "question_type_tab" %>
-<% else -%>
-  <h2><%= @quiz.quiz_title || @quiz.readable_type %></h2>
-<% end -%>
+<div class="quiz_title_box">
+  <span class="quiz_title"><%= @quiz.quiz_title || @quiz.readable_type %></span>
+</div>
 <% if @submission.preview? %>
 <h3><%= image_tag "warning.png" %> <%= t('headers.draft_preview', "This is a preview of the draft version of the quiz") %></h3>
 <% end %>

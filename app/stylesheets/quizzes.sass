@@ -6,17 +6,47 @@ div.question
 .drawing_pad
   :padding-top 8px
   :padding-bottom 16px
+.quiz_title_box
+  :margin-right 10px
+  :font-size 0.9em
+  :background linear-gradient( top, #009856, #009854, #009a4f, #009a4d, #009c49, #08a04e, #FFFFFF)
+  :background -webkit-linear-gradient( top, #009856, #009854, #009a4f, #009a4d, #009c49, #08a04e, #FFFFFF)
+  :background -moz-linear-gradient( top, #009856, #009854, #009a4f, #009a4d, #009c49, #08a04e, #FFFFFF)
+  :border-top-left-radius 6px
+  :-moz-border-top-left-radius 6px
+  :-webkit-border-top-left-radius 6px
+  :border-bottom-right-radius 7px
+  :-moz-border-bottom-right-radius 7px
+  :-webkit-border-bottom-right-radius 7px
+  :box-shadow 0px -1px 1px #05854e
+  :-moz-box-shadow 0px -1px 1px #05854e
+  :-webkit-box-shadow 0px -1px 1px #05854e
+  :width 200px
+  :height 35px
+  :margin-top 0px
+  :margin-left 0px
+  .quiz_title
+    :color #FFFFFF
+    :padding-top 3px
+    :position absolute
+    :font-family Arial, Helvetica, sans-serif
+    :font-size 16px
+    :width 200px
+    :text-align center
+    :letter-spacing 1px
 
 .question_type_tab
   :padding-top 15px
 .question_name
   :color #FFFFFF
   :padding-top 3px
-  :padding-left 5px
   :position absolute
-  :font-family "Times New Roman"
+  :font-family "Times New Roman", Times, serif
   :font-weight 700
-  :text-shadow 3px 3px 5px rgba(0,0,0,0.65)
+  :font-size 13px
+  :width 100px
+  :text-align center
+  :letter-spacing 1px
 
 #sort_questions
   :max-height 250px
@@ -100,7 +130,9 @@ div.question
         :border-top-left-radius 6px
         :-moz-border-bottom-right-radius 3px
         :-moz-border-top-left-radius 6px
-        :width 81px
+        :-webkit-border-bottom-right-radius 3px
+        :-webkit-border-top-left-radius 6px
+        :width 100px
         :height 25px
         :margin-top 0px
         :margin-left 0px
