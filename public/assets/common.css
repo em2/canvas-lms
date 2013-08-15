@@ -97,8 +97,8 @@ body.with-sidebar-pinned-to-bottom #right-side,body.with-sidebar-pinned-to-botto
 .gray{color:#999}
 #skip_navigation_link{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;color:white;background-color:#dc3f3f;border:1px dashed white;font-size:12px;padding:1px}
 #skip_navigation_link:focus{left:0;width:auto;height:auto;z-index:1}
-#header-logo,#header.no-user #header-logo{background:url(/images/logo.png?1341500195) no-repeat;width:160px;height:65px;left:16px;bottom:4px;position:absolute;text-indent:-9999px;outline:none}
-#header-logo-secondary{display:none;background:url(/images/logo.png?1341500195) no-repeat;width:160px;height:65px;right:26px;bottom:6px;position:absolute}
+#header-logo,#header.no-user #header-logo{background:url(/images/logo.png?1376596256) no-repeat;background-size:160px 65px;width:160px;height:65px;left:16px;bottom:4px;position:absolute;text-indent:-9999px;outline:none}
+#header-logo-secondary{display:none;background:url(/images/logo.png?1376596256) no-repeat;width:160px;height:65px;right:26px;bottom:6px;position:absolute}
 #header{position:relative;z-index:11;padding-top:26px;background:url(/images/canvas/header_bg.png?1341500195) 0 0 repeat-x}
 #header.no-user{background-position:0 -25px;min-height:20px}
 #header.no-user #header-logo{top:11px;left:6px}
