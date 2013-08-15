@@ -64,15 +64,31 @@ body.modal
       margin-bottom: 30px
 
     .login_button
-      background: url(/images/login-buttons.png) no-repeat
-      width: 82px
-      height: 28px
+      width: 78px
+      height: 26px
       vertical-align: bottom
       border: none
+      background-color: #00A2E2
       margin-left: 8px
-      background-position: 1px 0px
+      :border-radius 3px
+      :-moz-border-radius 3px
+      :-webkit-border-radius 3px
+      :box-shadow inset 0 0 1px 1px rgba(25,156,232,0.75)
+      background-image: linear-gradient(bottom, rgb(0,150,230) 20%, rgb(20,183,242) 75%)
+      background-image: -webkit-linear-gradient(bottom, rgb(0,150,230) 20%, rgb(20,183,242) 75%)
+      background-image: -moz-linear-gradient(bottom, rgb(0,150,230) 20%, rgb(20,183,242) 75%)
+      .login_button_words
+        font-family: Helvetica, san-serif
+        letter-spacing: 1px
+        font-size: 13px
+        color: #FFFFFF
+        :text-shadow 0px 1px 6px #000000
+        :-webkit-text-shadow 0px 1px 6px #000000
+        :-moz-text-shadow 0px 1px 6px #000000
       &:hover
-        background-position: -82px 0px
+        background-image: linear-gradient(bottom, rgb(4,121,183) 20%, rgb(30,173,225) 75%)
+        background-image: -webkit-linear-gradient(bottom, rgb(4,121,183) 20%, rgb(30,173,225) 75%)
+        background-image: -moz-linear-gradient(bottom, rgb(4,121,183) 20%, rgb(30,173,225) 75%)
 
     #login_button_extras
       padding-top: 12px

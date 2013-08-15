@@ -75,7 +75,7 @@ $(document).ready(function() {
       <input type="hidden" name="redirect_to_ssl" value="1"/>
       <div id="login_fields">
         <span class=" field-with-fancyplaceholder"><%= f.label :unique_id, login_handle_name %><%= f.text_field :unique_id, :class => "text", :value => params[:pseudonym_session_student].try(:[], :unique_id) %></span>
-        <button type="submit" class="login_button"></button> 
+        <button type="submit" class="login_button"><div class="login_button_words">Login</div></button>
       </div>
     <% end %>
   </div>
