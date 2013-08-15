@@ -1082,7 +1082,7 @@ em2:
   menu: 
     my_courses: My Classes
   tabs: 
-    quizzes: Assessments
+    quizzes: Class Assessments
   getting_started: 
     name: 
       teacherless_grades_notice: You can use Canvas to keep track of how you're doing in all your classes, whether they're using Canvas or not. Just tell us how your class's grading policy is set up and then enter your scores manually. You can also invite your classmates to use the class you set up so they can track their grades, too!
