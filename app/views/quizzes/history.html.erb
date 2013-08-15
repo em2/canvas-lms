@@ -57,7 +57,7 @@
       </div>
       <a href="<%= context_url(@context, :context_quiz_url, @quiz) %>" class='no-hover'><%= image_tag "back.png" %> <%= @quiz.survey? ? t('links.back_to_survey', "Back to Survey") : t('links.back_to_quiz', "Back to Quiz") %></a>
       <br/>
-      <a href="<%= context_url(@context, :context_quiz_students_reports_url, @quiz) %>" class='no-hover'><%= image_tag "back.png" %> <%= t('links.back_to_students_reports', "Back to Assessment Students Reports") %></a>
+      <a href="<%= context_url(@context, :context_quiz_students_reports_url, @quiz) %>" class='no-hover'><%= image_tag "back.png" %> <%= t('links.back_to_students_reports', "Back to Assessment Misconception Reports") %></a>
     </div>
   <% end %>
 <% end %>
