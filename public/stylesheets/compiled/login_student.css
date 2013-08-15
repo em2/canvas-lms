@@ -2,7 +2,7 @@
 body.modal #footer {
   display: block !important;
   width: 41%;
-  margin: 20px auto;
+  margin: 18px auto;
   padding-left: 16px; }
 /* line 11, ../../../app/stylesheets/login_student.sass */
 body.modal #main {
