@@ -76,9 +76,9 @@
         <% end -%>
         <td dir="ltr" class="s11">Q<%= @quiz_question_count %></td>
         <% (@misconceptions.count-1).times do |count| -%>
-          <td dir="ltr" class="s12"><%= @misconceptions[count].name %></td>
+          <td dir="ltr" class="s12"><%= link_to @misconceptions[count].name, course_quiz_students_reports_path(params[:class_report_id], params[:id]) + "#" + @misconceptions[count].name %></td>
         <% end -%>
-        <% if !@misconceptions.last.nil? -%><td dir="ltr" class="s11"><%= @misconceptions.last.name %></td><% end -%>
+        <% if !@misconceptions.last.nil? -%><td dir="ltr" class="s11"><%= link_to @misconceptions.last.name, course_quiz_students_reports_path(params[:class_report_id], params[:id]) + "#" + @misconceptions.last.name %></td><% end -%>
         <td dir="ltr" class="s11">Indicates Difficulty</td>
         <td class="s8"></td>
       </tr>
