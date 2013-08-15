@@ -25,6 +25,9 @@ class AssessmentMisconceptionsController < ApplicationController
       assessment_questions = question_bank.assessment_questions
       assessment_questions.each do |assessment_question|
         assessment_question[:question_data][:answers].each do |answer|
+          if answer[:misconception_id].nil?
+            answer[:misconception_id] = "{}"
+          end
           a = JSON.parse(answer[:misconception_id])
           a[params[:id]] = pattern["#{assessment_question[:id]}"]["#{answer[:id]}"]
           answer[:misconception_id] = a.to_json
