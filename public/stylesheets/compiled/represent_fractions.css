@@ -1,0 +1,24 @@
+/* line 2, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .explain_answer {
+  margin-left: 250px; }
+/* line 5, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question #explain_text {
+  text-align: left;
+  margin-left: 10px; }
+/* line 9, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .explain_area_text_RF {
+  margin-top: 6px;
+  margin-left: 9px; }
+/* line 13, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .question_text_RF {
+  font-size: 24px; }
+/* line 16, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .question_image_RF {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+/* line 20, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .question_image_RF img {
+  width: 200px; }
+/* line 23, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .equation_image {
+  vertical-align: middle; }

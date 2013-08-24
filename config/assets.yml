@@ -214,6 +214,8 @@ stylesheets:
     - public/stylesheets/compiled/reports_index.css
   comparing:
     - public/stylesheets/compiled/comparing.css
+  represent_fractions:
+    - public/stylesheets/compiled/represent_fractions.css
   assessment_reports_index:
     - public/stylesheets/compiled/assessment_reports_index.css
   roster_user:

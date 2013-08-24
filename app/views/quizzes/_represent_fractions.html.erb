@@ -225,7 +225,7 @@
 </div>
 <div class="explain_answer">
   <% if assessing || user_answer -%>
-    <div id="explain_text">Explain your thinking process.</div> <br/>
+  <div id="explain_text">Explain your thinking process.</div>
     <% if assessing -%>
       <div id="explain_area_<%= question[:id] %>" class="explain_area_text_RF"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
     <% end -%>
@@ -247,7 +247,6 @@
       <% click_size_data = user_answer[:explain_canvas_click_size_data] -%>
       <% click_drag_data = user_answer[:explain_canvas_click_drag_data] -%>
     <% end -%>
-    <div class="clear"></div>
     <div id="explain_canvas_<%= question[:id] %>"></div>
     <input type="hidden" class="explain_canvas_data", id="explain_canvas_<%= question[:id] %>_click_x_data" name="explain_canvas_<%= question[:id] %>_click_x_data" value="<%=click_x_data%>" % />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_y_data" name="explain_canvas_<%= question[:id] %>_click_y_data" value="<%= click_y_data %>" />
@@ -282,48 +281,24 @@
 <% end -%>
 
 <style>
-  .explain_answer {
-    margin-left: 250px;
-  }
-  #explain_canvas_<%= question[:id] %>{
+  #explain_canvas_<%= question[:id] %> {
     cursor: pointer;
     float: left;
+    margin-left: 9px;
+    margin-bottom: 10px;
   }
-  #explain_canvas_<%= question[:id] %>:active, #explain_canvas_<%= question[:id] %>:focus{
+  #explain_canvas_<%= question[:id] %>:active, #explain_canvas_<%= question[:id] %>:focus {
     cursor: crosshair;
     float: left;
+    margin-left: 9px;
+    margin-bottom: 10px;
   }
-  #explain_text{
-    float: left;
-    margin-left: 10px;
-    padding-left: 15px;
-  }
-  #explain_area_<%= question[:id] %>{
-    float: left;
-  }
-  #explain_area_<%= question[:id] %>_text{
+  #explain_area_<%= question[:id] %>_text {
     margin-top: 1px;
     font-size: 13px;
     width: 600px;
     height: 200px;
     resize: vertical;
-  }
-  .explain_area_text_RF{
-    padding: 3px 6px;
-    margin-top: 6px;
-    margin-left: 3px;
-  }
-  .answers_RF{
-  }
-  .question_text_RF{
-    font-size: 24px;
-  }
-  .question_image_RF{
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .equation_image{
-    vertical-align: middle;
   }
 
 </style>
