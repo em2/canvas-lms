@@ -241,7 +241,7 @@
         <% click_drag_data = user_answer[:explain_canvas_click_drag_data] -%>
       <% end -%>
 
-      <div id="explain_text">Explain your thinking process.</div> <br/>
+      <div id="explain_text">Explain your choice using words and / or pictures.</div>
       <% if assessing -%>
         <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea id="explain_area_<%= question[:id] %>_text" class="explain_area_textarea_LF" name="explain_area_<%= question[:id] %>"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
       <% end -%>

@@ -225,7 +225,7 @@
 </div>
 <div class="explain_answer">
   <% if assessing || user_answer -%>
-  <div id="explain_text">Explain your thinking process.</div>
+  <div id="explain_text">Explain your choice using words and / or pictures.</div>
     <% if assessing -%>
       <div id="explain_area_<%= question[:id] %>" class="explain_area_text_RF"><textarea id="explain_area_<%= question[:id] %>_text" class="explain_area_textarea_RF" name="explain_area_<%= question[:id] %>"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
     <% end -%>
