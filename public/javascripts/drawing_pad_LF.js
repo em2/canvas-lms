@@ -142,7 +142,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
   eraserBackgroundImage.onload = function() { resourceLoaded(); 
   }
   eraserBackgroundImage.src = "../../../../images/canvas_drawing/eraser-background_LF.png";
-  
+
   plainBackgroungImage.onload = function() { resourceLoaded(); 
   }
   plainBackgroungImage.src = "../../../../images/canvas_drawing/plain-background_LF.png";
@@ -218,10 +218,6 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
     redraw();
   }
 
-
-
-
-  
   function mouseDown(e) {
     if (assessing){
         mouseIsDragging = true;
@@ -245,7 +241,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
       draw();
     }
   }
-   
+
   function touchXY(e) {
     if(assessing){
       e.preventDefault();
@@ -307,9 +303,9 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 
     paint = true;
     addClick();
-    
+
   }
-  
+
   /**
   * Adds a point to the drawing array.
   */
@@ -376,7 +372,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
     {
       alert("Error: Current Tool is undefined");
     }
-    
+
     if (assessing == true){
       //
       // Draw the marker tip blue
@@ -389,14 +385,12 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
       context.fillStyle = colorBlue;
       context.fill();
     }
-    
+
     // Keep the drawing in the drawing area
     context.save();
     context.beginPath();
     context.rect(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
     context.clip();
-
-
 
     var radius;
     var i = 0;
