@@ -20,8 +20,6 @@
 function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawing_image) {
   if (editing === true) { return; }
 
-  var outlineImage = new Image();
-  outlineImage.crossOrigin = "";
   var canvas;
   var canvasX;
   var canvasY;
@@ -36,11 +34,8 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
   var colorBlue = "#0033ff";
   var colorBlack = "#000000";
   var colorWhite = "#FFFFFF";
-  var marker1BackgroundImage = new Image();
-  var marker2BackgroundImage = new Image();
-  var eraserBackgroundImage = new Image();
-  var plainBackgroungImage = new Image();
-  var whiteBackgroundImage = new Image();
+  var sources = {};
+  var images = {};
   var clickX = new Array();
   var clickY = new Array();
   var clickColor = new Array();
@@ -57,13 +52,11 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
   var drawingAreaHeight = 330;
   var toolHotspotStartY = 30;
   var toolHeight = 38;
-  var totalLoadResources = 5;
   var curLoadResNum = 0;
   var lastIndexDrawn = 0;
   var markerTipX = 644;
   var marker1TipY = 44;
   var marker2TipY = 83;
-  var outlineImageWidth = 650;
   var outlineImageHeight = 150;
 
 
@@ -103,17 +96,6 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
     }
   }
 
-
-  /**
-  * Calls the redraw function after all neccessary resources are loaded.
-  */
-  function resourceLoaded() {
-    if (++curLoadResNum >= totalLoadResources) {
-      redraw();
-    }
-  }
-
-
   // Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
   var canvasDiv = document.getElementById(canvas_element);
   var canvas = document.createElement('canvas');
@@ -133,35 +115,33 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
   // Load images
   // -----------
 
-  marker1BackgroundImage.onload = function() { resourceLoaded(); }
-  marker1BackgroundImage.src = "../../../../images/canvas_drawing/marker1-background_LF.png";
+  sources = {
+    marker1BackgroundImage: '../../../../images/canvas_drawing/marker1-background_LF.png',
+    marker2BackgroundImage: '../../../../images/canvas_drawing/marker2-background_LF.png',
+    eraserBackgroundImage: '../../../../images/canvas_drawing/eraser-background_LF.png',
+    plainBackgroungImage: '../../../../images/canvas_drawing/plain-background_LF.png',
+    whiteBackgroundImage: '../../../../images/canvas_drawing/background-white_LF.png',
+    outlineImage: drawing_image
+  };
 
-  marker2BackgroundImage.onload = function() { resourceLoaded(); }
-  marker2BackgroundImage.src = "../../../../images/canvas_drawing/marker2-background_LF.png";
-
-  eraserBackgroundImage.onload = function() { resourceLoaded(); }
-  eraserBackgroundImage.src = "../../../../images/canvas_drawing/eraser-background_LF.png";
-
-  plainBackgroungImage.onload = function() { resourceLoaded(); }
-  plainBackgroungImage.src = "../../../../images/canvas_drawing/plain-background_LF.png";
-
-  outlineImage.onload = function() { resourceLoaded(); }
-  outlineImage.src = drawing_image;
-
-  whiteBackgroundImage.onload = function() { resourceLoaded(); }
-  whiteBackgroundImage.src = "../../../../images/canvas_drawing/background-white_LF.png";
-
-  //
-  // add the event listens for touch pads and the mouse
-    // canvas.addEventListener("mousedown", mouseDown, false);
-    // canvas.addEventListener("mousemove", mouseXY, false);
-    // canvas.addEventListener("touchstart", touchDown, false);
-    // canvas.addEventListener("touchmove", touchXY, true);
-    // canvas.addEventListener("touchend", touchUp, false);
- 
-    // document.body.addEventListener("mouseup", mouseUp, false);
-    // document.body.addEventListener("touchcancel", touchUp, false);
-
+  function loadImages(sources, callback) {
+    var loadedImages, numberImages, src;
+    loadedImages = 0;
+    numberImages = 0;
+    for (src in sources) {
+      numberImages++;
+    }
+    for (src in sources) {
+      images[src] = new Image();
+      images[src].onload = function() {
+        if (++loadedImages >= numberImages) {
+          return callback();
+        }
+      };
+      images[src].crossOrigin = "";
+      images[src].src = sources[src];
+    }
+  };
 
   // Add mouse events
   // ----------------
@@ -343,26 +323,23 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
   * Redraws the canvas.
   */
   function redraw() {
-    // Make sure required resources are loaded before redrawing
-    if (curLoadResNum < totalLoadResources){ return; }
-
     clearCanvas();
 
     // Draw the white square behind the drawing pad
-    context.drawImage(whiteBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+    context.drawImage(images.whiteBackgroundImage, 0, 0, canvasWidth, canvasHeight);
 
     if (curTool === "marker1" && assessing === true) {
       // Draw the marker tool background
-      context.drawImage(marker1BackgroundImage, 0, 0, canvasWidth, canvasHeight);
+      context.drawImage(images.marker1BackgroundImage, 0, 0, canvasWidth, canvasHeight);
     } else if ((curTool === "marker2" || curTool === "marker") && assessing === true) { // backwards compatability - marker2 is the same as marker
       // Draw the marker tool background
-      context.drawImage(marker2BackgroundImage, 0, 0, canvasWidth, canvasHeight);
+      context.drawImage(images.marker2BackgroundImage, 0, 0, canvasWidth, canvasHeight);
     } else if (curTool === "eraser" && assessing === true) {
       // Draw the eraser tool background
-      context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+      context.drawImage(images.eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
     } else if (!assessing) {
       // Draw the plain background
-      context.drawImage(plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
+      context.drawImage(images.plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
     } else {
       alert("Error: Current Tool is undefined");
     }
@@ -441,7 +418,7 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 
     //
     // Draw the outline if there is one
-    context.drawImage(outlineImage, drawingAreaX, drawingAreaY+(drawingAreaHeight/2) - (outlineImageHeight / 2), drawingAreaWidth, outlineImageHeight);
+    context.drawImage(images.outlineImage, drawingAreaX, drawingAreaY+(drawingAreaHeight/2) - (outlineImageHeight / 2), drawingAreaWidth, outlineImageHeight);
 
   }
   function draw () {
@@ -486,16 +463,16 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 
     if (curTool === "marker1" && assessing === true) {
       // Draw the marker tool background
-      context.drawImage(marker1BackgroundImage, 0, 0, canvasWidth, canvasHeight);
+      context.drawImage(images.marker1BackgroundImage, 0, 0, canvasWidth, canvasHeight);
     } else if ((curTool === "marker2" || curTool === "marker") && assessing === true) { // backwards compatability - marker2 is the same as marker
       // Draw the marker tool background
-      context.drawImage(marker2BackgroundImage, 0, 0, canvasWidth, canvasHeight);
+      context.drawImage(images.marker2BackgroundImage, 0, 0, canvasWidth, canvasHeight);
     } else if (curTool === "eraser" && assessing === true) {
       // Draw the eraser tool background
-      context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+      context.drawImage(images.eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
     } else if (!assessing) {
       // Draw the plain background
-      context.drawImage(plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
+      context.drawImage(images.plainBackgroungImage, 0, 0, canvasWidth-104, canvasHeight);
     } else {
       alert("Error: Current Tool is undefined");
     }
@@ -525,8 +502,9 @@ function prepareCanvasLF(canvas_element, question_id, assessing, editing, drawin
 
     //
     // Draw the outline if there is one
-    context.drawImage(outlineImage, drawingAreaX, drawingAreaY+(drawingAreaHeight/2) - (outlineImageHeight / 2), drawingAreaWidth, outlineImageHeight);
+    context.drawImage(images.outlineImage, drawingAreaX, drawingAreaY+(drawingAreaHeight/2) - (outlineImageHeight / 2), drawingAreaWidth, outlineImageHeight);
   }
+  return loadImages(sources, redraw);
 }
 
 /**/
