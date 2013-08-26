@@ -22,3 +22,22 @@
 /* line 23, ../../../app/stylesheets/represent_fractions.sass */
 .represent_fractions_question .equation_image {
   vertical-align: middle; }
+/* line 26, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .explain_canvas {
+  cursor: pointer;
+  float: left;
+  margin-left: 9px;
+  margin-bottom: 10px; }
+  /* line 31, ../../../app/stylesheets/represent_fractions.sass */
+  .represent_fractions_question .explain_canvas:active, .represent_fractions_question .explain_canvas:focus {
+    cursor: crosshair;
+    float: left;
+    margin-left: 9px;
+    margin-bottom: 10px; }
+/* line 37, ../../../app/stylesheets/represent_fractions.sass */
+.represent_fractions_question .explain_area_textarea_RF {
+  margin-top: 1px;
+  font-size: 13px;
+  width: 600px;
+  height: 200px;
+  resize: vertical; }
