@@ -19,12 +19,6 @@
           :padding 5px 2px !important
           :margin 0 !important
 
-  .explain_area_text_compare_fractions_question
-    .explain_area_text_compare_decimals_question
-      .explain_area_text_compare_decimal_fraction_question
-        :padding 3px 6px
-        :margin-top 6px
-
   .answers_compare_fractions_question
     .answers_compare_decimal_fraction_question
       :float left
@@ -68,10 +62,28 @@
   #explain_text
     :text-align left
 
+  .explain_canvas
+    :cursor pointer
+    :float left
+    :margin-top 9px
+    :margin-bottom 10px
+    &:active, &:focus
+      :cursor crosshair
+
+  .explain_area_text
+    :float left
+
+  .explain_area_textarea_CF
+    :margin-top 1px
+    :font-size 13px
+    :width 600px
+    :height 200px
+    :resize vertical
+
 .compare_decimals_question
   .question_answer_holder
     :margin-right 10px
-  .drawing_pad
+  .explain_canvas
     :margin-left 38px
 
 .compare_decimal_fraction_question

@@ -26,11 +26,8 @@
   margin-top: 10px; }
   /* line 27, ../../../app/stylesheets/locate_fractions.sass */
   .locate_fractions_question .explain_canvas:active, .locate_fractions_question .explain_canvas:focus {
-    cursor: crosshair;
-    margin-left: 4px;
-    margin-bottom: 10px;
-    margin-top: 10px; }
-/* line 33, ../../../app/stylesheets/locate_fractions.sass */
+    cursor: crosshair; }
+/* line 30, ../../../app/stylesheets/locate_fractions.sass */
 .locate_fractions_question .explain_area_textarea_LF {
   margin-top: 10px;
   font-size: 13px;

@@ -14,66 +14,81 @@
 .compare_fractions_question .question .text .answers .answer, .compare_decimals_question .question .text .answers .answer, .compare_decimal_fraction_question .question .text .answers .answer {
   padding: 5px 2px !important;
   margin: 0 !important; }
-/* line 24, ../../../app/stylesheets/comparing.sass */
-.compare_fractions_question .explain_area_text_compare_fractions_question .explain_area_text_compare_decimals_question .explain_area_text_compare_decimal_fraction_question, .compare_decimals_question .explain_area_text_compare_fractions_question .explain_area_text_compare_decimals_question .explain_area_text_compare_decimal_fraction_question, .compare_decimal_fraction_question .explain_area_text_compare_fractions_question .explain_area_text_compare_decimals_question .explain_area_text_compare_decimal_fraction_question {
-  padding: 3px 6px;
-  margin-top: 6px; }
-/* line 29, ../../../app/stylesheets/comparing.sass */
+/* line 23, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .answers_compare_fractions_question .answers_compare_decimal_fraction_question, .compare_decimals_question .answers_compare_fractions_question .answers_compare_decimal_fraction_question, .compare_decimal_fraction_question .answers_compare_fractions_question .answers_compare_decimal_fraction_question {
   float: left;
   margin-top: 70px;
   padding-left: 5px;
   padding-right: 5px; }
-/* line 35, ../../../app/stylesheets/comparing.sass */
+/* line 29, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .answers_compare_decimals_question, .compare_decimals_question .answers_compare_decimals_question, .compare_decimal_fraction_question .answers_compare_decimals_question {
   float: left; }
-/* line 38, ../../../app/stylesheets/comparing.sass */
+/* line 32, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .question_right_side_compare_decimals_question, .compare_decimals_question .question_right_side_compare_decimals_question, .compare_decimal_fraction_question .question_right_side_compare_decimals_question {
   padding-right: 0px; }
-/* line 41, ../../../app/stylesheets/comparing.sass */
+/* line 35, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .question_text_compare_fractions_question_frac, .compare_decimals_question .question_text_compare_fractions_question_frac, .compare_decimal_fraction_question .question_text_compare_fractions_question_frac {
   float: left;
   margin-top: 19px;
   margin-left: -5px; }
-/* line 46, ../../../app/stylesheets/comparing.sass */
+/* line 40, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .question_right_side_compare_fractions_question, .compare_decimals_question .question_right_side_compare_fractions_question, .compare_decimal_fraction_question .question_right_side_compare_fractions_question {
   margin-left: 167px;
   margin-top: -64px; }
-  /* line 49, ../../../app/stylesheets/comparing.sass */
+  /* line 43, ../../../app/stylesheets/comparing.sass */
   .compare_fractions_question .question_right_side_compare_fractions_question .question_right_side_compare_decimal_fraction_question, .compare_decimals_question .question_right_side_compare_fractions_question .question_right_side_compare_decimal_fraction_question, .compare_decimal_fraction_question .question_right_side_compare_fractions_question .question_right_side_compare_decimal_fraction_question {
     padding-right: 13px; }
-/* line 52, ../../../app/stylesheets/comparing.sass */
+/* line 46, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .question_text_compare_decimals_question_frac, .compare_decimals_question .question_text_compare_decimals_question_frac, .compare_decimal_fraction_question .question_text_compare_decimals_question_frac {
   float: left;
   margin-top: 90px; }
-/* line 56, ../../../app/stylesheets/comparing.sass */
+/* line 50, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .question_text_compare_decimal_fraction_question_frac, .compare_decimals_question .question_text_compare_decimal_fraction_question_frac, .compare_decimal_fraction_question .question_text_compare_decimal_fraction_question_frac {
   float: left;
   margin-top: 11px; }
-/* line 60, ../../../app/stylesheets/comparing.sass */
+/* line 54, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .question_text_compare_decimals_question, .compare_decimals_question .question_text_compare_decimals_question, .compare_decimal_fraction_question .question_text_compare_decimals_question {
   float: left;
   margin-top: 34px; }
-/* line 64, ../../../app/stylesheets/comparing.sass */
+/* line 58, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question .question_text_compare_decimal_fraction_question, .compare_decimals_question .question_text_compare_decimal_fraction_question, .compare_decimal_fraction_question .question_text_compare_decimal_fraction_question {
   float: left;
   margin-top: 90px; }
-/* line 68, ../../../app/stylesheets/comparing.sass */
+/* line 62, ../../../app/stylesheets/comparing.sass */
 .compare_fractions_question #explain_text, .compare_decimals_question #explain_text, .compare_decimal_fraction_question #explain_text {
   text-align: left; }
+/* line 65, ../../../app/stylesheets/comparing.sass */
+.compare_fractions_question .explain_canvas, .compare_decimals_question .explain_canvas, .compare_decimal_fraction_question .explain_canvas {
+  cursor: pointer;
+  float: left;
+  margin-top: 9px;
+  margin-bottom: 10px; }
+  /* line 70, ../../../app/stylesheets/comparing.sass */
+  .compare_fractions_question .explain_canvas:active, .compare_fractions_question .explain_canvas:focus, .compare_decimals_question .explain_canvas:active, .compare_decimals_question .explain_canvas:focus, .compare_decimal_fraction_question .explain_canvas:active, .compare_decimal_fraction_question .explain_canvas:focus {
+    cursor: crosshair; }
+/* line 73, ../../../app/stylesheets/comparing.sass */
+.compare_fractions_question .explain_area_text, .compare_decimals_question .explain_area_text, .compare_decimal_fraction_question .explain_area_text {
+  float: left; }
+/* line 76, ../../../app/stylesheets/comparing.sass */
+.compare_fractions_question .explain_area_textarea_CF, .compare_decimals_question .explain_area_textarea_CF, .compare_decimal_fraction_question .explain_area_textarea_CF {
+  margin-top: 1px;
+  font-size: 13px;
+  width: 600px;
+  height: 200px;
+  resize: vertical; }
 
-/* line 72, ../../../app/stylesheets/comparing.sass */
+/* line 84, ../../../app/stylesheets/comparing.sass */
 .compare_decimals_question .question_answer_holder {
   margin-right: 10px; }
-/* line 74, ../../../app/stylesheets/comparing.sass */
-.compare_decimals_question .drawing_pad {
+/* line 86, ../../../app/stylesheets/comparing.sass */
+.compare_decimals_question .explain_canvas {
   margin-left: 38px; }
 
-/* line 78, ../../../app/stylesheets/comparing.sass */
+/* line 90, ../../../app/stylesheets/comparing.sass */
 .compare_decimal_fraction_question .question_text_compare_decimal_fraction_question {
   margin-top: 20px;
   margin-right: 5px; }
-/* line 81, ../../../app/stylesheets/comparing.sass */
+/* line 93, ../../../app/stylesheets/comparing.sass */
 .compare_decimal_fraction_question .question_right_side_compare_decimal_fraction_question {
   margin-top: -50px;
   margin-left: 180px; }
