@@ -225,7 +225,6 @@
 <div class="explain_answer">
   <% if assessing || user_answer -%>
     <div>
-      
       <% if assessing -%>
         <% click_x_data = @stored_params["explain_canvas_#{question[:id]}_click_x_data"] -%>
         <% click_y_data = @stored_params["explain_canvas_#{question[:id]}_click_y_data"] -%>
@@ -244,14 +243,13 @@
 
       <div id="explain_text">Explain your thinking process.</div> <br/>
       <% if assessing -%>
-        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea id="explain_area_<%= question[:id] %>_text" name="explain_area_<%= question[:id] %>"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
+        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea id="explain_area_<%= question[:id] %>_text" class="explain_area_textarea_LF" name="explain_area_<%= question[:id] %>"><%= @stored_params["explain_area_#{question[:id]}"]%></textarea></div>
       <% end -%>
       <% if !assessing && user_answer -%>
-        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea disabled=true id="explain_area_<%= question[:id] %>_text"><%= user_answer[:explain_area] %></textarea></div>
+        <div id="explain_area_<%= question[:id] %>" class="explain_area_text_LF"><textarea disabled=true id="explain_area_<%= question[:id] %>_text" class="explain_area_textarea_LF"><%= user_answer[:explain_area] %></textarea></div>
       <% end -%>
     </div>
-    <div class="clear"></div>
-    <div id="explain_canvas_<%= question[:id] %>"></div>
+    <div id="explain_canvas_<%= question[:id] %>" class="explain_canvas"></div>
     <input type="hidden" class="explain_canvas_data", id="explain_canvas_<%= question[:id] %>_click_x_data" name="explain_canvas_<%= question[:id] %>_click_x_data" value="<%=click_x_data%>" % />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_y_data" name="explain_canvas_<%= question[:id] %>_click_y_data" value="<%= click_y_data %>" />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_color_data" name="explain_canvas_<%= question[:id] %>_click_color_data" value="<%= click_color_data %>" />
@@ -283,49 +281,6 @@
 <% if editing -%>
   <div class="editing"></div>
 <% end -%>
-
-<style>
-  .explain_answer {
-    margin-left: 250px;
-  }
-  #question_<%= question[:id] %>_question_text{
-    max-width: 150px;
-  }
-  #explain_canvas_<%= question[:id] %>{
-    cursor: pointer;
-    float: left;
-    padding-left: 4px;
-  }
-  #explain_canvas_<%= question[:id] %>:active, #explain_canvas_<%= question[:id] %>:focus{
-    cursor: crosshair;
-  }
-  #explain_text{
-    float: left;
-    margin-left: 10px;
-    padding-left: 15px;
-  }
-  .explain_area_text_LF{
-    padding: 3px 6px;
-    margin-top: 6px;
-    margin-left: 3px;
-  }
-  #explain_area_<%= question[:id] %>{
-    float: left;
-  }
-  #explain_area_<%= question[:id] %>_text{
-    margin-top: 10px;
-    font-size: 13px;
-    width: 600px;
-    height: 200px;
-    resize: vertical;
-  }
-  .answers_LF{
-    float: left;
-    margin-top: 20px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-</style>
 
 <% js_block do %>
 

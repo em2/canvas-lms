@@ -216,6 +216,8 @@ stylesheets:
     - public/stylesheets/compiled/comparing.css
   represent_fractions:
     - public/stylesheets/compiled/represent_fractions.css
+  locate_fractions:
+    - public/stylesheets/compiled/locate_fractions.css
   assessment_reports_index:
     - public/stylesheets/compiled/assessment_reports_index.css
   roster_user:
