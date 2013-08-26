@@ -1,5 +1,5 @@
 div.question{max-width:936px}
-.drawing_pad{padding-top:8px;padding-bottom:16px}
+.drawing_pad{margin-top:8px;margin-bottom:16px}
 .quiz_title_box{margin-right:10px;font-size:.9em;background:linear-gradient(top,#009856,#009854,#009a4f,#009a4d,#009c49,#08a04e,#fff);background:-webkit-linear-gradient(top,#009856,#009854,#009a4f,#009a4d,#009c49,#08a04e,white);background:-moz-linear-gradient(top,#009856,#009854,#009a4f,#009a4d,#009c49,#08a04e,white);border-top-left-radius:6px;-moz-border-top-left-radius:6px;-webkit-border-top-left-radius:6px;border-bottom-right-radius:7px;-moz-border-bottom-right-radius:7px;-webkit-border-bottom-right-radius:7px;box-shadow:0 -1px 1px #05854e;-moz-box-shadow:0 -1px 1px #05854e;-webkit-box-shadow:0 -1px 1px #05854e;width:200px;height:35px;margin-top:0;margin-left:0}
 .quiz_title_box .quiz_title{color:white;padding-top:3px;position:absolute;font-family:Helvetica,sans-serif;font-size:16px;width:200px;text-align:center;letter-spacing:1px}
 .question_type_tab{padding-top:15px}
