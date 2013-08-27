@@ -711,6 +711,10 @@ class CoursesController < ApplicationController
       return
     end
 
+    #
+    # Just go directly to the course quizzes, don't ever display the show page
+    redirect_to course_quizzes_path(params[:id])
+
     @context_enrollment = @context.enrollments.find_by_user_id(@current_user.id) if @context && @current_user
     @unauthorized_message = t('unauthorized.invalid_link', "The enrollment link you used appears to no longer be valid.  Please contact the course instructor and make sure you're still correctly enrolled.") if params[:invitation]
     claim_course if session[:claim_course_uuid] || params[:verification]
