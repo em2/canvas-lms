@@ -45,7 +45,8 @@
       <% student_count = current_enrollment.course.students.count -%>
       <span class="classes_info"><a href=<%= roster_path(current_enrollment.course.account.roster) %>><%= student_count %> <%= student_count == 1 ? t('my_classes.student', 'student') : t('my_classes.students', 'students') %> (roster)</a></span>
       <% assignments = current_enrollment.course.assignments.active -%>
-      <% assignment = assignments.find_by_position(assignments.count) -%>
+      <% max_position = assignments.map(&:position).compact.max %>
+      <% assignment = assignments.find_by_position(max_position) -%>
       <span class="classes_info"><a href="<%= course_quiz_students_reports_url(current_enrollment.course.id, assignment.quiz.id) %>" class="quiz_title"><%= t('my_classes.miscon_reports', "Misconception Reports") %></a></span>
       <span class="classes_info"><%= t('my_classes.last_assessment', 'Last Assessment:') %> <a href=<%= course_quiz_path(current_enrollment.course.id, assignment.quiz.id) %>><%= assignment.title %></span></a>
     <% end -%>
