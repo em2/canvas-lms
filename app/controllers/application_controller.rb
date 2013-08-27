@@ -310,7 +310,7 @@ class ApplicationController < ActionController::Base
         course.quizzes.active.each do |quiz|
           if quiz.question_bank_id
             if probe = probes.find(quiz.question_bank_id)
-              collection << probe
+              collection << probe if collection.exclude?(probe)
             end
           else # for backwards compatibility
             quiz_probe_name = quiz.probe_name

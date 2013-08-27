@@ -1,9 +1,9 @@
 class ReportsController < ApplicationController
   before_filter :require_user
 
-	def index
+  def index
 
-		if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
+    if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
 
       add_crumb("Reports")
 
@@ -24,7 +24,7 @@ class ReportsController < ApplicationController
       redirect_back_or_default(dashboard_url)
     end
 
-	end
+  end
 
   def calculate_reports
     if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
@@ -39,8 +39,7 @@ class ReportsController < ApplicationController
       else
         flash[:error] = "The report is already in the queue."
       end
-      
-      
+
       redirect_to :back
 
     else
