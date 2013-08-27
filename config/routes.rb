@@ -510,6 +510,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "login", :controller => "pseudonym_sessions_student", :action=> "create", :conditions => {:method => :post}
   
   map.login_teacher "login_teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
+  map.teacher "teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
   map.connect "teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
   map.connect "admin", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
   map.connect "login_teacher", :controller => "pseudonym_sessions", :action=> "create", :conditions => {:method => :post}

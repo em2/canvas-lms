@@ -169,6 +169,7 @@ class PseudonymSessionsController < ApplicationController
   end
 
   def destroy
+    redirect_to_teacher_login = is_admin_or_teacher?
     # the saml message has to survive a couple redirects and reset_session calls
     message = session[:delegated_message]
     @pseudonym_session.destroy rescue true
@@ -208,6 +209,8 @@ class PseudonymSessionsController < ApplicationController
       session[:return_to] = nil
       if @domain_root_account.delegated_authentication?
         format.html { redirect_to login_url(:no_auto=>'true') }
+      elsif redirect_to_teacher_login
+        format.html { redirect_to teacher_url }
       else
         format.html { redirect_to login_url }
       end
