@@ -2398,7 +2398,7 @@ class Course < ActiveRecord::Base
     [
       { :id => TAB_HOME, :label => t('#tabs.home', "Home"), :css_class => 'home', :href => :course_path },
       { :id => TAB_COURSES, :label => t('#account.tab_courses', "Courses"), :css_class => 'courses', :href => :courses_path, :no_args => true },
-      { :id => TAB_REPORTS, :label => t('#tabs.reports', "Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
+      { :id => TAB_REPORTS, :label => t('#tabs.summary_reports', "Summary Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
       { :id => TAB_ROSTERS, :label => t('#tabs.rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true },
       { :id => TAB_ANNOUNCEMENTS, :label => t('#tabs.announcements', "Announcements"), :css_class => 'announcements', :href => :course_announcements_path },
       { :id => TAB_ASSIGNMENTS, :label => t('#tabs.assignments', "Assignments"), :css_class => 'assignments', :href => :course_assignments_path },

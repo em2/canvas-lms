@@ -100,7 +100,7 @@ class Report < ActiveRecord::Base
   def self.default_tabs
     [
       { :id => TAB_COURSES, :label => t('#account.tab_courses', "Courses"), :css_class => 'courses', :href => :courses_path, :no_args => true },
-      { :id => TAB_REPORTS, :label => t('#tabs.reports', "Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
+      { :id => TAB_REPORTS, :label => t('#tabs.summary_reports', "Summary Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
       { :id => TAB_ROSTERS, :label => t('#tabs.rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true }
     ]
   end
