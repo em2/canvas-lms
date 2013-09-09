@@ -85,7 +85,7 @@
     <% if can_do(q, @current_user, :manage) %>
       <span class="quiz_info"><%= @all_submitted_students_count[q.id] %> <%= t('of', 'of') %> <%= @all_students_count %> <%= t('students_completed', 'students completed') %></span>
       <span class="quiz_info"><a href="<%= context_url(@context, :context_quiz_moderate_url, q.id) %>"> <%= t('links.moderate', "Moderate") %></a></span>
-      <span class="quiz_info"><a href="<%= context_url(@context, :context_quiz_students_reports_url, q) %>"><%= t('links.student_reports', "Report") %></a></span>
+      <span class="quiz_info"><a href="<%= context_url(@context, :context_quiz_students_reports_url, q) %>"><%= t('links.student_reports', "Misconception Reports") %></a></span>
       <span class="quiz_info"><% link_to context_url(@context, :context_quiz_take_url, q, :preview => 1), :method => :post, :target => "_blank" do %><%= t('links.preview', "Preview") %><% end %></span>
     <% end %>
     <% if @is_account_admin %>
