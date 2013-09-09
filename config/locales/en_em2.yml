@@ -416,7 +416,7 @@ em2:
         edit_this_quiz: Edit Assessment
         see_full_quiz: See Full Assessment
         take_the_quiz_again: Take the Assessment Again
-        moderate_this_quiz: Moderate Assessment
+        moderate_this_quiz: Monitor Assessment
         take_the_quiz: Take the Assessment
         show_student_quiz_results: Show Student Results
       quiz_no_submissions: No Students have taken the assessment yet

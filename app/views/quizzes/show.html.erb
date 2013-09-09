@@ -113,7 +113,7 @@
         <div class="button_layer">
           <span>
             <% if can_do(@quiz, @current_user, :manage) %>
-              <a href="<%= context_url(@context, :context_quiz_moderate_url, @quiz.id) %>" class="button button-quiz-buttons"><%= image_tag "ball.png" %> <%= @quiz.survey? ? t('links.moderate_this_survey', "Moderate This Survey") : t('links.moderate_this_quiz', "Moderate This Quiz") %></a>
+              <a href="<%= context_url(@context, :context_quiz_moderate_url, @quiz.id) %>" class="button button-quiz-buttons"><%= image_tag "ball.png" %> <%= @quiz.survey? ? t('links.moderate_this_survey', "Monitor This Survey") : t('links.moderate_this_quiz', "Monitor This Quiz") %></a>
             <% end %>
           </span>
           <span>
@@ -145,7 +145,7 @@
 
         <div class="button_layer">
           <span>
-            <a href="<%= context_url(@context, :context_quiz_students_reports_url, @quiz) %>" class="button button-quiz-buttons"><%= image_tag "ball.png" %> <%= t('links.summary_reports', "Summary Reports") %></a>
+            <a href="<%= context_url(@context, :context_quiz_students_reports_url, @quiz) %>" class="button button-quiz-buttons"><%= image_tag "ball.png" %> <%= t('links.misconception_reports', "Misconception Reports") %></a>
           </span>
         </div>
 
