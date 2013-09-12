@@ -3,9 +3,9 @@
 # In the development environment your application's code is reloaded on
 # every request.  This slows down response time but is perfect for development
 # since you don't have to restart the webserver when you make code changes.
-config.cache_classes = false
-config.action_controller.perform_caching = false
-config.action_view.cache_template_loading = false
+config.cache_classes = true
+config.action_controller.perform_caching = true
+config.action_view.cache_template_loading = true
 
 # Log error messages when you accidentally call methods on nil.
 config.whiny_nils = true

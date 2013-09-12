@@ -6,4 +6,4 @@
  * Dual licensed under the MIT and GPL licenses.
  * http://benalman.com/about/license/
  */
-define(["jquery"],function(a){var b;a.throttle=b=function(b,c,d,e){function f(){function a(){h=+(new Date),d.apply(i,k)}function f(){g=undefined}var i=this,j=+(new Date)-h,k=arguments;e&&!g&&a(),g&&clearTimeout(g),e===undefined&&j>b?a():c!==!0&&(g=setTimeout(e?f:a,e===undefined?b-j:b))}var g,h=0;return typeof c!="boolean"&&(e=d,d=c,c=undefined),a.guid&&(f.guid=d.guid=d.guid||a.guid++),f},a.debounce=function(a,c,d){return d===undefined?b(a,c,!1):b(a,d,c!==!1)}})
+define(["jquery"],function(a){var b;a.throttle=b=function(b,c,d,e){function h(){function j(){g=+(new Date),d.apply(a,i)}function k(){f=undefined}var a=this,h=+(new Date)-g,i=arguments;e&&!f&&j(),f&&clearTimeout(f),e===undefined&&h>b?j():c!==!0&&(f=setTimeout(e?k:j,e===undefined?b-h:b))}var f,g=0;return typeof c!="boolean"&&(e=d,d=c,c=undefined),a.guid&&(h.guid=d.guid=d.guid||a.guid++),h},a.debounce=function(a,c,d){return d===undefined?b(a,c,!1):b(a,d,c!==!1)}})
