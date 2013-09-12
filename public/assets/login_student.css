@@ -1,16 +1,16 @@
-body.modal #footer{display:block!important;width:41%;margin:18px auto;padding-left:16px}
+body.modal #footer{display:block!important;width:390px;margin:18px auto;padding-left:16px}
 body.modal #main{background-color:transparent;border:0 none;margin:0;padding:0}
-body.modal #modal-box-top{background:url(/images/login-bg.png?1374111683) no-repeat;width:41%;height:10px;overflow:hidden;margin:75px auto 0;padding:10px 20px 0 20px;position:relative}
-body.modal #modal-box-bottom{background:url(/images/login-bg.png?1374111683) no-repeat bottom center;width:41%;height:9px;overflow:hidden;margin:0 auto 0;padding:0 20px 10px 20px;position:relative}
+body.modal #modal-box-top{background:url(/images/login-bg.png?1374111683) no-repeat;width:390px;height:10px;overflow:hidden;margin:75px auto 0;padding:10px 20px 0 20px;position:relative}
+body.modal #modal-box-bottom{background:url(/images/login-bg.png?1374111683) no-repeat bottom center;width:390px;height:9px;overflow:hidden;margin:0 auto 0;padding:0 20px 10px 20px;position:relative}
 body.modal #modal-box-arbitrary-size{margin-top:-30px!important;height:auto!important;background-image:url(/images/login-bg-middle-tall.jpg?1341500195)!important}
 body.modal #modal-box-arbitrary-size #register_form{margin-top:40px}
 body.modal #modal-box,body.modal #modal-box-arbitrary-size{position:relative;margin-left:auto;margin-right:auto}
 body.modal #modal-box.modal-box-tall,body.modal #modal-box-arbitrary-size.modal-box-tall{margin-top:50px}
 body.modal #modal-box a,body.modal #modal-box-arbitrary-size a{color:inherit!important;text-decoration:underline}
 body.modal #modal-box ul,body.modal #modal-box-arbitrary-size ul{list-style-type:none}
-body.modal #modal-box #login-background,body.modal #modal-box-arbitrary-size #login-background{background:url(/images/login-bg.png?1374111683) no-repeat;width:41%;height:390px;margin:96px auto 0}
-body.modal #modal-box #modal-box-inner,body.modal #modal-box-arbitrary-size #modal-box-inner{width:41%;height:11px;color:#5c5c5c;margin:14px auto 0;padding-bottom:14px}
-body.modal #modal-box .login_button,body.modal #modal-box-arbitrary-size .login_button{width:78px;height:26px;vertical-align:bottom;border:none;background-color:#00a2e2;margin-left:8px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;box-shadow:inset 0 0 1px 1px rgba(25,156,232,0.75);background-image:linear-gradient(bottom,#0096e6 20%,#14b7f2 75%);background-image:-webkit-linear-gradient(bottom,#0096e6 20%,#14b7f2 75%);background-image:-moz-linear-gradient(bottom,#0096e6 20%,#14b7f2 75%)}
+body.modal #modal-box #login-background,body.modal #modal-box-arbitrary-size #login-background{background:url(/images/login-bg.png?1374111683) no-repeat;width:390px;height:390px;margin:96px auto 0}
+body.modal #modal-box #modal-box-inner,body.modal #modal-box-arbitrary-size #modal-box-inner{width:390px;height:11px;color:#5c5c5c;margin:14px auto 0;padding-bottom:14px}
+body.modal #modal-box .login_button,body.modal #modal-box-arbitrary-size .login_button{width:78px;height:27px;vertical-align:bottom;border:none;background-color:#00a2e2;margin-left:8px;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;box-shadow:inset 0 0 1px 1px rgba(25,156,232,0.75);background-image:linear-gradient(bottom,#0096e6 20%,#14b7f2 75%);background-image:-webkit-linear-gradient(bottom,#0096e6 20%,#14b7f2 75%);background-image:-moz-linear-gradient(bottom,#0096e6 20%,#14b7f2 75%)}
 body.modal #modal-box .login_button .login_button_words,body.modal #modal-box-arbitrary-size .login_button .login_button_words{font-family:Helvetica,san-serif;letter-spacing:1px;font-size:13px;color:white;text-shadow:0 1px 6px black;-webkit-text-shadow:0 1px 6px black;-moz-text-shadow:0 1px 6px black}
 body.modal #modal-box .login_button:hover,body.modal #modal-box-arbitrary-size .login_button:hover{background-image:linear-gradient(bottom,#0479b7 20%,#1eade1 75%);background-image:-webkit-linear-gradient(bottom,#0479b7 20%,#1eade1 75%);background-image:-moz-linear-gradient(bottom,#0479b7 20%,#1eade1 75%)}
 body.modal #modal-box #login_fields,body.modal #modal-box-arbitrary-size #login_fields{padding-left:3px}
