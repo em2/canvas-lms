@@ -1,7 +1,7 @@
 /* line 5, ../../../app/stylesheets/login.sass */
 body.modal #footer {
   display: block !important;
-  width: 41%;
+  width: 390px;
   margin: 13px auto;
   padding-left: 16px; }
 /* line 11, ../../../app/stylesheets/login.sass */
@@ -13,7 +13,7 @@ body.modal #main {
 /* line 17, ../../../app/stylesheets/login.sass */
 body.modal #modal-box-top {
   background: url(/images/login-bg.png) no-repeat;
-  width: 41%;
+  width: 390px;
   height: 10px;
   overflow: hidden;
   margin: 75px auto 0;
@@ -22,7 +22,7 @@ body.modal #modal-box-top {
 /* line 25, ../../../app/stylesheets/login.sass */
 body.modal #modal-box-bottom {
   background: url(/images/login-bg.png) no-repeat bottom center;
-  width: 41%;
+  width: 390px;
   height: 9px;
   overflow: hidden;
   margin: 0 auto 0;
@@ -55,12 +55,12 @@ body.modal #modal-box, body.modal #modal-box-arbitrary-size {
   /* line 52, ../../../app/stylesheets/login.sass */
   body.modal #modal-box #login-background, body.modal #modal-box-arbitrary-size #login-background {
     background: url(/images/login-bg.png) no-repeat;
-    width: 41%;
+    width: 390px;
     height: 390px;
     margin: 96px auto 0; }
   /* line 58, ../../../app/stylesheets/login.sass */
   body.modal #modal-box #modal-box-inner, body.modal #modal-box-arbitrary-size #modal-box-inner {
-    width: 41%;
+    width: 390px;
     height: 11px;
     color: #5c5c5c;
     margin: 14px auto 0;
