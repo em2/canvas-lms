@@ -36,8 +36,8 @@ tinymce/jscripts/tiny_mce/plugins/instructure_equation/editor_plugin.js
 tinymce/jscripts/tiny_mce/plugins/instructure_equella/editor_plugin.js
 tinymce/jscripts/tiny_mce/plugins/instructure_embed/editor_plugin.js
 tinymce/jscripts/tiny_mce/plugins/instructure_external_tools/editor_plugin.js
-tinymce/jscripts/tiny_mce/plugins/instructure_record/editor_plugin.js
 tinymce/jscripts/tiny_mce/plugins/instructure_links/editor_plugin.js
+tinymce/jscripts/tiny_mce/plugins/instructure_record/editor_plugin.js
 compiled/tinymce.js
 
 compiled/bundles/common.js
