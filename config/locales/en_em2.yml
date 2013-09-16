@@ -1,60 +1,60 @@
---- 
-em2: 
-  groups: 
-    context_groups: 
+---
+em2:
+  groups:
+    context_groups:
       page_title: Class Groups
       group_explanation: Groups are a good place to collaborate on projects or to figure out schedules for study sessions and the like. Every group gets a calendar, a wiki, discussions, and a little bit of space to store files. Groups can collaborate on documents, or even schedule web conferences. It's really like a mini-class where you can work with a smaller number of students on a more focused project.
       course_groups: Class Groups
       groups_disabled: Student-organized groups have been disabled for this class, so you'll have to be content with the groups the teacher makes for you.
-      options: 
+      options:
         open_to_course_members: Class members are free to join
         course_member_can_request_access: Class members can request to join
-    context_manage_groups: 
+    context_manage_groups:
       self_signup_help_message: |-
         You can create sets of groups where students can sign up on their own.
         Students are still limited to being in only one group in the set, but this way
         students can organize themselves into groups instead of needing the teacher to
         do the work. You can also require that group members all be part of the same
         class section.
-        
+
         Keep in mind, students can move themselves from one group to another, so when
         your students are done organizing themselves you may want to disable self
         sign-ups.
-      actions: 
+      actions:
         add_students: Add Students to the Class
       account_group_explanation: Account-level student groups are a good way to group students without being tied to a specific class. Every student group gets their own calendar, discussion board and collaboration tools so they can organize themselves and work together more effectively.
       page_title: Class Groups
-      messages: 
+      messages:
         no_students: No students have been added for this class
-  submissions: 
-    errors: 
+  submissions:
+    errors:
       student_not_enrolled: The specified user is not a student in this class
-    show_preview: 
+    show_preview:
       quiz_submission: This submission was an assessment submission.  Redirecting to assessment page.
-  gradebook: 
-    confirms: 
+  gradebook:
+    confirms:
       unsaved_changes: |-
-        The following students have unsaved changes to their assessment submissions: 
+        The following students have unsaved changes to their assessment submissions:
         %{users}
         Continue anyway?
-    alerts: 
+    alerts:
       no_active_students: Sorry, there are either no active students in the class or none are gradable by you.
-    links: 
+    links:
       finish_scoring: Finish Scoring this Assessment
       view_quiz: View this Assessment
-  layouts: 
-    menu: 
+  layouts:
+    menu:
       view_all_enrollments: View all classes
-  course: 
+  course:
     default_name: My Class
     default_short_name: Class-101
     missing_name: Unnamed Class
-  plugins: 
-    canvas_cartridge_importer: 
+  plugins:
+    canvas_cartridge_importer:
       file_description: Canvas Class Export Package
-  activerecord: 
-    errors: 
-      messages: 
+  activerecord:
+    errors:
+      messages:
         record_invalid: "Validation failed: %{errors}"
         greater_than_or_equal_to: must be greater than or equal to %{count}
         less_than_or_equal_to: must be less than or equal to %{count}
@@ -75,216 +75,216 @@ em2:
         accepted: must be accepted
         not_a_number: is not a number
         inclusion: is not included in the list
-      template: 
+      template:
         body: "There were problems with the following fields:"
-        header: 
+        header:
           one: 1 error prohibited this %{model} from being saved
           other: "%{count} errors prohibited this %{model} from being saved"
-      full_messages: 
+      full_messages:
         format: "%{attribute} %{message}"
-  rosters: 
-    view_previous_rosters: 
+  rosters:
+    view_previous_rosters:
       view_class_rosters: Rosters
       view_class_reports: Reports
-    generate_rosters: 
+    generate_rosters:
       must_be_a_number: Must Be A Number
   unknown_quiz: Unknown Assessment
-  gradebooks: 
-    gradebook: 
-      title: 
+  gradebooks:
+    gradebook:
+      title:
         quiz: Assessment Submission
       no_students: No Students are enrolled in the class.
-      titles: 
+      titles:
         quiz_review: This assessment needs review
-      links: 
+      links:
         add_students: Add Students to the Class
         add_assignments: Add Assignments to the Class
       no_assignments: No Assignments created yet for this class.
-    history: 
-      titles: 
+    history:
+      titles:
         feed: Class Gradebook Atom Feed
-    notices: 
+    notices:
       unauthorized: You are not authorized to view attendance for this class
-    show: 
-      titles: 
+    show:
+      titles:
         feed: Class Gradebook Atom Feed
-    speed_grader: 
-      links: 
+    speed_grader:
+      links:
         course_home: Class Home
-    grade_summary: 
+    grade_summary:
       for_course: For the class,
-  content_imports: 
-    assignment_form: 
-      options: 
+  content_imports:
+    assignment_form:
+      options:
         quiz: Assessment
-    copy_course_content: 
-      titles: 
+    copy_course_content:
+      titles:
         copy_succeeded: Class Copy Succeeded
         just_added: Just added to the Class
-      labels: 
+      labels:
         quizzes: Assessments for %{course}
-    buttons: 
+    buttons:
       import: Import Class
-    intro: 
-      links: 
+    intro:
+      links:
         import_quizzes: Import Assessments
         copy_course: Copy content from **another Canvas class**
       description: If you're moving to Canvas from another class management system, then chances are there are files, assessments, assignments and things over there that you're going to want moved over here. This wizard should make that process pretty easy.
-    messages: 
+    messages:
       uploading: Uploading Class Export...
-    quizzes: 
+    quizzes:
       page_title: Import the Assessments
-      buttons: 
+      buttons:
         back: I'm Done Importing, back to the Class.
         import: Import Assessment
       details: Canvas can import assessments in the IMS QTI format.  Most systems allow you to export your assessments in this format. You can also use popular assessment tools like Respondus to create and export IMS QTI. Upload the file below and you'll receive an email when the importing is complete."
-      titles: 
+      titles:
         current_quizzes: Current Assessments
-      defaults: 
+      defaults:
         unnamed_quiz: Unnamed Assessment
-      links: 
+      links:
         quiz_from_respondus: How do I save an assessment using Respondus?
-    files: 
+    files:
       description: You can upload a zipped collection of files into your class and we'll extract them all out for you. This is an easy way to move files from another system into Canvas.
-    errors: 
+    errors:
       failed: "Class Import failed with the following error:"
-    migrate_content: 
+    migrate_content:
       page_details: We have integrated with other Learning Management Systems to provide a simple and automated migration process. If you see your current system in the list select that option and provide the requested information. We'll extract the content from your class, and you can then specify which parts you'd like to have added to your new class.
-      buttons: 
+      buttons:
         import: Import Class
-      messages: 
+      messages:
         import_started: "**Thank you!** We'll start exporting your class, you'll get an email when it's done and you'll be able to select the sections you'd like to import."
-      details: 
+      details:
         selective_import: We'll only extract the areas you select below. Not all classes will have all these features. After we've finished extracting, you can decide exactly which items from each area to import into your class.
       previous_migrations: "There are previous migrations for this class:"
-      labels: 
+      labels:
         quizzes: Assessments
-      instructions: 
+      instructions:
         selective_import: Choose which parts of the class to migrate
-    notices: 
+    notices:
       already_imported: That extraction has already been imported into the class
-    wizard_secondary_nav: 
-      wizard_steps: 
+    wizard_secondary_nav:
+      wizard_steps:
         import_quizzes: Import Assessments
-    migrate_content_choose: 
-      messages: 
+    migrate_content_choose:
+      messages:
         import_started: The import process has started! This can take a few hours for large classes, so feel free to leave this page. We'll send you an email when the import process is completed.
         import_complete: Import Complete!  Returning to the Class Page...
-      buttons: 
+      buttons:
         import: Import Class Content
       special_schools: We're working with a select set of schools to provide a simpler, more automated migration process from other learning management systems. If your school shows up on the list, all you need to do is provide us with your login and password. We'll extract the content from your class, and you can then specify which parts you'd like to have added to your new class.
-      links: 
+      links:
         back: Back to Class Page
-      labels: 
+      labels:
         this_course_date_range: "**This Class** dates range"
       instructions: Select the content you'd like copied into this class. At the bottom you can also choose to adjust all dates for migrated items in case you've moved on to a new semester.
-    copy_course: 
-      buttons: 
+    copy_course:
+      buttons:
         copy_from_course: Copy From this Class
         import: Import Class Content
-      descriptions: 
+      descriptions:
         copy_content: Select the content you'd like copied into this class. We'll try to auto-correct any mismatched due dates and calendar event dates as best we can.
         copy_from: To copy content from another class to this one, you'll first need to select the class you want to copy from. Then you can specify what exactly you want copied over.
       page_title: Copy From Another Class
-      warnings: 
+      warnings:
         no_other_courses: You don't have access to any additional classes.
-      crumbs: 
+      crumbs:
         copy_from: Copy From Another Class
-      titles: 
+      titles:
         copy_from: Copy From another Class
-      labels: 
+      labels:
         quizzes: Assessments for %{course}
         copy: include entries from the old class
         search_for_course: Search for Class
-      options: 
+      options:
         select_course: "[Select Class]"
-  messages: 
-    enrollment_registration: 
-      sms: 
+  messages:
+    enrollment_registration:
+      sms:
         body_ta: You've been invited to the class as a TA.
         body_designer: You've been invited to the class as a designer.
         body_teacher: You've been invited to the class as a teacher.
         body_student: You've been invited to the class as a student.
         body_observer: You've been invited to the class as an observer.
-      summary: 
+      summary:
         subject: Class Invitation
-      email: 
+      email:
         details: "You'll need to register with Canvas before you can participate in the class.  To get started, visit the class page here:"
         subject: Class Invitation
     quiz_locked_module: This assessment is part of the module *%{module}* and hasn't been unlocked yet.
-    rubric_assessment_invitation: 
-      summary: 
+    rubric_assessment_invitation:
+      summary:
         subject: "Assessment Invitation: %{rubric}, %{context}"
-      email: 
+      email:
         subject: "Assessment Invitation: %{rubric}, %{context}"
-    rubric_association_created: 
-      sms: 
+    rubric_association_created:
+      sms:
         body: "A new assessment has been created for %{context}:"
-      summary: 
+      summary:
         body: "A new assessment has been created for %{context}:"
         subject: "New Assessment: %{title}, %{context}"
-      facebook: 
+      facebook:
         body: A new assessment has been created for %{context}.
-      twitter: 
+      twitter:
         tweet: "Canvas Alert - New Assessment: %{title}, %{context}."
-      email: 
+      email:
         subject: "New Assessment: %{title}, %{context}"
     content_locked: This assessment is currently locked.
-    new_course: 
-      summary: 
+    new_course:
+      summary:
         subject: New Class
-      email: 
+      email:
         subject: New Class
     visit_modules_page: "*Visit the class modules page for information on how to unlock this content.*"
     quiz_locked_at: This assessment was locked %{at}.
-    enrollment_notification: 
-      sms: 
+    enrollment_notification:
+      sms:
         body_ta: You've been enrolled in the class as a TA.
         body_designer: You've been enrolled in the class as a designer.
         body_teacher: You've been enrolled in the class as a teacher.
         body_student: You've been enrolled in the class as a student.
         body_observer: You've been enrolled in the class as an observer.
-      summary: 
+      summary:
         subject: Class Enrollment
-      email: 
+      email:
         details: "Visit the class page here:"
         subject: Class Enrollment
     quiz_locked: This assessment is currently locked.
-    enrollment_invitation: 
-      sms: 
+    enrollment_invitation:
+      sms:
         body_ta: You've been invited to the class as a TA.
         body_designer: You've been invited to the class as a designer.
         body_teacher: You've been invited to the class as a teacher.
         body_student: You've been invited to the class as a student.
         body_observer: You've been invited to the class as an observer.
-      summary: 
+      summary:
         subject: Class Invitation
-      email: 
+      email:
         details: "Visit the class page here:"
         subject: Class Invitation
     quiz_locked_until: This assessment is locked until %{date}.
-  buttons: 
+  buttons:
     save_course: Save Class
     view_course_roster: View Class Roster
-  quizzes: 
-    new: 
-      confirms: 
+  quizzes:
+    new:
+      confirms:
         delete_quiz: Are you sure you want to delete this assessment?
-      buttons: 
+      buttons:
         republish_quiz: Re-Publish Assessment
         save_but_dont_publish: Save Assessment *but don't Publish*
         publish_quiz: Publish Assessment
-      warnings: 
+      warnings:
         unpublished_changes: You have made unpublished changes to this assessment.  These changes will not appear for students until you publish or re-publish the assessment.
         has_student_submissions: Students have either already taken or started taking this assessment, so be careful about editing it.  If you change any assessment questions in a significant way, you may want to consider re-grading students who took the old version of the assessment.
       practice_quiz: Practice Assessment
-      links: 
+      links:
         preview_quiz: Preview the Assessment
         return_to_quiz_page: Return to Assessment Page
         quiz_options: Assessment Options
       ip_filters: "Quiz IP filters are a way to limit access to assessments to computers in a specified IP range.  Filters can be a comma-separated list of addresses, or an address followed by a mask (\"192.168.217.1\", \"192.168.217.1/24\" \xC3\xB3 \"192.168.217.1/255.255.255.0\"). "
       graded_quiz: Graded Assessment
-      labels: 
+      labels:
         quiz_short_name: Short Name
         quiz: Assessment
         never_hide_results: Let Students See their Assessment Results
@@ -294,121 +294,121 @@ em2:
         score_to_keep: Assessment Score to Keep
         require_lockdown_browser_for_results: Required to view assessment results
         quiz_full_name: Full Name
-      headers: 
+      headers:
         edit_quiz: Edit Assessment
         create_new_quiz: Create a New Assessment
         ip_filters: What are Assessment IP Filters?
         quiz_options: Assessment Options
       default_page_title: New Assessment
-    confirms: 
+    confirms:
       scrap_and_restart: Scrap this assessment and start from scratch?
-    form_question: 
-      explanation: 
+    form_question:
+      explanation:
         generate_possible_solutions: Finally, build as many variable-solution combinations as you need for your assessment.
-    read_only: 
-      links: 
+    read_only:
+      links:
         back_to_quiz_page: Back to Assessment Page
-      labels: 
+      labels:
         quiz_instructions: Assessment Instructions
-      headers: 
+      headers:
         quiz_details: Assessment Details
       default_page_title: New Assessment
-    history: 
+    history:
       unnamed_quiz_results: Assessment Results for %{user}
       page_title_quiz: "%{user}'s Assessment History"
       default_quiz_name: Assessment %{course_name}
       quiz_unlimited_attempts: This assessment has unlimited attempts
       latest_quiz_results: Here's the latest assessment results for %{user}. You can modify the points for any question and add more comments, then click "Update Scores" at the bottom of the page.
       quiz_not_yet_taken_or_in_progress: Assessment hasn't been taken yet or is currently in progress
-      links: 
+      links:
         back_to_quiz: Back to Assessment
       quiz_not_yet_taken: Assessment hasn't been taken yet.
-      headers: 
+      headers:
         quiz_submissions: Assessment Submissions
-    quiz_submission: 
+    quiz_submission:
       quiz_results_protected: Assessment results are protected for this assessment, and are not visible to students.
       quiz_fudged_negative: This assessment score has been manually adjusted by %{fudge} points.
       quiz_not_yet_taken: The assessment hasn't been taken yet.
       quiz_results_protected_until_last_attempt: Assessment results are protected for this assessment, and are not visible to students until they have submitted their last attempt.
       quiz_fudged_positive: This assessment score has been manually adjusted by +%{fudge} points.
-      labels: 
+      labels:
         fudge_points_changed_points_quiz: "Since %{user} took this assessment, the points possible for the assessment has changed by %{difference}. You can adjust for this change and manually add positive or negative points using this box:"
         score_for_quiz: Score for this assessment
         quiz_score: Assessment Score
       requires_lockdown: Respondus LockDown Browser is required to view your assessment results.
     top_level_crumb: Assessments
-    statistics: 
+    statistics:
       quiz_all_version_disclaimer: This report is showing assessment statistics based on all attempts for all users.
       quiz_latest_version_disclaimer: This report is showing assessment statistics based on the latest attempt for each user.
-      headers: 
+      headers:
         users_have_taken_this_quiz: "%{count} users have taken this assessment"
         quiz_statistics: Assessment Statistics
-    errors: 
+    errors:
       quiz_update_failed: Assessment failed to update
       no_more_attempts: You have no assessment attempts left
       quiz_deleted: That assessment has been deleted
-    take_quiz: 
-      confirms: 
+    take_quiz:
+      confirms:
         unfinished_quiz: You're about to leave the assessment unfinished.  Continue anyway?
-      links: 
+      links:
         keep_editing_quiz: Keep Editing This Assessment
-      headers: 
+      headers:
         draft_preview: This is a preview of the draft version of the assessment
     default_quiz_title: Assessment
-    display_question: 
+    display_question:
       unsupported_question_type: This question was imported from an external source. It was a '%{question_type}' question, which is not supported in this assessment tool.
-    moderate: 
-      page_title: Moderate Assessment
+    moderate:
+      page_title: Monitor Assessment
       extended_quiz_time_explanation: You can give this student extra time on their current assessment attempt. How much time would you like to give them?
       end_quiz_when: End the assessment %{n} minutes from %{reference_time}.
-      titles: 
+      titles:
         extend_quiz_time: Extend Assessment Time
-      labels: 
+      labels:
         manually_unlock: Manually unlock the assessment for the next attempt
-      headers: 
+      headers:
         extended_quiz_time: Extend Assessment Time
-    titles: 
+    titles:
       find_quiz_question: Find Assessment Question
     "true": true
-    invalid_ip: 
+    invalid_ip:
       quiz_protected: This assessment is protected and is only available from certain locations. The computer you are currently using does not appear to be at a valid location for taking this assessment.
-    quiz_right_side: 
-      links: 
+    quiz_right_side:
+      links:
         preview_quiz_again: Preview the Assessment Again
         take_quiz_again: Take the Assessment Again
-    take_quiz_in_popup: 
-      links: 
+    take_quiz_in_popup:
+      links:
         return_to_quiz_page: "[Click here](%{url}) to return to the assessment page."
-      headers: 
+      headers:
         loading_in_lockdown: Loading Assessment in Respondus LockDown Browser
-    notices: 
-      quizzes_published: 
+    notices:
+      quizzes_published:
         one: 1 assessment successfully published!
         other: "%{count} assessments successfully published!"
       quiz_updated: Assessment successfully updated
       has_submissions_already: Keep in mind, some students have already taken or started taking this assessment
       quiz_data_saved: Assessment data saved
       less_than_allotted_time: You started this assessment near when it was due, so you won't have the full amount of time to take the assessment.
-    show: 
+    show:
       quiz_in_progress: You're in the middle of taking this assessment.
       publish_quiz_instructions: To publish the assessment, click "Edit This Assessment" to the right and then click the "Publish" button.
       have_taken_the_quiz: Have taken the assessment
-      confirms: 
-        delete_quiz_submissions_warning: 
+      confirms:
+        delete_quiz_submissions_warning:
           one: "Warning: 1 student has already taken this assessment. If you delete it, any completed submissions will be deleted and no longer appear in the gradebook."
           other: "Warning: %{count} students have already taken this assessment. If you delete it, any completed submissions will be deleted and no longer appear in the gradebook."
         delete_quiz: Are you sure you want to delete this assessment?
-      buttons: 
+      buttons:
         lock_quiz: Lock this Assessment Now
         unlock_quiz: Let Students Take this Assessment Now
-      warnings: 
+      warnings:
         draft_version: This is a preview of the draft version of the assessment
       have_not_taken_the_quiz: Have NOT taken the assessment
-      titles: 
+      titles:
         unlock_for_how_long: How long would you like to unlock the assessment for?
       quiz_not_published: This assessment hasn't been published yet.  Students can't take the assessment until it's published.
       quiz_for_assignment: This assessment is for the assignment **%{assignment}**
-      links: 
+      links:
         resume_quiz: Resume Assessment
         keep_editing_this_quiz: Keep Editing This Assessment
         quiz_statistics: Assessment Statistics
@@ -422,63 +422,63 @@ em2:
       quiz_no_submissions: No Students have taken the assessment yet
       quiz_all_students_submitted: All Students have taken the assessment
       only_registered_users: Only registered, enrolled users can take graded assessments
-      labels: 
+      labels:
         instructions: Characteristics
-      headers: 
+      headers:
         quiz_unsubmitted_students: Students who haven't taken the assessment
         submitted_students_quiz: Students who have taken the assessment
-    index: 
+    index:
       page_titles: Assessments
-      buttons: 
+      buttons:
         publish_quizzes: Publish Assessments
         publishing_quizzes: Publishing Assessments...
-      confirms: 
+      confirms:
         delete_quiz: Are you sure you want to delete this assessment?
-      titles: 
+      titles:
         this_quiz_is_locked: This assessment is currently locked.  Click for more details.
-      links: 
+      links:
         publish_multiple_quizzes: Publish Multiple Assessments
         create_new_quiz: Create a New Assessment
       default_title: New Assessment
-      labels: 
+      labels:
         publish_multiple_quizzes: Select the assessments you would like to publish at this time
       no_quizzes: No assessments available
-      headers: 
+      headers:
         unpublished_quizzes: Unpublished Assessments
         publish_multiple_quizzes: Publish Multiple Assessments
         assignment_quizzes: Assessments
         course_quizzes: Class Assessments
         practice_quizzes: Practice Assessments
-    access_code: 
+    access_code:
       quiz_restricted: This assessment is restricted by an access code. You'll need to ask your teacher or proctor to type in or tell you the access code in order to take the assessment.
     default_title: New Assessment
-    _quiz_preview: 
+    _quiz_preview:
       rescore_the_quiz: Re-Score the Assessment
     default_new_crumb: New Assessment
-    lockdown_browser_required: 
+    lockdown_browser_required:
       requires_lockdown: This assessment requires Respondus LockDown Browser.  Please launch Respondus LockDown Browser to take this assessment or view your assessment results.
-    quiz_preview: 
-      buttons: 
+    quiz_preview:
+      buttons:
         score_the_quiz: Score the Assessment
-      labels: 
+      labels:
         quiz_score: Assessment Score
-    quiz_summary: 
-      titles: 
+    quiz_summary:
+      titles:
         edit_quiz: Edit Assessment
         delete_quiz: Delete Assessment
-      links: 
+      links:
         resume_quiz: Resume Assessment
-      labels: 
+      labels:
         quiz_details: Assessment Details
-    find_question_from_bank: 
+    find_question_from_bank:
       select_a_question_bank: Select a question bank from the list below to link it to the this assessment as a question group.
       already_added: this question is already on the assessment
-      links: 
+      links:
         manage_question_banks: Manage Class Question Banks
-      labels: 
+      labels:
         add_questions_to_group: Add questions to the assessment group
-  role_override: 
-    permissions: 
+  role_override:
+    permissions:
       manage_content: Manage all other class content
       read_reports: View usage reports for the class
       manage_assignments: Manage (add / edit / delete) assignments and assessments
@@ -492,133 +492,133 @@ em2:
       manage_courses: Manage ( add / edit / delete ) classes
       manage_sections: Manage (create / edit / delete) class sections
       read_course_content: View class content
-    roles: 
+    roles:
       designer: Class Designer
-  notification: 
+  notification:
     grading_policies_description: For class grading policy changes
     all_submissions_description: For all assignment submissions in classes you teach
-    names: 
+    names:
       new_course: New Class
     grading_description: For class grading alerts
-    categories: 
+    categories:
       course_content: Class Content
     course_content_description: For changes to class pages
-  profile: 
-    profile: 
+  profile:
+    profile:
       facebook_description: If you have a Facebook account, you can install the Canvas app and receive class notifications on your profile. You can specify which types of notifications you want and how often you'd like them sent.
       twitter_description: |-
         Twitter is a service for posting and subscribing to short messages.
         If you have a Twitter account, you can register it here.  Then if you allow
-        fellow class/group members to see your registered services, they can 
+        fellow class/group members to see your registered services, they can
         easily connect with your Twitter account.
-        
+
         You can also sign up to have notifications sent to your Twitter account.
         These notifications will be sent as direct messages to yourself from
         yourself, and won't appear in your public stream.
       linkedin_description: LinkedIn is a great resources for business networking, and can be helpful long after you've finished your education. If you have a LinkedIn account, you can register it here. Then if you allow fellow class/group members to see your registered services, they can easily invite you to link with them without having to search LinkedIn for your profile.
-      labels: 
+      labels:
         show_user_services: Let fellow class/group members see which services I've linked to my profile
-  quiz: 
-    warnings: 
+  quiz:
+    warnings:
       import_from_migration_failed: Could not import the assessment  "%{quiz_title}"
-    types: 
+    types:
       quiz: Assessment
     default_title: New Assessment
-  outcomes: 
-    index: 
+  outcomes:
+    index:
       back_to_course_home: Back to Class Home
-  conferences: 
-    index: 
+  conferences:
+    index:
       description_for_course_members: Web conferences are a way to meet remotely with class members for things like study sessions, virtual office hours, etc. Web conferencing tools let you share video and audio using your computer's webcam, and also offer additional tools like screen sharing and digital whiteboards.
-      labels: 
-        labels: 
+      labels:
+        labels:
           all_course_members: Invite All Class Members
-  wiki_pages: 
-    wiki_right_side: 
+  wiki_pages:
+    wiki_right_side:
       wiki_description_for_course: Think of it as an open-ended place to hold content. You could use it to describe your class, to provide helpful explanations of difficult topics, or even to let students work together on writing projects.
-    content: 
+    content:
       welcome_message: Welcome to the Class Wiki
       course_wiki_page_description: You can use this wiki to create supplemental pages or descriptions for your class material. You can easily link to wiki pages from assignments, or link to other class material and files from any wiki page. This makes it a great place for explaining hard concepts, allowing group projects, or creating just about any kind of page you could need in your class.
       default_wiki_page_description: This page is the default wiki page, and students will see it when they click the "Pages" tab for this class.
       course_home_wiki_page_description: You can use this page to organize or introduce your class however you like. You can easily link to assignments, files, etc. using the "Page Tools" section you'll see on the right once you start editing.
-  context_modules: 
-    index: 
-      titles: 
+  context_modules:
+    index:
+      titles:
         course_modules: Class Modules
-      headings: 
+      headings:
         course_modules: Class Modules
-    content: 
-      help: 
+    content:
+      help:
         no_modules: No modules have been defined for this class.
-  instructure: 
-    switched_roles_message: 
+  instructure:
+    switched_roles_message:
       ta: You have switched roles temporarily for this class, and are now viewing the class as a TA.  You can restore your role and permissions from the class home page.
       observer: You have switched roles temporarily for this class, and are now viewing the class as an observer.  You can restore your role and permissions from the class home page.
       teacher: You have switched roles temporarily for this class, and are now viewing the class as a teacher.  You can restore your role and permissions from the class home page.
       designer: You have switched roles temporarily for this class, and are now viewing the class as a designer.  You can restore your role and permissions from the class home page.
       student: You have switched roles temporarily for this class, and are now viewing the class as a student.  You can restore your role and permissions from the class home page.
-  announcements: 
-    index: 
+  announcements:
+    index:
       podcast_title_course: Class Announcements Podcast Feed
-      descriptions: 
+      descriptions:
         add_new_feed_for_course: You can automatically add posts from an RSS or Atom feed as announcements for this class. Just paste the feed URL below and any new entries will be added.
       feed_title_course: Class Announcements Atom Feed
-  files: 
-    full_index: 
-      warnings: 
+  files:
+    full_index:
+      warnings:
         too_many: There were too many classes/groups to show all at once. Below are the first 15 results.
-      links: 
+      links:
         show_all_files: see files for all your classes/groups
-  folder: 
+  folder:
     course_content_folder_name: class content
-  crumbs: 
+  crumbs:
     copy_course: Copy Class
-  enrollment: 
+  enrollment:
     default_course_name: Class
-  user_notes: 
-    user_notes: 
+  user_notes:
+    user_notes:
       details_a_course: Last Faculty Journal entries for students currently enrolled in a class.
       details_this_course: Last Faculty Journal entries for students currently enrolled in this class.
-      headers: 
+      headers:
         current_courses: Current Classes
-  account: 
+  account:
     tab_courses: Classes
     manually_created_courses: Manually-Created Classes
-  courses: 
-    unauthorized: 
+  courses:
+    unauthorized:
       unpublished: This class has not been published by the instructor yet.
       invalid_link: The enrollment link you used appears to no longer be valid.  Please contact the class instructor and make sure you're still correctly enrolled.
-    statistics: 
+    statistics:
       quizzes: Assessments
       page_title: Class Statistics
       quiz: Assessment
       course_rubrics: Class Rubrics
       quiz_questions: Assessments Questions
       quiz_submissions: Assessment Submissions
-    errors: 
+    errors:
       create_failed: Class creation failed
-    open_enrollment: 
-      buttons: 
+    open_enrollment:
+      buttons:
         enroll: Enroll in Class
-      headings: 
+      headings:
         invitation: Class Invitation
-    open_enrollment_confirmed: 
-      headings: 
+    open_enrollment_confirmed:
+      headings:
         invitation: Class Invitation
     confirm_reject_invitation: Are you sure you want to reject the invitation to participate in this class?
-    enrollment_reminders: 
-      invitiation: 
+    enrollment_reminders:
+      invitiation:
         look_around: Feel free to wander around and look over the class. When you're ready, you can either accept or reject the invitation.
-    index: 
-      titles: 
+    index:
+      titles:
         courses: Classes
-        rss: 
+        rss:
           course_announcements: Class Announcements Atom Feed
-      links: 
+      links:
         start_course: Start a New Class
-      headings: 
+      headings:
         my_courses: My Classes
-    notices: 
+    notices:
       unconcluded: Class un-concluded
       concluded: Class successfully concluded
       deleted: Class successfully deleted
@@ -626,18 +626,18 @@ em2:
       updated: Class was successfully updated.
       preview_course: You've been invited to join this class.  You can look around, but you'll need to accept the enrollment invitation before you can participate.
       login_required: Please log in to join this class.
-    settings: 
+    settings:
       wiki_editing_roles: can edit class wiki pages by default
       indexed_course: Included in public class index
       page_title: Class Details
-      help: 
+      help:
         edit_navigation: Drag and drop items to reorder them in the class navigation.
         reset_course_content: Resetting class content will permanently delete all associated assignments, discussions, assessments, modules, rubrics, pages, files, learning outcomes, question banks, collaborations, conferences, or any other content.  This action is irreversible, and the data *cannot* be recovered. Are you sure you wish to continue?
         hashtags: |-
           Hashtags are special phrases that let people consistently mention the same idea (like a class) on web sites like Twitter.  For example, the message "I like #instructure" is using the hashtag "instructure".
-          
+
           Hashtags should consist of letters, numbers, dashes and underscores (no spaces).  The hashtag should be unique, easily recognizable, and short.  Short hashtags are better since sites like Twitter limit the number of letters per message.
-      buttons: 
+      buttons:
         unconclude: Un-Conclude Class
         update_course: Update Class Details
         reset: Reset Class Content
@@ -647,11 +647,11 @@ em2:
       drag_details: Disabling most pages will cause students who visit those pages to be redirected to the class home page.
       date_restricted: Users can only participate in the class between these dates
       invitations_pending_publish: Invitations aren't sent until the class is *published*
-      titles: 
+      titles:
         edit_navigation: Edit Class Navigation
         course_section: Class Section
       language_overrides_preferences: This will override any user/system language preferences. This is only recommended for foreign language classes
-      links: 
+      links:
         stats: Class Statistics
         delete: Permanently Delete this Class
         conclude: End this Class
@@ -662,10 +662,10 @@ em2:
         copy: Copy this Class
         calendar: Class Calendar
       tab_disabled: Page disabled, will redirect to class home page
-      deatils: 
+      deatils:
         move_course: Select a new root account for this class. After you move the class you'll want to specify a new department for the class as well.
       teacherless_invite_details: If you invite a teacher and they accept, you will give up administrative privileges for this class.
-      labels: 
+      labels:
         restrict_enrollments_to_course_dates: Users can only participate in the class between these dates
         grading_standard_enabled: Enable class grading scheme
         course_open_enrollment: This class has enabled open enrollment. Students can self-enroll in the class once you share with them this url
@@ -673,18 +673,18 @@ em2:
         open_enrollment: Add a "Join this Class" link to the class home page
         course_code: Class Code
         is_public: Make this class publicly visible
-      tabs: 
+      tabs:
         details: Class Details
-      headings: 
+      headings:
         add_users: Add Class Users
         details: Class Details
         sections: Class Sections
         move_course: Move the class to another root account
-    show: 
-      details: 
+    show:
+      details:
         modules: |-
           You can organize your class into **modules or sections**, where each section contains a related set of files, assignments, pages, etc.  If you want, you can also sequence modules by defining criteria and prerequisites that need to be completed before each module is unlocked.
-          
+
           This layout is probably best for classes that aren't based on a specific schedule like a term or semester.
         communication_stream: The **communication stream** lets participants see the most recent conversations, notifications, and interactions for this class.  It's very similar to the dashboard page users see when they first log in, but only shows content for this specific class.
         confirm_unenroll: Are you sure you want to unenroll in this class? You will no longer be able to see the class roster or communicate directly with the teachers, and you will no longer see class events in your stream and as notifications.
@@ -693,53 +693,53 @@ em2:
         syllabus: The **syllabus view** lets you write up a description of class expectations or introduce the class with links, images, etc. and then also shows a calendar view of all assignments and class events.
         assignments: This view shows the **list of assignments** for this class, with upcoming and recent assignments at the top.
       joining_course: Joining Class...
-      titles: 
+      titles:
         drop_course: Drop this Class
         join_course: Join this Class
       teachers_only: Only teachers can see this class until it is *published*
-      links: 
+      links:
         delete: Delete This Class
         drop_course: Drop this Class
         join_course: Join this Class
         course_setup: Class Setup Checklist
         course_stream: See Class Stream
       dropping_course: Dropping Class...
-      labels: 
+      labels:
         set_layout: When people visit the class page, show them
-      options: 
+      options:
         modules: the Class Modules/Sections
-      headings: 
+      headings:
         unpublished: This Class is Unpublished
         joining_a_course: Joining a Class
-    course_wizard_box: 
-      buttons: 
+    course_wizard_box:
+      buttons:
         publish: Publish Class
-      details: 
+      details:
         available: Now that your class is set up and available, you probably won't need this checklist anymore.  But we'll keep it around in case you realize later you want to try something new, or you just want a little extra help as you make changes to your class content.
         students: You'll definitely want some of these. What's the fun of teaching a class if nobody's even listening?
-        claimed: 
+        claimed:
           not_saved: |-
             Great, so you've got a class...  Now what?  Well, before you go publishing it to the world, you may want to check and make sure you've got the basics laid out.  Work through the list on the left to ensure that your class is ready to use.
-            
+
             *This class is visible only to teachers until it is published*
-        publish: 
+        publish:
           form: |-
             All finished?  Time to publish your class!  Click the button below to make it official!
-            
+
             Publishing will send out email invitations to all the class users so they can sign up and start participating.
           not_registered: This class is claimed and ready, but you'll need to finish the registration process before you can publish the class. You should have received an email from Canvas with a link to finish the process. Be sure to check your spam box.
         tas: You may want to assign some TAs to help you with the class. TAs can grade student submissions, help moderate the discussions and even update due dates and assignment details for you.
         import: If you've been using another class management system, you probably have stuff in there that you're going to want moved over to Canvas. We can walk you through the process of easily migrating your content into Canvas.
         navigation: By default all links are enabled for a class.  Students won't see links to sections that don't have content.  For example, if you haven't created any assessments, they won't see the assessments link.  You can sort and explicitly disable these links if there are areas of the class you don't want your students accessing.
         calendar: Here's a great chance to get to know the calendar -- and add any non-assignment events you might have to the class. Don't worry, we'll help you through it.
-        created: 
+        created:
           not_saved: |-
             This class has been created, but not claimed.  It'll get deleted if it's not claimed within a week.  In the mean time, tick through the list to the left to make sure you're ready to go.
-            
+
             If you need to leave and come back before then, just save *this link* to get back here later.
-            
+
             Please **log in** or ***register*** to claim this class.
-      links: 
+      links:
         files: Add Class Files
         students: Add Students to the Class
         tas: Add TAs to the Class
@@ -747,132 +747,132 @@ em2:
         assignments: Add Class Assignments
         home: Choose a Class Home Page
         calendar: Add Class Calendar Events
-    sidebar_weighting: 
+    sidebar_weighting:
       not_weighted: Class assignments are not weighted.
-    confirm_action: 
-      buttons: 
+    confirm_action:
+      buttons:
         delete_course: Delete Class
         conclude_course: Conclude Class
-      details: 
+      details:
         confirm_delete: Are you sure you want to delete this class? Once it is deleted students and teachers will no longer have access to it. If you just want to remove it from the class dropdown then you should *conclude the class instead*.
         confirm_conclude: Are you sure you want to conclude this class? Students and teachers will still be able to see the class contents in a read-only format from their "past classes" page. If you don't want anyone to see the class, you can *delete the class completely*.
-      headings: 
+      headings:
         confirm_delete: Confirm Class Deletion
         confirm_conclude: Confirm Conclude Class
-    copy: 
-      buttons: 
+    copy:
+      buttons:
         create_course: Create Class
       details: Enter the following details to begin creating a copy of this class.
-      titles: 
+      titles:
         copy_course: Copy Class
-      labels: 
+      labels:
         course_code: Class Code
-    group_list: 
-      headings: 
+    group_list:
+      headings:
         groups: Class Groups
-  account_settings: 
-    titles: 
+  account_settings:
+    titles:
       what_are_quiz_ip_filters: What are Assessment IP Filters?
-  application: 
-    errors: 
+  application:
+    errors:
       feed_private_course: The matching class has gone private, so public feeds like this one will no longer be visible.
       quota_exceeded_course: Class storage quota exceeded
       feed_unpublished_course: Feeds for this class cannot be accessed until it is published.
-    notices: 
+    notices:
       page_disabled_for_course: That page has been disabled for this class
       first_teacher_with_email: This class is now claimed, and you've been registered as its first teacher. You should receive an email shortly to complete the registration process.
       first_teacher: This class is now claimed, and you've been registered as its first teacher.
     wiki_front_page_default_content_course: Welcome to your new class wiki!
-  course_exports: 
-    errors: 
+  course_exports:
+    errors:
       quizzes: Some assessments failed to export
       quiz: The assessment "%{title}" failed to export
       course_export: Error running class export.
       course_settings: Failed to export class settings
-  conversations: 
+  conversations:
     course_sections: Class Sections
-  sections: 
+  sections:
     section_deleted: Class section successfully deleted!
-    show: 
+    show:
       override_settings: This will override any term or class date settings.
       access_limit: Users can only participate in the class between these dates
-      buttons: 
+      buttons:
         back_to_course: Back to Class Settings
       student_access_dates: Students can only access the class between these dates
       crosslist_description: Cross-listing allows you to create a section in one account and then move it to a class on a different account. To cross-list this class, you'll need to find the class you want to move it to, either using the search tool or by entering the class's ID.
-      labels: 
+      labels:
         enter_course_id: Or Enter the Class's ID
-        labels: 
+        labels:
           selected_course: Selected Class
         search_for_course: Search for Class
       decrosslist_long_description: All grades for students in this class will no longer be visible. You can retrieve the grades later by re-cross-listing the class, but in the mean time the grades for these students will come from the original class.
-  content_exports: 
-    errors: 
+  content_exports:
+    errors:
       couldnt_create: Couldn't create class export.
-    index: 
+    index:
       page_title: Class Exports
-      buttons: 
+      buttons:
         create: Create a Class Export
-      crumbs: 
+      crumbs:
         course_exports: Class Exports
-      message: 
+      message:
         export_started: The export process has started. This can take awhile for large classes. *You can leave the page* and you'll get an email when the export is complete.
-    labels: 
+    labels:
       new_course_export: "New Class Export:"
-  sub_accounts: 
-    courses_count: 
+  sub_accounts:
+    courses_count:
       one: 1 Class
-    alerts: 
+    alerts:
       subaccount_has_courses: You can't delete a sub-account that has classes in it
-    sub_accounts: 
-      account_courses: 
+    sub_accounts:
+      account_courses:
         one: 1 Class
         other: "%{count} Classes"
       account_sub_accounts:
         one: "1 Sub-Account"
         other: "%{count} Sub-Accounts"
       can_not_delete: You can't delete a sub-account that has classes in it
-  content_locks: 
-    messages: 
+  content_locks:
+    messages:
       quiz_locked_module: This assessment is part of the module *%{module}* and hasn't been unlocked yet.
       quiz_locked_no_reason: This assessment is locked.  No other reason has been provided.
       quiz_locked_at: This assessment was locked %{at}.
       quiz_locked_until: This assessment is locked until %{date}.
-    optgroup: 
+    optgroup:
       quizzes: Assessments
-    content: 
-      help: 
+    content:
+      help:
         create: |
           Class modules let you organize your assignments, pages, files, etc. into smaller sections or units. Modules could be centered around a theme, focused on a specific topic, or even just grouped chronologically.
           You can also sequence modules by defining criteria and prerequisites for each module. Students won't be able to access modules until they have unlocked all their prerequisites. That way you can prevent students from accessing certain content or files until they have, say, gotten at least 75% on a review assessment.
           To start organizing your class into modules, click the "%{button}" button to the right."
 
-  accounts: 
-    course: 
+  accounts:
+    course:
       course_unpublished_title: This class hasn't been published yet
-    sis_batch_counts: 
+    sis_batch_counts:
       courses_label: Classes
     adding_course_message: Adding Class...
-    courses_right_side: 
+    courses_right_side:
       course_filtering: Class Filtering
       filter_label: Find a Class
       enrollment_term_label: Show classes from the term
       hide_enrollmentless_courses: Hide enrollmentless classes
-    statistics: 
+    statistics:
       recently_ended_courses_title: Recently Ended Classes
       recently_created_courses_title: Recently Created Classes
       recently_started_courses_title: Recently Started Classes
-      labels: 
+      labels:
         courses: Classes
-    courses: 
+    courses:
       courses_crumb: Classes
-    add_course_or_user: 
+    add_course_or_user:
       add_course_link: Add a New Class
       add_course_button: Add Class
-      labels: 
+      labels:
         name: Class Name
       add_course_title: Add a New Class
-    settings: 
+    settings:
       default_language_description: This will override any browser/OS language settings. Preferred languages can still be set at the class/user level.
       quiz_ip_filters_help_title: What are Assessment IP Filters?
       quiz_ip_filters_help_tooltip: What are Assessment IP Filters?
@@ -881,13 +881,13 @@ em2:
       self_enroll_for_manually_created_courses_option: For Manually-Created Classes
       quiz_ip_filters_help_message: |-
         Assessment IP filters are a way to limit access to assessments to computers in a specified IP range.
-        
+
         Specify a set of IP address filters that teachers can use to protect access to assessments.  Filters can be a comma-separated list of addresses, or an address followed by a mask ("192.168.217.1/24" or "192.168.217.1/255.255.255.0")."
       quiz_ip_filters_title: Assessment IP Address Filters
       create_courses_description: (Account Administrators can always create classes)
-      labels: 
+      labels:
         prevent_course_renaming_by_teachers: Don't let teachers rename their classes
-    show: 
+    show:
       courses_crumb: Classes
       title: Classes In This Account
       no_courses_term_message: There are no classes in this term
@@ -895,231 +895,231 @@ em2:
     add_course_button: Add Class
     add_course_dialog_title: Add a New Class
     course_add_failed_message: Adding Class Failed, please try again
-  shared: 
-    home_menu: 
-      links: 
+  shared:
+    home_menu:
+      links:
         courses: Classes
         courses_and_groups: Classes & Groups
-    current_enrollment: 
+    current_enrollment:
       course_unpublished: This class hasn't been published yet
-    assignment_group: 
-      defaults: 
+    assignment_group:
+      defaults:
         group_name: Class Assignments
-    pending_enrollment: 
+    pending_enrollment:
       student_title: Invited as a student, click to see the Class
       teacher_title: Invited as a teacher, click to see the Class
       observer_title: Invited as an observer, click to see the Class
       designer_title: Invited as a designer, click to see the Class
       ta_title: Invited as a TA, click to see the Class
-    enrollment: 
-      titles: 
+    enrollment:
+      titles:
         course_section: Class Section
-      links: 
+      links:
         unenroll_user: Remove User from Class
-    inline_preview: 
-      links: 
+    inline_preview:
+      links:
         course_home: Class Home
-    sequence_footer: 
+    sequence_footer:
       full_course_sequence: see full class sequence
-    conference: 
+    conference:
       course_conference: Class Conference
-    wiki_sidebar: 
+    wiki_sidebar:
       course_links: Link to other content in the class.
-      links_to: 
+      links_to:
         quizzes: Assessments
-        nav: 
+        nav:
           course: Class Navigation
-      insert: 
+      insert:
         quizzes: Click to insert a link to this assessment
-      links: 
+      links:
         quizzes: Assessment List
         syllabus: Class Syllabus
-    recent_messages: 
+    recent_messages:
       empty_stream_message: You don't have any messages to show in your stream yet. Once you begin participating in your classes you'll see this stream fill up with messages from discussions, grading updates, private messages between you and other users, etc.
-    select_content_dialog: 
+    select_content_dialog:
       quiz_alt: Assessment
       new_quiz_option: "[ New Assessment ]"
       quiz_notice: Select the assessment you want to associate with this *module*, or add a new one by selecting "New Assessment".
       quiz_item: Assessment
-      labels: 
+      labels:
         quiz_name: Assessment Name
-    full_assignment: 
-      descriptions: 
+    full_assignment:
+      descriptions:
         grades_from_quiz: Grades for this assignment will be pulled from the assessment results
-      links: 
+      links:
         quiz: Click here to go to the assessment
-      labels: 
+      labels:
         grades_from_quiz: Grades for this assignment come from the assessment
         quiz_summary: Assessment Summary/Introduction
-      options: 
+      options:
         quiz: Assessment
-  eportfolios: 
-    page_section: 
-      section_types: 
+  eportfolios:
+    page_section:
+      section_types:
         submission: Class Submission
-    show: 
-      links: 
+    show:
+      links:
         choose_submission: Class Submission
-    _page_section: 
-      section_types: 
+    _page_section:
+      section_types:
         submission: Class Submission
-  web_conference: 
+  web_conference:
     default_name_for_courses: Class Web Conference
-  question_banks: 
-    show: 
+  question_banks:
+    show:
       edit_warning: Remember, changes to question templates won't automatically update assessments that are already using those questions.
-    index: 
+    index:
       course_question_banks: Class Question Banks
-  users: 
-    user_dashboard: 
+  users:
+    user_dashboard:
       no_courses_message: You don't have any classes, so this page won't be very exciting for now. Once you've created or signed up for classes, you'll start to see conversations from all of your classes.
       start_new_course: Start a New Class
       user_atom_feed: User Atom Feed (All Classes)
-    errors: 
+    errors:
       user_not_teacher: That user is not a teacher in this class
       no_teacher_courses: There are no classes shared between this teacher and student
-    enrollment: 
+    enrollment:
       course_not_published: This class hasn't been published yet
-    show: 
+    show:
       courses: Classes
-    cc_prefs: 
+    cc_prefs:
       comm_preferences_instructions: Now that you're registered with Canvas, you might want to configure what notifications you'll receive as your classes progress. Canvas is flexible enough to let you choose how and for what events you'd like to be notified. When things happen in your classes you can choose to be emailed or texted to your cell immediately, daily or weekly.
-    grades: 
+    grades:
       course: Class
       current_teacher_courses: Classes I'm Teaching
-      titles: 
+      titles:
         previous_courses: Previous Classes
         current_student_courses: Classes I'm Taking
       show_previous_courses: Show Previous Classes
-  context: 
-    roster_user: 
+  context:
+    roster_user:
       user_only_view_section: this user can only view students in their assigned class section(s)
-      help: 
+      help:
         list_services: You haven't enabled your list of registered services. Enabling this list will let fellow class and group members more easily link up with you outside of class.
         services: You haven't linked your user profile to any external services. You can link your Canvas account to services like Facebook and Twitter. This will make it easier for fellow class and group members to link up with you outside of class.
       user_view_all_sections: this user can view students in any class section
-      links: 
+      links:
         user_view_all_sections: let this user see all class users
-      labels: 
+      labels:
         public_list_services: Let fellow class/group members see which services I've linked to my profile
-    no_user: 
+    no_user:
       course: That user does not exist or is not currently a member of this class
-    roster: 
-      titles: 
+    roster:
+      titles:
         course_roster: Class Roster
-    communication: 
-      links: 
-        feeds: 
+    communication:
+      links:
+        feeds:
           course_discussions: Class Discussions Atom Feed
-    roster_user_services: 
-      help: 
+    roster_user_services:
+      help:
         services_private: You haven't enabled your list of registered services. Enabling this list will let fellow class and group members see which services you have linked to your Canvas account.
-      labels: 
+      labels:
         allow_view_services: Let fellow class/group members see which services I've linked to my profile
-  assignments: 
-    submission_sidebar: 
-      links: 
-        submission: 
+  assignments:
+    submission_sidebar:
+      links:
+        submission:
           view_quiz: View the Assessment Submission
-    syllabus_content: 
-      titles: 
+    syllabus_content:
+      titles:
         course_syllabus: Class Syllabus
-      instructions: 
+      instructions:
         syllabus: |-
           The syllabus page shows a table-oriented view of the class schedule, and the basics of
           class grading.  You can add any other comments, notes, or thoughts you have about the class
           structure, class policies or anything else.
-          
+
           To add some comments, click the "Edit Syllabus Description" link to the right.
-    wizard_box: 
-      links: 
+    wizard_box:
+      links:
         create_or_import_quiz: Create/Import an Assessment
-      instructions: 
-        wizard: 
+      instructions:
+        wizard:
           quizzes: Assessments are special types of assignments.  You can create or import assessments by clicking the "Assessments" link on the left sidebar.
           overview: This page is for setting up your class at a high level. You can add assignments, group them and then weight those groups. The idea is to get yourself organized first, dive into the specifics second. Even still, there's a lot you can do from here.
-    assignments_list_content: 
-      titles: 
+    assignments_list_content:
+      titles:
         course_assignments: Class Assignments
       no_assignments: No Assignments created for this class.
-  facebook: 
-    index: 
+  facebook:
+    index:
       no_messages_notice: As things happen in the class you'll start seeing notifications show up here letting you know about things happening in your Canvas account.
       notification_about: The Canvas Facebook app is here to give you easier access to the interactions going on inside your classes. You can set it to send you notifications when your assignments are graded, when due dates change, etc. Your private data will still stay private at Canvas.
-  role_overrides: 
-    index: 
-      titles: 
+  role_overrides:
+    index:
+      titles:
         subhead: Set what users are allowed to do based on their role in the class.
-      links: 
+      links:
         manage_course_roles: Manage Class-Level Roles
-      headers: 
+      headers:
         course_permissions: Class & Account Permissions
-  labels: 
+  labels:
     quizzes: Assessments
-  quiz_submissions: 
-    errors: 
+  quiz_submissions:
+    errors:
       late_quiz: You submitted this assessment late, and your answers may not have been recorded.
       protected_quiz: This assessment is protected and is only available from certain locations.  The computer you are currently using does not appear to be at a valid location for taking this assessment.
-  course_settings: 
+  course_settings:
     indexed_course: Included in public class index
     course_dates_enforced: Users can only participate in the class between these dates
-    titles: 
+    titles:
       reset_course_content_dialog_help: Reset Class Content
       move_course: Move Class
     course_dates_unenforced: These dates will not affect class availability
-  discussion_topics: 
-    index: 
+  discussion_topics:
+    index:
       course_discussions_atom_feed_title: Class Discussions Atom Feed
-  external_tools: 
-    prompts: 
+  external_tools:
+    prompts:
       remove_tool: Are you sure you want to remove this tool?  Any classes using this tool will no longer work.
-    external_tools: 
+    external_tools:
       external_tools_note: External tools are tools outside of Canvas that support Basic LTI integrations. You will need to check with the author of the tool for the correct configuration parameters to add. Tools are configured at the account level, and can then be added as content in class modules for classes in the account.
-  terms: 
-    term: 
-      course_count: 
+  terms:
+    term:
+      course_count:
         one: 1 Class
-  menu: 
+  menu:
     my_courses: My Classes
-  tabs: 
+  tabs:
     quizzes: Class Assessments
-  getting_started: 
-    name: 
+  getting_started:
+    name:
       teacherless_grades_notice: You can use Canvas to keep track of how you're doing in all your classes, whether they're using Canvas or not. Just tell us how your class's grading policy is set up and then enter your scores manually. You can also invite your classmates to use the class you set up so they can track their grades, too!
       page_title: "Try It: Choose Class Name"
       course_name_notice_longer: Right, then. Let's get this class set up! It should only take a few minutes for the whole process. First off come up with a name for your class. Then you'll add your assignments and students. Shouldn't take too long at all.
       course_name_notice: First thing's first, tell us the name of the class you'd like to track.
-      labels: 
+      labels:
         name: Enter a name for your class
         license: License for class content
         indexed: Include this class in Instructure's public class index
         is_public: Make this class publicly visible
-    students: 
+    students:
       teacherless_add_student_notice_just_email: If you'd like, you can invite your fellow classmates to also use this class. That way they won't have to set up the grading policies all over again, and we'll also give you a place to share files and collaborate. Just paste in a list of email addresses below to invite others to join.
       teacher_add_student_notice_just_email: "*Next, you'll want to add students to your class.* You can add them one by one or as a whole list. Paste in just email addresses (bob@example.com) or names with addresses #(\"Jones, Bob M.\" <bob@example.com>)# separated by commas or on separate lines."
       teacherless_add_student_skip: You can always skip this step and invite your classmates (or even your teacher) to share this class later on.
-    setup: 
+    setup:
       unpublished_notice: Don't worry, this class will stay visible to just you until you publish it. When you publish, your class will become active and students will be notified that it's has been created and they are enrolled. You can publish at any time from the class's main page.
       summary_notice: "*That's it! You're done!* Here's the summary of everything you put in. Feel free to click any section to go back and edit the information there. When you're sure you've got everything right, click the save button to go to your class page."
-      labels: 
+      labels:
         course_name: Class Name
-    teacherless: 
+    teacherless:
       teacherless_explanation: You can use Canvas to keep track of how you're doing in all your classes, whether they're using Canvas or not. Just tell us how your class's grading policy is set up and then enter your scores manually. You can also invite your classmates to use the class you set up so they can track their grades, too!
       page_title: "Try It: New Class"
       setup: Set up a new Class in Canvas
-    assignments: 
+    assignments:
       default_group_notice: "*Now we're getting somewhere!* Next you'll want to add your class assignments.  Assignments are organized into groups (assessments, papers, etc.), and each group can be weighted to count as a percentage of the final score.  We've added a default group above to get you started.  You can add assignments to it by clicking the plus icon, or use the links to the right to create your own groups."
       grade_groups_notice: Nicely done. Next you'll want to define the assignments for your class. Most classes base grades either on straight points, or points according to types (50% of your grade is from tests, 20% is from papers, etc.). In Canvas you add assignments, assessments, or whatever into groups and optionally weight those groups. Build your Canvas class to match the grading scheme of your actual class, and we'll take care of computing your final grade for you.
       skip_assignments_notice: Not ready to create your assignments? Feel free to skip this step, you can always come back to it later after your class is set up.
-    wizard_secondary_nav: 
+    wizard_secondary_nav:
       visit_course_page: Visit Class Page
       course_name: Class Name
     course_created_notice: Class created! You'll need to log in or register to claim this class.
-  gradebook_uploads: 
-    show: 
+  gradebook_uploads:
+    show:
       assignment_example: Equity Indices Assessment
-      titles: 
+      titles:
         feed: Class Gradebook Atom Feed
-  calendars: 
-    show: 
+  calendars:
+    show:
       feed_title: Class Calendar Atom Feed
