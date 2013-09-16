@@ -11,7 +11,7 @@ class StudentsReportsController < ApplicationController
 
 			add_crumb(t('#crumbs.assessments', "Assessments"), named_context_url(@context, :context_quizzes_url))
 			add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
-			add_crumb(t('#crumbs.students_reports', 'Students Reports'), named_context_url(@context, :context_quiz_students_reports_url, @quiz))
+			add_crumb(t('#crumbs.students_reports', 'Misconception Reports'), named_context_url(@context, :context_quiz_students_reports_url, @quiz))
 
 			@misconceptions = @quiz.quiz_misconceptions
 			@high_probability_limits = @quiz.quiz_misconception_probability.high_probability if @quiz.quiz_misconception_probability
