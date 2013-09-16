@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :simple_response, :only => [:index]
-  
+
   map.calculate_reports 'calculate_reports', :controller => 'reports', :action => 'calculate_reports', :conditions => {:method => :put}
 
   map.resources :rosters
@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :class_reports, :only => [:index] do |class_report|
     class_report.resources :assessment_reports, :only => [:index, :show]
   end
-  
+
   map.resources :submission_comments, :only => :destroy
 
   map.mark_inbox_as_read 'inbox', :controller => 'context', :action => 'mark_inbox_as_read', :conditions => {:method => :delete}
@@ -286,7 +286,7 @@ ActionController::Routing::Routes.draw do |map|
       quiz.student_instructions "student_instructions", :controller => "quizzes", :action => "student_instructions"
       quiz.resources :quiz_misconception_probabilities do |misconception_probability|
       end
-      quiz.resources :students_reports, :only => [:index] do |students_report|
+      quiz.resources :misconception_reports, :only => [:index] do |misconception_report|
       end
     end
 
@@ -508,13 +508,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.login "login", :controller => "pseudonym_sessions_student", :action => "new", :conditions => {:method => :get}
   map.connect "login", :controller => "pseudonym_sessions_student", :action=> "create", :conditions => {:method => :post}
-  
+
   map.login_teacher "login_teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
   map.teacher "teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
   map.connect "teacher", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
   map.connect "admin", :controller => "pseudonym_sessions", :action => "new", :conditions => {:method => :get}
   map.connect "login_teacher", :controller => "pseudonym_sessions", :action=> "create", :conditions => {:method => :post}
-  
+
 
   map.logout "logout", :controller => "pseudonym_sessions", :action => "destroy"
   map.clear_file_session "file_session/clear", :controller => "pseudonym_sessions", :action => "clear_file_session"

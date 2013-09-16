@@ -1,4 +1,4 @@
-<% jammit_css :students_reports -%>
+<% jammit_css :misconception_reports -%>
 <% content_for :page_title do -%>Misconception Reports<% end -%>
 
 <h2>Misconception Reports</h2>
@@ -26,7 +26,7 @@
           <tr>
             <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">
               <% @high_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
-                <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @high_probability["#{misconception.id}"].count-1 %> 
+                <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @high_probability["#{misconception.id}"].count-1 %>
               <% end -%>
             </td>
           </tr>

@@ -224,8 +224,8 @@ stylesheets:
     - public/stylesheets/compiled/roster_user.css
   rosters:
     - public/stylesheets/compiled/rosters.css
-  students_reports:
-    - public/stylesheets/compiled/students_reports.css
+  misconception_reports:
+    - public/stylesheets/compiled/misconception_reports.css
   statistics_raw_data:
     - public/stylesheets/compiled/statistics_raw_data.css
   learning_outcomes:

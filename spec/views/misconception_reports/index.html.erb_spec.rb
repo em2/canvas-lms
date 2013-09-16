@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require File.expand_path(File.dirname(__FILE__) + '/../views_helper')
 
-describe "/students_reports/index" do
+describe "/misconception_reports/index" do
   it "should render" do
     district_account = Account.default.sub_accounts.create!(:name => 'D001')
     school_account = district_account.sub_accounts.create!(:name => 'S001')
@@ -22,7 +22,7 @@ describe "/students_reports/index" do
     assigns[:high_probability] = @high_probability
     assigns[:somewhat_probability] = @somewhat_probability
     assigns[:user_difficulties] = @user_difficulties
-    render 'students_reports/index'
+    render 'misconception_reports/index'
     response.should_not be_nil
   end
 end

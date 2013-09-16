@@ -48,7 +48,7 @@
       <% max_position = assignments.map(&:position).compact.max %>
       <% assignment = assignments.find_by_position(max_position) -%>
       <% if assignment.quiz -%>
-        <span class="classes_info"><a href="<%= course_quiz_students_reports_url(current_enrollment.course.id, assignment.quiz.id) %>" class="quiz_title"><%= t('my_classes.miscon_reports', "Misconception Reports") %></a></span>
+        <span class="classes_info"><a href="<%= course_quiz_misconception_reports_url(current_enrollment.course.id, assignment.quiz.id) %>" class="quiz_title"><%= t('my_classes.miscon_reports', "Misconception Reports") %></a></span>
         <span class="classes_info"><%= t('my_classes.last_assessment', 'Last Assessment:') %> <a href=<%= course_quiz_path(current_enrollment.course.id, assignment.quiz.id) %>><%= assignment.title %></a></span>
       <% end -%>
     <% end -%>
