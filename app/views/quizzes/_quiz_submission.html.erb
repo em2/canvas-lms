@@ -40,26 +40,13 @@
   <% else %>
     <%= t(:quiz_not_yet_taken, "The quiz hasn't been taken yet.") %>
   <% end %>
-<% elsif !(@current_submission || @submission).results_visible? && !can_do(@quiz, @current_user, :grade) %>
-  <div class="quiz_score" style="<%= hidden if @quiz.ungraded? %>">
-    <% if @quiz.allowed_attempts != 1 %>
-      <%= before_label(:score_for_attempt, "Score for this attempt") %>
-    <% elsif @quiz.survey? %>
-      <%= before_label(:score_for_survey, "Score for this survey") %>
-    <% else %>
-      <%= before_label(:score_for_quiz, "Score for this quiz") %>
-    <% end %>
-    <%= t(:score_out_of_points_possible, "%{score} out of %{points_possible}",
-              :score => raw("<span class=\"score_value\">#{render :partial => "submission_score", :object => @submission, :locals => {:quiz => @quiz, :context => @context}}</span>"),
-              :points_possible => params[:preview] ? @submission.points_possible_at_submission_time : @quiz.points_possible) %>
-  </div>
 <% else %>
 <% @stored_params ||= {}
     editable ||= false
     submission_data = @submission.data
     submission_data_hash = {}
     submission_data.each{|d| submission_data_hash[d[:question_id]] = d }
-    submission_questions = @submission.questions_as_object 
+    submission_questions = @submission.questions_as_object
     submission_questions_hash = {}
     submission_questions.each{|q| submission_questions_hash[q[:id]] = q }
 %>
@@ -84,18 +71,6 @@
     <% end %>
   <% end %>
 <% end %>
-<div class="quiz_score" style="<%= hidden if @quiz.ungraded? %>">
-  <% if @quiz.allowed_attempts != 1 %>
-    <%= before_label(:score_for_attempt, "Score for this attempt") %>
-  <% elsif @quiz.survey? %>
-    <%= before_label(:score_for_survey, "Score for this survey") %>
-  <% else %>
-    <%= before_label(:score_for_quiz, "Score for this quiz") %>
-  <% end %>
-  <%= t(:score_out_of_points_possible, "%{score} out of %{points_possible}",
-            :score => raw("<span class=\"score_value\">#{render :partial => "submission_score", :object => @submission, :locals => {:quiz => @quiz, :context => @context}}</span>"),
-            :points_possible => params[:preview] ? @submission.points_possible_at_submission_time : @quiz.points_possible) %>
-</div>
 <% if @submission.finished_at %>
 <div>
   <%= t(:submitted_at, "Submitted %{when}", :when => datetime_string(@submission.finished_at)) %>
@@ -177,7 +152,7 @@ $(document).ready(function() {
           <div style="font-size: 0.8em;">
             <label for="fudge_points_entry">
               <% if @submission.quiz_points_possible == @quiz.points_possible || !@submission.quiz_points_possible %>
-                <%= t('labels.fudge_points_generic_explanation', "You can manually adjust the score by adding positive or negative points to this box:") %> 
+                <%= t('labels.fudge_points_generic_explanation', "You can manually adjust the score by adding positive or negative points to this box:") %>
               <% elsif @quiz.survey? %>
                 <%= t('labels.fudge_points_changed_points_survey', <<-TEXT,
                   Since %{user} took this survey, the points possible for the
@@ -229,17 +204,5 @@ $(document).ready(function() {
     </div>
   <% end %>
 </div>
-<% if !editable %>
-<div class="quiz_score" style="text-align: right; font-size: 1.2em; <%= hidden if @quiz.ungraded? %>">
-  <% if @quiz.survey? %>
-    <%= before_label(:survey_score, "Survey Score") %>
-  <% else %>
-    <%= before_label(:quiz_score, "Quiz Score") %>
-  <% end %>
-  <%= t(:score_out_of_points_possible, "%{score} out of %{points_possible}",
-        :score => raw("<span class=\"score_value\">#{render :partial => "submission_score", :object => @submission, :locals => {:quiz => @quiz, :context => @context}}</span>"),
-        :points_possible => params[:preview] ? @submission.points_possible_at_submission_time : @quiz.points_possible) %>
-</div>
-<% end %>
 <% end %>
 <% end %>
