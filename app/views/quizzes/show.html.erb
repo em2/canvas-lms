@@ -138,9 +138,9 @@
               <a href="<%= context_url(@context, :context_quiz_statistics_url, @quiz.id) %>" class="button button-quiz-buttons"><%= image_tag "graph.png" %> <%= @quiz.survey? ? t('links.survey_statistics', "Survey Statistics") : t('links.quiz_statistics', "Quiz Statistics") %></a>
             <% end %>
           </span>
-          <span>
-            <a href="<%= context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html) %>" class="button button-quiz-buttons  button-quiz-buttons-right"><%= image_tag "ball.png" %> <%= t('links.manage_artifacts', "Manage Artifacts") %></a>
-          </span>
+          <!-- <span>
+            <a href="#" class="button button-quiz-buttons  button-quiz-buttons-right"><%#= image_tag "ball.png" %> <%#= t('links.manage_artifacts', "Manage Artifacts") %></a>
+          </span> -->
         </div>
 
         <div class="button_layer">
