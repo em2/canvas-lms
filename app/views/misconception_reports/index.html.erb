@@ -20,26 +20,40 @@
           </tr>
           <tr>
             <td>
-              &nbsp Highly Likely:
-            </td>
-          </tr>
-          <tr>
-            <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">
-              <% @high_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
-                <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @high_probability["#{misconception.id}"].count-1 %>
-              <% end -%>
+              <div>Misconception</div>
+              <div>Highly Likely:</div>
             </td>
           </tr>
           <tr>
             <td>
-              &nbsp Possible:
+              <div class="misconceptions_summary_row_standard">
+                <% if @high_probability["#{misconception.id}"].present? -%>
+                  <% @high_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
+                    <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @high_probability["#{misconception.id}"].count-1 %>
+                  <% end -%>
+                <% else -%>
+                  <span>None</span>
+                <% end -%>
+              </div>
             </td>
           </tr>
           <tr>
-            <td class="misconceptions_summary_row_standard" style="background-color:#FFCCCC;">
-              <% @somewhat_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
-                <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @somewhat_probability["#{misconception.id}"].count-1 %>
-              <% end -%>
+            <td>
+              <div>Misconception</div>
+              <div>Possible:</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="misconceptions_summary_row_standard">
+                <% if @somewhat_probability["#{misconception.id}"].present? -%>
+                  <% @somewhat_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
+                    <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @somewhat_probability["#{misconception.id}"].count-1 %>
+                  <% end -%>
+                <% else -%>
+                  <span>None</span>
+                <% end -%>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -54,13 +68,17 @@
   <table>
     <tbody>
       <tr>
-        <% @user_difficulties.each_with_index do |user_difficulty, index| -%>
-          <% if user_difficulty.last == "&#10004;" -%>
-            <td style="background-color:#FFCCCC;">
-              <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_difficulty.first}"]) %>" class="name"><%= User.find(user_difficulty.first).name %></a><%= ', ' unless index == @user_difficulties.count-1 %>
-            </td>
-          <% end -%>
-        <% end -%>
+        <td>
+          <div class="difficult_student_names">
+            <% if @user_difficulties.present? -%>
+              <% @user_difficulties.each_with_index do |user_difficulty, index| -%>
+                <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_difficulty.first}"]) %>" class="name"><%= User.find(user_difficulty.first).name %></a><%= ', ' unless index == @user_difficulties.count-1 %>
+              <% end -%>
+            <% else -%>
+              <span>None</span>
+            <% end -%>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
