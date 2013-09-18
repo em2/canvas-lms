@@ -71,6 +71,14 @@
                 </div>
               </td>
             </tr>
+            <tr id="quiz_paper_version_url">
+              <td class="nobr"><%= blabel :quiz, :paper_version_url, :quiz_paper_url, :en => "Paper Version URL" %></td>
+              <td>
+                <div style="margin-right: 1px;">
+                  <%= text_field :quiz, :paper_version_url, :style => "width: 100%;" %>
+                </div>
+              </td>
+            </tr>
             <tr id="quiz_points_possible" style="<%= hidden unless @quiz.quiz_type == 'graded_survey' %>">
               <td><%= blabel :quiz, :points_possible, :quiz_score, :en => "Score" %></td>
               <td>

@@ -132,21 +132,29 @@
           </span>
         </div>
 
-        <div class="button_layer">
-          <span>
-            <% if can_do(@quiz, @current_user, :manage) && @submitted_students && !@submitted_students.empty? %>
+        <% if can_do(@quiz, @current_user, :manage) && @submitted_students && !@submitted_students.empty? -%>
+          <div class="button_layer">
+            <span>
               <a href="<%= context_url(@context, :context_quiz_statistics_url, @quiz.id) %>" class="button button-quiz-buttons"><%= image_tag "graph.png" %> <%= @quiz.survey? ? t('links.survey_statistics', "Survey Statistics") : t('links.quiz_statistics', "Quiz Statistics") %></a>
-            <% end %>
-          </span>
-          <!-- <span>
-            <a href="#" class="button button-quiz-buttons  button-quiz-buttons-right"><%#= image_tag "ball.png" %> <%#= t('links.manage_artifacts', "Manage Artifacts") %></a>
-          </span> -->
-        </div>
+            </span>
+          </div>
+        <% end -%>
+
+        <% if @quiz.paper_version_url.present? -%>
+          <div class="button_layer">
+            <span>
+              <a href="<%= @quiz.paper_version_url %>" class="button button-quiz-buttons"><%= image_tag "ball.png" %> <%= t('links.print_paper_version_url', "Print Paper Version") %></a>
+            </span>
+          </div>
+        <% end -%>
 
         <div class="button_layer">
           <span>
             <a href="<%= context_url(@context, :context_quiz_misconception_reports_url, @quiz) %>" class="button button-quiz-buttons"><%= image_tag "ball.png" %> <%= t('links.misconception_reports', "Misconception Reports") %></a>
           </span>
+          <!-- <span>
+            <a href="#" class="button button-quiz-buttons  button-quiz-buttons-right"><%#= image_tag "ball.png" %> <%#= t('links.manage_artifacts', "Manage Artifacts") %></a>
+          </span> -->
         </div>
 
         <div>

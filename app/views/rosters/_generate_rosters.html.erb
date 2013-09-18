@@ -22,9 +22,9 @@
 			<%= f.label :stage, 'L' %> <br />
 	&nbsp <%= f.label :instance, 'Instance:' %>
 		&nbsp <%= f.text_field :instance, :size => '3x1' %>
-		
+
 			<span id='instance_validator' class='validator'>Must Be 3 Numbers </span> <br />
-		
+
 	&nbsp <%= f.label :students, 'Students:' %>
 		&nbsp <%= f.select :students, options_for_select(@student_options, 25) %> <br />
 		<div id="students_custom_count">
@@ -36,14 +36,14 @@
 	&nbsp <%= f.label :courses, 'Class IDs:' %>
 	<div>
 		&nbsp <%= f.text_area :courses, :size => '16x10' %>
-		
+
 			<span id='course_example_validator' class='validator'>Must Be In Form: <br />D***S***T***C*** <br />e.g., D123S123T123C123 &nbsp</span> <br />
 	</div>
 	&nbsp <%= f.submit 'Assign Assessment' %>
 <% end -%>
 
 <% js_block do %>
-<script type="text/javascript"> 
+<script type="text/javascript">
 require([
   'jquery', /* $ */
   'assign_probe'

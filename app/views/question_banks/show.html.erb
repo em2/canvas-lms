@@ -9,6 +9,7 @@
     <% if can_do(@bank, @current_user, :manage) %>
       <a href="#" class="button button-sidebar-wide add_question_link"><%= image_tag "add.png" %> <%= t 'buttons.add_a_question', "Add a Question" %></a>
       <a href="<%= context_url(@context, :context_question_bank_url, @bank.id) %>" class="button button-sidebar-wide edit_bank_link"><%= image_tag "edit.png" %> <%= t 'buttons.edit', "Edit Bank Details" %></a>
+      <a href="<%= context_url(@context, :context_question_bank_url, @bank.id) %>" class="button button-sidebar-wide edit_bank_paper_version_url_link"><%= image_tag "edit.png" %> <%= t 'buttons.edit', "Edit Bank Paper Vesion URL" %></a>
       <a href="#" class="button button-sidebar-wide move_questions_link"><%= image_tag "edit.png" %> <%= t 'buttons.move_questions', "Move Multiple Questions" %></a>
       <a href="<%= context_url(@context, :context_question_bank_url, @bank.id) %>" class="button button-sidebar-wide delete_bank_link"><%= image_tag "delete.png" %> <%= t 'buttons.delete', "Delete Bank" %></a>
     <% end %>
@@ -48,13 +49,22 @@
 <% form_for @bank, :url => context_url(@context, :context_question_bank_url), :html => {:id => "edit_bank_form", :method => :put} do |f| %>
   <div class="displaying">
     <h2 class="quiz_title"><%= @bank.title %></h2>
-	<h2 class="quiz_full_name"><%= @bank.full_name %></h2>
+    <h2 class="quiz_full_name"><%= @bank.full_name %></h2>
   </div>
   <div class="editing" style="display: none;">
     <b><%= f.label :title, :en => "Bank Short Name" %></b>
     <%= f.text_field :title, :class => "bank_name_box" %>
-	<b><%= f.label :full_name, :en => "Bank Full Name" %></b>
+    <b><%= f.label :full_name, :en => "Bank Full Name" %></b>
     <%= f.text_field :full_name, :class => "bank_full_name_box" %>
+  </div>
+<% end %>
+<% form_for @bank, :url => context_url(@context, :context_question_bank_url), :html => {:id => "edit_bank_paper_version_url_form", :method => :put} do |f| %>
+  <div class="displaying">
+    <p>Paper Version Url: <span class="quiz_paper_version_url"><%= @bank.paper_version_url %></span></p>
+  </div>
+  <div class="editing" style="display: none;">
+    <b><%= f.label :paper_version_url, :en => "Paper Version URL" %></b>
+    <%= f.text_field :paper_version_url, :class => "bank_paper_version_url_box" %>
   </div>
 <% end %>
 <p>
@@ -229,6 +239,43 @@ $(document).ready(function() {
       $link.find(".message").text(<%= jt('bookmark_failed', "Bookmark Failed") %>);
     });
   });
+
+  $(".edit_bank_paper_version_url_link").click(function(e){
+    e.preventDefault();
+    var val = $("#edit_bank_paper_version_url_form span").text();
+    $("#edit_bank_paper_version_url_form").find(".displaying").hide().end()
+      .find(".editing").show();
+
+    $(".bank_paper_version_url_box").focus().select();
+  });
+  $("#edit_bank_paper_version_url_form .bank_paper_version_url_box").keycodes('return esc', function(event) {
+    if(event.keyString == 'esc') {
+      $("#edit_bank_paper_version_url_form").find(".displaying").show().end()
+        .find(".editing").hide();
+    } else if(event.keyString == 'return') {
+      $("#edit_bank_paper_version_url_form").submit();
+    }
+  });
+  $("#edit_bank_paper_version_url_form").formSubmit({
+    object_name: 'assessment_question_bank',
+    beforeSubmit: function(data) {
+      $("#edit_bank_paper_version_url_form .quiz_paper_version_url").text(data.paper_version_url);
+      $(this).loadingImage();
+    },
+    success: function(data) {
+      $(this).loadingImage('remove');
+      var bank = data.assessment_question_bank;
+      $("#edit_bank_paper_version_url_form").find(".displaying").show().end()
+        .find(".editing").hide();
+      $("#edit_bank_paper_version_url_form .quiz_paper_version_url").text(bank.paper_version_url);
+    },
+    error: function(data) {
+      $(this).loadingImage('remove');
+      $(".edit_bank_link").click();
+      $("#edit_bank_paper_version_url_form").formErrors(data);
+    }
+  });
+
   $(".edit_bank_link").click(function(event) {
     event.preventDefault();
     var val = $("#edit_bank_form h2").text();
@@ -283,7 +330,7 @@ $(document).ready(function() {
     if(bank.id == current_question_bank_id) { return; }
     var $dialog = $("#move_question_dialog");
     var $bank = $dialog.find("li.bank.blank:first").clone(true).removeClass('blank');
-    
+
     $bank.find("input").attr('id', "question_bank_" + bank.id).val(bank.id);
     $bank.find("label").attr('for', "question_bank_" + bank.id)
       .find(".bank_name").text(bank.title || <%= jt('default_name', "No Name") %>).end()
@@ -512,13 +559,13 @@ $(document).ready(function() {
   float: left;
 }
 #move_question_dialog li.bank .bank_label .bank_name {
-  font-weight: bold; 
+  font-weight: bold;
   display: block;
 }
 #move_question_dialog li.bank .bank_label .context_name {
-  font-size: 0.8em; 
-  display: block; 
-  padding-left: 10px; 
+  font-size: 0.8em;
+  display: block;
+  padding-left: 10px;
   color: #888;
 }
 #questions.uneditable .question_holder .display_question .move {

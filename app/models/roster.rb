@@ -28,22 +28,22 @@ class Roster < ActiveRecord::Base
     if (!find_teacher(district_account, district, teacher))
       create_teacher(context, district, teacher)
     end
-        
+
     #
     # Enroll the teacher in this course as a teacher
     enroll_as_teacher(@teacher_account)
-    
+
     #
     # Enroll the current user as the teacher
     enroll_as_teacher(current_user)
-    
+
     #
     # Make sure that the stage instance has not been used with this probe
     # if not, create the assessment
     if (!find_assignment(probe, stage, instance))
       create_assignment(probe, stage, instance, current_user)
     end
-        
+
     #
     # Create the students
     srand
@@ -73,7 +73,7 @@ class Roster < ActiveRecord::Base
             @course.unconclude
             @course.save!
           end
-        end 
+        end
       end
     end
     return course_found
@@ -132,7 +132,7 @@ class Roster < ActiveRecord::Base
 
   def create_student(context, course_title, i)
     @student_id = rand(8999999999)+1000000000
-    
+
     #
     # Make sure student_id is unique
     while (Pseudonym.find_by_unique_id(@student_id) != nil)
@@ -168,7 +168,7 @@ class Roster < ActiveRecord::Base
 
     @student.register!
     @student.save!
-    
+
   end
 
   def enroll_as_teacher(user)
@@ -211,8 +211,9 @@ class Roster < ActiveRecord::Base
     @quiz.published_at = Time.now
     @quiz.workflow_state = 'available'
     @quiz.anonymous_submissions = false
+    @quiz.paper_version_url = probe.paper_version_url
     @quiz.save!
-    
+
     @course_assignment = Assignment.find(@quiz.assignment_id)
     @course_assignment.position = @course.assignments.count
     @course_assignment.save!

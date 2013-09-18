@@ -18,7 +18,7 @@
 
 class AssessmentQuestionBank < ActiveRecord::Base
   include Workflow
-  attr_accessible :context, :title, :full_name, :user, :outcomes
+  attr_accessible :context, :title, :full_name, :user, :outcomes, :paper_version_url
   belongs_to :context, :polymorphic => true
   has_many :assessment_questions, :order => 'position, name, created_at'
   has_many :assessment_question_bank_users
@@ -27,19 +27,19 @@ class AssessmentQuestionBank < ActiveRecord::Base
 
   has_many :assessment_misconceptions, :order => 'position, name, created_at', :dependent => :destroy
   has_one :assessment_misconception_probability, :dependent => :destroy
-  
+
   before_save :infer_defaults
   validates_length_of :title, :maximum => maximum_string_length, :allow_nil => true
-  
+
   workflow do
     state :active
     state :deleted
   end
-  
+
   set_policy do
     given{|user, session| cached_context_grants_right?(user, session, :manage_assignments) }
     can :read and can :create and can :update and can :delete and can :manage
-    
+
     given{|user, session| user && self.assessment_question_bank_users.exists?(:user_id => user.id) }
     can :read
   end
@@ -55,25 +55,25 @@ class AssessmentQuestionBank < ActiveRecord::Base
   def self.unfiled_for_context(context)
     context.assessment_question_banks.find_by_title_and_workflow_state(default_unfiled_title, 'active') || context.assessment_question_banks.create(:title => default_unfiled_title) rescue nil
   end
-  
+
   def cached_context_short_name
     @cached_context_name ||= Rails.cache.fetch(['short_name_lookup', self.context_code].cache_key) do
       self.context.short_name rescue ""
     end
   end
-  
+
   def assessment_question_count
     self.assessment_questions.active.count
   end
-  
+
   def context_code
     "#{self.context_type.underscore}_#{self.context_id}"
   end
-  
+
   def infer_defaults
     self.title = t(:default_title, "No Name - %{course}", :course => self.context.name) if self.title.blank?
   end
-  
+
   def bookmark_for(user, do_bookmark=true)
     if do_bookmark
       question_bank_user = self.assessment_question_bank_users.find_by_user_id(user.id)
@@ -82,17 +82,17 @@ class AssessmentQuestionBank < ActiveRecord::Base
       AssessmentQuestionBankUser.delete_all({:user_id => user.id, :assessment_question_bank_id => self.id})
     end
   end
-  
+
   def bookmarked_for?(user)
     user && self.assessment_question_bank_users.map(&:user_id).include?(user.id)
   end
-  
+
   def select_for_submission(count, exclude_ids=[])
     ids = AssessmentQuestion.connection.select_all("SELECT id FROM assessment_questions WHERE workflow_state != 'deleted' AND assessment_question_bank_id = #{self.id}")
     ids = (ids.map{|i|i['id'].to_i} - exclude_ids).sort_by{rand}[0...count]
     ids.empty? ? [] : AssessmentQuestion.find_all_by_id(ids)
   end
-  
+
   def outcomes=(hash)
     raise "Can't set outcomes on unsaved bank" if new_record?
     hash = {} if hash.blank?
@@ -119,7 +119,7 @@ class AssessmentQuestionBank < ActiveRecord::Base
     tags_to_delete.each{|t| t.destroy }
     true
   end
-  
+
   alias_method :destroy!, :destroy
   def destroy
     self.workflow_state = 'deleted'
@@ -132,7 +132,7 @@ class AssessmentQuestionBank < ActiveRecord::Base
     assessment_questions.destroy_all
     quiz_groups.destroy_all
   end
-  
+
   named_scope :active, lambda {
     {:conditions => ['assessment_question_banks.workflow_state != ?', 'deleted'] }
   }

@@ -26,7 +26,7 @@ class AssessmentQuestionsController < ApplicationController
       params[:assessment_question][:form_question_data] ||= params[:question]
       @question = @bank.assessment_questions.build(params[:assessment_question])
       if @question.with_versioning(&:save)
-        
+
         @question.question_data[:answers].each do |answer|
           if !answer[:misconception_id].empty?
             misconceptions = JSON.parse(answer[:misconception_id])
@@ -57,7 +57,7 @@ class AssessmentQuestionsController < ApplicationController
       end
     end
   end
-  
+
   def update
     @question = @bank.assessment_questions.find(params[:id])
     if authorized_action(@question, @current_user, :update)
@@ -73,7 +73,7 @@ class AssessmentQuestionsController < ApplicationController
       if @question.with_versioning { @question.update_attributes(params[:assessment_question]) }
         @question.ensure_in_list
 
-        
+
         #
         # check the totals and make sure each misconception for all the question answers
         # adds up to exactly 1
@@ -94,18 +94,18 @@ class AssessmentQuestionsController < ApplicationController
             end
           end
         end
-        
+
         totals.each { |miscon_id,value| ok_to_proceed = false unless value.to_i==1 || value.to_i==0 }
 
         if ok_to_proceed
-          # remove the old references 
+          # remove the old references
           @bank.assessment_misconceptions.active.each do |misconception|
             miscon = misconception.pattern
             miscon.delete("#{@question.id}")
             misconception.pattern = miscon
             misconception.save!
           end
-        
+
           @question.question_data[:answers].each do |answer|
             if !answer[:misconception_id].empty?
               misconceptions = JSON.parse(answer[:misconception_id])
@@ -144,12 +144,12 @@ class AssessmentQuestionsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @question = @bank.assessment_questions.find(params[:id])
     if authorized_action(@question, @current_user, :delete)
 
-      # remove the old references 
+      # remove the old references
       @bank.assessment_misconceptions.active.each do |misconception|
         miscon = misconception.pattern
         miscon.delete("#{@question.id}")
@@ -161,7 +161,7 @@ class AssessmentQuestionsController < ApplicationController
       render :json => @question.to_json
     end
   end
-  
+
   def move
     @question = @context.assessment_questions.find(params[:assessment_question_id])
     # Note that a question might be moved to a question bank in another context, so we don't

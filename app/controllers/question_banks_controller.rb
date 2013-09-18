@@ -19,14 +19,14 @@
 class QuestionBanksController < ApplicationController
   before_filter :require_context
   add_crumb("Question Banks") { |c| c.send :named_context_url, c.instance_variable_get("@context"), :context_question_banks_url }
-  
+
   def index
     if @context == @current_user || authorized_action(@context, @current_user, :manage_assignments)
       @question_banks = @context.assessment_question_banks.active
       if params[:include_bookmarked] == '1'
         @question_banks += @current_user.assessment_question_banks.active
       end
-      if params[:inherited] == '1' && @context != @current_user && @context.grants_right?(@current_user, nil, :read_question_banks) 
+      if params[:inherited] == '1' && @context != @current_user && @context.grants_right?(@current_user, nil, :read_question_banks)
         @question_banks += @context.inherited_assessment_question_banks
       end
       @question_banks = @question_banks.select{|b| b.grants_right?(@current_user, nil, :manage) } if params[:managed] == '1'
@@ -37,14 +37,14 @@ class QuestionBanksController < ApplicationController
       end
     end
   end
-  
+
   def questions
     find_bank(params[:question_bank_id], params[:inherited] == '1') do
       @questions = @bank.assessment_questions.active.paginate(:per_page => 50, :page => params[:page])
       render :json => {:pages => @questions.total_pages, :questions => @questions}.to_json
     end
   end
-  
+
   def reorder
     @bank = @context.assessment_question_banks.find(params[:question_bank_id])
     if authorized_action(@bank, @current_user, :update)
@@ -52,7 +52,7 @@ class QuestionBanksController < ApplicationController
       render :json => {:reorder => true}
     end
   end
-  
+
   def show
     @bank = @context.assessment_question_banks.find(params[:id])
     add_crumb(@bank.title)
@@ -63,7 +63,7 @@ class QuestionBanksController < ApplicationController
       @questions = @bank.assessment_questions.active.paginate(:per_page => 50, :page => 1)
     end
   end
-  
+
   def move_questions
     @bank = @context.assessment_question_banks.find(params[:question_bank_id])
     @new_bank = AssessmentQuestionBank.find(params[:assessment_question_bank_id])
@@ -86,7 +86,7 @@ class QuestionBanksController < ApplicationController
       render :json => @new_questions.to_json
     end
   end
-  
+
   def create
     if authorized_action(@context.assessment_question_banks.new, @current_user, :create)
       @bank = @context.assessment_question_banks.build(params[:assessment_question_bank])
@@ -104,14 +104,14 @@ class QuestionBanksController < ApplicationController
       end
     end
   end
-  
+
   def bookmark
     @bank = @context.assessment_question_banks.find(params[:question_bank_id])
     if authorized_action(@bank, @current_user, :update)
       render :json => @bank.bookmark_for(@current_user, params[:unbookmark] != '1').to_json
     end
   end
-  
+
   def update
     @bank = @context.assessment_question_banks.find(params[:id])
     if authorized_action(@bank, @current_user, :update)
@@ -123,7 +123,7 @@ class QuestionBanksController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @bank = @context.assessment_question_banks.find(params[:id])
     if authorized_action(@bank, @current_user, :delete)
