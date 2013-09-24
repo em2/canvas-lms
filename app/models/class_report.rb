@@ -142,7 +142,7 @@ class ClassReport < ActiveRecord::Base
       number_attempted = 0
       question_count = 1
       submission = quiz.quiz_submissions.find_by_quiz_id_and_user_id(quiz.id,user.id)
-      
+
       if submission.finished_at && submission.finished_at < data["earliest_submission"]
         data["earliest_submission"] = submission.finished_at
       end
@@ -240,10 +240,10 @@ class ClassReport < ActiveRecord::Base
         if user_misconception = user.user_misconceptions.find_by_quiz_id_and_quiz_misconception_id(quiz.id, quiz_misconception.id)
           found_misconception = false
           if quiz_misconception_probability = QuizMisconceptionProbability.find_by_quiz_id(quiz.id)
-            if quiz_misconception_probability.high_probability && user_misconception.probability > quiz_misconception_probability.high_probability["#{quiz_misconception.id}"].to_f
+            if quiz_misconception_probability.high_probability && user_misconception.probability >= quiz_misconception_probability.high_probability["#{quiz_misconception.id}"].to_f
               data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = 'HL'
               found_misconception = true
-            elsif quiz_misconception_probability.somewhat_probability && user_misconception.probability > quiz_misconception_probability.somewhat_probability["#{quiz_misconception.id}"].to_f
+            elsif quiz_misconception_probability.somewhat_probability && user_misconception.probability >= quiz_misconception_probability.somewhat_probability["#{quiz_misconception.id}"].to_f
               data["user_misconceptions"]["#{user.id}"]["#{quiz_misconception.id}"] = 'P'
               found_misconception = true
             else
