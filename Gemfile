@@ -55,19 +55,19 @@ gem 'fog'
 
 gem 'bluecloth',    '2.0.10' # for generating api docs
 
-group :mysql do
-  gem 'mysql'
-end
+gem 'mysql'
 
 group :assets do
   gem 'compass-rails', '1.0.3'
 end
 
-group :test do
+group :development, :test do
   gem 'coffee-script'
   gem 'coffee-script-source',  '1.1.2' #pinned so everyone's compiled output matches
-  gem 'bluecloth',    '2.0.10' # for generating api docs
   gem 'parallel',     '0.5.16'
+end
+
+group :test do
   gem 'parallel_tests-instructure', '0.6.19'
   gem 'mocha',        '0.10.0'
   gem 'rcov',         '0.9.9'
@@ -79,19 +79,12 @@ group :test do
 end
 
 group :development do
-  gem 'coffee-script'
-  gem 'coffee-script-source',  '1.1.2' #pinned so everyone's compiled output matches
-  gem 'parallel',     '0.5.16'
   gem 'ruby-debug',   '0.10.4'
   gem 'ruby_parser', '2.0.6'
   gem 'sexp_processor', '3.0.5'
   gem 'ya2yaml', '0.30'
   gem 'capistrano', '~> 2.12.0'
   gem 'guard'
-end
-
-group :production do
-  gem 'mysql'
 end
 
 group :redis do
