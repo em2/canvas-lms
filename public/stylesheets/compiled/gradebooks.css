@@ -1,11 +1,14 @@
+/* line 3, ../../../app/stylesheets/gradebooks.sass */
 html {
   overflow: auto; }
 
+/* line 6, ../../../app/stylesheets/gradebooks.sass */
 #topleft_content {
   display: none;
   margin: 0;
   width: 100%; }
 
+/* line 11, ../../../app/stylesheets/gradebooks.sass */
 #top_content {
   overflow: hidden;
   display: none;
@@ -13,145 +16,203 @@ html {
   margin: 0;
   width: 100%; }
 
+/* line 19, ../../../app/stylesheets/gradebooks.sass */
 #assignment_names, #student_names {
   position: relative; }
 
+/* line 22, ../../../app/stylesheets/gradebooks.sass */
 #left_content {
   overflow: hidden;
   display: none;
   position: relative;
   margin: 0;
   width: 100%; }
+  /* line 29, ../../../app/stylesheets/gradebooks.sass */
   #left_content #student_name {
     width: 100%; }
 
+/* line 32, ../../../app/stylesheets/gradebooks.sass */
 #gradebook {
   position: relative; }
 
+/* line 35, ../../../app/stylesheets/gradebooks.sass */
 #gradebook_inner {
   width: 100%;
   position: relative;
   border: 1px solid #cccccc; }
 
+/* line 40, ../../../app/stylesheets/gradebooks.sass */
 #gradebook_table {
   position: relative; }
 
+/* line 43, ../../../app/stylesheets/gradebooks.sass */
 table.gradebook_table {
   border-collapse: collapse;
   border-top: 1px solid #cccccc;
   border-left: 1px solid #cccccc; }
 
+/* line 48, ../../../app/stylesheets/gradebooks.sass */
 .datagrid a, .datagrid a:hover, .datagrid a:focus {
   background-color: transparent;
   text-decoration: none; }
 
+/* line 52, ../../../app/stylesheets/gradebooks.sass */
 table.gradebook_table select, .datagrid .content select {
   border: 0px; }
+/* line 54, ../../../app/stylesheets/gradebooks.sass */
 table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td, .datagrid .content div.cell {
   border: 1px solid #cccccc;
   outline: none !important; }
+  /* line 57, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td .table_entry, table.gradebook_table td .student_header, table.gradebook_table td .assignment_header, table.gradebook_table div.cell .table_entry, table.gradebook_table div.cell .student_header, table.gradebook_table div.cell .assignment_header, .datagrid .content td .table_entry, .datagrid .content td .student_header, .datagrid .content td .assignment_header, .datagrid .content div.cell .table_entry, .datagrid .content div.cell .student_header, .datagrid .content div.cell .assignment_header {
     padding: 5px; }
+  /* line 60, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td.student_assignment, table.gradebook_table div.cell.student_assignment, .datagrid .content td.student_assignment, .datagrid .content div.cell.student_assignment {
     border-color: #dddddd; }
+    /* line 63, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.late.selected, table.gradebook_table div.cell.student_assignment.late.selected, .datagrid .content td.student_assignment.late.selected, .datagrid .content div.cell.student_assignment.late.selected {
       background-color: #ffcccc; }
+    /* line 66, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.selected, table.gradebook_table div.cell.student_assignment.selected, .datagrid .content td.student_assignment.selected, .datagrid .content div.cell.student_assignment.selected {
       background-color: #ccddff; }
+    /* line 69, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.late, table.gradebook_table div.cell.student_assignment.late, .datagrid .content td.student_assignment.late, .datagrid .content div.cell.student_assignment.late {
       background-color: #ffeeee; }
+    /* line 72, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.dropped.selected, table.gradebook_table div.cell.student_assignment.dropped.selected, .datagrid .content td.student_assignment.dropped.selected, .datagrid .content div.cell.student_assignment.dropped.selected {
       background-color: #ccddff;
       background-image: url(/images/earmark_hover.png); }
+    /* line 76, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.dropped, table.gradebook_table div.cell.student_assignment.dropped, .datagrid .content td.student_assignment.dropped, .datagrid .content div.cell.student_assignment.dropped {
       background: white url(/images/earmark.png) no-repeat top left;
       color: #cccccc; }
+      /* line 79, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.student_assignment.dropped a, table.gradebook_table div.cell.student_assignment.dropped a, .datagrid .content td.student_assignment.dropped a, .datagrid .content div.cell.student_assignment.dropped a {
         color: #aaaaaa; }
+    /* line 82, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.related, table.gradebook_table div.cell.student_assignment.related, .datagrid .content td.student_assignment.related, .datagrid .content div.cell.student_assignment.related {
       background-color: #f6f6f6; }
+    /* line 85, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.focus, table.gradebook_table div.cell.student_assignment.focus, .datagrid .content td.student_assignment.focus, .datagrid .content div.cell.student_assignment.focus {
       background-color: #888888;
       color: white; }
+      /* line 88, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.student_assignment.focus .table_entry, table.gradebook_table div.cell.student_assignment.focus .table_entry, .datagrid .content td.student_assignment.focus .table_entry, .datagrid .content div.cell.student_assignment.focus .table_entry {
         padding: 0; }
+    /* line 91, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.group_total, table.gradebook_table td.student_assignment.final_grade, table.gradebook_table div.cell.student_assignment.group_total, table.gradebook_table div.cell.student_assignment.final_grade, .datagrid .content td.student_assignment.group_total, .datagrid .content td.student_assignment.final_grade, .datagrid .content div.cell.student_assignment.group_total, .datagrid .content div.cell.student_assignment.final_grade {
       background-color: #eeeeee; }
+      /* line 93, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.student_assignment.group_total.related, table.gradebook_table td.student_assignment.final_grade.related, table.gradebook_table div.cell.student_assignment.group_total.related, table.gradebook_table div.cell.student_assignment.final_grade.related, .datagrid .content td.student_assignment.group_total.related, .datagrid .content td.student_assignment.final_grade.related, .datagrid .content div.cell.student_assignment.group_total.related, .datagrid .content div.cell.student_assignment.final_grade.related {
         background-color: #dddddd; }
+      /* line 95, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.student_assignment.group_total.selected, table.gradebook_table td.student_assignment.final_grade.selected, table.gradebook_table div.cell.student_assignment.group_total.selected, table.gradebook_table div.cell.student_assignment.final_grade.selected, .datagrid .content td.student_assignment.group_total.selected, .datagrid .content td.student_assignment.final_grade.selected, .datagrid .content div.cell.student_assignment.group_total.selected, .datagrid .content div.cell.student_assignment.final_grade.selected {
         background-color: #cccccc; }
+    /* line 98, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment.final_grade, table.gradebook_table div.cell.student_assignment.final_grade, .datagrid .content td.student_assignment.final_grade, .datagrid .content div.cell.student_assignment.final_grade {
       background-color: #dddddd;
       min-width: 80px; }
+      /* line 101, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.student_assignment.final_grade.related, table.gradebook_table div.cell.student_assignment.final_grade.related, .datagrid .content td.student_assignment.final_grade.related, .datagrid .content div.cell.student_assignment.final_grade.related {
         background-color: #cccccc; }
+      /* line 103, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.student_assignment.final_grade.selected, table.gradebook_table div.cell.student_assignment.final_grade.selected, .datagrid .content td.student_assignment.final_grade.selected, .datagrid .content div.cell.student_assignment.final_grade.selected {
         background-color: #bbbbbb; }
+      /* line 105, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.student_assignment.final_grade .letter_grade, table.gradebook_table div.cell.student_assignment.final_grade .letter_grade, .datagrid .content td.student_assignment.final_grade .letter_grade, .datagrid .content div.cell.student_assignment.final_grade .letter_grade {
         float: right;
         padding-right: 5px; }
+    /* line 108, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.student_assignment .score, table.gradebook_table td.student_assignment .letter_grade, table.gradebook_table div.cell.student_assignment .score, table.gradebook_table div.cell.student_assignment .letter_grade, .datagrid .content td.student_assignment .score, .datagrid .content td.student_assignment .letter_grade, .datagrid .content div.cell.student_assignment .score, .datagrid .content div.cell.student_assignment .letter_grade {
       color: #888888;
       font-size: 0.9em;
       padding-left: 5px; }
+  /* line 113, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td.assignment_name, table.gradebook_table td.student_name, table.gradebook_table div.cell.assignment_name, table.gradebook_table div.cell.student_name, .datagrid .content td.assignment_name, .datagrid .content td.student_name, .datagrid .content div.cell.assignment_name, .datagrid .content div.cell.student_name {
     background-color: #eeeeee; }
+    /* line 115, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name .assignment_options, table.gradebook_table td.student_name .assignment_options, table.gradebook_table div.cell.assignment_name .assignment_options, table.gradebook_table div.cell.student_name .assignment_options, .datagrid .content td.assignment_name .assignment_options, .datagrid .content td.student_name .assignment_options, .datagrid .content div.cell.assignment_name .assignment_options, .datagrid .content div.cell.student_name .assignment_options {
       background-color: #eeeeee; }
+    /* line 118, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name.unpublished, table.gradebook_table td.student_name.unpublished, table.gradebook_table div.cell.assignment_name.unpublished, table.gradebook_table div.cell.student_name.unpublished, .datagrid .content td.assignment_name.unpublished, .datagrid .content td.student_name.unpublished, .datagrid .content div.cell.assignment_name.unpublished, .datagrid .content div.cell.student_name.unpublished {
       background-color: #ffdddd; }
+      /* line 120, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.unpublished .assignment_options, table.gradebook_table td.student_name.unpublished .assignment_options, table.gradebook_table div.cell.assignment_name.unpublished .assignment_options, table.gradebook_table div.cell.student_name.unpublished .assignment_options, .datagrid .content td.assignment_name.unpublished .assignment_options, .datagrid .content td.student_name.unpublished .assignment_options, .datagrid .content div.cell.assignment_name.unpublished .assignment_options, .datagrid .content div.cell.student_name.unpublished .assignment_options {
         background-color: #ffdddd; }
+      /* line 122, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.unpublished.selected, table.gradebook_table td.assignment_name.unpublished.related, table.gradebook_table td.student_name.unpublished.selected, table.gradebook_table td.student_name.unpublished.related, table.gradebook_table div.cell.assignment_name.unpublished.selected, table.gradebook_table div.cell.assignment_name.unpublished.related, table.gradebook_table div.cell.student_name.unpublished.selected, table.gradebook_table div.cell.student_name.unpublished.related, .datagrid .content td.assignment_name.unpublished.selected, .datagrid .content td.assignment_name.unpublished.related, .datagrid .content td.student_name.unpublished.selected, .datagrid .content td.student_name.unpublished.related, .datagrid .content div.cell.assignment_name.unpublished.selected, .datagrid .content div.cell.assignment_name.unpublished.related, .datagrid .content div.cell.student_name.unpublished.selected, .datagrid .content div.cell.student_name.unpublished.related {
         background-color: #ffbbbb; }
+        /* line 124, ../../../app/stylesheets/gradebooks.sass */
         table.gradebook_table td.assignment_name.unpublished.selected .assignment_options, table.gradebook_table td.assignment_name.unpublished.related .assignment_options, table.gradebook_table td.student_name.unpublished.selected .assignment_options, table.gradebook_table td.student_name.unpublished.related .assignment_options, table.gradebook_table div.cell.assignment_name.unpublished.selected .assignment_options, table.gradebook_table div.cell.assignment_name.unpublished.related .assignment_options, table.gradebook_table div.cell.student_name.unpublished.selected .assignment_options, table.gradebook_table div.cell.student_name.unpublished.related .assignment_options, .datagrid .content td.assignment_name.unpublished.selected .assignment_options, .datagrid .content td.assignment_name.unpublished.related .assignment_options, .datagrid .content td.student_name.unpublished.selected .assignment_options, .datagrid .content td.student_name.unpublished.related .assignment_options, .datagrid .content div.cell.assignment_name.unpublished.selected .assignment_options, .datagrid .content div.cell.assignment_name.unpublished.related .assignment_options, .datagrid .content div.cell.student_name.unpublished.selected .assignment_options, .datagrid .content div.cell.student_name.unpublished.related .assignment_options {
           background-color: #ffbbbb; }
+    /* line 126, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name.group_total, table.gradebook_table td.student_name.group_total, table.gradebook_table div.cell.assignment_name.group_total, table.gradebook_table div.cell.student_name.group_total, .datagrid .content td.assignment_name.group_total, .datagrid .content td.student_name.group_total, .datagrid .content div.cell.assignment_name.group_total, .datagrid .content div.cell.student_name.group_total {
       background-color: #ddddff; }
+      /* line 128, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.group_total .assignment_options, table.gradebook_table td.student_name.group_total .assignment_options, table.gradebook_table div.cell.assignment_name.group_total .assignment_options, table.gradebook_table div.cell.student_name.group_total .assignment_options, .datagrid .content td.assignment_name.group_total .assignment_options, .datagrid .content td.student_name.group_total .assignment_options, .datagrid .content div.cell.assignment_name.group_total .assignment_options, .datagrid .content div.cell.student_name.group_total .assignment_options {
         background-color: #ddddff; }
+      /* line 130, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.group_total.related, table.gradebook_table td.student_name.group_total.related, table.gradebook_table div.cell.assignment_name.group_total.related, table.gradebook_table div.cell.student_name.group_total.related, .datagrid .content td.assignment_name.group_total.related, .datagrid .content td.student_name.group_total.related, .datagrid .content div.cell.assignment_name.group_total.related, .datagrid .content div.cell.student_name.group_total.related {
         background-color: #ccccee; }
+        /* line 132, ../../../app/stylesheets/gradebooks.sass */
         table.gradebook_table td.assignment_name.group_total.related .assignment_options, table.gradebook_table td.student_name.group_total.related .assignment_options, table.gradebook_table div.cell.assignment_name.group_total.related .assignment_options, table.gradebook_table div.cell.student_name.group_total.related .assignment_options, .datagrid .content td.assignment_name.group_total.related .assignment_options, .datagrid .content td.student_name.group_total.related .assignment_options, .datagrid .content div.cell.assignment_name.group_total.related .assignment_options, .datagrid .content div.cell.student_name.group_total.related .assignment_options {
           background-color: #ccccee; }
+      /* line 134, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.group_total.selected, table.gradebook_table td.student_name.group_total.selected, table.gradebook_table div.cell.assignment_name.group_total.selected, table.gradebook_table div.cell.student_name.group_total.selected, .datagrid .content td.assignment_name.group_total.selected, .datagrid .content td.student_name.group_total.selected, .datagrid .content div.cell.assignment_name.group_total.selected, .datagrid .content div.cell.student_name.group_total.selected {
         background-color: #bbbbdd; }
+        /* line 136, ../../../app/stylesheets/gradebooks.sass */
         table.gradebook_table td.assignment_name.group_total.selected .assignment_options, table.gradebook_table td.student_name.group_total.selected .assignment_options, table.gradebook_table div.cell.assignment_name.group_total.selected .assignment_options, table.gradebook_table div.cell.student_name.group_total.selected .assignment_options, .datagrid .content td.assignment_name.group_total.selected .assignment_options, .datagrid .content td.student_name.group_total.selected .assignment_options, .datagrid .content div.cell.assignment_name.group_total.selected .assignment_options, .datagrid .content div.cell.student_name.group_total.selected .assignment_options {
           background-color: #bbbbdd; }
+    /* line 139, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name.final_grade, table.gradebook_table td.student_name.final_grade, table.gradebook_table div.cell.assignment_name.final_grade, table.gradebook_table div.cell.student_name.final_grade, .datagrid .content td.assignment_name.final_grade, .datagrid .content td.student_name.final_grade, .datagrid .content div.cell.assignment_name.final_grade, .datagrid .content div.cell.student_name.final_grade {
       background-color: #fffccc; }
+      /* line 141, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.final_grade .assignment_options, table.gradebook_table td.student_name.final_grade .assignment_options, table.gradebook_table div.cell.assignment_name.final_grade .assignment_options, table.gradebook_table div.cell.student_name.final_grade .assignment_options, .datagrid .content td.assignment_name.final_grade .assignment_options, .datagrid .content td.student_name.final_grade .assignment_options, .datagrid .content div.cell.assignment_name.final_grade .assignment_options, .datagrid .content div.cell.student_name.final_grade .assignment_options {
         background-color: #fffccc; }
+      /* line 143, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.final_grade.related, table.gradebook_table td.student_name.final_grade.related, table.gradebook_table div.cell.assignment_name.final_grade.related, table.gradebook_table div.cell.student_name.final_grade.related, .datagrid .content td.assignment_name.final_grade.related, .datagrid .content td.student_name.final_grade.related, .datagrid .content div.cell.assignment_name.final_grade.related, .datagrid .content div.cell.student_name.final_grade.related {
         background-color: #fff999; }
+        /* line 145, ../../../app/stylesheets/gradebooks.sass */
         table.gradebook_table td.assignment_name.final_grade.related .assignment_options, table.gradebook_table td.student_name.final_grade.related .assignment_options, table.gradebook_table div.cell.assignment_name.final_grade.related .assignment_options, table.gradebook_table div.cell.student_name.final_grade.related .assignment_options, .datagrid .content td.assignment_name.final_grade.related .assignment_options, .datagrid .content td.student_name.final_grade.related .assignment_options, .datagrid .content div.cell.assignment_name.final_grade.related .assignment_options, .datagrid .content div.cell.student_name.final_grade.related .assignment_options {
           background-color: #fff999; }
+      /* line 147, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.final_grade.selected, table.gradebook_table td.student_name.final_grade.selected, table.gradebook_table div.cell.assignment_name.final_grade.selected, table.gradebook_table div.cell.student_name.final_grade.selected, .datagrid .content td.assignment_name.final_grade.selected, .datagrid .content td.student_name.final_grade.selected, .datagrid .content div.cell.assignment_name.final_grade.selected, .datagrid .content div.cell.student_name.final_grade.selected {
         background-color: #eee666; }
+        /* line 149, ../../../app/stylesheets/gradebooks.sass */
         table.gradebook_table td.assignment_name.final_grade.selected .assignment_options, table.gradebook_table td.student_name.final_grade.selected .assignment_options, table.gradebook_table div.cell.assignment_name.final_grade.selected .assignment_options, table.gradebook_table div.cell.student_name.final_grade.selected .assignment_options, .datagrid .content td.assignment_name.final_grade.selected .assignment_options, .datagrid .content td.student_name.final_grade.selected .assignment_options, .datagrid .content div.cell.assignment_name.final_grade.selected .assignment_options, .datagrid .content div.cell.student_name.final_grade.selected .assignment_options {
           background-color: #eee666; }
+    /* line 152, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name.selected, table.gradebook_table td.student_name.selected, table.gradebook_table div.cell.assignment_name.selected, table.gradebook_table div.cell.student_name.selected, .datagrid .content td.assignment_name.selected, .datagrid .content td.student_name.selected, .datagrid .content div.cell.assignment_name.selected, .datagrid .content div.cell.student_name.selected {
       background-color: #aabbff; }
+      /* line 154, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.selected .assignment_options, table.gradebook_table td.student_name.selected .assignment_options, table.gradebook_table div.cell.assignment_name.selected .assignment_options, table.gradebook_table div.cell.student_name.selected .assignment_options, .datagrid .content td.assignment_name.selected .assignment_options, .datagrid .content td.student_name.selected .assignment_options, .datagrid .content div.cell.assignment_name.selected .assignment_options, .datagrid .content div.cell.student_name.selected .assignment_options {
         background-color: #aabbff; }
+    /* line 157, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name.related, table.gradebook_table td.student_name.related, table.gradebook_table div.cell.assignment_name.related, table.gradebook_table div.cell.student_name.related, .datagrid .content td.assignment_name.related, .datagrid .content td.student_name.related, .datagrid .content div.cell.assignment_name.related, .datagrid .content div.cell.student_name.related {
       background-color: #dddddd; }
+      /* line 159, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td.assignment_name.related .assignment_options, table.gradebook_table td.student_name.related .assignment_options, table.gradebook_table div.cell.assignment_name.related .assignment_options, table.gradebook_table div.cell.student_name.related .assignment_options, .datagrid .content td.assignment_name.related .assignment_options, .datagrid .content td.student_name.related .assignment_options, .datagrid .content div.cell.assignment_name.related .assignment_options, .datagrid .content div.cell.student_name.related .assignment_options {
         background-color: #dddddd; }
+    /* line 162, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name.drop_right_side, table.gradebook_table td.student_name.drop_right_side, table.gradebook_table div.cell.assignment_name.drop_right_side, table.gradebook_table div.cell.student_name.drop_right_side, .datagrid .content td.assignment_name.drop_right_side, .datagrid .content td.student_name.drop_right_side, .datagrid .content div.cell.assignment_name.drop_right_side, .datagrid .content div.cell.student_name.drop_right_side {
       border-right: 1px solid #888888; }
+    /* line 165, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name.drop_left_side, table.gradebook_table td.student_name.drop_left_side, table.gradebook_table div.cell.assignment_name.drop_left_side, table.gradebook_table div.cell.student_name.drop_left_side, .datagrid .content td.assignment_name.drop_left_side, .datagrid .content td.student_name.drop_left_side, .datagrid .content div.cell.assignment_name.drop_left_side, .datagrid .content div.cell.student_name.drop_left_side {
       border-left: 1px solid #888888; }
+    /* line 169, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name .assignment_link img.assignment_dropdown, table.gradebook_table td.student_name .assignment_link img.assignment_dropdown, table.gradebook_table div.cell.assignment_name .assignment_link img.assignment_dropdown, table.gradebook_table div.cell.student_name .assignment_link img.assignment_dropdown, .datagrid .content td.assignment_name .assignment_link img.assignment_dropdown, .datagrid .content td.student_name .assignment_link img.assignment_dropdown, .datagrid .content div.cell.assignment_name .assignment_link img.assignment_dropdown, .datagrid .content div.cell.student_name .assignment_link img.assignment_dropdown {
       background-image: url(/images/menu_option.png); }
+    /* line 172, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td.assignment_name .assignment_link:hover img.assignment_dropdown, table.gradebook_table td.student_name .assignment_link:hover img.assignment_dropdown, table.gradebook_table div.cell.assignment_name .assignment_link:hover img.assignment_dropdown, table.gradebook_table div.cell.student_name .assignment_link:hover img.assignment_dropdown, .datagrid .content td.assignment_name .assignment_link:hover img.assignment_dropdown, .datagrid .content td.student_name .assignment_link:hover img.assignment_dropdown, .datagrid .content div.cell.assignment_name .assignment_link:hover img.assignment_dropdown, .datagrid .content div.cell.student_name .assignment_link:hover img.assignment_dropdown {
       background-image: url(/images/menu_option_hover.png); }
+  /* line 175, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td.hidden_column, table.gradebook_table div.cell.hidden_column, .datagrid .content td.hidden_column, .datagrid .content div.cell.hidden_column {
     min-width: 2px; }
+  /* line 178, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td div.student_row_header, table.gradebook_table div.cell div.student_row_header, .datagrid .content td div.student_row_header, .datagrid .content div.cell div.student_row_header {
     margin: 0;
     padding: 0; }
+  /* line 182, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td .secondary_identifier, table.gradebook_table div.cell .secondary_identifier, .datagrid .content td .secondary_identifier, .datagrid .content div.cell .secondary_identifier {
     font-size: 0.7em;
     color: #999999;
@@ -159,8 +220,10 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     margin-left: 10px;
     margin-top: -2px;
     height: 7px; }
+    /* line 189, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td .secondary_identifier.with_section, table.gradebook_table div.cell .secondary_identifier.with_section, .datagrid .content td .secondary_identifier.with_section, .datagrid .content div.cell .secondary_identifier.with_section {
       margin-top: -5px; }
+  /* line 191, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td .course_section, table.gradebook_table td .course_sections, table.gradebook_table div.cell .course_section, table.gradebook_table div.cell .course_sections, .datagrid .content td .course_section, .datagrid .content td .course_sections, .datagrid .content div.cell .course_section, .datagrid .content div.cell .course_sections {
     font-size: 0.7em;
     font-size: 0.7em;
@@ -169,25 +232,30 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     margin-left: 10px;
     margin-top: 2px;
     height: 7px; }
+  /* line 199, ../../../app/stylesheets/gradebooks.sass */
   table.gradebook_table td .display_name, table.gradebook_table div.cell .display_name, .datagrid .content td .display_name, .datagrid .content div.cell .display_name {
     position: relative;
     padding-right: 20px;
     max-width: 120px;
     overflow: hidden; }
+    /* line 205, ../../../app/stylesheets/gradebooks.sass */
     table.gradebook_table td .display_name .assignment_options, table.gradebook_table div.cell .display_name .assignment_options, .datagrid .content td .display_name .assignment_options, .datagrid .content div.cell .display_name .assignment_options {
       position: absolute;
       top: 0;
       right: 0; }
+      /* line 210, ../../../app/stylesheets/gradebooks.sass */
       table.gradebook_table td .display_name .assignment_options img, table.gradebook_table div.cell .display_name .assignment_options img, .datagrid .content td .display_name .assignment_options img, .datagrid .content div.cell .display_name .assignment_options img {
         margin: 2px 0px 2px 5px;
         width: 16px;
         height: 16px; }
 
+/* line 215, ../../../app/stylesheets/gradebooks.sass */
 .event_pending {
   opacity: 0.5;
   -ms-filter: alpha(Opacity=50);
   filter: alpha(Opacity=50); }
 
+/* line 218, ../../../app/stylesheets/gradebooks.sass */
 #gradebook_options_holder {
   float: left;
   background-color: #fafafa;
@@ -201,42 +269,54 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
   -o-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 2px; }
+  /* line 227, ../../../app/stylesheets/gradebooks.sass */
   #gradebook_options_holder #gradebook_options {
     padding-right: 20px;
     background: url(/images/menu_option.png) no-repeat right center;
     color: #888888; }
+  /* line 231, ../../../app/stylesheets/gradebooks.sass */
   #gradebook_options_holder:hover {
     border-color: #444444;
     background-color: white; }
+    /* line 234, ../../../app/stylesheets/gradebooks.sass */
     #gradebook_options_holder:hover #gradebook_options {
       background-image: url(/images/menu_option_hover.png);
       color: #444444; }
 
+/* line 237, ../../../app/stylesheets/gradebooks.sass */
 #datagrid_topleft #topleft_box.selected {
   background-color: #eeeeee; }
 
+/* line 241, ../../../app/stylesheets/gradebooks.sass */
 #submission_information .late_box {
   display: none; }
+/* line 243, ../../../app/stylesheets/gradebooks.sass */
 #submission_information .submitted_at_box.late_submission {
   color: #880000;
   font-weight: bold; }
+/* line 247, ../../../app/stylesheets/gradebooks.sass */
 #submission_information .submitted_at_box.late_submission .late_box {
   display: inline; }
+/* line 249, ../../../app/stylesheets/gradebooks.sass */
 #submission_information .turnitin_similarity_score {
   margin: 0 2px;
   color: #444444;
   text-decoration: none; }
+  /* line 253, ../../../app/stylesheets/gradebooks.sass */
   #submission_information .turnitin_similarity_score:hover {
     text-decoration: none; }
 
+/* line 255, ../../../app/stylesheets/gradebooks.sass */
 .grade .less_important {
   font-size: 0.8em;
   color: #888888; }
 
+/* line 260, ../../../app/stylesheets/gradebooks.sass */
 #assignment_details_dialog .distribution {
   height: 30px;
   width: 200px;
   position: relative; }
+  /* line 264, ../../../app/stylesheets/gradebooks.sass */
   #assignment_details_dialog .distribution .bar_left {
     position: absolute;
     top: 0pt;
@@ -248,6 +328,7 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     border-style: solid;
     border-color: #aaaaaa;
     overflow: hidden; }
+  /* line 275, ../../../app/stylesheets/gradebooks.sass */
   #assignment_details_dialog .distribution .none_left {
     position: absolute;
     top: 0pt;
@@ -257,6 +338,7 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     border-bottom: 2px solid #aaaaaa;
     overflow: hidden;
     border-top-width: 0pt; }
+  /* line 284, ../../../app/stylesheets/gradebooks.sass */
   #assignment_details_dialog .distribution .some_left {
     position: absolute;
     top: 0pt;
@@ -268,6 +350,7 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     -moz-border-radius-topleft: 3px;
     -moz-border-radius-bottomleft: 3px;
     background: none repeat scroll 0% 0% white; }
+  /* line 295, ../../../app/stylesheets/gradebooks.sass */
   #assignment_details_dialog .distribution .some_right {
     position: absolute;
     top: 0pt;
@@ -277,6 +360,7 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     -moz-border-radius-topright: 3px;
     -moz-border-radius-bottomright: 3px;
     background: none repeat scroll 0% 0% white; }
+  /* line 304, ../../../app/stylesheets/gradebooks.sass */
   #assignment_details_dialog .distribution .none_right {
     position: absolute;
     top: 0pt;
@@ -286,6 +370,7 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     border-style: solid;
     border-color: #aaaaaa;
     overflow: hidden; }
+  /* line 313, ../../../app/stylesheets/gradebooks.sass */
   #assignment_details_dialog .distribution .bar_right {
     position: absolute;
     top: 0pt;
@@ -297,6 +382,7 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     border-color: #aaaaaa;
     overflow: hidden; }
 
+/* line 324, ../../../app/stylesheets/gradebooks.sass */
 #total_tooltip {
   background-color: #444444;
   color: white;
@@ -309,6 +395,7 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
   z-index: 5;
   position: absolute;
   font-size: 0.8em; }
+  /* line 332, ../../../app/stylesheets/gradebooks.sass */
   #total_tooltip .tooltip_tail {
     border-color: #444444 transparent;
     border-style: solid;
@@ -317,5 +404,6 @@ table.gradebook_table td, table.gradebook_table div.cell, .datagrid .content td,
     bottom: -5px;
     width: 0;
     left: 15px; }
+  /* line 340, ../../../app/stylesheets/gradebooks.sass */
   #total_tooltip:hover {
     display: none; }

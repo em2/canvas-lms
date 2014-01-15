@@ -1,3 +1,4 @@
+/* line 2, ../../../app/stylesheets/g_media_comments.sass */
 #media_record_option_holder .record_option {
   display: block;
   margin: 0 2px 2px 2px;
@@ -9,20 +10,25 @@
   -o-border-radius: 3px;
   border-radius: 3px; }
 
+/* line 9, ../../../app/stylesheets/g_media_comments.sass */
 #media_record_option_holder .record_option:hover {
   border: 2px solid #aaaaaa;
   background: #eeeeee; }
 
+/* line 13, ../../../app/stylesheets/g_media_comments.sass */
 #media_record_option_holder, #video_record_holder_holder, #audio_record_holder_holder {
   float: left; }
 
+/* line 16, ../../../app/stylesheets/g_media_comments.sass */
 #media_record_option_holder .record_option.selected_option {
   border: 2px solid #888888;
   background: #cccccc; }
 
+/* line 20, ../../../app/stylesheets/g_media_comments.sass */
 #audio_record_holder_holder, #video_record_holder_holder {
   overflow: hidden;
   position: relative; }
+  /* line 23, ../../../app/stylesheets/g_media_comments.sass */
   #audio_record_holder_holder #audio_record_holder_message, #audio_record_holder_holder #video_record_holder_message, #video_record_holder_holder #audio_record_holder_message, #video_record_holder_holder #video_record_holder_message {
     width: 600px;
     height: 600px;
@@ -30,6 +36,7 @@
     background-color: #666666;
     position: absolute;
     display: none; }
+    /* line 30, ../../../app/stylesheets/g_media_comments.sass */
     #audio_record_holder_holder #audio_record_holder_message .recorder_message, #audio_record_holder_holder #video_record_holder_message .recorder_message, #video_record_holder_holder #audio_record_holder_message .recorder_message, #video_record_holder_holder #video_record_holder_message .recorder_message {
       color: #eeeeee;
       font-size: 1.5em;
@@ -37,44 +44,55 @@
       margin: 120px 55px;
       width: 300px;
       text-align: center; }
+    /* line 37, ../../../app/stylesheets/g_media_comments.sass */
     #audio_record_holder_holder #audio_record_holder_message.saving, #audio_record_holder_holder #video_record_holder_message.saving, #video_record_holder_holder #audio_record_holder_message.saving, #video_record_holder_holder #video_record_holder_message.saving {
       display: block; }
 
+/* line 40, ../../../app/stylesheets/g_media_comments.sass */
 #audio_upload_under button, #video_upload_under button {
   width: 180px;
   height: 50px;
   font-size: 1.2em;
   font-weight: bold; }
 
+/* line 46, ../../../app/stylesheets/g_media_comments.sass */
 #audio_upload, #video_upload {
   position: absolute;
   z-index: 9999; }
 
+/* line 50, ../../../app/stylesheets/g_media_comments.sass */
 div#audio_upload, div#video_upload {
   background: white;
   font-size: 1.2em; }
 
+/* line 54, ../../../app/stylesheets/g_media_comments.sass */
 #media_upload_holder {
   height: 240px; }
 
+/* line 57, ../../../app/stylesheets/g_media_comments.sass */
 #media_upload_title {
   width: 200px; }
 
+/* line 60, ../../../app/stylesheets/g_media_comments.sass */
 #media_upload_holder .content {
   margin-top: 8px; }
 
+/* line 63, ../../../app/stylesheets/g_media_comments.sass */
 #media_upload_file_size {
   font-size: 0.8em;
   padding-left: 20px; }
 
+/* line 67, ../../../app/stylesheets/g_media_comments.sass */
 #media_upload_progress {
   width: 300px;
   height: 15px; }
 
+/* line 71, ../../../app/stylesheets/g_media_comments.sass */
 #media_upload_submit {
   font-size: 1.2em;
   font-weight: bold; }
 
+/* line 76, ../../../app/stylesheets/g_media_comments.sass */
 #audio_record_holder, #video_record_holder {
   width: 400px;
   height: 300px;
@@ -85,10 +103,12 @@ div#audio_upload, div#video_upload {
   box-shadow: 0 0 10px black;
   margin: 10px; }
 
+/* line 86, ../../../app/stylesheets/g_media_comments.sass */
 #audio_record, #video_record {
   border: 0px solid #888888;
   height: 300px; }
 
+/* line 90, ../../../app/stylesheets/g_media_comments.sass */
 .volume_meter {
   width: 20px;
   height: 240px;
@@ -100,6 +120,7 @@ div#audio_upload, div#video_upload {
   left: 400px;
   z-index: 9999; }
 
+/* line 101, ../../../app/stylesheets/g_media_comments.sass */
 .volume_meter .audio_level {
   width: 14px;
   height: 14px;
@@ -114,18 +135,23 @@ div#audio_upload, div#video_upload {
   -o-border-radius: 2px;
   border-radius: 2px; }
 
+/* line 111, ../../../app/stylesheets/g_media_comments.sass */
 .volume_meter .level_6 {
   background-color: yellow; }
 
+/* line 114, ../../../app/stylesheets/g_media_comments.sass */
 .volume_meter .level_7 {
   background-color: yellow; }
 
+/* line 117, ../../../app/stylesheets/g_media_comments.sass */
 .volume_meter .level_8 {
   background-color: yellow; }
 
+/* line 120, ../../../app/stylesheets/g_media_comments.sass */
 .volume_meter .level_9 {
   background-color: red; }
 
+/* line 123, ../../../app/stylesheets/g_media_comments.sass */
 .volume_meter.band_1 .level_0,
 .volume_meter.band_2 .level_0,
 .volume_meter.band_2 .level_1,

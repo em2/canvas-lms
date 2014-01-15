@@ -1,48 +1,70 @@
+/* line 3, ../../../app/stylesheets/g_context_inbox.sass */
 #message_list .inbox_item {
   display: none; }
+/* line 5, ../../../app/stylesheets/g_context_inbox.sass */
 #message_list.show_submission_comment .submission_comment, #message_list.show_discussion_entry .discussion_entry {
   display: block; }
 
+/* line 9, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item .content {
   padding-top: 0; }
+  /* line 11, ../../../app/stylesheets/g_context_inbox.sass */
   .inbox_item .content .inner_content {
     cursor: pointer; }
+/* line 13, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item .header {
   padding-bottom: 0; }
+  /* line 14, ../../../app/stylesheets/g_context_inbox.sass */
   .inbox_item .header .delete_inbox_item_link, .inbox_item .header .reply_inbox_item_link {
     opacity: 0.2; }
+  /* line 17, ../../../app/stylesheets/g_context_inbox.sass */
   .inbox_item .header .inbox_item_link .user_name {
     font-weight: normal; }
+  /* line 19, ../../../app/stylesheets/g_context_inbox.sass */
   .inbox_item .header .unread_icons {
     display: inline; }
+  /* line 21, ../../../app/stylesheets/g_context_inbox.sass */
   .inbox_item .header .read_icons {
     display: none; }
+  /* line 23, ../../../app/stylesheets/g_context_inbox.sass */
   .inbox_item .header .header_icon {
     width: 20px;
     height: 20px; }
+    /* line 26, ../../../app/stylesheets/g_context_inbox.sass */
     .inbox_item .header .header_icon.discussion_header_icon, .inbox_item .header .header_icon.submission_header_icon {
       display: none; }
+/* line 31, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item:hover .header .delete_inbox_item_link, .inbox_item:hover .header .reply_inbox_item_link {
   opacity: 1;
   -ms-filter: alpha(Opacity=100);
   filter: alpha(Opacity=100); }
+/* line 34, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.read a.title.inbox_item_link {
   color: #666666; }
+/* line 36, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.read .content {
   color: #888888; }
+/* line 38, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.read .post_date, .inbox_item.read .sub_title, .inbox_item.read .sub_title a {
   color: #aaaaaa; }
+/* line 40, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.read .header .header_title .title {
   font-weight: normal; }
+/* line 42, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.read .unread_icons {
   display: none; }
+/* line 44, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.read .read_icons {
   display: inline; }
+/* line 48, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.discussion_entry .header_icon.email_header_icon, .inbox_item.discussion_entry .header_icon.submission_header_icon {
   display: none; }
+/* line 51, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.discussion_entry .header_icon.discussion_header_icon {
   display: inline; }
+/* line 55, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.submission_comment .header_icon.email_header_icon, .inbox_item.submission_comment .header_icon.discussion_header_icon {
   display: none; }
+/* line 58, ../../../app/stylesheets/g_context_inbox.sass */
 .inbox_item.submission_comment .header_icon.submission_header_icon {
   display: inline; }

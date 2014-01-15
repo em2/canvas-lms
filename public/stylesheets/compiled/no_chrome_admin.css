@@ -1,8 +1,11 @@
+/* line 3, ../../../app/stylesheets/no_chrome_admin.sass */
 #assignments_menu_item {
   display: none; }
 
+/* line 5, ../../../app/stylesheets/no_chrome_admin.sass */
 #grades_menu_item {
   display: none; }
 
+/* line 7, ../../../app/stylesheets/no_chrome_admin.sass */
 #calendar_menu_item {
   display: none; }

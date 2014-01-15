@@ -1,4 +1,5 @@
 @media print {
+  /* line 10, ../../../app/stylesheets/print.scss */
   .no-print,
   #header,
   #footer,
@@ -6,55 +7,71 @@
   #left-side {
     display: none !important; }
 
+  /* line 14, ../../../app/stylesheets/print.scss */
   #main,
   #wrapper {
     margin: 0 !important;
     border: 0 none !important; }
 
+  /* line 18, ../../../app/stylesheets/print.scss */
   html, body {
     font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
     color: black;
     font-size: 10pt;
     background: transparent none !important; }
 
+  /* line 25, ../../../app/stylesheets/print.scss */
   #wrapper-container, #content, #wiki_show_view_main {
     overflow: visible !important; }
 
+  /* line 28, ../../../app/stylesheets/print.scss */
   #content {
     width: auto;
     padding: 0 !important; }
+    /* line 32, ../../../app/stylesheets/print.scss */
     #content .fill_height_div {
       overflow: visible !important; }
 
+  /* line 36, ../../../app/stylesheets/print.scss */
   a:link, a:visited {
     font-weight: bold;
     text-decoration: underline; }
 
+  /* line 40, ../../../app/stylesheets/print.scss */
   #breadcrumbs {
     box-shadow: 0 0 0 white; }
+    /* line 43, ../../../app/stylesheets/print.scss */
     #breadcrumbs ul li {
       padding-left: 10px; }
+      /* line 45, ../../../app/stylesheets/print.scss */
       #breadcrumbs ul li:after {
         content: "   →   "; }
+      /* line 47, ../../../app/stylesheets/print.scss */
       #breadcrumbs ul li:last-child:after {
         content: ""; }
+      /* line 49, ../../../app/stylesheets/print.scss */
       #breadcrumbs ul li.home {
         display: none; }
+    /* line 51, ../../../app/stylesheets/print.scss */
     #breadcrumbs ul a {
       text-decoration: none;
       padding-right: 10px; }
 
+  /* line 56, ../../../app/stylesheets/print.scss */
   a:link:after, a:visited:after {
     content: " (" attr(href) ") ";
     font-size: 90%; }
+  /* line 59, ../../../app/stylesheets/print.scss */
   a[href^="/"]:after, a[href^="#"]:after {
     content: ""; }
 
+  /* line 65, ../../../app/stylesheets/print.scss */
   .classroom_reports body {
     font-family: arial,sans,sans-serif;
     margin: 0;
     font-size: 13px; }
 
+  /* line 66, ../../../app/stylesheets/print.scss */
   .classroom_reports body::-webkit-scrollbar-track-piece {
     background-clip: padding-box;
     background-color: #f5f5f5;
@@ -62,16 +79,20 @@
     border-width: 0 0 0 3px;
     box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
 
+  /* line 67, ../../../app/stylesheets/print.scss */
   .classroom_reports body::-webkit-scrollbar-track-piece:horizontal {
     border-width: 3px 0 0;
     box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
 
+  /* line 68, ../../../app/stylesheets/print.scss */
   .classroom_reports body::-webkit-scrollbar-thumb {
     border-width: 1px 1px 1px 5px; }
 
+  /* line 69, ../../../app/stylesheets/print.scss */
   .classroom_reports body::-webkit-scrollbar-thumb:horizontal {
     border-width: 5px 1px 1px; }
 
+  /* line 70, ../../../app/stylesheets/print.scss */
   .classroom_reports body::-webkit-scrollbar-corner {
     background-clip: padding-box;
     background-color: #f5f5f5;
@@ -79,26 +100,31 @@
     border-width: 3px 0 0 3px;
     box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.14); }
 
+  /* line 71, ../../../app/stylesheets/print.scss */
   .classroom_reports body td {
     font-size: 13px; }
 
+  /* line 72, ../../../app/stylesheets/print.scss */
   .classroom_reports #tblMain td.hd p, .classroom_reports .colHeadTable td.hd p {
     margin: 0;
     width: 0;
     overflow: hidden;
     font-size: 0; }
 
+  /* line 73, ../../../app/stylesheets/print.scss */
   .classroom_reports #tblKey td.hd p, .classroom_reports .colHeadTable td.hd p {
     margin: 0;
     width: 0;
     overflow: hidden;
     font-size: 0; }
 
+  /* line 74, ../../../app/stylesheets/print.scss */
   .classroom_reports td.rShim {
     width: 35px;
     height: 0;
     border-right: 1px #c8c8c8 solid; }
 
+  /* line 75, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed {
     table-layout: fixed;
     border-collapse: collapse;
@@ -106,9 +132,11 @@
     border-spacing: 0;
     width: 0; }
 
+  /* line 76, ../../../app/stylesheets/print.scss */
   .classroom_reports td.num {
     text-align: right; }
 
+  /* line 77, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s9 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -125,6 +153,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 78, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s25 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -141,6 +170,7 @@
     border-left: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 79, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s26 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -153,6 +183,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 80, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s7 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -168,6 +199,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 81, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s23 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -183,6 +215,7 @@
     overflow: hidden;
     border-left: 3px solid #000; }
 
+  /* line 82, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s24 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -199,6 +232,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 83, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s8, .classroom_reports .tblGenFixed td.s21 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -211,6 +245,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 84, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s5 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -225,6 +260,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 85, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s22 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -238,6 +274,7 @@
     overflow: hidden;
     border-right: 1px solid #000; }
 
+  /* line 86, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s6 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -253,6 +290,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 87, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s20 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -265,6 +303,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 88, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s4, .classroom_reports .tblGenFixed td.s0 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -278,6 +317,7 @@
     overflow: hidden;
     border-right: 1px solid #000; }
 
+  /* line 89, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s2 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -294,6 +334,7 @@
     border-top: 3px solid #000;
     border-right: 3px solid #000; }
 
+  /* line 90, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s1 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -311,6 +352,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 91, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s16 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -327,6 +369,7 @@
     border-right: 1px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 92, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s17 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -342,6 +385,7 @@
     border-right: 1px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 93, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s18 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -357,6 +401,7 @@
     overflow: hidden;
     border-top: 3px solid #000; }
 
+  /* line 94, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s19 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -373,6 +418,7 @@
     border-right: 3px solid #000;
     border-top: 3px solid #000; }
 
+  /* line 95, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s12 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -389,6 +435,7 @@
     border-right: 1px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 96, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s14 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -406,6 +453,7 @@
     border-bottom: 1px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 97, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s15 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -422,6 +470,7 @@
     border-right: 3px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 98, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s10, .classroom_reports .tblGenFixed td.s11 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -438,6 +487,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 99, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s27 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -455,6 +505,7 @@
     border-bottom: 3px solid #000;
     border-right: 1px solid #000; }
 
+  /* line 100, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s28 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -472,6 +523,7 @@
     border-bottom: 3px solid #000;
     border-right: 3px solid #000; }
 
+  /* line 101, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s29 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -489,6 +541,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 102, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s30 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -505,6 +558,7 @@
     border-right: 3px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 103, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s40 {
     background-color: #efefef;
     font-family: arial,sans,sans-serif;
@@ -523,6 +577,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 104, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s42 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -536,6 +591,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 105, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s41 {
     background-color: #efefef;
     font-family: arial,sans,sans-serif;
@@ -553,6 +609,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 106, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s56 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -566,6 +623,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 107, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s57, .classroom_reports .tblGenFixed td.s58 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -579,6 +637,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 108, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s49 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -594,6 +653,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 109, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s52 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -609,6 +669,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 110, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s53 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -626,6 +687,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 111, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s47 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -642,6 +704,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 112, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s54 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -658,6 +721,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 113, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s55 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -673,6 +737,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 114, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s48, .classroom_reports .tblGenFixed td.s45 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -688,6 +753,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 115, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s46 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -701,6 +767,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 116, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s43, .classroom_reports .tblGenFixed td.s50 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -717,6 +784,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 117, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s44 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -732,6 +800,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 118, ../../../app/stylesheets/print.scss */
   .classroom_reports .tblGenFixed td.s51 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -746,26 +815,33 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 119, ../../../app/stylesheets/print.scss */
   .classroom_reports #content {
     overflow: scroll; }
 
+  /* line 120, ../../../app/stylesheets/print.scss */
   .classroom_reports #report_heading {
     margin-left: 240px; }
 
+  /* line 121, ../../../app/stylesheets/print.scss */
   .classroom_reports #assessment_date_range {
     margin-left: 320px; }
 
+  /* line 122, ../../../app/stylesheets/print.scss */
   .classroom_reports #assessment_date {
     margin-left: 395px; }
 
+  /* line 123, ../../../app/stylesheets/print.scss */
   .classroom_reports #printed_statement {
     float: right; }
 
+  /* line 125, ../../../app/stylesheets/print.scss */
   .school_reports body {
     font-family: arial,sans,sans-serif;
     margin: 0;
     font-size: 13px; }
 
+  /* line 126, ../../../app/stylesheets/print.scss */
   .school_reports body::-webkit-scrollbar-track-piece {
     background-clip: padding-box;
     background-color: #f5f5f5;
@@ -773,16 +849,20 @@
     border-width: 0 0 0 3px;
     box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
 
+  /* line 127, ../../../app/stylesheets/print.scss */
   .school_reports body::-webkit-scrollbar-track-piece:horizontal {
     border-width: 3px 0 0;
     box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
 
+  /* line 128, ../../../app/stylesheets/print.scss */
   .school_reports body::-webkit-scrollbar-thumb {
     border-width: 1px 1px 1px 5px; }
 
+  /* line 129, ../../../app/stylesheets/print.scss */
   .school_reports body::-webkit-scrollbar-thumb:horizontal {
     border-width: 5px 1px 1px; }
 
+  /* line 130, ../../../app/stylesheets/print.scss */
   .school_reports body::-webkit-scrollbar-corner {
     background-clip: padding-box;
     background-color: #f5f5f5;
@@ -790,26 +870,31 @@
     border-width: 3px 0 0 3px;
     box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.14); }
 
+  /* line 131, ../../../app/stylesheets/print.scss */
   .school_reports body td {
     font-size: 13px; }
 
+  /* line 132, ../../../app/stylesheets/print.scss */
   .school_reports #tblMain td.hd p, .school_reports .colHeadTable td.hd p {
     margin: 0;
     width: 0;
     overflow: hidden;
     font-size: 0; }
 
+  /* line 133, ../../../app/stylesheets/print.scss */
   .school_reports #tblKey td.hd p, .school_reports .colHeadTable td.hd p {
     margin: 0;
     width: 0;
     overflow: hidden;
     font-size: 0; }
 
+  /* line 134, ../../../app/stylesheets/print.scss */
   .school_reports td.rShim {
     width: 35px;
     height: 0;
     border-right: 1px #c8c8c8 solid; }
 
+  /* line 135, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed {
     table-layout: fixed;
     border-collapse: collapse;
@@ -817,9 +902,11 @@
     border-spacing: 0;
     width: 0; }
 
+  /* line 136, ../../../app/stylesheets/print.scss */
   .school_reports td.num {
     text-align: right; }
 
+  /* line 137, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s0 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -837,6 +924,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 138, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s2 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -849,6 +937,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 139, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s1 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -865,6 +954,7 @@
     border-top: 3px solid #000;
     border-right: 3px solid #000; }
 
+  /* line 140, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s9 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -880,6 +970,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 141, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s12 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -896,6 +987,7 @@
     border-right: 1px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 142, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s13 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -908,6 +1000,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 143, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s7 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -925,6 +1018,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 144, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s14, .school_reports .tblGenFixed td.s15 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -937,6 +1031,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 145, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s8 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -953,6 +1048,7 @@
     border-right: 1px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 146, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s5 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -968,6 +1064,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 147, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s6 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -980,6 +1077,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 148, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s10 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -997,6 +1095,7 @@
     border-bottom: 1px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 149, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s3 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1011,6 +1110,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 150, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s11 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1027,6 +1127,7 @@
     border-right: 1px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 151, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s4 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1042,6 +1143,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 152, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s16 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1057,6 +1159,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 153, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s17 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1075,6 +1178,7 @@
     border-top: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 154, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s18 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1093,6 +1197,7 @@
     border-left: 3px solid #000;
     border-right: 1px solid #000; }
 
+  /* line 155, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s19 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1110,6 +1215,7 @@
     border-bottom: 3px solid #000;
     border-top: 3px solid #000; }
 
+  /* line 156, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s20 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1126,6 +1232,7 @@
     border-right: 3px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 157, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s21 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1143,6 +1250,7 @@
     border-bottom: 3px solid #000;
     border-top: 3px solid #000; }
 
+  /* line 158, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s22 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1160,6 +1268,7 @@
     border-bottom: 3px solid #000;
     border-top: 3px solid #000; }
 
+  /* line 159, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s23 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1176,6 +1285,7 @@
     border-right: 3px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 160, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s40 {
     background-color: #efefef;
     font-family: arial,sans,sans-serif;
@@ -1194,6 +1304,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 161, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s42 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1207,6 +1318,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 162, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s41 {
     background-color: #efefef;
     font-family: arial,sans,sans-serif;
@@ -1224,6 +1336,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 163, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s56 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1237,6 +1350,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 164, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s57, .school_reports .tblGenFixed td.s58 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1250,6 +1364,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 165, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s49 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1265,6 +1380,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 166, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s52 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1280,6 +1396,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 167, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s53 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1297,6 +1414,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 168, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s47 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1313,6 +1431,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 169, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s54 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1329,6 +1448,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 170, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s55 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1344,6 +1464,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 171, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s48, .school_reports .tblGenFixed td.s45 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1359,6 +1480,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 172, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s46 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1372,6 +1494,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 173, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s43, .school_reports .tblGenFixed td.s50 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1388,6 +1511,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 174, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s44 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1403,6 +1527,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 175, ../../../app/stylesheets/print.scss */
   .school_reports .tblGenFixed td.s51 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1417,26 +1542,33 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 176, ../../../app/stylesheets/print.scss */
   .school_reports #content {
     overflow: scroll; }
 
+  /* line 177, ../../../app/stylesheets/print.scss */
   .school_reports #report_heading {
     margin-left: 115px; }
 
+  /* line 178, ../../../app/stylesheets/print.scss */
   .school_reports #assessment_date_range {
     margin-left: 170px; }
 
+  /* line 179, ../../../app/stylesheets/print.scss */
   .school_reports #assessment_date {
     margin-left: 250px; }
 
+  /* line 180, ../../../app/stylesheets/print.scss */
   .school_reports #printed_statement {
     float: right; }
 
+  /* line 182, ../../../app/stylesheets/print.scss */
   .district_reports body {
     font-family: arial,sans,sans-serif;
     margin: 0;
     font-size: 13px; }
 
+  /* line 183, ../../../app/stylesheets/print.scss */
   .district_reports body::-webkit-scrollbar-track-piece {
     background-clip: padding-box;
     background-color: #f5f5f5;
@@ -1444,16 +1576,20 @@
     border-width: 0 0 0 3px;
     box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14), inset -1px 0 0 rgba(0, 0, 0, 0.07); }
 
+  /* line 184, ../../../app/stylesheets/print.scss */
   .district_reports body::-webkit-scrollbar-track-piece:horizontal {
     border-width: 3px 0 0;
     box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }
 
+  /* line 185, ../../../app/stylesheets/print.scss */
   .district_reports body::-webkit-scrollbar-thumb {
     border-width: 1px 1px 1px 5px; }
 
+  /* line 186, ../../../app/stylesheets/print.scss */
   .district_reports body::-webkit-scrollbar-thumb:horizontal {
     border-width: 5px 1px 1px; }
 
+  /* line 187, ../../../app/stylesheets/print.scss */
   .district_reports body::-webkit-scrollbar-corner {
     background-clip: padding-box;
     background-color: #f5f5f5;
@@ -1461,26 +1597,31 @@
     border-width: 3px 0 0 3px;
     box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.14); }
 
+  /* line 188, ../../../app/stylesheets/print.scss */
   .district_reports body td {
     font-size: 13px; }
 
+  /* line 189, ../../../app/stylesheets/print.scss */
   .district_reports #tblMain td.hd p, .district_reports .colHeadTable td.hd p {
     margin: 0;
     width: 0;
     overflow: hidden;
     font-size: 0; }
 
+  /* line 190, ../../../app/stylesheets/print.scss */
   .district_reports #tblKey td.hd p, .district_reports .colHeadTable td.hd p {
     margin: 0;
     width: 0;
     overflow: hidden;
     font-size: 0; }
 
+  /* line 191, ../../../app/stylesheets/print.scss */
   .district_reports td.rShim {
     width: 35px;
     height: 0;
     border-right: 1px #c8c8c8 solid; }
 
+  /* line 192, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed {
     table-layout: fixed;
     border-collapse: collapse;
@@ -1488,9 +1629,11 @@
     border-spacing: 0;
     width: 0; }
 
+  /* line 193, ../../../app/stylesheets/print.scss */
   .district_reports td.num {
     text-align: right; }
 
+  /* line 194, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s0 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1508,6 +1651,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 195, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s2 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1520,6 +1664,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 196, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s1 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1536,6 +1681,7 @@
     border-top: 3px solid #000;
     border-right: 3px solid #000; }
 
+  /* line 197, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s9 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1551,6 +1697,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 198, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s12 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1567,6 +1714,7 @@
     border-right: 1px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 199, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s13 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1579,6 +1727,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 200, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s7 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1596,6 +1745,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 201, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s14, .district_reports .tblGenFixed td.s15 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1608,6 +1758,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 202, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s8 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1624,6 +1775,7 @@
     border-right: 1px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 203, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s5 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1639,6 +1791,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 204, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s6 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1651,6 +1804,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 205, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s10 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1668,6 +1822,7 @@
     border-bottom: 1px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 206, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s3 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1682,6 +1837,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 207, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s11 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1698,6 +1854,7 @@
     border-right: 1px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 208, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s4 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1713,6 +1870,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 209, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s16 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1728,6 +1886,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 210, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s17 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1746,6 +1905,7 @@
     border-top: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 211, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s18 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1764,6 +1924,7 @@
     border-left: 3px solid #000;
     border-right: 1px solid #000; }
 
+  /* line 212, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s19 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1781,6 +1942,7 @@
     border-bottom: 3px solid #000;
     border-top: 3px solid #000; }
 
+  /* line 213, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s20 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1797,6 +1959,7 @@
     border-right: 3px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 214, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s21 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1814,6 +1977,7 @@
     border-bottom: 3px solid #000;
     border-top: 3px solid #000; }
 
+  /* line 215, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s22 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1831,6 +1995,7 @@
     border-bottom: 3px solid #000;
     border-top: 3px solid #000; }
 
+  /* line 216, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s23 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1847,6 +2012,7 @@
     border-right: 3px solid #000;
     border-bottom: 1px solid #000; }
 
+  /* line 217, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s40 {
     background-color: #efefef;
     font-family: arial,sans,sans-serif;
@@ -1865,6 +2031,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 218, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s42 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1878,6 +2045,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 219, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s41 {
     background-color: #efefef;
     font-family: arial,sans,sans-serif;
@@ -1895,6 +2063,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 220, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s56 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1908,6 +2077,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 221, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s57, .district_reports .tblGenFixed td.s58 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1921,6 +2091,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 222, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s49 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1936,6 +2107,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 223, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s52 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1951,6 +2123,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 224, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s53 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1968,6 +2141,7 @@
     border-bottom: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 225, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s47 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -1984,6 +2158,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 226, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s54 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -2000,6 +2175,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 227, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s55 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -2015,6 +2191,7 @@
     border-right: 3px solid #000;
     border-bottom: 3px solid #000; }
 
+  /* line 228, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s48, .district_reports .tblGenFixed td.s45 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -2030,6 +2207,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 229, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s46 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -2043,6 +2221,7 @@
     white-space: normal;
     overflow: hidden; }
 
+  /* line 230, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s43, .district_reports .tblGenFixed td.s50 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -2059,6 +2238,7 @@
     border-right: 3px solid #000;
     border-left: 3px solid #000; }
 
+  /* line 231, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s44 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -2074,6 +2254,7 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 232, ../../../app/stylesheets/print.scss */
   .district_reports .tblGenFixed td.s51 {
     background-color: #fff;
     font-family: arial,sans,sans-serif;
@@ -2088,17 +2269,22 @@
     overflow: hidden;
     border-right: 3px solid #000; }
 
+  /* line 233, ../../../app/stylesheets/print.scss */
   .district_reports #content {
     overflow: scroll; }
 
+  /* line 234, ../../../app/stylesheets/print.scss */
   .district_reports #report_heading {
     margin-left: 115px; }
 
+  /* line 235, ../../../app/stylesheets/print.scss */
   .district_reports #assessment_date_range {
     margin-left: 170px; }
 
+  /* line 236, ../../../app/stylesheets/print.scss */
   .district_reports #assessment_date {
     margin-left: 250px; }
 
+  /* line 237, ../../../app/stylesheets/print.scss */
   .district_reports #printed_statement {
     float: right; } }

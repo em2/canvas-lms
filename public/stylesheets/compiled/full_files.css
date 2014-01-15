@@ -1,12 +1,16 @@
+/* line 2, ../../../app/stylesheets/full_files.sass */
 #files_structure_list.instTree > li.node {
   margin-right: 5px; }
 
+/* line 5, ../../../app/stylesheets/full_files.sass */
 ul.instTree li {
   background-position: 13px 3px; }
 
+/* line 8, ../../../app/stylesheets/full_files.sass */
 ul.instTree li.leaf > .text {
   display: block; }
 
+/* line 11, ../../../app/stylesheets/full_files.sass */
 ul.instTree li.node > .text {
   display: block;
   -webkit-border-radius: 3px;
@@ -18,17 +22,21 @@ ul.instTree li.node > .text {
   min-width: 200px;
   padding-left: 2px; }
 
+/* line 18, ../../../app/stylesheets/full_files.sass */
 ul.instTree li.node > .text:hover {
   background-color: #eeeeee; }
 
+/* line 22, ../../../app/stylesheets/full_files.sass */
 ul.instTree li.node.active-node > .text {
   background-color: #dddddd; }
 
+/* line 25, ../../../app/stylesheets/full_files.sass */
 ul.instTree li.leaf {
   padding-top: 3px;
   padding-bottom: 3px;
   background-position: 13px 6px; }
 
+/* line 30, ../../../app/stylesheets/full_files.sass */
 #files_structure {
   float: left;
   width: 28%;
@@ -41,6 +49,7 @@ ul.instTree li.leaf {
   border-radius: 5px;
   overflow: auto; }
 
+/* line 38, ../../../app/stylesheets/full_files.sass */
 #files_content {
   float: left;
   width: 70%;
@@ -57,6 +66,7 @@ ul.instTree li.leaf {
   border-radius: 5px;
   list-style-type: none; }
 
+/* line 50, ../../../app/stylesheets/full_files.sass */
 .content_panel {
   padding: 5px 5px 5px 20px;
   border-bottom: 1px solid #cccccc;
@@ -65,197 +75,255 @@ ul.instTree li.leaf {
   border-top-left-radius: 4px;
   background-color: #eeeeee; }
 
+/* line 56, ../../../app/stylesheets/full_files.sass */
 .content_panel .header {
   float: left; }
 
+/* line 59, ../../../app/stylesheets/full_files.sass */
 .content_panel .header .name, .content_panel .header .display_name {
   font-size: 1.2em; }
 
+/* line 62, ../../../app/stylesheets/full_files.sass */
 .content_panel .header .content {
   font-size: 0.8em;
   padding-left: 10px; }
 
+/* line 66, ../../../app/stylesheets/full_files.sass */
 .content_panel .breadcrumb {
   padding-left: 10px;
   font-size: 0.8em; }
 
+/* line 70, ../../../app/stylesheets/full_files.sass */
 .content_panel .breadcrumb a {
   padding-left: 15px;
   background: url(/images/crumb.png) no-repeat 3px center; }
 
+/* line 74, ../../../app/stylesheets/full_files.sass */
 .content_panel .links {
   float: right;
   text-align: right; }
 
+/* line 78, ../../../app/stylesheets/full_files.sass */
 .content_panel .links > a {
   visibility: hidden; }
 
+/* line 81, ../../../app/stylesheets/full_files.sass */
 .content_panel .links > .edit_link {
   visibility: hidden; }
 
+/* line 84, ../../../app/stylesheets/full_files.sass */
 .content_panel .links .sub_links {
   text-align: right;
   margin-right: 50px;
   display: none; }
 
+/* line 89, ../../../app/stylesheets/full_files.sass */
 .content_panel.editable_content_panel .links > a {
   visibility: visible; }
 
+/* line 91, ../../../app/stylesheets/full_files.sass */
 .content_panel.editable_content_panel .links > .edit_link {
   visibility: visible; }
 
+/* line 94, ../../../app/stylesheets/full_files.sass */
 .content_panel.addable_content_panel .links .sub_links {
   display: block; }
 
+/* line 97, ../../../app/stylesheets/full_files.sass */
 .content_panel.downloadable_content_panel .links .sub_links {
   display: block;
   float: right; }
+  /* line 100, ../../../app/stylesheets/full_files.sass */
   .content_panel.downloadable_content_panel .links .sub_links > span {
     visibility: hidden; }
+  /* line 102, ../../../app/stylesheets/full_files.sass */
   .content_panel.downloadable_content_panel .links .sub_links > a {
     visibility: hidden; }
+  /* line 104, ../../../app/stylesheets/full_files.sass */
   .content_panel.downloadable_content_panel .links .sub_links > .download_zip {
     visibility: visible; }
 
+/* line 107, ../../../app/stylesheets/full_files.sass */
 .content_panel #rename_entry_field {
   font-size: 1.2em; }
 
+/* line 110, ../../../app/stylesheets/full_files.sass */
 .content_panel .header .readable_size {
   font-size: 0.8em;
   padding-left: 10px; }
 
+/* line 114, ../../../app/stylesheets/full_files.sass */
 .content_panel .details {
   padding-left: 15px; }
 
+/* line 117, ../../../app/stylesheets/full_files.sass */
 .content_panel .cant_download {
   display: none; }
 
+/* line 120, ../../../app/stylesheets/full_files.sass */
 .content_panel.panel_locked .download_item_link {
   display: none; }
 
+/* line 123, ../../../app/stylesheets/full_files.sass */
 .content_panel.panel_locked .cant_download {
   display: inline; }
 
+/* line 126, ../../../app/stylesheets/full_files.sass */
 .content_panel.with_subcontent {
   border-bottom-width: 0px;
   background-color: transparent; }
 
+/* line 130, ../../../app/stylesheets/full_files.sass */
 .content_panel .subcontent {
   margin-top: 10px; }
 
+/* line 133, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item {
   cursor: pointer;
   padding: 3px 5px; }
 
+/* line 137, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .item_icon {
   width: 20px;
   height: 20px;
   background: transparent url(/images/inst_tree/file_types/page_white.png) no-repeat left center; }
 
+/* line 142, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.image .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_picture.png); }
 
+/* line 145, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.zip .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_zip.png); }
 
+/* line 148, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.code .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_code.png); }
 
+/* line 151, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.text .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_text.png); }
 
+/* line 154, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.pdf .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_acrobat.png); }
 
+/* line 157, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.video .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_camera.png); }
 
+/* line 160, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.doc .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_word.png); }
 
+/* line 163, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.xls .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_excel.png); }
 
+/* line 166, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.ppt .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_powerpoint.png); }
 
+/* line 169, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.html .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_world.png); }
 
+/* line 172, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.flash .item_icon {
   background-image: url(/images/inst_tree/file_types/page_white_flash.png); }
 
+/* line 175, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .name {
   padding-left: 5px; }
 
+/* line 178, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.folder .item_icon {
   background-image: url(/images/inst_tree/folder.png); }
 
+/* line 181, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.collaboration.etherpad .item_icon {
   background-image: url(/images/etherpad_icon.ico); }
 
+/* line 184, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.collaboration.google_docs .item_icon {
   background-image: url(/images/google_docs_icon.ico); }
 
+/* line 187, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .item_icon.draggable {
   cursor: move; }
 
+/* line 190, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .header {
   float: left; }
 
+/* line 193, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .header .sub_header {
   font-size: 0.8em;
   margin-left: 25px;
   color: #888888; }
 
+/* line 198, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .header .sub_header .readable_size {
   padding-right: 10px; }
 
+/* line 201, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .links {
   float: right;
   display: none; }
 
+/* line 205, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .sort_icon {
   display: none; }
 
+/* line 208, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.editable_folder_item .sort_icon {
   display: inline;
   cursor: move; }
 
+/* line 212, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.editable_folder_item .links {
   display: block; }
 
+/* line 215, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item .links a img {
   visibility: hidden; }
 
+/* line 218, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.folder_item_hover {
   background-color: #eeeeee; }
 
+/* line 221, ../../../app/stylesheets/full_files.sass */
 .files_content .folder_item.folder_item_hover .links a img {
   visibility: visible; }
 
+/* line 224, ../../../app/stylesheets/full_files.sass */
 .files_content li.message {
   padding: 10px 5px;
   font-size: 1.2em; }
 
+/* line 228, ../../../app/stylesheets/full_files.sass */
 .file_drag {
   background-color: white;
   min-width: 300px;
   border: 1px solid #cccccc;
   list-style-type: none; }
 
+/* line 234, ../../../app/stylesheets/full_files.sass */
 .folder_item.file_drag.copy_drag,
 .folder_item.file_drag.copy_drag {
   background-color: #ffff99 !important; }
 
+/* line 238, ../../../app/stylesheets/full_files.sass */
 #files_structure .folder > .text.drop_target {
   border: 1px solid #888888;
   background-color: #bbbbbb; }
 
+/* line 242, ../../../app/stylesheets/full_files.sass */
 #files_content .folder.drop_target {
   border: 1px solid #888888;
   background-color: #bbbbbb; }
 
+/* line 246, ../../../app/stylesheets/full_files.sass */
 #swfupload_holder {
   cursor: pointer;
   position: absolute;
@@ -263,15 +331,18 @@ ul.instTree li.leaf {
   left: -1000px;
   overflow: hidden; }
 
+/* line 252, ../../../app/stylesheets/full_files.sass */
 .swfupload {
   background-color: transparent;
   color: transparent;
   width: 55px; }
 
+/* line 257, ../../../app/stylesheets/full_files.sass */
 #file_uploads {
   width: auto;
   margin: 0px 10px 10px; }
 
+/* line 261, ../../../app/stylesheets/full_files.sass */
 #file_uploads .file_upload {
   font-size: 0.8em;
   border: 1px solid #cccccc;
@@ -284,25 +355,33 @@ ul.instTree li.leaf {
   margin-bottom: 3px;
   background-color: #dddddd; }
 
+/* line 269, ../../../app/stylesheets/full_files.sass */
 #file_uploads .file_upload.finished_message {
   background-color: #d0e0f0; }
 
+/* line 272, ../../../app/stylesheets/full_files.sass */
 #file_uploads .file_upload .file_name {
   font-weight: bold; }
 
+/* line 275, ../../../app/stylesheets/full_files.sass */
 #file_uploads .file_upload .cancel_upload_link {
   float: right; }
 
+/* line 278, ../../../app/stylesheets/full_files.sass */
 #file_uploads .file_upload .progress_bar {
   height: 10px;
   margin: 2px 20px; }
 
+/* line 283, ../../../app/stylesheets/full_files.sass */
 #files_content #drag_n_drop_panel {
   display: none; }
+/* line 286, ../../../app/stylesheets/full_files.sass */
 #files_content.file_drag li {
   visibility: hidden; }
+/* line 288, ../../../app/stylesheets/full_files.sass */
 #files_content.file_drag li.folder_item.folder_item_hover .links a img {
   visibility: hidden; }
+/* line 290, ../../../app/stylesheets/full_files.sass */
 #files_content.file_drag #drag_n_drop_panel {
   position: absolute;
   display: block;
@@ -310,9 +389,11 @@ ul.instTree li.leaf {
   font-size: 1.2em;
   visibility: visible; }
 
+/* line 297, ../../../app/stylesheets/full_files.sass */
 .uploadifyQueue {
   display: none; }
 
+/* line 301, ../../../app/stylesheets/full_files.sass */
 #duplicate_filename_dialog .duplicate_filename {
   border: 1px solid #cccccc;
   background-color: #e1ecf6;

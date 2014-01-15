@@ -1,29 +1,35 @@
+/* line 2, ../../../app/stylesheets/helpDialog.sass */
 #help-dialog {
   padding: 0;
   width: 400px;
   overflow: visible;
   position: relative; }
+  /* line 8, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog #help-dialog-options {
     list-style: none;
     padding: 0;
     margin: 0;
     overflow: auto;
     background: #e6e7e9; }
+    /* line 17, ../../../app/stylesheets/helpDialog.sass */
     #help-dialog #help-dialog-options li a {
       border-top: 1px solid #fafafa;
       border-bottom: 1px solid #d4d5d7;
       display: block;
       padding: 10px 25px;
       text-decoration: none; }
+      /* line 23, ../../../app/stylesheets/helpDialog.sass */
       #help-dialog #help-dialog-options li a .text {
         color: #1e7eca;
         font-size: 1.1em; }
+      /* line 26, ../../../app/stylesheets/helpDialog.sass */
       #help-dialog #help-dialog-options li a .subtext {
         color: #a2a2a3;
         font-style: italic;
         display: block;
         font-size: 0.9em;
         line-height: 1.1em; }
+      /* line 32, ../../../app/stylesheets/helpDialog.sass */
       #help-dialog #help-dialog-options li a:hover {
         border-top-color: #d7eefb;
         border-bottom-color: #297fd1;
@@ -37,55 +43,71 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#0abdff',EndColorStr='#008fd6')";
         zoom: 1;
         text-decoration: none; }
+        /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
         .ie9 #help-dialog #help-dialog-options li a:hover {
           border-radius: 0 !important; }
+        /* line 37, ../../../app/stylesheets/helpDialog.sass */
         #help-dialog #help-dialog-options li a:hover .text {
           color: white; }
+        /* line 39, ../../../app/stylesheets/helpDialog.sass */
         #help-dialog #help-dialog-options li a:hover .subtext {
           color: #015f99; }
+    /* line 41, ../../../app/stylesheets/helpDialog.sass */
     #help-dialog #help-dialog-options li.user li.user, #help-dialog #help-dialog-options li.student li.student, #help-dialog #help-dialog-options li.teacher li.teacher, #help-dialog #help-dialog-options li.admin li.admin {
       display: block; }
+  /* line 46, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog form {
     padding: 10px 10px 6px;
     width: 380px;
     position: absolute;
     left: 400px;
     top: 0; }
+  /* line 52, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog label {
     display: block;
     font-size: 16px;
     margin-top: 10px; }
+  /* line 56, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog textarea {
     width: 100%;
     height: 100px; }
+  /* line 59, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog input {
     width: 100%;
     font-size: 13px; }
+  /* line 62, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog small {
     font-size: 10px;
     display: block;
     color: #555555;
     margin-top: -6px; }
+  /* line 67, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog select {
     font-size: 15px; }
+  /* line 70, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog .button-container {
     padding: 10px 6px 0;
     margin: 20px -10px 0;
     border-top: 1px solid #aaaaaa;
     overflow: auto; }
+    /* line 75, ../../../app/stylesheets/helpDialog.sass */
     #help-dialog .button-container .button {
       float: right; }
+  /* line 78, ../../../app/stylesheets/helpDialog.sass */
   #help-dialog .ui-state-error, #help-dialog .ui-state-highlight {
     border-radius: 4px !important;
     padding: 10px 10px 10px 35px;
     position: relative; }
+    /* line 82, ../../../app/stylesheets/helpDialog.sass */
     #help-dialog .ui-state-error a, #help-dialog .ui-state-highlight a {
       text-decoration: underline; }
+    /* line 84, ../../../app/stylesheets/helpDialog.sass */
     #help-dialog .ui-state-error .ui-icon, #help-dialog .ui-state-highlight .ui-icon {
       position: absolute;
       left: 10px;
       top: 10px; }
 
+/* line 88, ../../../app/stylesheets/helpDialog.sass */
 .ui-dialog-header-backlink {
   display: block;
   float: left;
@@ -97,5 +119,6 @@
   margin-top: 2px;
   margin-right: 10px;
   background: url(/images/jqueryui/icon_sprite.png) no-repeat left -32px; }
+  /* line 100, ../../../app/stylesheets/helpDialog.sass */
   .ui-dialog-header-backlink:hover {
     background-position: left -48px; }
