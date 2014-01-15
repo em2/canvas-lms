@@ -147,7 +147,7 @@ div.question
     &:last-child
       :border-bottom 0
 
-#questions.brief 
+#questions.brief
   .question_holder .display_question
     :font-size 0.9em
     .answer, .question_comment
@@ -198,7 +198,7 @@ div.question
       .move .move_icon
         :display inline
         :cursor move
-      .links 
+      .links
         +opacity(1.0)
     &.editing
       .links
@@ -241,7 +241,7 @@ div.question
       .question_points_holder
         :display none
 
-.question_holder 
+.question_holder
   :position relative
   > .question
     .question_comment.empty
@@ -260,7 +260,7 @@ div.question
   :position relative
   :min-height 50px
   :_height 10px
-  
+
   &.modified_but_not_saved
     border-width: 3px
   .move
@@ -271,12 +271,12 @@ div.question
     :width 16px
     :height 16px
     :padding 2px
- 
+
     .move_icon
       :display none
       :cursor move
   .header
-    :font-size 1.2em 
+    :font-size 1.2em
     :font-weight bold
     :float left
     :background-color #fff
@@ -340,7 +340,7 @@ div.question
         .answer_percent
           :padding-left 20px
           :font-size 0.8em
-          
+
         .answer_comment_holder
           :-moz-border-radius 5px
           :border 2px solid #faa
@@ -352,10 +352,10 @@ div.question
           :float left
           :width auto
           :min-width 50px
-          
+
           .answer_comment
             :background-image none
-          
+
           .comment_top
             :position absolute
             :display block
@@ -382,35 +382,35 @@ div.question
         &.unspecified_answer
           .answer_comment_holder
             :border-color #abd
-            .comment_top 
+            .comment_top
               :background-image url(/images/comment_top_neutral.png)
         &.correct_answer
           :background url(/images/correct_answer.png) no-repeat 3px 5px
-          
+
           .answer_text, .answer_html
             :font-weight bold
-            
+
           .answer_comment_holder
             :border-color #4a4
-            
-            .comment_top 
+
+            .comment_top
               :background-image url(/images/comment_top_correct.png)
 
         &.partial_answer
           :background url(/images/partial_answer.png) no-repeat 3px 5px
-          
+
           .answer_text
             :font-weight bold
-        
+
         &.negative_answer
           :background url(/images/negative_answer.png) no-repeat 3px 5px
-          
+
           .answer_text
             :font-weight bold
-          
+
           .answer_percent
             color: #a00
-            
+
         .answer_percent
           :display none
 
@@ -483,7 +483,7 @@ div.question
         +opacity(0.5)
         :display inline
 
-.question.multiple_choice_question, .question.multiple_answers_question, .question.matching_question, .question.compare_fractions_question, .question.locate_fractions_question, .question.represent_fractions_question, .question.compare_decimals_question, .compare_decimal_fraction_question
+.question.multiple_choice_question, .question.multiple_answers_question, .question.matching_question, .question.compare_fractions_question, .question.locate_fractions_question, .question.represent_fractions_question, .question.compare_decimals_question, .question.compare_decimal_fraction_question, .question.estimating_fractions_question
   .answer
     :border-bottom 1px solid #ddd
     &:last-child
@@ -495,7 +495,7 @@ div.question
   .answer_select
     :vertical-align top
     :padding-top 0.5em
-    
+
     .answer_weight
       :display none
 
@@ -511,7 +511,7 @@ div.question
       :float left
       :width 10%
       :background url(/images/matching_arrow.png) no-repeat center center
-            
+
     .answer_match_right
       :float left
       :width 45%
@@ -549,7 +549,7 @@ div.question
       :cursor pointer
       &.hover .answer_box
         :background-image url(/images/correct_answer.png)
-        
+
     &.hover
       .answer_select .answer_box
         :background-image url(/images/partial_answer.png)
@@ -572,7 +572,7 @@ div.question
           :background-image none
           .answer_text
             :font-weight normal
-        
+
         &.negative_answer
           :background-image none
   &.selectable
@@ -584,18 +584,18 @@ div.question
       .answer_select .answer_box
         &.hover .answer_box
           :background-image none
-          
+
       &.hover
         .answer_select .answer_box
           :background-image none
       &.correct_answer .answer_select .answer_box
         :background-image none
- 
+
 .question
-  textarea  
+  textarea
     :border 1px solid #ccc
 
-.survey_quiz 
+.survey_quiz
   form.question_form
     .form_answers
       .answer_comments
@@ -607,7 +607,7 @@ div.question
     .question.selectable
       .answer.correct_answer
         :color inherit
-  
+
 form.question_form
   .multi_answer_sets
     display: none
@@ -662,7 +662,7 @@ form.question_form
     .answer.correct_answer
       .answer_comments
         :border-color #4a4
-        .comment_top 
+        .comment_top
           :background-image url(/images/comment_top_correct.png)
   .question_comment
     :font-size 0.8em
@@ -726,7 +726,7 @@ ul#question_list
     :font-size 1.2em
     :font-weight bold
     :color #444
-table#quiz_details 
+table#quiz_details
   :margin-top 10px
   h3
     :font-weight bold
@@ -734,7 +734,7 @@ table#quiz_details
   ul.student_list
     :max-height 300px
     :overflow auto
-    :margin-top 5px     
+    :margin-top 5px
 
 ul#quiz_versions
   :margin-top 5px
@@ -742,7 +742,7 @@ ul#quiz_versions
   .quiz_version
     &.selected
       :font-weight bold
-      
+
 #quiz_options_form
   td
     vertical-align: top
@@ -750,12 +750,12 @@ ul#quiz_versions
 .options_header
   font-weight: bold
   font-size: 1.2em
-  a 
+  a
     margin-right: 10px
     margin-top: 0.35em
     float: right
     font-size: 0.8em
-      
+
 .equation_answers
   display: none
 .equation_header
@@ -778,7 +778,7 @@ ul#quiz_versions
     display: none
   .add_answer
     display: none
-  .variables 
+  .variables
     margin-bottom: 10px
     th
       font-size: 0.8em
@@ -791,7 +791,7 @@ ul#quiz_versions
   .word_problem
     width: 100%
 
-  .formulas 
+  .formulas
     .formula_row.last_row
       font-weight: bold
     .formula_row.last_row .status
@@ -861,7 +861,7 @@ ul#quiz_versions
         font-size: 0.8em
         color: #888
         font-style: italic
-        margin-left: 25px        
+        margin-left: 25px
 #ip_filters_dialog
   .searching_message
     font-size: 1.1em
@@ -958,6 +958,7 @@ ul#quiz_versions
 .represent_fractions_question .question_actions .atr-edit,
 .compare_decimals_question .question_actions .atr-edit,
 .compare_decimal_fraction_question .question_actions .atr-edit,
+.estimating_fractions_addition_question .question_actions .atr-edit
   display: inline-block
 
 .divider_line

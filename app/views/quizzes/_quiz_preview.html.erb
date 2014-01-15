@@ -162,7 +162,7 @@ if(!jQuery) {
     var $answer = $(this).parents(".answer");
     var question = quiz.questions[questionId];
     if(!question) { return; }
-    
+
     var comments = null;
     for(var idx in question) {
       if(idx.indexOf('answer_') == 0) {
@@ -261,7 +261,7 @@ if(!jQuery) {
 </script>
 <% end %>
 <div id="instructure_quiz_templates" style="display: none;">
-  <div id="multiple_choice_question_template compare_fractions_question_template locate_fractions_question_template represent_fractions_question_template compare_decimals_question_template compare_decimal_fraction_question_template" class="question">
+  <div id="multiple_choice_question_template compare_fractions_question_template locate_fractions_question_template represent_fractions_question_template compare_decimals_question_template compare_decimal_fraction_question_template estimating_fractions_addition_question_template" class="question">
     <div class="header">
       <%= t(:question_result, "%{question_name} : %{points} pts",
             :question_name => raw('<span class="question_name">&nbsp;</span>'),
@@ -307,7 +307,7 @@ if(!jQuery) {
           <%= before_label(:short_answer, "Type your answer here") %>
           <input type="text" class="answer_text text_input">
         </div>
-      </div>  
+      </div>
     </div>
   </div>
   <div id="numerical_question_template" class="question">
@@ -324,7 +324,7 @@ if(!jQuery) {
           <%= before_label(:numerical_answer, "Type your answer here (numbers only)") %>
           <input type="text" class="answer_text text_input">
         </div>
-      </div>  
+      </div>
     </div>
   </div>
   <div id="matching_question_template" class="question">
@@ -359,7 +359,7 @@ if(!jQuery) {
       </span>
       <select class="answers_select">
         <option class="answer answer_text"></option>
-      </select>  
+      </select>
       <span class="text_after_answers">
       </span>
       <div class="answers">
@@ -380,7 +380,7 @@ if(!jQuery) {
         <div class="answer">
           <textarea class="answer_text text_input"></textarea>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
   <div id="answer_comment_template" class="answer_comment_holder" style="display: none;">

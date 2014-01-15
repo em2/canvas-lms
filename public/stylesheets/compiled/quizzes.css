@@ -577,13 +577,13 @@ div.question {
       display: inline; }
 
 /* line 487, ../../../app/stylesheets/quizzes.sass */
-.question.multiple_choice_question .answer, .question.multiple_answers_question .answer, .question.matching_question .answer, .question.compare_fractions_question .answer, .question.locate_fractions_question .answer, .question.represent_fractions_question .answer, .question.compare_decimals_question .answer, .compare_decimal_fraction_question .answer {
+.question.multiple_choice_question .answer, .question.multiple_answers_question .answer, .question.matching_question .answer, .question.compare_fractions_question .answer, .question.locate_fractions_question .answer, .question.represent_fractions_question .answer, .question.compare_decimals_question .answer, .question.compare_decimal_fraction_question .answer, .question.estimating_fractions_question .answer {
   border-bottom: 1px solid #dddddd; }
   /* line 489, ../../../app/stylesheets/quizzes.sass */
-  .question.multiple_choice_question .answer:last-child, .question.multiple_answers_question .answer:last-child, .question.matching_question .answer:last-child, .question.compare_fractions_question .answer:last-child, .question.locate_fractions_question .answer:last-child, .question.represent_fractions_question .answer:last-child, .question.compare_decimals_question .answer:last-child, .compare_decimal_fraction_question .answer:last-child {
+  .question.multiple_choice_question .answer:last-child, .question.multiple_answers_question .answer:last-child, .question.matching_question .answer:last-child, .question.compare_fractions_question .answer:last-child, .question.locate_fractions_question .answer:last-child, .question.represent_fractions_question .answer:last-child, .question.compare_decimals_question .answer:last-child, .question.compare_decimal_fraction_question .answer:last-child, .question.estimating_fractions_question .answer:last-child {
     border-bottom: 0; }
 /* line 491, ../../../app/stylesheets/quizzes.sass */
-.question.multiple_choice_question .answer_custom, .question.multiple_answers_question .answer_custom, .question.matching_question .answer_custom, .question.compare_fractions_question .answer_custom, .question.locate_fractions_question .answer_custom, .question.represent_fractions_question .answer_custom, .question.compare_decimals_question .answer_custom, .compare_decimal_fraction_question .answer_custom {
+.question.multiple_choice_question .answer_custom, .question.multiple_answers_question .answer_custom, .question.matching_question .answer_custom, .question.compare_fractions_question .answer_custom, .question.locate_fractions_question .answer_custom, .question.represent_fractions_question .answer_custom, .question.compare_decimals_question .answer_custom, .question.compare_decimal_fraction_question .answer_custom, .question.estimating_fractions_question .answer_custom {
   border-bottom: 0; }
 
 /* line 495, ../../../app/stylesheets/quizzes.sass */
@@ -1177,32 +1177,33 @@ ul#quiz_versions {
 .locate_fractions_question .question_actions .atr-edit,
 .represent_fractions_question .question_actions .atr-edit,
 .compare_decimals_question .question_actions .atr-edit,
-.compare_decimal_fraction_question .question_actions .atr-edit {
+.compare_decimal_fraction_question .question_actions .atr-edit,
+.estimating_fractions_addition_question .question_actions .atr-edit {
   display: inline-block; }
 
-/* line 963, ../../../app/stylesheets/quizzes.sass */
+/* line 964, ../../../app/stylesheets/quizzes.sass */
 .divider_line {
   border-bottom: 2px solid #cccccc;
   padding-top: 10px;
   margin-bottom: 10px; }
 
-/* line 968, ../../../app/stylesheets/quizzes.sass */
+/* line 969, ../../../app/stylesheets/quizzes.sass */
 .number_questions {
   padding-left: 50px; }
 
-/* line 971, ../../../app/stylesheets/quizzes.sass */
+/* line 972, ../../../app/stylesheets/quizzes.sass */
 .button_layer {
   padding-bottom: 15px; }
 
-/* line 974, ../../../app/stylesheets/quizzes.sass */
+/* line 975, ../../../app/stylesheets/quizzes.sass */
 .button-quiz-buttons {
   width: 225px; }
 
-/* line 977, ../../../app/stylesheets/quizzes.sass */
+/* line 978, ../../../app/stylesheets/quizzes.sass */
 .button-quiz-buttons-right {
   width: 225px;
   margin-left: 100px; }
 
-/* line 981, ../../../app/stylesheets/quizzes.sass */
+/* line 982, ../../../app/stylesheets/quizzes.sass */
 .logo_banner {
   margin-left: -7px; }

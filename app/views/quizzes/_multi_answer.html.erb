@@ -1,5 +1,5 @@
 <% answer = multi_answer %>
-<% if question_type.question_type == "locate_fractions_question" || question_type.question_type == "compare_fractions_question" || question_type.question_type == "represent_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question"-%>
+<% if question_type.question_type == "locate_fractions_question" || question_type.question_type == "compare_fractions_question" || question_type.question_type == "represent_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question" || question_type.question_type == "estimating_fractions_addition_question" -%>
   <div class="answer answer_custom">
 <% else -%>
   <div class="answer">
@@ -7,7 +7,7 @@
   <% if question_type.entry_type == "radio" || question_type.entry_type == "select" || question_type.entry_type == "checkbox" %>
     <table>
       <tr>
-      <% if question_type.question_type == "locate_fractions_question" -%>
+       <% if question_type.question_type == "locate_fractions_question" -%>
         <td class="answer_input answer_input_custom">
       <% else -%>
         <td class="answer_input">

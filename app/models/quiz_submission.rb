@@ -21,7 +21,7 @@ class QuizSubmission < ActiveRecord::Base
   attr_accessible :quiz, :user, :temporary_user_code, :submission_data
   attr_readonly :quiz_id, :user_id
   validates_presence_of :quiz_id
-  
+
   belongs_to :quiz
   belongs_to :user
   belongs_to :submission, :touch => true
@@ -57,14 +57,14 @@ class QuizSubmission < ActiveRecord::Base
     end
     state :preview
   end
-  
+
   set_policy do
     given {|user| user && user.id == self.user_id }
     can :read
-    
+
     given {|user| user && user.id == self.user_id && self.untaken? }
     can :update
-    
+
     given {|user, session| self.quiz.grants_right?(user, session, :manage) || self.quiz.grants_right?(user, session, :review_grades) }
     can :read
 
@@ -74,11 +74,11 @@ class QuizSubmission < ActiveRecord::Base
 
     given {|user, session| self.quiz.grants_right?(user, session, :manage) }
     can :update_scores
-    
+
     given {|user, session| self.quiz.grants_right?(user, session, :manage) }
     can :add_attempts
   end
-  
+
   def sanitize_responses
     questions && questions.select {|q| q['question_type'] == 'essay_question' }.each do |q|
       question_id = q['id']
@@ -95,7 +95,7 @@ class QuizSubmission < ActiveRecord::Base
     end
     true
   end
-  
+
   def track_outcomes(attempt)
     return unless user_id
     question_ids = (self.quiz_data || []).map{|q| q[:assessment_question_id] }.compact.uniq
@@ -107,7 +107,7 @@ class QuizSubmission < ActiveRecord::Base
       send_later_if_production(:update_outcomes_for_assessment_questions, question_ids, self.id, attempt) unless question_ids.empty?
     end
   end
-  
+
   def update_outcomes_for_assessment_questions(question_ids, submission_id, attempt)
     return if question_ids.empty?
     submission = QuizSubmission.find(submission_id)
@@ -123,21 +123,21 @@ class QuizSubmission < ActiveRecord::Base
       end
     end
   end
-  
+
   def temporary_data
     raise "Cannot view temporary data for completed quiz" unless !self.completed?
     raise "Cannot view temporary data for completed quiz" if self.submission_data && !self.submission_data.is_a?(Hash)
     res = (self.submission_data || {}).with_indifferent_access
     res
   end
-  
+
   def data
     raise "Cannot view data for uncompleted quiz" unless self.completed?
     raise "Cannot view data for uncompleted quiz" if self.submission_data && !self.submission_data.is_a?(Array)
     res = self.submission_data || []
     res
   end
-  
+
   def results_visible?
     return true unless quiz
     if quiz.hide_results == 'always'
@@ -147,15 +147,15 @@ class QuizSubmission < ActiveRecord::Base
       # attempts), if this attempt it higher than the allowed attempts
       # (once you get into extra attempts), or if this attempt is
       # the last attempt and has been taken (checking for completion
-      # prevents the student from starting to take the quiz for the last 
-      # time, then opening a new tab and looking at the results from 
+      # prevents the student from starting to take the quiz for the last
+      # time, then opening a new tab and looking at the results from
       # a prior attempt)
       !quiz.allowed_attempts || quiz.allowed_attempts < 1 || attempt > quiz.allowed_attempts || (completed? && attempt == quiz.allowed_attempts)
     else
       true
     end
   end
-  
+
   def needs_grading?(strict=false)
     if strict && self.untaken? && self.overdue?(true)
       true
@@ -167,20 +167,20 @@ class QuizSubmission < ActiveRecord::Base
       false
     end
   end
-  
+
   def finished_in_words
     extend ActionView::Helpers::DateHelper
     started_at && finished_at && time_ago_in_words(Time.now - (finished_at - started_at))
   end
-  
+
   def points_possible_at_submission_time
     self.questions_as_object.map{|q| q[:points_possible].to_i }.compact.sum || 0
   end
-  
+
   def questions
     self.quiz_data
   end
-  
+
   def backup_submission_data(params)
     raise "Only a hash value is accepted for backup_submission_data calls" unless params.is_a?(Hash)
     conn = QuizSubmission.connection
@@ -194,19 +194,19 @@ class QuizSubmission < ActiveRecord::Base
     snapshot!(params) if new_params[:cnt] == 1
     conn.execute("UPDATE quiz_submissions SET user_id=#{self.user_id || 'NULL'}, submission_data=#{conn.quote(new_params.to_yaml)} WHERE workflow_state NOT IN ('complete', 'pending_review') AND id=#{self.id}")
   end
-  
+
   def snapshot!(params)
     QuizSubmissionSnapshot.create(:quiz_submission => self, :attempt => self.attempt, :data => params)
   end
-  
+
   def questions_as_object
     self.quiz_data || {}
   end
-  
+
   def update_kept_score
     self.quiz_points_possible = self.quiz && self.quiz.points_possible
     return if self.manually_scored || @skip_after_save_score_updates
-    
+
     if self.completed?
       if self.submission_data && self.submission_data.is_a?(Hash)
         self.grade_submission
@@ -217,10 +217,10 @@ class QuizSubmission < ActiveRecord::Base
       end
     end
   end
-  
+
   def update_assignment_submission
     return if self.manually_scored || @skip_after_save_score_updates
-    
+
     if self.quiz && self.quiz.for_assignment? && self.quiz.assignment && !self.submission && self.user_id
       self.submission = self.quiz.assignment.find_or_create_submission(self.user_id)
     end
@@ -239,7 +239,7 @@ class QuizSubmission < ActiveRecord::Base
       s.save!
     end
   end
-  
+
   def highest_score_so_far(exclude_version_id=nil)
     scores = []
     scores << self.score if self.score
@@ -247,7 +247,7 @@ class QuizSubmission < ActiveRecord::Base
     scores.max
   end
   private :highest_score_so_far
-  
+
   # Adjust the fudge points so that the score is the given score
   # Used when the score is explicitly set by teacher instead of auto-calculating
   def set_final_score(final_score)
@@ -259,12 +259,12 @@ class QuizSubmission < ActiveRecord::Base
     old_fudge = serialized_model.fudge_points || 0.0
     old_score = serialized_model.score
     base_score = old_score - old_fudge
-    
+
     new_fudge = final_score - base_score
     self.score = final_score
     to_be_kept_score = final_score
     self.fudge_points = new_fudge
-    
+
     if self.quiz && self.quiz.scoring_policy == "keep_highest"
       # exclude the score of the version we're curretly overwriting
       if to_be_kept_score < highest_score_so_far(version.id)
@@ -274,7 +274,7 @@ class QuizSubmission < ActiveRecord::Base
 
     self.kept_score = to_be_kept_score
     update_submission_version(version, [:score, :kept_score, :fudge_points, :manually_scored])
-    
+
     # we might be in the middle of a new attempt, in which case we don't want
     # to overwrite the score and fudge points when we save
     self.reload if !self.completed?
@@ -287,22 +287,22 @@ class QuizSubmission < ActiveRecord::Base
   def less_than_allotted_time?
     self.started_at && self.end_at && self.quiz && self.quiz.time_limit && (self.end_at - self.started_at) < self.quiz.time_limit.minutes
   end
-  
+
   def completed?
     self.complete? || self.pending_review?
   end
-  
+
   def overdue?(strict=false)
     now = (Time.now - ((strict ? 1 : 5) * 60))
     !!(end_at && end_at.localtime < now)
   end
-  
+
   def extendable?
     !!(untaken? && end_at && end_at + 1.hour > Time.now.utc)
   end
-  
+
   protected :update_assignment_submission
-  
+
   # Returned in order oldest to newest
   def submitted_versions
     found_attempts = {}
@@ -322,19 +322,19 @@ class QuizSubmission < ActiveRecord::Base
     res << self if self.completed?
     res
   end
-  
+
   def attempts_left
     return -1 if self.quiz.allowed_attempts < 0
     [0, self.quiz.allowed_attempts - (self.attempt || 0) + (self.extra_attempts || 0)].max
   end
-  
+
   def mark_completed
     QuizSubmission.update_all({ :workflow_state => 'complete' }, { :id => self.id })
   end
-  
+
   def grade_submission(opts={})
     if self.submission_data.is_a?(Array)
-      raise "Can't grade an already-submitted submission: #{self.workflow_state} #{self.submission_data.class.to_s}" 
+      raise "Can't grade an already-submitted submission: #{self.workflow_state} #{self.submission_data.class.to_s}"
     end
     self.manually_scored = false
     @tally = 0
@@ -393,7 +393,7 @@ class QuizSubmission < ActiveRecord::Base
           end
         end
       end
-      
+
     end
 
 
@@ -438,7 +438,7 @@ class QuizSubmission < ActiveRecord::Base
     res = version.save
     res
   end
-  
+
   def context_module_action
     if self.quiz && self.user
       if self.score
@@ -448,7 +448,7 @@ class QuizSubmission < ActiveRecord::Base
       end
     end
   end
-  
+
   def update_if_needs_review(quiz=nil)
     quiz = self.quiz if !quiz || quiz.id != self.quiz_id
     return false unless self.completed?
@@ -460,7 +460,7 @@ class QuizSubmission < ActiveRecord::Base
     end
     false
   end
-  
+
   def update_scores(params)
     params = (params || {}).with_indifferent_access
     self.manually_scored = false
@@ -469,7 +469,7 @@ class QuizSubmission < ActiveRecord::Base
     version = versions.get(params[:submission_version_number]) if params[:submission_version_number]
     # note that self may not match versions.current, because we only save a new version on actual submit
     raise "Can't update submission scores unless it's completed" if !self.completed? && !params[:submission_version_number]
-    
+
     data = version.model.submission_data || []
     res = []
     tally = 0
@@ -513,11 +513,11 @@ class QuizSubmission < ActiveRecord::Base
     track_outcomes(version.model.attempt)
     true
   end
-  
+
   def duration
     (self.finished_at || self.started_at) - self.started_at rescue 0
   end
-  
+
   def self.score_question(q, params)
     params = params.with_indifferent_access
     # TODO: undefined_if_blank - we need a better solution for the
@@ -554,15 +554,16 @@ class QuizSubmission < ActiveRecord::Base
 
     question_type = q[:question_type]
     q[:points_possible] = q[:points_possible].to_f
-    if question_type == "multiple_choice_question" || 
-      question_type == "true_false_question" || 
-      question_type == "missing_word_question" || 
-      question_type == "compare_fractions_question" || 
-      question_type == "represent_fractions_question" || 
-      question_type == "locate_fractions_question" || 
-      question_type == "compare_decimals_question" || 
-      question_type == "compare_decimal_fraction_question"
-      
+    if question_type == "multiple_choice_question" ||
+      question_type == "true_false_question" ||
+      question_type == "missing_word_question" ||
+      question_type == "compare_fractions_question" ||
+      question_type == "represent_fractions_question" ||
+      question_type == "locate_fractions_question" ||
+      question_type == "compare_decimals_question" ||
+      question_type == "compare_decimal_fraction_question" ||
+      question_type == "estimating_fractions_addition_question"
+
       q[:answers].each do |answer|
         if answer[:id] == answer_text.to_i
           user_answer[:answer_id] = answer[:id]
@@ -583,7 +584,7 @@ class QuizSubmission < ActiveRecord::Base
         end
       end
       user_answer[:correct] = "undefined" if answer_text == nil && undefined_if_blank
-    elsif question_type == "essay_question" 
+    elsif question_type == "essay_question"
       config = Instructure::SanitizeField::SANITIZE
       user_answer[:text] = Sanitize.clean(user_answer[:text] || "", config)
       user_answer[:correct] = "undefined"
@@ -654,7 +655,7 @@ class QuizSubmission < ActiveRecord::Base
         correct = nil
         # Total possible is divided by the number of correct answers.
         # For every correct answer they correctly select, they get partial
-        # points.  For every correct answer they don't select, do nothing.  
+        # points.  For every correct answer they don't select, do nothing.
         # For every incorrect answer that they select, dock them partial
         # points.
         correct = true if answer[:weight] == 100 && response == "1"
@@ -765,7 +766,7 @@ class QuizSubmission < ActiveRecord::Base
     end
 
   end
-  
+
   named_scope :before, lambda{|date|
     {:conditions => ['quiz_submissions.created_at < ?', date]}
   }

@@ -154,6 +154,8 @@ define([
         templateData.answer_html = answer.answer_html;
       } else if (question_type == "compare_decimal_fraction_question") {
         templateData.answer_html = answer.answer_html;
+      } else if (question_type == "estimating_fractions_addition_question") {
+        templateData.answer_html = answer.answer_html;
 	    } else if (question_type == "multiple_answers_question") {
         templateData.answer_html = answer.answer_html;
         templateData.short_answer_header = I18n.beforeLabel('answer_text', "Answer text");
@@ -192,11 +194,11 @@ define([
         $answer.removeClass('correct_answer');
       }
 
-      
+
       // won't exist if they've never clicked the edit button
       var htmlToggle = $answer.find('.edit_html').data('editorToggle')
 
-      var supportsHTMLAnswers = question_type === 'multiple_choice_question' || question_type === 'multiple_answers_question' || question_type === 'compare_fractions_question' || question_type === 'locate_fractions_question' || question_type === 'represent_fractions_question' || question_type === 'compare_decimals_question' || question_type === 'compare_decimal_fraction_question'
+      var supportsHTMLAnswers = question_type === 'multiple_choice_question' || question_type === 'multiple_answers_question' || question_type === 'compare_fractions_question' || question_type === 'locate_fractions_question' || question_type === 'represent_fractions_question' || question_type === 'compare_decimals_question' || question_type === 'compare_decimal_fraction_question' || question_type === 'estimating_fractions_addition_question'
       if (htmlToggle && supportsHTMLAnswers) {
         // some answer types share the same text fields, so we show it
         htmlToggle.showAnswerText();
@@ -242,6 +244,9 @@ define([
       } else if (qt == 'compare_decimal_fraction_question') {
         answer_type = "select_answer";
         question_type = "compare_decimal_fraction_question";
+      } else if (qt == 'estimating_fractions_addition_question') {
+        answer_type = "select_answer";
+        question_type = "estimating_fractions_addition_question";
       } else if (qt == 'true_false_question') {
         answer_type = "select_answer";
         question_type = "true_false_question";
@@ -295,6 +300,7 @@ define([
 	    } else if(question_type == 'represent_fractions_question'){
       } else if(question_type == 'compare_decimals_question') {
       } else if(question_type == 'compare_decimal_fraction_question') {
+      } else if(question_type == 'estimating_fractions_addition_question') {
       } else if(question_type == 'true_false_question') {
       } else if(question_type == 'short_answer_question') {
         result = "any_answer";
@@ -321,7 +327,7 @@ define([
     addExistingQuestion: function(question) {
       var $group = $("#group_top_" + question.quiz_group_id);
       var $bottom = null;
-      if ($group.length > 0) { 
+      if ($group.length > 0) {
         $bottom = $group.next();
         while($bottom.length> 0 && !$bottom.hasClass('group_bottom')) {
           $bottom = $bottom.next();
@@ -431,7 +437,7 @@ define([
             }
             $td.html(answer);
             $tr.append($td);
-            $question.find(".equation_combinations tbody").append($tr);          
+            $question.find(".equation_combinations tbody").append($tr);
           });
         }
       } else {
@@ -574,6 +580,7 @@ define([
 	    } else if(question_type == 'represent_fractions_question') {
       } else if(question_type == 'compare_decimals_question') {
       } else if(question_type == 'compare_decimal_fraction_question') {
+      } else if(question_type == 'estimating_fractions_addition_question') {
 	    } else if(question_type == 'true_false_question') {
         options.addable = false;
         var $answers = $formQuestion.find(".form_answers .answer");
@@ -690,7 +697,7 @@ define([
         $(this).css('display', '').toggleClass('empty', !val);
       });
       var tally = 0;
-      $("#questions .question_holder:not(.group) .question:not(#question_new)").each(function() {     
+      $("#questions .question_holder:not(.group) .question:not(#question_new)").each(function() {
         var val = parseFloat($(this).find(".question_points:visible,.question_points.hidden").text());
         if (isNaN(val)) { val = 0; }
         tally += val;
@@ -777,7 +784,7 @@ define([
       }
       $question.find(".answers").append(makeDisplayAnswer(answer));
     }
-    $question.toggleClass('group', !!(data && data.quiz_group_id)); 
+    $question.toggleClass('group', !!(data && data.quiz_group_id));
     $question.show();
     return $question;
   }
@@ -1886,7 +1893,7 @@ define([
         $findQuestionDialog.find("button").attr('disabled', false).filter(".submit_button").text(I18n.t('buttons.add_selected_questions', "Add Selected Questions"));
         $findQuestionDialog.find(".selected_side_tab").removeClass('selected_side_tab');
         var counter = 0;
-        function nextQuestion() { 
+        function nextQuestion() {
           counter++;
           var question = question_results.shift();
           if (question) {
@@ -1946,6 +1953,12 @@ define([
         }];
         answer_type = "select_answer";
         question_type = "compare_decimal_fraction_question";
+      } else if($question.hasClass('estimating_fractions_addition_question')) {
+        var answers = [{
+          comments: I18n.t('default_answer_comments', "Response if the student chooses this answer")
+        }];
+        answer_type = "select_answer";
+        question_type = "estimating_fractions_addition_question";
       } else if($question.hasClass('true_false_question')) {
         return;
       } else if ($question.hasClass('short_answer_question')) {
@@ -2054,7 +2067,7 @@ define([
       } else if ($answers.length === 0 || $answers.filter(".correct_answer").length === 0) {
         if ($answers.length === 0 && questionData.question_type != "essay_question" && questionData.question_type != "text_only_question") {
           error_text = I18n.t('errors.no_answer', "Please add at least one answer");
-        } else if ($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "compare_fractions_question" || questionData.question_type == "locate_fractions_question" || questionData.question_type == "represent_fractions_question" || questionData.question_type == "compare_decimals_question" || questionData.question_type == "compare_decimal_fraction_question"|| questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
+        } else if ($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "compare_fractions_question" || questionData.question_type == "locate_fractions_question" || questionData.question_type == "represent_fractions_question" || questionData.question_type == "compare_decimals_question" || questionData.question_type == "compare_decimal_fraction_question" || questionData.question_type == "estimating_fractions_addition_question" || questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
           error_text = I18n.t('errors.no_correct_answer', "Please choose a correct answer");
         }
       }
@@ -2140,7 +2153,7 @@ define([
           ok_to_proceed = false;
         }
       });
-      
+
       if (!ok_to_proceed){
         alert("Only one 1 or all zeros are allowed for each question's misconception.");
         return ok_to_proceed;
@@ -2522,7 +2535,7 @@ define([
     }).delegate(".group_edit.cancel_button", 'click', function(event) {
       if ($(this).closest('.group_top').length == 0) { return; }
       var $top = $(this).parents(".group_top");
-      $top.removeClass('editing'); 
+      $top.removeClass('editing');
       if ($top.attr('id') == 'group_top_new') {
         var $next = $top.next();
         while($next.length > 0 && !$next.hasClass('group_bottom')) {
@@ -2683,8 +2696,8 @@ define([
                     idx = i;
                   }
                 });
-                if (idx === null) { 
-                  idx = variableIdx; 
+                if (idx === null) {
+                  idx = variableIdx;
                 }
                 $this.addClass('answer_idx_' + idx);
               } else {

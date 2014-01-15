@@ -30,13 +30,14 @@ class AssessmentQuestion < ActiveRecord::Base
   after_save :translate_links_if_changed
   validates_length_of :name, :maximum => maximum_string_length, :allow_nil => true
 
-  ALL_QUESTION_TYPES = ["multiple_answers_question", "fill_in_multiple_blanks_question", 
-                        "matching_question", "missing_word_question", 
-                        "multiple_choice_question", "compare_fractions_question", 
+  ALL_QUESTION_TYPES = ["multiple_answers_question", "fill_in_multiple_blanks_question",
+                        "matching_question", "missing_word_question",
+                        "multiple_choice_question", "compare_fractions_question",
                         "locate_fractions_question", "represent_fractions_question",
                         "compare_decimals_question", "compare_decimal_fraction_question",
-                        "numerical_question", "text_only_question", "short_answer_question", 
-                        "multiple_dropdowns_question", "calculated_question", 
+                        "estimating_fractions_addition_question",
+                        "numerical_question", "text_only_question", "short_answer_question",
+                        "multiple_dropdowns_question", "calculated_question",
                         "essay_question", "true_false_question"]
 
   serialize :question_data
@@ -45,7 +46,7 @@ class AssessmentQuestion < ActiveRecord::Base
     given{|user, session| cached_context_grants_right?(user, session, :manage_assignments) }
     can :read and can :create and can :update and can :delete
   end
-  
+
   def infer_defaults
     self.question_data ||= HashWithIndifferentAccess.new
     if self.question_data.is_a?(Hash)
@@ -57,14 +58,14 @@ class AssessmentQuestion < ActiveRecord::Base
     self.name = self.question_data[:question_name] || self.name
     self.assessment_question_bank ||= AssessmentQuestionBank.unfiled_for_context(self.initial_context)
   end
-  
+
   def translate_links_if_changed
     # this has to be in an after_save, because translate_links may create attachments
     # with this question as the context, and if this question does not exist yet,
     # creating that attachment will fail.
     translate_links if self.question_data_changed? && !@skip_translate_links
   end
-  
+
   def self.translate_links(ids)
     ids.each do |aqid|
       if aq = AssessmentQuestion.find(aqid)
@@ -72,16 +73,16 @@ class AssessmentQuestion < ActiveRecord::Base
       end
     end
   end
-  
+
   def translate_links
     # we can't translate links unless this question has a context (through a bank)
     return unless assessment_question_bank && assessment_question_bank.context
-    
+
     # This either matches the id from a url like: /courses/15395/files/11454/download
     # or gets the relative path at the end of one like: /courses/15395/file_contents/course%20files/unfiled/test.jpg
     regex = Regexp.new(%{/#{context_type.downcase.pluralize}/#{context_id}/(?:files/(\\d+)/(?:download|preview)|file_contents/(course%20files/[^'"]*))})
     file_substitutions = {}
-    
+
     deep_translate = lambda do |obj|
       if obj.is_a?(Hash)
         obj.inject(HashWithIndifferentAccess.new) {|h,(k,v)| h[k] = deep_translate.call(v); h}
@@ -117,15 +118,15 @@ class AssessmentQuestion < ActiveRecord::Base
         obj
       end
     end
-    
+
     hash = deep_translate.call(self.question_data)
     self.question_data = hash
-    
+
     @skip_translate_links = true
     self.save!
     @skip_translate_links = false
   end
-  
+
   def data
     res = self.question_data || HashWithIndifferentAccess.new
     res[:assessment_question_id] = self.id
@@ -138,17 +139,17 @@ class AssessmentQuestion < ActiveRecord::Base
     res[:id] = self.id
     res
   end
-  
+
   workflow do
     state :active
     state :independently_edited
     state :deleted
   end
-  
+
   def form_question_data=(data)
     self.question_data = AssessmentQuestion.parse_question(data, self)
   end
-  
+
   def question_data=(data)
     if data.is_a?(String)
       data = ActiveSupport::JSON.decode(data) rescue nil
@@ -160,21 +161,21 @@ class AssessmentQuestion < ActiveRecord::Base
     self.question_data_will_change!
     write_attribute(:question_data, data)
   end
-  
+
   def question_data
     if data = read_attribute(:question_data)
       if data.class == Hash
         data = write_attribute(:question_data, data.with_indifferent_access)
       end
     end
-    
+
     data
   end
-  
+
   def edited_independent_of_quiz_question
     self.workflow_state = 'independently_edited'
   end
-  
+
   def editable_by?(question)
     if self.independently_edited?
       false
@@ -192,38 +193,38 @@ class AssessmentQuestion < ActiveRecord::Base
       false
     end
   end
-  
+
   def create_quiz_question
     qq = quiz_questions.new
     qq.migration_id = self.migration_id
     qq.write_attribute(:question_data, question_data)
     qq
   end
-  
+
   def self.scrub(text)
     if text && text[-1] == 191 && text[-2] == 187 && text[-3] == 239
       text = text[0..-4]
     end
     text
   end
-  
+
   alias_method :destroy!, :destroy
   def destroy
     self.workflow_state = 'deleted'
     self.save
   end
-  
+
   def self.sanitize(html)
     Sanitize.clean(html || "", Instructure::SanitizeField::SANITIZE)
   end
-  
+
   def self.check_length(html, type, max=16.kilobytes)
     if html && html.length > max
       raise "The text for #{type} is too long, max length is #{max}"
     end
     html
   end
-  
+
   def self.parse_question(qdata, assessment_question=nil)
     question = HashWithIndifferentAccess.new
     qdata = qdata.with_indifferent_access
@@ -242,13 +243,14 @@ class AssessmentQuestion < ActiveRecord::Base
     reset_local_ids
     qdata[:answers] ||= previous_data[:answers] rescue []
     answers = qdata[:answers].to_a.sort_by{|a| (a[0] || "").gsub(/answer_/, "").to_i || ""}
-    if question[:question_type] == "multiple_choice_question" || 
-      question[:question_type] == "compare_fractions_question" || 
-      question[:question_type] == "locate_fractions_question" || 
-      question[:question_type] == "represent_fractions_question" || 
-      question[:question_type] == "compare_decimals_question" || 
-      question[:question_type] == "compare_decimal_fraction_question"
-      
+    if question[:question_type] == "multiple_choice_question" ||
+      question[:question_type] == "compare_fractions_question" ||
+      question[:question_type] == "locate_fractions_question" ||
+      question[:question_type] == "represent_fractions_question" ||
+      question[:question_type] == "compare_decimals_question" ||
+      question[:question_type] == "compare_decimal_fraction_question" ||
+      question[:question_type] == "estimating_fractions_addition_question"
+
       found_correct = false
       answers.each do |key, answer|
         found_correct = true if answer[:answer_weight].to_i == 100
@@ -313,11 +315,11 @@ class AssessmentQuestion < ActiveRecord::Base
       question[:text_after_answers] = sanitize(check_length(qdata[:text_after_answers] || previous_data[:text_after_answers] || "", 'text after answers', 16.kilobytes))
     elsif question[:question_type] == "multiple_dropdowns_question"
       variables = HashWithIndifferentAccess.new
-      answers.each_with_index do |arr, idx| 
+      answers.each_with_index do |arr, idx|
         key, answer = arr
         answers[idx][1][:blank_id] = check_length(answers[idx][1][:blank_id], 'blank id', min_size)
       end
-      answers.each do |key, answer| 
+      answers.each do |key, answer|
         variables[answer[:blank_id]] ||= false
         variables[answer[:blank_id]] = true if answer[:answer_weight].to_i == 100
         a = {:text => check_length(answer[:answer_text], 'answer text', min_size), :comments => check_length(answer[:answer_comments], 'answer comments', min_size), :weight => answer[:answer_weight].to_f, :blank_id => answer[:blank_id], :id => unique_local_id(answer[:id].to_i)}
@@ -402,10 +404,10 @@ class AssessmentQuestion < ActiveRecord::Base
     answers.each_with_index do |answer, index|
       question[:answers][index][:misconception_id] = answer[1][:answer_misconception_id]
     end
-    
+
     return question
   end
-  
+
   def self.update_question(assessment_question, qdata)
     question = parse_question(qdata, assessment_question)
     assessment_question.question_data = question
@@ -414,11 +416,11 @@ class AssessmentQuestion < ActiveRecord::Base
     question[:assessment_question_id] = assessment_question.id
     question
   end
-  
+
   def self.variable_id(variable)
     Digest::MD5.hexdigest(["dropdown", variable, "instructure-key"].join(","))
   end
-  
+
   def self.unique_local_id(suggested_id=nil)
     @@ids ||= {}
     if suggested_id && suggested_id > 0 && !@@ids[suggested_id]
@@ -432,11 +434,11 @@ class AssessmentQuestion < ActiveRecord::Base
     @@ids[id] = true
     id
   end
-  
+
   def self.reset_local_ids
     @@ids = {}
   end
-  
+
   def clone_for(question_bank, dup=nil, options={})
     dup ||= AssessmentQuestion.new
     self.attributes.delete_if{|k,v| [:id, :question_data].include?(k.to_sym) }.each do |key, val|
@@ -500,10 +502,10 @@ class AssessmentQuestion < ActiveRecord::Base
           end
           banks[hash_id] = bank
         end
-        
+
         begin
           question = AssessmentQuestion.import_from_migration(question, migration.context, banks[hash_id])
-          
+
           # If the question appears to have links, we need to translate them so that file links point
           # to the AssessmentQuestion. Ideally we would just do this before saving the question, but
           # the link needs to include the id of the AQ, which we don't have until it's saved. This will
@@ -512,7 +514,7 @@ class AssessmentQuestion < ActiveRecord::Base
           if question.to_s =~ %r{/files/\d+/(download|preview)}
             AssessmentQuestion.find(question[:assessment_question_id]).translate_links
           end
-          
+
           question_data[:aq_data][question['migration_id']] = question
         rescue
           migration.add_warning("Couldn't import quiz question \"#{question[:question_name]}\"", $!)
@@ -545,7 +547,7 @@ class AssessmentQuestion < ActiveRecord::Base
     hash['assessment_question_id'] = id
     hash
   end
-  
+
   def self.prep_for_import(hash, context)
     [:question_text, :correct_comments_html, :incorrect_comments_html, :neutral_comments_html, :more_comments_html].each do |field|
       hash[field] = ImportedHtmlConverter.convert(hash[field], context, true) if hash[field].present?
@@ -556,7 +558,7 @@ class AssessmentQuestion < ActiveRecord::Base
       end
     end if hash[:answers]
   end
-  
+
   named_scope :active, lambda {
     {:conditions => ['assessment_questions.workflow_state != ?', 'deleted'] }
   }

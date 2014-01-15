@@ -27,7 +27,7 @@
       </div>
     <% end %>
 
-  <% if (@no_chrome && question_type.question_type == "compare_fractions_question" || question_type.question_type == "locate_fractions_question" || question_type.question_type == "represent_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question") -%>
+  <% if (@no_chrome && question_type.question_type == "compare_fractions_question" || question_type.question_type == "locate_fractions_question" || question_type.question_type == "represent_fractions_question" || question_type.question_type == "compare_decimals_question" || question_type.question_type == "compare_decimal_fraction_question" || question_type.question_type == "estimating_fractions_addition_question") -%>
       <div class="header" style="float:left" <%= hidden(true) if (assessing || assessment_results) && question_type && question_type.entry_type == "none" %>>
         <span class="name question_name"><%= hash_get(question, :question_name) %></span>
   <% else -%>
@@ -65,6 +65,9 @@
                 {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
   <% elsif question_type.question_type == "represent_fractions_question" -%>
     <%= render :partial => "quizzes/represent_fractions", :locals =>
+                {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
+  <% elsif question_type.question_type == "estimating_fractions_addition_question" -%>
+    <%= render :partial => "quizzes/estimating_fractions", :locals =>
                 {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer, :editing => editing, :assessing => assessing, :assessment_results => assessment_results} -%>
   <% else -%>
       <div class="original_question_text" style="display: none;">

@@ -64,6 +64,12 @@ module QuizzesHelper
         :display_answers => "multiple",
         :answer_type => "select_answer"
       }),
+      "estimating_fractions_addition_question" => OpenObject.new({
+        :question_type => "estimating_fractions_addition_question",
+        :entry_type => "radio",
+        :display_answers => "multiple",
+        :answer_type => "select_answer"
+      }),
       "true_false_question" => OpenObject.new({
         :question_type => "true_false_question",
         :entry_type => "radio",
