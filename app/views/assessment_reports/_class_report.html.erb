@@ -106,7 +106,7 @@
       <tr dir="ltr">
         <td class="hd"><p style="height:16px;">.</p></td>
         <td dir="ltr" class="s18">Total # Students: <%= @submitted_students_count %></td>
-        <td colspan="2" dir="ltr" class="s19"></td>
+        <td colspan="2" dir="ltr" class="s19">Correct Answers:</td>
         <td style="display:none;"></td>
         <% (@quiz_question_count-1).times do |count| -%>
           <td dir="ltr" class="s27"><%= @correct_answers["#{count+1}"] %></td>
