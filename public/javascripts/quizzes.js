@@ -156,6 +156,8 @@ define([
         templateData.answer_html = answer.answer_html;
       } else if (question_type == "estimating_fractions_addition_question") {
         templateData.answer_html = answer.answer_html;
+      } else if (question_type == "fractions_adding_subtracting_question") {
+        templateData.answer_html = answer.answer_html;
 	    } else if (question_type == "multiple_answers_question") {
         templateData.answer_html = answer.answer_html;
         templateData.short_answer_header = I18n.beforeLabel('answer_text', "Answer text");
@@ -198,7 +200,7 @@ define([
       // won't exist if they've never clicked the edit button
       var htmlToggle = $answer.find('.edit_html').data('editorToggle')
 
-      var supportsHTMLAnswers = question_type === 'multiple_choice_question' || question_type === 'multiple_answers_question' || question_type === 'compare_fractions_question' || question_type === 'locate_fractions_question' || question_type === 'represent_fractions_question' || question_type === 'compare_decimals_question' || question_type === 'compare_decimal_fraction_question' || question_type === 'estimating_fractions_addition_question'
+      var supportsHTMLAnswers = question_type === 'multiple_choice_question' || question_type === 'multiple_answers_question' || question_type === 'compare_fractions_question' || question_type === 'locate_fractions_question' || question_type === 'represent_fractions_question' || question_type === 'compare_decimals_question' || question_type === 'compare_decimal_fraction_question' || question_type === 'estimating_fractions_addition_question' || question_type === 'fractions_adding_subtracting_question'
       if (htmlToggle && supportsHTMLAnswers) {
         // some answer types share the same text fields, so we show it
         htmlToggle.showAnswerText();
@@ -247,6 +249,9 @@ define([
       } else if (qt == 'estimating_fractions_addition_question') {
         answer_type = "select_answer";
         question_type = "estimating_fractions_addition_question";
+      } else if (qt == 'fractions_adding_subtracting_question') {
+        answer_type = "select_answer";
+        question_type = "fractions_adding_subtracting_question";
       } else if (qt == 'true_false_question') {
         answer_type = "select_answer";
         question_type = "true_false_question";
@@ -301,6 +306,7 @@ define([
       } else if(question_type == 'compare_decimals_question') {
       } else if(question_type == 'compare_decimal_fraction_question') {
       } else if(question_type == 'estimating_fractions_addition_question') {
+      } else if(question_type == 'fractions_adding_subtracting_question') {
       } else if(question_type == 'true_false_question') {
       } else if(question_type == 'short_answer_question') {
         result = "any_answer";
@@ -581,6 +587,7 @@ define([
       } else if(question_type == 'compare_decimals_question') {
       } else if(question_type == 'compare_decimal_fraction_question') {
       } else if(question_type == 'estimating_fractions_addition_question') {
+      } else if(question_type == 'fractions_adding_subtracting_question') {
 	    } else if(question_type == 'true_false_question') {
         options.addable = false;
         var $answers = $formQuestion.find(".form_answers .answer");
@@ -1959,6 +1966,12 @@ define([
         }];
         answer_type = "select_answer";
         question_type = "estimating_fractions_addition_question";
+      } else if($question.hasClass('fractions_adding_subtracting_question')) {
+        var answers = [{
+          comments: I18n.t('default_answer_comments', "Response if the student chooses this answer")
+        }];
+        answer_type = "select_answer";
+        question_type = "fractions_adding_subtracting_question";
       } else if($question.hasClass('true_false_question')) {
         return;
       } else if ($question.hasClass('short_answer_question')) {
@@ -2067,7 +2080,7 @@ define([
       } else if ($answers.length === 0 || $answers.filter(".correct_answer").length === 0) {
         if ($answers.length === 0 && questionData.question_type != "essay_question" && questionData.question_type != "text_only_question") {
           error_text = I18n.t('errors.no_answer', "Please add at least one answer");
-        } else if ($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "compare_fractions_question" || questionData.question_type == "locate_fractions_question" || questionData.question_type == "represent_fractions_question" || questionData.question_type == "compare_decimals_question" || questionData.question_type == "compare_decimal_fraction_question" || questionData.question_type == "estimating_fractions_addition_question" || questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
+        } else if ($answers.filter(".correct_answer").length === 0 && (questionData.question_type == "multiple_choice_question" || questionData.question_type == "compare_fractions_question" || questionData.question_type == "locate_fractions_question" || questionData.question_type == "represent_fractions_question" || questionData.question_type == "compare_decimals_question" || questionData.question_type == "compare_decimal_fraction_question" || questionData.question_type == "estimating_fractions_addition_question" || questionData.question_type == "fractions_adding_subtracting_question" || questionData.question_type == "true_false_question" || questionData.question_tyep == "missing_word_question")) {
           error_text = I18n.t('errors.no_correct_answer', "Please choose a correct answer");
         }
       }

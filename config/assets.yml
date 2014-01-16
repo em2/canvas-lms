@@ -220,6 +220,8 @@ stylesheets:
     - public/stylesheets/compiled/locate_fractions.css
   estimating_fractions:
     - public/stylesheets/compiled/estimating_fractions.css
+  fractions_adding_subtracting:
+    - public/stylesheets/compiled/fractions_adding_subtracting.css
   assessment_reports_index:
     - public/stylesheets/compiled/assessment_reports_index.css
   roster_user:

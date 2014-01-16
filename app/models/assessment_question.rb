@@ -36,6 +36,7 @@ class AssessmentQuestion < ActiveRecord::Base
                         "locate_fractions_question", "represent_fractions_question",
                         "compare_decimals_question", "compare_decimal_fraction_question",
                         "estimating_fractions_addition_question",
+                        "fractions_adding_subtracting_question",
                         "numerical_question", "text_only_question", "short_answer_question",
                         "multiple_dropdowns_question", "calculated_question",
                         "essay_question", "true_false_question"]
@@ -249,7 +250,8 @@ class AssessmentQuestion < ActiveRecord::Base
       question[:question_type] == "represent_fractions_question" ||
       question[:question_type] == "compare_decimals_question" ||
       question[:question_type] == "compare_decimal_fraction_question" ||
-      question[:question_type] == "estimating_fractions_addition_question"
+      question[:question_type] == "estimating_fractions_addition_question" ||
+      question[:question_type] == "fractions_adding_subtracting_question"
 
       found_correct = false
       answers.each do |key, answer|

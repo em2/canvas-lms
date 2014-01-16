@@ -70,6 +70,12 @@ module QuizzesHelper
         :display_answers => "multiple",
         :answer_type => "select_answer"
       }),
+      "fractions_adding_subtracting_question" => OpenObject.new({
+        :question_type => "fractions_adding_subtracting_question",
+        :entry_type => "radio",
+        :display_answers => "multiple",
+        :answer_type => "select_answer"
+      }),
       "true_false_question" => OpenObject.new({
         :question_type => "true_false_question",
         :entry_type => "radio",

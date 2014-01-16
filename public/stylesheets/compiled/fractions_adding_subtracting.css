@@ -1,0 +1,37 @@
+/* line 2, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+.fractions_adding_subtracting_question .explain_answer {
+  margin-left: 165px; }
+/* line 5, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+.fractions_adding_subtracting_question #explain_text {
+  float: left;
+  margin-left: 10px; }
+/* line 9, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+.fractions_adding_subtracting_question .explain_area_text_LF {
+  margin-top: 6px;
+  margin-left: 3px;
+  float: left; }
+/* line 14, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+.fractions_adding_subtracting_question .answers_LF {
+  float: left;
+  margin-top: 20px; }
+/* line 18, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+.fractions_adding_subtracting_question .question_text {
+  max-width: 150px; }
+/* line 21, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+.fractions_adding_subtracting_question .explain_canvas {
+  cursor: pointer;
+  float: left;
+  margin-left: 4px;
+  margin-bottom: 10px;
+  margin-top: 10px; }
+  /* line 27, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+  .fractions_adding_subtracting_question .explain_canvas:active, .fractions_adding_subtracting_question .explain_canvas:focus {
+    cursor: crosshair; }
+/* line 30, ../../../app/stylesheets/fractions_adding_subtracting.sass */
+.fractions_adding_subtracting_question .explain_area_textarea_LF {
+  margin-top: 10px;
+  font-size: 13px;
+  width: 708px;
+  height: 200px;
+  resize: vertical;
+  border: 1px solid; }

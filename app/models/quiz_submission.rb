@@ -562,7 +562,8 @@ class QuizSubmission < ActiveRecord::Base
       question_type == "locate_fractions_question" ||
       question_type == "compare_decimals_question" ||
       question_type == "compare_decimal_fraction_question" ||
-      question_type == "estimating_fractions_addition_question"
+      question_type == "estimating_fractions_addition_question" ||
+      question_type == "fractions_adding_subtracting_question"
 
       q[:answers].each do |answer|
         if answer[:id] == answer_text.to_i

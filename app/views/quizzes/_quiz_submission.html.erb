@@ -86,7 +86,7 @@
   <%= link_to t('links.click_to_view_results', "Click here to view the results."), { :viewing => 1, :version => params[:version] }, :target => "_top" %>
 </p>
 <% else %>
-<% jammit_css :quizzes, :comparing, :represent_fractions, :locate_fractions, :estimating_fractions %>
+<% jammit_css :quizzes, :comparing, :represent_fractions, :locate_fractions, :estimating_fractions, :fractions_adding_subtracting %>
 <% js_block do %>
 <script>
 require([

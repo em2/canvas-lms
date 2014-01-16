@@ -139,6 +139,17 @@ class ClassReport < ActiveRecord::Base
               when 4
                 data["correct_answers"]["#{question_index}"] = '4'
               end
+            when "fractions_adding_subtracting_question"
+              case index+1
+              when 1
+                data["correct_answers"]["#{question_index}"] = '1'
+              when 2
+                data["correct_answers"]["#{question_index}"] = '2'
+              when 3
+                data["correct_answers"]["#{question_index}"] = '3'
+              when 4
+                data["correct_answers"]["#{question_index}"] = '4'
+              end
             end
           end
         end
@@ -233,6 +244,17 @@ class ClassReport < ActiveRecord::Base
                     data["q"]["#{user.id}"].merge!({"#{question_count}" => 'N'})
                   end
                 when "estimating_fractions_addition_question"
+                  case index+1
+                  when 1
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '1'})
+                  when 2
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '2'})
+                  when 3
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '3'})
+                  when 4
+                    data["q"]["#{user.id}"].merge!({"#{question_count}" => '4'})
+                  end
+                when "fractions_adding_subtracting_question"
                   case index+1
                   when 1
                     data["q"]["#{user.id}"].merge!({"#{question_count}" => '1'})
