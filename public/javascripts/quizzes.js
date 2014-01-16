@@ -933,6 +933,7 @@ define([
       if (isNaN(question.question_points)) {
         question.question_points = 0;
       }
+      question.question_points = 1; // All questions will have a point value of 1
       quiz.points_possible += question.question_points;
       quiz.questions.push(question);
     });
@@ -1360,6 +1361,7 @@ define([
       question.matching_answer_incorrect_matches = matches.join("\n");
       question.question_points = parseFloat(question.question_points, 10);
       if (isNaN(question.question_points)) { question.question_points = 0; }
+      question.question_points = 1; // All questions will have a point value of 1
       var $form = $("#question_form_template").clone(true).attr('id', '');
       var $formQuestion = $form.find(".question");
       $form.fillFormData(question);
