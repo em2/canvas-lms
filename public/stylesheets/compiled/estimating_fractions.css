@@ -1,34 +1,37 @@
 /* line 2, ../../../app/stylesheets/estimating_fractions.sass */
-.estimating_fractions_question .explain_answer {
+.estimating_fractions_addition_question .explain_answer {
   margin-left: 165px; }
 /* line 5, ../../../app/stylesheets/estimating_fractions.sass */
-.estimating_fractions_question #explain_text {
+.estimating_fractions_addition_question #explain_text {
   float: left;
   margin-left: 10px; }
 /* line 9, ../../../app/stylesheets/estimating_fractions.sass */
-.estimating_fractions_question .explain_area_text_LF {
+.estimating_fractions_addition_question .explain_area_text_EF {
   margin-top: 6px;
   margin-left: 3px;
   float: left; }
 /* line 14, ../../../app/stylesheets/estimating_fractions.sass */
-.estimating_fractions_question .answers_LF {
+.estimating_fractions_addition_question .answers_estimating_fractions_addition_question {
   float: left;
-  margin-top: 20px; }
+  margin-left: -18px; }
 /* line 18, ../../../app/stylesheets/estimating_fractions.sass */
-.estimating_fractions_question .question_text {
-  max-width: 150px; }
+.estimating_fractions_addition_question .answer_input {
+  vertical-align: middle !important; }
 /* line 21, ../../../app/stylesheets/estimating_fractions.sass */
-.estimating_fractions_question .explain_canvas {
+.estimating_fractions_addition_question .question_text {
+  max-width: 150px; }
+/* line 24, ../../../app/stylesheets/estimating_fractions.sass */
+.estimating_fractions_addition_question .explain_canvas {
   cursor: pointer;
   float: left;
   margin-left: 4px;
   margin-bottom: 10px;
   margin-top: 10px; }
-  /* line 27, ../../../app/stylesheets/estimating_fractions.sass */
-  .estimating_fractions_question .explain_canvas:active, .estimating_fractions_question .explain_canvas:focus {
+  /* line 30, ../../../app/stylesheets/estimating_fractions.sass */
+  .estimating_fractions_addition_question .explain_canvas:active, .estimating_fractions_addition_question .explain_canvas:focus {
     cursor: crosshair; }
-/* line 30, ../../../app/stylesheets/estimating_fractions.sass */
-.estimating_fractions_question .explain_area_textarea_LF {
+/* line 33, ../../../app/stylesheets/estimating_fractions.sass */
+.estimating_fractions_addition_question .explain_area_textarea_EF {
   margin-top: 10px;
   font-size: 13px;
   width: 708px;
