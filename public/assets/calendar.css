@@ -8,7 +8,7 @@ table.calendar_month{width:100%;border-collapse:collapse}
 .calendar_day a:hover,.calendar_day a:focus{background-color:transparent!important;text-decoration:underline!important}
 .calendar_day a{text-decoration:none!important;color:inherit!important}
 td.calendar_day_holder.drop_target{padding:0}
-.calendar_day.hover,td.calendar_day_holder.selected .calendar_day{background-image:url(/images/4_percent_opacity.png?1341500195)}
+.calendar_day.hover,td.calendar_day_holder.selected .calendar_day{background-image:url(/images/4_percent_opacity.png?1389738577)}
 td.calendar_day_holder{border:1px dotted #aaa;outline:0}
 td.calendar_day_holder.drop_target .calendar_day,.calendar_undated.drop_target .calendar_day{background-color:#dfeefc;background-image:none}
 .calendar_day.other_month{background-color:#f2f3f4;color:#b3b3b3}
