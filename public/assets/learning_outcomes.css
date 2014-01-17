@@ -61,12 +61,12 @@ input.outcome_rating_description{width:200px}
 #alignments li .links{float:right;opacity:.5}
 #alignments li.hover_alignment{background-color:#eee;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px}
 #alignments li.hover_alignment .links{opacity:1}
-#alignments li .type_icon{background:url(/images/file.png?1341500195) no-repeat left top}
-#alignments li.attachment .type_icon{background-image:url(/images/file_download.png?1341500195)}
-#alignments li.discussion_topic .type_icon{background-image:url(/images/word_bubble.png?1341500195)}
-#alignments li.assignment .type_icon{background-image:url(/images/assignment.png?1341500195)}
-#alignments li.quiz .type_icon{background-image:url(/images/quiz.png?1341500195)}
-#alignments li.external_url .type_icon{background-image:url(/images/link.png?1341500195)}
+#alignments li .type_icon{background:url(/images/file.png?1389738577) no-repeat left top}
+#alignments li.attachment .type_icon{background-image:url(/images/file_download.png?1389738577)}
+#alignments li.discussion_topic .type_icon{background-image:url(/images/word_bubble.png?1389738577)}
+#alignments li.assignment .type_icon{background-image:url(/images/assignment.png?1389738577)}
+#alignments li.quiz .type_icon{background-image:url(/images/quiz.png?1389738577)}
+#alignments li.external_url .type_icon{background-image:url(/images/link.png?1389738577)}
 #alignments.orderable li .move_alignment_link{display:inline}
 #artifacts{list-style-type:none;padding-left:20px}
 #artifacts li{margin-bottom:10px;padding:2px 5px;display:block}

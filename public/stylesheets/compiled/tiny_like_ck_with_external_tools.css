@@ -1,12 +1,9 @@
-/* line 3, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
 .defaultSkin table.mceLayout {
   margin: 10px 0;
   background-color: transparent; }
-  /* line 7, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
   .defaultSkin table.mceLayout tr.mceLast td.mceIframeContainer {
     border: 1px solid #cccccc;
     padding: 0; }
-  /* line 11, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
   .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar {
     border: 1px solid #cccccc;
     border-top-left-radius: 4px;
@@ -22,35 +19,25 @@
     background-image: linear-gradient(top, #fefefe, #e1e1e1);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fefefe',EndColorStr='#e1e1e1')";
     zoom: 1; }
-    /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
     .ie9 .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar {
       border-radius: 0 !important; }
-    /* line 19, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
     .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar .mceButton.instructure_external_tool_button img.mceIcon {
       width: 16px;
       height: 16px;
       padding: 2px; }
-    /* line 23, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
     .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar {
       background-color: transparent; }
-      /* line 26, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
       .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td.mceSeparatorMiddle {
         background-image: none; }
-      /* line 28, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
       .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td .mceSplitButton {
         padding: 0px 1px; }
-      /* line 30, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
       .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td a.mceButton {
         border-color: transparent; }
-        /* line 32, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
         .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td a.mceButton:hover {
           background-color: #b1d5e9; }
-        /* line 34, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
         .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td a.mceButton.mceButtonActive {
           background-color: #adcddf; }
-      /* line 36, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
       .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td td {
         padding: 0; }
-        /* line 38, ../../../app/stylesheets/tiny_like_ck_with_external_tools.sass */
         .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td td a.mceAction, .defaultSkin table.mceLayout tr.mceFirst td.mceToolbar table.mceToolbar td td a.mceOpen {
           border-color: #cccccc; }

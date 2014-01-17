@@ -1,4 +1,3 @@
-/* line 3, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button {
   display: inline-block;
   position: relative;
@@ -11,100 +10,80 @@
   overflow: visible; }
 
 /* the overflow property removes extra width in IE */
-/* line 5, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-icon-only {
   width: 2.2em; }
 
 /* to make room for the icon, a width needs to be set here */
-/* line 6, ../../../app/stylesheets/jquery-ui-button.scss */
 button.ui-button-icon-only {
   width: 2.4em; }
 
 /* button elements seem to need a little more width */
-/* line 7, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-icons-only {
   width: 3.4em; }
 
-/* line 8, ../../../app/stylesheets/jquery-ui-button.scss */
 button.ui-button-icons-only {
   width: 3.7em; }
 
 /*button text element */
-/* line 11, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button .ui-button-text {
   display: block;
   line-height: 1.4; }
 
-/* line 13, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-text-only .ui-button-text {
   padding: .4em 1em; }
 
-/* line 14, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text {
   padding: .4em;
   text-indent: -9999999px; }
 
-/* line 15, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text {
   padding: .4em 1em .4em 2.1em; }
 
-/* line 16, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text {
   padding: .4em 2.1em .4em 1em; }
 
-/* line 17, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-text-icons .ui-button-text {
   padding-left: 2.1em;
   padding-right: 2.1em; }
 
 /* no icon support for input elements, provide padding by default */
-/* line 19, ../../../app/stylesheets/jquery-ui-button.scss */
 input.ui-button {
   padding: .4em 1em; }
 
 /*button icon element(s) */
-/* line 22, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon {
   position: absolute;
   top: 50%;
   margin-top: -8px; }
 
-/* line 23, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-icon-only .ui-icon {
   left: 50%;
   margin-left: -8px; }
 
-/* line 24, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-text-icon-primary .ui-button-icon-primary, .ui-button-text-icons .ui-button-icon-primary, .ui-button-icons-only .ui-button-icon-primary {
   left: .5em; }
 
-/* line 25, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-text-icon-secondary .ui-button-icon-secondary, .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary {
   right: .5em; }
 
-/* line 26, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary {
   right: .5em; }
 
 /*button sets*/
-/* line 29, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-buttonset {
   margin-right: 7px; }
 
-/* line 30, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-buttonset .ui-button {
   margin-left: 0;
   margin-right: -.3em; }
 
 /* workarounds */
-/* line 33, ../../../app/stylesheets/jquery-ui-button.scss */
 button.ui-button::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
 /* reset extra padding in Firefox */
 /* Instructure Changes */
-/* line 41, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button, .ui-widget-content .ui-button {
   background-color: #e0e0e0;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#cecece));
@@ -115,11 +94,9 @@ button.ui-button::-moz-focus-inner {
   background-image: linear-gradient(top, #f3f3f3, #cecece);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3',EndColorStr='#cecece')";
   zoom: 1; }
-  /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
   .ie9 .ui-button, .ie9 .ui-widget-content .ui-button {
     border-radius: 0 !important; }
 
-/* line 44, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-button {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -130,7 +107,6 @@ button.ui-button::-moz-focus-inner {
   -moz-box-shadow: rgba(0, 0, 0, 0.5), 0px, 1px, 2px, 0;
   box-shadow: rgba(0, 0, 0, 0.5), 0px, 1px, 2px, 0;
   border: 1px solid #bdbdbd; }
-  /* line 48, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-button.ui-state-hover {
     background-color: #efefef;
     background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#dfdfdf));
@@ -141,10 +117,8 @@ button.ui-button::-moz-focus-inner {
     background-image: linear-gradient(top, #ffffff, #dfdfdf);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='white',EndColorStr='#dfdfdf')";
     zoom: 1; }
-    /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
     .ie9 .ui-button.ui-state-hover {
       border-radius: 0 !important; }
-  /* line 51, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-button.ui-state-active {
     background-color: #b7b7b7;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#a8a8a8), to(#c6c6c6));
@@ -155,15 +129,12 @@ button.ui-button::-moz-focus-inner {
     background-image: linear-gradient(top, #a8a8a8, #c6c6c6);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#a8a8a8',EndColorStr='#c6c6c6')";
     zoom: 1; }
-    /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
     .ie9 .ui-button.ui-state-active {
       border-radius: 0 !important; }
-  /* line 53, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-button .ui-button-text {
     font-size: 12px;
     color: #525252;
     text-shadow: #fff 0 1px 1px; }
-  /* line 60, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-button .ui-icon-droparrow {
     background-image: none;
     border: solid transparent;
@@ -172,7 +143,6 @@ button.ui-button::-moz-focus-inner {
     height: 0;
     border-top-color: #525252;
     margin: -2px 2px 0px; }
-  /* line 69, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-button .ui-icon-droparrow:before {
     border-color: #525252 transparent;
     border-style: solid;
@@ -183,7 +153,6 @@ button.ui-button::-moz-focus-inner {
     width: 300px;
     height: 400px;
     background-color: red; }
-  /* line 80, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-button.ui-button-primary {
     outline: none;
     color: #fff;
@@ -197,10 +166,8 @@ button.ui-button::-moz-focus-inner {
     background-image: linear-gradient(top, #36bcff, #238edc);
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#36bcff',EndColorStr='#238edc')";
     zoom: 1; }
-    /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
     .ie9 .ui-button.ui-button-primary {
       border-radius: 0 !important; }
-    /* line 85, ../../../app/stylesheets/jquery-ui-button.scss */
     .ui-button.ui-button-primary.ui-state-hover {
       background-color: #44aeef;
       background-image: -webkit-gradient(linear, left top, left bottom, from(#50c4ff), to(#3999e0));
@@ -211,19 +178,15 @@ button.ui-button::-moz-focus-inner {
       background-image: linear-gradient(top, #50c4ff, #3999e0);
       -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#50c4ff',EndColorStr='#3999e0')";
       zoom: 1; }
-      /* line 44, ../../../app/stylesheets/mixins/_misc.sass */
       .ie9 .ui-button.ui-button-primary.ui-state-hover {
         border-radius: 0 !important; }
-    /* line 86, ../../../app/stylesheets/jquery-ui-button.scss */
     .ui-button.ui-button-primary.ui-state-active {
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05); }
-    /* line 88, ../../../app/stylesheets/jquery-ui-button.scss */
     .ui-button.ui-button-primary .ui-button-text {
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
       color: white; }
 
 /*button sets*/
-/* line 101, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-buttonset .ui-button {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -234,11 +197,9 @@ button.ui-button::-moz-focus-inner {
   -ms-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0; }
-  /* line 107, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-buttonset .ui-button.ui-state-active ~ .ui-button {
     border-left: 0;
     margin-left: 1px; }
-/* line 112, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-buttonset .ui-corner-left {
   -moz-border-radius-topleft: 20px;
   -webkit-border-top-left-radius: 20px;
@@ -246,7 +207,6 @@ button.ui-button::-moz-focus-inner {
   -moz-border-radius-bottomleft: 20px;
   -webkit-border-bottom-left-radius: 20px;
   border-bottom-left-radius: 20px; }
-/* line 113, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-buttonset .ui-corner-right {
   -moz-border-radius-topright: 20px;
   -webkit-border-top-right-radius: 20px;
@@ -255,13 +215,10 @@ button.ui-button::-moz-focus-inner {
   -webkit-border-bottom-right-radius: 20px;
   border-bottom-right-radius: 20px; }
 
-/* line 118, ../../../app/stylesheets/jquery-ui-button.scss */
 .ui-icon-cog-with-droparrow {
   height: 15px;
   width: 25px; }
-  /* line 121, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-state-default .ui-icon-cog-with-droparrow {
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAPCAYAAAARZmTlAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAkpJREFUeNpijIiIYsABjIH4DJRtCMQXsClavnwpAyHAgsaPBeJfQHwHiLtggkpKSvukpKSSjhw5wgXk/gXilQwkAGRLQF5ahE3RvXv3BIF4PYxvamqie/r0mRpiLWFiIAOoqqqGAIPJmRyf3IExGBkZ/7u4OD+yt7d/BeLv3r1b4uDBQ7IweTU11c9Aip1US0CR3AsTdHCwf5KUlHgXyFwGxHuUldMZ3r59O+fKlasuIPlly1YoycrKMCIbFBkZvQVIeaOZvxXoYx+YJWeQZTw83J8BqVVAjXORhHOA+AaIcevWLSEg3gI0QBkUZVD5AiYmJo9///4xgzjMzMz/2tpaRIDMdlCcMKN77+fPnyDxLfiCABSkQGouUlK+w8vLOxXGd3JyfCwnJwcK1ikgw/6ysbHZyMvLf4Qp2Lt3nwSWMM+EMUBqi4uLLgKZ/5AVfPz4sZSLi+uVkJDQ99jYmIdAoRVA/BScun79+nVUSUkxA6YYFMkNDU3zgEwDaHxNBuJ8mHxycuItY2Ojw0BmEVrG/PX375/UkJCgk6ysrI+BQgtRUtf+/QdQkvPNmzftgdR5bEH18OEjbmAyngCMs3voOX7BgvmbgNQrKPcPehJmJjG7yCNFOjo4gSufLDYzM9XR1dX1UVRU/Dp37lzV+/cfCIAkNDTU34aGhj4A+g4Yt7x/gHnoFbnFCsOpU6fLCwsL9gKZv7m4uCWg+YQBZIGWluZuIJ4P5GoC8SdgUO0nyxJoptqFFJGgfNEH5c4Hyt0CZRNSiyGAAAMAHezCaaFf22cAAAAASUVORK5CYII='); }
-  /* line 122, ../../../app/stylesheets/jquery-ui-button.scss */
   .ui-state-active .ui-icon-cog-with-droparrow {
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAQCAYAAAAMJL+VAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAp1JREFUeNqMVM2LUlEU98noVGIjMWLmx8KJLLMwwcqkdbT0HzAIRokhCLFpIe6UaNFSXVQjLUoCCW2jywzDaCH5AVKa5jcmOLmwJh2fnSP3wstyxgs/7nnnd8499573u5fp9Xq8+SGVSplMJmNWqVTv8bvRaFw1Go0fIXb6n9jZPJ3+Q80GQwtAIL9Wq92aTCbjdrtdUyqVj0QikRm54XCYbjabDxQKhQYWmmg0mpeQxy5dABcvFAq3ZTLZE94So9vtbur1+h0sclgBPpkFnU5HzFty9Pv9dcxZJnaFnqRYLLYNBgPdDZtOp9+Ew+G3+G2z2W6YTKabNAm4L5hDdz9bgGEWFmFSqdT1SqWSwZ+ISCQSUfBj/88AtIBr8Xg8RvlSqZRKJpNXMBc32Wq1EpSjQB9y2KIjWq32nVgsvkQrRiKRFzB9BXwjKMdisTDlJRKJRafTfcBcgDAQCDxmWXaf8mijDzm+Wq0+Pn8kKPgLph+wkxHgN9pyuXyXG4NthEkE2Pf5fBWQ9WvKoY0+5GZK83g8W/l8/jM9Xi6X2wH/KiqMyFgIvueUx1iv13sP/OukTWuwAXO1Wu0g0EYf4XhHAaddLtddbg/L5fKzbDZ7GRY2o83l7Ha7A3MAxzhiOeX3+7cRaFMBMUSqomg0umWxWB4uIz0QxbbVag2C+RNbTtxY7ARVMuF4fHIjx0KhcNlrwBMIBBPSX5bj3gN8J9ibv8mrYCtDoZBjMBisgM6bbrd7E3p5FoPq9fqnYDD4Ck64MRqNeg6H4ym4m4DRobshPxHbJAFsAM4BLoAK7tOeO53OO+C7CDhPYtY4r8CB46/Hjlx/hvygkwA1aUOdHH1Cvsfcd+jAAgv8fHKJUOf4ig1JX6eLFlr02P0RYAA1e3tGQmg0JAAAAABJRU5ErkJggg=='); }

@@ -1,32 +1,23 @@
-/* line 4, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
 #editCalendarEventFull [name="description"] {
   width: 100%;
   min-height: 200px; }
-/* line 7, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
 #editCalendarEventFull [name="title"] {
   width: 100%;
   font-size: 21px; }
-/* line 11, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
 #editCalendarEventFull .date_start_end_row {
   overflow: hidden;
   *zoom: 1; }
-  /* line 14, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
   #editCalendarEventFull .date_start_end_row th, #editCalendarEventFull .date_start_end_row td {
     vertical-align: top; }
-  /* line 16, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
   #editCalendarEventFull .date_start_end_row span {
     float: left;
     padding: 0px 5px;
     min-height: 40px; }
-  /* line 20, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
   #editCalendarEventFull .date_start_end_row label {
     font-weight: bold; }
-/* line 22, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
 #editCalendarEventFull .show_if_using_sections {
   display: none; }
-/* line 25, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
 #editCalendarEventFull.use_section_dates .show_if_using_sections {
   display: block; }
-/* line 27, ../../../../app/stylesheets/calendar/editCalendarEventFull.sass */
 #editCalendarEventFull.use_section_dates .hide_if_using_sections {
   display: none; }

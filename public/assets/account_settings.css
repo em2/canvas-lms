@@ -6,11 +6,11 @@
 .admins_list .membership_type{clear:left;display:block;font-size:.8em;padding-left:10px}
 .admins_list .remove_account_user_link{float:right;opacity:.5}
 .admins_list li:hover .remove_account_user_link{opacity:1}
-#account_notification_icon option{padding:3px 0 3px 25px;background:url(/images/warning.png?1341500195) no-repeat 5px center}
-#account_notification_icon option.calendar{background-image:url(/images/calendar_icon.png?1341500195)}
-#account_notification_icon option.people{background-image:url(/images/group.png?1341500195)}
-#account_notification_icon option.help{background-image:url(/images/help.png?1341500195)}
-#account_notification_icon option.file{background-image:url(/images/file.png?1341500195)}
+#account_notification_icon option{padding:3px 0 3px 25px;background:url(/images/warning.png?1389738577) no-repeat 5px center}
+#account_notification_icon option.calendar{background-image:url(/images/calendar_icon.png?1389738577)}
+#account_notification_icon option.people{background-image:url(/images/group.png?1389738577)}
+#account_notification_icon option.help{background-image:url(/images/help.png?1389738577)}
+#account_notification_icon option.file{background-image:url(/images/file.png?1389738577)}
 .custom_help_link{border-top:1px solid #ccc}
 .custom_help_link .delete{float:right}
 .announcements_list{padding-left:20px}

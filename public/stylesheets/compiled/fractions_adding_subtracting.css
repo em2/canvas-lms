@@ -1,36 +1,27 @@
-/* line 2, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question .explain_answer {
   margin-left: 165px; }
-/* line 5, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question #explain_text {
   float: left;
   margin-left: 10px; }
-/* line 9, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question .explain_area_text_FAS {
   margin-top: 6px;
   margin-left: 3px;
   float: left; }
-/* line 14, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question .answers_fractions_adding_subtracting_question {
   float: left; }
-/* line 17, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question .answer_input {
   vertical-align: middle !important; }
-/* line 20, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question .question_text {
   max-width: 150px;
   margin-left: 22px; }
-/* line 24, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question .explain_canvas {
   cursor: pointer;
   float: left;
   margin-left: 4px;
   margin-bottom: 10px;
   margin-top: 10px; }
-  /* line 30, ../../../app/stylesheets/fractions_adding_subtracting.sass */
   .fractions_adding_subtracting_question .explain_canvas:active, .fractions_adding_subtracting_question .explain_canvas:focus {
     cursor: crosshair; }
-/* line 33, ../../../app/stylesheets/fractions_adding_subtracting.sass */
 .fractions_adding_subtracting_question .explain_area_textarea_FAS {
   margin-top: 10px;
   font-size: 13px;

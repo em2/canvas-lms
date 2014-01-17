@@ -16,17 +16,17 @@
 #attendance_content .student .secondary_identifier{font-size:.6em;margin-left:10px;color:#999}
 #attendance_content .assignment div.title{white-space:nowrap;overflow:hidden}
 #attendance_content .submission .blank_attendance{width:24px;height:24px}
-#attendance_content .submission.pass .blank_attendance{background:url(/images/graded.png?1341500195) no-repeat center center}
-#attendance_content .submission.fail .blank_attendance{background:url(/images/not_graded.png?1341500195) no-repeat center center}
+#attendance_content .submission.pass .blank_attendance{background:url(/images/graded.png?1389738577) no-repeat center center}
+#attendance_content .submission.fail .blank_attendance{background:url(/images/not_graded.png?1389738577) no-repeat center center}
 #attendance_content .submission{text-align:center;vertical-align:middle;cursor:pointer}
 #attendance_content .submission .submission_content{padding:4px}
 #attendance_content .submission.selected{background-color:#eee}
 #attendance_content .submission.related{background-color:#f0f0f0}
 #attendance_content .submission.focus{background-color:#ccc}
 #attendance_content .submission.saving{background-color:#ccc}
-#attendance_content .submission.loading{background:#eee url(/images/ellipses.png?1341500195) no-repeat center center}
-#attendance_content .options_dropdown img{background:url(/images/menu_option.png?1341500195) no-repeat center center}
-#attendance_content .options_dropdown:hover img{background-image:url(/images/menu_option_hover.png?1341500195)}
+#attendance_content .submission.loading{background:#eee url(/images/ellipses.png?1389738577) no-repeat center center}
+#attendance_content .options_dropdown img{background:url(/images/menu_option.png?1389738577) no-repeat center center}
+#attendance_content .options_dropdown:hover img{background-image:url(/images/menu_option_hover.png?1389738577)}
 #attendance .help_link{color:#888}
 #student_attendance{margin:5px 20px;width:auto;min-width:400px;border-collapse:collapse}
 #student_attendance th{text-align:left;background-color:#444;color:#eee;font-size:1.2em;min-width:100px;padding:1px 5px}

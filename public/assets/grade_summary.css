@@ -5,9 +5,9 @@
 #grades_summary tr.rubric_assessments>td{border-width:0;padding-left:30px}
 #grades_summary tr.rubric_assessments>td table.rubric{margin-top:0;margin-bottom:20px}
 #grades_summary tr.editable:hover td{background-color:#cdf}
-#grades_summary tr.editable.student_assignment.dropped:hover td.points_possible{background-image:url(/images/earmark_hover.png?1341500195)}
+#grades_summary tr.editable.student_assignment.dropped:hover td.points_possible{background-image:url(/images/earmark_hover.png?1389738577)}
 #grades_summary tr.student_assignment.dropped td{color:#ccc;border-top-color:#eee}
-#grades_summary tr.student_assignment.dropped td.points_possible{background-image:url(/images/earmark.png?1341500195);background-repeat:no-repeat;background-position:top left}
+#grades_summary tr.student_assignment.dropped td.points_possible{background-image:url(/images/earmark.png?1389738577);background-repeat:no-repeat;background-position:top left}
 #grades_summary tr.student_assignment.dropped td a{color:#aaa}
 #grades_summary td.assignment_score{cursor:pointer;text-align:center;white-space:nowrap}
 #grades_summary td.assignment_score:hover .grade{font-weight:bold}
@@ -29,7 +29,7 @@
 #grades_summary .tooltip:active{outline:none;text-decoration:none}
 #grades_summary .tooltip:active .tooltip_wrap,#grades_summary .tooltip:active .tooltip_text{visibility:visible}
 #grades_summary .tooltip .tooltip_wrap,#grades_summary .tooltip .tooltip_text{display:block;visibility:hidden}
-#grades_summary .tooltip .tooltip_wrap{background:url(/images/tooltip_carat.png?1341500195) no-repeat left bottom;bottom:15px;padding-bottom:3px;position:absolute}
+#grades_summary .tooltip .tooltip_wrap{background:url(/images/tooltip_carat.png?1389738577) no-repeat left bottom;bottom:15px;padding-bottom:3px;position:absolute}
 .ie #grades_summary .tooltip .tooltip_wrap{bottom:25px}
 #grades_summary .tooltip .tooltip_text{background-color:#444;background-position:left bottom;color:white;left:0;max-width:250px;padding:2px 7px 2px;white-space:nowrap}
 #grades_summary .tooltip .tooltip_text table tr td{background-color:transparent;font-size:1em;padding:0 2px;border-width:0}

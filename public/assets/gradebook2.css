@@ -11,7 +11,7 @@
 .submission_details_dialog .rubric-link{font-weight:bold}
 .submission_details_dialog .submisison-attachment{padding:3px 0}
 .submission_details_dialog .submisison-attachment a{font-size:11px}
-.submission_details_dialog .submission_details_comments{overflow:auto;max-height:200px;border-top:1px solid #bbb;padding:0 12px;position:relative;background:#a3a3a3 url(/images/messages/messages-background.png?1341500195) 0 0 repeat}
+.submission_details_dialog .submission_details_comments{overflow:auto;max-height:200px;border-top:1px solid #bbb;padding:0 12px;position:relative;background:#a3a3a3 url(/images/messages/messages-background.png?1389738577) 0 0 repeat}
 .submission_details_dialog .comment{background:white;clear:both;border-bottom:1px solid #ccc;padding:10px;margin:10px 0}
 .submission_details_dialog .comment:last-child{border-bottom:none}
 .submission_details_dialog .comment .middle{padding-left:69px}
@@ -56,9 +56,9 @@
 .ie9 .slick-header-column.hovered-column{border-radius:0!important}
 .slick-header-column .slick-column-name{font-weight:bold;color:#2f2a34;text-shadow:white 0 0 1px}
 .slick-header-column a.assignment-name{font-weight:normal;color:#1b7ecf;text-shadow:white 0 0 1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.slick-header-column .muted{background:url(/images/sound_mute.png?1341500195) no-repeat center right;padding-right:16px}
+.slick-header-column .muted{background:url(/images/sound_mute.png?1389738577) no-repeat center right;padding-right:16px}
 .slick-header-column .assignment-points-possible{font-weight:normal;text-shadow:#84848a 0 0 1px;font-size:10px;opacity:.5;-ms-filter:alpha(Opacity=50);filter:alpha(Opacity=50);color:#2f2a34;margin-left:10px;margin-right:14px}
-.slick-header-column .gradebook-header-drop{z-index:1;background:url(/images/jqueryui/gradebook-header-drop.png?1341500195) no-repeat top left;width:14px;height:14px;position:absolute;bottom:3px;right:3px;text-indent:999px;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(Opacity=0)}
+.slick-header-column .gradebook-header-drop{z-index:1;background:url(/images/jqueryui/gradebook-header-drop.png?1389738577) no-repeat top left;width:14px;height:14px;position:absolute;bottom:3px;right:3px;text-indent:999px;opacity:0;-ms-filter:alpha(Opacity=0);filter:alpha(Opacity=0)}
 .slick-header-column .gradebook-header-drop:hover,.slick-header-column .gradebook-header-drop.ui-menu-trigger-menu-is-open{background-position:bottom left;opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
 .slick-header-column:hover .gradebook-header-drop{opacity:1;-ms-filter:alpha(Opacity=100);filter:alpha(Opacity=100)}
 #sort_rows_dialog .button{margin-bottom:5px}
@@ -74,7 +74,7 @@
 .ie9 .slick-row.ui-state-active .slick-cell.selected{border-radius:0!important}
 .slick-cell div.cell-content{text-align:center;vertical-align:middle}
 .slick-cell.editable{border-color:#2fa1ff}
-.slick-cell.ungraded{background-image:url(/images/4_percent_opacity.png?1341500195);background-repeat:repeat}
+.slick-cell.ungraded{background-image:url(/images/4_percent_opacity.png?1389738577);background-repeat:repeat}
 .gradebook-tooltip{display:none;background-color:#444;color:white;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px;padding:5px 10px;z-index:5;position:absolute;font-size:.8em;left:0;top:-30px}
 .gradebook-tooltip:after{border-color:#444 transparent;border-style:solid;border-width:5px 5px 0;position:absolute;bottom:-5px;width:0;left:15px;content:""}
 .slick-row[row="0"] .gradebook-tooltip{bottom:-30px;top:auto}
@@ -82,10 +82,10 @@
 .slick-cell.hover .gradebook-tooltip,.gradebook-cell.focus .gradebook-tooltip,.slick-cell.selected .gradebook-tooltip{display:block}
 .slick-cell.completely-hidden{display:none}
 .gradebook-cell{padding-top:8px;height:25px;position:relative;text-align:center;border:1px solid transparent;border-right:1px dotted silver;border-bottom-color:silver;background-repeat:repeat}
-.gradebook-cell.late{background-image:url(/images/gradebook-late-indicator.png?1341500195)}
-.gradebook-cell.dropped{background-image:url(/images/gradebook-dropped-indicator.png?1341500195)}
-.gradebook-cell.resubmitted{background-image:url(/images/gradebook-resubmitted-indicator.png?1341500195)}
-.gradebook-cell-comment{position:absolute;top:-1px;right:-1px;background:url(/images/gradebook-comments-sprite2.png?1341500195) no-repeat 100% 0;height:12px;width:12px;visibility:hidden;z-index:1;overflow:hidden}
+.gradebook-cell.late{background-image:url(/images/gradebook-late-indicator.png?1389738577)}
+.gradebook-cell.dropped{background-image:url(/images/gradebook-dropped-indicator.png?1389738577)}
+.gradebook-cell.resubmitted{background-image:url(/images/gradebook-resubmitted-indicator.png?1389738577)}
+.gradebook-cell-comment{position:absolute;top:-1px;right:-1px;background:url(/images/gradebook-comments-sprite2.png?1389738577) no-repeat 100% 0;height:12px;width:12px;visibility:hidden;z-index:1;overflow:hidden}
 .gradebook-cell-comment:hover,.gradebook-cell-comment:focus{visibility:visible;background-position:100% -88px!important;width:17px;height:17px}
 .slick-cell.with-comments .gradebook-cell-comment{visibility:visible}
 .slick-cell.focus .gradebook-cell-comment,.slick-cell.hover .gradebook-cell-comment{visibility:visible;background-position:100% -41px;width:25px;height:25px}
@@ -101,25 +101,25 @@
 .gradebook-cell-out-of-formatter .grade-and-outof-wrapper .outof{-webkit-user-select:none;-moz-user-select:none;user-select:none;text-align:left;color:#888}
 .gradebook-cell-out-of-formatter .grade-and-outof-wrapper .grade{border:none;text-align:right;outline:none;font-size:12px}
 .gradebook-cell-out-of-formatter .grade-and-outof-wrapper .grade::-webkit-outer-spin-button{display:none}
-.gradebook-checkbox{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat;display:block;position:absolute;left:50%;top:50%;width:16px;height:16px;margin-top:-8px;margin-left:-8px;background:url(/images/checkbox_sprite3.png?1341500195) no-repeat 0 0}
+.gradebook-checkbox{display:inline-block;text-indent:999px;overflow:hidden;background-repeat:no-repeat;display:block;position:absolute;left:50%;top:50%;width:16px;height:16px;margin-top:-8px;margin-left:-8px;background:url(/images/checkbox_sprite3.png?1389738577) no-repeat 0 0}
 .gradebook-checkbox.gradebook-checkbox-pass{background-position:-48px 0}
 .gradebook-checkbox.gradebook-checkbox-fail{background-position:-64px 0}
 .gradebook-checkbox.editable.gradebook-checkbox-pass{background-position:-16px 0}
 .gradebook-checkbox.editable.gradebook-checkbox-fail{background-position:-32px 0}
-.minimized{background-image:url(/images/4_percent_opacity.png?1341500195)}
+.minimized{background-image:url(/images/4_percent_opacity.png?1389738577)}
 .minimized .gradebook-cell{font-size:0}
 .minimized .gradebook-cell *{display:none}
 .minimized .slick-column-name{display:none}
-#gradebook-toolbar{background:url(/images/black-header-bg.png?1341500195) repeat-x;height:28px;padding:8px 20px}
+#gradebook-toolbar{background:url(/images/black-header-bg.png?1389738577) repeat-x;height:28px;padding:8px 20px}
 #section-to-show-menu{width:200px}
 #section-to-show-menu.scrolling{overflow-x:hidden;overflow-y:auto;max-height:550px}
 .submission_type_icon{display:block;width:100%;height:22px;background-position:center center;background-repeat:no-repeat}
-.online_text_entry .submission_type_icon{background-image:url(/images/text_entry.png?1341500195)}
-.discussion_topic .submission_type_icon{background-image:url(/images/word_bubble.png?1341500195)}
-.online_upload .submission_type_icon{background-image:url(/images/file.png?1341500195)}
-.pending_review .submission_type_icon{background-image:url(/images/pending_review.png?1341500195)}
-.media_comment .submission_type_icon{background-image:url(/images/media_comment.gif?1341500195)}
-.quiz .submission_type_icon{background-image:url(/images/quiz.png?1341500195)}
+.online_text_entry .submission_type_icon{background-image:url(/images/text_entry.png?1389738577)}
+.discussion_topic .submission_type_icon{background-image:url(/images/word_bubble.png?1389738577)}
+.online_upload .submission_type_icon{background-image:url(/images/file.png?1389738577)}
+.pending_review .submission_type_icon{background-image:url(/images/pending_review.png?1389738577)}
+.media_comment .submission_type_icon{background-image:url(/images/media_comment.gif?1389738577)}
+.quiz .submission_type_icon{background-image:url(/images/quiz.png?1389738577)}
 .letter-grade-points{opacity:.4;-ms-filter:alpha(Opacity=40);filter:alpha(Opacity=40);position:absolute;font-size:11px;padding-left:8px;line-height:19px}
 #assignment_group_weights_dialog table{width:100%}
 #assignment_group_weights_dialog th,#assignment_group_weights_dialog td{padding:2px 10px}
