@@ -1,107 +1,105 @@
 <% if misconception_item.workflow_state == "available" -%>
-	<div class="misconception">
-		<div class="misconception_piece misconception_piece_title">
-			<span class="header_content name"><%=misconception_item.name%></span>
-			<span class="modify_buttons">
-				<% bank = AssessmentQuestionBank.find(params[:question_bank_id]) -%>
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
-			</span>
-		</div>
-		<div class="misconception_piece responses">
-			<table>
-				<% @max_answer_count = 0 -%>
-				<% if !misconception_item.pattern.empty? -%>
-					<% assessment_questions = bank.assessment_questions -%>
-					<tr class="rShim">
-						<td class="rShim" style="width:20px;"></td>
-						<% assessment_questions.each do |aq| -%>
-							<% if aq.question_data[:question_type] != "text_only_question" -%>
-								<td class="rShim" style="width:20px;"></td>
-								<% @max_answer_count = aq.question_data[:answers].count if aq.question_data[:answers].count > @max_answer_count -%>
-							<% end -%>
-						<% end -%>
-					</tr>
-					<tr>
-						<td></td>
-						<% assessment_questions.each do |aq| -%>
-							<% if aq.question_data[:question_type] != "text_only_question" -%>
-								<td class="s1"><%= aq.question_data[:name] %></td>
-							<% end -%>
-						<% end -%>
-					</tr>
+  <div class="misconception">
+    <div class="misconception_piece misconception_piece_title">
+      <span class="header_content name"><%=misconception_item.name%></span>
+      <span class="modify_buttons">
+        <% bank = AssessmentQuestionBank.find(params[:question_bank_id]) -%>
+        <a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+        <a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+      </span>
+    </div>
+    <div class="misconception_piece responses">
+      <table>
+        <% @max_answer_count = 0 -%>
+        <% assessment_questions = bank.assessment_questions -%>
+        <tr class="rShim">
+          <td class="rShim" style="width:20px;"></td>
+          <% assessment_questions.each do |aq| -%>
+            <% if aq.question_data[:question_type] != "text_only_question" -%>
+              <td class="rShim" style="width:20px;"></td>
+              <% @max_answer_count = aq.question_data[:answers].count if aq.question_data[:answers].count > @max_answer_count -%>
+            <% end -%>
+          <% end -%>
+        </tr>
+        <tr>
+          <td></td>
+          <% assessment_questions.each do |aq| -%>
+            <% if aq.question_data[:question_type] != "text_only_question" -%>
+              <td class="s1"><%= aq.question_data[:name] %></td>
+            <% end -%>
+          <% end -%>
+        </tr>
 
-					<% @max_answer_count.times do |m| -%>
-						<tr>
-							<td class="s2"><%= raw "&##{65+m};" %></td>
-							<% assessment_questions.each do |aq| -%>
-								<% if aq.question_data[:question_type] != "text_only_question" -%>
-									<td class="s3 pattern_display"><span data-id="<%= aq.id %>" data-answerid="<%= aq.question_data[:answers][m] ? aq.question_data[:answers][m][:id] : '' %>"><%= misconception_item.pattern["#{aq.id}"] && aq.question_data[:answers][m] ? misconception_item.pattern["#{aq.id}"]["#{aq.question_data[:answers][m][:id]}"] : "" %></span></td>
-									<td class="s4 pattern" style="display:none;">
-										<% if aq.question_data[:answers][m] -%>
-										  <input class="misconception_pattern_box" id="quiz_misconception_pattern" name="quiz_misconception[patternValue]" size="1" type="text" value="<%= misconception_item.pattern["#{aq.id}"] ? misconception_item.pattern["#{aq.id}"]["#{aq.question_data[:answers][m][:id]}"] : "" %>"></input>
-										  <input class="answer_id_box" type="hidden" name="quiz_misconception[answer_id]" value="<%= aq.question_data[:answers][m][:id] %>"></input>
-										  <input class="question_id_box" type="hidden" name="quiz_misconception[question_id]" value="<%= aq.id %>"></input>
-										<% else -%>
-											<span></span>
-										<% end -%>
-									</td>
-								<% end -%>
-							<% end -%>
-						</tr>
-					<% end -%>
-				<% end -%>
-			</table>
-			<a href="#" class="button edit_misconception_link no-hover"><%= image_tag "edit.png" %> Edit</a>
-			<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="button update_misconception_link no-hover" style="display:none;">Update</a>
-			<a href="#" class="button cancel_update_misconception_link no-hover" style="display:none;">Cancel</a>
-		</div>
-		<div class="misconception_limits">
-			<span class="title">Lower Cutoff Limits</span>
-			<div class="line"></div>
-			<table>
-		    <tr>
-		    	<td>Possible</td>
-		      <td>Highly Likely</td>
-		    </tr>
-				<tr>
-					<td>
-		        <span class="misconception_piece">
-		          <span class="header_content somewhat_probability_limit"><%= @assessment_probabilities.somewhat_probability ? @assessment_probabilities.somewhat_probability["#{misconception_item.id}"] ? @assessment_probabilities.somewhat_probability["#{misconception_item.id}"] : '' : '' %></span>
-		          <span class="modify_buttons">
-		            <a href="<%= account_question_bank_assessment_misconception_probability_path(@context, bank, @assessment_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
-		          </span><br />
-		        </span>
-		      </td>
-		      <td>
-		        <span class="misconception_piece">
-		          <span class="header_content high_probability_limit"><%= @assessment_probabilities.high_probability ? @assessment_probabilities.high_probability["#{misconception_item.id}"] ? @assessment_probabilities.high_probability["#{misconception_item.id}"] : '' : '' %></span>
-		          <span class="modify_buttons">
-		            <a href ="<%= account_question_bank_assessment_misconception_probability_path(@context, bank, @assessment_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
-		          </span>
-		        </span>
-		      </td>
-		    </tr>
-		  </table>
-		</div>
-		<div class="misconception_piece">
-			<span class="header">Explanation URL: &nbsp </span>
-			<span class="header_content explanation_url">
-				<%= misconception_item.explanation_url %>
-			</span>
-			<span class="modify_buttons">
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
-			</span>
-		</div>
-		<div class="misconception_piece">
-			<span class="header">Description: &nbsp </span>
-			<span class="header_content description">
-				<%= misconception_item.description %>
-			</span>
-			<span class="modify_buttons">
-				<a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
-			</span>
-		</div>
-	</div>
-	<br />
+        <% @max_answer_count.times do |m| -%>
+          <tr>
+            <td class="s2"><%= raw "&##{65+m};" %></td>
+            <% assessment_questions.each do |aq| -%>
+              <% if aq.question_data[:question_type] != "text_only_question" -%>
+                <td class="s3 pattern_display"><span data-id="<%= aq.id %>" data-answerid="<%= aq.question_data[:answers][m] ? aq.question_data[:answers][m][:id] : '' %>"><%= misconception_item.pattern["#{aq.id}"] && aq.question_data[:answers][m] ? misconception_item.pattern["#{aq.id}"]["#{aq.question_data[:answers][m][:id]}"] : "" %></span></td>
+                <td class="s4 pattern" style="display:none;">
+                  <% if aq.question_data[:answers][m] -%>
+                    <input class="misconception_pattern_box" id="quiz_misconception_pattern" name="quiz_misconception[patternValue]" size="1" type="text" value="<%= misconception_item.pattern["#{aq.id}"] ? misconception_item.pattern["#{aq.id}"]["#{aq.question_data[:answers][m][:id]}"] : "" %>"></input>
+                    <input class="answer_id_box" type="hidden" name="quiz_misconception[answer_id]" value="<%= aq.question_data[:answers][m][:id] %>"></input>
+                    <input class="question_id_box" type="hidden" name="quiz_misconception[question_id]" value="<%= aq.id %>"></input>
+                  <% else -%>
+                    <span></span>
+                  <% end -%>
+                </td>
+              <% end -%>
+            <% end -%>
+          </tr>
+        <% end -%>
+      </table>
+      <a href="#" class="button edit_misconception_link no-hover"><%= image_tag "edit.png" %> Edit</a>
+      <a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="button update_misconception_link no-hover" style="display:none;">Update</a>
+      <a href="#" class="button cancel_update_misconception_link no-hover" style="display:none;">Cancel</a>
+    </div>
+    <div class="misconception_limits">
+      <span class="title">Lower Cutoff Limits</span>
+      <div class="line"></div>
+      <table>
+        <tr>
+          <td>Possible</td>
+          <td>Highly Likely</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="misconception_piece">
+              <span class="header_content somewhat_probability_limit"><%= @assessment_probabilities.somewhat_probability ? @assessment_probabilities.somewhat_probability["#{misconception_item.id}"] ? @assessment_probabilities.somewhat_probability["#{misconception_item.id}"] : '' : '' %></span>
+              <span class="modify_buttons">
+                <a href="<%= account_question_bank_assessment_misconception_probability_path(@context, bank, @assessment_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+              </span><br />
+            </span>
+          </td>
+          <td>
+            <span class="misconception_piece">
+              <span class="header_content high_probability_limit"><%= @assessment_probabilities.high_probability ? @assessment_probabilities.high_probability["#{misconception_item.id}"] ? @assessment_probabilities.high_probability["#{misconception_item.id}"] : '' : '' %></span>
+              <span class="modify_buttons">
+                <a href ="<%= account_question_bank_assessment_misconception_probability_path(@context, bank, @assessment_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+              </span>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="misconception_piece">
+      <span class="header">Explanation URL: &nbsp </span>
+      <span class="header_content explanation_url">
+        <%= misconception_item.explanation_url %>
+      </span>
+      <span class="modify_buttons">
+        <a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
+      </span>
+    </div>
+    <div class="misconception_piece">
+      <span class="header">Description: &nbsp </span>
+      <span class="header_content description">
+        <%= misconception_item.description %>
+      </span>
+      <span class="modify_buttons">
+        <a href="<%= account_question_bank_assessment_misconception_path(@context, bank, misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
+      </span>
+    </div>
+  </div>
+  <br />
 <% end -%>

@@ -1,107 +1,106 @@
 <% if misconception_item.workflow_state == "available" -%>
-	<div class="misconception">
-		<div class="misconception_piece misconception_piece_title">
-			<span class="header_content name"><%=misconception_item.name%></span>
-			<span class="modify_buttons">
-				<% quiz = Quiz.find(params[:quiz_id]) -%>
-				<a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
-				<a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
-			</span>
-		</div>
+  <div class="misconception">
+    <div class="misconception_piece misconception_piece_title">
+      <span class="header_content name"><%=misconception_item.name%></span>
+      <span class="modify_buttons">
+        <% quiz = Quiz.find(params[:quiz_id]) -%>
+        <a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="edit_misconception_name_link no-hover"><%= image_tag "edit.png" %></a>
+        <a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="delete_misconception_link no-hover"><%= image_tag "delete.png" %></a>
+      </span>
+    </div>
+    <div class="misconception_piece responses">
+      <table>
+        <% @max_answer_count = 0 -%>
+        <% quiz_questions = quiz.quiz_questions -%>
+        <tr class="rShim">
+          <td class="rShim" style="width:20px;"></td>
+          <% quiz_questions.each do |qq| -%>
+            <% if qq.question_data[:question_type] != "text_only_question" -%>
+              <td class="rShim" style="width:20px;"></td>
+              <% @max_answer_count = qq.question_data[:answers].count if qq.question_data[:answers].count > @max_answer_count -%>
+            <% end -%>
+          <% end -%>
+        </tr>
+        <tr>
+          <td></td>
+          <% quiz_questions.each do |qq| -%>
+            <% if qq.question_data[:question_type] != "text_only_question" -%>
+              <td class="s1"><%= qq.question_data[:name] %></td>
+            <% end -%>
+          <% end -%>
+        </tr>
+        <% @max_answer_count.times do |m| -%>
+          <tr>
+            <td class="s2"><%= raw "&##{65+m};" %></td>
+            <% quiz_questions.each do |qq| -%>
+              <% if qq.question_data[:question_type] != "text_only_question" -%>
+                <td class="s3 pattern_display"><span data-id="<%= qq.id %>" data-answerid="<%= qq.question_data[:answers][m] ? qq.question_data[:answers][m][:id] : '' %>"><%= misconception_item.pattern["#{qq.id}"] && qq.question_data[:answers][m] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %></span></td>
+                <td class="s4 pattern" style="display:none;">
+                  <% if qq.question_data[:answers][m] -%>
+                    <input class="misconception_pattern_box" id="quiz_misconception_pattern" name="quiz_misconception[patternValue]" size="1" type="text" value="<%= misconception_item.pattern["#{qq.id}"] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %>"></input>
+                    <input class="answer_id_box" type="hidden" name="quiz_misconception[answer_id]" value="<%= qq.question_data[:answers][m][:id] %>"></input>
+                    <input class="question_id_box" type="hidden" name="quiz_misconception[question_id]" value="<%= qq.id %>"></input>
+                  <% else -%>
+                    <span></span>
+                  <% end -%>
+                </td>
+              <% end -%>
+            <% end -%>
+          </tr>
+        <% end -%>
+      </table>
+      <a href="#" class="button edit_misconception_link no-hover"><%= image_tag "edit.png" %> Edit</a>
+      <a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="button update_misconception_link no-hover" style="display:none;">Update</a>
+      <a href="#" class="button cancel_update_misconception_link no-hover" style="display:none;">Cancel</a>
+    </div>
 
-		<div class="misconception_piece responses">
-			<table>
-				<% @max_answer_count = 0 -%>
-				<% quiz_questions = quiz.quiz_questions -%>
-				<tr class="rShim">
-					<td class="rShim" style="width:20px;"></td>
-					<% quiz_questions.each do |qq| -%>
-						<% if qq.question_data[:question_type] != "text_only_question" -%>
-							<td class="rShim" style="width:20px;"></td>
-							<% @max_answer_count = qq.question_data[:answers].count if qq.question_data[:answers].count > @max_answer_count -%>
-						<% end -%>
-					<% end -%>
-				</tr>
-				<tr>
-					<td></td>
-					<% quiz_questions.each do |qq| -%>
-						<% if qq.question_data[:question_type] != "text_only_question" -%>
-							<td class="s1"><%= qq.question_data[:name] %></td>
-						<% end -%>
-					<% end -%>
-				</tr>
-				<% @max_answer_count.times do |m| -%>
-					<tr>
-						<td class="s2"><%= raw "&##{65+m};" %></td>
-						<% quiz_questions.each do |qq| -%>
-							<% if qq.question_data[:question_type] != "text_only_question" -%>
-								<td class="s3 pattern_display"><span data-id="<%= qq.id %>" data-answerid="<%= qq.question_data[:answers][m] ? qq.question_data[:answers][m][:id] : '' %>"><%= misconception_item.pattern["#{qq.id}"] && qq.question_data[:answers][m] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %></span></td>
-								<td class="s4 pattern" style="display:none;">
-									<% if qq.question_data[:answers][m] -%>
-									  <input class="misconception_pattern_box" id="quiz_misconception_pattern" name="quiz_misconception[patternValue]" size="1" type="text" value="<%= misconception_item.pattern["#{qq.id}"] ? misconception_item.pattern["#{qq.id}"]["#{qq.question_data[:answers][m][:id]}"] : "" %>"></input>
-									  <input class="answer_id_box" type="hidden" name="quiz_misconception[answer_id]" value="<%= qq.question_data[:answers][m][:id] %>"></input>
-									  <input class="question_id_box" type="hidden" name="quiz_misconception[question_id]" value="<%= qq.id %>"></input>
-									<% else -%>
-										<span></span>
-									<% end -%>
-								</td>
-							<% end -%>
-						<% end -%>
-					</tr>
-				<% end -%>
-			</table>
-			<a href="#" class="button edit_misconception_link no-hover"><%= image_tag "edit.png" %> Edit</a>
-			<a href="<%= course_quiz_quiz_misconception_path(@context, quiz, misconception_item) %>" class="button update_misconception_link no-hover" style="display:none;">Update</a>
-			<a href="#" class="button cancel_update_misconception_link no-hover" style="display:none;">Cancel</a>
-		</div>
+    <div class="misconception_limits">
+      <span class="title">Lower Cutoff Limits</span>
+      <div class="line"></div>
+      <table>
+        <tr>
+          <td>Possible</td>
+          <td>Highly Likely</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="misconception_piece">
+              <span class="header_content somewhat_probability_limit"><%= @quiz_probabilities.somewhat_probability ? @quiz_probabilities.somewhat_probability["#{misconception_item.id}"] ? @quiz_probabilities.somewhat_probability["#{misconception_item.id}"] : '' : '' %></span>
+              <span class="modify_buttons">
+                <a href="<%= course_quiz_quiz_misconception_probability_path(@context, quiz, @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+              </span><br />
+            </span>
+          </td>
+          <td>
+            <span class="misconception_piece">
+              <span class="header_content high_probability_limit"><%= @quiz_probabilities.high_probability ? @quiz_probabilities.high_probability["#{misconception_item.id}"] ? @quiz_probabilities.high_probability["#{misconception_item.id}"] : '' : '' %></span>
+              <span class="modify_buttons">
+                <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, quiz, @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
+              </span>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
 
-		<div class="misconception_limits">
-			<span class="title">Lower Cutoff Limits</span>
-			<div class="line"></div>
-			<table>
-		    <tr>
-		    	<td>Possible</td>
-		      <td>Highly Likely</td>
-		    </tr>
-				<tr>
-					<td>
-		        <span class="misconception_piece">
-		          <span class="header_content somewhat_probability_limit"><%= @quiz_probabilities.somewhat_probability ? @quiz_probabilities.somewhat_probability["#{misconception_item.id}"] ? @quiz_probabilities.somewhat_probability["#{misconception_item.id}"] : '' : '' %></span>
-		          <span class="modify_buttons">
-		            <a href="<%= course_quiz_quiz_misconception_probability_path(@context, quiz, @quiz_probabilities) %>" class="edit_misconception_limit_sp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
-		          </span><br />
-		        </span>
-		      </td>
-		      <td>
-		        <span class="misconception_piece">
-		          <span class="header_content high_probability_limit"><%= @quiz_probabilities.high_probability ? @quiz_probabilities.high_probability["#{misconception_item.id}"] ? @quiz_probabilities.high_probability["#{misconception_item.id}"] : '' : '' %></span>
-		          <span class="modify_buttons">
-		            <a href ="<%= course_quiz_quiz_misconception_probability_path(@context, quiz, @quiz_probabilities) %>" class="edit_misconception_limit_hp_link no-hover" data-id="<%= misconception_item.id %>"><%= image_tag "edit.png" %></a>
-		          </span>
-		        </span>
-		      </td>
-		    </tr>
-		  </table>
-		</div>
-		
-		<div class="misconception_piece">
-			<span class="header">Explanation URL: &nbsp </span>
-			<span class="header_content explanation_url">
-				<%= misconception_item.explanation_url %>
-			</span>
-			<span class="modify_buttons">
-				<a href="<%= course_quiz_quiz_misconception_path(@context, Quiz.find(params[:quiz_id]), misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
-			</span>
-		</div>
-		<div class="misconception_piece">
-			<span class="header">Description: &nbsp </span>
-			<span class="header_content description">
-				<%= misconception_item.description %>
-			</span>
-			<span class="modify_buttons">
-				<a href="<%= course_quiz_quiz_misconception_path(@context, Quiz.find(params[:quiz_id]), misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
-			</span>
-		</div>
-	</div>
-	<br />
+    <div class="misconception_piece">
+      <span class="header">Explanation URL: &nbsp </span>
+      <span class="header_content explanation_url">
+        <%= misconception_item.explanation_url %>
+      </span>
+      <span class="modify_buttons">
+        <a href="<%= course_quiz_quiz_misconception_path(@context, Quiz.find(params[:quiz_id]), misconception_item) %>" class="edit_misconception_url_link no-hover"><%= image_tag "edit.png" %></a>
+      </span>
+    </div>
+    <div class="misconception_piece">
+      <span class="header">Description: &nbsp </span>
+      <span class="header_content description">
+        <%= misconception_item.description %>
+      </span>
+      <span class="modify_buttons">
+        <a href="<%= course_quiz_quiz_misconception_path(@context, Quiz.find(params[:quiz_id]), misconception_item) %>" class="edit_misconception_description_link no-hover"><%= image_tag "edit.png" %></a>
+      </span>
+    </div>
+  </div>
+  <br />
 <% end -%>
