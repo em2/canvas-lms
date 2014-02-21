@@ -1,11 +1,11 @@
 .locate_fractions_question .explain_answer {
   margin-left: 165px;
-  width: 711px; }
+  width: 707px; }
 .locate_fractions_question #explain_text {
   margin-left: 10px; }
 .locate_fractions_question .explain_area_text_LF {
   margin-top: 6px;
-  margin-left: 3px; }
+  width: 100%; }
 .locate_fractions_question .answers_LF {
   float: left;
   margin-top: 20px; }
@@ -14,13 +14,12 @@
 .locate_fractions_question .explain_canvas {
   cursor: pointer;
   float: left;
-  margin-left: 4px;
   margin-bottom: 10px;
   margin-top: 10px; }
   .locate_fractions_question .explain_canvas:active, .locate_fractions_question .explain_canvas:focus {
     cursor: crosshair; }
 .locate_fractions_question .explain_area_textarea_LF {
-  margin-top: 10px;
+  margin-top: 1px;
   font-size: 13px;
   width: 100%;
   height: 200px;

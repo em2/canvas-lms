@@ -1,6 +1,6 @@
 .compare_fractions_question .explain_answer, .compare_decimals_question .explain_answer, .compare_decimal_fraction_question .explain_answer {
-  margin-left: 230px;
-  width: 590px; }
+  margin-left: 265px;
+  width: 585px; }
 .compare_fractions_question .answers_compare_fractions_question .answers, .compare_decimals_question .answers_compare_fractions_question .answers, .compare_decimal_fraction_question .answers_compare_fractions_question .answers {
   vertical-align: top;
   margin-top: 8px;
@@ -46,12 +46,13 @@
 .compare_fractions_question .explain_canvas, .compare_decimals_question .explain_canvas, .compare_decimal_fraction_question .explain_canvas {
   cursor: pointer;
   float: left;
-  margin-top: 9px;
+  margin-top: 10px;
   margin-bottom: 10px; }
   .compare_fractions_question .explain_canvas:active, .compare_fractions_question .explain_canvas:focus, .compare_decimals_question .explain_canvas:active, .compare_decimals_question .explain_canvas:focus, .compare_decimal_fraction_question .explain_canvas:active, .compare_decimal_fraction_question .explain_canvas:focus {
     cursor: crosshair; }
 .compare_fractions_question .explain_area_text, .compare_decimals_question .explain_area_text, .compare_decimal_fraction_question .explain_area_text {
-  float: left; }
+  margin-top: 6px;
+  width: 100%; }
 .compare_fractions_question .explain_area_textarea_CF, .compare_decimals_question .explain_area_textarea_CF, .compare_decimal_fraction_question .explain_area_textarea_CF {
   margin-top: 1px;
   font-size: 13px;
