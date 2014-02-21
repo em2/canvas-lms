@@ -1,7 +1,7 @@
 .represent_fractions_question .explain_answer {
-  margin-left: 250px; }
+  margin-left: 250px;
+  width: 585px; }
 .represent_fractions_question #explain_text {
-  text-align: left;
   margin-left: 10px; }
 .represent_fractions_question .explain_area_text_RF {
   margin-top: 6px;
@@ -18,14 +18,13 @@
 .represent_fractions_question .explain_canvas {
   cursor: pointer;
   float: left;
-  margin-left: 9px;
   margin-bottom: 10px; }
   .represent_fractions_question .explain_canvas:active, .represent_fractions_question .explain_canvas:focus {
     cursor: crosshair; }
 .represent_fractions_question .explain_area_textarea_RF {
   margin-top: 1px;
   font-size: 13px;
-  width: 584px;
+  width: 100%;
   height: 200px;
   resize: vertical;
   border: 1px solid; }
