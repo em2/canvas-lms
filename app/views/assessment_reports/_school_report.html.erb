@@ -101,7 +101,7 @@
         <tr dir="ltr">
           <td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
           <td dir="ltr" class="s10" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @teacher_name["#{id}"] %></td>
-          <td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= link_to Course.find(id).name[/C[0-9]{3}/], class_report_assessment_report_path(id, @quiz_ids["#{id}"]) %> </td>
+          <td dir="ltr" class="s11" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><% course = Course.find(id) -%><%= link_to course.name[/C[0-9]{3}/] || course.name, class_report_assessment_report_path(id, @quiz_ids["#{id}"]) %> </td>
           <td class="s20" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @submitted_students_count["#{id}"] %></td>
           <% (@quiz_question_count-1).times do |count| -%>
             <td dir="ltr" class="s12" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @item_analysis["#{id}"]["#{count+1}"].nil? ? '-' : @item_analysis["#{id}"]["#{count+1}"].to_s + '%' %></td>
