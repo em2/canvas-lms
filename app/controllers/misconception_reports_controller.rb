@@ -23,9 +23,9 @@ class MisconceptionReportsController < ApplicationController
 				@high_probability["#{misconception.id}"] = []
 				@somewhat_probability["#{misconception.id}"] = []
 				misconception.user_misconceptions.active.each_with_index do |user, um_index|
-					if @high_probability_limits && user.probability > @high_probability_limits["#{user.quiz_misconception_id}"].to_f
+					if @high_probability_limits && user.probability >= @high_probability_limits["#{user.quiz_misconception_id}"].to_f
 						@high_probability["#{misconception.id}"] << user.user_id
-					elsif @somewhat_probability_limits && user.probability > @somewhat_probability_limits["#{user.quiz_misconception_id}"].to_f
+					elsif @somewhat_probability_limits && user.probability >= @somewhat_probability_limits["#{user.quiz_misconception_id}"].to_f
 						@somewhat_probability["#{misconception.id}"] << user.user_id
 					end
 				end
