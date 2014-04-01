@@ -463,7 +463,7 @@ class Course < ActiveRecord::Base
   named_scope :with_enrollments, lambda {
     { :conditions => ["exists (#{Enrollment.active.send(:construct_finder_sql, {:select => "1", :conditions => ["enrollments.course_id = courses.id"]})})"] }
   }
-  
+
   named_scope :by_name, :order => 'name ASC'
   named_scope :by_name_available, :conditions => {:workflow_state => "available"}, :order => 'name ASC'
   named_scope :are_available, :conditions => {:workflow_state => "available"}
@@ -859,7 +859,7 @@ class Course < ActiveRecord::Base
       given {|user, session| self.enrollment_allows(user, session, permission) || self.account_membership_allows(user, session, permission) }
       can permission
     end
-    
+
     given { |user, session| session && session[:enrollment_uuid] && (hash = Enrollment.course_user_state(self, session[:enrollment_uuid]) || {}) && (hash[:enrollment_state] == "invited" || hash[:enrollment_state] == "active" && hash[:user_state] == "pre_registered") && (self.available? || self.completed? || self.claimed? && hash[:is_admin]) }
     can :read
 
@@ -873,7 +873,7 @@ class Course < ActiveRecord::Base
     # Active students
     given { |user| self.available? && user && user.cached_current_enrollments.any?{|e| e.course_id == self.id && e.participating_student? } }
     can :read and can :participate_as_student and can :read_grades
-    
+
     given { |user| (self.available? || self.completed?) && user && user.cached_not_ended_enrollments.any?{|e| e.course_id == self.id && e.participating_observer? && e.associated_user_id} }
     can :read_grades
 
@@ -1333,9 +1333,9 @@ class Course < ActiveRecord::Base
     else
       e = self.enrollments.find_by_user_id_and_type(user.id, type)
     end
-    e.attributes = { 
-      :course_section => section, 
-      :workflow_state => 'invited', 
+    e.attributes = {
+      :course_section => section,
+      :workflow_state => 'invited',
       :limit_privileges_to_course_section => limit_privileges_to_course_section } if e && (e.completed? || e.rejected?)
     # if we're creating a new enrollment, we want to return it as the correct
     # subclass, but without using associations, we need to manually activate
@@ -1343,10 +1343,10 @@ class Course < ActiveRecord::Base
     # association here -- just ran out of time.
     self.shard.activate do
       e ||= Enrollment.typed_enrollment(type).new(
-        :user => user, 
+        :user => user,
         :course => self,
-        :course_section => section, 
-        :workflow_state => enrollment_state, 
+        :course_section => section,
+        :workflow_state => enrollment_state,
         :limit_privileges_to_course_section => limit_privileges_to_course_section)
     end
     if e.changed?
@@ -2520,7 +2520,7 @@ class Course < ActiveRecord::Base
       # Remove all the tabs we don't want for EM2 teachers
       tabs.delete_if { |t| t[:id] == TAB_HOME }
       tabs.delete_if { |t| t[:id] == TAB_ANNOUNCEMENTS }
-      tabs.delete_if { |t| t[:id] == TAB_ASSIGNMENTS }
+      # tabs.delete_if { |t| t[:id] == TAB_ASSIGNMENTS }
       tabs.delete_if { |t| t[:id] == TAB_DISCUSSIONS }
       tabs.delete_if { |t| t[:id] == TAB_GRADES }
       tabs.delete_if { |t| t[:id] == TAB_PEOPLE }
@@ -2698,7 +2698,7 @@ class Course < ActiveRecord::Base
     )
     enrollments.select { |e| e.active? }.map(&:user).uniq
   end
-  
+
   def student_view_student
     fake_student = find_or_create_student_view_student
     fake_student = sync_enrollments(fake_student)
@@ -2728,17 +2728,17 @@ class Course < ActiveRecord::Base
     end
   end
   private :find_or_create_student_view_student
-  
+
   # we want to make sure the student view student is always enrolled in all the
   # sections of the course, so that a section limited teacher can grade them.
   def sync_enrollments(fake_student)
     self.course_sections.active.each do |section|
       # enroll fake_student will only create the enrollment if it doesn't already exist
-      self.enroll_user(fake_student, 'StudentViewEnrollment', 
-                       :allow_multiple_enrollments => true, 
+      self.enroll_user(fake_student, 'StudentViewEnrollment',
+                       :allow_multiple_enrollments => true,
                        :section => section,
-                       :enrollment_state => 'active', 
-                       :no_notify => true, 
+                       :enrollment_state => 'active',
+                       :no_notify => true,
                        :skip_touch_user => true)
     end
     fake_student
