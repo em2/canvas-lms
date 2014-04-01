@@ -10,19 +10,19 @@
     :border 1px solid #999
     :color #000
     :background-color #fff
-    
+
     .group_move_icon,.add_assignment_link,.edit_group_link,.delete_group_link
       :display none
     .group_move
       :visibility hidden
-    
+
     &.group-hover
       :border-width 2px
       div.header
         :padding 0px 0px 0px 5px
-      div.assignment_list 
+      div.assignment_list
         :padding 0 0px 0px 0px
-    
+
     &.droppable_group
       :border 2px solid #999
 
@@ -39,11 +39,11 @@
         :color #666
         :margin-top 0px
         :margin-bottom 0px
-        
+
         .links
           a
             :opacity 0.5
-        
+
         .group_move .group_move_icon
           :visibility hidden
 
@@ -85,7 +85,7 @@
         :padding 2px 5px 2px 5px
 
         &.assignment_title
-          :width 25%
+          :width 40%
           :margin-right 4%
           :white-space nowrap
           :overflow hidden
@@ -110,7 +110,7 @@
           :padding-right 10px
           :opacity 0.5
           :display none
-          
+
           &:hover
             :opacity 1.0
 
@@ -125,44 +125,44 @@
           :padding-left 5px
           :width 20px
           :display block
-          
+
           .move_icon
             :visibility hidden
 
-      &.assignment-hover, .ui-sortable-helper 
+      &.assignment-hover, .ui-sortable-helper
         :background-color #eee
-        
+
         div.data.links
           :display block
-        
+
         div.data.move .move_icon
           :visibility visible
-        
+
       &.editing
-        :background-color #ddd  
+        :background-color #ddd
   &.groups_editable
     .assignment_group
       .group_move_icon,.add_assignment_link,.edit_group_link,.delete_group_link
         :display inline
       .group_move
         :visibility visible
-      
-      div      
+
+      div
         .edit_assignment_link,.delete_assignment_link
           :display inline
 
-        
+
 #assignments_for_student
   .group_assignment
     :min-height 40px
     :border-bottom 1px solid #ccc
     &.last
       :border-bottom-width 0px
-    
+
     .content
       :padding-top 3px
-      
-      
+
+
     .details
       :display block
       :margin-left 60px
@@ -224,7 +224,7 @@
 
       &.move
         :display none
-        
+
   .assignment_list.show_context
     .group_assignment .context_name
       :display block
@@ -236,7 +236,7 @@
     :border 1px solid #999
     :color #000
     +border-radius(5px)
-    
+
     .group_move_icon,.add_assignment_link,.edit_group_link,.delete_group_link
       :display none
     .group_move
@@ -251,11 +251,11 @@
         :color #666
         :margin-bottom 0px
         +border-top-radius(3px)
-                
+
         .group_name
           :font-size 1.5em
           :font-weight bold
-        
+
         .more_info_brief
           :line-height 1.7em
         .links
@@ -270,12 +270,12 @@
       +border-radius(3px)
       :color #444
       :border-bottom 1px solid #eee
-      
+
       &:hover
         :background-color #eee
       .content
         :padding-top 3px
-      
+
       &.group_assignment_graded
         :color #aaa
         a
@@ -320,7 +320,7 @@
 
         &.move
           :display none
-          
+
 #group_weight_table
   input.weight
     width: 35px
@@ -344,7 +344,7 @@
 #full_assignment_details h2
   margin: 0px
 
-      
+
 .show-only-from
   a
     display: block
