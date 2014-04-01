@@ -1242,7 +1242,7 @@ ul.instTree .loading{background-image:url(/images/ajax-loader-small.gif?13897385
 #groups .assignment_group div.points_uneditable form span.points{display:none}
 #groups .assignment_group div.points_uneditable form span.no_points{display:inline}
 #groups .assignment_group div div.data{float:left;border:0;padding:2px 5px 2px 5px}
-#groups .assignment_group div div.data.assignment_title{width:25%;margin-right:4%;white-space:nowrap;overflow:hidden}
+#groups .assignment_group div div.data.assignment_title{width:40%;margin-right:4%;white-space:nowrap;overflow:hidden}
 #groups .assignment_group div div.data.assignment_title a{color:#4b7092}
 #groups .assignment_group div div.data.assignment_due{width:27%;font-size:.8em;padding-top:.5em;color:#888;display:block}
 #groups .assignment_group div div.data.assignment_points{font-size:.8em;padding-top:.5em;color:#888}
