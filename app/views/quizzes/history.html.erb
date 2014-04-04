@@ -4,9 +4,9 @@
      join_title(t(:page_title_quiz, "%{user}'s Quiz History", :user => user_name), @quiz.quiz_title || t(:default_quiz_name, "Quiz %{course_name}", :course_name => @context.name)))
 %>
 
-<div class="hidden" style="display:none;">
 <% unless params[:headless] %>
 <% content_for :right_side do %>
+<div class="hidden" style="display:none;">
   <% if false && @current_version && can_do(@quiz, @current_user, :grade) %>
     <div class="rs-margin-lr rs-margin-top">
       <p><%= @quiz.survey? ?
@@ -61,9 +61,9 @@
       <a href="<%= context_url(@context, :context_quiz_misconception_reports_url, @quiz) %>" class='no-hover'><%= image_tag "back.png" %> <%= t('links.back_to_misconception_reports', "Back to Misconception Reports") %></a>
     </div>
   <% end %>
-<% end %>
-<% end %>
 </div>
+<% end %>
+<% end %>
 
 <h2>
   <% if @quiz.quiz_title %>
