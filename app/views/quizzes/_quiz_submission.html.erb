@@ -12,6 +12,7 @@
 </style>
 <% if @user_misconceptions && @user_misconceptions["#{@submission.user_id}"] && @user_misconceptions["#{@submission.user_id}"].map { |quiz_misconcption_id, likelyhood| !likelyhood.empty? }.any? -%>
   <div class="user_misconceptions">
+    <a href="<%= context_url(@context, :context_quiz_misconception_reports_url, @quiz) %>" class='no-hover'><%= image_tag "back.png" %> <%= t('links.back_to_misconception_reports', "Back to Misconception Reports") %></a>
     <h3 class="misconception_heading">This student may have the following misconceptions:</h3>
     <% @user_misconceptions["#{@submission.user_id}"].each do |quiz_misconcption_id, likelyhood| -%>
       <% unless likelyhood == '' -%>

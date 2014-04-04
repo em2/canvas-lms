@@ -4,6 +4,7 @@
      join_title(t(:page_title_quiz, "%{user}'s Quiz History", :user => user_name), @quiz.quiz_title || t(:default_quiz_name, "Quiz %{course_name}", :course_name => @context.name)))
 %>
 
+<div class="hidden" style="display:none;">
 <% unless params[:headless] %>
 <% content_for :right_side do %>
   <% if false && @current_version && can_do(@quiz, @current_user, :grade) %>
@@ -62,6 +63,7 @@
   <% end %>
 <% end %>
 <% end %>
+</div>
 
 <h2>
   <% if @quiz.quiz_title %>
