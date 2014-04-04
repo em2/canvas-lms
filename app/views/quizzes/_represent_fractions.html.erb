@@ -35,7 +35,7 @@
     <% end %>
   </div>
   <div class="question_image_RF">
-    <% if (data_found && assessing) -%>
+    <% if (data_found) -%>
       <%= user_content(question_image) %>
     <% end -%>
   </div>
@@ -128,11 +128,11 @@
       <% if question %>
         <% if question_type.display_answers == "multiple" && hash_get(question, :question_type) != "missing_word_question" %>
           <% list = hash_get(question, :answers, []) %>
-          
-          <%= render :partial => "quizzes/multi_answer", :collection => list, :locals => 
+
+          <%= render :partial => "quizzes/multi_answer", :collection => list, :locals =>
               {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer} %>
         <% elsif question_type.display_answers == "single" %>
-          <%= render :partial => "quizzes/single_answer", :locals => 
+          <%= render :partial => "quizzes/single_answer", :locals =>
                 {:question => question, :right_answers => right_answers, :question_type => question_type, :user_answer => user_answer} %>
         <% end %>
       <% end %>
@@ -181,15 +181,15 @@
       <% else %>
         <% if user_answer && question_type.display_answers == "single" %>
           <div style="padding: 5px 20px;">
-            Your Answer: 
+            Your Answer:
             <% if question_type.entry_type == 'textarea' %>
               <div class="user_content quiz_response_text"><%= hash_get(user_answer, :text).html_safe %></div>
             <% else %>
               <b><%= h(hash_get(user_answer, :text) || t(:you_left_this_blank, "You left this blank")) %></b>
               <% matched_answer = hash_get(question, :answers, []).find{|a| hash_get(a, :text) == hash_get(user_answer, :text) || hash_get(a, :id) == hash_get(user_answer, :answer_id) } %>
-              <% hash_get(question, :answers, []).each do |a| 
-                val = hash_get(user_answer, :text).to_f 
-                matched_answer = a if hash_get(a, :numerical_answer_type) == "exact_answer" && val <= (hash_get(a, :exact) + hash_get(a, :margin)) && val >= (hash_get(a, :exact) - hash_get(a, :margin)) 
+              <% hash_get(question, :answers, []).each do |a|
+                val = hash_get(user_answer, :text).to_f
+                matched_answer = a if hash_get(a, :numerical_answer_type) == "exact_answer" && val <= (hash_get(a, :exact) + hash_get(a, :margin)) && val >= (hash_get(a, :exact) - hash_get(a, :margin))
                 matched_answer = a if hash_get(a, :numerical_answer_type) == "range_answer" && val <= hash_get(a, :end) && val >= hash_get(a, :start)
                end %>
               <% if matched_answer && comment_get(matched_answer, :comments).present? %>
@@ -255,7 +255,7 @@
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_size_data" name="explain_canvas_<%= question[:id] %>_click_size_data" value="<%= click_size_data %>" />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_click_drag_data" name="explain_canvas_<%= question[:id] %>_click_drag_data" value="<%= click_drag_data %>" />
     <input type="hidden" id="explain_canvas_<%= question[:id] %>_img_data" name="explain_canvas_<%= question[:id] %>_img_data" value="" />
-    
+
   <% end -%>
 </div>
   <div class="after_answers">
@@ -285,16 +285,16 @@
 <script type="text/javascript">
 require([
   'jquery' /* $ */,
-  'drawing_pad' 
+  'drawing_pad'
 ], function($) {
    $(document).ready(function() {
     var assessing = false;
     var editing = false;
-    
+
     if ($('.assessing').length > 0){
       assessing = true;
     }
-    
+
     if ($('.editing').length > 0){
       editing = true;
     }
