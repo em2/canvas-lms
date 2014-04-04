@@ -1,3 +1,8 @@
+<style>
+  #right-side-wrapper{
+    display: none;
+  }
+</style>
 <% user_name = @quiz.survey? && @quiz.anonymous_submissions ? t(:anonymous_username, "Student") : context_user_name(@context, @user) %>
 <% content_for :page_title, (@quiz.survey? ?
      join_title(t(:page_title_survey, "%{user}'s Survey History", :user => user_name), @quiz.quiz_title || t(:default_survey_name, "Survey %{course_name}", :course_name => @context.name)) :
