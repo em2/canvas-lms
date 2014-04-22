@@ -1,0 +1,191 @@
+/*
+ * Base structure
+ */
+/* Move down content because we have a fixed navbar that is 50px tall */
+/* line 6, ../../../app/stylesheets/styles.scss */
+body {
+  padding-top: 50px; }
+
+/*
+ * Global add-ons
+ */
+/* line 15, ../../../app/stylesheets/styles.scss */
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee; }
+
+/*
+ * Sidebar
+ */
+/* Hide for mobile, show later */
+/* line 26, ../../../app/stylesheets/styles.scss */
+.sidebar {
+  display: none; }
+
+@media (min-width: 768px) {
+  /* line 30, ../../../app/stylesheets/styles.scss */
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee; }
+
+  /* Sidebar navigation */
+  /* line 44, ../../../app/stylesheets/styles.scss */
+  .nav-sidebar {
+    margin-right: -21px;
+    margin-bottom: 10px;
+    margin-left: -20px;
+    text-decoration: none; }
+
+  /* line 50, ../../../app/stylesheets/styles.scss */
+  .nav-sidebar > li > a {
+    text-decoration: none; }
+
+  /* line 53, ../../../app/stylesheets/styles.scss */
+  .nav-sidebar > .active > a {
+    color: #fff;
+    background-color: #428bca; }
+
+  /* line 58, ../../../app/stylesheets/styles.scss */
+  .nav-sidebar > .active > a:hover {
+    color: #428bca; }
+
+  /* line 62, ../../../app/stylesheets/styles.scss */
+  .nav-sidebar-subhead {
+    font-size: 12px;
+    text-indent: 20px; } }
+/* line 68, ../../../app/stylesheets/styles.scss */
+.nav-sidebar-subhead > li > a {
+  padding-right: 20px;
+  padding-left: 20px; }
+
+/* line 72, ../../../app/stylesheets/styles.scss */
+.subactive > a {
+  background-color: #e0e0e0; }
+
+/* line 79, ../../../app/stylesheets/styles.scss */
+.sidebar-head {
+  margin-bottom: 0;
+  padding-top: 10px;
+  border-bottom: 1px solid #DDD; }
+
+/* line 85, ../../../app/stylesheets/styles.scss */
+.sidebar-head > a:hover {
+  background-color: transparent; }
+
+/* line 88, ../../../app/stylesheets/styles.scss */
+.sidebar-head .glyphicon {
+  margin-top: 7px;
+  font-size: 14px;
+  font-weight: normal; }
+
+/* line 94, ../../../app/stylesheets/styles.scss */
+.teachbody {
+  font-size: 15px; }
+
+/*
+ * Main content
+ */
+/* line 101, ../../../app/stylesheets/styles.scss */
+.main {
+  padding: 20px; }
+
+@media (min-width: 768px) {
+  /* line 105, ../../../app/stylesheets/styles.scss */
+  .main {
+    padding-right: 40px;
+    padding-left: 40px; } }
+/* line 110, ../../../app/stylesheets/styles.scss */
+.main .page-header {
+  margin-top: 0; }
+
+/*
+ * Placeholder dashboard ideas
+ */
+/* line 122, ../../../app/stylesheets/styles.scss */
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center; }
+
+/* line 126, ../../../app/stylesheets/styles.scss */
+.placeholders h4 {
+  margin-bottom: 0; }
+
+/* line 129, ../../../app/stylesheets/styles.scss */
+.placeholder {
+  margin-bottom: 20px; }
+
+/* line 132, ../../../app/stylesheets/styles.scss */
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%; }
+
+/* sidebar */
+/* line 138, ../../../app/stylesheets/styles.scss */
+.assessments {
+  padding-left: 25px;
+  font-size: 12px;
+  text-indent: 10px; }
+
+/* navbar */
+/* line 146, ../../../app/stylesheets/styles.scss */
+.navbar-nav > li > a {
+  padding-top: 14px; }
+
+/* assessment navbar */
+/* line 152, ../../../app/stylesheets/styles.scss */
+.navbar-title {
+  padding-top: 14px;
+  color: #333; }
+
+/* line 164, ../../../app/stylesheets/styles.scss */
+.btn .btn-primary {
+  padding-top: 50px; }
+
+/* line 172, ../../../app/stylesheets/styles.scss */
+.navbar-nav > .active > a {
+  height: 48px; }
+
+/* line 181, ../../../app/stylesheets/styles.scss */
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: none;
+  color: none; }
+
+/* line 186, ../../../app/stylesheets/styles.scss */
+.navbar-inverse .navbar-nav > li > a {
+  color: #428bca; }
+
+/* line 191, ../../../app/stylesheets/styles.scss */
+.container-fluid {
+  margin-top: 0px; }
+
+/* line 194, ../../../app/stylesheets/styles.scss */
+.assessment-nav {
+  padding-top: 35px; }
+
+/*Course Pages*/
+/* line 199, ../../../app/stylesheets/styles.scss */
+.print_instructions {
+  display: none; }
+
+/* line 203, ../../../app/stylesheets/styles.scss */
+.sub_navbar > li {
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+/* line 208, ../../../app/stylesheets/styles.scss */
+.sub_navbar > li > a {
+  background-color: grey;
+  color: white; }
+
+/* line 213, ../../../app/stylesheets/styles.scss */
+.sub_navbar > li > a:hover {
+  color: black; }

@@ -48,17 +48,17 @@ class QuizzesController < ApplicationController
   end
 
   def new
-    if authorized_action(@context.quizzes.new, @current_user, :create)
-      @assignment = nil
-      @assignment = @context.assignments.active.find(params[:assignment_id]) if params[:assignment_id]
-      @quiz = @context.quizzes.create
-      add_crumb((!@quiz.quiz_title || @quiz.quiz_title.empty? ? t(:default_new_crumb, "New Quiz") : @quiz.quiz_title))
-      # this is a weird check... who can create but not update???
-      if authorized_action(@quiz, @current_user, :update)
-        @assignment = @quiz.assignment
-      end
-      redirect_to(named_context_url(@context, :edit_context_quiz_url, @quiz))
-    end
+    # if authorized_action(@context.quizzes.new, @current_user, :create)
+    #   @assignment = nil
+    #   @assignment = @context.assignments.active.find(params[:assignment_id]) if params[:assignment_id]
+    #   @quiz = @context.quizzes.create
+    #   add_crumb((!@quiz.quiz_title || @quiz.quiz_title.empty? ? t(:default_new_crumb, "New Quiz") : @quiz.quiz_title))
+    #   # this is a weird check... who can create but not update???
+    #   if authorized_action(@quiz, @current_user, :update)
+    #     @assignment = @quiz.assignment
+    #   end
+    #   redirect_to(named_context_url(@context, :edit_context_quiz_url, @quiz))
+    # end
   end
 
   def statistics
@@ -67,7 +67,7 @@ class QuizzesController < ApplicationController
         format.html {
           add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
           add_crumb(t(:statistics_crumb, "Statistics"), named_context_url(@context, :context_quiz_statistics_url, @quiz))
-          
+
           @statistics = @quiz.statistics(params[:all_versions] == '1')
           user_ids = @quiz.quiz_submissions.select{|s| !s.settings_only? }.map(&:user_id)
           @submitted_users = user_ids.empty? ? [] : User.find_all_by_id(user_ids).compact.uniq.sort_by(&:last_name_first)
@@ -84,7 +84,7 @@ class QuizzesController < ApplicationController
                 @submitted_users.slice!(index,1)
               end
             end
-                        
+
             #
             # Gather all the correct responses, student responses, and explaination text
             @q = {}

@@ -1,0 +1,20 @@
+<div class="no-print">
+  <div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar sidebar-head">
+      <li>
+        <a href="addclass.html">Classes<span class="glyphicon glyphicon-plus pull-right"></span></a>
+      </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+      <% @current_user.courses.each do |course| %>
+        <li class="nav text-primary"><%= link_to course.name, "/courses/#{course.id}" %>
+          <ul class="nav nav-sidebar assessments">
+            <% course.assignments.each do |assignment| %>
+              <li><%= link_to assignment.title, "/courses/#{course.id}/assignments/#{assignment.id}" %></li>
+            <% end -%>
+          </ul>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+</div>

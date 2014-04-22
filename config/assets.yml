@@ -105,7 +105,20 @@ css_compressor_options:
 %>
 
 javascripts:
-
+  bootstrap:
+    - public/javascripts/jquery.js
+    - public/javascripts/bootstrap/affix.js
+    - public/javascripts/bootstrap/alert.js
+    - public/javascripts/bootstrap/button.js
+    - public/javascripts/bootstrap/carousel.js
+    - public/javascripts/bootstrap/collapse.js
+    - public/javascripts/bootstrap/dropdown.js
+    - public/javascripts/bootstrap/modal.js
+    - public/javascripts/bootstrap/popover.js
+    - public/javascripts/bootstrap/scorllspy.js
+    - public/javascripts/bootstrap/tab.js
+    - public/javascripts/bootstrap/tooltip.js
+    - public/javascripts/bootstrap/transition.js
 stylesheets:
   common:
     - public/stylesheets/compiled/g_reset.css
@@ -138,6 +151,11 @@ stylesheets:
     - public/stylesheets/compiled/g_mini_calendar.css
     - public/stylesheets/compiled/helpDialog.css
     - public/stylesheets/compiled/print.css
+  bootstrap:
+    - public/stylesheets/compiled/bootstrap.css
+    - public/stylesheets/compiled/styles.css
+  print:
+    - public/stylesheets/compiled/bootstrap_print.css
   profile:
     - public/stylesheets/compiled/profile.css
   facebook:
