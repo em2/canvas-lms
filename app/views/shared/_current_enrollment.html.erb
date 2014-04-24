@@ -43,7 +43,7 @@
     </a>
     <% if my_classes -%>
       <% student_count = current_enrollment.course.students.count -%>
-      <span class="classes_info"><a href=<%= roster_path(current_enrollment.course.account.roster) %>><%= student_count %> <%= student_count == 1 ? t('my_classes.student', 'student') : t('my_classes.students', 'students') %> (roster)</a></span>
+      <span class="classes_info"><a href=<%= course_path(current_enrollment.course.id) %>><%= student_count %> <%= student_count == 1 ? t('my_classes.student', 'student') : t('my_classes.students', 'students') %> (roster)</a></span>
       <% assignments = current_enrollment.course.assignments.active -%>
       <% max_position = assignments.map(&:position).compact.max %>
       <% assignment = assignments.find_by_position(max_position) -%>
