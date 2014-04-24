@@ -2,15 +2,15 @@
   <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar sidebar-head">
       <li>
-        <a href="addclass.html">Classes<span class="glyphicon glyphicon-plus pull-right"></span></a>
+        <a href="/courses/new">Classes<span class="glyphicon glyphicon-plus pull-right"></span></a>
       </li>
     </ul>
     <ul class="nav nav-sidebar">
       <% @current_user.courses.each do |course| %>
-        <li class="nav text-primary"><%= link_to course.name, "/courses/#{course.id}" %>
+        <li class="nav text-primary <%= 'active' if current_page?(course_path(course.id)) %>"><%= link_to course.name, course_path(course.id) %>
           <ul class="nav nav-sidebar assessments">
             <% course.assignments.each do |assignment| %>
-              <li><%= link_to assignment.title, "/courses/#{course.id}/assignments/#{assignment.id}" %></li>
+              <li class="<%= 'active' if current_page?(course_quiz_path(course.id, assignment.quiz.id)) %>"><%= link_to assignment.title, course_assignment_path(course.id, assignment.id) %></li>
             <% end -%>
           </ul>
         </li>
