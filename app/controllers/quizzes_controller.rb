@@ -17,6 +17,7 @@
 #
 
 class QuizzesController < ApplicationController
+
   before_filter :require_context
   add_crumb(proc { t(:top_level_crumb, "Quizzes") }) { |c| c.send :named_context_url, c.instance_variable_get("@context"), :context_quizzes_url }
   before_filter { |c| c.active_tab = "quizzes" }

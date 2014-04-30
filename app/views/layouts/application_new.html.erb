@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <%= include_stylesheets :bootstrap %>
+    <%= include_stylesheets :print, :media => 'print' %>
+    <%= include_javascripts :bootstrap %>
+
+
+    <title>Eliciting Mathematical Misconceptions</title>
+  </head>
+  <body>
+    <% if @current_user %>
+      <%= render :partial => 'layouts/global/navbar' %>
+
+
+      <div class="container-fluid">
+        <div class="row">
+          <%= render :partial => 'layouts/global/sidebar' %>
+
+
+
+          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <%= yield %>
+          </div>
+
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end -%>
+  </body>
+</html>

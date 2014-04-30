@@ -216,50 +216,81 @@ body {
 /* line 241, ../../../app/stylesheets/styles.scss */
 .navbar-brand:hover, .navbar-brand:focus {
   padding: 9px 10px;
-  margin-top: 8px;
-  margin-bottom: 8px;
   background-color: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px; }
 
-/* line 251, ../../../app/stylesheets/styles.scss */
+/* line 249, ../../../app/stylesheets/styles.scss */
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color: #5e5e5e;
   background-color: transparent; }
 
-/* line 256, ../../../app/stylesheets/styles.scss */
+/* line 254, ../../../app/stylesheets/styles.scss */
 .navbar-inverse {
   background-color: #c1dccd;
   border-color: #c1dccd; }
 
-/* line 262, ../../../app/stylesheets/styles.scss */
+/* line 260, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-brand {
   color: #333333; }
 
-/* line 267, ../../../app/stylesheets/styles.scss */
+/* line 265, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > li > a {
   /*color:#333*/ }
 
-/* line 271, ../../../app/stylesheets/styles.scss */
+/* line 269, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
   /*background-color:#080808;
   color:#fff*/ }
 
-/* line 276, ../../../app/stylesheets/styles.scss */
+/* line 274, ../../../app/stylesheets/styles.scss */
 .panel-heading > .dropdown .dropdown-toggle {
   color: #333; }
 
-/* line 280, ../../../app/stylesheets/styles.scss */
+/* line 278, ../../../app/stylesheets/styles.scss */
 .sidebar-head {
   color: #777;
   font-size: 22px;
   text-decoration: none; }
 
-/* line 286, ../../../app/stylesheets/styles.scss */
+/* line 284, ../../../app/stylesheets/styles.scss */
 .navbar-user {
   float: right;
   padding: 15px;
   font-size: 15px;
   line-height: 20px;
   height: 50px; }
+
+/*quizzes index*/
+/* line 297, ../../../app/stylesheets/styles.scss */
+ul.quiz_list {
+  margin-top: 5px;
+  padding-left: 10px; }
+
+/* line 301, ../../../app/stylesheets/styles.scss */
+ul.quiz_list li.quiz {
+  list-style-type: none;
+  display: block;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  min-height: 94px; }
+
+/* line 309, ../../../app/stylesheets/styles.scss */
+ul.quiz_list li.quiz.unpublished {
+  border-width: 2px; }
+
+/* line 312, ../../../app/stylesheets/styles.scss */
+ul.quiz_list li.quiz div.title {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+/* line 316, ../../../app/stylesheets/styles.scss */
+ul.quiz_list li.quiz div.description {
+  font-size: 0.85em;
+  margin-left: 20px; }
+
+/* line 320, ../../../app/stylesheets/styles.scss */
+ul.quiz_list li.quiz div.description .quiz_info {
+  margin-left: 20px; }

@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
 
+
   def index
     respond_to do |format|
       format.html {
@@ -31,5 +32,9 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id]) if params[:id]
+  end
+
+  def new
+    @course = Course.new
   end
 end

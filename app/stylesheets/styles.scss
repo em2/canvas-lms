@@ -240,8 +240,6 @@ body {
 
   .navbar-brand:hover,.navbar-brand:focus{
   padding:9px 10px;
-  margin-top:8px;
-  margin-bottom:8px;
   background-color:none;
   background-image:none;
   border:1px solid transparent;
@@ -289,4 +287,36 @@ body {
   font-size:15px;
   line-height:20px;
   height:50px
+}
+
+
+/*quizzes index*/
+
+
+
+ul.quiz_list {
+  margin-top: 5px;
+  padding-left: 10px;
+}
+ul.quiz_list li.quiz {
+  list-style-type: none;
+  display: block;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  min-height: 94px;
+}
+ul.quiz_list li.quiz.unpublished {
+  border-width: 2px;
+}
+ul.quiz_list li.quiz div.title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+ul.quiz_list li.quiz div.description {
+  font-size: 0.85em;
+  margin-left: 20px;
+}
+ul.quiz_list li.quiz div.description .quiz_info {
+  margin-left: 20px;
 }

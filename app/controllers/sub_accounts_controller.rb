@@ -17,6 +17,7 @@
 #
 
 class SubAccountsController < ApplicationController
+
   # these actions assume that if we're authorized to act on @account , we're
   # authorized to act on all its sub-accounts too.
 
@@ -81,12 +82,12 @@ class SubAccountsController < ApplicationController
       @accounts[account_id][:course_count] = count
     end
   end
-  
+
   def show
     @sub_account = subaccount_or_self(params[:id])
     render :json => @sub_account.to_json(:include => [:sub_accounts, :courses], :methods => [:course_count, :sub_account_count])
   end
-  
+
   def create
     @parent_account = subaccount_or_self(params[:account].delete(:parent_account_id))
     @sub_account = @parent_account.sub_accounts.build(params[:account])
@@ -97,7 +98,7 @@ class SubAccountsController < ApplicationController
       render :json => @sub_account.errors.to_json
     end
   end
-  
+
   def update
     @sub_account = subaccount_or_self(params[:id])
     params[:account].delete(:parent_account_id)
@@ -107,7 +108,7 @@ class SubAccountsController < ApplicationController
       render :json => @sub_account.errors.to_json
     end
   end
-  
+
   def destroy
     @sub_account = subaccount_or_self(params[:id])
     @sub_account.destroy
