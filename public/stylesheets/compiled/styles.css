@@ -51,7 +51,7 @@ body {
 
   /* line 53, ../../../app/stylesheets/styles.scss */
   .nav-sidebar > .active > a {
-    color: #fff;
+    color: #fff !important;
     background-color: #428bca; }
 
   /* line 58, ../../../app/stylesheets/styles.scss */
@@ -135,73 +135,81 @@ body {
   font-size: 12px;
   text-indent: 10px; }
 
+/* line 144, ../../../app/stylesheets/styles.scss */
+.sidebar_course_name {
+  font-size: 14px; }
+
+/* line 148, ../../../app/stylesheets/styles.scss */
+.sidebar_text {
+  color: #428bca !important; }
+
 /* navbar */
-/* line 146, ../../../app/stylesheets/styles.scss */
+/* line 154, ../../../app/stylesheets/styles.scss */
 .navbar-nav > li > a {
   padding-top: 14px; }
 
 /* assessment navbar */
-/* line 152, ../../../app/stylesheets/styles.scss */
+/* line 160, ../../../app/stylesheets/styles.scss */
 .navbar-title {
   padding-top: 14px;
   color: #333; }
 
-/* line 164, ../../../app/stylesheets/styles.scss */
+/* line 172, ../../../app/stylesheets/styles.scss */
 .btn .btn-primary {
   padding-top: 50px; }
 
-/* line 172, ../../../app/stylesheets/styles.scss */
+/* line 180, ../../../app/stylesheets/styles.scss */
 .navbar-nav > .active > a {
   height: 48px; }
 
-/* line 181, ../../../app/stylesheets/styles.scss */
+/* line 189, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
   background-color: none;
   color: none; }
 
-/* line 186, ../../../app/stylesheets/styles.scss */
+/* line 194, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > li > a {
   color: #428bca; }
 
-/* line 191, ../../../app/stylesheets/styles.scss */
+/* line 199, ../../../app/stylesheets/styles.scss */
 .container-fluid {
   margin-top: 0px; }
 
-/* line 194, ../../../app/stylesheets/styles.scss */
+/* line 202, ../../../app/stylesheets/styles.scss */
 .assessment-nav {
   padding-top: 35px; }
 
 /*Course Pages*/
-/* line 199, ../../../app/stylesheets/styles.scss */
+/* line 207, ../../../app/stylesheets/styles.scss */
 .print_instructions {
   display: none; }
 
-/* line 203, ../../../app/stylesheets/styles.scss */
+/* line 211, ../../../app/stylesheets/styles.scss */
 .sub_navbar > li {
   margin-top: 5px;
   margin-bottom: 5px; }
 
-/* line 208, ../../../app/stylesheets/styles.scss */
+/* line 216, ../../../app/stylesheets/styles.scss */
 .sub_navbar > li > a {
   background-color: grey;
   color: white; }
 
-/* line 213, ../../../app/stylesheets/styles.scss */
+/* line 221, ../../../app/stylesheets/styles.scss */
 .sub_navbar > li > a:hover {
   color: black; }
 
-/* line 218, ../../../app/stylesheets/styles.scss */
+/* line 226, ../../../app/stylesheets/styles.scss */
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   background-color: transparent;
   border-color: #428bca; }
 
-/* line 223, ../../../app/stylesheets/styles.scss */
+/* line 231, ../../../app/stylesheets/styles.scss */
 .navbar {
   min-height: 40px;
   margin-bottom: 20px;
   border: 1px solid transparent; }
 
-/* line 229, ../../../app/stylesheets/styles.scss */
+/* line 237, ../../../app/stylesheets/styles.scss */
 .navbar-collapse {
   max-height: 800px;
   overflow-x: visible;
@@ -213,7 +221,11 @@ body {
   height: 30px;
   font-color: #428bca; }
 
-/* line 241, ../../../app/stylesheets/styles.scss */
+/* line 249, ../../../app/stylesheets/styles.scss */
+#assessment_navbar {
+  padding: 0px; }
+
+/* line 253, ../../../app/stylesheets/styles.scss */
 .navbar-brand:hover, .navbar-brand:focus {
   padding: 9px 10px;
   background-color: none;
@@ -221,40 +233,40 @@ body {
   border: 1px solid transparent;
   border-radius: 4px; }
 
-/* line 249, ../../../app/stylesheets/styles.scss */
+/* line 261, ../../../app/stylesheets/styles.scss */
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color: #5e5e5e;
   background-color: transparent; }
 
-/* line 254, ../../../app/stylesheets/styles.scss */
+/* line 266, ../../../app/stylesheets/styles.scss */
 .navbar-inverse {
   background-color: #c1dccd;
   border-color: #c1dccd; }
 
-/* line 260, ../../../app/stylesheets/styles.scss */
+/* line 272, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-brand {
   color: #333333; }
 
-/* line 265, ../../../app/stylesheets/styles.scss */
+/* line 277, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > li > a {
   /*color:#333*/ }
 
-/* line 269, ../../../app/stylesheets/styles.scss */
+/* line 281, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
   /*background-color:#080808;
   color:#fff*/ }
 
-/* line 274, ../../../app/stylesheets/styles.scss */
+/* line 286, ../../../app/stylesheets/styles.scss */
 .panel-heading > .dropdown .dropdown-toggle {
   color: #333; }
 
-/* line 278, ../../../app/stylesheets/styles.scss */
+/* line 290, ../../../app/stylesheets/styles.scss */
 .sidebar-head {
   color: #777;
   font-size: 22px;
   text-decoration: none; }
 
-/* line 284, ../../../app/stylesheets/styles.scss */
+/* line 296, ../../../app/stylesheets/styles.scss */
 .navbar-user {
   float: right;
   padding: 15px;
@@ -263,12 +275,12 @@ body {
   height: 50px; }
 
 /*quizzes index*/
-/* line 297, ../../../app/stylesheets/styles.scss */
+/* line 309, ../../../app/stylesheets/styles.scss */
 ul.quiz_list {
   margin-top: 5px;
   padding-left: 10px; }
 
-/* line 301, ../../../app/stylesheets/styles.scss */
+/* line 313, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz {
   list-style-type: none;
   display: block;
@@ -277,20 +289,22 @@ ul.quiz_list li.quiz {
   border: 1px solid #ccc;
   min-height: 94px; }
 
-/* line 309, ../../../app/stylesheets/styles.scss */
+/* line 321, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz.unpublished {
   border-width: 2px; }
 
-/* line 312, ../../../app/stylesheets/styles.scss */
+/* line 324, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz div.title {
   font-size: 1.2em;
   font-weight: bold; }
 
-/* line 316, ../../../app/stylesheets/styles.scss */
+/* line 328, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz div.description {
   font-size: 0.85em;
   margin-left: 20px; }
 
-/* line 320, ../../../app/stylesheets/styles.scss */
+/* line 332, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz div.description .quiz_info {
   margin-left: 20px; }
+
+/*add assessment*/

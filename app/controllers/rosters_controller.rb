@@ -1,17 +1,17 @@
 class RostersController < ApplicationController
   before_filter :require_user
-  
+
   def index
     if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
 
       add_crumb("School Rosters")
-      
+
       @rosters = Roster.by_name
 
       @courses = []
 
       @rosters.each do |roster|
-      
+
         if roster.account.courses.are_available.count > 0
           @found_teacher = false
           roster.account.courses.by_name_available.each do |course|
@@ -48,7 +48,7 @@ class RostersController < ApplicationController
       redirect_back_or_default(dashboard_url)
     end
   end
-  
+
   #########################################################################
   #
   # create will generate all the districts, schools, teachers, and students
@@ -67,7 +67,7 @@ class RostersController < ApplicationController
     if check_stage(params[:rosters][:stage])
       errors_found = true
     end
-    
+
     #
     # Make sure that the instance is 3 numbers and only 3 numbers
     if !check_instance(params[:rosters][:instance])
@@ -110,7 +110,7 @@ class RostersController < ApplicationController
           @roster = Roster.new
 
           @course_title = @course_titles[i]
-          
+
           #
           # Make sure that the course title is valid.
           if check_course_id(@course_title)
@@ -118,19 +118,19 @@ class RostersController < ApplicationController
             errors_found = true
             next
           end
-          
+
           #
           # Pull out all the names using regex.
           extract_names(@course_title)
 
           if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
-          
+
             #
             # Try to find the district. If unsuccessful, then create one.
             if (!@district_account = Account.find_by_name(@district))
               @district_account = Account.create!(:name => @district, :parent_account => @context)
             end
-            
+
             #
             # Try to find a school in that district with the same name.
             # If that was unsuccessful, go ahead and create a new school and roster for that school.
@@ -138,7 +138,7 @@ class RostersController < ApplicationController
               create_school()
             end
 
-          
+
             #
             # Send off the roster to generate everything to delayed_job
             Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
@@ -169,12 +169,12 @@ class RostersController < ApplicationController
       redirect_back_or_default(dashboard_url)
     end
   end
-  
+
   def show
     if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
       @roster = Roster.find(params[:id])
       @current_school_roster = @roster.account
-      
+
       add_crumb("Rosters", rosters_path)
       add_crumb(@current_school_roster.parent_account.name + @current_school_roster.name)
       @context = @roster
@@ -215,7 +215,7 @@ class RostersController < ApplicationController
     end
     return student_count_correct
   end
-  
+
   def check_course_id(course_title)
     if (course_title[/[Dd][0-9]{3}[Ss][0-9]{3}[Tt][0-9]{3}[Cc][0-9]{3}/] == nil || course_title.size != 16)
       return true

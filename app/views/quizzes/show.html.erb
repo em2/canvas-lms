@@ -16,11 +16,13 @@
       <span class="quiz_info"><%= @all_submitted_students_count %> <%= t('of', 'of') %> <%= @all_students_count %> <%= t('students_completed', 'students completed') %></span>
     </div>
   <% end -%>
+
   <% if @submission && params[:preview] %>
     <h3>
       <%= image_tag "warning.png" %> <%= t('warnings.draft_version', "This is a preview of the draft version of the quiz") %>
     </h3>
   <% end %>
+
   <% if !@quiz.available? %><p>
     <%= @quiz.survey? ? t(:survey_not_published, "This survey hasn't been published yet.  Students can't take the survey until it's published.") : t(:quiz_not_published, "This quiz hasn't been published yet.  Students can't take the quiz until it's published.") %>
     <% if can_do(@quiz, @current_user, :update) %>

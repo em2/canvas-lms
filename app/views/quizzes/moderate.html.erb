@@ -1,8 +1,10 @@
-<% 
+<%
   add_crumb @quiz.title, context_url(@context, :context_quiz_url, @quiz)
   add_crumb t(:page_title, 'Moderate Quiz')
 %>
 <% content_for :page_title do %><%= t(:page_title, "Moderate Quiz") %><% end %>
+
+<%= render :partial => "assessment_nav", :quiz => @quiz %>
 
 <h2><%= t(:page_title, "Moderate Quiz") %></h2>
 <table id="students" class="<%= 'can_add_attempts' if @quiz.allowed_attempts < 0 %>">
@@ -13,7 +15,6 @@
       <th><%= t('headers.attempt', "Attempt") %></th>
       <th><%= t('headers.time', "Time") %></th>
       <th style="<%= hidden if @quiz.allowed_attempts < 0 %>"><%= t('headers.attempts_left', "Attempts Left") %></th>
-      <th><%= t('headers.score', "Score") %></th>
       <th style="text-align: right;">
         <a href="#" class="reload_link"><%= image_tag "ajax-reload.gif" %></a>
       </th>
@@ -25,6 +26,7 @@
       <% count += 1 %>
       <% submission = @submissions.detect{|s| s.user_id == student.id} %>
       <% student_name = (@quiz.survey? && @quiz.anonymous_submissions) ? t(:student_n, "Student %{n}", :n => count) : student.last_name_first %>
+
       <tr class="student <%= 'extendable' if submission && submission.extendable? %> <%= 'in_progress' if submission && submission.untaken? %> <%= 'manually_unlocked' if submission && submission.manually_unlocked %>" id="student_<%= student.id %>" data-started-at="<%= submission && submission.started_at && submission.started_at.iso8601 %>" data-end-at="<%= submission && submission.end_at && submission.end_at.iso8601 %>" data-user-id="<%= student.id %>">
         <td>
           <input type="checkbox" class="student_check" data-id="<%= student.id %>" title="<%= t('titles.select_user', "Select %{user}", :user => student_name) %>"/>
@@ -54,15 +56,12 @@
         </td>
         <td class="attempts_left number" style="<%= hidden if @quiz.allowed_attempts < 0 %>">
           <% if @quiz.allowed_attempts < 0 %>
-            -- 
+            --
           <% elsif submission %>
             <%= submission.attempts_left %>
           <% else %>
             <%= @quiz.allowed_attempts %>
           <% end %>
-        </td>
-        <td class="score_holder">
-          <span class="score"><%= submission && submission.kept_score %></span>
         </td>
         <td class="links">
           <span class="unlocked" title="<%= t('titles.manually_unlocked', "Manually Unlocked") %>" style="<%= hidden unless submission && submission.manually_unlocked %>"><%= image_tag "unlock.png" %></span>
@@ -70,6 +69,7 @@
           <a href="#" class="moderate_student_link no-hover" title="<%= t('titles.change_user_extensions', "Change user extensions") %>"><%= image_tag "edit.png" %></a>
         </td>
       </tr>
+
     <% end %>
     <tr>
       <td colspan="5">

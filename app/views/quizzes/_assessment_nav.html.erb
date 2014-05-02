@@ -1,0 +1,66 @@
+<nav class="navbar navbar-default" role="navigation">
+
+  <div class="container-fluid container-nav">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#assessment_navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand navbar-title"><%= @quiz.title %></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="assessment_navbar">
+      <ul class="nav navbar-nav">
+
+        <!-- Preview Tab -->
+        <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_take_url, @quiz, :preview => 1)) %>">
+          <% link_to context_url(@context, :context_quiz_take_url, @quiz, :preview => 1), :method => :post do %>
+            Preview
+          <% end -%>
+        </li>
+
+        <!-- Misconceptions Tab -->
+        <li class="<%= 'active' if current_page?(course_quiz_misconception_reports_path) %>">
+          <%= link_to "Misconceptions", course_quiz_misconception_reports_path %>
+        </li>
+
+        <!-- Instructions Tab -->
+        <li class="<%= 'active' if current_page?(course_quiz_teacher_instructions_path) %>">
+          <%= link_to "Instructions", course_quiz_teacher_instructions_path %>
+        </li>
+
+        <!-- Monitor Tab -->
+        <% if can_do(@quiz, @current_user, :manage) %>
+          <li class="<%= 'active' if current_page?(course_quiz_moderate_path) %>">
+            <%= link_to "Monitor", course_quiz_moderate_path %>
+          </li>
+        <% end -%>
+
+        <!-- Individual Responses Tab -->
+        <% if @quiz.assignment %>
+          <li class="<%= 'active' if current_page?(context_url(@context, :speed_grader_context_gradebook_url, :assignment_id => @quiz.assignment.id)) %>">
+            <% link_to context_url(@context, :speed_grader_context_gradebook_url, :assignment_id => @quiz.assignment.id) do %>
+              Individual Responses
+            <% end -%>
+          </li>
+        <% end -%>
+
+        <!-- Class Summary Tab -->
+        <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html)) %>">
+          <% link_to context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html) do %>
+            Class Summary
+          <% end -%>
+        </li>
+
+        <!-- Statistics Tab -->
+        <li class="<%= 'active' if current_page?(course_quiz_statistics_path) %>">
+          <%= link_to "Statistics", course_quiz_statistics_path %>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>

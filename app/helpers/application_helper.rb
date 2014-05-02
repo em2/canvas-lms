@@ -23,7 +23,7 @@ module ApplicationHelper
 
   def permission_level(permission_levels)
     if permission_levels.include?("account_admin")
-      'Account Admin' 
+      'Account Admin'
     elsif permission_levels.include?("district_admin")
       'District Admin'
     elsif permission_levels.include?("school_admin")
@@ -43,7 +43,7 @@ module ApplicationHelper
       return "Spring"
     when 5..7
       return "Summer"
-    end      
+    end
   end
 
   # Admins of the given context can see the User.name attribute,
@@ -719,5 +719,9 @@ module ApplicationHelper
   def collection_cache_key(collection)
     keys = collection.map { |element| element.cache_key }
     Digest::MD5.hexdigest(keys.join('/'))
+  end
+
+  def teacher_role?
+    @current_user && @current_user.roles.include?("teacher")
   end
 end

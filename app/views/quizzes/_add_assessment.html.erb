@@ -1,0 +1,37 @@
+<h2><%= @course.name %></h2>
+
+  <table class="table">
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+<% @available_assessments.each do |assessment| %>
+    <tr>
+      <td><p><%= assessment.full_name %></p></td>
+      <td><p><%= assessment.assessment_questions.count - 1 %> Questions</p></td>
+      <td><%= link_to "Misconceptions" %></td>
+
+      <% form_for :rosters, :url => rosters_path do |f| %>
+        <%= f.hidden_field :probe_id, :value => assessment.id %>
+        <%= f.hidden_field :stage, :value => 'X' %>
+        <%= f.hidden_field :instance, :value => '001' %>
+        <%= f.hidden_field :students, :value => @course.students.count %>
+        <%= f.hidden_field :courses, :value => @course.course_code %>
+        <td>
+          <%= f.submit 'Add' %>
+        </td>
+      <% end -%>
+
+      <td>
+        <% if assessment.paper_version_url.present? %>
+          <a href="<%= assessment.paper_version_url %>"><%= image_tag 'pdf.png' %></a>
+        <% else %>
+          No PDF
+        <% end -%>
+      </td>
+    </tr>
+<% end -%>
+  </table>

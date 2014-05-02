@@ -26,6 +26,8 @@ class QuizzesController < ApplicationController
   def index
     if authorized_action(@context, @current_user, :read)
       return unless tab_enabled?(@context.class::TAB_QUIZZES)
+      @available_assessments = AssessmentQuestionBank.active
+      @course = Course.find(params[:course_id])
       @quizzes = @context.quizzes.active.include_assignment.sort_by{|q| [(q.assignment ? q.assignment.due_at : q.lock_at) || Time.parse("Jan 1 2020"), q.title || ""]}
       @unpublished_quizzes = @quizzes.select{|q| !q.available?}
       @quizzes = @quizzes.select{|q| q.available?}

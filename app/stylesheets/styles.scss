@@ -51,7 +51,7 @@ body {
   text-decoration: none;
 }
 .nav-sidebar > .active > a {
-  color: #fff;
+  color: #fff !important;
   background-color: #428bca;
 }
 
@@ -139,6 +139,14 @@ body {
   padding-left:25px;
   font-size: 12px;
   text-indent:10px;
+}
+
+.sidebar_course_name{
+  font-size: 14px;
+}
+
+.sidebar_text{
+  color:rgb(66, 139, 202) !important;
 }
 
 
@@ -238,6 +246,10 @@ body {
   font-color:#428bca;
   }
 
+  #assessment_navbar{
+    padding: 0px;
+  }
+
   .navbar-brand:hover,.navbar-brand:focus{
   padding:9px 10px;
   background-color:none;
@@ -320,3 +332,6 @@ ul.quiz_list li.quiz div.description {
 ul.quiz_list li.quiz div.description .quiz_info {
   margin-left: 20px;
 }
+
+/*add assessment*/
+
