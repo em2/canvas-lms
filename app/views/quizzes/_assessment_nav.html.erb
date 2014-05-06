@@ -1,6 +1,6 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default roster_nav" id="assessment_nav_box" role="navigation">
 
-  <div class="container-fluid container-nav">
+  <div class="container-fluid container-nav roster_nav">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#assessment_navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -8,11 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand navbar-title"><%= @quiz.title %></a>
+      <h4 class="navbar-brand navbar-title"><%= @quiz.title %></h4>
     </div>
 
     <div class="collapse navbar-collapse" id="assessment_navbar">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav sub_navbar roster_nav assessment_navbar_links">
 
         <!-- Preview Tab -->
         <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_take_url, @quiz, :preview => 1)) %>">

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default roster_nav" role="navigation">
 
-  <div class="container-fluid container-nav">
+  <div class="container-fluid container-nav roster_nav">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle no-print" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -14,18 +14,18 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav nav-pills pull-right sub_navbar no-print">
-        <li><%= link_to "delete" %></li>
-        <li><%= link_to "edit roster", "/courses/#{@course.id}/edit" %></li>
-        <li><%= link_to "add assessment", course_quizzes_path(@course.id) %></li>
-        <li><a href="javascript:window.print()">print</a></li>
+      <ul class="nav navbar-links sub_navbar roster_nav no-print">
+        <li><%= link_to "Delete" %></li>
+        <li><%= link_to "Edit Roster", "/courses/#{@course.id}/edit" %></li>
+        <li><%= link_to "Add Assessment", course_quizzes_path(@course.id) %></li>
+        <li><a href="javascript:window.print()">Print</a></li>
       </ul>
     </div>
 
   </div>
 </nav>
 
-<div class="table-responsive">
+<div class="table-responsive" id="roster_names">
   <table class="table table-striped course_roster">
     <thead>
       <tr>

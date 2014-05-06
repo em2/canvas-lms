@@ -2,17 +2,17 @@
   <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar sidebar-head">
       <li>
-        <a href="/courses/new" class="sidebar_text">Classes<span class="glyphicon glyphicon-plus pull-right sidebar_text"></span></a>
+        <p id="sidebar_title">Classes</p><a href="/courses/new" class="sidebar_text glyphicon glyphicon-plus"></a>
       </li>
     </ul>
     <ul class="nav nav-sidebar">
       <% @current_user.courses.each do |course| %>
-        <li class="nav text-primary <%= 'active' if current_page?(course_path(course.id)) %>">
+        <li class="nav text-primary <%= 'active' if current_page?(course_path(course.id)) %> sidebar_course">
           <%= link_to course.name, course_path(course.id), :class => 'sidebar_course_name sidebar_text' %>
           <ul class="nav nav-sidebar assessments">
             <% course.assignments.each do |assignment| %>
               <li class="<%= 'active' if current_page?(course_quiz_take_path(course.id, assignment.quiz.id, :preview => 1)) %>">
-                <%= link_to assignment.title, course_quiz_take_path(course.id, assignment.quiz.id, :preview => 1), :class => 'sidebar_text' %>
+                <%= link_to assignment.title, course_quiz_take_path(course.id, assignment.quiz.id, :preview => 1), :class => 'sidebar_text  sidebar_assessment' %>
               </li>
             <% end -%>
           </ul>

@@ -78,22 +78,34 @@ body {
 
 .sidebar-head{
   margin-bottom:0;
-  padding-top:10px;
   border-bottom: 1px solid #DDD;
+}
+
+#sidebar_title{
+  float: left;
+  padding: 19px 0 0 15px;
+  margin: 0;
 }
 
 .sidebar-head > a:hover{
  background-color:transparent;
 }
 .sidebar-head .glyphicon{
-  margin-top:7px;
   font-size:14px;
   font-weight:normal;
+  float: right;
+  margin: 0;
+  padding-top: 27px;
 }
 
 .teachbody {
   font-size:15px;
 }
+
+.sidebar_assessment{
+  padding-left: 20px !important;
+}
+
 /*
  * Main content
  */
@@ -135,6 +147,11 @@ body {
 }
 
 /* sidebar */
+
+.sidebar_title{
+
+}
+
 .assessments{
   padding-left:25px;
   font-size: 12px;
@@ -143,6 +160,7 @@ body {
 
 .sidebar_course_name{
   font-size: 14px;
+  padding-left: 20px !important;
 }
 
 .sidebar_text{
@@ -153,21 +171,28 @@ body {
 /* navbar */
 .navbar-nav>li>a{
   padding-top:14px;
+}
 
+.nav_text{
+  margin-top: -7px;
 }
 
 /* assessment navbar */
 .navbar-title {
-  padding-top:14px;
-
-  color:#333;
+  font-size: 28px;
+  color: rgb(66, 139, 202) !important;
+  margin-bottom:inherit;
+  padding: 19px 0px 0px 15px;
 }
 
+.assessment_navbar_links{
+  padding-top: 11px;
+  padding-left: 20px;
+}
 
-
-
-
-
+#assessment_nav_box{
+  padding-top: 3px;
+}
 
 .btn .btn-primary {
   padding-top:50px;
@@ -178,7 +203,7 @@ body {
 
 
 .navbar-nav>.active>a {
-  height: 48px;
+  height: 60px;
 }
 
 
@@ -204,8 +229,21 @@ body {
 }
 
 /*Course Pages*/
+
+#roster_names{
+  padding-left: 15px;
+}
+
 .print_instructions{
   display: none;
+}
+
+.roster_nav{
+  min-height: 60px;
+}
+
+.sub_navbar{
+  margin-top: -20px;
 }
 
 .sub_navbar > li {
@@ -214,12 +252,16 @@ body {
 }
 
 .sub_navbar > li > a {
-  background-color: grey;
-  color:white;
+  color: rgb(66, 139, 202) !important;
+  display: inline-block;
+  float: right;
+  font-size: 11pt;
+  padding-top: 20px;
 }
 
 .sub_navbar > li > a:hover {
   color:black;
+  height: 60px;
 }
 
 
@@ -251,7 +293,7 @@ body {
   }
 
   .navbar-brand:hover,.navbar-brand:focus{
-  padding:9px 10px;
+  padding:14px;
   background-color:none;
   background-image:none;
   border:1px solid transparent;
@@ -333,5 +375,16 @@ ul.quiz_list li.quiz div.description .quiz_info {
   margin-left: 20px;
 }
 
-/*add assessment*/
+/*teacher instructions*/
 
+#teacher_instructions{
+  font-size: 15px;
+  padding-left: 20px;
+  h1{
+    font-size: 33px;
+    font-weight: bold;
+  }
+  h4{
+    font-size: 24px;
+  }
+}

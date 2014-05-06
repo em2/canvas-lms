@@ -7,13 +7,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/courses"><img src="/images/logo.png"</a>
+      <a class="navbar-brand" href="/courses"><img class="nav_text" src="/images/logo.png"</a>
     </div>
 
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
             <li class="dropdown closed">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @current_user.sortable_name%> (Teacher) <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle nav_text" data-toggle="dropdown"><%= @current_user.name%> (Teacher) <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>
                   <a href="/users/11">
