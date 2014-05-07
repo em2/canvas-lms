@@ -6,8 +6,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
-
-+function ($) {
+define([
+  'jquery2' /* $ */
+], function ($) {
   'use strict';
 
   // ALERT CLASS DEFINITION
@@ -85,4 +86,4 @@
 
   $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
 
-}(jQuery);
+});

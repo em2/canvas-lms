@@ -362,3 +362,8 @@ ul.quiz_list li.quiz div.description .quiz_info {
   /* line 387, ../../../app/stylesheets/styles.scss */
   #teacher_instructions h4 {
     font-size: 24px; }
+
+/*add assessment*/
+/* line 394, ../../../app/stylesheets/styles.scss */
+.add_assessment_course_title {
+  font-size: 16px; }

@@ -6,8 +6,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
-
-+function ($) {
+define([
+  'jquery2' /* $ */
+], function ($) {
   'use strict';
 
   // MODAL CLASS DEFINITION
@@ -240,4 +241,4 @@
     .on('show.bs.modal', '.modal', function () { $(document.body).addClass('modal-open') })
     .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
 
-}(jQuery);
+});

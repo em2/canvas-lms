@@ -7,8 +7,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
-
-+function ($) {
+define([
+  'jquery2' /* $ */
+], function ($) {
   'use strict';
 
   // TOOLTIP PUBLIC CLASS DEFINITION
@@ -396,4 +397,4 @@
     return this
   }
 
-}(jQuery);
+});

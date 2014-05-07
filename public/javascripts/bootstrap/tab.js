@@ -6,8 +6,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
-
-+function ($) {
+define([
+  'jquery2' /* $ */
+], function ($) {
   'use strict';
 
   // TAB CLASS DEFINITION
@@ -122,4 +123,4 @@
     $(this).tab('show')
   })
 
-}(jQuery);
+});

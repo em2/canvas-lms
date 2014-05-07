@@ -40,7 +40,6 @@
   <% if teacher_role? %>
     <%= include_stylesheets :bootstrap %>
     <%= include_stylesheets :print, :media => 'print' %>
-    <%= include_javascripts :bootstrap %>
   <% end -%>
 
   <%= yield :auto_discovery %>
@@ -319,6 +318,7 @@
     paths: {
       common: 'compiled/bundles/common',
       jquery: 'vendor/jquery-1.6.4',
+      jquery2: 'jquery-1.11.0',
       jqueryui: 'vendor/jqueryui',
       underscore: 'vendor/underscore',
       backbone: 'vendor/backbone',
@@ -339,6 +339,7 @@
 
 <%= javascript_include_tag "#{js_base_url}/vendor/require.js" %>
 <%= javascript_include_tag "#{js_base_url}/compiled/bundles/common" %>
+<%= javascript_include_tag "#{js_base_url}/compiled/bundles/bootstrap" %>
 <%= include_js_bundles %>
 <%= include_account_js %>
 <%= render_js_blocks %>
@@ -365,6 +366,7 @@
 
   check();
 }).call(this);
+
 </script>
 </body>
 </html>

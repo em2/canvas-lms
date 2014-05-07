@@ -1661,6 +1661,16 @@ class Course < ActiveRecord::Base
       unzipper.process
     end
   end
+
+  def assignment_titles
+    assignment_titles = []
+    self.assignments.each do |assignment|
+      assignment_titles << assignment.title
+    end
+    assignment_titles
+  end
+
+
   private :process_migration_files
 
   def import_media_objects(mo_attachments, migration)

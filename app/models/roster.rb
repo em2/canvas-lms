@@ -65,7 +65,7 @@ class Roster < ActiveRecord::Base
   def find_course(course_title)
     course_found = false
     Course.all.each do |course|
-      if (course.name == course_title)
+      if (course.em2_identifier == course_title)
         if (course.workflow_state == "available" || course.workflow_state == "completed")
           course_found = true
           @course = course
