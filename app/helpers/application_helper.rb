@@ -724,4 +724,32 @@ module ApplicationHelper
   def teacher_role?
     @current_user && @current_user.roles.include?("teacher")
   end
+
+  def previous_submission(student, students, submissions)
+    previous = nil
+    i = students.index(student)
+    until previous.present?
+      previous = submissions.detect{|s| s.user_id == students[i-1].id}
+      i -= 1
+      if i == -1
+        previous = 'disable'
+      end
+    end
+    previous
+  end
+
+  def next_submission(student, students, submissions)
+    next_sub = nil
+    i = students.index(student)
+    until next_sub.present?
+      if i == students.index(students.last)
+        next_sub = 'disable'
+      else
+        i += 1
+        next_sub = submissions.detect{|s| s.user_id == students[i].id}
+      end
+    end
+    next_sub
+  end
 end
+

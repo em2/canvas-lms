@@ -1,3 +1,40 @@
+<% if teacher_role? %>
+  <%= render :partial => "assessment_nav", :quiz => @quiz %>
+<% end -%>
+
+<div class="student_responses_navs btn-group">
+  <!-- previous button -->
+  <% if previous_submission(@user, @students, @submissions) == 'disable' %>
+    <button class="disable btn">prev</button>
+  <% else %>
+    <%= link_to "prev", course_quiz_quiz_submission_path(@course_id, @quiz.id, previous_submission(@user, @students, @submissions).id), :class => 'btn' %>
+  <% end -%>
+  <!-- student dropdown -->
+  <a href="#" class="dropdown-toggle nav_text btn" data-toggle="dropdown"><%= @user.sortable_name %> <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li>
+      <% @students.each do |student| %>
+        <% submission = @submissions.detect{|s| s.user_id == student.id} %>
+        <% student_name = (@quiz.survey? && @quiz.anonymous_submissions) ? t(:student_n, "Student %{n}", :n => count) : student.last_name_first %>
+        <li>
+          <%= t(:student_gets_extra_time, "*%{student_name}* **gets %{extra_time} extra minutes on each attempt**",
+               :student_name => student_name, :extra_time => (submission && submission.extra_time) || '&nbsp;',
+               :wrapper => {
+                 '*' => submission ? %{<a class="student_name" href="#{context_url(@context, :context_quiz_history_url, @quiz.id, :quiz_submission_id => submission.id)}">\\1</a>} : '\1',
+                 '**' => %{<div class='extra_time_allowed' style="#{hidden unless submission && submission.extra_time}">\\1</div>}
+               }) %>
+        </li>
+      <% end -%>
+  </ul>
+  <!-- next button -->
+  <% if next_submission(@user, @students, @submissions) == 'disable' %>
+    <button class="disable btn">next</button>
+  <% else %>
+    <%= link_to "next", course_quiz_quiz_submission_path(@course_id, @quiz.id, next_submission(@user, @students, @submissions).id), :class => 'btn' %>
+  <% end -%>
+
+</div>
+
 <% user_name = @quiz.survey? && @quiz.anonymous_submissions ? t(:anonymous_username, "Student") : context_user_name(@context, @user) %>
 <% content_for :page_title, (@quiz.survey? ?
      join_title(t(:page_title_survey, "%{user}'s Survey History", :user => user_name), @quiz.quiz_title || t(:default_survey_name, "Survey %{course_name}", :course_name => @context.name)) :
@@ -6,11 +43,11 @@
 
 <h2>
   <% if @quiz.quiz_title %>
-    <%= t(:named_quiz_results, "%{quiz_name} Results for %{user}", :quiz_name => @quiz.quiz_title, :user => user_name) %>
+    <%= t(:named_quiz_results, "%{quiz_name} Results for %{user}", :quiz_name => @quiz.quiz_title, :user => @user.sortable_name) %>
   <% elsif @quiz.survey? %>
-    <%= t(:unnamed_survey_results, "Survey Results for %{user}", :user => user_name) %>
+    <%= t(:unnamed_survey_results, "Survey Results for %{user}", :user => @user.sortable_name) %>
   <% else %>
-    <%= t(:unnamed_quiz_results, "Quiz Results for %{user}", :user => user_name) %>
+    <%= t(:unnamed_quiz_results, "Quiz Results for %{user}", :user => @user.sortable_name) %>
   <% end %>
 </h2>
 <div id="feel_free_to_toggle_message">

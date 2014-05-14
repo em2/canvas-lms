@@ -1,0 +1,31 @@
+<div class="container" id="add_course_form">
+  <% form_for :course, :url => { :action => "create" }, :html => { :class => 'form-horizontal' } do |f| %>
+    <div class="row">
+      <div class="control-group">
+        <h2 class="sub-header">Add a Class</h2>
+        <%= f.label :name, 'Class Name' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'form-control', :id => 'new_course_name_field' %>
+        </div>
+      </div>
+    </div>
+    <!-- Textarea -->
+    <div class="row">
+      <div class="control-group">
+        <%= f.label :students, 'Class Roster' %>
+        <div class="controls">
+          <%= f.text_area :students, :class => 'form-control', :id => 'new_course_roster_area' %>
+        </div>
+      </div>
+    </div>
+    <!-- Button -->
+    <div class="row">
+      <div class="control-group">
+        <label class="control-label" for="singlebutton"></label>
+        <div class="controls">
+          <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  <% end -%>
+</div>

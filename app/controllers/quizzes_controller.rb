@@ -386,18 +386,34 @@ class QuizzesController < ApplicationController
       is_admin?
       is_teacher?
       @class_report = @context.class_reports.find_by_quiz_id(params[:quiz_id])
+
       if @class_report && @class_report.user_misconceptions
         @user_misconceptions = JSON.parse(@class_report.user_misconceptions)
       end
+
       add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
+
       if params[:quiz_submission_id]
         @submission = @quiz.quiz_submissions.find(params[:quiz_submission_id])
       else
         user_id = params[:user_id].presence || @current_user.id
         @submission = @quiz.quiz_submissions.find_by_user_id(user_id, :order => 'created_at') rescue nil
+        @submission = @quiz.quiz_submissions.find(:first, :conditions => 'finished_at IS NOT NULL') unless @submission
       end
+
+      #added from moderate to get list of submitted quizzes by students
+      if authorized_action(@quiz, @current_user, :grade)
+        @students = @context.students
+        last_updated_at = Time.parse(params[:last_updated_at]) rescue nil
+        @submissions = @quiz.quiz_submissions.updated_after(last_updated_at).for_user_ids(@students.map(&:id))
+      end
+      #end of section taken from moderate
+
+      @course_id = params[:course_id]
+
       @submission = nil if @submission && @submission.settings_only?
       @user = @submission && @submission.user
+
       if @submission && @submission.needs_grading?
         @submission.grade_submission(:finished_at => @submission.end_at)
         @submission.reload

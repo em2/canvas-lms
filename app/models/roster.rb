@@ -59,7 +59,7 @@ class Roster < ActiveRecord::Base
       create_student(context, course_title, i)
       enroll_as_student(@student)
       i += 1
-    end
+  end
 	end
 
   def find_course(course_title)

@@ -1,86 +1,89 @@
-<% jammit_css :misconception_reports -%>
-<% content_for :page_title do -%>Misconception Reports<% end -%>
-<%= render :partial => "/quizzes/assessment_nav", :quiz => @quiz %>
+<div id="assessment_misconceptions_page">
+  <% jammit_css :misconception_reports -%>
+  <% content_for :page_title do -%>Misconception Reports<% end -%>
+  <%= render :partial => "/quizzes/assessment_nav", :quiz => @quiz %>
 
-<h2>Misconception Reports</h2>
-<div class="misconceptions">
-  <% @misconceptions.active.each_with_index do |misconception, index| -%>
-    <div id="<%= misconception.name %>" class="misconception">
-      <iframe src="<%= misconception.explanation_url %>" class="explanation_url_frame"></iframe>
-      <table class="misconception_table">
-        <tbody>
-          <tr class="misconceptions_summary_row">
-            <td class="misconceptions_summary_row_standard misconception_heading">
-              <%= index+1 %>.&nbsp<%= misconception.name %>&nbsp<%= "- #{misconception.description}" if !misconception.description.empty? %>
-            </td>
+  <h2>Misconception Reports</h2>
+  <div class="misconceptions">
+    <% @misconceptions.active.each_with_index do |misconception, index| -%>
+      <div id="<%= misconception.name %>" class="misconception">
+        <iframe src="<%= misconception.explanation_url %>" class="explanation_url_frame"></iframe>
+        <table class="misconception_table">
+          <tbody>
+            <tr class="misconceptions_summary_row">
+              <td class="misconceptions_summary_row_standard misconception_heading">
+                <%= index+1 %>.&nbsp<%= misconception.name %>&nbsp<%= "- #{misconception.description}" if !misconception.description.empty? %>
+              </td>
+              <tr>
+                <td class="misconception_links">
+                  <%= link_to("Open URL", h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
+                </td>
+              </tr>
+            </tr>
             <tr>
-              <td>
-                <%= link_to("Open URL", h(misconception.explanation_url), :target => "_blank") if (!misconception.explanation_url.empty?) %>
+              <td class="misconception_heading">
+                <div>Misconception</div>
+                <div>Highly Likely:</div>
               </td>
             </tr>
-          </tr>
-          <tr>
-            <td>
-              <div>Misconception</div>
-              <div>Highly Likely:</div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="misconceptions_summary_row_standard">
-                <% if @high_probability["#{misconception.id}"].present? -%>
-                  <% @high_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
-                    <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @high_probability["#{misconception.id}"].count-1 %>
+            <tr>
+              <td class="misconception_links misconception_student_names">
+                <div class="misconceptions_summary_row_standard">
+                  <% if @high_probability["#{misconception.id}"].present? -%>
+                    <% @high_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
+                      <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).sortable_name %></a><%= ', ' unless index == @high_probability["#{misconception.id}"].count-1 %>
+                    <% end -%>
+                  <% else -%>
+                    <span>None</span>
                   <% end -%>
-                <% else -%>
-                  <span>None</span>
-                <% end -%>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div>Misconception</div>
-              <div>Possible:</div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="misconceptions_summary_row_standard">
-                <% if @somewhat_probability["#{misconception.id}"].present? -%>
-                  <% @somewhat_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
-                    <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).name %></a><%= ', ' unless index == @somewhat_probability["#{misconception.id}"].count-1 %>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="misconception_heading">
+                <div>Misconception</div>
+                <div>Possible:</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="misconception_links misconception_student_names">
+                <div class="misconceptions_summary_row_standard">
+                  <% if @somewhat_probability["#{misconception.id}"].present? -%>
+                    <% @somewhat_probability["#{misconception.id}"].each_with_index do |user_id, index| -%>
+                      <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_id}"]) %>" class="name"><%= User.find(user_id).sortable_name %></a><%= ', ' unless index == @somewhat_probability["#{misconception.id}"].count-1 %>
+                    <% end -%>
+                  <% else -%>
+                    <span>None</span>
                   <% end -%>
-                <% else -%>
-                  <span>None</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="clear"></div>
+    <% end -%>
+  </div>
+  <div class="clear"></div>
+  <div class="difficulties">
+    <h2 class="misconception_heading">Students with difficulties:</h2>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <div class="difficult_student_names">
+              <% if @user_difficulties.present? -%>
+                <% @user_difficulties.each_with_index do |user_difficulty, index| -%>
+                  <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_difficulty.first}"]) %>" class="name"><%= User.find(user_difficulty.first).name %></a><%= ', ' unless index == @user_difficulties.count-1 %>
                 <% end -%>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="clear"></div>
-  <% end -%>
-</div>
-<div class="clear"></div>
-<div class="difficulties">
-  <h2>Students with difficulties:</h2>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <div class="difficult_student_names">
-            <% if @user_difficulties.present? -%>
-              <% @user_difficulties.each_with_index do |user_difficulty, index| -%>
-                <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{user_difficulty.first}"]) %>" class="name"><%= User.find(user_difficulty.first).name %></a><%= ', ' unless index == @user_difficulties.count-1 %>
+              <% else -%>
+                <span>None</span>
               <% end -%>
-            <% else -%>
-              <span>None</span>
-            <% end -%>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

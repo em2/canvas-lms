@@ -23,7 +23,7 @@ class SubmissionsController < ApplicationController
   before_filter :require_context
 
   include Api::V1::Submission
-  
+
   def index
     @assignment = @context.assignments.active.find(params[:assignment_id])
     if authorized_action(@assignment, @current_user, :grade)
@@ -36,8 +36,11 @@ class SubmissionsController < ApplicationController
       end
     end
   end
-  
+
   def show
+
+
+
     @assignment = @context.assignments.active.find(params[:assignment_id])
     if @context_enrollment && @context_enrollment.is_a?(ObserverEnrollment) && @context_enrollment.associated_user_id
       id = @context_enrollment.associated_user_id
@@ -79,6 +82,7 @@ class SubmissionsController < ApplicationController
           if @assignment.quiz && @context.class.to_s == 'Course' && @context.user_is_student?(@current_user)
             format.html { redirect_to(named_context_url(@context, :context_quiz_url, @assignment.quiz.id, :headless => 1)) }
           elsif @submission.submission_type == "online_quiz" && @submission.quiz_submission_version
+
             format.html { redirect_to(named_context_url(@context, :context_quiz_history_url, @assignment.quiz.id, :user_id => @submission.user_id, :headless => 1, :version => @submission.quiz_submission_version)) }
           else
             format.html { render :action => "show_preview" }
@@ -108,7 +112,7 @@ class SubmissionsController < ApplicationController
           format.html
         end
         if !json_handled
-          format.json { 
+          format.json {
             @submission.limit_comments(@current_user, session)
             excludes = @assignment.grants_right?(@current_user, session, :grade) ? [:grade, :score] : []
             render :json => @submission.to_json(
@@ -121,6 +125,7 @@ class SubmissionsController < ApplicationController
         end
       end
     end
+
   end
 
   API_SUBMISSION_TYPES = {
@@ -270,7 +275,7 @@ class SubmissionsController < ApplicationController
         require 'action_controller'
         require 'action_controller/test_process.rb'
         @attachment = @assignment.attachments.new(
-          :uploaded_data => ActionController::TestUploadedFile.new(path, doc_response.content_type, true), 
+          :uploaded_data => ActionController::TestUploadedFile.new(path, doc_response.content_type, true),
           :display_name => "#{display_name}",
           :user => @current_user
         )
@@ -319,7 +324,7 @@ class SubmissionsController < ApplicationController
       end
     end
   end
-  
+
   def turnitin_report
     @assignment = @context.assignments.active.find(params[:assignment_id])
     @submission = @assignment.submissions.find_by_user_id(params[:submission_id])
@@ -334,7 +339,7 @@ class SubmissionsController < ApplicationController
       end
     end
   end
-  
+
   def update
     @assignment = @context.assignments.active.find(params[:assignment_id])
     @user = @context.all_students.find(params[:id])
@@ -383,10 +388,10 @@ class SubmissionsController < ApplicationController
           format.html { redirect_to course_assignment_url(@context, @assignment) }
           excludes = @assignment.grants_right?(@current_user, session, :grade) ? [:grade, :score] : []
           comments_type = @context_enrollment.admin? ? :submission_comments : :visible_submission_comments
-          format.json { 
+          format.json {
             render :json => @submissions.to_json(Submission.json_serialization_full_parameters(:exclude => excludes, :except => [:quiz_submission,:submission_history], :comments => comments_type, :avatars => service_enabled?(:avatars)).merge(:permissions => {:user => @current_user, :session => session, :include_permissions => false})), :status => :created, :location => course_gradebook_url(@submission.assignment.context)
           }
-          format.text { 
+          format.text {
             render :json => @submissions.to_json(Submission.json_serialization_full_parameters(:exclude => excludes, :except => [:quiz_submission,:submission_history], :comments => comments_type, :avatars => service_enabled?(:avatars)).merge(:permissions => {:user => @current_user, :session => session, :include_permissions => false})), :status => :created, :location => course_gradebook_url(@submission.assignment.context)
           }
         else

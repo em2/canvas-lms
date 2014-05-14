@@ -40,8 +40,9 @@
 
         <!-- Individual Responses Tab -->
         <% if @quiz.assignment %>
-          <li class="<%= 'active' if current_page?(context_url(@context, :speed_grader_context_gradebook_url, :assignment_id => @quiz.assignment.id)) %>">
-            <% link_to context_url(@context, :speed_grader_context_gradebook_url, :assignment_id => @quiz.assignment.id) do %>
+          <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_history_url, @quiz.id, :headless => 1)) %>">
+            <%# link_to context_url(@context, :speed_grader_context_gradebook_url, :assignment_id => @quiz.assignment.id) do %>
+            <% link_to context_url(@context, :context_quiz_history_url, @quiz.id, :headless => 1) do %>
               Individual Responses
             <% end -%>
           </li>

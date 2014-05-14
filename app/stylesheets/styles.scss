@@ -17,6 +17,9 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+#footer{
+  padding-left: 25px;
+}
 
 /*
  * Sidebar
@@ -41,6 +44,7 @@ body {
   }
 
 /* Sidebar navigation */
+
 .nav-sidebar {
   margin-right: -21px;
   margin-bottom: 10px;
@@ -180,7 +184,7 @@ body {
 /* assessment navbar */
 .navbar-title {
   font-size: 28px;
-  color: rgb(66, 139, 202) !important;
+  color: rgb(119, 119, 119) !important;
   margin-bottom:inherit;
   padding: 19px 0px 0px 15px;
 }
@@ -392,5 +396,60 @@ ul.quiz_list li.quiz div.description .quiz_info {
 /*add assessment*/
 
 .add_assessment_course_title{
-  font-size: 16px;
+  font-size: 18px;
+}
+
+#add_assessment_table{
+  padding-left: 15px;
+  table{
+    max-width: 900px;
+    a{
+      color: #428bca;
+    }
+    p{
+      margin-bottom: 0;
+      color: rgb(119, 119, 119);
+    }
+  }
+  th{
+    border: none;
+  }
+  h2{
+    font-size: 24px;
+    color: rgb(119, 119, 119);
+  }
+}
+
+/*add course page*/
+
+#add_course_form{
+  width: 100%;
+}
+
+#new_course_name_field{
+  width: 300px;
+}
+
+#new_course_roster_area{
+  width: 375px;
+  height: 125px;
+}
+
+/*quiz preview*/
+#take_quiz_content{
+  margin-left: 15px;
+}
+
+/*misconceptions page*/
+#assessment_misconceptions_page{
+  margin-left: 15px;
+  .misconception_heading{
+    font-size: 18px;
+  }
+  .misconception_links{
+    font-style: italic;
+  }
+  .misconception_student_names{
+    font-size: 15px;
+  }
 }
