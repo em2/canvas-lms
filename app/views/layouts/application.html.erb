@@ -9,6 +9,7 @@
     @show_left_side ||= (section_tabs.length > 0 || left_side_custom.try(:length))
   end
 
+  sub_navigation_bar = yield :sub_navigation_bar
   right_side = yield :right_side
 	mini_display = yield :mini_display
 	generate_rosters = yield :generate_rosters
@@ -229,6 +230,10 @@
     <!-- end sidebar -->
 
     <div id="main">
+      <div id='sub-navigation-bar'>
+        <%= sub_navigation_bar %>
+      </div>
+
       <div id="right-side-wrapper">
         <aside id="right-side" role="complementary">
           <%= right_side %>

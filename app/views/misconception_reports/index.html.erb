@@ -3,7 +3,6 @@
   <% content_for :page_title do -%>Misconception Reports<% end -%>
   <%= render :partial => "/quizzes/assessment_nav", :quiz => @quiz %>
 
-  <h2>Misconception Reports</h2>
   <div class="misconceptions">
     <% @misconceptions.active.each_with_index do |misconception, index| -%>
       <div id="<%= misconception.name %>" class="misconception">

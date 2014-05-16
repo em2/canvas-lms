@@ -1,243 +1,249 @@
-<% if teacher_role? %>
-  <%= render :partial => "assessment_nav", :quiz => @quiz %>
-<% end -%>
-
-<div class="student_responses_navs btn-group">
-  <!-- previous button -->
-  <% if previous_submission(@user, @students, @submissions) == 'disable' %>
-    <button class="disable btn">prev</button>
-  <% else %>
-    <%= link_to "prev", course_quiz_quiz_submission_path(@course_id, @quiz.id, previous_submission(@user, @students, @submissions).id), :class => 'btn' %>
+<div id="individual_results_page">
+  <% if teacher_role? %>
+    <%= render :partial => "assessment_nav", :quiz => @quiz %>
   <% end -%>
-  <!-- student dropdown -->
-  <a href="#" class="dropdown-toggle nav_text btn" data-toggle="dropdown"><%= @user.sortable_name %> <b class="caret"></b></a>
-  <ul class="dropdown-menu">
-    <li>
+
+  <div class="student_responses_navs btn-group">
+    <!-- previous button -->
+    <% if previous_submission(@user, @students, @submissions) == 'disable' %>
+      <button class="disable btn btn-default">prev</button>
+    <% else %>
+      <%= link_to "prev", course_quiz_quiz_submission_path(@course_id, @quiz.id, previous_submission(@user, @students, @submissions).id), :class => 'btn btn-default' %>
+    <% end -%>
+    <!-- student dropdown -->
+    <button id="individual_responses_student_dropdown" class="dropdown-toggle btn btn-default" data-toggle="dropdown"><%= @user.sortable_name %> <b class="caret"></b></button>
+    <ul class="dropdown-menu" id="invidivual_responses_student_dropdown_menu">
       <% @students.each do |student| %>
         <% submission = @submissions.detect{|s| s.user_id == student.id} %>
         <% student_name = (@quiz.survey? && @quiz.anonymous_submissions) ? t(:student_n, "Student %{n}", :n => count) : student.last_name_first %>
         <li>
-          <%= t(:student_gets_extra_time, "*%{student_name}* **gets %{extra_time} extra minutes on each attempt**",
-               :student_name => student_name, :extra_time => (submission && submission.extra_time) || '&nbsp;',
-               :wrapper => {
-                 '*' => submission ? %{<a class="student_name" href="#{context_url(@context, :context_quiz_history_url, @quiz.id, :quiz_submission_id => submission.id)}">\\1</a>} : '\1',
-                 '**' => %{<div class='extra_time_allowed' style="#{hidden unless submission && submission.extra_time}">\\1</div>}
-               }) %>
+          <span class="invidivual_responses_student_dropdown_name">
+            <%= t(:student_gets_extra_time, "*%{student_name}* **gets %{extra_time} extra minutes on each attempt**",
+                 :student_name => student_name, :extra_time => (submission && submission.extra_time) || '&nbsp;',
+                 :wrapper => {
+                   '*' => submission ? %{<a class="student_name" href="#{context_url(@context, :context_quiz_history_url, @quiz.id, :quiz_submission_id => submission.id)}">\\1</a>} : '\1',
+                   '**' => %{<div class='extra_time_allowed' style="#{hidden unless submission && submission.extra_time}">\\1</div>}
+                 }) %>
+          </span>
         </li>
       <% end -%>
-  </ul>
-  <!-- next button -->
-  <% if next_submission(@user, @students, @submissions) == 'disable' %>
-    <button class="disable btn">next</button>
-  <% else %>
-    <%= link_to "next", course_quiz_quiz_submission_path(@course_id, @quiz.id, next_submission(@user, @students, @submissions).id), :class => 'btn' %>
+    </ul>
+    <!-- next button -->
+    <% if next_submission(@user, @students, @submissions) == 'disable' %>
+      <button class="disable btn btn-default individual_results_next_button">next</button>
+    <% else %>
+      <%= link_to "next", course_quiz_quiz_submission_path(@course_id, @quiz.id, next_submission(@user, @students, @submissions).id), :class => 'btn btn-default individual_results_next_button' %>
+    <% end -%>
+
+  </div>
+
+  <% user_name = @quiz.survey? && @quiz.anonymous_submissions ? t(:anonymous_username, "Student") : context_user_name(@context, @user) %>
+  <% content_for :page_title, (@quiz.survey? ?
+       join_title(t(:page_title_survey, "%{user}'s Survey History", :user => user_name), @quiz.quiz_title || t(:default_survey_name, "Survey %{course_name}", :course_name => @context.name)) :
+       join_title(t(:page_title_quiz, "%{user}'s Quiz History", :user => user_name), @quiz.quiz_title || t(:default_quiz_name, "Quiz %{course_name}", :course_name => @context.name)))
+  %>
+
+  <% unless teacher_role? %>
+    <h2>
+      <% if @quiz.quiz_title %>
+        <%= t(:named_quiz_results, "%{quiz_name} Results for %{user}", :quiz_name => @quiz.quiz_title, :user => @user.sortable_name) %>
+      <% elsif @quiz.survey? %>
+        <%= t(:unnamed_survey_results, "Survey Results for %{user}", :user => @user.sortable_name) %>
+      <% else %>
+        <%= t(:unnamed_quiz_results, "Quiz Results for %{user}", :user => @user.sortable_name) %>
+      <% end %>
+    </h2>
   <% end -%>
-
-</div>
-
-<% user_name = @quiz.survey? && @quiz.anonymous_submissions ? t(:anonymous_username, "Student") : context_user_name(@context, @user) %>
-<% content_for :page_title, (@quiz.survey? ?
-     join_title(t(:page_title_survey, "%{user}'s Survey History", :user => user_name), @quiz.quiz_title || t(:default_survey_name, "Survey %{course_name}", :course_name => @context.name)) :
-     join_title(t(:page_title_quiz, "%{user}'s Quiz History", :user => user_name), @quiz.quiz_title || t(:default_quiz_name, "Quiz %{course_name}", :course_name => @context.name)))
-%>
-
-<h2>
-  <% if @quiz.quiz_title %>
-    <%= t(:named_quiz_results, "%{quiz_name} Results for %{user}", :quiz_name => @quiz.quiz_title, :user => @user.sortable_name) %>
-  <% elsif @quiz.survey? %>
-    <%= t(:unnamed_survey_results, "Survey Results for %{user}", :user => @user.sortable_name) %>
+  <div id="feel_free_to_toggle_message">
+  </div>
+  <% if !@submission || @submission.settings_only? %>
+    <%= @quiz.survey? ?
+      t(:survey_not_yet_taken, "Survey hasn't been taken yet.") :
+      t(:quiz_not_yet_taken, "Quiz hasn't been taken yet.") %>
+  <% elsif @submission.untaken? %>
+    <%= @quiz.survey? ?
+      t(:survey_not_yet_taken_or_in_progress, "Survey hasn't been taken yet or is currently in progress") :
+      t(:quiz_not_yet_taken_or_in_progress, "Quiz hasn't been taken yet or is currently in progress") %>
   <% else %>
-    <%= t(:unnamed_quiz_results, "Quiz Results for %{user}", :user => @user.sortable_name) %>
-  <% end %>
-</h2>
-<div id="feel_free_to_toggle_message">
-</div>
-<% if !@submission || @submission.settings_only? %>
-  <%= @quiz.survey? ?
-    t(:survey_not_yet_taken, "Survey hasn't been taken yet.") :
-    t(:quiz_not_yet_taken, "Quiz hasn't been taken yet.") %>
-<% elsif @submission.untaken? %>
-  <%= @quiz.survey? ?
-    t(:survey_not_yet_taken_or_in_progress, "Survey hasn't been taken yet or is currently in progress") :
-    t(:quiz_not_yet_taken_or_in_progress, "Quiz hasn't been taken yet or is currently in progress") %>
-<% else %>
-  <% form_tag context_url(@context, :context_quiz_quiz_submission_url, @quiz.id, @submission.id), {:method => :put, :id => "update_history_form"} do %>
-    <input type="hidden" name="override_scores" value="true"/>
-    <% if params[:headless] %>
-      <input type="hidden" name="headless" value="1"/>
-    <% end %>
-    <input type="hidden" name="submission_version_number" value="<%= @submission.version_number %>"/>
-    <%= render :partial => "quizzes/quiz_submission", :locals => {:editable => false && can_do(@quiz, @current_user, :grade)} %>
-    <% if false && can_do(@quiz, @current_user, :grade) %>
-      <div class="button-container">
-        <button type="submit" class="button"><%= t('buttons.update_scores', "Update Scores") %></button>
-      </div>
+    <% form_tag context_url(@context, :context_quiz_quiz_submission_url, @quiz.id, @submission.id), {:method => :put, :id => "update_history_form"} do %>
+      <input type="hidden" name="override_scores" value="true"/>
+      <% if params[:headless] %>
+        <input type="hidden" name="headless" value="1"/>
+      <% end %>
+      <input type="hidden" name="submission_version_number" value="<%= @submission.version_number %>"/>
+      <%= render :partial => "quizzes/quiz_submission", :locals => {:editable => false && can_do(@quiz, @current_user, :grade)} %>
+      <% if false && can_do(@quiz, @current_user, :grade) %>
+        <div class="button-container">
+          <button type="submit" class="button"><%= t('buttons.update_scores', "Update Scores") %></button>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-<% js_block do %>
-  <script>
-  require([
-    'INST' /* INST */,
-    'jquery' /* $ */,
-    'jquery.instructure_misc_plugins' /* fragmentChange */,
-    'jquery.templateData' /* getTemplateData */,
-    'vendor/jquery.scrollTo' /* /\.scrollTo/ */
-  ], function(INST, $) {
+  <% js_block do %>
+    <script>
+    require([
+      'INST' /* INST */,
+      'jquery' /* $ */,
+      'jquery.instructure_misc_plugins' /* fragmentChange */,
+      'jquery.templateData' /* getTemplateData */,
+      'vendor/jquery.scrollTo' /* /\.scrollTo/ */
+    ], function(INST, $) {
 
-  $(document).ready(function() {
-    $(":text").focus(function() {
-      $(this).select();
-    });
-    <% if params[:score_updated] %>
-    window.parent &&
-    window.parent.INST &&
-    $.isFunction(window.parent.INST.refreshGrades) &&
-    window.parent.INST.refreshGrades();
-    <% end %>
-  });
-  });
-  </script>
-<% end %>
-<div style="display: none;" id="submission_details">
-  <div class="version_number"><%= @version_number.to_s %></div>
-  <div class="user_id"><%= @submission.user_id %></div>
-</div>
-<% js_block do %>
-
-  <script>
-  require([
-    'jquery' /* $ */,
-    'jquery.instructure_misc_plugins' /* fragmentChange */,
-    'jquery.templateData' /* getTemplateData */,
-    'vendor/jquery.scrollTo' /* /\.scrollTo/ */,
-    'compiled/behaviors/quiz_selectmenu',
-    'drawing_pad',
-    'drawing_pad_LF'
-  ], function($) {
-
-  var data = $("#submission_details").getTemplateData({textValues: ['version_number', 'user_id']});
-  var scoringSnapshot = {
-    snapshot: {
-      user_id: parseInt(data.user_id, 10) || null,
-      version_number: data.version_number,
-      last_question_touched: null,
-      question_updates: {},
-      fudge_points: 0
-    },
-    getSnapshot: function() {
-      return scoringSnapshot.snapshot;
-    },
-    jumpToQuestion: function(question_id) {
-      var top = $("#question_" + question_id).offset().top - 10;
-      $("html,body").scrollTo({top: top, left:0});
-    },
-    externallySet: false,
-    setSnapshot: function(data, cancelIfAlreadyExternallySet) {
-      if(data) {
-        if(cancelIfAlreadyExternallySet && scoringSnapshot.externallySet) { return; }
-        scoringSnapshot.externallySet = true;
-        scoringSnapshot.snapshot = data;
-        for(var idx in data.question_updates) {
-          var question = data.question_updates[idx];
-          var $question = $("#question_" + idx);
-          $question.addClass('modified_but_not_saved');
-          $question.find(".user_points :text").val(question.points).end()
-            .find(".question_neutral_comment .question_comment_text textarea").val(question.comments);
-        }
-        if(window.parent && window.parent.INST && window.parent.INST.lastQuestionTouched) {
-          scoringSnapshot.jumpToQuestion(window.parent.INST.lastQuestionTouched);
-        } else if(scoringSnapshot.snapshot.last_question_touched) {
-          scoringSnapshot.jumpToQuestion(scoringSnapshot.snapshot.last_question_touched);
-        }
-      } else if(cancelIfAlreadyExternallySet) {
-        if(window.parent && window.parent.INST && window.parent.INST.lastQuestionTouched) {
-          scoringSnapshot.jumpToQuestion(window.parent.INST.lastQuestionTouched);
-        }
-      }
-      if(scoringSnapshot.externallySet || cancelIfAlreadyExternallySet) {
-        $("#feel_free_to_toggle_message").show();
-      }
-      if(window.parent && window.parent.INST && window.parent.INST.refreshQuizSubmissionSnapshot && $.isFunction(window.parent.INST.refreshQuizSubmissionSnapshot)) {
-        window.parent.INST.refreshQuizSubmissionSnapshot(scoringSnapshot.snapshot);
-      }
-    }
-  }
-  $(document).ready(function() {
-    $(":text").focus(function() {
-      $(this).select();
-    });
-    $(document).fragmentChange(function(event, hash) {
-      if(hash.indexOf("#question") == 0) {
-        var id = hash.substring(10);
-        scoringSnapshot.jumpToQuestion(id);
-      }
-    });
-    if(window.parent && window.parent.INST && window.parent.INST.getQuizSubmissionSnapshot && $.isFunction(window.parent.INST.getQuizSubmissionSnapshot)) {
-      $("#feel_free_to_toggle_message").show();
-      var data = window.parent.INST.getQuizSubmissionSnapshot(scoringSnapshot.snapshot.user_id, scoringSnapshot.snapshot.version_number);
-      if(data) {
-        scoringSnapshot.setSnapshot(data);
-      } else {
-        scoringSnapshot.setSnapshot(null, true);
-      }
-    }
-    $(".question_holder .user_points :text,.question_holder .question_neutral_comment .question_comment_text textarea").change(function() {
-      var $question = $(this).parents(".display_question");
-      var question_id = parseInt($question.attr('id').substring(9), 10) || null;
-      if(question_id) {
-        var data = {};
-        $question.addClass('modified_but_not_saved');
-        data.points = parseFloat($question.find(".user_points :text").val(), 10);
-        data.comments = $question.find(".question_neutral_comment .question_comment_text textarea").val() || "";
-        scoringSnapshot.snapshot.question_updates[question_id] = data;
-        scoringSnapshot.snapshot.last_question_touched = question_id;
-        scoringSnapshot.setSnapshot();
-      }
-      $(document).triggerHandler('score_changed');
-    });
-    $("#fudge_points_entry").change(function() {
-      var points = parseFloat($(this).val(), 10);
-      if(points || points === 0) {
-        scoringSnapshot.snapshot.fudge_points = points;
-        scoringSnapshot.setSnapshot();
-      }
-      $(document).triggerHandler('score_changed');
-    });
-    $(document).bind('score_changed', function() {
-      var $total = $("#after_fudge_points_total");
-      var total = 0;
-      $(".display_question .user_points:visible").each(function() {
-        var points = parseFloat($(this).find(":text:first").val(), 10) || 0;
-        points = Math.round(points * 100.0) / 100.0;
-        total = total + points;
+    $(document).ready(function() {
+      $(":text").focus(function() {
+        $(this).select();
       });
-      var fudge = (parseFloat($("#fudge_points_entry").val(), 10) || 0);
-      fudge = Math.round(fudge * 100.0) / 100.0;
-      total = total + fudge;
-      $total.text(total || "0");
+      <% if params[:score_updated] %>
+      window.parent &&
+      window.parent.INST &&
+      $.isFunction(window.parent.INST.refreshGrades) &&
+      window.parent.INST.refreshGrades();
+      <% end %>
     });
-  });
-  });
-  </script>
-  <% if params[:score_updated] %>
+    });
+    </script>
+  <% end %>
+  <div style="display: none;" id="submission_details">
+    <div class="version_number"><%= @version_number.to_s %></div>
+    <div class="user_id"><%= @submission.user_id %></div>
+  </div>
+  <% js_block do %>
+
     <script>
     require([
       'jquery' /* $ */,
       'jquery.instructure_misc_plugins' /* fragmentChange */,
       'jquery.templateData' /* getTemplateData */,
-      'vendor/jquery.scrollTo' /* /\.scrollTo/ */
+      'vendor/jquery.scrollTo' /* /\.scrollTo/ */,
+      'compiled/behaviors/quiz_selectmenu',
+      'drawing_pad',
+      'drawing_pad_LF'
     ], function($) {
 
+    var data = $("#submission_details").getTemplateData({textValues: ['version_number', 'user_id']});
+    var scoringSnapshot = {
+      snapshot: {
+        user_id: parseInt(data.user_id, 10) || null,
+        version_number: data.version_number,
+        last_question_touched: null,
+        question_updates: {},
+        fudge_points: 0
+      },
+      getSnapshot: function() {
+        return scoringSnapshot.snapshot;
+      },
+      jumpToQuestion: function(question_id) {
+        var top = $("#question_" + question_id).offset().top - 10;
+        $("html,body").scrollTo({top: top, left:0});
+      },
+      externallySet: false,
+      setSnapshot: function(data, cancelIfAlreadyExternallySet) {
+        if(data) {
+          if(cancelIfAlreadyExternallySet && scoringSnapshot.externallySet) { return; }
+          scoringSnapshot.externallySet = true;
+          scoringSnapshot.snapshot = data;
+          for(var idx in data.question_updates) {
+            var question = data.question_updates[idx];
+            var $question = $("#question_" + idx);
+            $question.addClass('modified_but_not_saved');
+            $question.find(".user_points :text").val(question.points).end()
+              .find(".question_neutral_comment .question_comment_text textarea").val(question.comments);
+          }
+          if(window.parent && window.parent.INST && window.parent.INST.lastQuestionTouched) {
+            scoringSnapshot.jumpToQuestion(window.parent.INST.lastQuestionTouched);
+          } else if(scoringSnapshot.snapshot.last_question_touched) {
+            scoringSnapshot.jumpToQuestion(scoringSnapshot.snapshot.last_question_touched);
+          }
+        } else if(cancelIfAlreadyExternallySet) {
+          if(window.parent && window.parent.INST && window.parent.INST.lastQuestionTouched) {
+            scoringSnapshot.jumpToQuestion(window.parent.INST.lastQuestionTouched);
+          }
+        }
+        if(scoringSnapshot.externallySet || cancelIfAlreadyExternallySet) {
+          $("#feel_free_to_toggle_message").show();
+        }
+        if(window.parent && window.parent.INST && window.parent.INST.refreshQuizSubmissionSnapshot && $.isFunction(window.parent.INST.refreshQuizSubmissionSnapshot)) {
+          window.parent.INST.refreshQuizSubmissionSnapshot(scoringSnapshot.snapshot);
+        }
+      }
+    }
     $(document).ready(function() {
-      if(window.parent && window.parent.INST && window.parent.INST.refreshGrades && $.isFunction(window.parent.INST.refreshGrades)) {
-        window.parent.INST.refreshGrades();
+      $(":text").focus(function() {
+        $(this).select();
+      });
+      $(document).fragmentChange(function(event, hash) {
+        if(hash.indexOf("#question") == 0) {
+          var id = hash.substring(10);
+          scoringSnapshot.jumpToQuestion(id);
+        }
+      });
+      if(window.parent && window.parent.INST && window.parent.INST.getQuizSubmissionSnapshot && $.isFunction(window.parent.INST.getQuizSubmissionSnapshot)) {
+        $("#feel_free_to_toggle_message").show();
+        var data = window.parent.INST.getQuizSubmissionSnapshot(scoringSnapshot.snapshot.user_id, scoringSnapshot.snapshot.version_number);
+        if(data) {
+          scoringSnapshot.setSnapshot(data);
+        } else {
+          scoringSnapshot.setSnapshot(null, true);
+        }
       }
-      if(window.parent && window.parent.INST && window.parent.INST.clearQuizSubmissionSnapshot && $.isFunction(window.parent.INST.clearQuizSubmissionSnapshot)) {
-        window.parent.INST.clearQuizSubmissionSnapshot(scoringSnapshot.snapshot);
-      }
+      $(".question_holder .user_points :text,.question_holder .question_neutral_comment .question_comment_text textarea").change(function() {
+        var $question = $(this).parents(".display_question");
+        var question_id = parseInt($question.attr('id').substring(9), 10) || null;
+        if(question_id) {
+          var data = {};
+          $question.addClass('modified_but_not_saved');
+          data.points = parseFloat($question.find(".user_points :text").val(), 10);
+          data.comments = $question.find(".question_neutral_comment .question_comment_text textarea").val() || "";
+          scoringSnapshot.snapshot.question_updates[question_id] = data;
+          scoringSnapshot.snapshot.last_question_touched = question_id;
+          scoringSnapshot.setSnapshot();
+        }
+        $(document).triggerHandler('score_changed');
+      });
+      $("#fudge_points_entry").change(function() {
+        var points = parseFloat($(this).val(), 10);
+        if(points || points === 0) {
+          scoringSnapshot.snapshot.fudge_points = points;
+          scoringSnapshot.setSnapshot();
+        }
+        $(document).triggerHandler('score_changed');
+      });
+      $(document).bind('score_changed', function() {
+        var $total = $("#after_fudge_points_total");
+        var total = 0;
+        $(".display_question .user_points:visible").each(function() {
+          var points = parseFloat($(this).find(":text:first").val(), 10) || 0;
+          points = Math.round(points * 100.0) / 100.0;
+          total = total + points;
+        });
+        var fudge = (parseFloat($("#fudge_points_entry").val(), 10) || 0);
+        fudge = Math.round(fudge * 100.0) / 100.0;
+        total = total + fudge;
+        $total.text(total || "0");
+      });
     });
     });
     </script>
+    <% if params[:score_updated] %>
+      <script>
+      require([
+        'jquery' /* $ */,
+        'jquery.instructure_misc_plugins' /* fragmentChange */,
+        'jquery.templateData' /* getTemplateData */,
+        'vendor/jquery.scrollTo' /* /\.scrollTo/ */
+      ], function($) {
+
+      $(document).ready(function() {
+        if(window.parent && window.parent.INST && window.parent.INST.refreshGrades && $.isFunction(window.parent.INST.refreshGrades)) {
+          window.parent.INST.refreshGrades();
+        }
+        if(window.parent && window.parent.INST && window.parent.INST.clearQuizSubmissionSnapshot && $.isFunction(window.parent.INST.clearQuizSubmissionSnapshot)) {
+          window.parent.INST.clearQuizSubmissionSnapshot(scoringSnapshot.snapshot);
+        }
+      });
+      });
+      </script>
+    <% end %>
   <% end %>
-<% end %>
+
+</div>

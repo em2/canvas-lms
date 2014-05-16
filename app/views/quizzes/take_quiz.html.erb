@@ -44,22 +44,24 @@
 
   <% if teacher_role? %>
     <%= render :partial => "assessment_nav", :quiz => @quiz %>
-    <% if @quiz.paper_version_url.present? -%>
-      <div class="button_layer">
-        <span>
-          <a href="<%= @quiz.paper_version_url %>"><%= image_tag "pdf_large.png" %></a>
-        </span>
-      </div>
-    <% end -%>
   <% else %>
     <span class="logo_banner"><%= image_tag "logo_banner.png" %></span>
     <div class="quiz_title_box">
       <span class="quiz_title"><%= @quiz.quiz_title || @quiz.readable_type %></span>
     </div>
   <% end -%>
-  <% if @submission.preview? %>
-  <h3><%= image_tag "warning.png" %> <%= t('headers.draft_preview', "This is a preview of the draft version of the quiz") %></h3>
-  <% end %>
+  <div id="preview_warning_area">
+    <% if @submission.preview? %>
+      <h3><%= image_tag "warning.png" %> <%= t('headers.draft_preview', "This is a preview of the draft version of the quiz") %></h3>
+      <% if @quiz.paper_version_url.present? && teacher_role? -%>
+        <div class="button_layer" id="preview_pdf">
+          <span>
+            <a href="<%= @quiz.paper_version_url %>"><%= image_tag "pdf_large.png" %></a>
+          </span>
+        </div>
+      <% end -%>
+    <% end %>
+  </div>
 
   <% js_bundle :take_quiz %>
 

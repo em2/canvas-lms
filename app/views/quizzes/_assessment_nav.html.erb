@@ -50,7 +50,7 @@
 
         <!-- Class Summary Tab -->
         <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html)) %>">
-          <% link_to context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html) do %>
+          <% link_to class_report_assessment_report_path(params[:course_id], @quiz.id) do %>
             Class Summary
           <% end -%>
         </li>
