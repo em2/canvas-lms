@@ -6,7 +6,7 @@ class AssessmentMisconceptionsController < ApplicationController
     if is_account_admin?
   		bank = AssessmentQuestionBank.find(params[:question_bank_id])
   		bank.assessment_misconceptions.create!(:assessment_question_bank_id => bank.id, :name => "Untitled", :explanation_url => "", :description => "", :pattern => {}, :workflow_state => "available")
-    	
+
       redirect_to :back
     else
       flash[:error] = "Unauthorized"

@@ -1,5 +1,5 @@
 <div id="add_assessment_table">
-  <h2><%= @course.name %></h2>
+  <h2><%= @course.name %> - available assessments</h2>
 
   <table class="table">
     <tr>
@@ -14,7 +14,13 @@
         <tr>
           <td><a href="<%= assessment.paper_version_url %>" class="add_assessment_course_title"><%= assessment.full_name %></a></td>
           <td><em><p><%= assessment.assessment_questions.count - 1 %> Questions</p></em></td>
-          <td><%= link_to "Misconceptions" %></td>
+          <td>
+            <% if assessment.misconception_url.present? %>
+              <%= link_to "Misconceptions", assessment.misconception_url, :target => '_blank' %>
+            <% else %>
+              Misconceptions
+            <% end -%>
+          </td>
 
           <% form_for :rosters, :url => rosters_path do |f| %>
             <%= f.hidden_field :probe_id, :value => assessment.id %>
@@ -23,7 +29,7 @@
             <%= f.hidden_field :students, :value => @course.students.count %>
             <%= f.hidden_field :courses, :value => @course.em2_identifier %>
             <td>
-              <%= f.submit 'Add', :class => 'btn btn-default' %>
+              <%= f.submit 'Add to Class', :class => 'btn btn-default' %>
             </td>
           <% end -%>
 

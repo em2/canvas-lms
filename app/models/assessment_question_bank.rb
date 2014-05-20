@@ -133,6 +133,14 @@ class AssessmentQuestionBank < ActiveRecord::Base
     quiz_groups.destroy_all
   end
 
+  def misconception_url
+    missconception_array = []
+    self.assessment_misconceptions.each do |misconception|
+      missconception_array << misconception.explanation_url if misconception.explanation_url.present?
+    end
+    missconception_array.first
+  end
+
   named_scope :active, lambda {
     {:conditions => ['assessment_question_banks.workflow_state != ?', 'deleted'] }
   }
