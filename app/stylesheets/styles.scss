@@ -445,7 +445,7 @@ ul.quiz_list li.quiz div.description .quiz_info {
 
 #new_course_roster_area{
   width: 375px;
-  height: 125px;
+  height: 597px;
 }
 
 /*quiz preview*/
@@ -463,6 +463,16 @@ ul.quiz_list li.quiz div.description .quiz_info {
 
 #preview_pdf{
   float: right;
+}
+
+#add_class_instructions{
+  float: right;
+  height: 700px
+}
+
+#add_class_instructions_panel{
+  width: 300px;
+  height: 500px;
 }
 
 /*misconceptions page*/

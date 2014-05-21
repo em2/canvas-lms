@@ -41,8 +41,9 @@ class CoursesController < ApplicationController
   def create
     course_identifier = generate_unique_course_identifier
     course = Course.new(:name => params['course']['name'], :account => @current_user.account, :course_code => params['course']['name'], :em2_identifier => course_identifier)
-    students_array = params['course']['students'].scan(/\w+/)
-    if students_array.count % 3 == 0 && students_array.count > 0 && course.save
+    students_array = params['course']['students'].split(/\r?\n/)
+    valid_students_array = validate_students_array(students_array)
+    if valid_students_array && course.save
       course.offer!
       course.save!
       add_teacher(course)
@@ -72,11 +73,19 @@ class CoursesController < ApplicationController
   end
 
   def add_students(students_array, course)
-    (students_array.count / 3).times do
-      course_enrollment_count = students_array.count / 3
-      student_id = students_array.pop
-      last_name = students_array.pop
-      first_name = students_array.pop
+    student_id_first = student_id_first?(students_array)
+    students_array.count.times do
+      course_enrollment_count = students_array.count
+      student_data = students_array.pop.split
+      if student_id_first
+        last_name = student_data.count == 3 ? student_data.pop : ""
+        first_name = student_data.pop
+        student_id = student_data.pop
+      else
+        student_id = student_data.pop
+        last_name = student_data.count == 2 ? student_data.pop : ""
+        first_name = student_data.pop
+      end
       student = find_or_create_student(first_name, last_name, student_id, course_enrollment_count)
       enroll = course.enroll_student(student)
       enroll.workflow_state = 'active'
@@ -87,9 +96,10 @@ class CoursesController < ApplicationController
   def find_or_create_student(first_name, last_name, student_id, course_enrollment_count)
       @name = "#{first_name} #{last_name}"
       @student_id = student_id
-      @sortable_name = "#{last_name}, #{first_name}"
-    if User.all(:conditions => "name = '#{@name}' AND permanent_name_identifier = '#{@student_id}'").present?
-      @student = User.all(:conditions => "name = '#{@name}' AND permanent_name_identifier = '#{@student_id}'").first
+      @sortable_name = last_name == "" ? @name : "#{last_name}, #{first_name}"
+      find_student = User.find(:first, :conditions => ["name = ? AND permanent_name_identifier = ?", @name, @student_id] )
+    if find_student.present?
+      @student = find_student
     else
       @course_enrollment_count = course_enrollment_count
 
@@ -141,4 +151,22 @@ class CoursesController < ApplicationController
     @enroll.workflow_state = 'active'
     @enroll.save!
   end
+
+  def validate_students_array(students_array)
+    @valid = false
+    students_array.each do |student|
+      student.split.each do |word|
+        @valid = true if word.scan(/\d/).present?
+      end
+      @valid = false if student.split.count <= 1
+    end
+    @valid
+  end
+
+  def student_id_first?(students_array)
+    sample = students_array.first.split
+    result = sample.first.scan(/\d/).present?
+    result
+  end
+
 end
