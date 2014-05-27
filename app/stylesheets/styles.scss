@@ -1,3 +1,5 @@
+$left_margin: 20px;
+
 /*
  * Base structure
  */
@@ -214,7 +216,13 @@ body {
   padding-top:50px;
 }
 
-
+.disabled_nav_link{
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 11pt;
+  margin-top: 20px;
+  color: #B8B8B8;
+}
 
 
 
@@ -404,6 +412,15 @@ ul.quiz_list li.quiz div.description .quiz_info {
   h4{
     font-size: 24px;
   }
+  #teacher_instructions_print_row *{
+    display: inline-block;
+  }
+  #teacher_instructions_print_row{
+    a{
+      margin-left: 15px;
+      margin-top: -10px;
+    }
+  }
 }
 
 /*add assessment*/
@@ -450,7 +467,7 @@ ul.quiz_list li.quiz div.description .quiz_info {
 
 /*quiz preview*/
 #take_quiz_content{
-  margin-left: 15px;
+  margin-left: $left_margin;
 }
 
 #preview_warning_area{
@@ -477,7 +494,7 @@ ul.quiz_list li.quiz div.description .quiz_info {
 
 /*misconceptions page*/
 #assessment_misconceptions_page{
-  margin-left: 15px;
+  margin-left: $left_margin;
   .misconception_heading{
     font-size: 18px;
   }
@@ -487,11 +504,23 @@ ul.quiz_list li.quiz div.description .quiz_info {
   .misconception_student_names{
     font-size: 15px;
   }
+  .misconception_descriptions{
+    width: 475px;
+  }
+  .misconception_titles{
+    color: rgb(119, 119, 119);
+  }
+  .misconception_tables{
+    width: 800px;
+    th{
+      font-style: italic;
+    }
+  }
 }
 
 /*individual responses*/
 #individual_results_page{
-  margin-left: 15px;
+  margin-left: $left_margin;
   margin-top: 15px;
 }
 
@@ -516,5 +545,19 @@ ul.quiz_list li.quiz div.description .quiz_info {
 /*statistics page*/
 
 #assessment_statistics_page{
-  margin-left: 15px;
+  margin-left: $left_margin;
+}
+
+/*class summary page*/
+.classroom_reports{
+  margin-left: $left_margin;
+}
+
+/*monitor page*/
+#monitor_page{
+  margin-left: $left_margin;
+}
+
+#monitor_title{
+  color: rgb(119, 119, 119);
 }

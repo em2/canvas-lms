@@ -12,22 +12,21 @@
 
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown closed">
-              <a href="#" class="dropdown-toggle nav_text" data-toggle="dropdown"><%= @current_user.name%> (Teacher) <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="/users/11">
-                    <span>Settings</span></a>
-                  <a href="/users/11/interests">
-                    <span>User</span></a>
-                  <a href="/helps">
-                    <span>Help</span></a>
-                  <a data-method="delete" href="/users/sign_out" rel="nofollow">
-                    <span>Sign Out</span></a>                    </li>
-              </ul>
+        <li class="dropdown closed">
+          <a href="#" class="dropdown-toggle nav_text" data-toggle="dropdown"><%= @current_user.name%> (Teacher) <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/users/11">
+                <span>Settings</span></a>
+              <a href="/users/11/interests">
+                <span>User</span></a>
+              <a href="/helps">
+                <span>Help</span></a>
+              <%= link_to "Logout", logout_path, :method => :delete %>
             </li>
-
           </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

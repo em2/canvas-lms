@@ -1,7 +1,13 @@
-<%= render :partial => "assessment_nav", :quiz => @quiz %>
-
 <div id="teacher_instructions">
-  <h1>Teacher Instructions</h1>
+
+  <div class="no-print">
+    <%= render :partial => "assessment_nav", :quiz => @quiz %>
+  </div>
+
+  <div id="teacher_instructions_print_row">
+    <h1>Teacher Instructions</h1>
+    <a class="btn btn-default no-print" href="javascript:window.print()">Print Instructions</a>
+  </div>
   <h4><b>Background</b></h4>
   <p>The online, open source Cognitive Diagnostic Assessment System developed for the <i>Eliciting Mathematics Misconceptions (EM2) Project</i> will enable you to quickly and effectively diagnose commonly held student misconceptions and over-generalizations targeted by the assessment.  Once students have completed an assessment in the online system, reports will be generated about the students’ performance, including which students are likely to have one or more of the misconceptions targeted by the assessment.</p>
 

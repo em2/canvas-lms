@@ -1562,4 +1562,12 @@ class Quiz < ActiveRecord::Base
       end
     end
   end
+
+  def misconception_url
+    missconception_array = []
+    self.quiz_misconceptions.each do |misconception|
+      missconception_array << misconception.explanation_url if misconception.explanation_url.present?
+    end
+    missconception_array.first
+  end
 end

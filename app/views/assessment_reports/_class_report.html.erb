@@ -1,8 +1,13 @@
 <% jammit_css :reports_class -%>
-
 <% content_for :page_title do -%>Class Report<% end -%>
+
 <div class="classroom_reports">
-  <%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
+  <% if !@current_user.roles.include?("teacher") %>
+    <%= image_tag("logo_rosters.png", :class => "logo_image", :size => "160x65") %>
+  <% end -%>
+  <% if @current_user.roles.include?("teacher") %>
+    <%= render :partial => "quizzes/assessment_nav", :quiz => @quiz %>
+  <% end -%>
 
   <h1 id="report_heading"><b>Classroom Report: <%= @quiz.title %></b></h1>
 

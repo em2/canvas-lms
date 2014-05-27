@@ -15,49 +15,65 @@
       <ul class="nav navbar-nav sub_navbar roster_nav assessment_navbar_links">
 
         <!-- Preview Tab -->
-        <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_take_url, @quiz, :preview => 1)) %>">
-          <% link_to context_url(@context, :context_quiz_take_url, @quiz, :preview => 1), :method => :post do %>
+        <li class="<%= 'active' if current_page?(course_quiz_take_path(@quiz.context_id, @quiz, :preview => 1)) %>">
+          <% link_to course_quiz_take_path(@quiz.context_id, @quiz, :preview => 1), :method => :post do %>
             Preview
           <% end -%>
         </li>
 
         <!-- Misconceptions Tab -->
-        <li class="<%= 'active' if current_page?(course_quiz_misconception_reports_path) %>">
-          <%= link_to "Misconceptions", course_quiz_misconception_reports_path %>
+        <li class="<%= 'active' if current_page?(course_quiz_misconception_reports_path(@quiz.context_id, @quiz)) %>">
+          <% if @quiz.quiz_submissions.count > 1 %>
+            <%= link_to "Misconceptions", course_quiz_misconception_reports_path(@quiz.context_id, @quiz) %>
+          <% else %>
+            <p class="disabled_nav_link">Misconceptions</p>
+          <% end -%>
         </li>
 
         <!-- Instructions Tab -->
-        <li class="<%= 'active' if current_page?(course_quiz_teacher_instructions_path) %>">
-          <%= link_to "Instructions", course_quiz_teacher_instructions_path %>
+        <li class="<%= 'active' if current_page?(course_quiz_teacher_instructions_path(@quiz.context_id, @quiz)) %>">
+          <%= link_to "Instructions", course_quiz_teacher_instructions_path(@quiz.context_id, @quiz) %>
         </li>
 
         <!-- Monitor Tab -->
         <% if can_do(@quiz, @current_user, :manage) %>
-          <li class="<%= 'active' if current_page?(course_quiz_moderate_path) %>">
-            <%= link_to "Monitor", course_quiz_moderate_path %>
+          <li class="<%= 'active' if current_page?(course_quiz_moderate_path(@quiz.context_id, @quiz)) %>">
+            <%= link_to "Monitor", course_quiz_moderate_path(@quiz.context_id, @quiz) %>
           </li>
         <% end -%>
 
         <!-- Individual Responses Tab -->
         <% if @quiz.assignment %>
-          <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_history_url, @quiz.id, :headless => 1)) %>">
+          <li class="<%= 'active' if current_page?(course_quiz_history_path(@quiz.context_id, @quiz, :headless => 1)) %>">
             <%# link_to context_url(@context, :speed_grader_context_gradebook_url, :assignment_id => @quiz.assignment.id) do %>
-            <% link_to context_url(@context, :context_quiz_history_url, @quiz.id, :headless => 1) do %>
-              Individual Responses
+            <% if @quiz.quiz_submissions.count > 1 %>
+              <% link_to course_quiz_history_path(@quiz.context_id, @quiz, :headless => 1) do %>
+                Individual Responses
+              <% end -%>
+            <% else %>
+              <p class="disabled_nav_link">Individual Responses</p>
             <% end -%>
           </li>
         <% end -%>
 
         <!-- Class Summary Tab -->
-        <li class="<%= 'active' if current_page?(context_url(@context, :context_quiz_formatted_statistics_url, @quiz.id, :raw => :true, :format => :html)) %>">
-          <% link_to class_report_assessment_report_path(params[:course_id], @quiz.id) do %>
-            Class Summary
+        <li class="<%= 'active' if current_page?(class_report_assessment_report_path(@quiz.context_id, @quiz)) %>">
+          <% if @quiz.quiz_submissions.count > 1 %>
+            <% link_to class_report_assessment_report_path(@quiz.context_id, @quiz) do %>
+              Class Summary
+            <% end -%>
+          <% else %>
+            <p class="disabled_nav_link">Class Summary</p>
           <% end -%>
         </li>
 
         <!-- Statistics Tab -->
-        <li class="<%= 'active' if current_page?(course_quiz_statistics_path) %>">
-          <%= link_to "Statistics", course_quiz_statistics_path %>
+        <li class="<%= 'active' if current_page?(course_quiz_statistics_path(@quiz.context_id, @quiz)) %>">
+          <% if @quiz.quiz_submissions.count > 1 %>
+            <%= link_to "Statistics", course_quiz_statistics_path(@quiz.context_id, @quiz) %>
+          <% else %>
+            <p class="disabled_nav_link">Statistics</p>
+          <% end -%>
         </li>
 
       </ul>
