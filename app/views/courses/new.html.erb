@@ -3,14 +3,8 @@
     <div class="row">
       <h2 class="sub-header">Add a Class</h2>
 
-      <!-- right side instructions -->
-      <div class="col-md-8" id="add_class_instructions">
-        <div class="panel panel-default" id="add_class_instructions_panel">
-
-        </div>
-      </div>
       <!-- left side form -->
-      <div class="row col-md-4">
+      <div class="row col-md-12">
         <div class="control-group">
           <%= f.label :name, 'Class Name' %>
           <div class="controls">
@@ -18,8 +12,21 @@
           </div>
         </div>
       </div>
+      <!-- right side instructions -->
+      <div class="col-md-9" id="add_class_instructions">
+        <div class="panel" id="add_class_instructions_panel">
+          <p id="add_class_instruction_text">
+            Enter student's names in the class roster. Separate names from ids using commas or tabs, for example:
+          </p>
+          <p id="add_class_instruction_examples">
+            John, 0543<br>
+            John Bayles, 0543<br>
+            Amy Smith-Phares, 0543
+          </p>
+        </div>
+      </div>
       <!-- Textarea -->
-      <div class="row col-md-4">
+      <div class="row col-md-3">
         <div class="control-group">
           <%= f.label :students, 'Class Roster' %>
           <div class="controls">
@@ -28,7 +35,7 @@
         </div>
       </div>
       <!-- Button -->
-      <div class="row col-md-4">
+      <div class="row col-md-12">
         <div class="control-group">
           <label class="control-label" for="singlebutton"></label>
           <div class="controls">

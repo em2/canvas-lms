@@ -62,6 +62,21 @@ class CoursesController < ApplicationController
     redirect_to courses_path
   end
 
+  def settings
+    get_context
+    if authorized_action(@context, @current_user, :read_as_admin)
+      @alerts = @context.alerts
+      @role_types = []
+      add_crumb(t('#crumbs.settings', "Settings"), named_context_url(@context, :context_details_url))
+    end
+  end
+
+
+
+
+
+
+
   private
 
   def generate_unique_course_identifier

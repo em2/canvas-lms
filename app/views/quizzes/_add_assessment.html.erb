@@ -12,9 +12,9 @@
     <% @available_assessments.each do |assessment| %>
       <% unless @course.assignment_titles.include?(assessment.full_name) %>
         <tr>
-          <td><a href="<%= assessment.paper_version_url %>" class="add_assessment_course_title"><%= assessment.full_name %></a></td>
-          <td><em><p><%= assessment.assessment_questions.count - 1 %> Questions</p></em></td>
-          <td>
+          <td class="add_assess_row_title"><a href="<%= assessment.paper_version_url %>" class="add_assessment_course_title"><%= assessment.full_name %></a></td>
+          <td class="add_assess_row_data"><em><p><%= assessment.assessment_questions.count - 1 %> Questions</p></em></td>
+          <td class="add_assess_row_data">
             <% if assessment.misconception_url.present? %>
               <%= link_to "Misconceptions", assessment.misconception_url, :target => '_blank' %>
             <% else %>
@@ -33,7 +33,7 @@
             </td>
           <% end -%>
 
-          <td>
+          <td class="add_assess_row_data">
             <% if assessment.paper_version_url.present? %>
               <a href="<%= assessment.paper_version_url %>"><%= image_tag 'pdf.png' %></a>
             <% else %>

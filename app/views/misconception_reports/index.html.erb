@@ -18,7 +18,7 @@
   <div>
     <% @misconceptions.active.each_with_index do |misconception, index| -%>
       <h1 class="misconception_titles">Misconception: <%= misconception.name %></h1>
-      <table class="table misconception_tables">
+      <table class="table table-bordered misconception_tables">
         <thead>
           <th>Likely Misconception</th>
           <th>Possible Misconception</th>
@@ -41,11 +41,11 @@
                 <% end -%>
 
                 <% if possible_student.present? %>
-                  <td>
+                  <td class="active">
                     <a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{possible_student}"]) %>" class="name"><%= User.find(possible_student).sortable_name %></a>
                   </td>
                 <% else %>
-                  <td></td>
+                  <td class="active"></td>
                 <% end -%>
 
                 <% if difficult_student.present? %>

@@ -429,6 +429,14 @@ ul.quiz_list li.quiz div.description .quiz_info {
   font-size: 18px;
 }
 
+.add_assess_row_title{
+  padding-top: 12px !important;
+}
+
+.add_assess_row_data{
+  padding-top: 15px !important;
+}
+
 #add_assessment_table{
   padding-left: 15px;
   table{
@@ -461,10 +469,24 @@ ul.quiz_list li.quiz div.description .quiz_info {
 }
 
 #new_course_roster_area{
-  width: 375px;
+  width: 358px;
   height: 597px;
 }
 
+#add_class_instruction_text{
+  font-style: italic;
+}
+
+#add_class_instruction_examples{
+}
+
+#add_class_instructions{
+  float: right;
+}
+
+#add_class_instructions_panel{
+  width: 230px;
+}
 /*quiz preview*/
 #take_quiz_content{
   margin-left: $left_margin;
@@ -482,14 +504,8 @@ ul.quiz_list li.quiz div.description .quiz_info {
   float: right;
 }
 
-#add_class_instructions{
-  float: right;
-  height: 700px
-}
-
-#add_class_instructions_panel{
-  width: 300px;
-  height: 500px;
+#take_quiz_warning_img{
+  vertical-align: baseline;
 }
 
 /*misconceptions page*/
