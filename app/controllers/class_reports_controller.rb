@@ -1,6 +1,6 @@
 class ClassReportsController < ApplicationController
   before_filter :require_user
-  
+
   def index
   	if is_authorized?(@current_user) && is_admin_or_teacher?# Make sure the user is authorized to do this
 
@@ -16,7 +16,16 @@ class ClassReportsController < ApplicationController
       end
 
       if @is_teacher && !@is_admin
-        @classes = find_courses_for_teacher(@classes)
+        # @classes = find_courses_for_teacher(@classes)
+        @classes = {}
+        @current_user.courses.active.each do |course|
+          course.quizzes.active.each do |quiz|
+            if quiz.probe_name
+              @classes[course] = [] if !@classes[course]
+              @classes[course] << quiz
+            end
+          end
+        end
       end
 
       @context = prepare_for_report

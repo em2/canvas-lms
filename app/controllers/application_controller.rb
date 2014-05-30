@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    
+
     totals.each { |miscon_id,value| ok_to_proceed = false unless value.to_i==1 || value.to_i==0 }
 
     ok_to_proceed
@@ -109,7 +109,7 @@ class ApplicationController < ActionController::Base
         analysis["#{count+1}"] = 0
       end
     end
-    
+
     analysis
   end
 
@@ -130,7 +130,7 @@ class ApplicationController < ActionController::Base
       end
 
       analysis["submitted_students_count"] += data[sub_data.first]["item_analysis"]["submitted_students_count"]
-      
+
     end
 
     question_count.times do |count|
@@ -140,10 +140,10 @@ class ApplicationController < ActionController::Base
         analysis["#{count+1}"] = 0
       end
     end
-    
+
     analysis
   end
-  
+
 
   def gather_class_responses(course, quiz)
     @quiz_question_count = 0
@@ -213,7 +213,7 @@ class ApplicationController < ActionController::Base
       data["number_attempted"]["#{user.id}"] = number_attempted
     end
 
-    
+
     @quiz_question_count.times do |count|
       if data["submitted_students_count"] > 0
         data["item_analysis"].merge!("#{count+1}"=>(data["percent_correct"]["#{count+1}"].to_f / data["submitted_students_count"].to_f * 100).to_i)
@@ -436,7 +436,7 @@ class ApplicationController < ActionController::Base
   def fix_xhr_requests
     request.format = :js if request.xhr? && request.format == :html && !params[:html_xhr]
   end
-  
+
   # scopes all time objects to the user's specified time zone
   def set_time_zone
     if @current_user && !@current_user.time_zone.blank?
@@ -480,7 +480,7 @@ class ApplicationController < ActionController::Base
     end
     self.send name, *opts
   end
-  
+
   def user_url(*opts)
     opts[0] == @current_user && !@current_user.grants_right?(@current_user, session, :view_statistics) ?
       profile_url :
@@ -503,8 +503,8 @@ class ApplicationController < ActionController::Base
     end
     true
   end
-  
-  # checks the authorization policy for the given object using 
+
+  # checks the authorization policy for the given object using
   # the vendor/plugins/adheres_to_policy plugin.  If authorized,
   # returns true, otherwise renders unauthorized messages and returns
   # false.  To be used as follows:
@@ -516,7 +516,7 @@ class ApplicationController < ActionController::Base
     render_unauthorized_action(object) unless can_do
     can_do
   end
-  
+
   def is_authorized_action?(object, *opts)
     user = opts.shift
     action_session = nil
@@ -536,7 +536,7 @@ class ApplicationController < ActionController::Base
     end
     can_do
   end
-  
+
   def render_unauthorized_action(object=nil)
     object ||= User.new
     object.errors.add_to_base(t "#application.errors.unauthorized", "You are not authorized to perform this action")
@@ -547,10 +547,10 @@ class ApplicationController < ActionController::Base
       params[:format] = nil
       @headers = !!@current_user if @headers != false
       @files_domain = @account_domain && @account_domain.host_type == 'files'
-      format.html { 
+      format.html {
         store_location if request.get?
         return if !@current_user && initiate_delegated_login(request.env['canvas.account_domain'])
-        render :template => "shared/unauthorized", :layout => "application", :status => :unauthorized 
+        render :template => "shared/unauthorized", :layout => "application", :status => :unauthorized
       }
       format.zip { redirect_to(url_for(params)) }
       format.json { render :json => { 'status' => 'unauthorized', 'message' => 'You are not authorized to perform that action.' }, :status => :unauthorized }
@@ -565,7 +565,7 @@ class ApplicationController < ActionController::Base
     end
     @report
   end
-  
+
   # To be used as a before_filter, requires controller or controller actions
   # to have their urls scoped to a context in order to be valid.
   # So /courses/5/assignments or groups/1/assignments would be valid, but
@@ -584,14 +584,14 @@ class ApplicationController < ActionController::Base
     end
     return @context != nil
   end
-  
+
   def clean_return_to(url)
     return nil if !url
     uri = URI.parse(url)
     url = uri.path + (uri.query ? "?#{uri.query}" : "") + (uri.fragment ? "##{uri.fragment}" : "")
   end
   helper_method :clean_return_to
-  
+
   def return_to(url, fallback)
     url = fallback if url.blank?
     url = clean_return_to(url)
@@ -644,7 +644,7 @@ class ApplicationController < ActionController::Base
         @context = Group.find(params[:group_id])
         params[:context_id] = params[:group_id]
         params[:context_type] = "Group"
-        @context_enrollment = @context.group_memberships.find_by_user_id(@current_user.id) if @context && @current_user      
+        @context_enrollment = @context.group_memberships.find_by_user_id(@current_user.id) if @context && @current_user
         @context_membership = @context_enrollment
       elsif params[:user_id]
         case params[:user_id]
@@ -684,7 +684,7 @@ class ApplicationController < ActionController::Base
       add_crumb(@context.short_name, named_context_url(@context, :context_url), :id => "crumb_#{@context.asset_string}") if @context && @context.respond_to?(:short_name)
     end
   end
-  
+
   # This is used by a number of actions to retrieve a list of all contexts
   # associated with the given context.  If the context is a user then it will
   # include all the user's current contexts.
@@ -748,9 +748,9 @@ class ApplicationController < ActionController::Base
         @groups = course.assignment_groups.active(:include => :active_assignments)
         assignments_for_this_course = @groups.map(&:active_assignments).flatten
         @assignments += assignments_for_this_course
-        @upcoming_assignments += assignments_for_this_course.select{ |a| 
-          a.due_at && 
-          a.due_at <= 1.weeks.from_now && 
+        @upcoming_assignments += assignments_for_this_course.select{ |a|
+          a.due_at &&
+          a.due_at <= 1.weeks.from_now &&
           a.due_at >= Time.now
         }
         log_asset_access("assignments:#{course.asset_string}", "assignments", "other")
@@ -777,8 +777,8 @@ class ApplicationController < ActionController::Base
         submission.published_score = submission.published_grade = submission.graded_at = submission.grade = submission.score = nil
       end
     }
-    @ungraded_assignments = @assignments.select{|a| 
-      a.grants_right?(@current_user, session, :grade) && 
+    @ungraded_assignments = @assignments.select{|a|
+      a.grants_right?(@current_user, session, :grade) &&
       a.expects_submission? &&
       a.needs_grading_count > 0
     }
@@ -787,11 +787,11 @@ class ApplicationController < ActionController::Base
     @undated_assignments = @assignments.select{ |a| !a.due_at }
     @past_assignments.each do |assignment|
       submission = @submissions_hash[assignment.id]
-      if assignment.overdue? && 
-         assignment.expects_submission? && 
+      if assignment.overdue? &&
+         assignment.expects_submission? &&
          ( !submission || (!submission.has_submission? && !submission.graded?) ) &&
          assignment.grants_right?(@current_user, session, :submit)
-      
+
         @overdue_assignments << assignment
       end
     end
@@ -810,10 +810,10 @@ class ApplicationController < ActionController::Base
       @overdue_assignments = @overdue_assignments.select{|a| a.due_at && a.due_at > 2.weeks.ago }
       @ungraded_assignments = @ungraded_assignments.select{|a| a.due_at && a.due_at > 2.weeks.ago }
     end
-    
+
     [@assignments, @upcoming_assignments, @past_assignments, @overdue_assignments, @ungraded_assignments, @undated_assignments, @future_assignments].map(&:sort!)
   end
-  
+
   # Calculates the file storage quota for @context
   def get_quota
     @quota = 0
@@ -823,7 +823,7 @@ class ApplicationController < ActionController::Base
     @quota = @context.quota if (@context.respond_to?("quota") && @context.quota)
     @quota_used = @context.attachments.active.sum('COALESCE(size, 0)', :conditions => { :root_attachment_id => nil }).to_i
   end
-  
+
   # Renders a quota exceeded message if the @context's quota is exceeded
   def quota_exceeded(redirect=nil)
     redirect ||= root_url
@@ -850,8 +850,8 @@ class ApplicationController < ActionController::Base
     end
     false
   end
-  
-  # Used to retrieve the context from a :feed_code parameter.  These 
+
+  # Used to retrieve the context from a :feed_code parameter.  These
   # :feed_code attributes are keyed off the object type and the object's
   # uuid.  Using the uuid attribute gives us an unguessable url so
   # that we can offer the feeds without requiring password authentication.
@@ -916,37 +916,37 @@ class ApplicationController < ActionController::Base
   def discard_flash_if_xhr
     flash.discard if request.xhr? || request.format.to_s == 'text/plain'
   end
-  
+
   def cancel_cache_buster
     @cancel_cache_buster = true
   end
-  
+
   def cache_buster
-    # Annoying problem.  If I set the cache-control to anything other than "no-cache, no-store" 
+    # Annoying problem.  If I set the cache-control to anything other than "no-cache, no-store"
     # then the local cache is used when the user clicks the 'back' button.  I don't know how
     # to tell the browser to ALWAYS check back other than to disable caching...
     return true if @cancel_cache_buster
     response.headers["Pragma"] = "no-cache"
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
   end
-  
+
   def clear_cached_contexts
     ActiveRecord::Base.clear_cached_contexts
     RoleOverride.clear_cached_contexts
   end
-  
+
   def set_page_view
     return true if !page_views_enabled?
 
     ENV['RAILS_HOST_WITH_PORT'] ||= request.host_with_port rescue nil
     # We only record page_views for html page requests coming from within the
-    # app, or if coming from a developer api request and specified as a 
+    # app, or if coming from a developer api request and specified as a
     # page_view.
     if (@developer_key && params[:user_request]) || (!@developer_key && @current_user && !request.xhr? && request.method == :get)
       generate_page_view
     end
   end
-  
+
   def generate_page_view
     @page_view = PageView.new(:url => request.url[0,255], :user => @current_user, :controller => request.path_parameters['controller'], :action => request.path_parameters['action'], :session_id => request.session_options[:id], :developer_key => @developer_key, :user_agent => request.headers['User-Agent'], :real_user => @real_current_user)
     @page_view.interaction_seconds = 5
@@ -956,7 +956,7 @@ class ApplicationController < ActionController::Base
     @page_before_render = Time.now.utc
     @page_view.id = RequestContextGenerator.request_id
   end
-  
+
   def generate_new_page_view
     return true if !page_views_enabled?
 
@@ -968,7 +968,7 @@ class ApplicationController < ActionController::Base
     @log_page_views = false
     true
   end
-  
+
   # Asset accesses are used for generating usage statistics.  This is how
   # we say, "the user just downloaded this file" or "the user just
   # viewed this wiki page".  We can then after-the-fact build statistics
@@ -984,7 +984,7 @@ class ApplicationController < ActionController::Base
       :level => level
     }
   end
-  
+
   def log_page_view
     return true if !page_views_enabled?
 
@@ -1006,8 +1006,8 @@ class ApplicationController < ActionController::Base
         end
       end
       # If we're logging the asset access, and it's either a participatory action
-      # or it's not an update to an already-existing page_view.  We check to make sure 
-      # it's not an update because if the page_view already existed, we don't want to 
+      # or it's not an update to an already-existing page_view.  We check to make sure
+      # it's not an update because if the page_view already existed, we don't want to
       # double-count it as multiple views when it's really just a single view.
       if @current_user && @accessed_asset && (@accessed_asset[:level] == 'participate' || !@page_view_update)
         @access = AssetUserAccess.find_by_user_id_and_asset_code(@current_user.id, @accessed_asset[:code])
@@ -1087,7 +1087,7 @@ class ApplicationController < ActionController::Base
           render :json => {:errors => {:base => "Unexpected error, ID: #{@error.id rescue "unknown"}"}, :status => @status}, :status => @status_code
         else
           @status = '500' unless File.exists?(File.join('app', 'views', 'shared', 'errors', "#{@status.to_s[0,3]}_message.html.erb"))
-          render :template => "shared/errors/#{@status.to_s[0, 3]}_message.html.erb", 
+          render :template => "shared/errors/#{@status.to_s[0, 3]}_message.html.erb",
             :layout => 'application', :status => @status, :locals => {:error => @error, :exception => exception, :status => @status}
         end
       end
@@ -1141,7 +1141,7 @@ class ApplicationController < ActionController::Base
   def local_request?
     false
   end
-  
+
   def claim_session_course(course, user, state=nil)
     e = course.claim_with_teacher(user)
     session[:claimed_enrollment_uuids] ||= []
@@ -1191,8 +1191,8 @@ class ApplicationController < ActionController::Base
   def session_loaded?
     session.send(:loaded?) rescue false
   end
-  
-  # Retrieving wiki pages needs to search either using the id or 
+
+  # Retrieving wiki pages needs to search either using the id or
   # the page title.  We've also got it in here to have more than one
   # wiki per context, although we've never actually used that yet.
   # And maybe we won't.  See models/wiki_namespace.rb for more though.
@@ -1202,7 +1202,7 @@ class ApplicationController < ActionController::Base
       page_name += ".#{params[:format]}"
       params[:format] = 'html'
     end
-    return @page if @page 
+    return @page if @page
     @namespace = WikiNamespace.default_for_context(@context)
     @wiki = @namespace.wiki
     if params[:action] != 'create'
@@ -1220,7 +1220,7 @@ class ApplicationController < ActionController::Base
       @page.body = t "#application.wiki_front_page_default_content_group", "Welcome to your new group wiki!" if @context.is_a?(Group)
     end
   end
-  
+
   def context_wiki_page_url
     page_name = @page.url
     namespace = WikiNamespace.find_by_wiki_id_and_context_id_and_context_type(@page.wiki_id, @context.id, @context.class.to_s)
@@ -1285,8 +1285,8 @@ class ApplicationController < ActionController::Base
       options[:query][:event_id] = event.id
     end
     if !contexts_to_link_to.empty? && options[:anchor].is_a?(Hash)
-      options[:anchor][:show] = contexts_to_link_to.collect{ |c| 
-        "group_#{c.class.to_s.downcase}_#{c.id}" 
+      options[:anchor][:show] = contexts_to_link_to.collect{ |c|
+        "group_#{c.class.to_s.downcase}_#{c.id}"
       }.join(',')
       options[:anchor] = options[:anchor].to_json
     end
@@ -1318,16 +1318,16 @@ class ApplicationController < ActionController::Base
     )
   end
   helper_method :calendar_url_for, :files_url_for
-  
+
   # escape everything but slashes, see http://code.google.com/p/phusion-passenger/issues/detail?id=113
   FILE_PATH_ESCAPE_PATTERN = Regexp.new("[^#{URI::PATTERN::UNRESERVED}/]")
   def safe_domain_file_url(attachment, host=nil, verifier = nil, download = false) # TODO: generalize this
     res = "#{request.protocol}#{host || HostUrl.file_host(@domain_root_account || Account.default, request.host)}"
     ts, sig = @current_user && @current_user.access_verifier
 
-    # add parameters so that the other domain can create a session that 
-    # will authorize file access but not full app access.  We need this in 
-    # case there are relative URLs in the file that point to other pieces 
+    # add parameters so that the other domain can create a session that
+    # will authorize file access but not full app access.  We need this in
+    # case there are relative URLs in the file that point to other pieces
     # of content.
     opts = { :user_id => @current_user.try(:id), :ts => ts, :sf_verifier => sig }
     opts[:verifier] = verifier if verifier.present?
@@ -1360,7 +1360,7 @@ class ApplicationController < ActionController::Base
     res
   end
   helper_method :safe_domain_file_url
-  
+
   def feature_enabled?(feature)
     @features_enabled ||= {}
     feature = feature.to_sym
@@ -1394,17 +1394,17 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :feature_enabled?
-  
+
   def service_enabled?(service)
     @domain_root_account && @domain_root_account.service_enabled?(service)
   end
   helper_method :service_enabled?
-  
+
   def feature_and_service_enabled?(feature)
     feature_enabled?(feature) && service_enabled?(feature)
   end
   helper_method :feature_and_service_enabled?
-  
+
   def temporary_user_code(generate=true)
     if generate
       session[:temporary_user_code] ||= "tmp_#{Digest::MD5.hexdigest("#{Time.now.to_i.to_s}_#{rand.to_s}")}"

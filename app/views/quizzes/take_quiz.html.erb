@@ -52,15 +52,19 @@
   <% end -%>
   <div id="preview_warning_area">
     <% if @submission.preview? %>
-      <%= link_to "delete", course_quiz_path(@quiz.context_id, @quiz), :method => 'delete' %>
+      <h3><%= t('headers.draft_preview', "This is a preview of the draft version of the quiz") %></h3>
       <% if @quiz.paper_version_url.present? && teacher_role? -%>
-        <div class="button_layer" id="preview_pdf">
+        <div class="button_layer quiz_preview_icons">
           <span>
             <a href="<%= @quiz.paper_version_url %>"><%= image_tag "pdf.png" %></a>
           </span>
         </div>
       <% end -%>
-      <h3><%= t('headers.draft_preview', "This is a preview of the draft version of the quiz") %></h3>
+      <div class="quiz_preview_icons">
+        <% link_to course_quiz_path(@quiz.context_id, @quiz), :method => 'delete' do %>
+          <span class="glyphicon glyphicon-trash"></span>
+        <% end -%>
+      </div>
     <% end %>
   </div>
 
