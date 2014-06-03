@@ -40,7 +40,10 @@ class CoursesController < ApplicationController
 
   def create
     course_identifier = generate_unique_course_identifier
-    course = Course.new(:name => params['course']['name'], :account => @current_user.account, :course_code => params['course']['name'], :em2_identifier => course_identifier)
+    account = @current_user.account
+    sub_account = Account.find_by_name("district") ? Account.find_by_name("district") : Account.create!(:name => 'district', :parent_account => account)
+    sub_sub_account = Account.find_by_name("school") ? Account.find_by_name("school") : Account.create!(:name => 'school', :parent_account => sub_account)
+    course = Course.new(:name => params['course']['name'], :account => sub_sub_account, :course_code => params['course']['name'], :em2_identifier => course_identifier)
     students_array = params['course']['students'].split(/\r?\n/)
     valid_students_array = validate_students_array(students_array)
     if valid_students_array && course.save
