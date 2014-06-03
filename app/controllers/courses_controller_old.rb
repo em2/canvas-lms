@@ -21,7 +21,7 @@ require 'set'
 # @API Courses
 #
 # API for accessing course information.
-class CoursesController < ApplicationController
+class CoursesControllerOld < ApplicationController
   layout 'application_new'
 
   before_filter :require_user, :only => [:index]

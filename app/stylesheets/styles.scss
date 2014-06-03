@@ -112,8 +112,12 @@ body {
   padding-top: 31px;
 }
 
-#sidebar_add{
+#sidebar_add_text{
   padding-left: 4px;
+}
+
+#sidebar_add:hover{
+  background-color: transparent;
 }
 
 .teachbody {
