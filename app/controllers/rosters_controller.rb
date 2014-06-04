@@ -123,7 +123,8 @@ class RostersController < ApplicationController
           # Pull out all the names using regex.
           extract_names(@course_title)
 
-          if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
+          # if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
+          if true
 
             #
             # Try to find the district. If unsuccessful, then create one.
