@@ -64,19 +64,19 @@ class RostersController < ApplicationController
 
     #
     # Make sure that the stage was selected
-    if check_stage(params[:rosters][:stage])
+    if check_stage(params["rosters"]["stage"])
       errors_found = true
     end
 
     #
     # Make sure that the instance is 3 numbers and only 3 numbers
-    if !check_instance(params[:rosters][:instance])
+    if !check_instance(params["rosters"]["instance"])
       errors_found = true
     end
 
     #
     # Make sure that the student count correct if the 'Other' option was selected
-    if !check_student_count(params[:rosters][:students], params[:rosters][:students_custom])
+    if !check_student_count(params["rosters"]["students"], params["rosters"]["students_custom"])
       errors_found = true
     end
 
@@ -88,10 +88,10 @@ class RostersController < ApplicationController
       else
         #
         # Create the names
-        @probe = AssessmentQuestionBank.find(params[:rosters][:probe_id])
-        @instance = params[:rosters][:instance]
-        @stage = params[:rosters][:stage]
-        @course_titles = params[:rosters][:courses].split(/[\r\n\t\,\; ]+/)
+        @probe = AssessmentQuestionBank.find(params["rosters"]["probe_id"])
+        @instance = params["rosters"]["instance"]
+        @stage = params["rosters"]["stage"]
+        @course_titles = params["rosters"]["courses"].split(/[\r\n\t\,\; ]+/)
 
         #
         # probe_generated is so we know if a probe is generated during the while loop
