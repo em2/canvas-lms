@@ -41,6 +41,7 @@
   <% if teacher_role? %>
     <%= include_stylesheets :bootstrap %>
     <%= include_stylesheets :print, :media => 'print' %>
+    <% js_bundle :bootstrap %>
   <% end -%>
 
   <%= yield :auto_discovery %>
