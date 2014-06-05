@@ -123,21 +123,23 @@ class RostersController < ApplicationController
           # Pull out all the names using regex.
           extract_names(@course_title)
 
-          if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
-
-            #
-            # Try to find the district. If unsuccessful, then create one.
-            if (!@district_account = Account.find_by_name(@district))
-              @district_account = Account.create!(:name => @district, :parent_account => @context)
+          #
+          #find course
+          if @course = Course.find_by_em2_identifier(@course_title)
+            @school_account = Account.find(@course.account_id)
+            @district_account = @school_account.parent_account
+            if @school_account.roster
+              @roster = @school_account.roster
+              if (@roster.workflow_state != "available")
+                @roster.workflow_state = "available"
+                @roster.save!
+              end
+            else
+              @roster.name = @district + @school
+              @roster.account = @school_account
+              @roster.workflow_state = "available"
+              @roster.save!
             end
-
-            #
-            # Try to find a school in that district with the same name.
-            # If that was unsuccessful, go ahead and create a new school and roster for that school.
-            if !find_school()
-              create_school()
-            end
-
 
             #
             # Send off the roster to generate everything to delayed_job
@@ -259,6 +261,36 @@ class RostersController < ApplicationController
     @roster.account = @school_account
     @roster.workflow_state = "available"
     @roster.save!
+  end
+
+
+  def old_generate_probe
+    if (@current_user.permanent_name_identifier == @district + @teacher || @is_admin)
+
+      #
+      # Try to find the district. If unsuccessful, then create one.
+      if (!@district_account = Account.find_by_name(@district))
+        @district_account = Account.create!(:name => @district, :parent_account => @context)
+      end
+
+      #
+      # Try to find a school in that district with the same name.
+      # If that was unsuccessful, go ahead and create a new school and roster for that school.
+      if !find_school()
+        create_school()
+      end
+
+
+      #
+      # Send off the roster to generate everything to delayed_job
+      Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher))
+      #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+      #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+
+      probe_generated = true
+    else
+      errors_found = true
+    end
   end
 
 end
