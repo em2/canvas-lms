@@ -91,5 +91,3 @@ namespace :log do
     end
   end
 end
-
-after "deploy", "assets:precompile"
