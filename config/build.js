@@ -156,6 +156,7 @@
     { name: "compiled/bundles/question_bank", exclude: ['common', 'compiled/tinymce'] },
     { name: "compiled/bundles/question_banks", exclude: ['common', 'compiled/tinymce'] },
     { name: "compiled/bundles/misconceptions", exclude: ['common', 'compiled/tinymce'] },
+    { name: "compiled/bundles/bootstrap", exclude: ['common', 'compiled/tinymce'] },
     { name: "compiled/bundles/quiz_show", exclude: ['common', 'compiled/tinymce'] },
     { name: "compiled/bundles/quizzes_bundle", exclude: ['common', 'compiled/tinymce'] },
     { name: "compiled/bundles/quizzes_index", exclude: ['common', 'compiled/tinymce'] },

@@ -2,19 +2,16 @@
  * Base structure
  */
 /* Move down content because we have a fixed navbar that is 50px tall */
-/* line 8, ../../../app/stylesheets/styles.scss */
 body {
   padding-top: 50px; }
 
 /*
  * Global add-ons
  */
-/* line 17, ../../../app/stylesheets/styles.scss */
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee; }
 
-/* line 22, ../../../app/stylesheets/styles.scss */
 #footer {
   padding-left: 25px; }
 
@@ -22,12 +19,10 @@ body {
  * Sidebar
  */
 /* Hide for mobile, show later */
-/* line 31, ../../../app/stylesheets/styles.scss */
 .sidebar {
   display: none; }
 
 @media (min-width: 768px) {
-  /* line 35, ../../../app/stylesheets/styles.scss */
   .sidebar {
     position: fixed;
     top: 51px;
@@ -42,62 +37,50 @@ body {
     border-right: 1px solid #eee; }
 
   /*assessment navigation*/
-  /* line 50, ../../../app/stylesheets/styles.scss */
   #sub-navigation-bar {
     margin-top: 15px;
     margin-left: 15px;
     margin-right: 15px; }
 
   /* Sidebar navigation */
-  /* line 58, ../../../app/stylesheets/styles.scss */
   .nav-sidebar {
     margin-right: -21px;
     margin-bottom: 10px;
     margin-left: -20px;
     text-decoration: none; }
 
-  /* line 64, ../../../app/stylesheets/styles.scss */
   .nav-sidebar > li > a {
     text-decoration: none; }
 
-  /* line 67, ../../../app/stylesheets/styles.scss */
   .nav-sidebar > .active > a {
     color: #fff !important;
     background-color: #428bca; }
 
-  /* line 72, ../../../app/stylesheets/styles.scss */
   .nav-sidebar > .active > a:hover {
     color: #428bca; }
 
-  /* line 76, ../../../app/stylesheets/styles.scss */
   .nav-sidebar-subhead {
     font-size: 12px;
     text-indent: 20px; } }
-/* line 82, ../../../app/stylesheets/styles.scss */
 .nav-sidebar-subhead > li > a {
   padding-right: 20px;
   padding-left: 20px; }
 
-/* line 86, ../../../app/stylesheets/styles.scss */
 .subactive > a {
   background-color: #e0e0e0; }
 
-/* line 93, ../../../app/stylesheets/styles.scss */
 .sidebar-head {
   margin-bottom: 0;
   border-bottom: 1px solid #DDD; }
 
-/* line 98, ../../../app/stylesheets/styles.scss */
 #sidebar_title {
   float: left;
   padding: 23px 0 5px 15px;
   margin: 0; }
 
-/* line 104, ../../../app/stylesheets/styles.scss */
 .sidebar-head > a:hover {
   background-color: transparent; }
 
-/* line 107, ../../../app/stylesheets/styles.scss */
 .sidebar-head .glyphicon {
   font-size: 14px;
   font-weight: normal;
@@ -105,24 +88,19 @@ body {
   margin: 0;
   padding-top: 31px; }
 
-/* line 115, ../../../app/stylesheets/styles.scss */
 #sidebar_add_text {
   padding-left: 4px; }
 
-/* line 119, ../../../app/stylesheets/styles.scss */
 #sidebar_add:hover {
   background-color: transparent; }
 
-/* line 123, ../../../app/stylesheets/styles.scss */
 .teachbody {
   font-size: 15px; }
 
-/* line 127, ../../../app/stylesheets/styles.scss */
 .sidebar_assessment {
   padding-left: 20px !important;
   display: inline-block !important; }
 
-/* line 132, ../../../app/stylesheets/styles.scss */
 .sidebar_delete {
   display: inline-block !important;
   padding: 0 !important; }
@@ -130,87 +108,70 @@ body {
 /*
  * Main content
  */
-/* line 141, ../../../app/stylesheets/styles.scss */
 .main {
   padding: 20px; }
 
 @media (min-width: 768px) {
-  /* line 145, ../../../app/stylesheets/styles.scss */
   .main {
     padding-right: 40px;
     padding-left: 40px; } }
-/* line 150, ../../../app/stylesheets/styles.scss */
 .main .page-header {
   margin-top: 0; }
 
 /*
  * Placeholder dashboard ideas
  */
-/* line 162, ../../../app/stylesheets/styles.scss */
 .placeholders {
   margin-bottom: 30px;
   text-align: center; }
 
-/* line 166, ../../../app/stylesheets/styles.scss */
 .placeholders h4 {
   margin-bottom: 0; }
 
-/* line 169, ../../../app/stylesheets/styles.scss */
 .placeholder {
   margin-bottom: 20px; }
 
-/* line 172, ../../../app/stylesheets/styles.scss */
 .placeholder img {
   display: inline-block;
   border-radius: 50%; }
 
 /* sidebar */
-/* line 183, ../../../app/stylesheets/styles.scss */
 .assessments {
   padding-left: 25px;
   font-size: 12px;
   text-indent: 10px; }
 
-/* line 189, ../../../app/stylesheets/styles.scss */
 .sidebar_course_name {
   font-size: 14px;
   padding-left: 20px !important; }
 
-/* line 194, ../../../app/stylesheets/styles.scss */
 .sidebar_text {
   color: #428bca !important; }
 
 /* navbar */
-/* line 200, ../../../app/stylesheets/styles.scss */
 .navbar-nav > li > a {
   padding-top: 14px; }
 
-/* line 204, ../../../app/stylesheets/styles.scss */
 .nav_text {
   margin-top: -7px; }
 
 /* assessment navbar */
-/* line 209, ../../../app/stylesheets/styles.scss */
 .navbar-title {
   font-size: 28px;
   color: #777777 !important;
   margin-bottom: inherit;
   padding: 19px 0px 0px 15px; }
 
-/* line 216, ../../../app/stylesheets/styles.scss */
 .assessment_navbar_links {
   padding-top: 11px;
   padding-left: 20px; }
 
-/* line 221, ../../../app/stylesheets/styles.scss */
 #assessment_nav_box {
   padding-top: 3px; }
 
-/* line 225, ../../../app/stylesheets/styles.scss */
 .btn .btn-primary {
   padding-top: 50px; }
 
-/* line 229, ../../../app/stylesheets/styles.scss */
 .disabled_nav_link {
   padding-left: 15px;
   padding-right: 15px;
@@ -218,51 +179,40 @@ body {
   margin-top: 20px;
   color: #B8B8B8; }
 
-/* line 239, ../../../app/stylesheets/styles.scss */
 .navbar-nav > .active > a {
   height: 60px; }
 
-/* line 248, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
   background-color: none;
   color: none; }
 
-/* line 253, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > li > a {
   color: #428bca; }
 
-/* line 258, ../../../app/stylesheets/styles.scss */
 .container-fluid {
   margin-top: 0px; }
 
-/* line 261, ../../../app/stylesheets/styles.scss */
 .assessment-nav {
   padding-top: 35px; }
 
 /*Course Pages*/
-/* line 267, ../../../app/stylesheets/styles.scss */
 #roster_names {
   padding-left: 15px; }
 
-/* line 271, ../../../app/stylesheets/styles.scss */
 .print_instructions {
   display: none; }
 
-/* line 275, ../../../app/stylesheets/styles.scss */
 .roster_nav {
   min-height: 60px;
   margin-bottom: -4px; }
 
-/* line 280, ../../../app/stylesheets/styles.scss */
 .sub_navbar {
   margin-top: -20px; }
 
-/* line 284, ../../../app/stylesheets/styles.scss */
 .sub_navbar > li {
   margin-top: 5px;
   margin-bottom: 5px; }
 
-/* line 289, ../../../app/stylesheets/styles.scss */
 .sub_navbar > li > a {
   color: #428bca !important;
   display: inline-block;
@@ -270,23 +220,19 @@ body {
   font-size: 11pt;
   padding-top: 20px; }
 
-/* line 297, ../../../app/stylesheets/styles.scss */
 .sub_navbar > li > a:hover {
   color: black;
   height: 60px; }
 
-/* line 303, ../../../app/stylesheets/styles.scss */
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   background-color: transparent;
   border-color: #428bca; }
 
-/* line 308, ../../../app/stylesheets/styles.scss */
 .navbar {
   min-height: 40px;
   margin-bottom: 20px;
   border: 1px solid transparent; }
 
-/* line 314, ../../../app/stylesheets/styles.scss */
 .navbar-collapse {
   max-height: 800px;
   overflow-x: visible;
@@ -298,11 +244,9 @@ body {
   height: 30px;
   font-color: #428bca; }
 
-/* line 326, ../../../app/stylesheets/styles.scss */
 #assessment_navbar {
   padding: 0px; }
 
-/* line 330, ../../../app/stylesheets/styles.scss */
 .navbar-brand:hover, .navbar-brand:focus {
   padding: 14px;
   background-color: none;
@@ -310,40 +254,32 @@ body {
   border: 1px solid transparent;
   border-radius: 4px; }
 
-/* line 338, ../../../app/stylesheets/styles.scss */
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color: #5e5e5e;
   background-color: transparent; }
 
-/* line 343, ../../../app/stylesheets/styles.scss */
 .navbar-inverse {
   background-color: #c1dccd;
   border-color: #c1dccd; }
 
-/* line 349, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-brand {
   color: #333333; }
 
-/* line 354, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > li > a {
   /*color:#333*/ }
 
-/* line 358, ../../../app/stylesheets/styles.scss */
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
   /*background-color:#080808;
   color:#fff*/ }
 
-/* line 363, ../../../app/stylesheets/styles.scss */
 .panel-heading > .dropdown .dropdown-toggle {
   color: #333; }
 
-/* line 367, ../../../app/stylesheets/styles.scss */
 .sidebar-head {
   color: #777;
   font-size: 22px;
   text-decoration: none; }
 
-/* line 373, ../../../app/stylesheets/styles.scss */
 .navbar-user {
   float: right;
   padding: 15px;
@@ -352,12 +288,10 @@ body {
   height: 50px; }
 
 /*quizzes index*/
-/* line 386, ../../../app/stylesheets/styles.scss */
 ul.quiz_list {
   margin-top: 5px;
   padding-left: 10px; }
 
-/* line 390, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz {
   list-style-type: none;
   display: block;
@@ -366,190 +300,144 @@ ul.quiz_list li.quiz {
   border: 1px solid #ccc;
   min-height: 94px; }
 
-/* line 398, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz.unpublished {
   border-width: 2px; }
 
-/* line 401, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz div.title {
   font-size: 1.2em;
   font-weight: bold; }
 
-/* line 405, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz div.description {
   font-size: 0.85em;
   margin-left: 20px; }
 
-/* line 409, ../../../app/stylesheets/styles.scss */
 ul.quiz_list li.quiz div.description .quiz_info {
   margin-left: 20px; }
 
 /*teacher instructions*/
-/* line 415, ../../../app/stylesheets/styles.scss */
 #teacher_instructions {
   font-size: 15px;
   padding-left: 20px; }
-  /* line 418, ../../../app/stylesheets/styles.scss */
   #teacher_instructions h1 {
     font-size: 33px;
     font-weight: bold; }
-  /* line 422, ../../../app/stylesheets/styles.scss */
   #teacher_instructions h4 {
     font-size: 24px; }
-  /* line 425, ../../../app/stylesheets/styles.scss */
   #teacher_instructions #teacher_instructions_print_row * {
     display: inline-block; }
-  /* line 429, ../../../app/stylesheets/styles.scss */
   #teacher_instructions #teacher_instructions_print_row a {
     margin-left: 15px;
     margin-top: -10px; }
 
 /*add assessment*/
-/* line 438, ../../../app/stylesheets/styles.scss */
 .add_assessment_course_title {
   font-size: 18px; }
 
-/* line 442, ../../../app/stylesheets/styles.scss */
 .add_assess_row_title {
   padding-top: 12px !important; }
 
-/* line 446, ../../../app/stylesheets/styles.scss */
 .add_assess_row_data {
   padding-top: 15px !important; }
 
-/* line 450, ../../../app/stylesheets/styles.scss */
 #add_assessment_table {
   padding-left: 15px; }
-  /* line 452, ../../../app/stylesheets/styles.scss */
   #add_assessment_table table {
     max-width: 900px; }
-    /* line 454, ../../../app/stylesheets/styles.scss */
     #add_assessment_table table a {
       color: #428bca; }
-    /* line 457, ../../../app/stylesheets/styles.scss */
     #add_assessment_table table p {
       margin-bottom: 0;
       color: #777777; }
-  /* line 462, ../../../app/stylesheets/styles.scss */
   #add_assessment_table th {
     border: none; }
-  /* line 465, ../../../app/stylesheets/styles.scss */
   #add_assessment_table h2 {
     font-size: 24px;
     color: #777777; }
 
 /*add course page*/
-/* line 473, ../../../app/stylesheets/styles.scss */
 #add_course_form {
   width: 100%; }
 
-/* line 477, ../../../app/stylesheets/styles.scss */
 #new_course_name_field {
   width: 300px; }
 
-/* line 481, ../../../app/stylesheets/styles.scss */
 #new_course_roster_area {
   width: 358px;
   height: 597px; }
 
-/* line 486, ../../../app/stylesheets/styles.scss */
 #add_class_instruction_text {
   font-style: italic; }
 
-/* line 493, ../../../app/stylesheets/styles.scss */
 #add_class_instructions {
   float: right; }
 
-/* line 497, ../../../app/stylesheets/styles.scss */
 #add_class_instructions_panel {
   width: 230px; }
 
 /*quiz preview*/
-/* line 501, ../../../app/stylesheets/styles.scss */
 #take_quiz_content {
   margin-left: 20px; }
 
-/* line 505, ../../../app/stylesheets/styles.scss */
 #preview_warning_area {
   max-width: 936px; }
 
-/* line 509, ../../../app/stylesheets/styles.scss */
 #preview_warning_area * {
   display: inline-block; }
 
-/* line 513, ../../../app/stylesheets/styles.scss */
 .quiz_preview_icons {
   padding-left: 3px; }
 
-/* line 517, ../../../app/stylesheets/styles.scss */
 #take_quiz_warning_img {
   vertical-align: baseline; }
 
 /*misconceptions page*/
-/* line 522, ../../../app/stylesheets/styles.scss */
 #assessment_misconceptions_page {
   margin-left: 20px; }
-  /* line 524, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_heading {
     font-size: 18px; }
-  /* line 527, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_links {
     font-style: italic; }
-  /* line 530, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_student_names {
     font-size: 15px; }
-  /* line 533, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_descriptions {
     width: 475px; }
-  /* line 536, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_titles {
     color: #777777; }
-  /* line 539, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_tables {
     width: 800px; }
-    /* line 541, ../../../app/stylesheets/styles.scss */
     #assessment_misconceptions_page .misconception_tables th {
       font-style: italic; }
 
 /*individual responses*/
-/* line 548, ../../../app/stylesheets/styles.scss */
 #individual_results_page {
   margin-left: 20px;
   margin-top: 15px; }
 
-/* line 553, ../../../app/stylesheets/styles.scss */
 #individual_responses_student_dropdown {
   border-radius: 0;
   margin-bottom: 15px; }
 
-/* line 558, ../../../app/stylesheets/styles.scss */
 .invidivual_responses_student_dropdown_name {
   margin-bottom: 3px !important;
   padding-left: 15px; }
 
-/* line 563, ../../../app/stylesheets/styles.scss */
 #invidivual_responses_student_dropdown_menu {
   margin-top: -16px; }
 
-/* line 567, ../../../app/stylesheets/styles.scss */
 .individual_results_next_button {
   margin-left: -1px; }
 
 /*statistics page*/
-/* line 573, ../../../app/stylesheets/styles.scss */
 #assessment_statistics_page {
   margin-left: 20px; }
 
 /*class summary page*/
-/* line 578, ../../../app/stylesheets/styles.scss */
 .classroom_reports {
   margin-left: 20px; }
 
 /*monitor page*/
-/* line 583, ../../../app/stylesheets/styles.scss */
 #monitor_page {
   margin-left: 20px; }
 
-/* line 587, ../../../app/stylesheets/styles.scss */
 #monitor_title {
   color: #777777; }

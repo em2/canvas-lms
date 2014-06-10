@@ -32,14 +32,14 @@ require([
     if (!validate_pattern(pattern)){
       return false;
     }
-    
+
     var $form = $("#edit_misconception_pattern_form");
     $misconception_piece.prepend($form.show());
     $form.attr('action', $(this).attr('href'));
     $form.attr('method', 'PUT');
 
     data["pattern"] = JSON.stringify(pattern);
-    $form.fillFormData(data, {object_name: 'quiz_misconception'});
+    $form.fillFormData(data, {object_name: 'quiz_micsonception'});
 
     $("#edit_misconception_pattern_form").submit();
 
@@ -100,7 +100,7 @@ require([
         ok_to_proceed = false;
       }
     });
-    
+
     if (!ok_to_proceed){
       alert("Only one 1 or all zeros are allowed for each question.");
     }
@@ -151,7 +151,7 @@ require([
 
 
 
-   	
+
 
 
 //*******************************************
@@ -206,7 +206,7 @@ require([
       $("#edit_misconception_name_form").submit();
       return;
     }
-    
+
     $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
     $misconception_piece.find(".modify_buttons").show();
@@ -291,7 +291,7 @@ require([
       $("#edit_misconception_url_form").submit();
       return;
     }
-    
+
     $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
     $misconception_piece.find(".modify_buttons").show();
@@ -374,7 +374,7 @@ require([
       $("#edit_misconception_description_form").submit();
       return;
     }
-    
+
     $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
     $misconception_piece.find(".modify_buttons").show();
@@ -456,7 +456,7 @@ require([
       $("#edit_misconception_hp_limit_form").submit();
       return;
     }
-    
+
     $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
     $misconception_piece.find(".modify_buttons").show();
@@ -546,7 +546,7 @@ require([
       $("#edit_misconception_sp_limit_form").submit();
       return;
     }
-    
+
     $misconception_piece.find(".header").show();
     $misconception_piece.find(".header_content").show();
     $misconception_piece.find(".modify_buttons").show();
