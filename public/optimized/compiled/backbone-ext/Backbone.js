@@ -1,1 +1,5 @@
-(function(){define(["use!backbone","compiled/backbone-ext/Model","compiled/backbone-ext/View"],function(a){return a})}).call(this)
+(function() {
+  define(['use!backbone', 'compiled/backbone-ext/Model', 'compiled/backbone-ext/View'], function(Backbone) {
+    return Backbone;
+  });
+}).call(this);

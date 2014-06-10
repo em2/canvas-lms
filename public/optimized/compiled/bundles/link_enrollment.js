@@ -1,1 +1,3 @@
-(function(){require(["link_enrollment"])}).call(this),define("compiled/bundles/link_enrollment",function(){})
+(function() {
+  require(['link_enrollment']);
+}).call(this);

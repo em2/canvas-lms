@@ -1,1 +1,101 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}};define(["jquery","jquery.ajaxJSON","vendor/jquery.ba-tinypubsub"],function(b){return function(){function c(b,c,d){this.save=a(this.save,this),this.removeClass=a(this.removeClass,this),this.addClass=a(this.addClass,this),this.isUndated=a(this.isUndated,this),this.contextCode=a(this.contextCode,this),this.isAppointmentGroupEvent=a(this.isAppointmentGroupEvent,this),this.isAppointmentGroupFilledEvent=a(this.isAppointmentGroupFilledEvent,this),this.isNewEvent=a(this.isNewEvent,this),this.eventType="generic",this.contextInfo=c,this.actualContextInfo=d,this.allPossibleContexts=null,this.className=[],this.object={}}return c.prototype.isNewEvent=function(){var a;return this.eventType==="generic"||((a=this.object)!=null?!a.id:!void 0)},c.prototype.isAppointmentGroupFilledEvent=function(){var a,b;return((a=this.object)!=null?(b=a.child_events)!=null?b.length:void 0:void 0)>0},c.prototype.isAppointmentGroupEvent=function(){var a;return(a=this.object)!=null?a.appointment_group_url:void 0},c.prototype.contextCode=function(){var a,b,c;return((a=this.object)!=null?a.effective_context_code:void 0)||((b=this.object)!=null?b.context_code:void 0)||((c=this.contextInfo)!=null?c.asset_string:void 0)},c.prototype.isUndated=function(){return this.start===null},c.prototype.displayTimeString=function(){return""},c.prototype.readableType=function(){return""},c.prototype.fullDetailsURL=function(){return null},c.prototype.startDate=function(){return this.date},c.prototype.endDate=function(){return this.startDate()},c.prototype.possibleContexts=function(){return this.allPossibleContexts||[this.contextInfo]},c.prototype.addClass=function(a){var b,c,d,e,f;c=!1,f=this.className;for(d=0,e=f.length;d<e;d++){b=f[d];if(b===a){c=!0;break}}if(!c)return this.className.push(a)},c.prototype.removeClass=function(a){var b,c,d,e,f,g;c=0,f=this.className,g=[];for(d=0,e=f.length;d<e;d++)b=f[d],g.push(b===a?this.className.splice(c,1):c+=1);return g},c.prototype.save=function(c,d,e){var f,g,h,i,j;return h=a(function(a){return this.copyDataFromObject(a),b.publish("CommonEvent/eventSaved",this),typeof d=="function"?d():void 0},this),g=a(function(a){return b.publish("CommonEvent/eventSaveFailed",this),typeof e=="function"?e():void 0},this),j=this.methodAndURLForSave(),f=j[0],i=j[1],b.publish("CommonEvent/eventSaving",this),b.ajaxJSON(i,f,c,h,g)},c}()})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  define(['jquery', 'jquery.ajaxJSON', 'vendor/jquery.ba-tinypubsub'], function($) {
+    return (function() {
+      function _Class(data, contextInfo, actualContextInfo) {
+        this.save = __bind(this.save, this);
+        this.removeClass = __bind(this.removeClass, this);
+        this.addClass = __bind(this.addClass, this);
+        this.isUndated = __bind(this.isUndated, this);
+        this.contextCode = __bind(this.contextCode, this);
+        this.isAppointmentGroupEvent = __bind(this.isAppointmentGroupEvent, this);
+        this.isAppointmentGroupFilledEvent = __bind(this.isAppointmentGroupFilledEvent, this);
+        this.isNewEvent = __bind(this.isNewEvent, this);        this.eventType = 'generic';
+        this.contextInfo = contextInfo;
+        this.actualContextInfo = actualContextInfo;
+        this.allPossibleContexts = null;
+        this.className = [];
+        this.object = {};
+      }
+      _Class.prototype.isNewEvent = function() {
+        var _ref;
+        return this.eventType === 'generic' || !((_ref = this.object) != null ? _ref.id : void 0);
+      };
+      _Class.prototype.isAppointmentGroupFilledEvent = function() {
+        var _ref, _ref2;
+        return ((_ref = this.object) != null ? (_ref2 = _ref.child_events) != null ? _ref2.length : void 0 : void 0) > 0;
+      };
+      _Class.prototype.isAppointmentGroupEvent = function() {
+        var _ref;
+        return (_ref = this.object) != null ? _ref.appointment_group_url : void 0;
+      };
+      _Class.prototype.contextCode = function() {
+        var _ref, _ref2, _ref3;
+        return ((_ref = this.object) != null ? _ref.effective_context_code : void 0) || ((_ref2 = this.object) != null ? _ref2.context_code : void 0) || ((_ref3 = this.contextInfo) != null ? _ref3.asset_string : void 0);
+      };
+      _Class.prototype.isUndated = function() {
+        return this.start === null;
+      };
+      _Class.prototype.displayTimeString = function() {
+        return "";
+      };
+      _Class.prototype.readableType = function() {
+        return "";
+      };
+      _Class.prototype.fullDetailsURL = function() {
+        return null;
+      };
+      _Class.prototype.startDate = function() {
+        return this.date;
+      };
+      _Class.prototype.endDate = function() {
+        return this.startDate();
+      };
+      _Class.prototype.possibleContexts = function() {
+        return this.allPossibleContexts || [this.contextInfo];
+      };
+      _Class.prototype.addClass = function(newClass) {
+        var c, found, _i, _len, _ref;
+        found = false;
+        _ref = this.className;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          c = _ref[_i];
+          if (c === newClass) {
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          return this.className.push(newClass);
+        }
+      };
+      _Class.prototype.removeClass = function(rmClass) {
+        var c, idx, _i, _len, _ref, _results;
+        idx = 0;
+        _ref = this.className;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          c = _ref[_i];
+          _results.push(c === rmClass ? this.className.splice(idx, 1) : idx += 1);
+        }
+        return _results;
+      };
+      _Class.prototype.save = function(params, success, error) {
+        var method, onError, onSuccess, url, _ref;
+        onSuccess = __bind(function(data) {
+          this.copyDataFromObject(data);
+          $.publish("CommonEvent/eventSaved", this);
+          return typeof success === "function" ? success() : void 0;
+        }, this);
+        onError = __bind(function(data) {
+          $.publish("CommonEvent/eventSaveFailed", this);
+          return typeof error === "function" ? error() : void 0;
+        }, this);
+        _ref = this.methodAndURLForSave(), method = _ref[0], url = _ref[1];
+        $.publish("CommonEvent/eventSaving", this);
+        return $.ajaxJSON(url, method, params, onSuccess, onError);
+      };
+      return _Class;
+    })();
+  });
+}).call(this);

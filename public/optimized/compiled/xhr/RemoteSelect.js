@@ -1,1 +1,105 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}},b=Array.prototype.slice;define(["use!underscore","compiled/class/cache","vendor/spin","jst/util/select/optgroups","jst/util/select/options"],function(c,d,e,f,g){var h;return h=function(){function h(b,e){this.el=b,this.options=e,this.stopSpinner=a(this.stopSpinner,this),this.startSpinner=a(this.startSpinner,this),this.currentKey=a(this.currentKey,this),this.onResponse=a(this.onResponse,this),this.options=c.extend({},this.defaultOptions,this.options),this.options.cache&&$.extend(!0,this,d),this.body=$("body"),this.options.placeholder=this.el.html(),this.options.start===!0&&this.makeRequest()}return h.prototype.defaultOptions={cache:!0,formatter:function(a){return a},requestParams:{},start:!0,url:window.location.href},h.prototype.spinnerOptions={lines:10,length:3,radius:3,speed:1,trail:60,width:2},h.prototype.makeRequest=function(b){var d;b==null&&(b={}),b=c.extend({},this.options.requestParams,b),this.el.prop("disabled",!0);if(this.options.cache)if(d=this.cache.get([this.options.url,b]))return this.onResponse(d);return this.startSpinner(),this.currentRequest=$.getJSON(this.options.url,b,this.onResponse),c.tap(this.currentRequest,a(function(a){return a.url=this.options.url,a.params=b,a.error(this.stopSpinner)},this))},h.prototype.onResponse=function(a){var b,c;return b=this.options.formatter(a),c=this.getTemplate(b),this.shouldCache(this.currentKey())&&this.cache.set(this.currentKey(),a),this.el.empty().append(this.options.placeholder).append(c(b)),this.stopSpinner(),this.el.prop("disabled",!1)},h.prototype.currentKey=function(){return[this.options.url,this.currentRequest.params]},h.prototype.shouldCache=function(){var a;return a=1>arguments.length?[]:b.call(arguments,0),this.options.cache&&!this.cache.get(a)},h.prototype.getTemplate=function(a){return c.isArray(a)?g:f},h.prototype.startSpinner=function(){return this.spinner=$((new e(this.spinnerOptions)).spin().el),this.spinner.css(this.toTheRightOf(this.el)),this.body.append(this.spinner)},h.prototype.stopSpinner=function(){return this.spinner.remove()},h.prototype.toTheRightOf=function(a){return this.spinnerCss||(this.spinnerCss={left:a.offset().left+a.width()+10,position:"absolute",top:a.offset().top+a.height()/2,zIndex:9999})},h}()})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __slice = Array.prototype.slice;
+  define(['use!underscore', 'compiled/class/cache', 'vendor/spin', 'jst/util/select/optgroups', 'jst/util/select/options'], function(_, cache, Spinner, optGroupTpl, optsTpl) {
+    var RemoteSelect;
+    return RemoteSelect = (function() {
+      RemoteSelect.prototype.defaultOptions = {
+        cache: true,
+        formatter: function(d) {
+          return d;
+        },
+        requestParams: {},
+        start: true,
+        url: window.location.href
+      };
+      RemoteSelect.prototype.spinnerOptions = {
+        lines: 10,
+        length: 3,
+        radius: 3,
+        speed: 1,
+        trail: 60,
+        width: 2
+      };
+      function RemoteSelect(el, options) {
+        this.el = el;
+        this.options = options;
+        this.stopSpinner = __bind(this.stopSpinner, this);
+        this.startSpinner = __bind(this.startSpinner, this);
+        this.currentKey = __bind(this.currentKey, this);
+        this.onResponse = __bind(this.onResponse, this);
+        this.options = _.extend({}, this.defaultOptions, this.options);
+        if (this.options.cache) {
+          $.extend(true, this, cache);
+        }
+        this.body = $('body');
+        this.options.placeholder = this.el.html();
+        if (this.options.start === true) {
+          this.makeRequest();
+        }
+      }
+      RemoteSelect.prototype.makeRequest = function(params) {
+        var cachedValue;
+        if (params == null) {
+          params = {};
+        }
+        params = _.extend({}, this.options.requestParams, params);
+        this.el.prop('disabled', true);
+        if (this.options.cache) {
+          if (cachedValue = this.cache.get([this.options.url, params])) {
+            return this.onResponse(cachedValue);
+          }
+        }
+        this.startSpinner();
+        this.currentRequest = $.getJSON(this.options.url, params, this.onResponse);
+        return _.tap(this.currentRequest, __bind(function(obj) {
+          obj.url = this.options.url;
+          obj.params = params;
+          return obj.error(this.stopSpinner);
+        }, this));
+      };
+      RemoteSelect.prototype.onResponse = function(data) {
+        var fData, template;
+        fData = this.options.formatter(data);
+        template = this.getTemplate(fData);
+        if (this.shouldCache(this.currentKey())) {
+          this.cache.set(this.currentKey(), data);
+        }
+        this.el.empty().append(this.options.placeholder).append(template(fData));
+        this.stopSpinner();
+        return this.el.prop('disabled', false);
+      };
+      RemoteSelect.prototype.currentKey = function() {
+        return [this.options.url, this.currentRequest.params];
+      };
+      RemoteSelect.prototype.shouldCache = function() {
+        var key;
+        key = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        return this.options.cache && !this.cache.get(key);
+      };
+      RemoteSelect.prototype.getTemplate = function(data) {
+        if (_.isArray(data)) {
+          return optsTpl;
+        } else {
+          return optGroupTpl;
+        }
+      };
+      RemoteSelect.prototype.startSpinner = function() {
+        this.spinner = $(new Spinner(this.spinnerOptions).spin().el);
+        this.spinner.css(this.toTheRightOf(this.el));
+        return this.body.append(this.spinner);
+      };
+      RemoteSelect.prototype.stopSpinner = function() {
+        return this.spinner.remove();
+      };
+      RemoteSelect.prototype.toTheRightOf = function(el) {
+        return this.spinnerCss || (this.spinnerCss = {
+          left: el.offset().left + el.width() + 10,
+          position: 'absolute',
+          top: el.offset().top + el.height() / 2,
+          zIndex: 9999
+        });
+      };
+      return RemoteSelect;
+    })();
+  });
+}).call(this);

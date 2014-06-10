@@ -1,1 +1,91 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}},b=Object.prototype.hasOwnProperty,c=function(a,c){function e(){this.constructor=a}for(var d in c)b.call(c,d)&&(a[d]=c[d]);return e.prototype=c.prototype,a.prototype=new e,a.__super__=c.prototype,a};define(["use!underscore","jquery","compiled/backbone-ext/Backbone","compiled/discussions/EntryCollection","compiled/discussions/EntryCollectionView","compiled/discussions/EntryView","compiled/discussions/ParticipantCollection","compiled/discussions/MarkAsReadWatcher","jst/discussions/_reply_form","vendor/ui.selectmenu"],function(b,d,e,f,g,h,i,j,k,l){var m;return m=function(){function k(){this.onFetchSuccess=a(this.onFetchSuccess,this),this.onMarkAsRead=a(this.onMarkAsRead,this),this.initParticipants=a(this.initParticipants,this),this.initEntries=a(this.initEntries,this),k.__super__.constructor.apply(this,arguments)}return c(k,e.View),k.prototype.events={"click .entry [data-event]":"handleEntryEvent"},k.prototype.initialize=function(){return this.$el=d("#discussion_subentries"),this.participants=new i,this.model.bind("change:participants",this.initParticipants),this.collection=new f,this.model.bind("change:view",this.initEntries),j.on("markAsRead",this.onMarkAsRead),this.model.fetch({success:this.onFetchSuccess})},k.prototype.initEntries=function(a,b){return this.collectionView=new g({$el:this.$el,collection:this.collection,showReplyButton:ENV.DISCUSSION.PERMISSIONS.CAN_REPLY}),this.collection.reset(b),this.updateFromNewEntries(),this.setUnreadEntries(),j.init()},k.prototype.updateFromNewEntries=function(){var c;return c=this.model.get("new_entries"),b.each(c,a(function(a){var b;return b=h.instances[a.id],b?b.model.set(a):(b=h.instances[a.parent_id]||this,b.collection.add(a))},this))},k.prototype.setUnreadEntries=function(){var a;return a=this.model.get("unread_entries"),b.each(a,function(a){return h.instances[a].model.set("read_state","unread")})},k.prototype.initParticipants=function(a,b){return this.participants.reset(b)},k.prototype.onMarkAsRead=function(a){var c,d;return d=this.model.get("unread_entries"),c=a.get("id"),this.model.set("unread_entries",b.without(d,c))},k.prototype.onFetchSuccess=function(){return this.model.trigger("fetchSuccess",this.model)},k.prototype.handleEntryEvent=function(a){var b,c,e,f,g;return b=d(a.currentTarget),f=b.data("event"),g=b.parents("."+h.prototype.className+":first"),c=g.data("id"),e=h.instances[c],e[f].call(e,a,b)},k}()})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  define(['use!underscore', 'jquery', 'compiled/backbone-ext/Backbone', 'compiled/discussions/EntryCollection', 'compiled/discussions/EntryCollectionView', 'compiled/discussions/EntryView', 'compiled/discussions/ParticipantCollection', 'compiled/discussions/MarkAsReadWatcher', 'jst/discussions/_reply_form', 'vendor/ui.selectmenu'], function(_, $, Backbone, EntryCollection, EntryCollectionView, EntryView, ParticipantCollection, MarkAsReadWatcher, template, replyForm) {
+    var EntriesView;
+    return EntriesView = (function() {
+      __extends(EntriesView, Backbone.View);
+      function EntriesView() {
+        this.onFetchSuccess = __bind(this.onFetchSuccess, this);
+        this.onMarkAsRead = __bind(this.onMarkAsRead, this);
+        this.initParticipants = __bind(this.initParticipants, this);
+        this.initEntries = __bind(this.initEntries, this);
+        EntriesView.__super__.constructor.apply(this, arguments);
+      }
+      EntriesView.prototype.events = {
+        'click .entry [data-event]': 'handleEntryEvent'
+      };
+      EntriesView.prototype.initialize = function() {
+        this.$el = $('#discussion_subentries');
+        this.participants = new ParticipantCollection;
+        this.model.bind('change:participants', this.initParticipants);
+        this.collection = new EntryCollection;
+        this.model.bind('change:view', this.initEntries);
+        MarkAsReadWatcher.on('markAsRead', this.onMarkAsRead);
+        return this.model.fetch({
+          success: this.onFetchSuccess
+        });
+      };
+      EntriesView.prototype.initEntries = function(thisView, entries) {
+        this.collectionView = new EntryCollectionView({
+          $el: this.$el,
+          collection: this.collection,
+          showReplyButton: ENV.DISCUSSION.PERMISSIONS.CAN_REPLY
+        });
+        this.collection.reset(entries);
+        this.updateFromNewEntries();
+        this.setUnreadEntries();
+        return MarkAsReadWatcher.init();
+      };
+      EntriesView.prototype.updateFromNewEntries = function() {
+        var newEntries;
+        newEntries = this.model.get('new_entries');
+        return _.each(newEntries, __bind(function(entry) {
+          var view;
+          view = EntryView.instances[entry.id];
+          if (view) {
+            return view.model.set(entry);
+          } else {
+            view = EntryView.instances[entry.parent_id] || this;
+            return view.collection.add(entry);
+          }
+        }, this));
+      };
+      EntriesView.prototype.setUnreadEntries = function() {
+        var unread_entries;
+        unread_entries = this.model.get('unread_entries');
+        return _.each(unread_entries, function(id) {
+          return EntryView.instances[id].model.set('read_state', 'unread');
+        });
+      };
+      EntriesView.prototype.initParticipants = function(thisView, participants) {
+        return this.participants.reset(participants);
+      };
+      EntriesView.prototype.onMarkAsRead = function(entry) {
+        var id, unread;
+        unread = this.model.get('unread_entries');
+        id = entry.get('id');
+        return this.model.set('unread_entries', _.without(unread, id));
+      };
+      EntriesView.prototype.onFetchSuccess = function() {
+        return this.model.trigger('fetchSuccess', this.model);
+      };
+      EntriesView.prototype.handleEntryEvent = function(event) {
+        var el, id, instance, method, modelEl;
+        el = $(event.currentTarget);
+        method = el.data('event');
+        modelEl = el.parents("." + EntryView.prototype.className + ":first");
+        id = modelEl.data('id');
+        instance = EntryView.instances[id];
+        return instance[method].call(instance, event, el);
+      };
+      return EntriesView;
+    })();
+  });
+}).call(this);

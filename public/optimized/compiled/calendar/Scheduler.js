@@ -1,1 +1,324 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}};define(["jquery","i18n!calendar","jst/calendar/appointmentGroupList","jst/calendar/schedulerRightSideAdminSection","compiled/calendar/EditAppointmentGroupDialog","compiled/calendar/MessageParticipantsDialog","jst/calendar/deleteItem","jquery.instructure_date_and_time","jquery.instructure_jquery_patches","jquery.instructure_misc_plugins","vendor/jquery.ba-tinypubsub","vendor/jquery.spin"],function(b,c,d,e,f,g,h){var i;return i=function(){function i(c,d){this.calendar=d,this.messageLinkClick=a(this.messageLinkClick,this),this.deleteLinkClick=a(this.deleteLinkClick,this),this.editLinkClick=a(this.editLinkClick,this),this.showList=a(this.showList,this),this.doneClick=a(this.doneClick,this),this.viewCalendarForGroup=a(this.viewCalendarForGroup,this),this.viewCalendarForGroupId=a(this.viewCalendarForGroupId,this),this.viewCalendarForElement=a(this.viewCalendarForElement,this),this.showEventLinkClick=a(this.showEventLinkClick,this),this.viewCalendarLinkClick=a(this.viewCalendarLinkClick,this),this.redraw=a(this.redraw,this),this.loadData=a(this.loadData,this),this.canManageAGroup=a(this.canManageAGroup,this),this.hide=a(this.hide,this),this.show=a(this.show,this),this.eventDeleted=a(this.eventDeleted,this),this.eventSaved=a(this.eventSaved,this),this.dialogCloseCB=a(this.dialogCloseCB,this),this.createClick=a(this.createClick,this),this.div=b(c),this.contexts=this.calendar.contexts,this.listDiv=this.div.find(".appointment-list"),this.div.delegate(".single_item_done_button","click",this.doneClick),this.div.delegate(".view_calendar_link","click",this.viewCalendarLinkClick),this.listDiv.delegate(".edit_link","click",this.editLinkClick),this.listDiv.delegate(".message_link","click",this.messageLinkClick),this.listDiv.delegate(".delete_link","click",this.deleteLinkClick),this.listDiv.delegate(".show_event_link","click",this.showEventLinkClick),this.canManageAGroup()&&(this.div.addClass("can-manage"),this.rightSideAdminSection=b(e()),this.rightSideAdminSection.find(".create_link").click(this.createClick)),b.subscribe("CommonEvent/eventSaved",this.eventSaved),b.subscribe("CommonEvent/eventDeleted",this.eventDeleted)}return i.prototype.createClick=function(a){var b;return a.preventDefault(),b={contexts:this.calendar.contexts},this.createDialog=new f(b,this.dialogCloseCB),this.createDialog.show()},i.prototype.dialogCloseCB=function(a){if(a)return this.calendar.dataSource.clearCache(),this.loadData()},i.prototype.eventSaved=function(a){if(this.active)return this.calendar.dataSource.clearCache(),this.loadData()},i.prototype.eventDeleted=function(a){if(this.active)return this.calendar.dataSource.clearCache(),this.loadData()},i.prototype.toggleListMode=function(a){var c;return a?(delete this.viewingGroup,this.calendar.updateFragment({appointment_group_id:null}),this.showList(),this.canManageAGroup()?(b("#right-side .rs-section").hide(),this.rightSideAdminSection.appendTo("#right-side")):b("#right-side-wrapper").hide()):(b("#right-side-wrapper").show(),b("#right-side .rs-section").not("#undated-events, #calendar-feed").show(),(c=this.rightSideAdminSection)!=null?c.detach():void 0)},i.prototype.show=function(){return b("#undated-events, #calendar-feed").hide(),this.active=!0,this.div.show(),this.loadData(),this.toggleListMode(!0),b.publish("Calendar/saveVisibleContextListAndClear")},i.prototype.hide=function(){return b("#undated-events, #calendar-feed").show(),this.active=!1,this.div.hide(),this.toggleListMode(!1),this.calendar.displayAppointmentEvents=null,b.publish("Calendar/restoreVisibleContextList")},i.prototype.canManageAGroup=function(){var a,b,c,d;d=this.contexts;for(b=0,c=d.length;b<c;b++){a=d[b];if(a.can_create_appointment_groups)return!0}return!1},i.prototype.loadData=function(){var c;if(!this.loadingDeferred||this.loadingDeferred&&!this.loadingDeferred.isResolved())this.loadingDeferred=new b.Deferred;return this.groups={},(c=this.loadingDiv)==null&&(this.loadingDiv=b('<div id="scheduler-loading" />').appendTo(this.div).spin()),this.calendar.dataSource.getAppointmentGroups(this.canManageAGroup(),a(function(a){var b,c,d;for(c=0,d=a.length;c<d;c++)b=a[c],this.groups[b.id]=b;return this.redraw(),this.loadingDeferred.resolve()},this))},i.prototype.redraw=function(){var a,c,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w;this.loadingDiv.hide();if(this.groups){g=[],r=this.groups;for(i in r){f=r[i],f.signed_up_times=null;if(f.appointmentEvents){s=f.appointmentEvents;for(j=0,n=s.length;j<n;j++){a=s[j];if(a.object.reserved){t=a.childEvents;for(k=0,o=t.length;k<o;k++)c=t[k],c.object.own_reservation&&((u=f.signed_up_times)==null&&(f.signed_up_times=[]),f.signed_up_times.push({id:c.id,formatted_time:c.displayTimeString()}))}}}f.signed_up=0;if(f.appointmentEvents){v=f.appointmentEvents;for(l=0,p=v.length;l<p;l++)a=v[l],a.childEvents&&(f.signed_up+=a.childEvents.length)}w=this.contexts;for(m=0,q=w.length;m<q;m++)e=w[m],e.asset_string===f.context_code&&(f.context=e);f.published=f.workflow_state==="active",g.push(f)}h=d({appointment_groups:g,canManageAGroup:this.canManageAGroup()}),this.listDiv.find(".list-wrapper").html(h),this.viewingGroup&&(this.viewingGroup=this.groups[this.viewingGroup.id],this.viewingGroup?(this.listDiv.find(".appointment-group-item[data-appointment-group-id='"+this.viewingGroup.id+"']").addClass("active"),this.calendar.displayAppointmentEvents=this.viewingGroup):this.toggleListMode(!0))}return b.publish("Calendar/refetchEvents")},i.prototype.viewCalendarLinkClick=function(a){return a.preventDefault(),this.viewCalendarForElement(b(a.target))},i.prototype.showEventLinkClick=function(a){var c,d,e,f,g,h,i,j,k,l;a.preventDefault(),f=this.viewCalendarForElement(b(a.target)),e=b(a.target).data("event-id");if(e){k=f.object.appointmentEvents;for(g=0,i=k.length;g<i;g++){c=k[g],l=c.object.childEvents;for(h=0,j=l.length;h<j;h++){d=l[h];if(d.id===e){this.calendar.gotoDate(d.start);return}}}}},i.prototype.viewCalendarForElement=function(a){var b,c,d,e,f;return d=a.closest(".appointment-group-item"),c=d.data("appointment-group-id"),d.addClass("active"),b=(e=this.groups)!=null?e[c]:void 0,this.viewCalendarForGroup((f=this.groups)!=null?f[c]:void 0),b},i.prototype.viewCalendarForGroupId=function(b){return this.loadData(),this.loadingDeferred.done(a(function(){var a;return this.viewCalendarForGroup((a=this.groups)!=null?a[b]:void 0)},this))},i.prototype.viewCalendarForGroup=function(c){return this.calendar.updateFragment({appointment_group_id:c.id}),this.toggleListMode(!1),this.viewingGroup=c,this.loadingDeferred.done(a(function(){return this.div.addClass("showing-single"),this.calendar.calendar.show(),this.calendar.calendar.fullCalendar("changeView","agendaWeek"),this.viewingGroup.start_at?this.calendar.gotoDate(b.parseFromISO(this.viewingGroup.start_at).time):this.calendar.gotoDate(new Date),this.calendar.displayAppointmentEvents=this.viewingGroup,b.publish("Calendar/refetchEvents")},this))},i.prototype.doneClick=function(a){return a.preventDefault(),this.toggleListMode(!0)},i.prototype.showList=function(){return this.div.removeClass("showing-single"),this.listDiv.find(".appointment-group-item").removeClass("active"),this.calendar.calendar.hide(),this.calendar.displayAppointmentEvents=null},i.prototype.editLinkClick=function(a){var c,d;a.preventDefault(),c=(d=this.groups)!=null?d[b(a.target).closest(".appointment-group-item").data("appointment-group-id")]:void 0;if(!c)return;return c.contexts=this.calendar.contexts,this.createDialog=new f(c,this.dialogCloseCB),this.createDialog.show()},i.prototype.deleteLinkClick=function(d){var e,f;d.preventDefault(),e=(f=this.groups)!=null?f[b(d.target).closest(".appointment-group-item").data("appointment-group-id")]:void 0;if(!e)return;return b("<div />").confirmDelete({url:e.url,message:b(h({message:c.t("confirm_appointment_group_deletion","Are you sure you want to delete this appointment group?"),details:c.t("appointment_group_deletion_details","Deleting it will also delete any appointments that have been signed up for by students.")})),dialog:{title:c.t("confirm_deletion","Confirm Deletion")},prepareData:a(function(a){return{cancel_reason:a.find("#cancel_reason").val()}},this),confirmed:a(function(){return b(d.target).closest(".appointment-group-item").addClass("event_pending")},this),success:a(function(){return this.calendar.dataSource.clearCache(),this.loadData()},this)})},i.prototype.messageLinkClick=function(a){var c,d;return a.preventDefault(),c=(d=this.groups)!=null?d[b(a.target).closest(".appointment-group-item").data("appointment-group-id")]:void 0,this.messageDialog=new g(c,this.calendar.dataSource),this.messageDialog.show()},i}()})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  define(['jquery', 'i18n!calendar', 'jst/calendar/appointmentGroupList', 'jst/calendar/schedulerRightSideAdminSection', 'compiled/calendar/EditAppointmentGroupDialog', 'compiled/calendar/MessageParticipantsDialog', 'jst/calendar/deleteItem', 'jquery.instructure_date_and_time', 'jquery.instructure_jquery_patches', 'jquery.instructure_misc_plugins', 'vendor/jquery.ba-tinypubsub', 'vendor/jquery.spin'], function($, I18n, appointmentGroupListTemplate, schedulerRightSideAdminSectionTemplate, EditAppointmentGroupDialog, MessageParticipantsDialog, deleteItemTemplate) {
+    var Scheduler;
+    return Scheduler = (function() {
+      function Scheduler(selector, calendar) {
+        this.calendar = calendar;
+        this.messageLinkClick = __bind(this.messageLinkClick, this);
+        this.deleteLinkClick = __bind(this.deleteLinkClick, this);
+        this.editLinkClick = __bind(this.editLinkClick, this);
+        this.showList = __bind(this.showList, this);
+        this.doneClick = __bind(this.doneClick, this);
+        this.viewCalendarForGroup = __bind(this.viewCalendarForGroup, this);
+        this.viewCalendarForGroupId = __bind(this.viewCalendarForGroupId, this);
+        this.viewCalendarForElement = __bind(this.viewCalendarForElement, this);
+        this.showEventLinkClick = __bind(this.showEventLinkClick, this);
+        this.viewCalendarLinkClick = __bind(this.viewCalendarLinkClick, this);
+        this.redraw = __bind(this.redraw, this);
+        this.loadData = __bind(this.loadData, this);
+        this.canManageAGroup = __bind(this.canManageAGroup, this);
+        this.hide = __bind(this.hide, this);
+        this.show = __bind(this.show, this);
+        this.eventDeleted = __bind(this.eventDeleted, this);
+        this.eventSaved = __bind(this.eventSaved, this);
+        this.dialogCloseCB = __bind(this.dialogCloseCB, this);
+        this.createClick = __bind(this.createClick, this);
+        this.div = $(selector);
+        this.contexts = this.calendar.contexts;
+        this.listDiv = this.div.find(".appointment-list");
+        this.div.delegate('.single_item_done_button', 'click', this.doneClick);
+        this.div.delegate('.view_calendar_link', 'click', this.viewCalendarLinkClick);
+        this.listDiv.delegate('.edit_link', 'click', this.editLinkClick);
+        this.listDiv.delegate('.message_link', 'click', this.messageLinkClick);
+        this.listDiv.delegate('.delete_link', 'click', this.deleteLinkClick);
+        this.listDiv.delegate('.show_event_link', 'click', this.showEventLinkClick);
+        if (this.canManageAGroup()) {
+          this.div.addClass('can-manage');
+          this.rightSideAdminSection = $(schedulerRightSideAdminSectionTemplate());
+          this.rightSideAdminSection.find(".create_link").click(this.createClick);
+        }
+        $.subscribe("CommonEvent/eventSaved", this.eventSaved);
+        $.subscribe("CommonEvent/eventDeleted", this.eventDeleted);
+      }
+      Scheduler.prototype.createClick = function(jsEvent) {
+        var group;
+        jsEvent.preventDefault();
+        group = {
+          contexts: this.calendar.contexts
+        };
+        this.createDialog = new EditAppointmentGroupDialog(group, this.dialogCloseCB);
+        return this.createDialog.show();
+      };
+      Scheduler.prototype.dialogCloseCB = function(saved) {
+        if (saved) {
+          this.calendar.dataSource.clearCache();
+          return this.loadData();
+        }
+      };
+      Scheduler.prototype.eventSaved = function(event) {
+        if (this.active) {
+          this.calendar.dataSource.clearCache();
+          return this.loadData();
+        }
+      };
+      Scheduler.prototype.eventDeleted = function(event) {
+        if (this.active) {
+          this.calendar.dataSource.clearCache();
+          return this.loadData();
+        }
+      };
+      Scheduler.prototype.toggleListMode = function(showListMode) {
+        var _ref;
+        if (showListMode) {
+          delete this.viewingGroup;
+          this.calendar.updateFragment({
+            appointment_group_id: null
+          });
+          this.showList();
+          if (this.canManageAGroup()) {
+            $('#right-side .rs-section').hide();
+            return this.rightSideAdminSection.appendTo('#right-side');
+          } else {
+            return $('#right-side-wrapper').hide();
+          }
+        } else {
+          $('#right-side-wrapper').show();
+          $('#right-side .rs-section').not("#undated-events, #calendar-feed").show();
+          return (_ref = this.rightSideAdminSection) != null ? _ref.detach() : void 0;
+        }
+      };
+      Scheduler.prototype.show = function() {
+        $("#undated-events, #calendar-feed").hide();
+        this.active = true;
+        this.div.show();
+        this.loadData();
+        this.toggleListMode(true);
+        return $.publish("Calendar/saveVisibleContextListAndClear");
+      };
+      Scheduler.prototype.hide = function() {
+        $("#undated-events, #calendar-feed").show();
+        this.active = false;
+        this.div.hide();
+        this.toggleListMode(false);
+        this.calendar.displayAppointmentEvents = null;
+        return $.publish("Calendar/restoreVisibleContextList");
+      };
+      Scheduler.prototype.canManageAGroup = function() {
+        var contextInfo, _i, _len, _ref;
+        _ref = this.contexts;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          contextInfo = _ref[_i];
+          if (contextInfo.can_create_appointment_groups) {
+            return true;
+          }
+        }
+        return false;
+      };
+      Scheduler.prototype.loadData = function() {
+        var _ref;
+        if (!this.loadingDeferred || (this.loadingDeferred && !this.loadingDeferred.isResolved())) {
+          this.loadingDeferred = new $.Deferred();
+        }
+        this.groups = {};
+        if ((_ref = this.loadingDiv) == null) {
+          this.loadingDiv = $('<div id="scheduler-loading" />').appendTo(this.div).spin();
+        }
+        return this.calendar.dataSource.getAppointmentGroups(this.canManageAGroup(), __bind(function(data) {
+          var group, _i, _len;
+          for (_i = 0, _len = data.length; _i < _len; _i++) {
+            group = data[_i];
+            this.groups[group.id] = group;
+          }
+          this.redraw();
+          return this.loadingDeferred.resolve();
+        }, this));
+      };
+      Scheduler.prototype.redraw = function() {
+        var appointmentEvent, childEvent, contextInfo, group, groups, html, id, _i, _j, _k, _l, _len, _len2, _len3, _len4, _ref, _ref2, _ref3, _ref4, _ref5, _ref6;
+        this.loadingDiv.hide();
+        if (this.groups) {
+          groups = [];
+          _ref = this.groups;
+          for (id in _ref) {
+            group = _ref[id];
+            group.signed_up_times = null;
+            if (group.appointmentEvents) {
+              _ref2 = group.appointmentEvents;
+              for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
+                appointmentEvent = _ref2[_i];
+                if (appointmentEvent.object.reserved) {
+                  _ref3 = appointmentEvent.childEvents;
+                  for (_j = 0, _len2 = _ref3.length; _j < _len2; _j++) {
+                    childEvent = _ref3[_j];
+                    if (childEvent.object.own_reservation) {
+                      if ((_ref4 = group.signed_up_times) == null) {
+                        group.signed_up_times = [];
+                      }
+                      group.signed_up_times.push({
+                        id: childEvent.id,
+                        formatted_time: childEvent.displayTimeString()
+                      });
+                    }
+                  }
+                }
+              }
+            }
+            group.signed_up = 0;
+            if (group.appointmentEvents) {
+              _ref5 = group.appointmentEvents;
+              for (_k = 0, _len3 = _ref5.length; _k < _len3; _k++) {
+                appointmentEvent = _ref5[_k];
+                if (appointmentEvent.childEvents) {
+                  group.signed_up += appointmentEvent.childEvents.length;
+                }
+              }
+            }
+            _ref6 = this.contexts;
+            for (_l = 0, _len4 = _ref6.length; _l < _len4; _l++) {
+              contextInfo = _ref6[_l];
+              if (contextInfo.asset_string === group.context_code) {
+                group.context = contextInfo;
+              }
+            }
+            group.published = group.workflow_state === "active";
+            groups.push(group);
+          }
+          html = appointmentGroupListTemplate({
+            appointment_groups: groups,
+            canManageAGroup: this.canManageAGroup()
+          });
+          this.listDiv.find(".list-wrapper").html(html);
+          if (this.viewingGroup) {
+            this.viewingGroup = this.groups[this.viewingGroup.id];
+            if (this.viewingGroup) {
+              this.listDiv.find(".appointment-group-item[data-appointment-group-id='" + this.viewingGroup.id + "']").addClass('active');
+              this.calendar.displayAppointmentEvents = this.viewingGroup;
+            } else {
+              this.toggleListMode(true);
+            }
+          }
+        }
+        return $.publish("Calendar/refetchEvents");
+      };
+      Scheduler.prototype.viewCalendarLinkClick = function(jsEvent) {
+        jsEvent.preventDefault();
+        return this.viewCalendarForElement($(jsEvent.target));
+      };
+      Scheduler.prototype.showEventLinkClick = function(jsEvent) {
+        var appointmentEvent, childEvent, eventId, group, _i, _j, _len, _len2, _ref, _ref2;
+        jsEvent.preventDefault();
+        group = this.viewCalendarForElement($(jsEvent.target));
+        eventId = $(jsEvent.target).data('event-id');
+        if (eventId) {
+          _ref = group.object.appointmentEvents;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            appointmentEvent = _ref[_i];
+            _ref2 = appointmentEvent.object.childEvents;
+            for (_j = 0, _len2 = _ref2.length; _j < _len2; _j++) {
+              childEvent = _ref2[_j];
+              if (childEvent.id === eventId) {
+                this.calendar.gotoDate(childEvent.start);
+                return;
+              }
+            }
+          }
+        }
+      };
+      Scheduler.prototype.viewCalendarForElement = function(el) {
+        var group, groupId, thisItem, _ref, _ref2;
+        thisItem = el.closest(".appointment-group-item");
+        groupId = thisItem.data('appointment-group-id');
+        thisItem.addClass('active');
+        group = (_ref = this.groups) != null ? _ref[groupId] : void 0;
+        this.viewCalendarForGroup((_ref2 = this.groups) != null ? _ref2[groupId] : void 0);
+        return group;
+      };
+      Scheduler.prototype.viewCalendarForGroupId = function(id) {
+        this.loadData();
+        return this.loadingDeferred.done(__bind(function() {
+          var _ref;
+          return this.viewCalendarForGroup((_ref = this.groups) != null ? _ref[id] : void 0);
+        }, this));
+      };
+      Scheduler.prototype.viewCalendarForGroup = function(group) {
+        this.calendar.updateFragment({
+          appointment_group_id: group.id
+        });
+        this.toggleListMode(false);
+        this.viewingGroup = group;
+        return this.loadingDeferred.done(__bind(function() {
+          this.div.addClass('showing-single');
+          this.calendar.calendar.show();
+          this.calendar.calendar.fullCalendar('changeView', 'agendaWeek');
+          if (this.viewingGroup.start_at) {
+            this.calendar.gotoDate($.parseFromISO(this.viewingGroup.start_at).time);
+          } else {
+            this.calendar.gotoDate(new Date());
+          }
+          this.calendar.displayAppointmentEvents = this.viewingGroup;
+          return $.publish("Calendar/refetchEvents");
+        }, this));
+      };
+      Scheduler.prototype.doneClick = function(jsEvent) {
+        jsEvent.preventDefault();
+        return this.toggleListMode(true);
+      };
+      Scheduler.prototype.showList = function() {
+        this.div.removeClass('showing-single');
+        this.listDiv.find('.appointment-group-item').removeClass('active');
+        this.calendar.calendar.hide();
+        return this.calendar.displayAppointmentEvents = null;
+      };
+      Scheduler.prototype.editLinkClick = function(jsEvent) {
+        var group, _ref;
+        jsEvent.preventDefault();
+        group = (_ref = this.groups) != null ? _ref[$(jsEvent.target).closest(".appointment-group-item").data('appointment-group-id')] : void 0;
+        if (!group) {
+          return;
+        }
+        group.contexts = this.calendar.contexts;
+        this.createDialog = new EditAppointmentGroupDialog(group, this.dialogCloseCB);
+        return this.createDialog.show();
+      };
+      Scheduler.prototype.deleteLinkClick = function(jsEvent) {
+        var group, _ref;
+        jsEvent.preventDefault();
+        group = (_ref = this.groups) != null ? _ref[$(jsEvent.target).closest(".appointment-group-item").data('appointment-group-id')] : void 0;
+        if (!group) {
+          return;
+        }
+        return $("<div />").confirmDelete({
+          url: group.url,
+          message: $(deleteItemTemplate({
+            message: I18n.t('confirm_appointment_group_deletion', "Are you sure you want to delete this appointment group?"),
+            details: I18n.t('appointment_group_deletion_details', "Deleting it will also delete any appointments that have been signed up for by students.")
+          })),
+          dialog: {
+            title: I18n.t('confirm_deletion', "Confirm Deletion")
+          },
+          prepareData: __bind(function($dialog) {
+            return {
+              cancel_reason: $dialog.find('#cancel_reason').val()
+            };
+          }, this),
+          confirmed: __bind(function() {
+            return $(jsEvent.target).closest(".appointment-group-item").addClass("event_pending");
+          }, this),
+          success: __bind(function() {
+            this.calendar.dataSource.clearCache();
+            return this.loadData();
+          }, this)
+        });
+      };
+      Scheduler.prototype.messageLinkClick = function(jsEvent) {
+        var group, _ref;
+        jsEvent.preventDefault();
+        group = (_ref = this.groups) != null ? _ref[$(jsEvent.target).closest(".appointment-group-item").data('appointment-group-id')] : void 0;
+        this.messageDialog = new MessageParticipantsDialog(group, this.calendar.dataSource);
+        return this.messageDialog.show();
+      };
+      return Scheduler;
+    })();
+  });
+}).call(this);

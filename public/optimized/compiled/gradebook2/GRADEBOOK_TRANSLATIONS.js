@@ -1,1 +1,19 @@
-(function(){define(["i18n!gradebook2"],function(a){var b;return b={submission_tooltip_dropped:a.t("dropped_for_grading","Dropped for grading purposes"),submission_tooltip_late:a.t("submitted_late","Submitted late"),submission_tooltip_muted:a.t("assignment_muted","Assignment muted"),submission_tooltip_resubmitted:a.t("resubmitted","Resubmitted since last graded"),submission_tooltip_ungraded:a.t("ungraded","Not factored into grading"),submission_tooltip_online_url:a.t("titles.url","URL Submission"),submission_tooltip_discussion_topic:a.t("titles.discussion","Discussion Submission"),submission_tooltip_online_upload:a.t("titles.upload","File Upload Submission"),submission_tooltip_online_text_entry:a.t("titles.text","Text Entry Submission"),submission_tooltip_pending_review:a.t("titles.quiz_review","This quiz needs review"),submission_tooltip_media_comment:a.t("titles.media","Media Comment Submission"),submission_tooltip_quiz:a.t("title.quiz","Quiz Submission")}})}).call(this)
+(function() {
+  define(['i18n!gradebook2'], function(I18n) {
+    var GRADEBOOK_TRANSLATIONS;
+    return GRADEBOOK_TRANSLATIONS = {
+      submission_tooltip_dropped: I18n.t('dropped_for_grading', 'Dropped for grading purposes'),
+      submission_tooltip_late: I18n.t('submitted_late', 'Submitted late'),
+      submission_tooltip_muted: I18n.t('assignment_muted', 'Assignment muted'),
+      submission_tooltip_resubmitted: I18n.t('resubmitted', 'Resubmitted since last graded'),
+      submission_tooltip_ungraded: I18n.t('ungraded', 'Not factored into grading'),
+      submission_tooltip_online_url: I18n.t('titles.url', "URL Submission"),
+      submission_tooltip_discussion_topic: I18n.t('titles.discussion', "Discussion Submission"),
+      submission_tooltip_online_upload: I18n.t('titles.upload', "File Upload Submission"),
+      submission_tooltip_online_text_entry: I18n.t('titles.text', "Text Entry Submission"),
+      submission_tooltip_pending_review: I18n.t('titles.quiz_review', "This quiz needs review"),
+      submission_tooltip_media_comment: I18n.t('titles.media', "Media Comment Submission"),
+      submission_tooltip_quiz: I18n.t('title.quiz', "Quiz Submission")
+    };
+  });
+}).call(this);

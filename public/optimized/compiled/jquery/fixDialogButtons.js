@@ -1,1 +1,31 @@
-(function(){define(["jquery","jqueryui/dialog"],function(a){return a.fn.fixDialogButtons=function(){return this.each(function(){var b,c,d;c=a(this),b=c.find(".button-container:last .button, button[type=submit]");if(b.length)return c.find(".button-container:last, button[type=submit]").hide(),d=a.map(b.toArray(),function(b){var d;return d=a(b),d.is(".dialog_closer")&&d.click(function(){return c.dialog("close")}),{text:d.text(),"data-text-while-loading":d.data("textWhileLoading"),click:function(){return d.click()}}}),c.dialog("option","buttons",d)})}})}).call(this)
+(function() {
+  define(['jquery', 'jqueryui/dialog'], function($) {
+    return $.fn.fixDialogButtons = function() {
+      return this.each(function() {
+        var $buttons, $dialog, buttons;
+        $dialog = $(this);
+        $buttons = $dialog.find(".button-container:last .button, button[type=submit]");
+        if ($buttons.length) {
+          $dialog.find(".button-container:last, button[type=submit]").hide();
+          buttons = $.map($buttons.toArray(), function(button) {
+            var $button;
+            $button = $(button);
+            if ($button.is('.dialog_closer')) {
+              $button.click(function() {
+                return $dialog.dialog('close');
+              });
+            }
+            return {
+              text: $button.text(),
+              "data-text-while-loading": $button.data("textWhileLoading"),
+              click: function() {
+                return $button.click();
+              }
+            };
+          });
+          return $dialog.dialog("option", "buttons", buttons);
+        }
+      });
+    };
+  });
+}).call(this);

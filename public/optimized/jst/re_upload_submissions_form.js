@@ -1,1 +1,64 @@
-define("jst/re_upload_submissions_form",["compiled/handlebars_helpers","i18n!re_upload_submissions_form"],function(a){var b=a.template,c=a.templates=a.templates||{};return c.re_upload_submissions_form=b(function(a,b,c,d,e){c=c||a.helpers;var f="",g,h,i,j,k,l=this,m="function",n=c.helperMissing,o=void 0;f+='<form action="." enctype="multipart/form-data" id="re_upload_submissions_form" method="post" style="display: none;" title="',g="Re-Upload Submission Files",h="reupload_submission_files",i={},j="re_upload_submissions_form",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+='">\n  <p>\n    ',g="If you made changes to the student submission files you downloaded before, just zip them back up and upload the zip with the form below. Students will see the modified files in their comments for the submission.",h="upload_info",i={},j="re_upload_submissions_form",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="\n  </p>\n  <p>\n    <i>",g="Make sure you don't change the names of the submission files so we can recognize them.",h="upload_warning",i={},j="re_upload_submissions_form",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+='</i>\n  </p>\n  <input type="file" name="submissions_zip"/>\n  <button type="submit" class="button">',g="Upload Files",h="buttons.upload",i={},j="re_upload_submissions_form",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;return f+="</button>\n</form>\n",f}),c.re_upload_submissions_form})
+define('jst/re_upload_submissions_form', ["compiled/handlebars_helpers","i18n!re_upload_submissions_form"], function (Handlebars) {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+  templates['re_upload_submissions_form'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, stack3, stack4, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0;
+
+
+  buffer += "<form action=\".\" enctype=\"multipart/form-data\" id=\"re_upload_submissions_form\" method=\"post\" style=\"display: none;\" title=\"";
+  stack1 = "Re-Upload Submission Files";
+  stack2 = "reupload_submission_files";
+  stack3 = {};
+  stack4 = "re_upload_submissions_form";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n  <p>\n    ";
+  stack1 = "If you made changes to the student submission files you downloaded before, just zip them back up and upload the zip with the form below. Students will see the modified files in their comments for the submission.";
+  stack2 = "upload_info";
+  stack3 = {};
+  stack4 = "re_upload_submissions_form";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </p>\n  <p>\n    <i>";
+  stack1 = "Make sure you don't change the names of the submission files so we can recognize them.";
+  stack2 = "upload_warning";
+  stack3 = {};
+  stack4 = "re_upload_submissions_form";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</i>\n  </p>\n  <input type=\"file\" name=\"submissions_zip\"/>\n  <button type=\"submit\" class=\"button\">";
+  stack1 = "Upload Files";
+  stack2 = "buttons.upload";
+  stack3 = {};
+  stack4 = "re_upload_submissions_form";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</button>\n</form>\n";
+  return buffer;});
+  
+  return templates['re_upload_submissions_form'];
+});

@@ -1,1 +1,38 @@
-define("jst/changePointsPossibleToMatchRubricDialog",["compiled/handlebars_helpers","i18n!change_points_possible_to_match_rubric_dialog"],function(a){var b=a.template,c=a.templates=a.templates||{};return c.changePointsPossibleToMatchRubricDialog=b(function(a,b,c,d,e){c=c||a.helpers;var f="",g,h,i,j,k,l=this,m="function",n=c.helperMissing,o=void 0;f+='<p title="',g="Change points possible to match rubric?",h="titles.update_assignment_points",i={},j="changePointsPossibleToMatchRubricDialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+='">\n  ',g="This assignment has %{assignmentPoints} points possible, would you like to change it to have %{rubricPoints} points possible to match this rubric?",h="prompts.update_assignment_points",i={},j="changePointsPossibleToMatchRubricDialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;return f+="\n</p>",f}),c.changePointsPossibleToMatchRubricDialog})
+define('jst/changePointsPossibleToMatchRubricDialog', ["compiled/handlebars_helpers","i18n!change_points_possible_to_match_rubric_dialog"], function (Handlebars) {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+  templates['changePointsPossibleToMatchRubricDialog'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, stack3, stack4, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0;
+
+
+  buffer += "<p title=\"";
+  stack1 = "Change points possible to match rubric?";
+  stack2 = "titles.update_assignment_points";
+  stack3 = {};
+  stack4 = "changePointsPossibleToMatchRubricDialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n  ";
+  stack1 = "This assignment has %{assignmentPoints} points possible, would you like to change it to have %{rubricPoints} points possible to match this rubric?";
+  stack2 = "prompts.update_assignment_points";
+  stack3 = {};
+  stack4 = "changePointsPossibleToMatchRubricDialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</p>";
+  return buffer;});
+  
+  return templates['changePointsPossibleToMatchRubricDialog'];
+});

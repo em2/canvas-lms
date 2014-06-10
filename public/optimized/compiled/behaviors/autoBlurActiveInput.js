@@ -1,1 +1,29 @@
-(function(){define(function(){var a,b;return a=!1,b=!1,function(c){c==null&&(c=!0),a=c;if(b)return;return b=!0,$(window).bind({blur:function(b){if(a&&document.activeElement&&window===b.target)return $(document.activeElement).filter(":input").change().triggerHandler("blur")},focus:function(b){if(a&&document.activeElement&&window===b.target)return $(document.activeElement).filter(":input").triggerHandler("focus")}})}})}).call(this)
+(function() {
+  define(function() {
+    var blurActiveInput, initialized;
+    blurActiveInput = false;
+    initialized = false;
+    return function(enable) {
+      if (enable == null) {
+        enable = true;
+      }
+      blurActiveInput = enable;
+      if (initialized) {
+        return;
+      }
+      initialized = true;
+      return $(window).bind({
+        blur: function(e) {
+          if (blurActiveInput && document.activeElement && window === e.target) {
+            return $(document.activeElement).filter(':input').change().triggerHandler('blur');
+          }
+        },
+        focus: function(e) {
+          if (blurActiveInput && document.activeElement && window === e.target) {
+            return $(document.activeElement).filter(':input').triggerHandler('focus');
+          }
+        }
+      });
+    };
+  });
+}).call(this);

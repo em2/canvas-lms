@@ -1,1 +1,57 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}};define(["compiled/backbone-ext/Backbone","i18n!discussions","use!underscore","jquery","jquery.ajaxJSON"],function(b,c,d,e){var f,g,h;return g=2e3,f=100,h=function(){function c(b){this.view=b,this.markAsRead=a(this.markAsRead,this),c.unread.push(this),this.view.model.bind("change:collapsedView",a(function(a,b){this.ignore=b;if(b)return this.clearTimer()},this))}var b;return c.unread=[],c.prototype.createTimer=function(){return this.timer||(this.timer=setTimeout(this.markAsRead,g))},c.prototype.clearTimer=function(){return clearTimeout(this.timer),delete this.timer},c.prototype.markAsRead=function(){return this.view.model.markAsRead(),c.unread=d(c.unread).without(this),c.trigger("markAsRead",this.view.model)},b=e(window),c.init=function(){return b.bind("scroll resize",this.checkForVisibleEntries),this.checkForVisibleEntries()},c.checkForVisibleEntries=d.throttle(a(function(){var a,c,d,e,f,g,h,i;f=b.scrollTop(),a=f+b.height(),i=this.unread;for(g=0,h=i.length;g<h;g++){c=i[g];if(c.ignore)continue;e=c.view.$el.offset().top,d=e<a&&e+c.view.$el.height()>f,c[d?"createTimer":"clearTimer"]()}},c),f),c}.call(this),d.extend(h,b.Events)})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  define(['compiled/backbone-ext/Backbone', 'i18n!discussions', 'use!underscore', 'jquery', 'jquery.ajaxJSON'], function(Backbone, I18n, _, $) {
+    var CHECK_THROTTLE, MS_UNTIL_READ, MarkAsReadWatcher;
+    MS_UNTIL_READ = 2000;
+    CHECK_THROTTLE = 100;
+    MarkAsReadWatcher = (function() {
+      var $window;
+      MarkAsReadWatcher.unread = [];
+      function MarkAsReadWatcher(view) {
+        this.view = view;
+        this.markAsRead = __bind(this.markAsRead, this);
+        MarkAsReadWatcher.unread.push(this);
+        this.view.model.bind('change:collapsedView', __bind(function(model, collapsedView) {
+          this.ignore = collapsedView;
+          if (collapsedView) {
+            return this.clearTimer();
+          }
+        }, this));
+      }
+      MarkAsReadWatcher.prototype.createTimer = function() {
+        return this.timer || (this.timer = setTimeout(this.markAsRead, MS_UNTIL_READ));
+      };
+      MarkAsReadWatcher.prototype.clearTimer = function() {
+        clearTimeout(this.timer);
+        return delete this.timer;
+      };
+      MarkAsReadWatcher.prototype.markAsRead = function() {
+        this.view.model.markAsRead();
+        MarkAsReadWatcher.unread = _(MarkAsReadWatcher.unread).without(this);
+        return MarkAsReadWatcher.trigger('markAsRead', this.view.model);
+      };
+      $window = $(window);
+      MarkAsReadWatcher.init = function() {
+        $window.bind('scroll resize', this.checkForVisibleEntries);
+        return this.checkForVisibleEntries();
+      };
+      MarkAsReadWatcher.checkForVisibleEntries = _.throttle(__bind(function() {
+        var bottomOfViewport, entry, inView, topOfElement, topOfViewport, _i, _len, _ref;
+        topOfViewport = $window.scrollTop();
+        bottomOfViewport = topOfViewport + $window.height();
+        _ref = this.unread;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          entry = _ref[_i];
+          if (entry.ignore) {
+            continue;
+          }
+          topOfElement = entry.view.$el.offset().top;
+          inView = (topOfElement < bottomOfViewport) && (topOfElement + entry.view.$el.height() > topOfViewport);
+          entry[inView ? 'createTimer' : 'clearTimer']();
+        }
+      }, MarkAsReadWatcher), CHECK_THROTTLE);
+      return MarkAsReadWatcher;
+    }).call(this);
+    return _.extend(MarkAsReadWatcher, Backbone.Events);
+  });
+}).call(this);

@@ -1,1 +1,84 @@
-(function(){define(["jquery"],function(a){var b;return b=function(){function a(a){var b,c,d,e,f,g;this.blocks=[];if(a)for(e=0,f=a.length;e<f;e++)g=a[e],d=g[0],b=g[1],c=g[2],this.add(d,b,c)}return a.prototype.add=function(a,b,c){return this.blocks.push({start:a,end:b,locked:c})},a.prototype.consolidate=function(){var a,b,c,d,e,f;this.sort(),b=[],b.last=function(){return this[this.length-1]},f=this.blocks;for(d=0,e=f.length;d<e;d++){a=f[d];if(!b.last()){b.push(a);continue}c=b.last(),c.end.getTime()===a.start.getTime()&&!c.locked&&!a.locked?c.end=a.end:b.push(a)}return this.blocks=b},a.prototype.split=function(a){var b,c,d,e,f,g,h;this.consolidate(),e=a*60*1e3,h=this.blocks;for(f=0,g=h.length;f<g;f++){b=h[f];if(b.locked)continue;while(b.end-b.start>a*60*1e3)d=b.start,c=new Date(b.start.getTime()+e),b.start=new Date(b.start.getTime()+e),this.add(d,c)}return this.sort()},a.prototype.sort=function(){return this.blocks=this.blocks.sort(function(a,b){return a.end>b.start?1:-1})},a.prototype["delete"]=function(a){if(a!=null&&this.blocks.length>a&&!this.blocks[a].locked)return this.blocks.splice(a,1)},a.prototype.reset=function(){return this.blocks=[]},a}()})}).call(this)
+(function() {
+  define(['jquery'], function($) {
+    var TimeBlockListManager;
+    return TimeBlockListManager = (function() {
+      function TimeBlockListManager(blocks) {
+        var end, locked, start, _i, _len, _ref;
+        this.blocks = [];
+        if (blocks) {
+          for (_i = 0, _len = blocks.length; _i < _len; _i++) {
+            _ref = blocks[_i], start = _ref[0], end = _ref[1], locked = _ref[2];
+            this.add(start, end, locked);
+          }
+        }
+      }
+      TimeBlockListManager.prototype.add = function(start, end, locked) {
+        return this.blocks.push({
+          start: start,
+          end: end,
+          locked: locked
+        });
+      };
+      TimeBlockListManager.prototype.consolidate = function() {
+        var block, consolidatedBlocks, lastBlock, _i, _len, _ref;
+        this.sort();
+        consolidatedBlocks = [];
+        consolidatedBlocks.last = function() {
+          return this[this.length - 1];
+        };
+        _ref = this.blocks;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          block = _ref[_i];
+          if (!consolidatedBlocks.last()) {
+            consolidatedBlocks.push(block);
+            continue;
+          }
+          lastBlock = consolidatedBlocks.last();
+          if (lastBlock.end.getTime() === block.start.getTime() && !lastBlock.locked && !block.locked) {
+            lastBlock.end = block.end;
+          } else {
+            consolidatedBlocks.push(block);
+          }
+        }
+        return this.blocks = consolidatedBlocks;
+      };
+      TimeBlockListManager.prototype.split = function(minutes) {
+        var block, newStart, oldStart, splitBlockLength, _i, _len, _ref;
+        this.consolidate();
+        splitBlockLength = minutes * 60 * 1000;
+        _ref = this.blocks;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          block = _ref[_i];
+          if (block.locked) {
+            continue;
+          }
+          while (block.end - block.start > minutes * 60 * 1000) {
+            oldStart = block.start;
+            newStart = new Date(block.start.getTime() + splitBlockLength);
+            block.start = new Date(block.start.getTime() + splitBlockLength);
+            this.add(oldStart, newStart);
+          }
+        }
+        return this.sort();
+      };
+      TimeBlockListManager.prototype.sort = function() {
+        return this.blocks = this.blocks.sort(function(a, b) {
+          if (a.end <= b.start) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+      };
+      TimeBlockListManager.prototype["delete"] = function(index) {
+        if ((index != null) && this.blocks.length > index && !this.blocks[index].locked) {
+          return this.blocks.splice(index, 1);
+        }
+      };
+      TimeBlockListManager.prototype.reset = function() {
+        return this.blocks = [];
+      };
+      return TimeBlockListManager;
+    })();
+  });
+}).call(this);
