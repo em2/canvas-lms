@@ -328,9 +328,11 @@ body {
   }
 
   .navbar-brand:hover,.navbar-brand:focus{
-  background-color:none;
-  background-image:none;
-  border-radius:4px
+    padding: 0 !important;
+    background-color:none;
+    background-image:none;
+    border: none !important;
+    border-radius:4px;
   }
 
    .navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus{
