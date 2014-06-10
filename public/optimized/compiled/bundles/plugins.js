@@ -1,3 +1,1 @@
-(function() {
-  require(['plugins']);
-}).call(this);
+define("translations/plugins",["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{plugins:{buttons:{saving:"Guardando..."}}}}})}),define("plugins",["i18n!plugins","jquery","jquery.instructure_misc_plugins"],function(a,b){b("form.edit_plugin_setting").live("submit",function(){b(this).find("button").attr("disabled",!0).filter(".save_button").text(a.t("buttons.saving","Saving..."))}),b(document).ready(function(){b(".disabled_checkbox").change(function(){b("#settings .plugin_settings").showIf(!b(this).attr("checked"))}).change()})}),function(){require(["plugins"])}.call(this),define("compiled/bundles/plugins",function(){})

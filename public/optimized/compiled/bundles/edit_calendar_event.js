@@ -1,11 +1,1 @@
-(function() {
-  require(['jquery', 'compiled/calendar/CalendarEvent', 'compiled/calendar/EditEventView'], function($, CalendarEvent, EditEventView) {
-    return $(function() {
-      var calendarEvent;
-      calendarEvent = new CalendarEvent(ENV.CALENDAR_EVENT);
-      return new EditEventView({
-        model: calendarEvent
-      });
-    });
-  });
-}).call(this);
+(function(){require(["jquery","compiled/calendar/CalendarEvent","compiled/calendar/EditEventView"],function(a,b,c){return a(function(){var a;return a=new b(ENV.CALENDAR_EVENT),new c({model:a})})})}).call(this)

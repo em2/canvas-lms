@@ -1,18 +1,1 @@
-(function() {
-  var __slice = Array.prototype.slice;
-  define(function() {
-    var punch;
-    return punch = function(obj, method, fn) {
-      var old;
-      old = obj[method];
-      return obj[method] = function() {
-        var args;
-        args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-        args.unshift(function() {
-          return old.apply(obj, arguments);
-        });
-        return fn.apply(obj, args);
-      };
-    };
-  });
-}).call(this);
+(function(){var a=Array.prototype.slice;define(function(){var b;return b=function(b,c,d){var e;return e=b[c],b[c]=function(){var c;return c=1>arguments.length?[]:a.call(arguments,0),c.unshift(function(){return e.apply(b,arguments)}),d.apply(b,c)}}})}).call(this)

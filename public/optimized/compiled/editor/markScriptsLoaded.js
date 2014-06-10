@@ -1,15 +1,1 @@
-(function() {
-  define(function() {
-    var markScriptLoaded;
-    return markScriptLoaded = function(urls) {
-      var id, url, _i, _len, _results;
-      _results = [];
-      for (_i = 0, _len = urls.length; _i < _len; _i++) {
-        url = urls[_i];
-        id = tinymce.baseURI.toAbsolute(url) + '.js';
-        _results.push(tinymce.ScriptLoader.markDone(id));
-      }
-      return _results;
-    };
-  });
-}).call(this);
+(function(){define(function(){var a;return a=function(a){var b,c,d,e,f;f=[];for(d=0,e=a.length;d<e;d++)c=a[d],b=tinymce.baseURI.toAbsolute(c)+".js",f.push(tinymce.ScriptLoader.markDone(b));return f}})}).call(this)

@@ -1,13 +1,1 @@
-(function() {
-  define(['jquery', 'vendor/ui.selectmenu'], function($) {
-    return $(function() {
-      return $('.question select').css({
-        '-webkit-appearance': 'none',
-        'font-size': '100%',
-        'padding-right': '60px'
-      }).selectmenu({
-        escapeHtml: true
-      });
-    });
-  });
-}).call(this);
+(function(){define(["jquery","vendor/ui.selectmenu"],function(a){return a(function(){return a(".question select").css({"-webkit-appearance":"none","font-size":"100%","padding-right":"60px"}).selectmenu({escapeHtml:!0})})})}).call(this)

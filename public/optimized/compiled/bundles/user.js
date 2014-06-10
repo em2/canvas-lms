@@ -1,3 +1,1 @@
-(function() {
-  require(['user']);
-}).call(this);
+define("translations/users",["i18nObj","jquery"],function(a,b){b.extend(!0,a,{translations:{es:{users:{confirms:{unenroll_user:"¿Seguro que quiere anular la inscripción de este usuario?"}}}}})}),define("user",["i18n!users","jquery","jquery.instructure_misc_plugins"],function(a,b){b(function(){b(".courses .course,.groups .group").bind("focus mouseover",function(a){b(this).find(".info").addClass("info_hover")}),b(".courses .course,.groups .group").bind("blur mouseout",function(a){b(this).find(".info").removeClass("info_hover")}),b("#courses .unenroll_link").click(function(c){c.preventDefault(),b(this).parents("li").confirmDelete({url:b(this).attr("rel"),message:a.t("confirms.unenroll_user","Are you sure you want to unenroll this user?"),success:function(){b(this).slideUp(function(){b(this).remove()})}})})})}),function(){require(["user"])}.call(this),define("compiled/bundles/user",function(){})

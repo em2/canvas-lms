@@ -1,5 +1,1 @@
-(function() {
-  define(['use!backbone', 'compiled/backbone-ext/Model/computedAttributes', 'compiled/backbone-ext/Model/dateAttributes'], function(Backbone) {
-    return Backbone.Model;
-  });
-}).call(this);
+(function(){define(["use!backbone","compiled/backbone-ext/Model/computedAttributes","compiled/backbone-ext/Model/dateAttributes"],function(a){return a.Model})}).call(this)

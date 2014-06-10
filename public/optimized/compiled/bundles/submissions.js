@@ -1,3 +1,1 @@
-(function() {
-  require(['submissions']);
-}).call(this);
+(function(){require(["submissions"])}).call(this)

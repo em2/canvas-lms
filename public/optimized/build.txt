@@ -638,6 +638,24 @@ compiled/bundles/misconceptions.js
 misconceptions.js
 compiled/bundles/misconceptions.js
 
+compiled/bundles/bootstrap.js
+----------------
+jquery-1.11.0.js
+bootstrap/affix.js
+bootstrap/alert.js
+bootstrap/button.js
+bootstrap/carousel.js
+bootstrap/collapse.js
+bootstrap/dropdown.js
+bootstrap/modal.js
+bootstrap/scrollspy.js
+bootstrap/tab.js
+bootstrap/tooltip.js
+bootstrap/transition.js
+bootstrap/popover.js
+bootstrap.js
+compiled/bundles/bootstrap.js
+
 compiled/bundles/quiz_show.js
 ----------------
 translations/quizzes.show.js

@@ -1,14 +1,1 @@
-(function() {
-  define(['wikiSidebar', 'tinymce.editor_box', 'compiled/tinymce'], function(wikiSidebar) {
-    $.subscribe('editorBox/focus', function($editor) {
-      if (!wikiSidebar.inited) {
-        wikiSidebar.init();
-      }
-      wikiSidebar.show();
-      return wikiSidebar.attachToEditor($editor);
-    });
-    return $.subscribe('editorBox/removeAll', function() {
-      return wikiSidebar.hide();
-    });
-  });
-}).call(this);
+(function(){define(["wikiSidebar","tinymce.editor_box","compiled/tinymce"],function(a){return $.subscribe("editorBox/focus",function(b){return a.inited||a.init(),a.show(),a.attachToEditor(b)}),$.subscribe("editorBox/removeAll",function(){return a.hide()})})}).call(this)
