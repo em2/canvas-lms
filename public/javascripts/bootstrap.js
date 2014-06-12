@@ -1,5 +1,4 @@
 require([
-  'jquery-1.11.0',
   'bootstrap/affix',
   'bootstrap/alert',
   'bootstrap/button',
