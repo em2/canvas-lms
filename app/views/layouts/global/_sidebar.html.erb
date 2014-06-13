@@ -8,13 +8,13 @@
     </ul>
     <ul class="nav nav-sidebar">
       <% @current_user.courses.each do |course| %>
-        <li class="nav text-primary <%= 'active' if current_page?(course_path(course.id)) %> sidebar_course">
-          <%= link_to course.name, course_path(course.id), :class => 'sidebar_course_name sidebar_text' %>
+        <li class="nav text-primary sidebar_course">
+          <%= link_to course.name, course_path(course.id), :class => "sidebar_course_name sidebar_text #{'active' if current_page?(course_path(course.id))}" %>
           <ul class="nav nav-sidebar assessments">
             <% course.quizzes.active.each do |quiz| %>
               <li class="<%= 'active' if current_page?(course_quiz_take_path(course.id, quiz.id, :preview => 1)) %>">
                 <%= link_to quiz.title, course_quiz_take_path(course.id, quiz.id, :preview => 1), :class => 'sidebar_text  sidebar_assessment' %>
-                <% link_to course_quiz_path(course.id, quiz.id), :method => 'delete', :class => 'sidebar_delete' do %>
+                <% link_to course_quiz_path(course.id, quiz.id), :method => 'delete', :class => 'sidebar_delete pull-right', :confirm => "Are you sure?" do %>
                   <span class="glyphicon glyphicon-remove"></span>
                 <% end -%>
               </li>
