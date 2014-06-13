@@ -8,7 +8,7 @@
 
 
 define([
-  'jquery-1.11.0' /* $ */
+  'jquery2' /* $ */
 ], function ($) {
   'use strict';
 
