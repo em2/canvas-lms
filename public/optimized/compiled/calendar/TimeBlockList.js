@@ -1,1 +1,105 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}};define(["jquery","i18n!calendar","compiled/calendar/TimeBlockListManager","compiled/calendar/TimeBlockRow","jquery.instructure_date_and_time","jquery.instructure_forms","vendor/date"],function(b,c,d,e){var f;return f=function(){function f(c,e,f){this.handleSplitClick=a(this.handleSplitClick,this),this.addRow=a(this.addRow,this),this.element=b(c),this.splitterDiv=b(e),this.blocksManager=new d(f),this.splitterDiv.find(".split-link").click(this.handleSplitClick),this.element.delegate("input","change",a(function(a){if(b(a.currentTarget).closest("tr").is(":last-child"))return this.addRow()},this)),this.render()}return f.prototype.render=function(){var a,b,c,d;this.rows=[],this.element.empty(),d=this.blocksManager.blocks;for(b=0,c=d.length;b<c;b++)a=d[b],this.addRow(a);return this.addRow()},f.prototype.rowRemoved=function(a){var b,c;this.rows=function(){var d,e,f,g;f=this.rows,g=[];for(d=0,e=f.length;d<e;d++)c=f[d],c!==a&&(c.locked||(b=!0),g.push(c));return g}.call(this);if(!b)return this.addRow()},f.prototype.addRow=function(a){var b;return b=new e(this,a),this.element.append(b.$row),this.rows.push(b),b},f.prototype.handleSplitClick=function(a){var b;return a.preventDefault(),b=this.splitterDiv.find("[name=duration]").val(),this.split(b)},f.prototype.split=function(a){if(a&&this.validate())return this.blocksManager.split(a),this.render()},f.prototype.validate=function(){var a,b,d,e,f,g;b=!0,this.blocksManager.reset(),f=this.rows;for(d=0,e=f.length;d<e;d++)a=f[d],a.validate()?a.blank()||(g=this.blocksManager).add.apply(g,a.getData()):b=!1;return b||alert(c.t("time_block_errors","There are errors in your time block selections.")),b},f.prototype.blocks=function(){var a,b,c,d,e;d=this.blocksManager.blocks,e=[];for(b=0,c=d.length;b<c;b++)a=d[b],a.locked||e.push([a.start,a.end]);return e},f}()})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  define(['jquery', 'i18n!calendar', 'compiled/calendar/TimeBlockListManager', 'compiled/calendar/TimeBlockRow', 'jquery.instructure_date_and_time', 'jquery.instructure_forms', 'vendor/date'], function($, I18n, TimeBlockListManager, TimeBlockRow) {
+    var TimeBlockList;
+    return TimeBlockList = (function() {
+      function TimeBlockList(element, splitterSelector, blocks) {
+        this.handleSplitClick = __bind(this.handleSplitClick, this);
+        this.addRow = __bind(this.addRow, this);        this.element = $(element);
+        this.splitterDiv = $(splitterSelector);
+        this.blocksManager = new TimeBlockListManager(blocks);
+        this.splitterDiv.find('.split-link').click(this.handleSplitClick);
+        this.element.delegate('input', 'change', __bind(function(event) {
+          if ($(event.currentTarget).closest('tr').is(':last-child')) {
+            return this.addRow();
+          }
+        }, this));
+        this.render();
+      }
+      TimeBlockList.prototype.render = function() {
+        var block, _i, _len, _ref;
+        this.rows = [];
+        this.element.empty();
+        _ref = this.blocksManager.blocks;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          block = _ref[_i];
+          this.addRow(block);
+        }
+        return this.addRow();
+      };
+      TimeBlockList.prototype.rowRemoved = function(rowToRemove) {
+        var aNonLockedRowExists, row;
+        this.rows = (function() {
+          var _i, _len, _ref, _results;
+          _ref = this.rows;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            row = _ref[_i];
+            if (row !== rowToRemove) {
+              if (!row.locked) {
+                aNonLockedRowExists = true;
+              }
+              _results.push(row);
+            }
+          }
+          return _results;
+        }).call(this);
+        if (!aNonLockedRowExists) {
+          return this.addRow();
+        }
+      };
+      TimeBlockList.prototype.addRow = function(data) {
+        var row;
+        row = new TimeBlockRow(this, data);
+        this.element.append(row.$row);
+        this.rows.push(row);
+        return row;
+      };
+      TimeBlockList.prototype.handleSplitClick = function(event) {
+        var duration;
+        event.preventDefault();
+        duration = this.splitterDiv.find('[name=duration]').val();
+        return this.split(duration);
+      };
+      TimeBlockList.prototype.split = function(minutes) {
+        if (minutes && this.validate()) {
+          this.blocksManager.split(minutes);
+          return this.render();
+        }
+      };
+      TimeBlockList.prototype.validate = function() {
+        var row, valid, _i, _len, _ref, _ref2;
+        valid = true;
+        this.blocksManager.reset();
+        _ref = this.rows;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          row = _ref[_i];
+          if (row.validate()) {
+            if (!row.blank()) {
+              (_ref2 = this.blocksManager).add.apply(_ref2, row.getData());
+            }
+          } else {
+            valid = false;
+          }
+        }
+        if (!valid) {
+          alert(I18n.t('time_block_errors', 'There are errors in your time block selections.'));
+        }
+        return valid;
+      };
+      TimeBlockList.prototype.blocks = function() {
+        var range, _i, _len, _ref, _results;
+        _ref = this.blocksManager.blocks;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          range = _ref[_i];
+          if (!range.locked) {
+            _results.push([range.start, range.end]);
+          }
+        }
+        return _results;
+      };
+      return TimeBlockList;
+    })();
+  });
+}).call(this);

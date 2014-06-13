@@ -1,1 +1,63 @@
-define("jst/courseList/content",["compiled/handlebars_helpers"],function(a){var b=a.template,c=a.templates=a.templates||{};return c["courseList/content"]=b(function(a,b,c,d,e){function o(a,b){var d="",e,f;d+='\n  <li class="customListItem" data-id="',e=c.id||a.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"id",{hash:{}})),d+=n(e)+'">\n    <a href="',e=c.href||a.href,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"href",{hash:{}})),d+=n(e)+'">\n      <span class="name ellipsis" title="',e=c.longName||a.longName,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"longName",{hash:{}})),d+=n(e)+'">',e=c.shortName||a.shortName,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"shortName",{hash:{}})),d+=n(e)+"</span>\n      ",e=c.term||a.term,f=c["if"],i=j.program(2,p,b),i.hash={},i.fn=i,i.inverse=j.noop,e=f.call(a,e,i);if(e||e===0)d+=e;return d+='\n      <span class="subtitle ellipsis">',e=c.subtitle||a.subtitle,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"subtitle",{hash:{}})),d+=n(e)+"</span>\n    </a>\n  </li>\n",d}function p(a,b){var d="",e;return d+='\n        <span class="subtitle ellipsis enrollment_term menu-item-drop-float-right">',e=c.term||a.term,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"term",{hash:{}})),d+=n(e)+"</span>\n      ",d}c=c||a.helpers;var f="",g,h,i,j=this,k="function",l=c.helperMissing,m=void 0,n=this.escapeExpression;g=c.items||b.items,h=c.each,i=j.program(1,o,e),i.hash={},i.fn=i,i.inverse=j.noop,g=h.call(b,g,i);if(g||g===0)f+=g;return f+="\n",f}),c["courseList/content"]})
+define('jst/courseList/content', ["compiled/handlebars_helpers"], function (Handlebars) {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+  templates['courseList/content'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2;
+  buffer += "\n  <li class=\"customListItem\" data-id=\"";
+  stack1 = helpers.id || depth0.id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\">\n    <a href=\"";
+  stack1 = helpers.href || depth0.href;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "href", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\">\n      <span class=\"name ellipsis\" title=\"";
+  stack1 = helpers.longName || depth0.longName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "longName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\">";
+  stack1 = helpers.shortName || depth0.shortName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "shortName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>\n      ";
+  stack1 = helpers.term || depth0.term;
+  stack2 = helpers['if'];
+  tmp1 = self.program(2, program2, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n      <span class=\"subtitle ellipsis\">";
+  stack1 = helpers.subtitle || depth0.subtitle;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "subtitle", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>\n    </a>\n  </li>\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n        <span class=\"subtitle ellipsis enrollment_term menu-item-drop-float-right\">";
+  stack1 = helpers.term || depth0.term;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "term", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>\n      ";
+  return buffer;}
+
+  stack1 = helpers.items || depth0.items;
+  stack2 = helpers.each;
+  tmp1 = self.program(1, program1, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;});
+  
+  return templates['courseList/content'];
+});

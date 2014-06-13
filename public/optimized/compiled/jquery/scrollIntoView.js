@@ -1,1 +1,24 @@
-(function(){define(["jquery"],function(a){return a.fn.scrollIntoView=function(b){var c,d,e,f,g,h;b==null&&(b={}),c=this.offsetParent(),e=c.scrollTop(),d=e+c.height(),g=this[0].offsetTop,f=g+a(this[0]).outerHeight();if((h=b.ignore)!=null?h.border:void 0)g+=parseInt(a(this[0]).css("border-top-width").replace("px","")),f-=parseInt(a(this[0]).css("border-bottom-width").replace("px",""));if(g<e)return c.scrollTop(g);if(f>d)return c.scrollTop(f-c.height())}})}).call(this)
+(function() {
+  define(['jquery'], function($) {
+    return $.fn.scrollIntoView = function(options) {
+      var $container, containerBottom, containerTop, elemBottom, elemTop, _ref;
+      if (options == null) {
+        options = {};
+      }
+      $container = this.offsetParent();
+      containerTop = $container.scrollTop();
+      containerBottom = containerTop + $container.height();
+      elemTop = this[0].offsetTop;
+      elemBottom = elemTop + $(this[0]).outerHeight();
+      if ((_ref = options.ignore) != null ? _ref.border : void 0) {
+        elemTop += parseInt($(this[0]).css('border-top-width').replace('px', ''));
+        elemBottom -= parseInt($(this[0]).css('border-bottom-width').replace('px', ''));
+      }
+      if (elemTop < containerTop) {
+        return $container.scrollTop(elemTop);
+      } else if (elemBottom > containerBottom) {
+        return $container.scrollTop(elemBottom - $container.height());
+      }
+    };
+  });
+}).call(this);

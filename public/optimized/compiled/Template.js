@@ -1,1 +1,26 @@
-(function(){define(["compiled/handlebars_helpers","jquery"],function(a,b){var c;return c=function(){function c(a,b){this.name=a,this.locals=b;if(this instanceof c!=1)return(new c(a,b)).toHTML()}return c.prototype.toHTML=function(b){return b==null&&(b=this.locals),a.templates[this.name](b)},c.prototype.toElement=function(a){var c;return c=this.toHTML(a),b("<div/>").html(c)},c}()})}).call(this)
+(function() {
+  define(['compiled/handlebars_helpers', 'jquery'], function(Handlebars, jQuery) {
+    var Template;
+    return Template = (function() {
+      function Template(name, locals) {
+        this.name = name;
+        this.locals = locals;
+        if (this instanceof Template !== true) {
+          return new Template(name, locals).toHTML();
+        }
+      }
+      Template.prototype.toHTML = function(locals) {
+        if (locals == null) {
+          locals = this.locals;
+        }
+        return Handlebars.templates[this.name](locals);
+      };
+      Template.prototype.toElement = function(locals) {
+        var html;
+        html = this.toHTML(locals);
+        return jQuery('<div/>').html(html);
+      };
+      return Template;
+    })();
+  });
+}).call(this);

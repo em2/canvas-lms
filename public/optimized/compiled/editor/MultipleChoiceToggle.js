@@ -1,1 +1,64 @@
-(function(){var a=Object.prototype.hasOwnProperty,b=function(b,c){function e(){this.constructor=b}for(var d in c)a.call(c,d)&&(b[d]=c[d]);return e.prototype=c.prototype,b.prototype=new e,b.__super__=c.prototype,b};define(["jquery","compiled/editor/EditorToggle"],function(a,c){var d;return d=function(){function d(a,b){this.editButton=a,this.cacheElements(),d.__super__.constructor.call(this,this.answer.find(".answer_html"),b)}return b(d,c),d.prototype.cacheElements=function(){return this.answer=this.editButton.parents(".answer"),this.answerText=this.answer.find("input[name=answer_text]"),this.answerText.hide(),this.input=this.answer.find("input[name=answer_html]")},d.prototype.display=function(){d.__super__.display.apply(this,arguments),this.toggleIfEmpty(),this.input.val(this.content);if(this.content==="")return this.answerText.val("")},d.prototype.edit=function(){return d.__super__.edit.apply(this,arguments),this.answerText.hide(),this.content===""?this.textArea._setContentCode(this.answerText.val()):this.textArea._setContentCode(this.content)},d.prototype.showAnswerText=function(){return this.answerText.show(),this.el.hide(),this.input.val("")},d.prototype.showEl=function(){return this.answerText.hide(),this.el.show()},d.prototype.toggleIfEmpty=function(){return this.isEmpty()?this.showAnswerText():this.showEl()},d.prototype.isEmpty=function(){return a.trim(this.content)===""},d}()})}).call(this)
+(function() {
+  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  define(['jquery', 'compiled/editor/EditorToggle'], function($, EditorToggle) {
+    var MultipleChoiceToggle;
+    return MultipleChoiceToggle = (function() {
+      __extends(MultipleChoiceToggle, EditorToggle);
+      function MultipleChoiceToggle(editButton, options) {
+        this.editButton = editButton;
+        this.cacheElements();
+        MultipleChoiceToggle.__super__.constructor.call(this, this.answer.find('.answer_html'), options);
+      }
+      MultipleChoiceToggle.prototype.cacheElements = function() {
+        this.answer = this.editButton.parents('.answer');
+        this.answerText = this.answer.find('input[name=answer_text]');
+        this.answerText.hide();
+        return this.input = this.answer.find('input[name=answer_html]');
+      };
+      MultipleChoiceToggle.prototype.display = function() {
+        MultipleChoiceToggle.__super__.display.apply(this, arguments);
+        this.toggleIfEmpty();
+        this.input.val(this.content);
+        if (this.content === '') {
+          return this.answerText.val('');
+        }
+      };
+      MultipleChoiceToggle.prototype.edit = function() {
+        MultipleChoiceToggle.__super__.edit.apply(this, arguments);
+        this.answerText.hide();
+        if (this.content === '') {
+          return this.textArea._setContentCode(this.answerText.val());
+        } else {
+          return this.textArea._setContentCode(this.content);
+        }
+      };
+      MultipleChoiceToggle.prototype.showAnswerText = function() {
+        this.answerText.show();
+        this.el.hide();
+        return this.input.val('');
+      };
+      MultipleChoiceToggle.prototype.showEl = function() {
+        this.answerText.hide();
+        return this.el.show();
+      };
+      MultipleChoiceToggle.prototype.toggleIfEmpty = function() {
+        if (this.isEmpty()) {
+          return this.showAnswerText();
+        } else {
+          return this.showEl();
+        }
+      };
+      MultipleChoiceToggle.prototype.isEmpty = function() {
+        return $.trim(this.content) === '';
+      };
+      return MultipleChoiceToggle;
+    })();
+  });
+}).call(this);

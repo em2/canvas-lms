@@ -1,1 +1,58 @@
-define("jst/quiz/move_question",["compiled/handlebars_helpers"],function(a){var b=a.template,c=a.templates=a.templates||{};return c["quiz/move_question"]=b(function(a,b,c,d,e){function o(a,b){var d="",e;d+='\n<li class="list_question">\n  <input type="checkbox" id="list_question_',e=c.assessment_question||a.assessment_question,e=e===null||e===undefined||e===!1?e:e.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"assessment_question.id",{hash:{}})),d+=n(e)+'" class="list_question_checkbox" name="questions[',e=c.assessment_question||a.assessment_question,e=e===null||e===undefined||e===!1?e:e.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"assessment_question.id",{hash:{}})),d+=n(e)+'" value="',e=c.assessment_question||a.assessment_question,e=e===null||e===undefined||e===!1?e:e.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"assessment_question.id",{hash:{}})),d+=n(e)+'" />\n  <label for="list_question_',e=c.assessment_question||a.assessment_question,e=e===null||e===undefined||e===!1?e:e.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"assessment_question.id",{hash:{}})),d+=n(e)+'" class="list_question_name">',e=c.assessment_question||a.assessment_question,e=e===null||e===undefined||e===!1?e:e.question_data,e=e===null||e===undefined||e===!1?e:e.question_name,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"assessment_question.question_data.question_name",{hash:{}})),d+=n(e)+'</label>\n  <div class="list_question_text">',e=c.assessment_question||a.assessment_question,e=e===null||e===undefined||e===!1?e:e.question_data,e=e===null||e===undefined||e===!1?e:e.question_text,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"assessment_question.question_data.question_text",{hash:{}}));if(e||e===0)d+=e;return d+="</div>\n</li>\n",d}c=c||a.helpers;var f="",g,h,i,j=this,k="function",l=c.helperMissing,m=void 0,n=this.escapeExpression;g=c.questions||b.questions,h=c.each,i=j.program(1,o,e),i.hash={},i.fn=i,i.inverse=j.noop,g=h.call(b,g,i);if(g||g===0)f+=g;return f+="\n",f}),c["quiz/move_question"]})
+define('jst/quiz/move_question', ["compiled/handlebars_helpers"], function (Handlebars) {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+  templates['quiz/move_question'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n<li class=\"list_question\">\n  <input type=\"checkbox\" id=\"list_question_";
+  stack1 = helpers.assessment_question || depth0.assessment_question;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.id);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "assessment_question.id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" class=\"list_question_checkbox\" name=\"questions[";
+  stack1 = helpers.assessment_question || depth0.assessment_question;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.id);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "assessment_question.id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" value=\"";
+  stack1 = helpers.assessment_question || depth0.assessment_question;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.id);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "assessment_question.id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" />\n  <label for=\"list_question_";
+  stack1 = helpers.assessment_question || depth0.assessment_question;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.id);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "assessment_question.id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" class=\"list_question_name\">";
+  stack1 = helpers.assessment_question || depth0.assessment_question;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.question_data);
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.question_name);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "assessment_question.question_data.question_name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</label>\n  <div class=\"list_question_text\">";
+  stack1 = helpers.assessment_question || depth0.assessment_question;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.question_data);
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.question_text);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "assessment_question.question_data.question_text", { hash: {} }); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</div>\n</li>\n";
+  return buffer;}
+
+  stack1 = helpers.questions || depth0.questions;
+  stack2 = helpers.each;
+  tmp1 = self.program(1, program1, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;});
+  
+  return templates['quiz/move_question'];
+});

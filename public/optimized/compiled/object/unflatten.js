@@ -1,1 +1,37 @@
-(function(){define(["use!underscore"],function(a){var b;return b=function(b){return a(b).reduce(function(b,c,d){var e,f,g,h;g=d.split("]["),h=g.length-1,/\[/.test(g[0])&&/\]$/.test(g[h])?(g[h]=g[h].replace(/\]$/,""),g=g.shift().split("[").concat(g),h=g.length-1):h=0;if(h){f=0,e=b;while(f<=h)d=g[f]===""?e.length:g[f],e=e[d]=f<h?e[d]||(g[f+1]&&isNaN(g[f+1])?{}:[]):c,f++}else a.isArray(b[d])?b[d].push(c):b[d]!=null?b[d]=[b[d],c]:b[d]=c;return b},{})}})}).call(this)
+(function() {
+  define(['use!underscore'], function(_) {
+    var unflatten;
+    return unflatten = function(obj) {
+      return _(obj).reduce(function(newObj, val, key) {
+        var cur, i, keys, lastKey;
+        keys = key.split('][');
+        lastKey = keys.length - 1;
+        if (/\[/.test(keys[0]) && /\]$/.test(keys[lastKey])) {
+          keys[lastKey] = keys[lastKey].replace(/\]$/, '');
+          keys = keys.shift().split('[').concat(keys);
+          lastKey = keys.length - 1;
+        } else {
+          lastKey = 0;
+        }
+        if (lastKey) {
+          i = 0;
+          cur = newObj;
+          while (i <= lastKey) {
+            key = keys[i] === "" ? cur.length : keys[i];
+            cur = cur[key] = i < lastKey ? cur[key] || (keys[i + 1] && isNaN(keys[i + 1]) ? {} : []) : val;
+            i++;
+          }
+        } else {
+          if (_.isArray(newObj[key])) {
+            newObj[key].push(val);
+          } else if (newObj[key] != null) {
+            newObj[key] = [newObj[key], val];
+          } else {
+            newObj[key] = val;
+          }
+        }
+        return newObj;
+      }, {});
+    };
+  });
+}).call(this);

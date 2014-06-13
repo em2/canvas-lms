@@ -1,1 +1,63 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}};define(["jquery","i18n!calendar","vendor/jquery.ba-tinypubsub"],function(b,c){var d;return d=function(){function d(c,d){this.mainCalendar=d,this.refetchEvents=a(this.refetchEvents,this),this.visibleContextListChanged=a(this.visibleContextListChanged,this),this.eventRender=a(this.eventRender,this),this.dayClick=a(this.dayClick,this),this.getEvents=a(this.getEvents,this),this.calendar=b(c),this.calendar.fullCalendar({height:240,weekMode:"variable",allDayDefault:!1,lazyFetching:!1,ignoreTimezone:!0,header:{left:"prev",center:"title",right:"next"},dayClick:this.dayClick,events:this.getEvents,eventRender:this.eventRender},b.subscribe({"Calendar/visibleContextListChanged":this.visibleContextListChanged,"Calendar/refetchEvents":this.refetchEvents}))}return d.prototype.getEvents=function(a,b,c){return this.calendar.find(".fc-content td").removeClass("event slot-available").removeAttr("title"),this.mainCalendar.getEvents(a,b,c)},d.prototype.dayClick=function(a){return this.mainCalendar.gotoDate(a)},d.prototype.eventRender=function(a,b,d){var e,f,g,h,i,j;return f=d.dateCell(a.start),g=d.element.find("tr:nth-child("+(f.row+1)+") td:nth-child("+(f.col+1)+")"),g.addClass("event"),h=c.t("event_on_this_day","There is an event on this day"),e=(i=this.mainCalendar.displayAppointmentEvents)!=null?i.id:void 0,e&&e===((j=a.calendarEvent)!=null?j.appointment_group_id:void 0)&&a.object.available_slots&&(g.addClass("slot-available"),h=c.t("open_appointment_on_this_day","There is an open appointment on this day")),g.attr("title",h),!1},d.prototype.visibleContextListChanged=function(a){return this.calendar.fullCalendar("refetchEvents")},d.prototype.refetchEvents=function(){return this.calendar.fullCalendar("refetchEvents")},d}()})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  define(['jquery', 'i18n!calendar', 'vendor/jquery.ba-tinypubsub'], function($, I18n) {
+    var MiniCalendar;
+    return MiniCalendar = (function() {
+      function MiniCalendar(selector, mainCalendar) {
+        this.mainCalendar = mainCalendar;
+        this.refetchEvents = __bind(this.refetchEvents, this);
+        this.visibleContextListChanged = __bind(this.visibleContextListChanged, this);
+        this.eventRender = __bind(this.eventRender, this);
+        this.dayClick = __bind(this.dayClick, this);
+        this.getEvents = __bind(this.getEvents, this);
+        this.calendar = $(selector);
+        this.calendar.fullCalendar({
+          height: 240,
+          weekMode: "variable",
+          allDayDefault: false,
+          lazyFetching: false,
+          ignoreTimezone: true,
+          header: {
+            left: "prev",
+            center: "title",
+            right: "next"
+          },
+          dayClick: this.dayClick,
+          events: this.getEvents,
+          eventRender: this.eventRender
+        }, $.subscribe({
+          "Calendar/visibleContextListChanged": this.visibleContextListChanged,
+          "Calendar/refetchEvents": this.refetchEvents
+        }));
+      }
+      MiniCalendar.prototype.getEvents = function(start, end, cb) {
+        this.calendar.find(".fc-content td").removeClass("event slot-available").removeAttr('title');
+        return this.mainCalendar.getEvents(start, end, cb);
+      };
+      MiniCalendar.prototype.dayClick = function(date) {
+        return this.mainCalendar.gotoDate(date);
+      };
+      MiniCalendar.prototype.eventRender = function(event, element, view) {
+        var appointmentGroupBeingViewed, cell, td, tooltip, _ref, _ref2;
+        cell = view.dateCell(event.start);
+        td = view.element.find("tr:nth-child(" + (cell.row + 1) + ") td:nth-child(" + (cell.col + 1) + ")");
+        td.addClass("event");
+        tooltip = I18n.t('event_on_this_day', 'There is an event on this day');
+        appointmentGroupBeingViewed = (_ref = this.mainCalendar.displayAppointmentEvents) != null ? _ref.id : void 0;
+        if (appointmentGroupBeingViewed && appointmentGroupBeingViewed === ((_ref2 = event.calendarEvent) != null ? _ref2.appointment_group_id : void 0) && event.object.available_slots) {
+          td.addClass("slot-available");
+          tooltip = I18n.t('open_appointment_on_this_day', 'There is an open appointment on this day');
+        }
+        td.attr('title', tooltip);
+        return false;
+      };
+      MiniCalendar.prototype.visibleContextListChanged = function(list) {
+        return this.calendar.fullCalendar('refetchEvents');
+      };
+      MiniCalendar.prototype.refetchEvents = function() {
+        return this.calendar.fullCalendar('refetchEvents');
+      };
+      return MiniCalendar;
+    })();
+  });
+}).call(this);

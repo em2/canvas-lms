@@ -1,1 +1,129 @@
-define("jst/mute_dialog",["compiled/handlebars_helpers","i18n!mute_dialog"],function(a){var b=a.template,c=a.templates=a.templates||{};return c.mute_dialog=b(function(a,b,c,d,e){c=c||a.helpers;var f="",g,h,i,j,k,l=this,m="function",n=c.helperMissing,o=void 0;f+='<div title="',g="Mute Assignment",h="mute_assignment",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+='">\n  <p>\n    ',g="Are you sure you want to mute this assignment? While this assignment is muted, students will not receive new notifications about or be able to see:",h="sure_you_want_to_mute",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="\n  </p>\n  <ul>\n    <li>",g="Their grade for the assignment",h="see_grade",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="</li>\n    <li>",g="Grade change notifications",h="grade_change_notifications",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="</li>\n    <li>",g="Submission comments",h="submission_comments",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="</li>\n    <li>",g="Curving assignments",h="curving_assignments",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="</li>\n    <li>",g="Score change notifications",h="score_change_notifications",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="</li>\n  </ul>\n  <p>\n    ",g="Students will be able to see that this assignment is muted.",h="students_will_see",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;f+="\n  </p>\n  <p>\n    ",g='Once you have muted this assignment, you can begin sending notifications again by clicking the "Unmute Assignment" link.',h="how_to_unmute",i={},j="mute_dialog",i.scope=j,j=c.t||b.t,k={},k.hash=i,typeof j===m?g=j.call(b,h,g,k):j===o?g=n.call(b,"t",h,g,k):g=j;if(g||g===0)f+=g;return f+="\n  </p>\n</div>\n",f}),c.mute_dialog})
+define('jst/mute_dialog', ["compiled/handlebars_helpers","i18n!mute_dialog"], function (Handlebars) {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+  templates['mute_dialog'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, stack3, stack4, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0;
+
+
+  buffer += "<div title=\"";
+  stack1 = "Mute Assignment";
+  stack2 = "mute_assignment";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n  <p>\n    ";
+  stack1 = "Are you sure you want to mute this assignment? While this assignment is muted, students will not receive new notifications about or be able to see:";
+  stack2 = "sure_you_want_to_mute";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </p>\n  <ul>\n    <li>";
+  stack1 = "Their grade for the assignment";
+  stack2 = "see_grade";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</li>\n    <li>";
+  stack1 = "Grade change notifications";
+  stack2 = "grade_change_notifications";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</li>\n    <li>";
+  stack1 = "Submission comments";
+  stack2 = "submission_comments";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</li>\n    <li>";
+  stack1 = "Curving assignments";
+  stack2 = "curving_assignments";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</li>\n    <li>";
+  stack1 = "Score change notifications";
+  stack2 = "score_change_notifications";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</li>\n  </ul>\n  <p>\n    ";
+  stack1 = "Students will be able to see that this assignment is muted.";
+  stack2 = "students_will_see";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </p>\n  <p>\n    ";
+  stack1 = "Once you have muted this assignment, you can begin sending notifications again by clicking the \"Unmute Assignment\" link.";
+  stack2 = "how_to_unmute";
+  stack3 = {};
+  stack4 = "mute_dialog";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n  </p>\n</div>\n";
+  return buffer;});
+  
+  return templates['mute_dialog'];
+});

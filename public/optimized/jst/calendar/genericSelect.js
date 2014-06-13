@@ -1,1 +1,62 @@
-define("jst/calendar/genericSelect",["compiled/handlebars_helpers"],function(a){var b=a.template,c=a.templates=a.templates||{};return c["calendar/genericSelect"]=b(function(a,b,c,d,e){function o(a,b){var d="",e,f;d+='\n    <option value="',e=c.asset_string||a.asset_string,f=c["if"],i=j.program(2,p,b),i.hash={},i.fn=i,i.inverse=j.program(4,q,b),e=f.call(a,e,i);if(e||e===0)d+=e;return d+='">',e=c.name||a.name,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"name",{hash:{}})),d+=n(e)+"</option>\n  ",d}function p(a,b){var d;return d=c.asset_string||a.asset_string,typeof d===k?d=d.call(a,{hash:{}}):d===m&&(d=l.call(a,"asset_string",{hash:{}})),n(d)}function q(a,b){var d;return d=c.id||a.id,typeof d===k?d=d.call(a,{hash:{}}):d===m&&(d=l.call(a,"id",{hash:{}})),n(d)}c=c||a.helpers;var f="",g,h,i,j=this,k="function",l=c.helperMissing,m=void 0,n=this.escapeExpression;f+='<select class="',g=c.cssClass||b.cssClass,typeof g===k?g=g.call(b,{hash:{}}):g===m&&(g=l.call(b,"cssClass",{hash:{}})),f+=n(g)+'" name="',g=c.name||b.name,typeof g===k?g=g.call(b,{hash:{}}):g===m&&(g=l.call(b,"name",{hash:{}})),f+=n(g)+'">\n  ',g=c.collection||b.collection,h=c.each,i=j.program(1,o,e),i.hash={},i.fn=i,i.inverse=j.noop,g=h.call(b,g,i);if(g||g===0)f+=g;return f+="\n</select>",f}),c["calendar/genericSelect"]})
+define('jst/calendar/genericSelect', ["compiled/handlebars_helpers"], function (Handlebars) {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+  templates['calendar/genericSelect'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2;
+  buffer += "\n    <option value=\"";
+  stack1 = helpers.asset_string || depth0.asset_string;
+  stack2 = helpers['if'];
+  tmp1 = self.program(2, program2, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.program(4, program4, data);
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">";
+  stack1 = helpers.name || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</option>\n  ";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var stack1;
+  stack1 = helpers.asset_string || depth0.asset_string;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "asset_string", { hash: {} }); }
+  return escapeExpression(stack1);}
+
+function program4(depth0,data) {
+  
+  var stack1;
+  stack1 = helpers.id || depth0.id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "id", { hash: {} }); }
+  return escapeExpression(stack1);}
+
+  buffer += "<select class=\"";
+  stack1 = helpers.cssClass || depth0.cssClass;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "cssClass", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" name=\"";
+  stack1 = helpers.name || depth0.name;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\">\n  ";
+  stack1 = helpers.collection || depth0.collection;
+  stack2 = helpers.each;
+  tmp1 = self.program(1, program1, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</select>";
+  return buffer;});
+  
+  return templates['calendar/genericSelect'];
+});

@@ -1,1 +1,21 @@
-(function(){var a=Object.prototype.hasOwnProperty,b=function(b,c){function e(){this.constructor=b}for(var d in c)a.call(c,d)&&(b[d]=c[d]);return e.prototype=c.prototype,b.prototype=new e,b.__super__=c.prototype,b};define(["use!backbone","compiled/discussions/Entry"],function(a,c){var d;return d=function(){function d(){d.__super__.constructor.apply(this,arguments)}return b(d,a.Collection),d.prototype.model=c,d}()})}).call(this)
+(function() {
+  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  define(['use!backbone', 'compiled/discussions/Entry'], function(Backbone, Entry) {
+    var EntryCollection;
+    return EntryCollection = (function() {
+      __extends(EntryCollection, Backbone.Collection);
+      function EntryCollection() {
+        EntryCollection.__super__.constructor.apply(this, arguments);
+      }
+      EntryCollection.prototype.model = Entry;
+      return EntryCollection;
+    })();
+  });
+}).call(this);

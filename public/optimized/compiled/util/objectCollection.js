@@ -1,1 +1,74 @@
-(function(){define(function(){return function(a){return a.indexOf=function(b){var c,d,e;for(c=0,e=a.length;c<e;c++){d=a[c];if(d===b)return c}},-1,a.findBy=function(b,c){var d,e,f;for(d=0,f=a.length;d<f;d++){e=a[d];if(e[b]===c)return e}return!1},a.eraseBy=function(b,c){var d;return d=a.findBy(b,c),a.erase(d)},a.insert=function(b,c){return c==null&&(c=0),a.splice(c,0,b)},a.erase=function(b){var c,d,e,f;f=[];for(c=0,e=a.length;c<e;c++)d=a[c],f.push(d===b?a.splice(c,1):void 0);return f},a.sortBy=function(){var b;return b={string:function(a,b){return a<b?-1:a>b?1:0},number:function(a,b){return a-b}},function(c){var d;return a.length===0?a:(d=typeof a[0][c]||"string",a.sort(function(a,e){return b[d](a[c],e[c])}))}}(),a}})}).call(this)
+(function() {
+  define(function() {
+    return function(array) {
+      array.indexOf = function(needle) {
+        var index, item, _len;
+        for (index = 0, _len = array.length; index < _len; index++) {
+          item = array[index];
+          if (item === needle) {
+            return index;
+          }
+        }
+      };
+      -1;
+      array.findBy = function(prop, value) {
+        var index, item, _len;
+        for (index = 0, _len = array.length; index < _len; index++) {
+          item = array[index];
+          if (item[prop] === value) {
+            return item;
+          }
+        }
+        return false;
+      };
+      array.eraseBy = function(prop, value) {
+        var item;
+        item = array.findBy(prop, value);
+        return array.erase(item);
+      };
+      array.insert = function(item, index) {
+        if (index == null) {
+          index = 0;
+        }
+        return array.splice(index, 0, item);
+      };
+      array.erase = function(victim) {
+        var index, prospect, _len, _results;
+        _results = [];
+        for (index = 0, _len = array.length; index < _len; index++) {
+          prospect = array[index];
+          _results.push(prospect === victim ? array.splice(index, 1) : void 0);
+        }
+        return _results;
+      };
+      array.sortBy = (function() {
+        var sorters;
+        sorters = {
+          string: function(a, b) {
+            if (a < b) {
+              return -1;
+            } else if (a > b) {
+              return 1;
+            } else {
+              return 0;
+            }
+          },
+          number: function(a, b) {
+            return a - b;
+          }
+        };
+        return function(prop) {
+          var type;
+          if (array.length === 0) {
+            return array;
+          }
+          type = typeof array[0][prop] || 'string';
+          return array.sort(function(a, b) {
+            return sorters[type](a[prop], b[prop]);
+          });
+        };
+      })();
+      return array;
+    };
+  });
+}).call(this);

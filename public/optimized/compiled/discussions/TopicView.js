@@ -1,1 +1,184 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}},b=Object.prototype.hasOwnProperty,c=function(a,c){function e(){this.constructor=a}for(var d in c)b.call(c,d)&&(a[d]=c[d]);return e.prototype=c.prototype,a.prototype=new e,a.__super__=c.prototype,a};define(["i18n!discussions","compiled/backbone-ext/Backbone","compiled/discussions/Topic","compiled/discussions/EntriesView","compiled/discussions/EntryView","jst/discussions/_reply_form","compiled/discussions/Reply","compiled/widget/assignmentRubricDialog","compiled/util/wikiSidebarWithMultipleEditors","jquery.instructure_misc_helpers"],function(b,d,e,f,g,h,i,j){var k;return k=function(){function k(){this.onUnreadChange=a(this.onUnreadChange,this),this.initEntries=a(this.initEntries,this),k.__super__.constructor.apply(this,arguments)}return c(k,d.View),k.prototype.events={"click #discussion_topic .discussion-reply-form [data-event]":"handleEvent","change .view_switcher":"switchView","click .add_root_reply":"addRootReply"},k.prototype.initialize=function(){return this.$el=$("#main"),this.model.set("id",ENV.DISCUSSION.TOPIC.ID),this.model.cid="main",this.model.set("canAttach",ENV.DISCUSSION.PERMISSIONS.CAN_ATTACH),this.render(),ENV.DISCUSSION.INITIAL_POST_REQUIRED||this.initEntries(),this.initViewSwitcher(),$(document.body).is(".with-right-side")&&$.scrollSidebar(),j.initTriggers(),this.disableNextUnread(),this.$el.toggleClass("side_comment_discussion",!ENV.DISCUSSION.THREADED)},k.prototype.cacheElements=function(){return this.$addRootReply=this.$(".add_root_reply")},k.prototype.initEntries=function(){return this.discussion?!1:(this.discussion=new f({model:new e}),this.collection=this.discussion.collection,this.discussion.model.bind("change:unread_entries",this.onUnreadChange),this.discussion.model.bind("fetchSuccess",a(function(){var a;return a=this.discussion.model.get("unread_entries"),this.setNextUnread(a),this.cacheElements()},this)),window.DISCUSSION=this.discussion,!0)},k.prototype.onUnreadChange=function(a,c){return this.model.set("unreadCount",c.length),this.model.set("unreadText",b.t("unread_count_tooltip",{zero:"No unread replies",one:"1 unread reply",other:"%{count} unread replies"},{count:c.length})),this.setNextUnread(c)},k.prototype.setNextUnread=function(a){var b,c,d;if(a.length===0){this.disableNextUnread();return}return d=this.discussion.$(".can_be_marked_as_read.unread:first"),c=d.parent(),b=c.attr("id"),this.$("#jump_to_next_unread").removeClass("disabled").attr("href","#"+b)},k.prototype.disableNextUnread=function(){return this.$("#jump_to_next_unread").addClass("disabled").removeAttr("href")},k.prototype.addReply=function(b){return b.preventDefault(),this.reply==null&&(this.reply=new i(this,{topLevel:!0,added:this.initEntries}),this.reply.on("edit",a(function(){var a;return(a=this.$addRootReply)!=null?a.hide():void 0},this)),this.reply.on("hide",a(function(){var a;return(a=this.$addRootReply)!=null?a.show():void 0},this))),this.model.set("notification",""),this.reply.edit()},k.prototype.addReplyAttachment=g.prototype.addReplyAttachment,k.prototype.removeReplyAttachment=g.prototype.removeReplyAttachment,k.prototype.handleEvent=function(a){var b,c;return b=$(a.currentTarget),c=b.data("event"),typeof this[c]=="function"?this[c](a,b):void 0},k.prototype.render=function(){var a;return ENV.DISCUSSION.PERMISSIONS.CAN_REPLY&&(a=h(this.model.toJSON()),this.$(".entry_content:first").append(a)),k.__super__.render.apply(this,arguments)},k.prototype.initViewSwitcher=function(){return this.$(".view_switcher").show().selectmenu({icons:[{find:".collapsed-view"},{find:".unread-view"},{find:".expanded-view"}]})},k.prototype.switchView=function(a){var b,c;return b=$(a.currentTarget),c=b.val(),this[c+"View"]()},k.prototype.collapsedView=function(){var a,b,c,d;c=g.instances,d=[];for(a in c)b=c[a],d.push(b.model.set("collapsedView",!0));return d},k.prototype.expandedView=function(){var a,b,c,d;c=g.instances,d=[];for(a in c)b=c[a],d.push(b.model.set("collapsedView",!1));return d},k.prototype.unreadView=function(){var a,b,c,d,e;d=g.instances,e=[];for(b in d)c=d[b],a=c.model.get("read_state")==="read",e.push(c.model.set("collapsedView",a));return e},k.prototype.addRootReply=function(a){var b,c;return b=this.$(a.currentTarget),c=$("#discussion_topic .discussion-reply-form"),this.addReply(a),$("html, body").animate({scrollTop:c.offset().top-100})},k}()})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  define(['i18n!discussions', 'compiled/backbone-ext/Backbone', 'compiled/discussions/Topic', 'compiled/discussions/EntriesView', 'compiled/discussions/EntryView', 'jst/discussions/_reply_form', 'compiled/discussions/Reply', 'compiled/widget/assignmentRubricDialog', 'compiled/util/wikiSidebarWithMultipleEditors', 'jquery.instructure_misc_helpers'], function(I18n, Backbone, Topic, EntriesView, EntryView, replyTemplate, Reply, assignmentRubricDialog) {
+    var TopicView;
+    return TopicView = (function() {
+      __extends(TopicView, Backbone.View);
+      function TopicView() {
+        this.onUnreadChange = __bind(this.onUnreadChange, this);
+        this.initEntries = __bind(this.initEntries, this);
+        TopicView.__super__.constructor.apply(this, arguments);
+      }
+      TopicView.prototype.events = {
+        'click #discussion_topic .discussion-reply-form [data-event]': 'handleEvent',
+        'change .view_switcher': 'switchView',
+        'click .add_root_reply': 'addRootReply'
+      };
+      TopicView.prototype.initialize = function() {
+        this.$el = $('#main');
+        this.model.set('id', ENV.DISCUSSION.TOPIC.ID);
+        this.model.cid = 'main';
+        this.model.set('canAttach', ENV.DISCUSSION.PERMISSIONS.CAN_ATTACH);
+        this.render();
+        if (!ENV.DISCUSSION.INITIAL_POST_REQUIRED) {
+          this.initEntries();
+        }
+        this.initViewSwitcher();
+        if ($(document.body).is('.with-right-side')) {
+          $.scrollSidebar();
+        }
+        assignmentRubricDialog.initTriggers();
+        this.disableNextUnread();
+        return this.$el.toggleClass('side_comment_discussion', !ENV.DISCUSSION.THREADED);
+      };
+      TopicView.prototype.cacheElements = function() {
+        return this.$addRootReply = this.$('.add_root_reply');
+      };
+      TopicView.prototype.initEntries = function() {
+        if (this.discussion) {
+          return false;
+        }
+        this.discussion = new EntriesView({
+          model: new Topic
+        });
+        this.collection = this.discussion.collection;
+        this.discussion.model.bind('change:unread_entries', this.onUnreadChange);
+        this.discussion.model.bind('fetchSuccess', __bind(function() {
+          var unread_entries;
+          unread_entries = this.discussion.model.get('unread_entries');
+          this.setNextUnread(unread_entries);
+          return this.cacheElements();
+        }, this));
+        window.DISCUSSION = this.discussion;
+        return true;
+      };
+      TopicView.prototype.onUnreadChange = function(model, unread_entries) {
+        this.model.set('unreadCount', unread_entries.length);
+        this.model.set('unreadText', I18n.t('unread_count_tooltip', {
+          zero: 'No unread replies',
+          one: '1 unread reply',
+          other: '%{count} unread replies'
+        }, {
+          count: unread_entries.length
+        }));
+        return this.setNextUnread(unread_entries);
+      };
+      TopicView.prototype.setNextUnread = function(unread_entries) {
+        var id, parent, unread;
+        if (unread_entries.length === 0) {
+          this.disableNextUnread();
+          return;
+        }
+        unread = this.discussion.$('.can_be_marked_as_read.unread:first');
+        parent = unread.parent();
+        id = parent.attr('id');
+        return this.$('#jump_to_next_unread').removeClass('disabled').attr('href', "#" + id);
+      };
+      TopicView.prototype.disableNextUnread = function() {
+        return this.$('#jump_to_next_unread').addClass('disabled').removeAttr('href');
+      };
+      TopicView.prototype.addReply = function(event) {
+        event.preventDefault();
+        if (this.reply == null) {
+          this.reply = new Reply(this, {
+            topLevel: true,
+            added: this.initEntries
+          });
+          this.reply.on('edit', __bind(function() {
+            var _ref;
+            return (_ref = this.$addRootReply) != null ? _ref.hide() : void 0;
+          }, this));
+          this.reply.on('hide', __bind(function() {
+            var _ref;
+            return (_ref = this.$addRootReply) != null ? _ref.show() : void 0;
+          }, this));
+        }
+        this.model.set('notification', '');
+        return this.reply.edit();
+      };
+      TopicView.prototype.addReplyAttachment = EntryView.prototype.addReplyAttachment;
+      TopicView.prototype.removeReplyAttachment = EntryView.prototype.removeReplyAttachment;
+      TopicView.prototype.handleEvent = function(event) {
+        var el, method;
+        el = $(event.currentTarget);
+        method = el.data('event');
+        return typeof this[method] === "function" ? this[method](event, el) : void 0;
+      };
+      TopicView.prototype.render = function() {
+        var html;
+        if (ENV.DISCUSSION.PERMISSIONS.CAN_REPLY) {
+          html = replyTemplate(this.model.toJSON());
+          this.$('.entry_content:first').append(html);
+        }
+        return TopicView.__super__.render.apply(this, arguments);
+      };
+      TopicView.prototype.initViewSwitcher = function() {
+        return this.$('.view_switcher').show().selectmenu({
+          icons: [
+            {
+              find: '.collapsed-view'
+            }, {
+              find: '.unread-view'
+            }, {
+              find: '.expanded-view'
+            }
+          ]
+        });
+      };
+      TopicView.prototype.switchView = function(event) {
+        var $select, view;
+        $select = $(event.currentTarget);
+        view = $select.val();
+        return this[view + 'View']();
+      };
+      TopicView.prototype.collapsedView = function() {
+        var id, view, _ref, _results;
+        _ref = EntryView.instances;
+        _results = [];
+        for (id in _ref) {
+          view = _ref[id];
+          _results.push(view.model.set('collapsedView', true));
+        }
+        return _results;
+      };
+      TopicView.prototype.expandedView = function() {
+        var id, view, _ref, _results;
+        _ref = EntryView.instances;
+        _results = [];
+        for (id in _ref) {
+          view = _ref[id];
+          _results.push(view.model.set('collapsedView', false));
+        }
+        return _results;
+      };
+      TopicView.prototype.unreadView = function() {
+        var collapsedView, id, view, _ref, _results;
+        _ref = EntryView.instances;
+        _results = [];
+        for (id in _ref) {
+          view = _ref[id];
+          collapsedView = view.model.get('read_state') === 'read';
+          _results.push(view.model.set('collapsedView', collapsedView));
+        }
+        return _results;
+      };
+      TopicView.prototype.addRootReply = function(event) {
+        var $el, target;
+        $el = this.$(event.currentTarget);
+        target = $('#discussion_topic .discussion-reply-form');
+        this.addReply(event);
+        return $('html, body').animate({
+          scrollTop: target.offset().top - 100
+        });
+      };
+      return TopicView;
+    })();
+  });
+}).call(this);

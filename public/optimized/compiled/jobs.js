@@ -1,1 +1,370 @@
-(function(){var a=function(a,b){return function(){return a.apply(b,arguments)}},b=Object.prototype.hasOwnProperty,c=function(a,c){function e(){this.constructor=a}for(var d in c)b.call(c,d)&&(a[d]=c[d]);return e.prototype=c.prototype,a.prototype=new e,a.__super__=c.prototype,a};define(["i18n!jobs","jquery","vendor/slickgrid","jquery.ajaxJSON","jquery.instructure_jquery_patches"],function(b,d,e){var f,g,h;return f=function(){function b(b,c,e){this.options=b,this.type_name=c,this.grid_name=e,this.change_flavor=a(this.change_flavor,this),this.refresh=a(this.refresh,this),this.setTimer=a(this.setTimer,this),this.data=this.options.data,this.$element=d(this.grid_name),this.options.refresh_rate&&this.setTimer(),this.query=""}return b.prototype.setTimer=function(){return setTimeout(a(function(){return this.refresh(this.setTimer)},this),this.options.refresh_rate)},b.prototype.refresh=function(b){return this.$element.queue(a(function(){return d.ajaxJSON(this.options.url,"GET",{flavor:this.options.flavor,q:this.query},a(function(a){var c,d,e,f,g,h,i;this.data.length=0,this.loading={},g=a[this.type_name];for(e=0,f=g.length;e<f;e++)d=g[e],this.data.push(d);if(a.total&&a.total>this.data.length)for(c=h=this.data.length,i=a.total;h>i?c>i:c<i;h>i?c--:c++)this.data.push({});return this.grid.invalidate(),typeof b=="function"&&b(),typeof this.updated=="function"&&this.updated(),this.$element.dequeue()},this))},this))},b.prototype.change_flavor=function(a){return this.options.flavor=a,this.grid.setSelectedRows([]),this.refresh()},b.prototype.grid_options=function(){return{rowHeight:20}},b.prototype.init=function(){return this.columns=this.build_columns(),this.loading={},this.grid=new e.Grid(this.grid_name,this.data,this.columns,this.grid_options()),this},b}(),window.Jobs=function(){function g(b,c,d){c==null&&(c="jobs"),d==null&&(d="#jobs-grid"),this.id_formatter=a(this.id_formatter,this),this.load=a(this.load,this),this.attempts_formatter=a(this.attempts_formatter,this),b.max_attempts&&(g.max_attempts=b.max_attempts),g.__super__.constructor.call(this,b,c,d),b.starting_query&&(this.query=b.starting_query)}return c(g,f),g.prototype.search=function(a){return this.query=a,this.refresh()},g.prototype.attempts_formatter=function(a,b,c){var d,e,f;return this.data[a].id?(e=this.data[a].max_attempts||g.max_attempts,c===0?d="":c<e?d="has-failed-attempts":c===this.options.on_hold_attempt_count?(d="on-hold",c="hold"):d="has-failed-max-attempts",f=c==="hold"?"":"/ "+e,"<span class='"+d+"'>"+c+f+"</span>"):""},g.prototype.load=function(b){return this.$element.queue(a(function(){b-=b%this.options.limit;if(this.loading[b]){this.$element.dequeue();return}return this.loading[b]=!0,d.ajaxJSON(this.options.url,"GET",{flavor:this.options.flavor,q:this.query,offset:b},a(function(a){var c;return[].splice.apply(this.data,[b,b+a[this.type_name].length-b].concat(c=a[this.type_name])),c,this.grid.invalidate(),this.$element.dequeue()},this))},this))},g.prototype.id_formatter=function(a,b,c){return this.data[a].id?this.data[a].id:(this.load(a),"<span class='unloaded-id'>-</span>")},g.prototype.build_columns=function(){return[{id:"id",name:b.t("columns.id","id"),field:"id",width:75,formatter:this.id_formatter},{id:"tag",name:b.t("columns.tag","tag"),field:"tag",width:200},{id:"attempts",name:b.t("columns.attempt","attempt"),field:"attempts",width:60,formatter:this.attempts_formatter},{id:"priority",name:b.t("columns.priority","priority"),field:"priority",width:70},{id:"strand",name:b.t("columns.strand","strand"),field:"strand",width:100},{id:"run_at",name:b.t("columns.run_at","run at"),field:"run_at",width:165}]},g.prototype.init=function(){return g.__super__.init.call(this),this.grid.setSelectionModel(new e.RowSelectionModel),this.grid.onSelectedRowsChanged.subscribe(a(function(){var b,c,e;return e=this.grid.getSelectedRows(),c=(e!=null?e.length:void 0)===1?e[0]:-1,b=this.data[e[0]]||{},d("#show-job .show-field").each(a(function(a,c){var e;return e=c.id.replace("job-",""),d(c).text(b[e]||"")},this)),d("#job-id-link").attr("href","/jobs?id="+b.id+"&flavor="+this.options.flavor)},this)),this.data.length===1&&this.type_name==="jobs"&&(this.grid.setSelectedRows([0]),this.grid.onSelectedRowsChanged.notify()),this},g.prototype.selectAll=function(){var a,b,c;return this.grid.setSelectedRows(function(){c=[];for(var a=0,b=this.data.length;0>b?a>b:a<b;0>b?a--:a++)c.push(a);return c}.apply(this)),this.grid.onSelectedRowsChanged.notify()},g.prototype.onSelected=function(a){var c,e,f,g;f={flavor:this.options.flavor,q:this.query,update_action:a};if(this.grid.getSelectedRows().length<1){alert("No jobs are selected");return}c=this.grid.getSelectedRows().length>1&&this.grid.getSelectedRows().length===this.data.length;if(c){e=function(){switch(a){case"hold":return b.t("confirm.hold_all","Are you sure you want to hold *all* jobs of this type and matching this query?");case"unhold":return b.t("confirm.unhold_all","Are you sure you want to unhold *all* jobs of this type and matching this query?");case"destroy":return b.t("confirm.destroy_all","Are you sure you want to destroy *all* jobs of this type and matching this query?")}}();if(!confirm(e))return}return c||(f.job_ids=function(){var a,b,c,d;c=this.grid.getSelectedRows(),d=[];for(a=0,b=c.length;a<b;a++)g=c[a],d.push(this.data[g].id);return d}.call(this)),d.ajaxJSON(this.options.batch_update_url,"POST",f,this.refresh),this.grid.setSelectedRows([])},g.prototype.updated=function(){return d("#jobs-total").text(this.data.length)},g}(),h=function(){function a(b){a.__super__.constructor.call(this,b,"running","#running-grid")}return c(a,Jobs),a.prototype.build_columns=function(){var c;return c=[{id:"worker",name:b.t("columns.worker","worker"),field:"locked_by",width:175}].concat(a.__super__.build_columns.call(this)),c.pop(),c},a.prototype.updated=function(){},a}(),g=function(){function a(b){a.__super__.constructor.call(this,b,"tags","#tags-grid")}return c(a,f),a.prototype.build_columns=function(){return[{id:"tag",name:b.t("columns.tag","tag"),field:"tag",width:200},{id:"count",name:b.t("columns.count","count"),field:"count",width:50}]},a.prototype.grid_options=function(){return d.extend(a.__super__.grid_options.call(this),{enableCellNavigation:!1})},a}(),d.extend(window,{Jobs:Jobs,Workers:h,Tags:g}),d(document).ready(function(){var a;return d("#tags-flavor").change(function(){return window.tags.change_flavor(d(this).val())}),d("#jobs-flavor").change(function(){return window.jobs.change_flavor(d(this).val())}),d("#jobs-refresh").click(function(){return window.jobs.refresh()}),a=d("#jobs-search")[0].onsearch===void 0?"change":"search",d("#jobs-search").bind(a,function(){return window.jobs.search(d(this).val())}),d("#select-all-jobs").click(function(){return window.jobs.selectAll()}),d("#hold-jobs").click(function(){return window.jobs.onSelected("hold")}),d("#un-hold-jobs").click(function(){return window.jobs.onSelected("unhold")}),d("#delete-jobs").click(function(){return window.jobs.onSelected("destroy")}),d("#job-handler-show").click(function(){return d("#job-handler-wrapper").clone().dialog({title:b.t("titles.job_handler","Job Handler"),width:900,height:700,modal:!0}),!1}),d("#job-last_error-show").click(function(){return d("#job-last_error-wrapper").clone().dialog({title:b.t("titles.last_error","Last Error"),width:900,height:700,modal:!0}),!1})}),{Jobs:Jobs,Workers:h,Tags:g}})}).call(this)
+(function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; }, __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
+  define(['i18n!jobs', 'jquery', 'vendor/slickgrid', 'jquery.ajaxJSON', 'jquery.instructure_jquery_patches'], function(I18n, $, Slick) {
+    var FlavorGrid, Tags, Workers;
+    FlavorGrid = (function() {
+      function FlavorGrid(options, type_name, grid_name) {
+        this.options = options;
+        this.type_name = type_name;
+        this.grid_name = grid_name;
+        this.change_flavor = __bind(this.change_flavor, this);
+        this.refresh = __bind(this.refresh, this);
+        this.setTimer = __bind(this.setTimer, this);
+        this.data = this.options.data;
+        this.$element = $(this.grid_name);
+        if (this.options.refresh_rate) {
+          this.setTimer();
+        }
+        this.query = '';
+      }
+      FlavorGrid.prototype.setTimer = function() {
+        return setTimeout((__bind(function() {
+          return this.refresh(this.setTimer);
+        }, this)), this.options.refresh_rate);
+      };
+      FlavorGrid.prototype.refresh = function(cb) {
+        return this.$element.queue(__bind(function() {
+          return $.ajaxJSON(this.options.url, "GET", {
+            flavor: this.options.flavor,
+            q: this.query
+          }, __bind(function(data) {
+            var i, item, _i, _len, _ref, _ref2, _ref3;
+            this.data.length = 0;
+            this.loading = {};
+            _ref = data[this.type_name];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              item = _ref[_i];
+              this.data.push(item);
+            }
+            if (data.total && data.total > this.data.length) {
+              for (i = _ref2 = this.data.length, _ref3 = data.total; _ref2 <= _ref3 ? i < _ref3 : i > _ref3; _ref2 <= _ref3 ? i++ : i--) {
+                this.data.push({});
+              }
+            }
+            this.grid.invalidate();
+            if (typeof cb === "function") {
+              cb();
+            }
+            if (typeof this.updated === "function") {
+              this.updated();
+            }
+            return this.$element.dequeue();
+          }, this));
+        }, this));
+      };
+      FlavorGrid.prototype.change_flavor = function(flavor) {
+        this.options.flavor = flavor;
+        this.grid.setSelectedRows([]);
+        return this.refresh();
+      };
+      FlavorGrid.prototype.grid_options = function() {
+        return {
+          rowHeight: 20
+        };
+      };
+      FlavorGrid.prototype.init = function() {
+        this.columns = this.build_columns();
+        this.loading = {};
+        this.grid = new Slick.Grid(this.grid_name, this.data, this.columns, this.grid_options());
+        return this;
+      };
+      return FlavorGrid;
+    })();
+    window.Jobs = (function() {
+      __extends(Jobs, FlavorGrid);
+      function Jobs(options, type_name, grid_name) {
+        if (type_name == null) {
+          type_name = 'jobs';
+        }
+        if (grid_name == null) {
+          grid_name = '#jobs-grid';
+        }
+        this.id_formatter = __bind(this.id_formatter, this);
+        this.load = __bind(this.load, this);
+        this.attempts_formatter = __bind(this.attempts_formatter, this);
+        if (options.max_attempts) {
+          Jobs.max_attempts = options.max_attempts;
+        }
+        Jobs.__super__.constructor.call(this, options, type_name, grid_name);
+        if (options.starting_query) {
+          this.query = options.starting_query;
+        }
+      }
+      Jobs.prototype.search = function(query) {
+        this.query = query;
+        return this.refresh();
+      };
+      Jobs.prototype.attempts_formatter = function(r, c, d) {
+        var klass, max, out_of;
+        if (!this.data[r].id) {
+          return '';
+        }
+        max = this.data[r].max_attempts || Jobs.max_attempts;
+        if (d === 0) {
+          klass = '';
+        } else if (d < max) {
+          klass = 'has-failed-attempts';
+        } else if (d === this.options.on_hold_attempt_count) {
+          klass = 'on-hold';
+          d = 'hold';
+        } else {
+          klass = 'has-failed-max-attempts';
+        }
+        out_of = d === 'hold' ? '' : "/ " + max;
+        return "<span class='" + klass + "'>" + d + out_of + "</span>";
+      };
+      Jobs.prototype.load = function(row) {
+        return this.$element.queue(__bind(function() {
+          row = row - (row % this.options.limit);
+          if (this.loading[row]) {
+            this.$element.dequeue();
+            return;
+          }
+          this.loading[row] = true;
+          return $.ajaxJSON(this.options.url, "GET", {
+            flavor: this.options.flavor,
+            q: this.query,
+            offset: row
+          }, __bind(function(data) {
+            var _ref;
+            [].splice.apply(this.data, [row, row + data[this.type_name].length - row].concat(_ref = data[this.type_name])), _ref;
+            this.grid.invalidate();
+            return this.$element.dequeue();
+          }, this));
+        }, this));
+      };
+      Jobs.prototype.id_formatter = function(r, c, d) {
+        if (this.data[r].id) {
+          return this.data[r].id;
+        } else {
+          this.load(r);
+          return "<span class='unloaded-id'>-</span>";
+        }
+      };
+      Jobs.prototype.build_columns = function() {
+        return [
+          {
+            id: 'id',
+            name: I18n.t('columns.id', 'id'),
+            field: 'id',
+            width: 75,
+            formatter: this.id_formatter
+          }, {
+            id: 'tag',
+            name: I18n.t('columns.tag', 'tag'),
+            field: 'tag',
+            width: 200
+          }, {
+            id: 'attempts',
+            name: I18n.t('columns.attempt', 'attempt'),
+            field: 'attempts',
+            width: 60,
+            formatter: this.attempts_formatter
+          }, {
+            id: 'priority',
+            name: I18n.t('columns.priority', 'priority'),
+            field: 'priority',
+            width: 70
+          }, {
+            id: 'strand',
+            name: I18n.t('columns.strand', 'strand'),
+            field: 'strand',
+            width: 100
+          }, {
+            id: 'run_at',
+            name: I18n.t('columns.run_at', 'run at'),
+            field: 'run_at',
+            width: 165
+          }
+        ];
+      };
+      Jobs.prototype.init = function() {
+        Jobs.__super__.init.call(this);
+        this.grid.setSelectionModel(new Slick.RowSelectionModel());
+        this.grid.onSelectedRowsChanged.subscribe(__bind(function() {
+          var job, row, rows;
+          rows = this.grid.getSelectedRows();
+          row = (rows != null ? rows.length : void 0) === 1 ? rows[0] : -1;
+          job = this.data[rows[0]] || {};
+          $('#show-job .show-field').each(__bind(function(idx, field) {
+            var field_name;
+            field_name = field.id.replace("job-", '');
+            return $(field).text(job[field_name] || '');
+          }, this));
+          return $('#job-id-link').attr('href', "/jobs?id=" + job.id + "&flavor=" + this.options.flavor);
+        }, this));
+        if (this.data.length === 1 && this.type_name === 'jobs') {
+          this.grid.setSelectedRows([0]);
+          this.grid.onSelectedRowsChanged.notify();
+        }
+        return this;
+      };
+      Jobs.prototype.selectAll = function() {
+        var _i, _ref, _results;
+        this.grid.setSelectedRows((function() {
+          _results = [];
+          for (var _i = 0, _ref = this.data.length; 0 <= _ref ? _i < _ref : _i > _ref; 0 <= _ref ? _i++ : _i--){ _results.push(_i); }
+          return _results;
+        }).apply(this));
+        return this.grid.onSelectedRowsChanged.notify();
+      };
+      Jobs.prototype.onSelected = function(action) {
+        var all_jobs, message, params, row;
+        params = {
+          flavor: this.options.flavor,
+          q: this.query,
+          update_action: action
+        };
+        if (this.grid.getSelectedRows().length < 1) {
+          alert('No jobs are selected');
+          return;
+        }
+        all_jobs = this.grid.getSelectedRows().length > 1 && this.grid.getSelectedRows().length === this.data.length;
+        if (all_jobs) {
+          message = (function() {
+            switch (action) {
+              case 'hold':
+                return I18n.t('confirm.hold_all', "Are you sure you want to hold *all* jobs of this type and matching this query?");
+              case 'unhold':
+                return I18n.t('confirm.unhold_all', "Are you sure you want to unhold *all* jobs of this type and matching this query?");
+              case 'destroy':
+                return I18n.t('confirm.destroy_all', "Are you sure you want to destroy *all* jobs of this type and matching this query?");
+            }
+          })();
+          if (!confirm(message)) {
+            return;
+          }
+        }
+        if (!all_jobs) {
+          params.job_ids = (function() {
+            var _i, _len, _ref, _results;
+            _ref = this.grid.getSelectedRows();
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              row = _ref[_i];
+              _results.push(this.data[row].id);
+            }
+            return _results;
+          }).call(this);
+        }
+        $.ajaxJSON(this.options.batch_update_url, "POST", params, this.refresh);
+        return this.grid.setSelectedRows([]);
+      };
+      Jobs.prototype.updated = function() {
+        return $('#jobs-total').text(this.data.length);
+      };
+      return Jobs;
+    })();
+    Workers = (function() {
+      __extends(Workers, Jobs);
+      function Workers(options) {
+        Workers.__super__.constructor.call(this, options, 'running', '#running-grid');
+      }
+      Workers.prototype.build_columns = function() {
+        var cols;
+        cols = [
+          {
+            id: 'worker',
+            name: I18n.t('columns.worker', 'worker'),
+            field: 'locked_by',
+            width: 175
+          }
+        ].concat(Workers.__super__.build_columns.call(this));
+        cols.pop();
+        return cols;
+      };
+      Workers.prototype.updated = function() {};
+      return Workers;
+    })();
+    Tags = (function() {
+      __extends(Tags, FlavorGrid);
+      function Tags(options) {
+        Tags.__super__.constructor.call(this, options, 'tags', '#tags-grid');
+      }
+      Tags.prototype.build_columns = function() {
+        return [
+          {
+            id: 'tag',
+            name: I18n.t('columns.tag', 'tag'),
+            field: 'tag',
+            width: 200
+          }, {
+            id: 'count',
+            name: I18n.t('columns.count', 'count'),
+            field: 'count',
+            width: 50
+          }
+        ];
+      };
+      Tags.prototype.grid_options = function() {
+        return $.extend(Tags.__super__.grid_options.call(this), {
+          enableCellNavigation: false
+        });
+      };
+      return Tags;
+    })();
+    $.extend(window, {
+      Jobs: Jobs,
+      Workers: Workers,
+      Tags: Tags
+    });
+    $(document).ready(function() {
+      var search_event;
+      $('#tags-flavor').change(function() {
+        return window.tags.change_flavor($(this).val());
+      });
+      $('#jobs-flavor').change(function() {
+        return window.jobs.change_flavor($(this).val());
+      });
+      $('#jobs-refresh').click(function() {
+        return window.jobs.refresh();
+      });
+      search_event = $('#jobs-search')[0].onsearch === void 0 ? 'change' : 'search';
+      $('#jobs-search').bind(search_event, function() {
+        return window.jobs.search($(this).val());
+      });
+      $('#select-all-jobs').click(function() {
+        return window.jobs.selectAll();
+      });
+      $('#hold-jobs').click(function() {
+        return window.jobs.onSelected('hold');
+      });
+      $('#un-hold-jobs').click(function() {
+        return window.jobs.onSelected('unhold');
+      });
+      $('#delete-jobs').click(function() {
+        return window.jobs.onSelected('destroy');
+      });
+      $('#job-handler-show').click(function() {
+        $('#job-handler-wrapper').clone().dialog({
+          title: I18n.t('titles.job_handler', 'Job Handler'),
+          width: 900,
+          height: 700,
+          modal: true
+        });
+        return false;
+      });
+      return $('#job-last_error-show').click(function() {
+        $('#job-last_error-wrapper').clone().dialog({
+          title: I18n.t('titles.last_error', 'Last Error'),
+          width: 900,
+          height: 700,
+          modal: true
+        });
+        return false;
+      });
+    });
+    return {
+      Jobs: Jobs,
+      Workers: Workers,
+      Tags: Tags
+    };
+  });
+}).call(this);

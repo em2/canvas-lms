@@ -1,1 +1,123 @@
-define("jst/courses/section/enrollment",["compiled/handlebars_helpers","i18n!courses.section.enrollment"],function(a){var b=a.template,c=a.templates=a.templates||{};return c["courses/section/enrollment"]=b(function(a,b,c,d,e){function o(a,b){var d="",e,f;d+='\n<li id="enrollment_',e=c.id||a.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"id",{hash:{}})),d+=n(e)+'" class="user user_',e=c.user_id||a.user_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user_id",{hash:{}})),d+=n(e)+" ",e=c.typeClass||a.typeClass,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"typeClass",{hash:{}})),d+=n(e)+'" title="',e=c.user||a.user,e=e===null||e===undefined||e===!1?e:e.name,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user.name",{hash:{}})),d+=n(e)+": ",e=c.user||a.user,e=e===null||e===undefined||e===!1?e:e.login_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user.login_id",{hash:{}})),d+=n(e)+'">\n  <span class="links">\n    ',e=c.permissions||a.permissions,e=e===null||e===undefined||e===!1?e:e.manage_students,f=c["if"],i=j.program(2,p,b),i.hash={},i.fn=i,i.inverse=j.noop,e=f.call(a,e,i);if(e||e===0)d+=e;return d+='\n    <a href="/confirmations/',e=c.user_id||a.user_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user_id",{hash:{}})),d+=n(e)+"/re_send/",e=c.user_id||a.user_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user_id",{hash:{}})),d+=n(e)+"?enrollment_id=",e=c.id||a.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"id",{hash:{}})),d+=n(e)+'" class="re_send_confirmation_url" style="display: none;">&nbsp;</a>\n  </span>\n  <a href="/courses/',e=c.course_id||a.course_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"course_id",{hash:{}})),d+=n(e)+"/users/",e=c.user_id||a.user_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user_id",{hash:{}})),d+=n(e)+'" class="name">',e=c.user||a.user,e=e===null||e===undefined||e===!1?e:e.sortable_name,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user.sortable_name",{hash:{}})),d+=n(e)+'</a>\n  <div class="short_name">',e=c.user||a.user,e=e===null||e===undefined||e===!1?e:e.short_name,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user.short_name",{hash:{}})),d+=n(e)+'</div>\n  <div class="enrollment_type">',e=c.typeLabel||a.typeLabel,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"typeLabel",{hash:{}})),d+=n(e)+'</div>\n  <div class="email">',e=c.user||a.user,e=e===null||e===undefined||e===!1?e:e.login_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"user.login_id",{hash:{}})),d+=n(e)+'</div>\n\n  <span class="clear"></span>\n</li>\n',d}function p(a,b){var d="",e,f,g,h;d+='\n    <a href="/courses/',e=c.course_id||a.course_id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"course_id",{hash:{}})),d+=n(e)+"/unenroll/",e=c.id||a.id,typeof e===k?e=e.call(a,{hash:{}}):e===m&&(e=l.call(a,"id",{hash:{}})),d+=n(e)+'" class="unenroll_user_link no-hover" title="',e="Remove User from Course",f="links.unenroll_user",g={},h="courses.section.enrollment",g.scope=h,h=c.t||a.t,i={},i.hash=g,typeof h===k?e=h.call(a,f,e,i):h===m?e=l.call(a,"t",f,e,i):e=h;if(e||e===0)d+=e;return d+='">\n      <img alt="delete_enrollment" src="/images/delete_circle.png" />\n    </a>\n    ',d}c=c||a.helpers;var f="",g,h,i,j=this,k="function",l=c.helperMissing,m=void 0,n=this.escapeExpression;f+="<!-- taken from app/views/shared/_enrollment.html.erb -->\n",g=b,h=c.each,i=j.program(1,o,e),i.hash={},i.fn=i,i.inverse=j.noop,g=h.call(b,g,i);if(g||g===0)f+=g;return f+="\n",f}),c["courses/section/enrollment"]})
+define('jst/courses/section/enrollment', ["compiled/handlebars_helpers","i18n!courses.section.enrollment"], function (Handlebars) {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+  templates['courses/section/enrollment'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2;
+  buffer += "\n<li id=\"enrollment_";
+  stack1 = helpers.id || depth0.id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" class=\"user user_";
+  stack1 = helpers.user_id || depth0.user_id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " ";
+  stack1 = helpers.typeClass || depth0.typeClass;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "typeClass", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" title=\"";
+  stack1 = helpers.user || depth0.user;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.name);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user.name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + ": ";
+  stack1 = helpers.user || depth0.user;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.login_id);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user.login_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\">\n  <span class=\"links\">\n    ";
+  stack1 = helpers.permissions || depth0.permissions;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.manage_students);
+  stack2 = helpers['if'];
+  tmp1 = self.program(2, program2, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    <a href=\"/confirmations/";
+  stack1 = helpers.user_id || depth0.user_id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "/re_send/";
+  stack1 = helpers.user_id || depth0.user_id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "?enrollment_id=";
+  stack1 = helpers.id || depth0.id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" class=\"re_send_confirmation_url\" style=\"display: none;\">&nbsp;</a>\n  </span>\n  <a href=\"/courses/";
+  stack1 = helpers.course_id || depth0.course_id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "course_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "/users/";
+  stack1 = helpers.user_id || depth0.user_id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" class=\"name\">";
+  stack1 = helpers.user || depth0.user;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.sortable_name);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user.sortable_name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</a>\n  <div class=\"short_name\">";
+  stack1 = helpers.user || depth0.user;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.short_name);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user.short_name", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n  <div class=\"enrollment_type\">";
+  stack1 = helpers.typeLabel || depth0.typeLabel;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "typeLabel", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n  <div class=\"email\">";
+  stack1 = helpers.user || depth0.user;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.login_id);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "user.login_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n\n  <span class=\"clear\"></span>\n</li>\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, stack2, stack3, stack4;
+  buffer += "\n    <a href=\"/courses/";
+  stack1 = helpers.course_id || depth0.course_id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "course_id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "/unenroll/";
+  stack1 = helpers.id || depth0.id;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "id", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" class=\"unenroll_user_link no-hover\" title=\"";
+  stack1 = "Remove User from Course";
+  stack2 = "links.unenroll_user";
+  stack3 = {};
+  stack4 = "courses.section.enrollment";
+  stack3['scope'] = stack4;
+  stack4 = helpers['t'] || depth0['t'];
+  tmp1 = {};
+  tmp1.hash = stack3;
+  if(typeof stack4 === functionType) { stack1 = stack4.call(depth0, stack2, stack1, tmp1); }
+  else if(stack4=== undef) { stack1 = helperMissing.call(depth0, "t", stack2, stack1, tmp1); }
+  else { stack1 = stack4; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\">\n      <img alt=\"delete_enrollment\" src=\"/images/delete_circle.png\" />\n    </a>\n    ";
+  return buffer;}
+
+  buffer += "<!-- taken from app/views/shared/_enrollment.html.erb -->\n";
+  stack1 = depth0;
+  stack2 = helpers.each;
+  tmp1 = self.program(1, program1, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;});
+  
+  return templates['courses/section/enrollment'];
+});

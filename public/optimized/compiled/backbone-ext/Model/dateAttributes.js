@@ -1,1 +1,17 @@
-(function(){define(["use!backbone","use!underscore"],function(a,b){var c;return c=a.Model.prototype.parse,a.Model.prototype.parse=function(){var a;return a=c.apply(this,arguments),b.each(this.dateAttributes,function(b){if(a[b])return a[b]=Date.parse(a[b])}),a},a.Model})}).call(this)
+(function() {
+  define(['use!backbone', 'use!underscore'], function(Backbone, _) {
+    var _parse;
+    _parse = Backbone.Model.prototype.parse;
+    Backbone.Model.prototype.parse = function() {
+      var res;
+      res = _parse.apply(this, arguments);
+      _.each(this.dateAttributes, function(attr) {
+        if (res[attr]) {
+          return res[attr] = Date.parse(res[attr]);
+        }
+      });
+      return res;
+    };
+    return Backbone.Model;
+  });
+}).call(this);

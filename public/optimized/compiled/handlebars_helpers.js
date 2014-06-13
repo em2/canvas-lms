@@ -1,1 +1,130 @@
-(function(){var a=Array.prototype.slice;define(["vendor/handlebars.vm","i18nObj","jquery","str/htmlEscape","compiled/util/semanticDateRange","jquery.instructure_date_and_time","jquery.instructure_misc_helpers","jquery.instructure_misc_plugins"],function(b,c,d,e,f){var g,h,i;i={t:function(a,b,e){var f,g,h;g={},e=(h=e!=null?e.hash:void 0)!=null?h:{};for(a in e)f=e[a],a.match(/^w\d+$/)&&(g[(new Array(parseInt(a.replace("w",""))+2)).join("*")]=f,delete e[a]);return g["*"]&&(e.wrapper=g),this instanceof String||typeof this=="string"||(e=d.extend(e,this)),c.scoped(e.scope).t(a,b,e)},hiddenIf:function(a){if(a)return" display:none; "},hiddenUnless:function(a){if(!a)return" display:none; "},semanticDateRange:function(){return new b.SafeString(f.apply(null,arguments))},friendlyDatetime:function(a,c){var e,f;return f=c.hash.pubdate,e=d.parseFromISO(a),new b.SafeString("<time title='"+e.datetime_formatted+"' datetime='"+e.datetime.toISOString()+"' "+(f?"pubdate":void 0)+">"+d.friendlyDatetime(e.datetime)+"</time>")},datetimeFormatted:function(a){return a.datetime||(a=d.parseFromISO(a)),a.datetime_formatted},dateToString:function(a,b){return a==null&&(a=""),a.toString(b)},mimeClass:function(a){return d.mimeClass(a)},convertNativeToMediaCommentThumnail:function(a){var c;return c=d("<div />").html(a),c.find("video.instructure_inline_media_comment,audio.instructure_inline_media_comment").replaceWith(function(){return d("<a id='media_comment_"+d(this).data("media_comment_id")+"'              data-media_comment_type='"+d(this).data("media_comment_type")+"'              class='instructure_inline_media_comment' />")}),new b.SafeString(c.html())},newlinesToBreak:function(a){return new b.SafeString(e(a).replace(/\n/g,"<br />"))},ifEqual:function(){var b,c,d,e,f,h,i,j;e=arguments[0],c=3>arguments.length?(f=1,[]):a.call(arguments,1,f=arguments.length-1),j=arguments[f++],g=j.fn,d=j.inverse;for(h=0,i=c.length;h<i;h++){b=c[h];if(b!==e)return d(this);e=b}return g(this)},ifAll:function(){var b,c,d,e,f,h,i;c=2>arguments.length?(e=0,[]):a.call(arguments,0,e=arguments.length-1),i=arguments[e++],g=i.fn,d=i.inverse;for(f=0,h=c.length;f<h;f++){b=c[f];if(!b)return d(this)}return g(this)},eachWithIndex:function(a,b){var c,d,e,f;g=b.fn,e=b.inverse,f="";if(a&&a.length>0)for(d in a)c=a[d],c._index=d,f+=g(c);else f=e(this);return f},eachProp:function(a,b){var c;return function(){var d;d=[];for(c in a)d.push(b.fn({property:c,value:a[c]}));return d}().join("")}};for(h in i)g=i[h],b.registerHelper(h,g);return b})}).call(this)
+(function() {
+  var __slice = Array.prototype.slice;
+  define(['vendor/handlebars.vm', 'i18nObj', 'jquery', 'str/htmlEscape', 'compiled/util/semanticDateRange', 'jquery.instructure_date_and_time', 'jquery.instructure_misc_helpers', 'jquery.instructure_misc_plugins'], function(Handlebars, I18n, $, htmlEscape, semanticDateRange) {
+    var fn, name, _ref;
+    _ref = {
+      t: function(key, defaultValue, options) {
+        var value, wrappers, _ref;
+        wrappers = {};
+        options = (_ref = options != null ? options.hash : void 0) != null ? _ref : {};
+        for (key in options) {
+          value = options[key];
+          if (key.match(/^w\d+$/)) {
+            wrappers[new Array(parseInt(key.replace('w', '')) + 2).join('*')] = value;
+            delete options[key];
+          }
+        }
+        if (wrappers['*']) {
+          options.wrapper = wrappers;
+        }
+        if (!(this instanceof String || typeof this === 'string')) {
+          options = $.extend(options, this);
+        }
+        return I18n.scoped(options.scope).t(key, defaultValue, options);
+      },
+      hiddenIf: function(condition) {
+        if (condition) {
+          return " display:none; ";
+        }
+      },
+      hiddenUnless: function(condition) {
+        if (!condition) {
+          return " display:none; ";
+        }
+      },
+      semanticDateRange: function() {
+        return new Handlebars.SafeString(semanticDateRange.apply(null, arguments));
+      },
+      friendlyDatetime: function(datetime, _arg) {
+        var parsed, pubdate;
+        pubdate = _arg.hash.pubdate;
+        parsed = $.parseFromISO(datetime);
+        return new Handlebars.SafeString("<time title='" + parsed.datetime_formatted + "' datetime='" + (parsed.datetime.toISOString()) + "' " + (pubdate ? 'pubdate' : void 0) + ">" + ($.friendlyDatetime(parsed.datetime)) + "</time>");
+      },
+      datetimeFormatted: function(isoString) {
+        if (!isoString.datetime) {
+          isoString = $.parseFromISO(isoString);
+        }
+        return isoString.datetime_formatted;
+      },
+      dateToString: function(date, format) {
+        if (date == null) {
+          date = '';
+        }
+        return date.toString(format);
+      },
+      mimeClass: function(contentType) {
+        return $.mimeClass(contentType);
+      },
+      convertNativeToMediaCommentThumnail: function(html) {
+        var $dummy;
+        $dummy = $('<div />').html(html);
+        $dummy.find('video.instructure_inline_media_comment,audio.instructure_inline_media_comment').replaceWith(function() {
+          return $("<a id='media_comment_" + ($(this).data('media_comment_id')) + "'              data-media_comment_type='" + ($(this).data('media_comment_type')) + "'              class='instructure_inline_media_comment' />");
+        });
+        return new Handlebars.SafeString($dummy.html());
+      },
+      newlinesToBreak: function(string) {
+        return new Handlebars.SafeString(htmlEscape(string).replace(/\n/g, "<br />"));
+      },
+      ifEqual: function() {
+        var arg, args, inverse, previousArg, _i, _j, _len, _ref;
+        previousArg = arguments[0], args = 3 <= arguments.length ? __slice.call(arguments, 1, _i = arguments.length - 1) : (_i = 1, []), _ref = arguments[_i++], fn = _ref.fn, inverse = _ref.inverse;
+        for (_j = 0, _len = args.length; _j < _len; _j++) {
+          arg = args[_j];
+          if (arg !== previousArg) {
+            return inverse(this);
+          }
+          previousArg = arg;
+        }
+        return fn(this);
+      },
+      ifAll: function() {
+        var arg, args, inverse, _i, _j, _len, _ref;
+        args = 2 <= arguments.length ? __slice.call(arguments, 0, _i = arguments.length - 1) : (_i = 0, []), _ref = arguments[_i++], fn = _ref.fn, inverse = _ref.inverse;
+        for (_j = 0, _len = args.length; _j < _len; _j++) {
+          arg = args[_j];
+          if (!arg) {
+            return inverse(this);
+          }
+        }
+        return fn(this);
+      },
+      eachWithIndex: function(context, options) {
+        var ctx, index, inverse, ret;
+        fn = options.fn;
+        inverse = options.inverse;
+        ret = '';
+        if (context && context.length > 0) {
+          for (index in context) {
+            ctx = context[index];
+            ctx._index = index;
+            ret += fn(ctx);
+          }
+        } else {
+          ret = inverse(this);
+        }
+        return ret;
+      },
+      eachProp: function(context, options) {
+        var prop;
+        return ((function() {
+          var _results;
+          _results = [];
+          for (prop in context) {
+            _results.push(options.fn({
+              property: prop,
+              value: context[prop]
+            }));
+          }
+          return _results;
+        })()).join('');
+      }
+    };
+    for (name in _ref) {
+      fn = _ref[name];
+      Handlebars.registerHelper(name, fn);
+    }
+    return Handlebars;
+  });
+}).call(this);

@@ -1,1 +1,43 @@
-(function(){define(["jquery"],function(a){var b,c;return c=function(b){var c,d,e,f,g;return b.data("handled",!0),d=b.attr("href"),f=b.data("method"),g=b.attr("target"),c=a("<form method='post' action='"+d+"'></form>"),e="<input name='_method' value='"+f+"' type='hidden' />",ENV.AUTHENTICITY_TOKEN&&(e+="<input name='authenticity_token' value='"+ENV.AUTHENTICITY_TOKEN+"' type='hidden' />"),g&&c.attr("target",g),c.hide().append(e).appendTo("body").submit()},b=function(a){var b;return b=a.data("confirm"),b?confirm(b):!0},a(document).delegate("a[data-confirm], a[data-method]","click",function(d){var e;e=a(this);if(e.data("handled"))return!1;if(!b(e))return!1;if(e.data("method"))return c(e),!1})})}).call(this)
+(function() {
+  define(['jquery'], function($) {
+    var allowAction, handleMethod;
+    handleMethod = function(link) {
+      var form, href, metadataInput, method, target;
+      link.data('handled', true);
+      href = link.attr('href');
+      method = link.data('method');
+      target = link.attr('target');
+      form = $("<form method='post' action='" + href + "'></form>");
+      metadataInput = "<input name='_method' value='" + method + "' type='hidden' />";
+      if (ENV.AUTHENTICITY_TOKEN) {
+        metadataInput += "<input name='authenticity_token' value='" + ENV.AUTHENTICITY_TOKEN + "' type='hidden' />";
+      }
+      if (target) {
+        form.attr('target', target);
+      }
+      return form.hide().append(metadataInput).appendTo('body').submit();
+    };
+    allowAction = function(element) {
+      var message;
+      message = element.data('confirm');
+      if (!message) {
+        return true;
+      }
+      return confirm(message);
+    };
+    return $(document).delegate('a[data-confirm], a[data-method]', 'click', function(event) {
+      var $link;
+      $link = $(this);
+      if ($link.data('handled')) {
+        return false;
+      }
+      if (!allowAction($link)) {
+        return false;
+      }
+      if ($link.data('method')) {
+        handleMethod($link);
+        return false;
+      }
+    });
+  });
+}).call(this);
