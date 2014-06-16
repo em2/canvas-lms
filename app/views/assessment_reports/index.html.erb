@@ -5,7 +5,7 @@
 <h1>Available Assessments</h1>
 
 
- 
+
 <table>
   <% if @quizzes.empty? -%>
 		<tr>
@@ -30,3 +30,5 @@
 		<% end -%>
 	<% end -%>
 </table>
+
+<%= render :partial => 'reports/update_reports', :object => @report %>
