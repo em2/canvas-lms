@@ -115,7 +115,7 @@ class CoursesController < ApplicationController
     student_id_first = student_id_first?(students_array)
     students_array.count.times do
       course_enrollment_count = students_array.count
-      student_data = students_array.pop.split
+      student_data = students_array.pop.scan(/\w+/).join(" ").split
       if student_id_first
         last_name = student_data.count == 3 ? student_data.pop : ""
         first_name = student_data.pop
