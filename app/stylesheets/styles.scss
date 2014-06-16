@@ -33,6 +33,7 @@ body {
 }
 @media (min-width: 768px) {
   .sidebar {
+    width: 298px;
     position: fixed;
     top: 51px;
     bottom: 0;
@@ -79,6 +80,12 @@ body {
     color: #fff !important;
     a {
       color: #fff !important;
+    }
+    .sidebar_x {
+      color: #fff !important;
+    }
+    a:hover {
+      background-color: #428bca;
     }
   }
 }
@@ -218,6 +225,10 @@ body {
 
 .nav_text{
   margin-top: -7px;
+}
+
+.navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: transparent !important;
 }
 
 /* assessment navbar */
@@ -493,7 +504,6 @@ ul.quiz_list li.quiz div.description .quiz_info {
 }
 
 #new_course_roster_area{
-  width: 358px;
   height: 597px;
 }
 
@@ -502,10 +512,6 @@ ul.quiz_list li.quiz div.description .quiz_info {
 }
 
 #add_class_instruction_examples{
-}
-
-#add_class_instructions{
-  float: right;
 }
 
 #add_class_instructions_panel{
