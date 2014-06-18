@@ -755,12 +755,9 @@ module ApplicationHelper
   def teacher_root_path
     page_path = ""
     first_course = @current_user.courses.active.first
-    first_course_quiz = first_course.quizzes.first
-    if first_course.present? && first_course_quiz.present?
-      page_path = course_quiz_take_path(first_course, first_course_quiz, :preview => 1)
-    elsif first_course.present? && !first_course_quiz.present?
-      page_path = course_quizzes_path(first_course)
-    elsif !first_course.present?
+    if first_course.present?
+      page_path = course_path(first_course)
+    else
       page_path = new_course_path
     end
     page_path

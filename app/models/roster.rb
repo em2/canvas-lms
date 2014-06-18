@@ -13,7 +13,7 @@ class Roster < ActiveRecord::Base
 	# generate_probes will generate all the districts, schools, teachers, and students
 	#
 	#########################################################################
-	def generate_probes(context, probe, instance, stage, course_title, current_user, number_students, district, district_account, school_account, teacher)
+	def generate_probes(context, probe, instance, stage, course_title, current_user, number_students, district, district_account, school_account, teacher, pre_post)
 
     #
     # Try to find the course. If unsuccessful, then create the Course.
@@ -41,7 +41,7 @@ class Roster < ActiveRecord::Base
     # Make sure that the stage instance has not been used with this probe
     # if not, create the assessment
     if (!find_assignment(probe, stage, instance))
-      create_assignment(probe, stage, instance, current_user)
+      create_assignment(probe, stage, instance, current_user, pre_post)
     end
 
     #
@@ -196,9 +196,9 @@ class Roster < ActiveRecord::Base
     return assignment_found
   end
 
-  def create_assignment(probe, stage, instance, current_user)
+  def create_assignment(probe, stage, instance, current_user, pre_post)
     @quiz = @course.quizzes.create
-    @quiz.title = probe.full_name
+    @quiz.title = "#{probe.full_name} #{pre_post}"
     @quiz.question_bank_id = probe.id
     @quiz.probe_name = probe.title + stage + instance
     @quiz.description = nil
