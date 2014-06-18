@@ -8,9 +8,10 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
     <% @available_assessments.each do |assessment| %>
-      <% unless @course.assignment_titles.include?(assessment.full_name) %>
+      <% form_for :rosters, :url => rosters_path do |f| %>
         <tr>
           <td class="add_assess_row_title"><a href="<%= assessment.paper_version_url %>" class="add_assessment_course_title"><%= assessment.full_name %></a></td>
           <td class="add_assess_row_data"><em><p><%= assessment.assessment_questions.count - 1 %> Questions</p></em></td>
@@ -21,18 +22,20 @@
               Misconceptions
             <% end -%>
           </td>
-
-          <% form_for :rosters, :url => rosters_path do |f| %>
-            <%= f.hidden_field :probe_id, :value => assessment.id %>
-            <%= f.hidden_field :stage, :value => 'X' %>
-            <%= f.hidden_field :instance, :value => '001' %>
-            <%= f.hidden_field :students, :value => @course.students.count %>
-            <%= f.hidden_field :courses, :value => @course.em2_identifier %>
-            <td>
-              <%= f.submit 'Add to Class', :class => 'btn btn-default' %>
-            </td>
-          <% end -%>
-
+          <%= f.hidden_field :probe_id, :value => assessment.id %>
+          <%= f.hidden_field :stage, :value => 'X' %>
+          <%= f.hidden_field :instance, :value => '001' %>
+          <%= f.hidden_field :students, :value => @course.students.count %>
+          <%= f.hidden_field :courses, :value => @course.em2_identifier %>
+          <td>
+            <%= f.label :pre_post, "Pre" %>
+            <%= f.radio_button :pre_post, "(Pre)" %>
+            <%= f.label :pre_post, "Post" %>
+            <%= f.radio_button :pre_post, "(Post)" %>
+          </td>
+          <td>
+            <%= f.submit 'Add to Class', :class => 'btn btn-default' %>
+          </td>
           <td class="add_assess_row_data">
             <% if assessment.paper_version_url.present? %>
               <a href="<%= assessment.paper_version_url %>"><%= image_tag 'pdf.png' %></a>
