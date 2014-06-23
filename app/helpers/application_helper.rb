@@ -722,7 +722,24 @@ module ApplicationHelper
   end
 
   def teacher_role?
-    @current_user && @current_user.roles.include?("teacher")
+    @found_teacher = false
+    if Course.are_available.count > 0
+      Course.by_name_available.each do |course|
+        course.teachers.each do |teacher|
+          if @current_user && (teacher.id == @current_user.id)
+            @found_teacher = true
+            break
+          end
+          if @found_teacher
+            break
+          end
+        end
+        if @found_teacher
+          break
+        end
+      end
+    end
+    @is_teacher = @found_teacher
   end
 
   def previous_submission(student, students, submissions)
