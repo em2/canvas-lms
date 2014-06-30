@@ -13,7 +13,13 @@
     <% @available_assessments.each do |assessment| %>
       <% form_for :rosters, :url => rosters_path do |f| %>
         <tr>
-          <td class="add_assess_row_title"><a href="<%= assessment.paper_version_url %>" class="add_assessment_course_title"><%= assessment.full_name %></a></td>
+          <td class="add_assess_row_title">
+            <% if assessment.assessment_misconceptions.present? && assessment.assessment_misconceptions.first.description.present? %>
+              <a class="add_assessment_course_title" href="#" data-toggle="tooltip" title="<%= assessment.assessment_misconceptions.first.description if assessment.assessment_misconceptions.present? %>"><%= assessment.full_name %></a>
+            <% else %>
+              <p class="add_assessment_course_title"><%= assessment.full_name %></p>
+            <% end -%>
+          </td>
           <td class="add_assess_row_data"><em><p><%= assessment.assessment_questions.count - 1 %> Questions</p></em></td>
           <td class="add_assess_row_data">
             <% if assessment.misconception_url.present? %>
@@ -34,7 +40,7 @@
             <%= f.radio_button :pre_post, "(Post)" %>
           </td>
           <td>
-            <%= f.submit 'Add to Class', :class => 'btn btn-default' %>
+            <%= f.submit 'Add to Class', :class => 'btn btn-primary' %>
           </td>
           <td class="add_assess_row_data">
             <% if assessment.paper_version_url.present? %>
