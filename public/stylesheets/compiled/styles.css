@@ -476,100 +476,105 @@ ul.quiz_list li.quiz div.description .quiz_info {
 #add_class_instructions_panel {
   width: 230px; }
 
-/*quiz preview*/
 /* line 521, ../../../app/stylesheets/styles.scss */
+.add_course_name_format_buttons {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+/*quiz preview*/
+/* line 528, ../../../app/stylesheets/styles.scss */
 #take_quiz_content {
   margin-left: 20px; }
 
-/* line 525, ../../../app/stylesheets/styles.scss */
+/* line 532, ../../../app/stylesheets/styles.scss */
 #preview_warning_area {
   max-width: 936px; }
 
-/* line 529, ../../../app/stylesheets/styles.scss */
+/* line 536, ../../../app/stylesheets/styles.scss */
 #preview_warning_area * {
   display: inline-block; }
 
-/* line 533, ../../../app/stylesheets/styles.scss */
+/* line 540, ../../../app/stylesheets/styles.scss */
 .quiz_preview_icons {
   padding-left: 3px; }
 
-/* line 537, ../../../app/stylesheets/styles.scss */
+/* line 544, ../../../app/stylesheets/styles.scss */
 #take_quiz_warning_img {
   vertical-align: baseline; }
 
 /*misconceptions page*/
-/* line 542, ../../../app/stylesheets/styles.scss */
+/* line 549, ../../../app/stylesheets/styles.scss */
 #assessment_misconceptions_page {
   margin-left: 20px; }
-  /* line 544, ../../../app/stylesheets/styles.scss */
+  /* line 551, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_heading {
     font-size: 18px; }
-  /* line 547, ../../../app/stylesheets/styles.scss */
+  /* line 554, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_links {
     font-style: italic; }
-  /* line 550, ../../../app/stylesheets/styles.scss */
+  /* line 557, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_student_names {
     font-size: 15px; }
-  /* line 553, ../../../app/stylesheets/styles.scss */
+  /* line 560, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_descriptions {
     width: 475px; }
-  /* line 556, ../../../app/stylesheets/styles.scss */
+  /* line 563, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_titles {
     color: #777777; }
-  /* line 559, ../../../app/stylesheets/styles.scss */
+  /* line 566, ../../../app/stylesheets/styles.scss */
   #assessment_misconceptions_page .misconception_tables {
     width: 800px; }
-    /* line 561, ../../../app/stylesheets/styles.scss */
+    /* line 568, ../../../app/stylesheets/styles.scss */
     #assessment_misconceptions_page .misconception_tables th {
       font-style: italic; }
 
 /*individual responses*/
-/* line 568, ../../../app/stylesheets/styles.scss */
+/* line 575, ../../../app/stylesheets/styles.scss */
 #individual_results_page {
   margin-left: 20px;
   margin-top: 15px; }
 
-/* line 573, ../../../app/stylesheets/styles.scss */
+/* line 580, ../../../app/stylesheets/styles.scss */
 #individual_responses_student_dropdown {
   border-radius: 0;
   margin-bottom: 15px; }
 
-/* line 578, ../../../app/stylesheets/styles.scss */
+/* line 585, ../../../app/stylesheets/styles.scss */
 .invidivual_responses_student_dropdown_name {
   margin-bottom: 3px !important;
   padding-left: 15px;
   color: #B8B8B8; }
-  /* line 582, ../../../app/stylesheets/styles.scss */
+  /* line 589, ../../../app/stylesheets/styles.scss */
   .invidivual_responses_student_dropdown_name a {
     color: #4b7092; }
 
-/* line 587, ../../../app/stylesheets/styles.scss */
+/* line 594, ../../../app/stylesheets/styles.scss */
 #invidivual_responses_student_dropdown_menu {
   margin-top: -16px; }
 
-/* line 591, ../../../app/stylesheets/styles.scss */
+/* line 598, ../../../app/stylesheets/styles.scss */
 .individual_results_next_button {
   margin-left: -1px; }
 
 /*statistics page*/
-/* line 597, ../../../app/stylesheets/styles.scss */
+/* line 604, ../../../app/stylesheets/styles.scss */
 #assessment_statistics_page {
   margin-left: 20px; }
 
 /*class summary page*/
-/* line 602, ../../../app/stylesheets/styles.scss */
+/* line 609, ../../../app/stylesheets/styles.scss */
 .classroom_reports {
   margin-left: 20px; }
 
-/* line 605, ../../../app/stylesheets/styles.scss */
+/* line 612, ../../../app/stylesheets/styles.scss */
 #report_heading {
   margin-top: 30px; }
 
 /*monitor page*/
-/* line 610, ../../../app/stylesheets/styles.scss */
+/* line 617, ../../../app/stylesheets/styles.scss */
 #monitor_page {
   margin-left: 20px; }
 
-/* line 614, ../../../app/stylesheets/styles.scss */
+/* line 621, ../../../app/stylesheets/styles.scss */
 #monitor_title {
   color: #777777; }

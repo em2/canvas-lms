@@ -16,6 +16,17 @@
       <div class="row">
         <!-- Textarea -->
         <div class="col-md-4">
+          <div class="control-group add_course_name_format_buttons">
+            Student Name Format
+            <div>
+              <%= radio_button_tag "name_order", "first", :class => 'form-control' %>
+              <%= label_tag "name_order", "First Name, Last Name" %>
+            </div>
+            <div>
+              <%= radio_button_tag "name_order", "last", :class => 'form-control' %>
+              <%= label_tag "name_order", "Last Name, First Name" %>
+            </div>
+          </div>
           <div class="control-group">
             <%= f.label :students, 'Class Roster' %>
             <div class="controls">

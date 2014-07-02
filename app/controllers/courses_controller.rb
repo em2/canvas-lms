@@ -44,6 +44,7 @@ class CoursesController < ApplicationController
   def create
     course_identifier = generate_unique_course_identifier
     account = @current_user.account
+    name_order = params[:name_order]
     sub_account = Account.find_by_name("district") ? Account.find_by_name("district") : Account.create!(:name => 'district', :parent_account => account)
     sub_sub_account = Account.find_by_name("school") ? Account.find_by_name("school") : Account.create!(:name => 'school', :parent_account => sub_account)
     course = Course.new(:name => params['course']['name'], :account => sub_sub_account, :course_code => params['course']['name'], :em2_identifier => course_identifier)
@@ -53,7 +54,7 @@ class CoursesController < ApplicationController
       course.offer!
       course.save!
       add_teacher(course)
-      add_students(students_array, course)
+      add_students(students_array, course, name_order)
       flash[:notice] = 'Class added'
       redirect_to new_course_path
     else
@@ -108,19 +109,31 @@ class CoursesController < ApplicationController
     @unique_course_identifier
   end
 
-  def add_students(students_array, course)
+  def add_students(students_array, course, name_order)
     student_id_first = student_id_first?(students_array)
     students_array.count.times do
       course_enrollment_count = students_array.count
       student_data = students_array.pop.scan(/\w+/).join(" ").split
-      if student_id_first
-        last_name = student_data.count == 3 ? student_data.pop : ""
-        first_name = student_data.pop
-        student_id = student_data.pop
+      if name_order == "last"
+        if student_id_first
+          first_name = student_data.count == 3 ? student_data.pop : ""
+          last_name = student_data.pop
+          student_id = student_data.pop
+        else
+          student_id = student_data.pop
+          first_name = student_data.count == 2 ? student_data.pop : ""
+          last_name = student_data.pop
+        end
       else
-        student_id = student_data.pop
-        last_name = student_data.count == 2 ? student_data.pop : ""
-        first_name = student_data.pop
+        if student_id_first
+          last_name = student_data.count == 3 ? student_data.pop : ""
+          first_name = student_data.pop
+          student_id = student_data.pop
+        else
+          student_id = student_data.pop
+          last_name = student_data.count == 2 ? student_data.pop : ""
+          first_name = student_data.pop
+        end
       end
       student = find_or_create_student(first_name, last_name, student_id, course_enrollment_count)
       enroll = course.enroll_student(student)

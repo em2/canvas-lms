@@ -16,6 +16,7 @@
   <div class="clear"></div>
 
   <div>
+    <p>Students are placed into misconception categories both based on incorrect answers, as well as the pattern of answers.</p>
     <% @misconceptions.active.each_with_index do |misconception, index| -%>
       <h1 class="misconception_titles">Misconception: <%= misconception.name %></h1>
       <table class="table table-bordered misconception_tables">

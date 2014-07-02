@@ -44,7 +44,7 @@
 
         <!-- Individual Responses Tab -->
         <% if @quiz.assignment %>
-          <li class="<%= 'active' if current_page?(course_quiz_history_path(@quiz.context_id, @quiz, :headless => 1)) %>">
+          <li class="<%= 'active' if current_page?(course_quiz_history_path(@quiz.context_id, @quiz)) %>">
             <%# link_to context_url(@context, :speed_grader_context_gradebook_url, :assignment_id => @quiz.assignment.id) do %>
             <% if @quiz.quiz_submissions.count > 1 %>
               <% link_to course_quiz_history_path(@quiz.context_id, @quiz, :headless => 1) do %>
