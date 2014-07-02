@@ -517,7 +517,14 @@ ul.quiz_list li.quiz div.description .quiz_info {
 #add_class_instructions_panel{
   width: 230px;
 }
+
+.add_course_name_format_buttons{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 /*quiz preview*/
+
 #take_quiz_content{
   margin-left: $left_margin;
 }
