@@ -352,6 +352,8 @@
 <%= render_hidden_dialogs %>
 
 <script>
+
+
 // Determines if the scripts are loaded.
 // When we get everything out of the views, and have a single top-level
 // `require`, this becomes meaningless and will be abandoned.
@@ -374,5 +376,10 @@
 }).call(this);
 
 </script>
+
+
 </body>
+<footer>
+  <%= yield :page_specific_js %>
+</footer>
 </html>

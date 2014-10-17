@@ -104,6 +104,10 @@ css_compressor_options:
   subdoc
 %>
 
+javascripts:
+  add_assessment:
+    - public/javascripts/add_assessment.js
+
 stylesheets:
   common:
     - public/stylesheets/compiled/g_reset.css

@@ -726,7 +726,7 @@ module ApplicationHelper
     if Course.are_available.count > 0
       Course.by_name_available.each do |course|
         course.teachers.each do |teacher|
-          if @current_user && (teacher.id == @current_user.id)
+          if @current_user && (teacher.id == @current_user.id) && !@current_user.roles.include?("admin")
             @found_teacher = true
             break
           end
