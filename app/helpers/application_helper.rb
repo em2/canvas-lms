@@ -742,6 +742,10 @@ module ApplicationHelper
     @is_teacher = @found_teacher
   end
 
+  def admin_role?
+    !!@current_user && @current_user.roles.include?("admin")
+  end
+
   def previous_submission(student, students, submissions)
     previous = nil
     i = students.index(student)

@@ -18,14 +18,26 @@
   wizard = yield :wizard_box
   top_nav = yield :top_nav
   keyboard_navigation = yield :keyboard_navigation
-  @body_classes << "with-left-side" if @show_left_side && !teacher_role?
+
+
+  ######################### Old Method for Assigning layout classes ##########################
+  # @body_classes << "with-left-side" if @show_left_side && !teacher_role?
   #we dont want to render a right side unless there is actually content in it.
   @body_classes << "with-right-side" if right_side and not right_side.strip.empty?
   @body_classes << "padless-content" if @padless
   @body_classes << "context-#{@context.asset_string}" if @context
-  @body_classes << "with-fixed-nav" if teacher_role?
-  @body_classes << "with-teacher-sidebar" if teacher_role?
+  # @body_classes << "with-fixed-nav" if teacher_role?
+  # @body_classes << "with-teacher-sidebar" if teacher_role?
+  ###########################################################################################
 
+  ######################## New Method for Assigning layout classes ##########################
+  if admin_role?
+    @body_classes << "with-left-side"
+  elsif teacher_role?
+    @body_classes << "with-fixed-nav"
+    @body_classes << "with-teacher-sidebar"
+  end
+  ###########################################################################################
 -%>
 <!DOCTYPE html>
 <!--[if IE 7 ]>    <html class="ie ie7 scripts-not-loaded" lang=<%= @locale %>> <![endif]-->
