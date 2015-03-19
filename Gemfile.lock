@@ -123,7 +123,6 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     netaddr (1.5.0)
-    newrelic_rpm (3.6.1.87)
     nokogiri (1.5.0)
     oauth (0.4.5)
     parallel (0.5.16)
@@ -259,7 +258,6 @@ DEPENDENCIES
   mocha (= 0.10.0)
   mysql
   netaddr (= 1.5.0)
-  newrelic_rpm
   nokogiri (= 1.5.0)
   oauth (= 0.4.5)
   parallel (= 0.5.16)

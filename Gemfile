@@ -93,7 +93,6 @@ end
 
 #deploy
 gem 'unicorn', '~> 4.3.1'
-gem 'newrelic_rpm'
 
 #cron job stuff
 gem 'whenever', :require => false
