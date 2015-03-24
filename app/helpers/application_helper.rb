@@ -722,6 +722,7 @@ module ApplicationHelper
   end
 
   def teacher_role?
+    return true if admin_role? && !!@course
     @found_teacher = false
     if Course.are_available.count > 0
       Course.by_name_available.each do |course|

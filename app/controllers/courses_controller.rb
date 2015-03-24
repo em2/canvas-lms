@@ -4,6 +4,8 @@ class CoursesController < ApplicationController
   def index
     if is_teacher?
       redirect_to teacher_root_path
+    elsif @current_user.enrollments == []
+      redirect_to new_course_path
     end
     respond_to do |format|
       format.html {

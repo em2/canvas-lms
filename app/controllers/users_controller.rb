@@ -218,7 +218,7 @@ class UsersController < ApplicationController
 
   def user_dashboard
     get_context
-    
+
     #
     # Redirect the students to their latest assessment
     unless is_admin_or_teacher?
@@ -901,7 +901,7 @@ class UsersController < ApplicationController
   def require_open_registration
     get_context
     @context = @domain_root_account || Account.default unless @context.is_a?(Account)
-    @context = @context.root_account
+    # @context = @context.root_account
     if !@context.grants_right?(@current_user, session, :manage_user_logins) && (!@context.open_registration? || !@context.no_enrollments_can_create_courses? || @context != Account.default)
       flash[:error] = t('no_open_registration', "Open registration has not been enabled for this account")
       respond_to do |format|
@@ -935,8 +935,8 @@ class UsersController < ApplicationController
         student = User.find(params[:student_id])
         enrollments = student.student_enrollments.active.all(:include => :course)
         enrollments.each do |enrollment|
-          should_include = enrollment.course.user_has_been_teacher?(@teacher) && 
-                           enrollment.course.enrollments_visible_to(@teacher, true).find_by_id(enrollment.id) && 
+          should_include = enrollment.course.user_has_been_teacher?(@teacher) &&
+                           enrollment.course.enrollments_visible_to(@teacher, true).find_by_id(enrollment.id) &&
                            enrollment.course.grants_right?(@current_user, :read_reports)
           if should_include
             Enrollment.recompute_final_score_if_stale(enrollment.course, student) { enrollment.reload }
@@ -1039,6 +1039,6 @@ class UsersController < ApplicationController
 
     data.values.sort_by { |e| e[:enrollment].user.sortable_name.downcase }
   end
-  
+
 
 end

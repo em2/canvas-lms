@@ -32,7 +32,12 @@
 
   ######################## New Method for Assigning layout classes ##########################
   if admin_role?
-    @body_classes << "with-left-side"
+    if teacher_role?
+      @body_classes << "with-fixed-nav"
+      @body_classes << "with-teacher-sidebar"
+    else
+      @body_classes << "with-left-side"
+    end
   elsif teacher_role?
     @body_classes << "with-fixed-nav"
     @body_classes << "with-teacher-sidebar"
@@ -115,6 +120,7 @@
   <!-- div #header is the navbar -->
   <% if teacher_role? %>
     <%= render :partial => 'layouts/global/navbar' %>
+    <%= render(:partial => "shared/keyboard_navigation_hint") if keyboard_navigation %>
   <% else %>
     <div id="header" class="no-print <%= 'no-user' unless @current_user %>">
       <a href="#content" id="skip_navigation_link"><%= t 'links.skip_to_content', "Skip To Content" %></a>
