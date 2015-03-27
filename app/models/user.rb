@@ -1134,7 +1134,7 @@ class User < ActiveRecord::Base
   def avatar_approved?
     [:approved, :locked, :re_reported].include?(avatar_state)
   end
-  
+
   def self.avatar_key(user_id)
     user_id = user_id.to_s
     if !user_id.blank? && user_id != '0'
@@ -1143,7 +1143,7 @@ class User < ActiveRecord::Base
       "0"
     end
   end
-  
+
   def self.user_id_from_avatar_key(key)
     user_id, sig = key.to_s.split(/-/, 2)
     (Canvas::Security.hmac_sha1(user_id.to_s)[0, 10] == sig) ? user_id : nil
@@ -1193,11 +1193,11 @@ class User < ActiveRecord::Base
     @avatar_url ||= gravatar_url(size, fallback, request) if avatar_setting == 'enabled'
     @avatar_url ||= fallback
   end
-  
+
   def avatar_path
     "/images/users/#{User.avatar_key(self.id)}"
   end
-  
+
   def self.default_avatar_fallback
     "/images/no_pic.gif"
   end
@@ -1213,7 +1213,7 @@ class User < ActiveRecord::Base
       avatar_fallback_url(default_avatar_fallback, request)
     end
   end
-  
+
   named_scope :with_avatar_state, lambda{|state|
     if state == 'any'
       {
@@ -1736,8 +1736,8 @@ class User < ActiveRecord::Base
 
   def conversation_context_codes
     Rails.cache.fetch([self, 'conversation_context_codes'].cache_key, :expires_in => 1.day) do
-      courses.map{ |c| "course_#{c.id}" } + 
-      concluded_courses.map{ |c| "course_#{c.id}" } + 
+      courses.map{ |c| "course_#{c.id}" } +
+      concluded_courses.map{ |c| "course_#{c.id}" } +
       current_groups.map{ |g| "group_#{g.id}"}
     end
   end
@@ -1819,7 +1819,7 @@ class User < ActiveRecord::Base
     res = ['user']
     res << 'student' if self.cached_current_enrollments.any?(&:student?)
     res << 'teacher' if self.cached_current_enrollments.any?(&:admin?)
-    res << 'admin' unless self.accounts.empty?
+    res << 'admin' unless self.account_users.empty? || (self.account_users.map{|au| au.membership_type}.include?("None") && self.account_users.count == 1)
     res
   end
   memoize :roles
