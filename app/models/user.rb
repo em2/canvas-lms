@@ -122,6 +122,15 @@ class User < ActiveRecord::Base
   include StickySisFields
   are_sis_sticky :name, :sortable_name, :short_name
 
+  def sidebar_courses
+    if self.roles.include?("admin")
+      courses = self.accounts.first.courses
+    else
+      courses = self.courses
+    end
+    courses
+  end
+
   def conversations
     # i.e. exclude any where the user has deleted all the messages
     all_conversations.visible.scoped(:order => "last_message_at DESC, conversation_id DESC")
@@ -2277,14 +2286,5 @@ class User < ActiveRecord::Base
 
   def fake_student?
     self.preferences[:fake_student] && !!self.enrollments.find(:first, :conditions => {:type => "StudentViewEnrollment"})
-  end
-
-  def sidebar_courses
-    if self.roles.include?(admin)
-      courses = self.accounts.first.courses
-    else
-      courses = self.courses
-    end
-    courses
   end
 end
