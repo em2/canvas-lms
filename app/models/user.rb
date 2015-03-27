@@ -2278,4 +2278,13 @@ class User < ActiveRecord::Base
   def fake_student?
     self.preferences[:fake_student] && !!self.enrollments.find(:first, :conditions => {:type => "StudentViewEnrollment"})
   end
+
+  def sidebar_courses
+    if self.roles.include?(admin)
+      courses = self.accounts.first.courses
+    else
+      courses = self.courses
+    end
+    courses
+  end
 end
