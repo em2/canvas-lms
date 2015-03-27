@@ -7,7 +7,7 @@
       </li>
     </ul>
     <ul class="nav nav-sidebar">
-      <% if @current_user.courses.present? %>
+      <% if @current_user.sidebar_courses.present? %>
         <% @current_user.sidebar_courses.each do |course| %>
           <li class="nav text-primary sidebar_course">
             <%= link_to course.name, course_path(course.id), :class => "sidebar_course_name sidebar_text #{'active' if current_page?(course_path(course.id))}" %>
