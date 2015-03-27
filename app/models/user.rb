@@ -124,7 +124,10 @@ class User < ActiveRecord::Base
 
   def sidebar_courses
     if self.roles.include?("admin")
-      courses = self.accounts.first.courses
+      account_courses = self.accounts.first.courses
+      self.accounts.first.sub_accounts.each do |sub_account|
+        account_courses << sub_account.courses
+      end
     else
       courses = self.courses
     end
