@@ -591,7 +591,7 @@ class UsersController < ApplicationController
     @user.workflow_state = notify == :self_registration && @user.registration_approval_required? ? 'pending_approval' : 'pre_registered' unless @user.registered?
     @user.save!
 
-    AccountUser.create(:account => Account.find(params[:account_id]), :user => @user, :membership_type => "None")
+    AccountUser.create(:account => Account.find(params[:account_id]), :user => @user, :membership_type => "Teacher")
 
 
     @pseudonym ||= @user.pseudonyms.build(:account => @context)
