@@ -19,7 +19,7 @@
 class CommunicationChannelsController < ApplicationController
   before_filter :require_user, :only => [:create, :destroy]
   before_filter :reject_student_view_student
-  
+
   def create
     if params[:build_pseudonym]
       params[:pseudonym][:account] = @domain_root_account
@@ -209,7 +209,7 @@ class CommunicationChannelsController < ApplicationController
     else
       flash[:notice] = t 'notices.registration_confirmed', "Registration confirmed!"
       respond_to do |format|
-        format.html { @enrollment ? redirect_to(course_url(@course)) : redirect_back_or_default(dashboard_url) }
+        format.html { @enrollment ? redirect_to(courses_path) : redirect_back_or_default(dashboard_url) }
         format.json { render :json => cc.to_json(:except => [:confirmation_code] ) }
       end
     end
@@ -237,5 +237,5 @@ class CommunicationChannelsController < ApplicationController
       render :json => @cc.errors.to_json, :status => :bad_request
     end
   end
-  
+
 end
