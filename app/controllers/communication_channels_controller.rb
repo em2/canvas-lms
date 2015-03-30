@@ -209,7 +209,8 @@ class CommunicationChannelsController < ApplicationController
     else
       flash[:notice] = t 'notices.registration_confirmed', "Registration confirmed!"
       respond_to do |format|
-        format.html { @enrollment ? redirect_to(courses_path) : redirect_back_or_default(dashboard_url) }
+        # format.html { @enrollment ? redirect_to(course_url(@course)) : redirect_back_or_default(dashboard_url) }
+        format.html {redirect_to(courses_path)}
         format.json { render :json => cc.to_json(:except => [:confirmation_code] ) }
       end
     end
