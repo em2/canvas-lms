@@ -54,7 +54,7 @@
   <title><%= yield :page_title || t('missing_page_title', "Add a page title here.") %></title>
   <noscript> <meta http-equiv=refresh content="0; URL=/enable-javascript.html" /> </noscript>
   <!--[if lte IE 6]> <meta http-equiv=refresh content="0; URL=/ie-6-is-not-supported.html" /> <![endif]-->
-  <% if teacher_role? %>
+  <% if teacher_role? || admin_role? %>
     <%= include_stylesheets :bootstrap %>
     <%= include_stylesheets :print, :media => 'print' %>
     <% js_bundle :bootstrap %>
@@ -262,7 +262,7 @@
       </div>
 
       <div id="not_right_side">
-        <%= render_crumbs unless teacher_role? %>
+        <%= render_crumbs if admin_role? %>
         <div id="content" role="main">
           <%= yield %>
         </div>

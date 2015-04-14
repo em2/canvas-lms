@@ -42,7 +42,7 @@
   <% end %>
   <% jammit_css :quizzes, :tinymce, :comparing, :represent_fractions, :locate_fractions, :estimating_fractions, :fractions_adding_subtracting %>
 
-  <% if teacher_role? %>
+  <% if teacher_role? || admin_role? %>
     <%= render :partial => "assessment_nav", :quiz => @quiz %>
   <% else %>
     <span class="logo_banner"><%= image_tag "logo_banner.png" %></span>
@@ -53,7 +53,7 @@
   <div id="preview_warning_area">
     <% if @submission.preview? %>
       <h3><%= t('headers.draft_preview', "This is a preview of the draft version of the quiz") %></h3>
-      <% if @quiz.paper_version_url.present? && teacher_role? -%>
+      <% if @quiz.paper_version_url.present? && (teacher_role? || admin_role?) -%>
         <div class="button_layer quiz_preview_icons">
           <span>
             <a href="<%= @quiz.paper_version_url %>"><%= image_tag "pdf.png" %></a>
