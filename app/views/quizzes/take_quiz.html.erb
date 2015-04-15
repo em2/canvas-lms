@@ -1,7 +1,8 @@
 <div id="take_quiz_content">
   <% content_for :page_title do %><%= join_title @quiz.readable_type, @quiz.quiz_title %><% end %>
 
-  <% content_for :right_side do %>
+<!-- turning off right side -->
+  <% content_for :right_side_off do %>
     <div class="rs-margin-lr rs-margin-top">
     <% if @submission && params[:preview] %>
       <a id="preview_mode_link" href="<%= context_url(@context, :edit_context_quiz_url, @quiz) %>" class="button button-sidebar-wide"><%= image_tag "edit.png" %> <%= @quiz.survey? ? t('links.keep_editing_survey', "Keep Editing This Survey") : t('links.keep_editing_quiz', "Keep Editing This Quiz") %></a><br/>
