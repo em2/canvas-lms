@@ -210,12 +210,12 @@ class QuizzesController < ApplicationController
         @no_chrome = true
       end
 
-      if is_teacher? || is_admin?
-        @no_chrome = false
-      end
-
       if params[:preview]
         @no_chrome = true
+      end
+
+      if is_admin?
+        @no_chrome = false
       end
 
       add_crumb(@quiz.title, named_context_url(@context, :context_quiz_url, @quiz))
