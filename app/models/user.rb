@@ -1830,8 +1830,11 @@ class User < ActiveRecord::Base
   def roles
     res = ['user']
     res << 'student' if self.cached_current_enrollments.any?(&:student?)
-    res << 'teacher' if self.cached_current_enrollments.any?(&:admin?)
-    res << 'admin' unless self.account_users.empty? || (self.account_users.map{|au| au.membership_type}.include?("None") && self.account_users.count == 1)
+    res << 'teacher' if self.cached_current_enrollments.any?(&:admin?) || self.account_users.map{|au| au.membership_type}.include?("Teacher")
+    # res << 'admin' unless self.account_users.empty? || (self.account_users.map{|au| au.membership_type}.include?("None") && self.account_users.count == 1)
+    res << 'admin' if self.account_users.map{|au| au.membership_type}.include?("AccountAdmin") ||
+                      self.account_users.map{|au| au.membership_type}.include?("DistrictAdmin") ||
+                      self.account_users.map{|au| au.membership_type}.include?("SchoolAdmin")
     res
   end
   memoize :roles
