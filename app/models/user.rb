@@ -124,14 +124,26 @@ class User < ActiveRecord::Base
 
   def sidebar_courses
     if self.roles.include?("admin")
-      courses = self.accounts.first.courses
-      self.accounts.first.sub_accounts.each do |sub_account|
-        courses << sub_account.courses
-      end
+      account = self.accounts.first
+      display_courses = []
+      display_courses.concat(account.courses)
+      display_courses.concat(sub_account_courses(account))
     else
-      courses = self.courses
+      display_courses = self.courses
     end
-    courses
+    display_courses
+  end
+
+  def sub_account_courses(account)
+    sa_courses = []
+    sub_accounts = account.sub_accounts
+    sub_accounts.each do |sub_account|
+      sa_courses.concat(sub_account.courses)
+      if sub_account.sub_accounts.present?
+        sa_courses.concat(sub_account_courses(sub_account))
+      end
+    end
+    sa_courses
   end
 
   def conversations
