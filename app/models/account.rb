@@ -986,7 +986,21 @@ class Account < ActiveRecord::Base
 
   def trusted_account_ids
     return [] if !root_account? || self == Account.site_admin
-    [ Account.site_admin.id ]
+    res = []
+    res << Account.site_admin.id
+    res.concat(sub_account_ids(Account.first))
+  end
+
+  def sub_account_ids(account)
+    sa_ids = []
+    sub_accounts = account.sub_accounts
+    sub_accounts.each do |sub_account|
+      sa_ids << sub_account.id
+      if sub_account.sub_accounts.present?
+        sa_ids.concat(sub_account_ids(sub_account))
+      end
+    end
+    sa_ids
   end
 
   def user_list_search_mode_for(user)

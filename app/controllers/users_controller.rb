@@ -602,7 +602,7 @@ class UsersController < ApplicationController
     @pseudonym.attributes = params[:pseudonym]
     @pseudonym.sis_user_id = sis_user_id
 
-    @pseudonym.account = @context
+    @pseudonym.account = Account.find(params[:account_id])
     @pseudonym.workflow_state = 'active'
     @cc = @user.communication_channels.email.by_path(email).first
     @cc ||= @user.communication_channels.build(:path => email)
