@@ -91,6 +91,25 @@ class CoursesController < ApplicationController
     page_path
   end
 
+  def edit_course_students
+    @course = Course.find(params[:course_id]) if params[:course_id]
+  end
+
+  def update_course_students
+    @course = Course.find(params[:course_id]) if params[:course_id]
+    course_students = params[:course_students]
+    course_students.each do |student_data|
+      student = User.find_by_permanent_name_identifier(student_data["permanent_name_identifier"])
+      full_name = student_data["first_name"] + " " + student_data["last_name"]
+      if student.name != full_name
+        student.update_attribute(:name, full_name)
+        student.save
+      end
+    end
+    flash[:notice] = "Roster has been updated"
+    redirect_to course_path(@course)
+  end
+
 
 
 

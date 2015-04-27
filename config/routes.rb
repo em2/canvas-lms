@@ -161,6 +161,11 @@ ActionController::Routing::Routes.draw do |map|
   # and the application_helper method :context_url to make retrieving
   # these contexts, and also generating context-specific urls, easier.
   map.resources :courses do |course|
+
+    course.update_course_students 'update_course_students/', :controller => 'courses', :action => 'update_course_students'
+    course.edit_course_students 'edit_course_students/', :controller => 'courses', :action => 'edit_course_students'
+
+
     course.self_enrollment 'self_enrollment/:self_enrollment', :controller => 'courses', :action => 'self_enrollment'
     course.self_unenrollment 'self_unenrollment/:self_unenrollment', :controller => 'courses', :action => 'self_unenrollment'
     course.restore 'restore', :controller => 'courses', :action => 'restore'

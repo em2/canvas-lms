@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default roster_nav" role="navigation">
+
+  <div class="container-fluid container-nav roster_nav">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle no-print" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h3 class="navbar-brand navbar-title"><%= @course.name %></h3>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-links sub_navbar roster_nav no-print">
+        <li><%= link_to "Cancel Edit Roster", course_path(@course) %></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<% form_tag course_update_course_students_path(@course) do %>
+  <div class="table-responsive" id="roster_names">
+    <table class="table table-striped course_roster">
+      <thead>
+        <tr>
+          <th colspan="1">Last Name</th>
+          <th colspan="1">First Name</th>
+          <th colspan="3">Student ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @course.students.each do |student| %>
+          <tr class="body_data">
+            <td>
+              <%= hidden_field_tag "course_students[][permanent_name_identifier]", student.permanent_name_identifier %>
+              <%= text_field_tag "course_students[][last_name]", student.sortable_name.split(", ")[0] %>
+            </td>
+            <td>
+              <%= text_field_tag "course_students[][first_name]", student.sortable_name.split(", ")[1] %>
+            </td>
+            <td><%= student.permanent_name_identifier %></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+    <%= submit_tag "Update Student List", :class => 'btn' %>
+  </div>
+<% end -%>
