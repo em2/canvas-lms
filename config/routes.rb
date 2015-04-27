@@ -164,6 +164,7 @@ ActionController::Routing::Routes.draw do |map|
 
     course.update_course_students 'update_course_students/', :controller => 'courses', :action => 'update_course_students'
     course.edit_course_students 'edit_course_students/', :controller => 'courses', :action => 'edit_course_students'
+    course.add_student_to_course 'add_student_to_course/', :controller => 'courses', :action => 'add_student_to_course'
 
 
     course.self_enrollment 'self_enrollment/:self_enrollment', :controller => 'courses', :action => 'self_enrollment'

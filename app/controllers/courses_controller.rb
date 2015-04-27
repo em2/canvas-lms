@@ -110,7 +110,19 @@ class CoursesController < ApplicationController
     redirect_to course_path(@course)
   end
 
-
+  def add_student_to_course
+    @course = Course.find(params[:course_id]) if params[:course_id]
+    if params[:permanent_name_identifier] && params[:first_name]
+      student = find_or_create_student(params[:first_name], params[:last_name], params[:permanent_name_identifier], (@course.students.map(&:short_name).sort.last.to_i + 1))
+      enroll = @course.enroll_student(student)
+      enroll.workflow_state = 'active'
+      enroll.save!
+      flash[:notice] = "#{params[:first_name]} #{params[:last_name]} added to course"
+    else
+      flash[:error] = "Student must have First Name and ID"
+    end
+    redirect_to course_path(@course)
+  end
 
 
 

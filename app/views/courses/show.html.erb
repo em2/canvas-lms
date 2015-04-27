@@ -45,4 +45,30 @@
       <% end -%>
     </tbody>
   </table>
+  <h3>Add Student</h3>
+  <% form_tag course_add_student_to_course_path(@course), :class => 'form-horizontal' do %>
+    <div class="form-group">
+      <%= label_tag "first_name", nil, :class => 'col-sm-1 control-label' %>
+      <div class="col-sm-2">
+        <%= text_field_tag "first_name", nil, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "last_name", nil, :class => 'col-sm-1 control-label' %>
+      <div class="col-sm-2">
+        <%= text_field_tag "last_name", nil, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "permanent_name_identifier", "ID", :class => 'col-sm-1 control-label' %>
+      <div class="col-sm-2">
+        <%= text_field_tag "permanent_name_identifier", nil, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-2">
+        <%= submit_tag "Add Student", :class => 'btn' %>
+      </div>
+    </div>
+  <% end -%>
 </div>
