@@ -198,7 +198,7 @@ class Roster < ActiveRecord::Base
 
   def create_assignment(probe, stage, instance, current_user, pre_post)
     @quiz = @course.quizzes.create
-    @quiz.title = "#{probe.full_name} #{pre_post}"
+    @quiz.title = "#{pre_post} #{probe.full_name}"
     @quiz.question_bank_id = probe.id
     @quiz.probe_name = probe.title + stage + instance
     @quiz.description = nil
