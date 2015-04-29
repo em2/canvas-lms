@@ -51,12 +51,17 @@ class CoursesController < ApplicationController
     # sub_sub_account = Account.find_by_name("school") ? Account.find_by_name("school") : Account.create!(:name => 'school', :parent_account => sub_account)
     course = Course.new(:name => params['course']['name'], :account => account, :course_code => params['course']['name'], :em2_identifier => course_identifier)
     students_array = params['course']['students'].split(/\r?\n/)
-    valid_students_array = validate_students_array(students_array)
-    if valid_students_array && course.save
+
+    if students_array.present? && !validate_students_array(students_array)
+      flash[:error] = 'Student list not added correctly. Could not add class.'
+      redirect_to new_course_path
+    end
+
+    if course.save
       course.offer!
       course.save!
       add_teacher(course)
-      add_students(students_array, course, name_order)
+      add_students(students_array, course, name_order) if students_array.present?
       flash[:notice] = 'Class added'
       redirect_to new_course_path
     else
@@ -121,6 +126,21 @@ class CoursesController < ApplicationController
     else
       flash[:error] = "Student must have First Name and ID"
     end
+    redirect_to course_path(@course)
+  end
+
+  def add_students_to_course
+    @course = Course.find(params[:course_id]) if params[:course_id]
+    name_order = params[:name_order]
+    students_array = params[:students].split(/\r?\n/)
+
+    if students_array.present? && !validate_students_array(students_array)
+      flash[:error] = 'Student list not added correctly. Could not add students.'
+      redirect_to course_path(@course)
+    end
+
+    add_students(students_array, @course, name_order) if students_array.present?
+    flash[:notice] = 'Students added'
     redirect_to course_path(@course)
   end
 

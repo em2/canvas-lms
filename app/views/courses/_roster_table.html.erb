@@ -1,0 +1,47 @@
+<div class="table-responsive" id="roster_names">
+  <table class="table table-striped course_roster">
+    <thead>
+      <tr>
+        <th colspan="1"><%= @course.students.count %> Students (Roster)</th>
+        <th class="no-print">Student ID</th>
+        <th class="print_instructions" colspan="3">Instructions</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% @course.students.each do |student| %>
+        <tr class="body_data">
+          <td><%= student.sortable_name %></td>
+          <td class="no-print"><%= student.permanent_name_identifier %></td>
+          <td class="print_instructions">Go to http://elicitingmathmeaning.edc.org/ and enter <%= student.permanent_name_identifier %> to login</td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+  <h3>Add Student</h3>
+  <% form_tag course_add_student_to_course_path(@course), :class => 'form-horizontal' do %>
+    <div class="form-group">
+      <%= label_tag "first_name", nil, :class => 'col-sm-1 control-label' %>
+      <div class="col-sm-2">
+        <%= text_field_tag "first_name", nil, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "last_name", nil, :class => 'col-sm-1 control-label' %>
+      <div class="col-sm-2">
+        <%= text_field_tag "last_name", nil, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "permanent_name_identifier", "ID", :class => 'col-sm-1 control-label' %>
+      <div class="col-sm-2">
+        <%= text_field_tag "permanent_name_identifier", nil, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-2">
+        <%= submit_tag "Add Student", :class => 'btn' %>
+      </div>
+    </div>
+  <% end -%>
+</div>
