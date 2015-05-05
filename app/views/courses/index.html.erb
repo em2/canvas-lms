@@ -31,10 +31,15 @@
         <ul class="nav nav-sidebar assessments">
           <% enrollment.course.quizzes.active.each do |quiz| %>
             <li>
-              <% if !quiz.quiz_submissions.for_user_ids(@current_user.id).present? || quiz.quiz_submissions.for_user_ids(@current_user.id).last.attempts_left > 0 %>
-                <%= link_to quiz.title, course_quiz_take_path(enrollment.course.id, quiz.id), :class => 'sidebar_text  sidebar_assessment' %>
-              <% else %>
                 <%= quiz.title %>
+              <% if !quiz.quiz_submissions.for_user_ids(@current_user.id).present? %>
+                <%= button_to "Start Assessment", course_quiz_take_path(enrollment.course.id, quiz.id) %>
+              <% elsif quiz.quiz_submissions.for_user_ids(@current_user.id).last.attempts_left > 0 %>
+                <%= button_to "Retake Assessment", course_quiz_take_path(enrollment.course.id, quiz.id) %>
+              <% elsif quiz.quiz_submissions.for_user_ids(@current_user.id).last.workflow_state == "untaken" %>
+                <%= button_to "Resume Assessment", course_quiz_take_path(enrollment.course.id, quiz.id) %>
+              <% else %>
+                <p><%= "Assessment submitted at: #{quiz.quiz_submissions.for_user_ids(@current_user.id).last.finished_at}" %></p>
               <% end -%>
             </li>
           <% end -%>
