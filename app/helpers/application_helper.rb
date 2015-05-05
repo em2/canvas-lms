@@ -723,24 +723,25 @@ module ApplicationHelper
 
   def teacher_role?
     return true if admin_role? && !!@course
-    @found_teacher = false
-    if Course.are_available.count > 0
-      Course.by_name_available.each do |course|
-        course.teachers.each do |teacher|
-          if @current_user && (teacher.id == @current_user.id) && !@current_user.roles.include?("admin")
-            @found_teacher = true
-            break
-          end
-          if @found_teacher
-            break
-          end
-        end
-        if @found_teacher
-          break
-        end
-      end
-    end
-    @is_teacher = @found_teacher
+    !!@current_user && !!@current_user.account_users.find_by_membership_type('Teacher')
+    # @found_teacher = false
+    # if Course.are_available.count > 0
+    #   Course.by_name_available.each do |course|
+    #     course.teachers.each do |teacher|
+    #       if @current_user && (teacher.id == @current_user.id) && !@current_user.roles.include?("admin")
+    #         @found_teacher = true
+    #         break
+    #       end
+    #       if @found_teacher
+    #         break
+    #       end
+    #     end
+    #     if @found_teacher
+    #       break
+    #     end
+    #   end
+    # end
+    # @is_teacher = @found_teacher
   end
 
   def admin_role?

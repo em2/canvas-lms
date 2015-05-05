@@ -184,14 +184,14 @@ class PseudonymSessionsStudentController < ApplicationController
       settings = aac.saml_settings(request.env['canvas.account_domain'])
       request = Onelogin::Saml::LogOutRequest.new(settings, session)
       forward_url = request.generate_request
-      
+
       if aac.debugging? && aac.debug_get(:logged_in_user_id) == @current_user.id
         aac.debug_set(:logout_request_id, request.id)
         aac.debug_set(:logout_to_idp_url, forward_url)
         aac.debug_set(:logout_to_idp_xml, request.request_xml)
         aac.debug_set(:debugging, t('debug.logout_redirect', "LogoutRequest sent to IdP"))
       end
-      
+
       reset_session
       session[:delegated_message] = message if message
       redirect_to(forward_url)
@@ -244,10 +244,10 @@ class PseudonymSessionsStudentController < ApplicationController
         aac.debug_set(:fingerprint_from_idp, response.fingerprint_from_idp)
         aac.debug_set(:login_to_canvas_success, 'false')
       end
-      
+
       if response.is_valid?
         aac.debug_set(:is_valid_login_response, 'true') if debugging
-        
+
         if response.success_status?
           @pseudonym = nil
           @pseudonym = @domain_root_account.pseudonyms.custom_find_by_unique_id(response.name_id)
@@ -260,7 +260,7 @@ class PseudonymSessionsStudentController < ApplicationController
             #Successful login and we have a user
             @domain_root_account.pseudonym_sessions.create!(@pseudonym, false)
             @user = @pseudonym.login_assertions_for_user
-            
+
             if debugging
               aac.debug_set(:login_to_canvas_success, 'true')
               aac.debug_set(:logged_in_user_id, @user.id)

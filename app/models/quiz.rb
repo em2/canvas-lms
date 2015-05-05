@@ -1570,4 +1570,5 @@ class Quiz < ActiveRecord::Base
     end
     missconception_array.first
   end
+
 end

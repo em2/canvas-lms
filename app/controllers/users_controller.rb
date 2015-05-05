@@ -222,21 +222,25 @@ class UsersController < ApplicationController
     #
     # Redirect the students to their latest assessment
     unless is_admin_or_teacher?
-      # get the context codes which is just the course number
-      @context_codes = @context.courses.map(&:asset_string)
 
-      # get the assignments for that course
-      @assignments = Assignment.active.for_context_codes(@context_codes)
+      redirect_to courses_url
+      return
 
-      # get the course and assignment id's
-      course_id = @context.courses.first.id rescue nil
-      max_position = @assignments.map(&:position).compact.max
-      assignment_id = @assignments.find_by_position(max_position).id rescue nil
+      # # get the context codes which is just the course number
+      # @context_codes = @context.courses.map(&:asset_string)
 
-      if (course_id != nil || assignment_id != nil)
-        # redirct to the users latest assessment
-        redirect_to("/courses/#{course_id}/assignments/#{assignment_id}") and return
-      end
+      # # get the assignments for that course
+      # @assignments = Assignment.active.for_context_codes(@context_codes)
+
+      # # get the course and assignment id's
+      # course_id = @context.courses.first.id rescue nil
+      # max_position = @assignments.map(&:position).compact.max
+      # assignment_id = @assignments.find_by_position(max_position).id rescue nil
+
+      # if (course_id != nil || assignment_id != nil)
+      #   # redirct to the users latest assessment
+      #   redirect_to("/courses/#{course_id}/assignments/#{assignment_id}") and return
+      # end
     end
 
     @school_rosters = Roster.by_name

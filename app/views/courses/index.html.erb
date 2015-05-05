@@ -24,16 +24,31 @@
   <h2><%= t('headings.my_courses', %{My Courses}) %></h2>
   <ul class="unstyled_list context_list current_enrollments">
     <% @current_enrollments.each do |enrollment| %>
-      <%= render :partial => "shared/current_enrollment", :object => enrollment, :locals => {:my_classes => true} %>
+      <% if teacher_role? %>
+        <%= render :partial => "shared/current_enrollment", :object => enrollment, :locals => {:my_classes => true} %>
+      <% else %>
+      <h3><%= enrollment.course.name %></h3>
+        <ul class="nav nav-sidebar assessments">
+          <% enrollment.course.quizzes.active.each do |quiz| %>
+            <li>
+              <% if !quiz.quiz_submissions.for_user_ids(@current_user.id).present? || quiz.quiz_submissions.for_user_ids(@current_user.id).last.attempts_left > 0 %>
+                <%= link_to quiz.title, course_quiz_take_path(enrollment.course.id, quiz.id), :class => 'sidebar_text  sidebar_assessment' %>
+              <% else %>
+                <%= quiz.title %>
+              <% end -%>
+            </li>
+          <% end -%>
+        </ul>
+      <% end -%>
     <% end %>
   </ul>
 <% end %>
 
 <% unless @past_enrollments.empty? %>
-<h2><%= t('headings.past_enrollments', %{Past Enrollments}) %></h2>
-<ul class="unstyled_list context_list past_enrollments">
-  <% @past_enrollments.each do |enrollment| %>
-    <%= render :partial => "shared/current_enrollment", :object => enrollment, :locals => {:my_classes => true} %>
-  <% end %>
-</ul>
+  <h2><%= t('headings.past_enrollments', %{Past Enrollments}) %></h2>
+  <ul class="unstyled_list context_list past_enrollments">
+    <% @past_enrollments.each do |enrollment| %>
+      <%= render :partial => "shared/current_enrollment", :object => enrollment, :locals => {:my_classes => true} %>
+    <% end %>
+  </ul>
 <% end %>
