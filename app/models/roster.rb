@@ -13,29 +13,30 @@ class Roster < ActiveRecord::Base
 	# generate_probes will generate all the districts, schools, teachers, and students
 	#
 	#########################################################################
-	def generate_probes(context, probe, instance, stage, course_title, current_user, number_students, district, district_account, school_account, teacher, pre_post)
+	def generate_probes(context, probe, instance, stage, course_title, current_user, number_students, district, district_account, school_account, teacher, pre_post, course_id)
 
     #
     # Try to find the course. If unsuccessful, then create the Course.
-    if (!find_course(course_title))
-      create_course(course_title, school_account)
-    end
+    # if (!find_course(course_title))
+    #   create_course(course_title, school_account)
+    # end
+    @course = Course.find(course_id)
 
     #
     # Try to find the teacher
     # Go through each district and look for a teacher with the same name
     # if unsuccessful, go ahead and create that teacher
-    if (!find_teacher(district_account, district, teacher))
-      create_teacher(context, district, teacher)
-    end
+    # if (!find_teacher(district_account, district, teacher))
+    #   create_teacher(context, district, teacher)
+    # end
 
     #
     # Enroll the teacher in this course as a teacher
-    enroll_as_teacher(@teacher_account)
+    # enroll_as_teacher(@teacher_account)
 
     #
     # Enroll the current user as the teacher
-    enroll_as_teacher(current_user)
+    # enroll_as_teacher(current_user)
 
     #
     # Make sure that the stage instance has not been used with this probe
@@ -46,20 +47,20 @@ class Roster < ActiveRecord::Base
 
     #
     # Create the students
-    srand
+    # srand
     # calculate the number of extra students needed
     # course student enrollments count minus the total required students
-    @course_enrollment_count = @course.enrollments.all_student_active.count
-    @students_needed = number_students - @course_enrollment_count
+    # @course_enrollment_count = @course.enrollments.all_student_active.count
+    # @students_needed = number_students - @course_enrollment_count
 
     #
     # Loop until a student has been created for all the @students_needed
-    i = 0
-    while(i < @students_needed)
-      create_student(context, course_title, i)
-      enroll_as_student(@student)
-      i += 1
-  end
+    # i = 0
+    # while(i < @students_needed)
+    #   create_student(context, course_title, i)
+    #   enroll_as_student(@student)
+    #   i += 1
+    # end
 	end
 
   def find_course(course_title)
