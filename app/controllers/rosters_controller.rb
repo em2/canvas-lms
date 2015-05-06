@@ -55,7 +55,6 @@ class RostersController < ApplicationController
   #
   #########################################################################
   def create
-
     #
     # While creating everything, this bool flag will be set if any errors are encountered
     # If any are found at the beginning, send the user back to their dashboard
@@ -145,8 +144,8 @@ class RostersController < ApplicationController
             #
             # Send off the roster to generate everything to delayed_job
             Delayed::Job.enqueue(RosterGenerateJob.new(@roster, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher, @pre_post))
-            #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
-            #@roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher)
+            #@roster.send_later(:generate_probes, @context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher, @pre_post)
+            @roster.generate_probes(@context, @probe, @instance, @stage, @course_title, @current_user, @number_students, @district, @district_account, @school_account, @teacher, @pre_post)
 
             probe_generated = true
           else

@@ -187,7 +187,7 @@ class Roster < ActiveRecord::Base
 
   def find_assignment(probe, stage, instance)
     assignment_found = false
-    @course.assignments.each do |assignment|
+    @course.assignments.active.each do |assignment|
       temp_probe_name = probe.title + stage + instance
       if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
         assignment_found = true
