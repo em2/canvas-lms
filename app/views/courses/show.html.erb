@@ -15,7 +15,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-links sub_navbar roster_nav no-print">
-        <li><%= link_to "Delete", course_path(@course), :method => 'DELETE' %></li>
+        <li><%= link_to "Delete", course_path(@course), :method => 'DELETE', :confirm => "Are you sure?" %></li>
         <li><%= link_to "Edit Roster", course_edit_course_students_path(@course) %></li>
         <li><%= link_to "Add Assessment", course_quizzes_path(@course.id) %></li>
         <li><a href="javascript:window.print()">Print</a></li>
