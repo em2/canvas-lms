@@ -41,8 +41,9 @@ class Roster < ActiveRecord::Base
     #
     # Make sure that the stage instance has not been used with this probe
     # if not, create the assessment
-    if (!find_assignment(probe, stage, instance))
-      create_assignment(probe, stage, instance, current_user, pre_post)
+    quiz_title = "#{pre_post} #{probe.full_name}"
+    if (!find_assignment(quiz_title))
+      create_assignment(probe, stage, instance, current_user, quiz_title)
     end
 
     #
@@ -186,20 +187,19 @@ class Roster < ActiveRecord::Base
     @enroll.save!
   end
 
-  def find_assignment(probe, stage, instance)
+  def find_assignment(quiz_title)
     assignment_found = false
     @course.assignments.active.each do |assignment|
-      temp_probe_name = probe.title + stage + instance
-      if (Quiz.find_by_assignment_id(assignment.id).probe_name == temp_probe_name)
+      if assignment.title == quiz_title
         assignment_found = true
       end
     end
     return assignment_found
   end
 
-  def create_assignment(probe, stage, instance, current_user, pre_post)
+  def create_assignment(probe, stage, instance, current_user, quiz_title)
     @quiz = @course.quizzes.create
-    @quiz.title = "#{pre_post} #{probe.full_name}"
+    @quiz.title = quiz_title
     @quiz.question_bank_id = probe.id
     @quiz.probe_name = probe.title + stage + instance
     @quiz.description = nil
