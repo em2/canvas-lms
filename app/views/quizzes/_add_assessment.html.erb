@@ -41,7 +41,7 @@
             <%= f.radio_button :pre_post, "(Post)" %>
           </td>
           <td>
-            <%= f.submit 'Add to Class', :class => 'btn btn-primary' %>
+            <%= f.submit 'Add to Class', :class => 'btn btn-primary', :confirm => 'Adding an assessment may take up to 1 minute.' %>
           </td>
           <td class="add_assess_row_data">
             <% if assessment.paper_version_url.present? %>

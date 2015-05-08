@@ -142,7 +142,12 @@ class CoursesController < ApplicationController
     redirect_to course_path(@course)
   end
 
-
+  def remove_student_from_course
+    @course = Course.find(params[:course_id]) if params[:course_id]
+    student_enrollment = @course.student_enrollments.find_by_user_id(params[:student_id])
+    student_enrollment.delete
+    redirect_to course_edit_course_students_path
+  end
 
   private
 

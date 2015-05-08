@@ -29,7 +29,8 @@
         <tr>
           <th colspan="1">Last Name</th>
           <th colspan="1">First Name</th>
-          <th colspan="3">Student ID</th>
+          <th colspan="1">Student ID</th>
+          <th colspan="1">Remove Student</th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +43,12 @@
             <td>
               <%= text_field_tag "course_students[][first_name]", student.sortable_name.split(", ")[1] %>
             </td>
-            <td><%= student.permanent_name_identifier %></td>
+            <td>
+              <%= student.permanent_name_identifier %>
+            </td>
+            <td>
+              <%= link_to "X", course_remove_student_from_course_path(:student_id => student.id), :confirm => "Are you sure?"  %>
+            </td>
           </tr>
         <% end -%>
       </tbody>
