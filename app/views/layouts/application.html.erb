@@ -32,12 +32,12 @@
 
   ######################## New Method for Assigning layout classes ##########################
   if admin_role?
-    if teacher_role?
-      @body_classes << "with-fixed-nav"
+    if @course.present?
       @body_classes << "with-teacher-sidebar"
     else
       @body_classes << "with-left-side"
     end
+    @body_classes << "with-fixed-nav"
   elsif teacher_role?
     @body_classes << "with-fixed-nav"
     @body_classes << "with-teacher-sidebar"
@@ -219,7 +219,7 @@
   <div id="wrapper">
 
     <!-- sidebar -->
-    <% if teacher_role? %>
+    <% if (teacher_role? && !admin_role?) || (admin_role? && @course.present?) %>
       <%= render :partial => 'layouts/global/sidebar' %>
     <% else %>
       <% if @show_left_side %>
