@@ -12,7 +12,6 @@ class DistrictReportsController < ApplicationController
       add_crumb("District Reports")
 
       @districts = {}
-
       @context.sub_accounts.active.each do |sub_account|
         @probes = []
         find_probes_in_account(sub_account, sub_account, AssessmentQuestionBank.active, @probes)

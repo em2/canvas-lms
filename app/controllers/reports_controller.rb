@@ -2,7 +2,6 @@ class ReportsController < ApplicationController
   before_filter :require_user
 
   def index
-
     if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
 
       add_crumb("Reports")
@@ -23,7 +22,6 @@ class ReportsController < ApplicationController
       flash[:error] = "Not Authorized!"
       redirect_back_or_default(dashboard_url)
     end
-
   end
 
   def calculate_reports

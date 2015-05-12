@@ -8,12 +8,12 @@ class ClassReportsController < ApplicationController
       add_crumb("Class Reports")
 
       @classes = {}
-
-      @context.sub_accounts.active.each do |sub_account|
-        sub_account.sub_accounts.active.each do |sub_sub_account|
-          find_courses(sub_sub_account, @classes)
-        end
-      end
+      # @context.sub_accounts.active.each do |sub_account|
+      #   sub_account.sub_accounts.active.each do |sub_sub_account|
+      #     find_courses(sub_sub_account, @classes)
+      #   end
+      # end
+      find_courses(@current_user.accounts.first, @classes)
 
       if @is_teacher && !@is_admin
         # @classes = find_courses_for_teacher(@classes)
