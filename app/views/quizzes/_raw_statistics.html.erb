@@ -80,11 +80,11 @@
     		<td dir="ltr" class="s4"><%= user.sortable_name[/[Tt][0-9]{3}/] %></td>
     		<td dir="ltr" class="s4"><%= user.sortable_name[/[Cc][0-9]{3}/] %></td>
     		<td dir="ltr" class="s5"><%= user.name %></td>
-    		<td dir="ltr" class="s5"><%= user.id %></td>
+    		<td dir="ltr" class="s5"><%= user.permanent_name_identifier %></td>
 				<% @submission = @quiz.quiz_submissions.find_by_quiz_id_and_user_id(@quiz.id,user.id) -%>
         <% @submission_time = Submission.find(@submission.submission_id).submitted_at -%>
 				<td dir="ltr" class="s5"><%= @submission_time ? @submission_time.strftime("%-m/%-d/%Y at %l:%M%P") : '' %></td>
-				
+
 				<% @counter = 0 -%>
 				<% while @counter < @quiz_question_count do -%>
 					<td dir="ltr" class="s6"><%=@q["#{user.id}"] == nil || @q["#{user.id}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] == nil || @q["#{user.id}"]["#{@counter+1}"] == '' ? '' : @q["#{user.id}"]["#{@counter+1}"] %></td>

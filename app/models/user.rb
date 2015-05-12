@@ -126,20 +126,20 @@ class User < ActiveRecord::Base
     if self.roles.include?("admin")
       account = self.accounts.first
       display_courses = []
-      display_courses.concat(account.courses)
+      display_courses.concat(account.courses.active)
       display_courses.concat(sub_account_courses(account))
     else
-      display_courses = self.courses
+      display_courses = self.courses.active
     end
     display_courses
   end
 
   def sub_account_courses(account)
     sa_courses = []
-    sub_accounts = account.sub_accounts
+    sub_accounts = account.sub_accounts.active
     sub_accounts.each do |sub_account|
-      sa_courses.concat(sub_account.courses)
-      if sub_account.sub_accounts.present?
+      sa_courses.concat(sub_account.courses.active)
+      if sub_account.sub_accounts.active.present?
         sa_courses.concat(sub_account_courses(sub_account))
       end
     end
