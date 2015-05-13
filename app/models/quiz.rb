@@ -1035,7 +1035,7 @@ class Quiz < ActiveRecord::Base
       row << user.sortable_name[/[Tt][0-9]{3}/]
       row << user.sortable_name[/[Cc][0-9]{3}/]
       row << user.name
-      row << user.id
+      row << user.permanent_name_identifier
       @submission = self.quiz_submissions.find_by_quiz_id_and_user_id(self.id,user.id)
       @submission_time = Submission.find(@submission.submission_id).submitted_at
       if @submission_time
