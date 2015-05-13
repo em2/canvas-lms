@@ -92,7 +92,7 @@
       <% @submitted_students.each_with_index do |s, index| -%>
         <tr dir="ltr">
           <td class="hd"><p style="height:16px;<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>">.</p></td>
-          <td class="s14 student_number" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{s.id}"]) %>" class="name"><%= s.short_name %></a></td>
+          <td class="s14 student_number" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><a href="<%= context_url(@course, :context_quiz_history_url, @quiz, :quiz_submission_id => @submissions["#{s.id}"]) %>" class="name"><%= s.permanent_name_identifier %></a></td>
           <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_correct["#{s.id}"] %></td>
           <td class="s15" style="<%= index % 2 == 1 ? 'background-color: #EFEFEF;' : '' %>"><%= @number_attempted["#{s.id}"] %></td>
           <% (@quiz_question_count-1).times do |count| -%>
