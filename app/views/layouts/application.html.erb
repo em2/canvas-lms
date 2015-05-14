@@ -119,11 +119,8 @@
 
   <!-- div #header is the navbar -->
   <% if @current_user && (teacher_role? || @current_user.roles.include?("admin") || (!teacher_role? && current_page?(:controller => 'courses', :action => 'index')) )%>
-
     <%= render :partial => 'layouts/global/navbar' %>
     <%= render(:partial => "shared/keyboard_navigation_hint") if keyboard_navigation %>
-
-
   <% end -%>
   <!-- end of navbar -->
 
@@ -132,8 +129,6 @@
     <iframe id="instructure_ajax_error_result" src="about:blank" style="border: 0;"></iframe>
   </div>
 <%= render :partial => 'shared/flash_notices' %>
-
-
 
 <div id="wrapper-container">
   <div id="wrapper">
@@ -148,7 +143,7 @@
             <%= left_side %>
           <% else %>
             <% if @context.respond_to?(:short_name) && @context.try(:short_name) %>
-              <h1 id="section-tabs-header"><%= @context.short_name %></h1>
+              <!-- <h1 id="section-tabs-header"><%= @context.short_name %></h1> -->
               <% if @context && @context.respond_to?(:context)  %>
                 <a href="<%= url_for(@context.context) %>" id="section-tabs-header-subtitle" class="ellipsis"><%= @context.context.name %></a>
               <% end %>
