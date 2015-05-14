@@ -9,15 +9,23 @@
       </button>
       <% if @current_user.roles.include?("admin") %>
         <a class="navbar-brand" href="<%= root_path %>"><img class="nav_text" src="/images/logo.png"</a>
-      <% else %>
+      <% elsif @current_user.roles.include?("teacher") %>
         <a class="navbar-brand" href="<%= teacher_root_path %>"><img class="nav_text" src="/images/logo.png"</a>
+      <% else %>
+        <a class="navbar-brand" href="#"><img class="nav_text" src="/images/logo.png"</a>
       <% end -%>
     </div>
 
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown closed">
+        <% if @current_user.roles.include?("admin") %>
+          <a href="#" class="dropdown-toggle nav_text" data-toggle="dropdown"><%= @current_user.name%> (Admin) <b class="caret"></b></a>
+        <% elsif @current_user.roles.include?("teacher") %>
           <a href="#" class="dropdown-toggle nav_text" data-toggle="dropdown"><%= @current_user.name%> (Teacher) <b class="caret"></b></a>
+        <% else %>
+          <a href="#" class="dropdown-toggle nav_text" data-toggle="dropdown"><%= @current_user.name%><b class="caret"></b></a>
+        <% end -%>
           <ul class="dropdown-menu">
             <li>
               <%= link_to "Logout", logout_path, :method => :delete %>
