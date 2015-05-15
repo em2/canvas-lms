@@ -25,3 +25,4 @@ describe 'new_teacher_registration.summary' do
     generate_message(:new_teacher_registration, :summary, @object)
   end
 end
+

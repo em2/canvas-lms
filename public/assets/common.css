@@ -165,7 +165,7 @@ body.with-sidebar-pinned-to-bottom #right-side,body.with-sidebar-pinned-to-botto
 #menu_enrollments.customListEditing .customListWrapper{-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);-o-transform:scale(1);transform:scale(1);left:295px;opacity:1}
 .menu-item-drop .customListOpen{line-height:28px;cursor:pointer}
 .customListGhost{position:absolute;z-index:100}
-#left-side{float:left;width:175px;background-color:#f2f5f7;display:none;font-size:12px}
+#left-side{float:left;width:175px;background-color:#f2f5f7;display:none;font-size:12px;padding-top:68px}
 #left-side .left-side-inner{padding:10px;margin-left:5px}
 #left-side #section-tabs-header{padding:12px;margin:0;font-size:17px;line-height:1}
 #left-side #section-tabs-header-subtitle{color:#777;font-size:11px;font-style:italic;margin:-16px 12px 5px;display:block;text-decoration:none}

@@ -19,6 +19,7 @@
       <button class="button button-sidebar-wide disabled" disabled="true"><%= image_tag "bookmark.png" %> <%= t 'buttons.already_bookmarked', "Already Bookmarked" %></button>
     <% end %>
   </div>
+  <!--
   <h2 id="aligned_outcomes"><%= t 'headings.aligned_outcomes', "Aligned Outcomes" %></h2>
   <div class="rs-margin-lr rs-margin-bottom">
     <ul class="unstyled_list" id="aligned_outcomes_list">
@@ -39,6 +40,7 @@
     </ul>
     <a href="#" class="button button-sidebar-wide add_outcome_link"><%= image_tag "ball.png" %> <span class="add_outcome_text"><%= t 'links.align_outcome', "Align Outcome" %></span></a>
   </div>
+  -->
   <%= render :partial => 'shared/find_outcome', :locals => {:purpose => 'question_bank'}  %>
   <% if can_do(@bank, @current_user, :update) && @is_account_admin %>
     <h2 id="edit_misconceptions"><%= t 'headings.edit_misconceptions', "Misconceptions" %></h2>
