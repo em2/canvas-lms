@@ -13,7 +13,7 @@ class Report < ActiveRecord::Base
     else
       puts "bfcoder is already calculating reports."
     end
-    
+
   end
 
 	def calculate_reports(context)
@@ -25,7 +25,7 @@ class Report < ActiveRecord::Base
         # calculate class report
         school.courses.active.each do |course|
           if !course.em2_identifier
-            course.em2_identifier = course.course_code 
+            course.em2_identifier = course.course_code
             course.save!
           end
           course.quizzes.active.each do |quiz|
@@ -101,7 +101,7 @@ class Report < ActiveRecord::Base
     [
       { :id => TAB_COURSES, :label => t('#account.tab_courses', "Courses"), :css_class => 'courses', :href => :courses_path, :no_args => true },
       { :id => TAB_REPORTS, :label => t('#tabs.summary_reports', "Summary Reports"), :css_class => 'reports', :href => :reports_path, :no_args => true },
-      { :id => TAB_ROSTERS, :label => t('#tabs.rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true }
+      # { :id => TAB_ROSTERS, :label => t('#tabs.rosters', "Rosters"), :css_class => 'rosters', :href => :rosters_path, :no_args => true }
     ]
   end
 
