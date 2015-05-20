@@ -73,7 +73,7 @@ class CoursesController < ApplicationController
       course.offer!
       course.save!
       add_teacher(course)
-      add_students(student_hashes, course) if students_array.present?
+      add_students(student_hashes, course) if student_hashes.present?
       flash[:notice] = 'Class added'
       redirect_to new_course_path
     else
@@ -165,7 +165,7 @@ class CoursesController < ApplicationController
       redirect_to new_course_path
     end
 
-    add_students(student_hashes, course) if students_array.present?
+    add_students(student_hashes, course) if student_hashes.present?
     flash[:notice] = 'Students added'
     redirect_to course_path(@course)
   end
