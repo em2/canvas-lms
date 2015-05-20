@@ -129,6 +129,14 @@ class CoursesController < ApplicationController
 
   def add_student_to_course
     @course = Course.find(params[:course_id]) if params[:course_id]
+
+    id_in_use = check_for_existing_students([{:student_id => params[:permanent_name_identifier]}]) if params[:permanent_name_identifier]
+
+    if id_in_use.present?
+      flash[:error] = "Student ID already in use. Please use a unique ID"
+      render :action => 'show' and return
+    end
+
     if params[:permanent_name_identifier] && params[:first_name]
       student = find_or_create_student(params[:first_name], params[:last_name], params[:permanent_name_identifier], (@course.students.map(&:short_name).sort.last.to_i + 1))
       enroll = @course.enroll_student(student)
