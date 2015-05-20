@@ -74,24 +74,24 @@
     end
   %>
   <% form_tag context_url(@context, form_params), {:id => "submit_quiz_form"} do %>
-  <input type="hidden" name="attempt" value="<%= @submission.attempt %>"/>
-  <% if @submission.preview? %>
-    <input type="hidden" name="preview" value="1"/>
-  <% end %>
-  <div style="display: none;" id="quiz_urls">
-    <a href="<%= context_url(@context, :backup_context_quiz_quiz_submissions_url, @quiz.id) %>?user_id=<%= @current_user && @current_user.id %><%= "&preview=1" if @submission.preview? %>" class="backup_quiz_submission_url">&nbsp;</a>
-    <span class="started_at"><%= @submission.started_at.iso8601 %></span>
-    <span class="now"><%= ActiveSupport::TimeWithZone.new(Time.now.utc, Time.zone).iso8601 %></span>
-    <span class="end_at"><%= @submission.end_at && @submission.end_at.iso8601 %></span>
-    <span class="time_limit"><%= @quiz.time_limit || nbsp %></span>
-  </div>
-  <%= render :partial => "display_question", :collection => @submission.questions_as_object, :locals => {:assessing => true } %>
+    <input type="hidden" name="attempt" value="<%= @submission.attempt %>"/>
+    <% if @submission.preview? %>
+      <input type="hidden" name="preview" value="1"/>
+    <% end %>
+    <div style="display: none;" id="quiz_urls">
+      <a href="<%= context_url(@context, :backup_context_quiz_quiz_submissions_url, @quiz.id) %>?user_id=<%= @current_user && @current_user.id %><%= "&preview=1" if @submission.preview? %>" class="backup_quiz_submission_url">&nbsp;</a>
+      <span class="started_at"><%= @submission.started_at.iso8601 %></span>
+      <span class="now"><%= ActiveSupport::TimeWithZone.new(Time.now.utc, Time.zone).iso8601 %></span>
+      <span class="end_at"><%= @submission.end_at && @submission.end_at.iso8601 %></span>
+      <span class="time_limit"><%= @quiz.time_limit || nbsp %></span>
+    </div>
+    <%= render :partial => "display_question", :collection => @submission.questions_as_object, :locals => {:assessing => true } %>
 
-    <% unless params[:preview] %>
-      <div class="button-container">
-        <button type="submit" class="button submit_button"><%= t('buttons.submit_answer', "Submit Answers") %></button>
-      </div>
-    <% end -%>
+      <% unless params[:preview] %>
+        <div class="button-container">
+          <button type="submit" class="button submit_button"><%= t('buttons.submit_answer', "Submit Answers") %></button>
+        </div>
+      <% end -%>
   <% end %>
   <% if @no_chrome && !params[:preview] -%>
     <div class="button-container">

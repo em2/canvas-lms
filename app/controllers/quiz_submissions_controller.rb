@@ -19,12 +19,12 @@
 class QuizSubmissionsController < ApplicationController
   protect_from_forgery :except => [:create, :backup]
   before_filter :require_context
-  
+
   def index
     @quiz = @context.quizzes.find(params[:quiz_id])
     redirect_to named_context_url(@context, :context_quiz_url, @quiz.id)
   end
-  
+
   # submits the quiz as final
   def create
     redirect_params = {}
@@ -34,7 +34,7 @@ class QuizSubmissionsController < ApplicationController
     elsif @quiz.grants_right?(@current_user, :submit)
       @submission = @quiz.quiz_submissions.find_by_user_id(@current_user.id) if @current_user
       # If the submission is a preview, we don't add it to the user's submission history,
-      # and it actually gets keyed by the temporary_user_code column instead of 
+      # and it actually gets keyed by the temporary_user_code column instead of
       preview = params[:preview] && @quiz.grants_right?(@current_user, session, :update)
       @submission = nil if preview
       if !@current_user || preview
@@ -63,7 +63,7 @@ class QuizSubmissionsController < ApplicationController
     end
     redirect_to course_quiz_url(@context, @quiz, redirect_params)
   end
-  
+
   def backup
     @quiz = @context.quizzes.find(params[:quiz_id])
     if authorized_action(@quiz, @current_user, :submit)
@@ -85,7 +85,7 @@ class QuizSubmissionsController < ApplicationController
       render :json => {:backup => false, :end_at => @submission && @submission.end_at}.to_json
     end
   end
-  
+
   def extensions
     @quiz = @context.quizzes.find(params[:quiz_id])
     @student = @context.students.find(params[:user_id])
@@ -109,7 +109,7 @@ class QuizSubmissionsController < ApplicationController
       end
     end
   end
-  
+
   def update
     @quiz = @context.quizzes.find(params[:quiz_id])
     @submission = @quiz.quiz_submissions.find(params[:id])
@@ -122,7 +122,7 @@ class QuizSubmissionsController < ApplicationController
       end
     end
   end
-  
+
   def show
     @quiz = @context.quizzes.find(params[:quiz_id])
     @submission = @quiz.quiz_submissions.find(params[:id])

@@ -52,14 +52,28 @@ class CoursesController < ApplicationController
 
     if students_array.present? && !validate_students_array(students_array)
       flash[:error] = 'Student list not added correctly. Could not add class.'
-      redirect_to new_course_path
+      redirect_to new_course_path and return
+    end
+
+    student_hashes = build_student_hashes(students_array, name_order)
+    existing_students = check_for_existing_students(student_hashes)
+
+    if existing_students.present?
+      e_message = "The following student school id(s) are already in use within the EM2 system:"
+      existing_students.each do |student_data|
+        user = User.find_by_permanent_name_identifier(student_data[:student_id])
+        e_message = e_message + "<br/>#{student_data[:first_name]} #{student_data[:last_name]}, #{student_data[:student_id]}"
+      end
+      e_message = e_message + "<br/>Please create a unique ID for the above students."
+      flash[:error] = e_message.html_safe
+      redirect_to new_course_path and return
     end
 
     if course.save
       course.offer!
       course.save!
       add_teacher(course)
-      add_students(students_array, course, name_order) if students_array.present?
+      add_students(student_hashes, course) if students_array.present?
       flash[:notice] = 'Class added'
       redirect_to new_course_path
     else
@@ -137,7 +151,21 @@ class CoursesController < ApplicationController
       redirect_to course_path(@course)
     end
 
-    add_students(students_array, @course, name_order) if students_array.present?
+    student_hashes = build_student_hashes(students_array, name_order)
+    existing_students = check_for_existing_students(student_hashes)
+
+    if existing_students.present?
+      e_message = "The following student school id(s) are already in use within the EM2 system:"
+      existing_students.each do |student_data|
+        user = User.find_by_permanent_name_identifier(student_data[:student_id])
+        e_message = e_message + "<br/>#{student_data[:first_name]} #{student_data[:last_name]}, #{student_data[:student_id]}"
+      end
+      e_message = e_message + "<br/>Please create a unique ID for the above students."
+      flash[:error] = e_message
+      redirect_to new_course_path
+    end
+
+    add_students(student_hashes, course) if students_array.present?
     flash[:notice] = 'Students added'
     redirect_to course_path(@course)
   end
@@ -165,7 +193,17 @@ class CoursesController < ApplicationController
     @unique_course_identifier
   end
 
-  def add_students(students_array, course, name_order)
+  def add_students(student_hashes, course)
+    student_hashes.each do |sd|
+      student = find_or_create_student(sd[:first_name], sd[:last_name], sd[:student_id], sd[:course_enrollment_count])
+      enroll = course.enroll_student(student)
+      enroll.workflow_state = 'active'
+      enroll.save!
+    end
+  end
+
+  def build_student_hashes(students_array, name_order)
+    array = []
     student_id_first = student_id_first?(students_array)
     students_array.count.times do
       course_enrollment_count = students_array.count
@@ -191,11 +229,9 @@ class CoursesController < ApplicationController
           first_name = student_data.pop
         end
       end
-      student = find_or_create_student(first_name, last_name, student_id, course_enrollment_count)
-      enroll = course.enroll_student(student)
-      enroll.workflow_state = 'active'
-      enroll.save!
+      array << {:first_name => first_name, :last_name => last_name, :student_id => student_id, :course_enrollment_count => course_enrollment_count}
     end
+    array
   end
 
   def find_or_create_student(first_name, last_name, student_id, course_enrollment_count)
@@ -272,6 +308,19 @@ class CoursesController < ApplicationController
     sample = students_array.first.split
     result = sample.first.scan(/\d/).present?
     result
+  end
+
+  def check_for_existing_students(student_hashes)
+    array = []
+    student_ids = User.all.map(&:permanent_name_identifier)
+
+    student_hashes.each do |student_data|
+      if student_ids.include?(student_data[:student_id])
+        array << student_data
+      end
+    end
+
+    array
   end
 
 end
