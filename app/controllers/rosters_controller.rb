@@ -65,25 +65,19 @@ class RostersController < ApplicationController
     # Make sure that the stage was selected
     if check_stage(params[:rosters][:stage])
       errors_found = true
-    end
-    puts "checkpoint1"
-    puts errors_found
+    endz
 
     #
     # Make sure that the instance is 3 numbers and only 3 numbers
     if !check_instance(params[:rosters][:instance])
       errors_found = true
     end
-    puts "checkpoint2"
-    puts errors_found
 
     #
     # Make sure that the student count correct if the 'Other' option was selected
     if !check_student_count(params[:rosters][:students], params[:rosters][:students_custom])
       errors_found = true
     end
-    puts "checkpoint3"
-    puts errors_found
 
     if is_authorized?(@current_user) && is_admin_or_teacher? # Make sure the user is authorized to do this
       if (errors_found) # Make sure that the stage and instance were entered and entered correctly
@@ -93,8 +87,6 @@ class RostersController < ApplicationController
       else
         #
         # Create the names
-        puts "checkpoint4"
-
         @probe = AssessmentQuestionBank.find(params[:rosters][:probe_id])
         @pre_post = params[:rosters][:pre_post].present? ? params[:rosters][:pre_post] : ""
         @instance = params[:rosters][:instance]
@@ -110,8 +102,6 @@ class RostersController < ApplicationController
 
         #
         # Loop until a probe has been generated for each class id
-        puts "checkpoint3"
-        puts @course_titles
         i = 0
         while (i < @course_titles.count)
 
