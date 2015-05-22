@@ -131,7 +131,7 @@ class Quiz < ActiveRecord::Base
   end
 
   def set_unpublished_question_count
-    logger.info "this got called"
+    logger.warn "this got called"
     entries = self.root_entries(true)
     cnt = 0
     entries.each do |e|
