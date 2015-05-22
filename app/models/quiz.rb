@@ -223,7 +223,7 @@ class Quiz < ActiveRecord::Base
 
   attr_accessor :saved_by
   def update_assignment
-    send_later_if_production(:set_unpublished_question_count) if self.id
+    # send_later_if_production(:set_unpublished_question_count) if self.id
     if !self.assignment_id && @old_assignment_id && self.context_module_tag
       self.context_module_tag.confirm_valid_module_requirements
     end
