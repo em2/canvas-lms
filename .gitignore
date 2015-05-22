@@ -67,3 +67,5 @@ app/stylesheets/plugins/
 spec/coffeescripts/plugins/
 .elasticbeanstalk/
 .ebextensions/
+dump.sql
+local.sql
