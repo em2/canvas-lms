@@ -131,6 +131,7 @@ class Quiz < ActiveRecord::Base
   end
 
   def set_unpublished_question_count
+    logger.info "this got called"
     entries = self.root_entries(true)
     cnt = 0
     entries.each do |e|
@@ -223,7 +224,7 @@ class Quiz < ActiveRecord::Base
 
   attr_accessor :saved_by
   def update_assignment
-    # send_later_if_production(:set_unpublished_question_count) if self.id
+    send_later_if_production(:set_unpublished_question_count) if self.id
     if !self.assignment_id && @old_assignment_id && self.context_module_tag
       self.context_module_tag.confirm_valid_module_requirements
     end
