@@ -55,7 +55,7 @@ class Quiz < ActiveRecord::Base
   copy_authorized_links(:description) { [self.context, nil] }
   before_save :build_assignment
   before_save :set_defaults
-  after_save :update_assignment
+  # after_save :update_assignment
   after_save :touch_context
 
   serialize :quiz_data
