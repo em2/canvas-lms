@@ -161,7 +161,8 @@ class RostersController < ApplicationController
         elsif (errors_found && !probe_generated)
           flash[:error] = "There were some errors and no probes have been generated."
         elsif (probe_generated)
-          flash[:error] = "Adding assessment. This could take up to 5 minutes. Please be patient."
+          # flash[:error] = "Adding assessment. This could take up to 5 minutes. Please be patient."
+          flash[:notice] = "Assessment Added"
         end
         redirect_back_or_default(dashboard_url)
         return true
