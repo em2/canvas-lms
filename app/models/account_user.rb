@@ -55,7 +55,7 @@ class AccountUser < ActiveRecord::Base
     p.to {|record| record.user }
     p.whenever {|record| @account_user_registration }
 
-    p.dispatch :account_user_notification
+    # p.dispatch :account_user_notification
     p.to {|record| record.user }
     p.whenever {|record| @account_user_notification }
   end
