@@ -39,7 +39,7 @@ require([
     $form.attr('method', 'PUT');
 
     data["pattern"] = JSON.stringify(pattern);
-    $form.fillFormData(data, {object_name: 'quiz_micsonception'});
+    $form.fillFormData(data, {object_name: 'quiz_misconception'});
 
     $("#edit_misconception_pattern_form").submit();
 
